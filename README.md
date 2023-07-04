@@ -23,3 +23,12 @@
 - refactor : 코드 리팩토링 (e.g. 변수명 수정)
 - style : 코드 스타일 변경(코드 자체의 변경 없이 스타일만 변경된 경우)
 - remove : 코드 또는 파일, 리소스 제거
+
+## PR 방법
+1) branch 생성
+2) 작업 완료 후 add, commit, push
+3) pull request 생성
+4) 본인을 제외한 각 팀원 코드 리뷰
+5) Merge
+  한 사람이 Merge하는 것보다 본인 코드를 merge해 줄 사람을 정하거나 돌아가면서 merge하는 것이 좋을 것 같음!
+(e.g 카야의 코드 merge = 진 / 진의 코드 merge = 리유 ... )
