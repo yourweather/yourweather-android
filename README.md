@@ -36,4 +36,4 @@
 ## ⛄ Android Developers
 | 강유리 | 박서진 | 박예진 | 송예린 | 한혜진 |
 |:---------:|:----------:|:----------:|:----------:|:----------:|
-| [kangyuri1114](https://github.com/kangyuri1114) | [ParkSeojin1101](https://github.com/ParkSeojin1101) |  | [yeriinnn](https://github.com/yeriinnn) | [hyemyu](https://github.com/hyemyu) |
+| [kangyuri1114](https://github.com/kangyuri1114) | [ParkSeojin1101](https://github.com/ParkSeojin1101) | [yejin-park](https://github.com/yejin-park) | [yeriinnn](https://github.com/yeriinnn) | [hyemyu](https://github.com/hyemyu) |
