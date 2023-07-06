@@ -38,6 +38,28 @@
 5) Merge : 카야←진←리유←클로이←코이←카야
    [예시 : 카야 코드 merge = 진]
 
+## 🌀 Package 규칙
+📁 data<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;📁 entity<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;📁 repository<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;📁 service<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;📁 source<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;📁 local<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;📁 remote<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;📁 request<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;📁 response<br/>
+┣ 📁 entity<br/>
+┣ 📁 repository<br/>
+┣ 📁 service<br/>
+┣ 📁 source<br/>
+┃ ┣ 📁 local<br/>
+┃ ┣ 📁 remote<br/>
+┃ ┃ ┣ 📁 request<br/>
+┃ ┃ ┣ response<br/>
+📁 di<br/>
+📁 presentation<br/>
+📁 util
+
 ## ⛄ Android Developers
 | 리유/강유리 | 진/박서진 | 클로이/박예진 | 카야/송예린 | 코이/한혜진 |
 |:---------:|:----------:|:----------:|:----------:|:----------:|
