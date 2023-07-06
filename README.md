@@ -40,14 +40,6 @@
 
 ## 🌀 Package 규칙
 📁 data<br/>
-&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;📁 entity<br/>
-&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;📁 repository<br/>
-&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;📁 service<br/>
-&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;📁 source<br/>
-&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;📁 local<br/>
-&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;📁 remote<br/>
-&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;📁 request<br/>
-&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;📁 response<br/>
 ┣ 📁 entity<br/>
 ┣ 📁 repository<br/>
 ┣ 📁 service<br/>
@@ -55,7 +47,7 @@
 ┃ ┣ 📁 local<br/>
 ┃ ┣ 📁 remote<br/>
 ┃ ┃ ┣ 📁 request<br/>
-┃ ┃ ┣ response<br/>
+┃ ┃ ┣ 📁 response<br/>
 📁 di<br/>
 📁 presentation<br/>
 📁 util
