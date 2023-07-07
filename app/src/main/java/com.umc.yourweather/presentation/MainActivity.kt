@@ -1,14 +1,13 @@
-package com.umc.yourweather.data
 
-import androidx.appcompat.app.AppCompatActivity
+package com.umc.yourweather.presentation
+
 import android.os.Bundle
+import androidx.appcompat.app.AppCompatActivity
 import com.umc.yourweather.R
 
 class MainActivity : AppCompatActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
-        super.onCreate(savedInstanceState);
-
-
+        super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_main)
     }
 }
