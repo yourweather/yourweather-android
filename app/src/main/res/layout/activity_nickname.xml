@@ -1,0 +1,88 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    xmlns:tools="http://schemas.android.com/tools"
+    tools:context=".presentation.SignIn"
+    >
+
+    <RelativeLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:orientation="horizontal"
+        tools:layout_editor_absoluteX="114dp"
+        tools:layout_editor_absoluteY="144dp">
+
+        <TextView
+            android:id="@+id/tv_nickname_guide"
+            android:layout_width="224dp"
+            android:layout_height="wrap_content"
+            android:layout_alignParentStart="true"
+            android:layout_alignParentTop="true"
+            android:layout_alignParentEnd="true"
+            android:layout_marginStart="50dp"
+            android:layout_marginTop="240dp"
+            android:layout_marginEnd="50dp"
+            android:bufferType="spannable"
+            android:gravity="center"
+            android:text="유어웨더에서 사용할 닉네임을 입력해주세요"
+            android:textColor="#8E7A6D"
+            android:textSize="17dp"
+            android:textStyle="bold" />
+
+        <ImageView
+            android:id="@+id/iv_nickname_logo"
+            android:layout_width="150sp"
+            android:layout_height="150sp"
+            android:layout_alignParentStart="true"
+            android:layout_alignParentTop="true"
+            android:layout_alignParentEnd="true"
+            android:layout_marginStart="136dp"
+            android:layout_marginLeft="100dp"
+            android:layout_marginTop="110dp"
+            android:layout_marginEnd="136dp"
+            android:layout_marginRight="100dp"
+            android:src="@drawable/img_yourweatherlogo" />
+
+
+        <EditText
+            android:id="@+id/et_nickname_nickname"
+            android:layout_width="0dp"
+            android:layout_height="54dp"
+            android:layout_alignParentLeft="true"
+            android:layout_alignParentTop="true"
+            android:layout_alignParentRight="true"
+            android:layout_marginLeft="17dp"
+            android:layout_marginTop="300dp"
+            android:layout_marginRight="16dp"
+            android:background="@drawable/bg_gray_fill_rect"
+            android:gravity="center"
+            android:hint="맑은 비구름"
+            android:paddingLeft="16dp"
+            android:textColorHint="#A9ADB4"
+            android:textCursorDrawable="@null"
+            android:textSize="20sp"
+            android:textStyle="bold" />
+
+        <androidx.appcompat.widget.AppCompatButton
+            android:id="@+id/btn_nickname_next"
+            android:layout_width="191dp"
+            android:layout_height="64dp"
+            android:layout_alignParentLeft="true"
+            android:layout_alignParentTop="true"
+            android:layout_alignParentRight="true"
+            android:layout_marginLeft="100dp"
+            android:layout_marginTop="611dp"
+            android:layout_marginRight="100dp"
+            android:background="@drawable/bg_orange_fill_300_circle"
+            android:letterSpacing="-0.05"
+            android:lineSpacingExtra="3sp"
+            android:text="다음"
+            android:textColor="#FFFFFF"
+            android:textSize="20sp"
+            android:textStyle="bold"
+            android:translationY="-1.52sp" />
+
+
+    </RelativeLayout>
+</androidx.constraintlayout.widget.ConstraintLayout>
