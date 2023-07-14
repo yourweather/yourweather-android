@@ -13,6 +13,24 @@
         android:theme="@style/Theme.Yourweather"
         tools:targetApi="31">
         <activity
+            android:name=".presentation.SocialSignUp"
+            android:exported="false" />
+        <activity
+            android:name=".presentation.SignUp2"
+            android:exported="false" />
+        <activity
+            android:name=".presentation.Nickname"
+            android:exported="false" />
+        <activity
+            android:name=".presentation.SignUp"
+            android:exported="false" />
+        <activity
+            android:name=".presentation.SignIn"
+            android:exported="false" />
+        <activity
+            android:name=".presentation.FindPw"
+            android:exported="false" />
+        <activity
             android:name=".presentation.MainActivity"
             android:exported="true">
             <intent-filter>

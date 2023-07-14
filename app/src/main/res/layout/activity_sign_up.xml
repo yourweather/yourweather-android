@@ -1,0 +1,261 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context=".presentation.SignUp">
+    <LinearLayout
+        android:id="@+id/ll_signup_l1"
+        android:layout_width="411dp"
+        android:layout_height="0dp"
+        android:gravity="center"
+        android:orientation="vertical"
+        app:layout_constraintBottom_toTopOf="@+id/ll_signup_l2"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+
+        app:layout_constraintVertical_weight="9">
+
+        <ImageView
+            android:id="@+id/iv_signup_logo"
+            android:layout_width="100dp"
+            android:layout_height="100dp"
+            android:layout_marginTop="100dp"
+            android:layout_marginBottom="20dp"
+            android:src="@drawable/img_yourweatherlogo" />
+
+        <TextView
+            android:id="@+id/tv_signup_guide"
+            android:layout_width="185dp"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="100dp"
+            android:layout_marginEnd="100dp"
+            android:bufferType="spannable"
+            android:gravity="center"
+            android:text="하루 3번,\n간편하게 기록을 남기고\n나만의 날씨를 만들어보세요"
+            android:textColor="#8E7A6D"
+            android:textStyle="bold" />
+
+    </LinearLayout>
+
+    <LinearLayout
+        android:id="@+id/ll_signup_l2"
+        android:layout_width="0dp"
+        android:layout_height="0dp"
+        android:layout_marginStart="16dp"
+        android:layout_marginEnd="16dp"
+        android:layout_marginBottom="32dp"
+        android:gravity="center"
+        android:orientation="vertical"
+
+        android:paddingLeft="15dp"
+        android:paddingRight="15dp"
+        app:layout_constraintBottom_toTopOf="@+id/ll_signup_l3"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/ll_signup_l1"
+        app:layout_constraintVertical_weight="7">
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"
+            android:orientation="vertical">
+
+            <TextView
+                android:id="@+id/tv_signup_email"
+                android:layout_width="335dp"
+                android:layout_height="wrap_content"
+                android:bufferType="spannable"
+                android:gravity="left"
+                android:text="이메일"
+                android:textColor="#A9ADB4"
+                android:textSize="13dp"
+                android:textStyle="bold" />
+        </LinearLayout>
+
+        <FrameLayout
+            android:layout_width="match_parent"
+            android:layout_height="48dp"
+            android:layout_weight="2">
+
+            <EditText
+                android:id="@+id/et_signup_email"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:background="@drawable/bg_gray_fill_rect"
+                android:gravity="center" />
+
+            <androidx.appcompat.widget.AppCompatButton
+                android:id="@+id/btn_signup_sendcode"
+                android:layout_width="wrap_content"
+                android:layout_height="28dp"
+                android:layout_gravity="right|center_vertical"
+                android:layout_marginRight="10dp"
+                android:background="@drawable/bg_orange_fill_300_circle_sub"
+                android:text="인증코드 전송"
+                android:textColor="#FFFFFF"
+                android:textSize="12dp"
+                android:textStyle="bold" />
+        </FrameLayout>
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="15dp"
+            android:layout_weight="1"
+            android:orientation="vertical">
+
+        </LinearLayout>
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"
+            android:orientation="vertical">
+
+            <TextView
+                android:id="@+id/tv_signup_auth"
+                android:layout_width="335dp"
+                android:layout_height="wrap_content"
+                android:layout_marginEnd="0dp"
+                android:layout_marginBottom="0dp"
+                android:bufferType="spannable"
+                android:gravity="left"
+                android:text="이메일로 전송된 인증코드를 입력해주세요."
+                android:textColor="#A9ADB4"
+                android:textSize="13dp"
+                android:textStyle="bold" />
+        </LinearLayout>
+
+        <FrameLayout
+            android:layout_width="match_parent"
+            android:layout_height="48dp"
+            android:layout_weight="2">
+
+            <EditText
+                android:id="@+id/et_signup_auth"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:background="@drawable/bg_gray_fill_rect"
+                android:hint="인증코드 6자리 입력"
+                android:paddingLeft="16dp"
+                android:textColorHint="#A9ADB4"
+                android:textCursorDrawable="@null"
+                android:textSize="16sp"
+                tools:ignore="DuplicateIds" />
+
+            <androidx.appcompat.widget.AppCompatButton
+                android:id="@+id/btn_signup_check"
+                android:layout_width="65dp"
+                android:layout_height="28dp"
+                android:layout_gravity="right|center_vertical"
+                android:layout_marginRight="10dp"
+                android:background="@drawable/bg_orange_fill_300_circle_sub"
+                android:text="확인"
+                android:textColor="#FFFFFF"
+                android:textSize="12dp"
+                android:textStyle="bold" />
+        </FrameLayout>
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="13dp"
+            android:layout_weight="1"
+            android:gravity="left">
+
+            <ImageView
+                android:id="@+id/imageView2"
+                android:layout_width="13dp"
+                android:layout_height="match_parent"
+                android:layout_marginRight="3dp"
+                app:srcCompat="@drawable/ic_signup_authic" />
+
+            <TextView
+                android:id="@+id/tv_signup_guide3"
+                android:layout_width="wrap_content"
+                android:layout_height="match_parent"
+                android:layout_marginRight="0dp"
+                android:padding="0dp"
+                android:text="인증코드를 받지 못하셨나요?"
+                android:textColor="#ACACAC"
+                android:textSize="11dp"
+                android:textStyle="bold" />
+
+            <TextView
+                android:id="@+id/tv_signup_btnresend"
+                android:layout_width="wrap_content"
+                android:layout_height="match_parent"
+                android:text="  인증코드 재전송"
+                android:textColor="#ACACAC"
+                android:textSize="11dp"
+                android:textStyle="bold" />
+
+
+        </LinearLayout>
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="15dp"
+            android:layout_weight="2"
+            android:orientation="vertical"></LinearLayout>
+
+        <androidx.appcompat.widget.AppCompatButton
+            android:id="@+id/btn_signup_next"
+            android:layout_width="167dp"
+            android:layout_height="48dp"
+            android:layout_weight="2"
+            android:background="@drawable/bg_orange_fill_300_circle"
+            android:letterSpacing="-0.05"
+            android:lineSpacingExtra="3sp"
+            android:text="다음"
+            android:textColor="#FFFFFF"
+            android:textSize="20dp"
+            android:textStyle="bold"
+            android:translationY="-1.52sp" />
+
+    </LinearLayout>
+
+    <LinearLayout
+        android:id="@+id/ll_signup_l3"
+        android:layout_width="match_parent"
+        android:layout_height="0dp"
+        android:orientation="vertical"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.5"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/ll_signup_l2"
+        app:layout_constraintVertical_weight="2"
+
+        >
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:gravity="center">
+
+            <TextView
+                android:id="@+id/tv_signup_guide2"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginEnd="5dp"
+                android:text="이미 계정이 있다면?"
+                android:textColor="#5E412F"
+                android:textSize="16sp"
+                android:textStyle="bold" />
+
+            <TextView
+                android:id="@+id/tv_signup_btnsignin"
+                android:layout_width="wrap_content"
+                android:layout_height="match_parent"
+                android:layout_marginStart="5dp"
+                android:text="로그인"
+                android:textColor="#F07818"
+                android:textSize="16sp"
+                android:textStyle="bold" />
+
+        </LinearLayout>
+    </LinearLayout>
+</androidx.constraintlayout.widget.ConstraintLayout>
