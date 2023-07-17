@@ -1,3 +1,7 @@
 <resources>
     <string name="app_name">yourweather</string>
+    <!-- TODO: Remove or change this placeholder text -->
+    <string name="hello_blank_fragment">Hello blank fragment</string>
+    <string name="description_check">check</string>
+    <string name="tv_allclear">모든 기록을 완료하였어요</string>
 </resources>
