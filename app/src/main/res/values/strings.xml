@@ -1,3 +1,7 @@
 <resources>
     <string name="app_name">yourweather</string>
+    <string name="bnv_title1">홈</string>
+    <string name="bnv_title2">캘린더</string>
+    <string name="bnv_title3">리포트</string>
+    <string name="bnv_title4">마이페이지</string>
 </resources>
