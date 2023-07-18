@@ -8,4 +8,6 @@
     <color name="brown">#5E412F</color>
     <color name="green">#70AD47</color>
     <color name="ivory">#FFFCF3</color>
+    <color name="bnv_back">#333333</color>
+    <color name="bnv_icon">#B5B5B5</color>
 </resources>

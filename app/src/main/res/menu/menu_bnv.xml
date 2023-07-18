@@ -1,0 +1,29 @@
+<?xml version="1.0" encoding="utf-8"?>
+<menu xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto">
+
+    <item
+        android:id="@+id/bnv_home"
+        android:enabled="true"
+        app:showAsAction="withText"
+        android:icon="@drawable/ic_bnv_home"
+        android:title="@string/bnv_title1"/>
+    <item
+        android:id="@+id/bnv_calender"
+        android:enabled="true"
+        app:showAsAction="withText"
+        android:icon="@drawable/ic_bnv_calender"
+        android:title="@string/bnv_title2"/>
+    <item
+        android:id="@+id/bnv_report"
+        android:enabled="true"
+        app:showAsAction="withText"
+        android:icon="@drawable/ic_bnv_report"
+        android:title="@string/bnv_title3"/>
+    <item
+        android:id="@+id/bnv_my_page"
+        android:enabled="true"
+        app:showAsAction="withText"
+        android:icon="@drawable/ic_bnv_person"
+        android:title="@string/bnv_title4"/>
+</menu>
