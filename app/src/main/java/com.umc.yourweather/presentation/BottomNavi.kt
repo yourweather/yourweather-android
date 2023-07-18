@@ -1,5 +1,5 @@
 
-package com.umc.bottomnavi
+package com.umc.yourweather.presentation
 
 import android.os.Bundle
 import android.widget.FrameLayout
