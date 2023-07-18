@@ -56,20 +56,39 @@
         app:layout_constraintTop_toBottomOf="@+id/ll_nickname_l1"
         app:layout_constraintVertical_weight="1">
 
-        <EditText
-            android:id="@+id/et_nickname_nickname"
+        <FrameLayout
             android:layout_width="match_parent"
-            android:layout_height="54dp"
-            android:layout_marginLeft="17dp"
-            android:layout_marginRight="16dp"
-            android:background="@drawable/bg_gray_fill_rect"
-            android:gravity="center"
-            android:hint="맑은 비구름"
-            android:paddingLeft="16dp"
-            android:textColorHint="#A9ADB4"
-            android:textCursorDrawable="@null"
-            android:textSize="20sp"
-            android:textStyle="bold" />
+            android:layout_height="48dp"
+            android:layout_weight="2">
+
+            <EditText
+                android:id="@+id/et_nickname_nickname"
+                android:layout_width="match_parent"
+                android:layout_height="54dp"
+                android:layout_marginLeft="17dp"
+                android:layout_marginRight="16dp"
+                android:background="@drawable/bg_gray_fill_rect"
+                android:gravity="center"
+                android:hint="맑은 비구름"
+                android:paddingLeft="16dp"
+                android:textColorHint="@color/gray"
+                android:textCursorDrawable="@null"
+                android:textSize="20sp"
+                android:textStyle="bold" />
+
+            <androidx.appcompat.widget.AppCompatButton
+                android:id="@+id/btn_nickname_refresh"
+                android:layout_width="60dp"
+                android:layout_height="25dp"
+                android:layout_gravity="right|center_vertical"
+                android:layout_marginEnd="23dp"
+                android:layout_marginBottom="12dp"
+                android:background="@drawable/ic_nickname_refresh_btn"
+                android:text="새로 고침"
+                android:textColor="@color/white"
+                android:textSize="11dp"
+                android:textStyle="bold" />
+        </FrameLayout>
     </LinearLayout>
 
     <LinearLayout
@@ -89,11 +108,10 @@
             android:layout_height="48dp"
             android:layout_marginLeft="100dp"
             android:layout_marginRight="100dp"
-            android:background="@drawable/bg_orange_fill_300_circle"
+            android:background="@drawable/bg_click_btn"
             android:text="다음"
-            android:textColor="#FFFFFF"
+            android:textColor="@color/white"
             android:textSize="20dp"
-            android:textStyle="bold"
-            />
+            android:textStyle="bold" />
     </LinearLayout>
 </androidx.constraintlayout.widget.ConstraintLayout>
