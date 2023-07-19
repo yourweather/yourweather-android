@@ -7,39 +7,109 @@
     tools:context=".presentation.Nickname">
 
     <LinearLayout
-        android:id="@+id/ll_nickname_l1"
-        android:layout_width="411dp"
+        android:id="@+id/ll_nickname_l0"
+        android:layout_width="match_parent"
         android:layout_height="0dp"
+        android:gravity="center"
+        android:orientation="vertical"
+        app:layout_constraintBottom_toTopOf="@+id/ll_nickname_l1"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.5"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintVertical_weight="0.47">
+
+        <Space
+            android:layout_width="match_parent"
+            android:layout_height="0dp"
+            android:layout_weight="4.5" />
+
+
+        <ImageView
+            android:id="@+id/iv_nickname_logo"
+            android:layout_width="51dp"
+            android:layout_height="63dp"
+            android:scaleType="centerInside"
+            android:src="@drawable/img_yourweatherlogo" />
+
+        <Space
+            android:layout_width="match_parent"
+            android:layout_height="0dp"
+            android:layout_weight="1.1" />
+
+        <TextView
+            android:id="@+id/tv_nickname_guide"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_gravity="bottom"
+            android:gravity="center"
+            android:text="유어웨더에서 사용할 닉네임을 입력해주세요"
+            android:textColor="#5E412F"
+            android:textSize="17dp" />
+
+        <Space
+            android:layout_width="match_parent"
+            android:layout_height="0dp"
+            android:layout_weight="0.6" />
+
+    </LinearLayout>
+
+    <LinearLayout
+        android:id="@+id/ll_nickname_l1"
+        android:layout_width="350dp"
+        android:layout_height="200dp"
         android:gravity="center"
         android:orientation="vertical"
         app:layout_constraintBottom_toTopOf="@+id/ll_nickname_l2"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.5"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_weight="4">
+        app:layout_constraintTop_toBottomOf="@+id/ll_nickname_l0">
 
-        <ImageView
-            android:id="@+id/iv_signin_logo"
-            android:layout_width="100dp"
-            android:layout_height="100dp"
-            android:layout_marginTop="100dp"
-            android:layout_marginBottom="20dp"
-            android:scaleType="centerCrop"
-            android:src="@drawable/img_yourweatherlogo" />
-
-        <TextView
-            android:id="@+id/tv_nickname_guide"
+        <LinearLayout
             android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:layout_marginStart="50dp"
-            android:layout_marginEnd="50dp"
-            android:bufferType="spannable"
+            android:layout_height="48dp"
+            android:layout_marginBottom="6dp"
+            android:layout_weight="2"
             android:gravity="center"
-            android:text="유어웨더에서 사용할 닉네임을 입력해주세요"
-            android:textColor="#8E7A6D"
-            android:textSize="17dp"
-            android:textStyle="bold" />
+            android:orientation="vertical">
+
+
+            <FrameLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content">
+
+                <EditText
+                    android:id="@+id/et_nickname_nickname"
+                    android:layout_width="match_parent"
+                    android:layout_height="54dp"
+                    android:background="@drawable/bg_gray_fill_rect"
+                    android:gravity="center"
+                    android:hint="맑은 비구름"
+                    android:paddingLeft="16dp"
+                    android:textColorHint="@color/gray"
+                    android:textCursorDrawable="@null"
+                    android:textSize="20dp"
+                    android:textStyle="bold" />
+
+                <androidx.appcompat.widget.AppCompatButton
+                    android:id="@+id/btn_nickname_refresh"
+                    android:layout_width="57dp"
+                    android:layout_height="23dp"
+                    android:layout_gravity="right|center_vertical"
+                    android:layout_marginEnd="23dp"
+                    android:background="@drawable/ic_nickname_refresh_btn"
+                    android:text="새로 고침"
+                    android:textColor="#FFFFFF"
+                    android:textSize="11dp"
+                    android:textStyle="bold" />
+            </FrameLayout>
+
+            <Space
+                android:layout_width="match_parent"
+                android:layout_height="match_parent" />
+
+        </LinearLayout>
 
     </LinearLayout>
 
@@ -47,71 +117,35 @@
         android:id="@+id/ll_nickname_l2"
         android:layout_width="match_parent"
         android:layout_height="0dp"
-        android:layout_marginStart="16dp"
-        android:layout_marginEnd="16dp"
-        android:orientation="vertical"
-        app:layout_constraintBottom_toTopOf="@+id/ll_nickname_l3"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/ll_nickname_l1"
-        app:layout_constraintVertical_weight="1">
-
-        <FrameLayout
-            android:layout_width="match_parent"
-            android:layout_height="48dp"
-            android:layout_weight="2">
-
-            <EditText
-                android:id="@+id/et_nickname_nickname"
-                android:layout_width="match_parent"
-                android:layout_height="54dp"
-                android:layout_marginLeft="17dp"
-                android:layout_marginRight="16dp"
-                android:background="@drawable/bg_gray_fill_rect"
-                android:gravity="center"
-                android:hint="맑은 비구름"
-                android:paddingLeft="16dp"
-                android:textColorHint="@color/gray"
-                android:textCursorDrawable="@null"
-                android:textSize="20sp"
-                android:textStyle="bold" />
-
-            <androidx.appcompat.widget.AppCompatButton
-                android:id="@+id/btn_nickname_refresh"
-                android:layout_width="60dp"
-                android:layout_height="25dp"
-                android:layout_gravity="right|center_vertical"
-                android:layout_marginEnd="23dp"
-                android:layout_marginBottom="12dp"
-                android:background="@drawable/ic_nickname_refresh_btn"
-                android:text="새로 고침"
-                android:textColor="@color/white"
-                android:textSize="11dp"
-                android:textStyle="bold" />
-        </FrameLayout>
-    </LinearLayout>
-
-    <LinearLayout
-        android:id="@+id/ll_nickname_l3"
-        android:layout_width="match_parent"
-        android:layout_height="0dp"
-        android:layout_marginBottom="32dp"
-        android:gravity="bottom|center"
+        android:gravity="center"
         android:orientation="vertical"
         app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/ll_nickname_l2"
-        app:layout_constraintVertical_weight="4">
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.5"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/ll_nickname_l1"
+        app:layout_constraintVertical_weight="0.33">
+
+        <Space
+            android:layout_width="match_parent"
+            android:layout_height="0dp"
+            android:layout_weight="6.6" />
 
         <androidx.appcompat.widget.AppCompatButton
             android:id="@+id/btn_nickname_next"
-            android:layout_width="167dp"
-            android:layout_height="48dp"
-            android:layout_marginLeft="100dp"
-            android:layout_marginRight="100dp"
+            android:layout_width="190dp"
+            android:layout_height="56dp"
             android:background="@drawable/bg_click_btn"
+            android:gravity="center"
             android:text="다음"
-            android:textColor="@color/white"
+            android:textColor="#FFFFFF"
             android:textSize="20dp"
             android:textStyle="bold" />
+
+        <Space
+            android:layout_width="match_parent"
+            android:layout_height="0dp"
+            android:layout_weight="1.1" />
     </LinearLayout>
+
 </androidx.constraintlayout.widget.ConstraintLayout>

@@ -7,77 +7,81 @@
     tools:context=".presentation.FindPw">
 
     <LinearLayout
-        android:id="@+id/ll_findpw_l1"
-        android:layout_width="0dp"
+        android:id="@+id/ll_findpw_l0"
+        android:layout_width="match_parent"
         android:layout_height="0dp"
-        android:layout_marginStart="16dp"
-        android:layout_marginEnd="16dp"
-        android:gravity="bottom|center"
+        android:gravity="center|left"
         android:orientation="vertical"
-        android:paddingLeft="15dp"
-        android:paddingRight="15dp"
-        app:layout_constraintBottom_toTopOf="@+id/ll_findpw_l2"
+        app:layout_constraintBottom_toTopOf="@+id/ll_findpw_l1"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.5"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_weight="4">
+        app:layout_constraintVertical_weight="0.47">
 
-        <TextView
-            android:id="@+id/tv_findpw_findpw"
+        <Space
             android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:layout_marginTop="130dp"
-            android:layout_weight="2"
-            android:gravity="left"
-            android:text="비밀번호 찾기"
-            android:textColor="#F07818"
-            android:textSize="20dp"
-            android:textStyle="bold" />
-
-        <TextView
-            android:id="@+id/tv_findpw_guide"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:layout_weight="2"
-            android:gravity="left"
-            android:text="가입 시 사용한 이메일을 입력해 주세요"
-            android:textColor="#ACACAC"
-            android:textStyle="bold" />
+            android:layout_height="0dp"
+            android:layout_weight="5.0" />
 
         <LinearLayout
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:layout_weight="6"
-            android:orientation="vertical"></LinearLayout>
+            android:layout_gravity="center"
+            android:gravity="center"
+            android:orientation="vertical">
+
+            <TextView
+                android:id="@+id/tv_findpw_findpw"
+                android:layout_width="340dp"
+                android:layout_height="38dp"
+                android:gravity="left"
+                android:text="비밀번호 찾기"
+                android:textColor="#F07818"
+                android:textSize="20dp"
+                android:textStyle="bold" />
+
+            <TextView
+                android:id="@+id/tv_findpw_guide"
+                android:layout_width="340dp"
+                android:layout_height="18dp"
+                android:gravity="left"
+                android:text="가입 시 사용한 이메일을 입력해 주세요"
+                android:textColor="#ACACAC"
+                android:textSize="13dp"
+                android:textStyle="bold" />
+        </LinearLayout>
+
+        <Space
+            android:layout_width="match_parent"
+            android:layout_height="0dp"
+            android:layout_weight="3.5" />
+
     </LinearLayout>
 
     <LinearLayout
-        android:id="@+id/ll_findpw_l2"
-        android:layout_width="match_parent"
-        android:layout_height="0dp"
-        android:layout_marginStart="16dp"
-        android:layout_marginEnd="16dp"
-        android:gravity="center"
+        android:id="@+id/ll_findpw_l1"
+        android:layout_width="350dp"
+        android:layout_height="200dp"
+        android:gravity="top"
         android:orientation="vertical"
-        android:paddingLeft="15dp"
-        android:paddingRight="15dp"
-        app:layout_constraintBottom_toTopOf="@+id/ll_findpw_l3"
+        app:layout_constraintBottom_toTopOf="@+id/ll_findpw_l2"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="1.0"
+        app:layout_constraintHorizontal_bias="0.5"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/ll_findpw_l1"
-        app:layout_constraintVertical_weight="3">
+        app:layout_constraintTop_toBottomOf="@+id/ll_findpw_l0">
 
         <LinearLayout
             android:layout_width="match_parent"
-            android:layout_height="3dp"
+            android:layout_height="wrap_content"
+            android:layout_marginBottom="6dp"
             android:layout_weight="2"
+            android:gravity="center"
             android:orientation="vertical">
 
             <TextView
                 android:id="@+id/tv_findpw_email"
-                android:layout_width="wrap_content"
+                android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:bufferType="spannable"
                 android:gravity="left"
@@ -85,52 +89,62 @@
                 android:textColor="#989898"
                 android:textSize="13dp"
                 android:textStyle="bold" />
-        </LinearLayout>
-
-        <LinearLayout
-            android:layout_width="match_parent"
-            android:layout_height="48dp"
-            android:layout_weight="1"
-            android:orientation="vertical">
 
             <EditText
                 android:id="@+id/et_findpw_email"
                 android:layout_width="match_parent"
-                android:layout_height="48dp"
-                android:background="@drawable/bg_gray_fill_rect" />
+                android:layout_height="54dp"
+                android:layout_marginBottom="5dp"
+                android:background="@drawable/bg_gray_fill_rect"
+                android:drawablePadding="8dp"
+                android:paddingLeft="16dp"
+                android:textColorHint="#A9ADB4"
+                android:textCursorDrawable="@null"
+                android:textSize="16dp" />
+
+            <Space
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_weight="2" />
+
         </LinearLayout>
-
-        <LinearLayout
-            android:layout_width="match_parent"
-            android:layout_height="15dp"
-            android:layout_weight="1"
-            android:orientation="vertical" />
-
-        <androidx.appcompat.widget.AppCompatButton
-            android:id="@+id/btn_findpw_next"
-            android:layout_width="167dp"
-            android:layout_height="48dp"
-            android:layout_weight="2"
-            android:background="@drawable/bg_orange_fill_300_circle"
-            android:text="다음"
-            android:textColor="#FFFFFF"
-            android:textSize="20dp"
-            android:textStyle="bold" />
 
     </LinearLayout>
 
-    <LinearLayout
-        android:id="@+id/ll_findpw_l3"
-        android:layout_width="match_parent"
-        android:layout_height="0dp"
-        android:orientation="vertical"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.5"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/ll_findpw_l2"
-        app:layout_constraintVertical_weight="6"
+        <LinearLayout
+            android:id="@+id/ll_findpw_l2"
+            android:layout_width="match_parent"
+            android:layout_height="0dp"
+            android:gravity="center"
+            android:orientation="vertical"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintHorizontal_bias="0.5"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/ll_findpw_l1"
+            app:layout_constraintVertical_weight="0.33"
+            >
 
-        />
+            <Space
+                android:layout_width="match_parent"
+                android:layout_height="0dp"
+                android:layout_weight="6.6" />
+
+            <androidx.appcompat.widget.AppCompatButton
+                android:id="@+id/btn_findpw_next"
+                android:layout_width="190dp"
+                android:layout_height="56dp"
+                android:background="@drawable/btn_selector_color"
+                android:gravity="center"
+                android:text="로그인"
+                android:textColor="#FFFFFF"
+                android:textSize="20dp"
+                android:textStyle="bold" />
+
+            <Space
+                android:layout_width="match_parent"
+                android:layout_height="0dp"
+                android:layout_weight="1.1" />
+        </LinearLayout>
 
 </androidx.constraintlayout.widget.ConstraintLayout>
