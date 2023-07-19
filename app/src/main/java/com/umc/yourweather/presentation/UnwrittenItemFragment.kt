@@ -9,7 +9,6 @@ import androidx.recyclerview.widget.GridLayoutManager
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
 import com.umc.yourweather.R
-import com.umc.yourweather.presentation.placeholder.PlaceholderContent
 
 /**
  * A fragment representing a list of Items.
@@ -21,7 +20,7 @@ class UnwrittenItemFragment : Fragment() {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
 
-        arguments?.let {
+       arguments?.let {
             columnCount = it.getInt(ARG_COLUMN_COUNT)
         }
     }
@@ -40,7 +39,7 @@ class UnwrittenItemFragment : Fragment() {
                     columnCount <= 1 -> LinearLayoutManager(context)
                     else -> GridLayoutManager(context, columnCount)
                 }
-                adapter = MyUnwrittenItemRecyclerViewAdapter(PlaceholderContent.ITEMS)
+                //adapter = MyUnwrittenItemRecyclerViewAdapter(PlaceholderContent.ITEMS)
             }
         }
         return view
