@@ -25,12 +25,12 @@
         android:layout_width="21dp"
         android:layout_height="24dp"
         android:layout_marginStart="100dp"
-        android:layout_marginTop="45dp"
+        android:layout_marginTop="48dp"
         android:background="@drawable/ic_bell"
         app:layout_constraintDimensionRatio="H,1:1"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHeight_percent="0.05"
-        app:layout_constraintHorizontal_bias="0.968"
+        app:layout_constraintHorizontal_bias="0.826"
         app:layout_constraintStart_toEndOf="@id/tv_unwritten_title"
         app:layout_constraintTop_toTopOf="parent" />
 
@@ -121,7 +121,7 @@
             <!-- 상단 프래그먼트 : 감정 날씨 -->
             <include
                 android:id="@+id/f_barStatic"
-                layout="@layout/fragment_bar_statics"
+                layout="@layout/fragment_bar_statics_month"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_marginBottom="20dp"
@@ -143,7 +143,7 @@
             <!-- 하단 프래그먼트 : 아이콘 통계 -->
             <include
                 android:id="@+id/f_iconStatic"
-                layout="@layout/fragment_icon_statics"
+                layout="@layout/fragment_icon_statics_month"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_weight="1"
