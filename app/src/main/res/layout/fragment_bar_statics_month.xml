@@ -51,6 +51,21 @@
 
     </LinearLayout>
 
+
+    <View
+        android:id="@+id/ll_analysis_bar_last_month"
+        android:layout_width="341dp"
+        android:layout_height="28dp"
+        android:layout_marginTop="19dp"
+        android:layout_marginBottom="20dp"
+        android:background="@android:color/darker_gray"
+        app:layout_constraintBottom_toTopOf="@+id/ll_analysis_weather2"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.357"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/ll_analysis_weather1"
+        app:layout_constraintVertical_bias="0.529" />
+
     <LinearLayout
         android:id="@+id/ll_analysis_weather2"
         android:layout_width="wrap_content"
@@ -84,33 +99,44 @@
 
     </LinearLayout>
 
+    <View
+        android:id="@+id/ll_analysis_bar_this_month"
+        android:layout_width="341dp"
+        android:layout_height="28dp"
+        android:layout_marginTop="8dp"
+        android:background="@android:color/darker_gray"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.357"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/ll_analysis_weather2" />
 
     <LinearLayout
+        android:id="@+id/linearLayout4"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
+        android:layout_marginLeft="25dp"
+        android:layout_marginTop="80dp"
+        android:layout_marginRight="25dp"
         android:orientation="vertical"
-        app:layout_constraintTop_toBottomOf="@+id/ll_analysis_weather2"
         app:layout_constraintLeft_toLeftOf="parent"
         app:layout_constraintRight_toRightOf="parent"
-        android:layout_marginTop="80dp"
-        android:layout_marginLeft="25dp"
-        android:layout_marginRight="25dp">
+        app:layout_constraintTop_toBottomOf="@+id/ll_analysis_weather2">
 
 
         <TextView
             android:id="@+id/tv_statics_comparison_title"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
+            android:gravity="center"
             android:text="@string/tv_statics_comparison_title"
-            android:textStyle="bold"
-            android:gravity="center"/>
+            android:textStyle="bold" />
 
         <LinearLayout
             android:layout_width="match_parent"
             android:layout_height="match_parent"
-            android:orientation="vertical"
+            android:layout_margin="10dp"
             android:background="@drawable/bg_btn_report_rec"
-            android:layout_margin="10dp">
+            android:orientation="vertical">
 
 
             <LinearLayout
@@ -132,14 +158,14 @@
                     android:id="@+id/tv_analysis_detail_statics_sunny"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:layout_weight="1"
-                    android:text="맑음 비율이 20% 증가했습니다."
-                    android:textSize="14.6dp"
+                    android:layout_marginStart="60dp"
+                    android:layout_marginTop="10dp"
                     android:layout_marginRight="20dp"
                     android:layout_marginBottom="10dp"
-                    android:layout_marginTop="10dp"
-                    android:layout_marginStart="60dp"
-                    android:gravity="left"/>
+                    android:layout_weight="1"
+                    android:gravity="left"
+                    android:text="맑음 비율이 20% 증가했습니다."
+                    android:textSize="14.6dp" />
             </LinearLayout>
 
             <LinearLayout
@@ -161,15 +187,16 @@
                     android:id="@+id/tv_analysis_detail_statics_cloudy"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:layout_weight="1"
-                    android:text="다소 흐림 비율이 10% 증가했습니다."
-                    android:textSize="14.6dp"
+                    android:layout_marginStart="60dp"
+                    android:layout_marginTop="10dp"
                     android:layout_marginRight="20dp"
                     android:layout_marginBottom="10dp"
-                    android:layout_marginTop="10dp"
-                    android:layout_marginStart="60dp"
-                    android:gravity="left"/>
+                    android:layout_weight="1"
+                    android:gravity="left"
+                    android:text="다소 흐림 비율이 10% 증가했습니다."
+                    android:textSize="14.6dp" />
             </LinearLayout>
+
             <LinearLayout
                 android:layout_width="match_parent"
                 android:layout_height="match_parent"
@@ -191,16 +218,17 @@
                     android:id="@+id/tv_analysis_detail_statics_rainy"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:layout_weight="1"
-                    android:text="비 비율이 5% 감소했습니다."
-                    android:textSize="14.6dp"
-                    android:layout_marginRight="20dp"
-                    android:layout_marginLeft="30dp"
-                    android:layout_marginBottom="10dp"
-                    android:layout_marginTop="10dp"
                     android:layout_marginStart="60dp"
-                    android:gravity="left"/>
+                    android:layout_marginLeft="30dp"
+                    android:layout_marginTop="10dp"
+                    android:layout_marginRight="20dp"
+                    android:layout_marginBottom="10dp"
+                    android:layout_weight="1"
+                    android:gravity="left"
+                    android:text="비 비율이 5% 감소했습니다."
+                    android:textSize="14.6dp" />
             </LinearLayout>
+
             <LinearLayout
                 android:layout_width="match_parent"
                 android:layout_height="match_parent"
@@ -222,15 +250,15 @@
                     android:id="@+id/tv_analysis_detail_statics_thunder"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:layout_weight="1"
-                    android:text="번개 비율이 10% 감소했습니다."
-                    android:textSize="14.6dp"
-                    android:layout_marginRight="20dp"
-                    android:layout_marginLeft="30dp"
-                    android:layout_marginBottom="10dp"
-                    android:layout_marginTop="10dp"
                     android:layout_marginStart="60dp"
-                    android:gravity="left"/>
+                    android:layout_marginLeft="30dp"
+                    android:layout_marginTop="10dp"
+                    android:layout_marginRight="20dp"
+                    android:layout_marginBottom="10dp"
+                    android:layout_weight="1"
+                    android:gravity="left"
+                    android:text="번개 비율이 10% 감소했습니다."
+                    android:textSize="14.6dp" />
             </LinearLayout>
         </LinearLayout>
 
