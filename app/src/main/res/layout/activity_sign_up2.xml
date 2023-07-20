@@ -56,7 +56,7 @@
 
     <LinearLayout
         android:id="@+id/ll_signup2_l1"
-        android:layout_width="350dp"
+        android:layout_width="0dp"
         android:layout_height="200dp"
         android:gravity="center"
         android:orientation="vertical"
@@ -76,7 +76,7 @@
 
             <TextView
                 android:id="@+id/tv_signup2_email2"
-                android:layout_width="match_parent"
+                android:layout_width="350dp"
                 android:layout_height="wrap_content"
                 android:bufferType="spannable"
                 android:gravity="left"
@@ -86,39 +86,52 @@
                 android:textStyle="bold" />
 
 
-            <com.google.android.material.textfield.TextInputLayout
-                android:id="@+id/textinput_signup2_pw"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                app:passwordToggleDrawable="@drawable/ic_selector_pwtoggle"
-                app:passwordToggleEnabled="true">
-
-                <com.google.android.material.textfield.TextInputEditText
-                    android:id="@+id/et_signup2_pw"
-                    android:layout_width="match_parent"
-                    android:layout_height="54dp"
-                    android:background="@drawable/bg_gray_fill_rect"
-                    android:inputType="textPassword"
-                    android:textColorHint="#A9ADB4"
-                    android:textCursorDrawable="@null"
-                    android:textSize="16dp" />
-            </com.google.android.material.textfield.TextInputLayout>
+            <FrameLayout
+                android:layout_width="wrap_content"
+                android:layout_height="match_parent">
 
 
 
-            <TextView
-                android:id="@+id/textView7"
-                android:layout_width="match_parent"
-                android:layout_height="23dp"
-                android:gravity="center|left"
-                android:text="*대소문자, 숫자 포함 8자 이상"
-                android:textColor="#808080"
-                android:textSize="10dp"
-                android:visibility="visible" />
+                <com.google.android.material.textfield.TextInputLayout
+                    android:id="@+id/textinput_signup2_pw"
+                    android:layout_width="380dp"
+                    android:layout_height="81dp"
+                    app:errorEnabled="true"
+                    app:helperText="*대소문자, 숫자 포함 8자 이상"
+                    app:helperTextEnabled="true"
+                    app:helperTextTextAppearance="@style/MyHelperTextAppearance"
+                    app:helperTextTextColor="#808080"
+                    app:passwordToggleDrawable="@drawable/ic_selector_pwtoggle"
+                    app:passwordToggleEnabled="true">
+
+                    <com.google.android.material.textfield.TextInputEditText
+                        android:id="@+id/et_signup2_pw"
+                        android:layout_width="350dp"
+                        android:layout_height="54dp"
+                        android:layout_gravity="center"
+                        android:background="@drawable/bg_gray_fill_rect"
+                        android:inputType="textPassword"
+                        android:textColorHint="#A9ADB4"
+                        android:textCursorDrawable="@null"
+                        android:textSize="16dp" />
+
+                </com.google.android.material.textfield.TextInputLayout>
+
+                <ImageView
+                    android:id="@+id/iv_signup2_check0"
+                    android:layout_width="15dp"
+                    android:layout_height="15dp"
+                    android:layout_gravity="right"
+                    android:layout_marginTop="25dp"
+                    android:layout_marginRight="55dp"
+                    android:visibility="invisible"
+                    app:srcCompat="@drawable/ic_singup2_pwcheck" />
+            </FrameLayout>
+
 
             <TextView
                 android:id="@+id/tv_signup_pw"
-                android:layout_width="match_parent"
+                android:layout_width="350dp"
                 android:layout_height="wrap_content"
                 android:bufferType="spannable"
                 android:gravity="left"
@@ -127,13 +140,14 @@
                 android:textSize="13dp"
                 android:textStyle="bold" />
 
+
             <FrameLayout
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content">
+                android:layout_width="wrap_content"
+                android:layout_height="match_parent">
 
                 <com.google.android.material.textfield.TextInputLayout
                     android:id="@+id/textinput_signup2_repw"
-                    android:layout_width="match_parent"
+                    android:layout_width="380dp"
                     android:layout_height="wrap_content"
                     android:layout_marginBottom="8dp"
                     app:passwordToggleDrawable="@drawable/ic_selector_pwtoggle"
@@ -141,8 +155,9 @@
 
                     <com.google.android.material.textfield.TextInputEditText
                         android:id="@+id/et_signup2_repw"
-                        android:layout_width="match_parent"
+                        android:layout_width="350dp"
                         android:layout_height="54dp"
+                        android:layout_gravity="center"
                         android:background="@drawable/bg_gray_fill_rect"
                         android:inputType="textPassword"
                         android:textColorHint="#A9ADB4"
@@ -150,16 +165,29 @@
                         android:textSize="16dp" />
 
                 </com.google.android.material.textfield.TextInputLayout>
+
+                <ImageView
+                    android:id="@+id/iv_signup2_check1"
+                    android:layout_width="15dp"
+                    android:layout_height="15dp"
+                    android:layout_gravity="right"
+                    android:layout_marginTop="25dp"
+                    android:layout_marginRight="55dp"
+                    android:visibility="invisible"
+                    app:srcCompat="@drawable/ic_singup2_pwcheck" />
+
             </FrameLayout>
+
 
             <LinearLayout
                 android:layout_width="match_parent"
                 android:layout_height="12dp"
-                android:orientation="horizontal" >
+                android:orientation="horizontal">
+
                 <Space
                     android:layout_width="147dp"
                     android:layout_height="wrap_content"
-                    android:layout_weight="1"/>
+                    android:layout_weight="1" />
             </LinearLayout>
 
         </LinearLayout>
@@ -188,7 +216,7 @@
             android:id="@+id/btn_signup2_signup"
             android:layout_width="190dp"
             android:layout_height="56dp"
-            android:background="@drawable/bg_unclick_btn"
+            android:background="@drawable/btn_selector_color"
             android:text="회원가입"
             android:textColor="#FFFFFF"
             android:textSize="20dp"

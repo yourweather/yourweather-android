@@ -57,7 +57,7 @@
 
     <LinearLayout
         android:id="@+id/ll_signup_l1"
-        android:layout_width="350dp"
+        android:layout_width="0dp"
         android:layout_height="200dp"
         android:gravity="center"
         android:orientation="vertical"
@@ -77,7 +77,7 @@
 
             <TextView
                 android:id="@+id/tv_signup_email2"
-                android:layout_width="match_parent"
+                android:layout_width="350dp"
                 android:layout_height="wrap_content"
                 android:bufferType="spannable"
                 android:gravity="left"
@@ -87,52 +87,47 @@
                 android:textStyle="bold" />
 
 
-            <com.google.android.material.textfield.TextInputLayout
-                android:id="@+id/textinput_signup_email"
-                android:layout_width="match_parent"
-                android:layout_height="54dp"
-                >
-
             <FrameLayout
-                android:layout_width="match_parent"
-                android:layout_height="54dp">
+                android:id="@+id/frameLayout"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_gravity="center">
 
-                <com.google.android.material.textfield.TextInputEditText
-                    android:id="@+id/et_signup_email"
-                    android:layout_width="match_parent"
-                    android:layout_height="54dp"
-                    android:background="@drawable/bg_gray_fill_rect"
-                    android:textColorHint="#A9ADB4"
-                    android:textCursorDrawable="@null"
-                    android:textSize="16dp" />
+                <com.google.android.material.textfield.TextInputLayout
+                    android:id="@+id/textinput_signup_email"
+                    android:layout_width="wrap_content"
+                    android:layout_height="81dp">
+
+                    <com.google.android.material.textfield.TextInputEditText
+                        android:id="@+id/et_signup_email"
+                        android:layout_width="350dp"
+                        android:layout_height="wrap_content"
+                        android:layout_gravity="center"
+                        android:background="@drawable/bg_gray_fill_rect"
+                        android:textColorHint="#A9ADB4"
+                        android:textCursorDrawable="@null"
+                        android:textSize="16dp" />
+
+
+                </com.google.android.material.textfield.TextInputLayout>
 
                 <androidx.appcompat.widget.AppCompatButton
-                    android:id="@+id/et_signup_sendauth"
+                    android:id="@+id/btn_signup_sendauth"
                     android:layout_width="71dp"
                     android:layout_height="28dp"
                     android:layout_gravity="right"
-                    android:layout_marginTop="13dp"
-                    android:layout_marginRight="15dp"
-                    android:layout_marginBottom="13dp"
+                    android:layout_marginTop="19dp"
+                    android:layout_marginRight="13dp"
                     android:background="@drawable/btn_selecotor_etbtncolor"
                     android:text="인증코드 전송"
                     android:textColor="#FFFFFF"
                     android:textSize="9dp" />
-                </FrameLayout>
-            </com.google.android.material.textfield.TextInputLayout>
-            <TextView
-                android:id="@+id/textView7"
-                android:layout_width="match_parent"
-                android:layout_height="23dp"
-                android:gravity="center|left"
-                android:text="*올바르지 않은 형식입니다"
-                android:textColor="#C23F3F"
-                android:textSize="10dp"
-                android:visibility="invisible" />
+            </FrameLayout>
+
 
             <TextView
                 android:id="@+id/tv_signup_guide2"
-                android:layout_width="match_parent"
+                android:layout_width="350dp"
                 android:layout_height="wrap_content"
                 android:bufferType="spannable"
                 android:gravity="left"
@@ -143,55 +138,57 @@
 
             <com.google.android.material.textfield.TextInputLayout
                 android:id="@+id/textinput_signup_auth"
-                android:layout_width="match_parent"
-                android:layout_height="54dp"
-                >
-            <FrameLayout
-                android:layout_width="match_parent"
-                android:layout_height="54dp"
-                android:layout_marginBottom="8dp">
+                android:layout_width="350dp"
+                android:layout_height="54dp">
 
-                <com.google.android.material.textfield.TextInputEditText
-                    android:id="@+id/et_signup_auth"
-                    android:layout_width="match_parent"
+                <FrameLayout
+                    android:layout_width="350dp"
                     android:layout_height="54dp"
-                    android:background="@drawable/bg_gray_fill_rect"
-                    android:hint="인증코드 6자리 입력"
-                    android:paddingLeft="15dp"
-                    android:textColorHint="#A9ADB4"
-                    android:textCursorDrawable="@null"
-                    android:textSize="14dp"
-                    tools:ignore="DuplicateIds" />
+                    android:layout_gravity="center"
+                    android:layout_marginBottom="8dp">
 
-                <TextView
-                    android:id="@+id/tv_signup_time"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:layout_gravity="right"
-                    android:layout_marginTop="20dp"
-                    android:layout_marginRight="71dp"
-                    android:layout_marginBottom="20dp"
-                    android:gravity="right"
-                    android:text="TextView"
-                    android:textColor="#C23F3F"
-                    android:visibility="invisible" />
+                    <com.google.android.material.textfield.TextInputEditText
+                        android:id="@+id/et_signup_auth"
+                        android:layout_width="match_parent"
+                        android:layout_height="54dp"
+                        android:background="@drawable/bg_gray_fill_rect"
+                        android:hint="인증코드 6자리 입력"
+                        android:paddingLeft="15dp"
+                        android:textColorHint="#A9ADB4"
+                        android:textCursorDrawable="@null"
+                        android:textSize="14dp"
+                        tools:ignore="DuplicateIds" />
 
-                <androidx.appcompat.widget.AppCompatButton
-                    android:id="@+id/btn_signup_checkauth"
-                    android:layout_width="47dp"
-                    android:layout_height="27dp"
-                    android:layout_gravity="right"
-                    android:layout_marginTop="13dp"
-                    android:layout_marginRight="15dp"
-                    android:layout_marginBottom="13dp"
-                    android:background="@drawable/btn_selecotor_etbtncolor"
-                    android:text="확인"
-                    android:textColor="#FFFFFF"
-                    android:textSize="10dp" />
-            </FrameLayout>
+                    <TextView
+                        android:id="@+id/tv_signup_time"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_gravity="right"
+                        android:layout_marginTop="20dp"
+                        android:layout_marginRight="71dp"
+                        android:layout_marginBottom="20dp"
+                        android:gravity="right"
+                        android:text="TextView"
+                        android:textColor="#C23F3F"
+                        android:visibility="invisible" />
+
+                    <androidx.appcompat.widget.AppCompatButton
+                        android:id="@+id/btn_signup_checkauth"
+                        android:layout_width="47dp"
+                        android:layout_height="27dp"
+                        android:layout_gravity="right"
+                        android:layout_marginTop="13dp"
+                        android:layout_marginRight="15dp"
+                        android:layout_marginBottom="13dp"
+                        android:background="@drawable/btn_selecotor_etbtncolor"
+                        android:text="확인"
+                        android:textColor="#FFFFFF"
+                        android:textSize="10dp" />
+                </FrameLayout>
             </com.google.android.material.textfield.TextInputLayout>
+
             <LinearLayout
-                android:layout_width="match_parent"
+                android:layout_width="350dp"
                 android:layout_height="wrap_content"
                 android:orientation="horizontal">
 
@@ -247,7 +244,7 @@
             android:id="@+id/btn_signup_next"
             android:layout_width="190dp"
             android:layout_height="56dp"
-            android:background="@drawable/bg_unclick_btn"
+            android:background="@drawable/btn_selector_color"
             android:text="다음"
             android:textColor="#FFFFFF"
             android:textSize="20dp"
