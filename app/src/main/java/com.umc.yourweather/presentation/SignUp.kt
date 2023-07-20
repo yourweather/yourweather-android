@@ -17,13 +17,11 @@ class SignUp : AppCompatActivity() {
         binding.btnSignupNext.setOnClickListener{
             val mIntent = Intent(this, SignUp2::class.java)
             startActivity(mIntent)
-            finish()
         }
 
         binding.tvSignupBtnsignin.setOnClickListener{
-            val mIntent = Intent(this, SignUp2::class.java)
+            val mIntent = Intent(this, SignIn::class.java)
             startActivity(mIntent)
-            finish()
         }
 
     }

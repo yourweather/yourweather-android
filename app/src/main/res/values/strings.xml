@@ -4,4 +4,5 @@
     <string name="bnv_title2">캘린더</string>
     <string name="bnv_title3">리포트</string>
     <string name="bnv_title4">마이페이지</string>
+    <string name="signup_resend"><u>인증코드 재전송</u></string>
 </resources>
