@@ -4,17 +4,16 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context=".presentation.AllWrittenFragment">
+    tools:context=".presentation.UnwrittenDetailListActivity">
 
-    <!-- TODO: Update blank fragment layout -->
     <LinearLayout
         android:id="@+id/ll_allwritten1"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
+        android:layout_margin="10dp"
         android:orientation="horizontal"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent"
-        android:layout_margin="10dp">
+        app:layout_constraintTop_toTopOf="parent">
 
         <ImageButton
             android:id="@+id/btn_allwritten_left_arrow"
@@ -24,46 +23,32 @@
             android:layout_gravity="center"
             android:layout_marginRight="100dp"
             android:background="@drawable/ic_arrow_left_24"
-            app:layout_constraintHeight_percent="0.05"
-            />
+            app:layout_constraintHeight_percent="0.05" />
 
         <TextView
             android:id="@+id/tv_allwritten_title"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:text="@string/tv_allwritten_title"
-            android:textStyle="bold"
-            android:textSize="20dp"
-            android:textColor="@color/sorange"
             android:layout_gravity="center"
-            />
+            android:text="@string/tv_allwritten_title"
+            android:textColor="@color/sorange"
+            android:textSize="20dp"
+            android:textStyle="bold" />
 
     </LinearLayout>
 
-    <TextView
-        android:id="@+id/tv_allwritten_clear"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:text="@string/tv_allclear"
-        android:textStyle="bold"
+    <androidx.recyclerview.widget.RecyclerView
+        android:id="@+id/recyclerViewUnwrittenDetail"
+        android:layout_width="0dp"
+        android:layout_height="0dp"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="0.407" />
-
-    <ImageView
-        android:id="@+id/iv_check"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:contentDescription="@string/description_check"
-        android:src="@drawable/ic_check"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.498"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/tv_allwritten_clear"
-        app:layout_constraintVertical_bias="0.036" />
-
+        app:layout_constraintTop_toBottomOf="@+id/ll_allwritten1"
+        android:layout_marginTop="20dp"
+        android:layout_marginLeft="20dp"
+        android:layout_marginRight="20dp"
+        android:layout_marginBottom="20dp"
+        tools:listitem="@layout/item_unwritten_detail" />
 
 </androidx.constraintlayout.widget.ConstraintLayout>

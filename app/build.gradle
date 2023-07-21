@@ -35,7 +35,7 @@ android {
         targetCompatibility = JavaVersion.VERSION_17
     }
     kotlinOptions {
-        jvmTarget = JavaVersion.VERSION_17.toString()
+        jvmTarget = '1.8'
     }
     buildFeatures {
         viewBinding true
@@ -48,6 +48,8 @@ dependencies {
     //hilt
     implementation "com.google.dagger:hilt-android:2.44"
     implementation 'androidx.legacy:legacy-support-v4:1.0.0'
+    implementation 'androidx.navigation:navigation-fragment-ktx:2.5.2'
+    implementation 'androidx.navigation:navigation-ui-ktx:2.5.2'
     kapt "com.google.dagger:hilt-compiler:2.44"
 
     //shard preference
