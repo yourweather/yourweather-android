@@ -21,17 +21,12 @@
             android:label="@string/title_activity_written_detail_list"
             android:theme="@style/Theme.Yourweather" />
         <activity
-            android:name=".presentation.AnalysisWeeklyActivity"
-            android:exported="false" />
-        <activity
             android:name=".presentation.AnalysisActivity"
             android:exported="false" />
         <activity
-            android:name=".presentation.UnwrittenList"
-            android:exported="false" />
-        <activity
-            android:name=".presentation.SocialSignUp"
-            android:exported="false" />
+            android:name=".presentation.UnwrittenDetailListActivity"
+            android:exported="false"
+            tools:ignore="DuplicateActivity" />
         <activity
             android:name=".presentation.SignUp2"
             android:exported="false" />
