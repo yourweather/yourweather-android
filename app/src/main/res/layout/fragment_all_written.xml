@@ -31,7 +31,7 @@
             android:id="@+id/tv_allwritten_title"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:text="미입력 내역"
+            android:text="@string/tv_allwritten_title"
             android:textStyle="bold"
             android:textSize="20dp"
             android:textColor="@color/sorange"

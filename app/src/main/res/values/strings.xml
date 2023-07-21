@@ -18,5 +18,6 @@
     <string name="tv_analysis_lastweek">지난 주</string>
     <string name="tv_analysis_this_week">이번 주</string>
     <string name="tv_statics_comparison_weekly_title">지난 주와 비교한 이번 주의 감정 날씨</string>
+    <string name="tv_allwritten_title">미입력 내역</string>
 
 </resources>
