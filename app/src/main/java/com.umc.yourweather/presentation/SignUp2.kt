@@ -9,6 +9,7 @@ import com.umc.yourweather.databinding.ActivitySignUpBinding
 
 class SignUp2 : AppCompatActivity() {
     lateinit var binding : ActivitySignUp2Binding
+    private var passwordFlag = false
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         binding = ActivitySignUp2Binding.inflate(layoutInflater)
@@ -19,6 +20,5 @@ class SignUp2 : AppCompatActivity() {
             startActivity(mIntent)
             finish()
         }
-
     }
 }

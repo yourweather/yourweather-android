@@ -11,8 +11,9 @@
         android:id="@+id/linearLayout"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginStart="16dp"
+        android:layout_marginStart="4dp"
         android:layout_marginTop="16dp"
+        android:layout_marginRight="256dp"
         android:orientation="horizontal"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent">
@@ -20,11 +21,13 @@
         <ImageButton
             android:id="@+id/btn_statics_left_date"
             style="?android:attr/borderlessButtonStyle"
-            android:layout_width="24dp"
-            android:layout_height="24dp"
+            android:layout_width="7dp"
+            android:layout_height="12dp"
             android:layout_gravity="center"
-            android:layout_margin="4dp"
-            android:background="@drawable/ic_arrow_left_24"
+            android:layout_marginLeft="24dp"
+            android:layout_marginTop="1dp"
+            android:layout_marginRight="23dp"
+            android:background="@drawable/ic_left_arrow"
             app:layout_constraintHeight_percent="0.05" />
 
         <TextView
@@ -35,17 +38,19 @@
             android:layout_margin="4dp"
             android:text="7월"
             android:textColor="@color/black"
-            android:textSize="15sp"
+            android:textSize="15dp"
             android:textStyle="bold" />
 
         <ImageButton
             android:id="@+id/btn_statics_right_date"
             style="?android:attr/borderlessButtonStyle"
-            android:layout_width="24dp"
-            android:layout_height="24dp"
+            android:layout_width="7dp"
+            android:layout_height="12dp"
             android:layout_gravity="center"
-            android:layout_margin="4dp"
-            android:background="@drawable/ic_arrow_right_24"
+            android:layout_marginTop="1dp"
+            android:layout_marginLeft="24dp"
+
+            android:background="@drawable/ic_right_arrow"
             app:layout_constraintHeight_percent="0.05" />
 
     </LinearLayout>
@@ -54,13 +59,14 @@
         android:id="@+id/linearLayout2"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_marginTop="20dp"
-        android:background="@drawable/bg_btn_report_rec"
+        android:background="@drawable/bg_line_gray_rec_round"
         android:orientation="vertical"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/linearLayout"
-        android:layout_margin="25dp">
+        android:layout_marginTop="16dp"
+        android:layout_marginRight="27dp"
+        android:layout_marginLeft="27dp">
 
 
         <LinearLayout
@@ -70,10 +76,10 @@
 
             <ImageView
                 android:id="@+id/iv_icon_statics_sunny"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
+                android:layout_width="47dp"
+                android:layout_height="46dp"
                 android:layout_gravity="center"
-                android:layout_marginLeft="10dp"
+                android:layout_marginLeft="8dp"
                 android:layout_weight="10"
                 app:srcCompat="@drawable/ic_sun"
                 tools:layout_editor_absoluteX="32dp"
@@ -86,19 +92,23 @@
                 android:layout_weight="1"
                 android:layout_gravity="center"
                 android:text="40%"
-                android:textSize="20dp"
                 android:textColor="@color/black"
-                android:layout_marginLeft="230dp"
+                android:layout_marginLeft="222dp"
+                android:layout_marginTop="16dp"
+                android:layout_marginRight="10dp"
+                android:layout_marginBottom="14dp"
                 />
 
             <ImageButton
                 android:id="@+id/btn_statics_right_detail1"
                 style="?android:attr/borderlessButtonStyle"
-                android:layout_width="11dp"
-                android:layout_height="19dp"
+                android:layout_width="15dp"
+                android:layout_height="21dp"
                 android:layout_gravity="center"
-                android:layout_marginLeft="15dp"
-                android:layout_marginRight="10dp"
+                android:layout_marginLeft="10dp"
+                android:layout_marginRight="21dp"
+                android:layout_marginTop="15dp"
+                android:layout_marginBottom="14dp"
                 android:background="@drawable/ic_rightarrow"
                 app:layout_constraintHeight_percent="0.05"
                 android:layout_weight="1"
@@ -109,9 +119,9 @@
         <ImageView
             android:id="@+id/iv_icon_statics_bar1"
             android:layout_width="match_parent"
-            android:layout_height="3dp"
-            android:layout_marginLeft="10dp"
-            android:layout_marginRight="10dp"
+            android:layout_height="2.5dp"
+            android:layout_marginLeft="8dp"
+            android:layout_marginRight="8dp"
             android:src="@drawable/bg_gray_fill_rect"
             app:layout_constraintBottom_toTopOf="@+id/scrollView"
             app:layout_constraintEnd_toEndOf="parent"
@@ -127,10 +137,10 @@
 
             <ImageView
                 android:id="@+id/iv_icon_statics_cloudy"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
+                android:layout_width="47dp"
+                android:layout_height="46dp"
                 android:layout_gravity="center"
-                android:layout_marginLeft="10dp"
+                android:layout_marginLeft="8dp"
                 android:layout_weight="10"
                 app:srcCompat="@drawable/ic_cloud"
                 tools:layout_editor_absoluteX="32dp"
@@ -143,19 +153,23 @@
                 android:layout_weight="1"
                 android:layout_gravity="center"
                 android:text="40%"
-                android:textSize="20dp"
                 android:textColor="@color/black"
-                android:layout_marginLeft="230dp"
+                android:layout_marginLeft="222dp"
+                android:layout_marginTop="16dp"
+                android:layout_marginRight="10dp"
+                android:layout_marginBottom="14dp"
                 />
 
             <ImageButton
                 android:id="@+id/btn_statics_right_detail2"
                 style="?android:attr/borderlessButtonStyle"
-                android:layout_width="11dp"
-                android:layout_height="19dp"
+                android:layout_width="15dp"
+                android:layout_height="21dp"
                 android:layout_gravity="center"
-                android:layout_marginLeft="15dp"
-                android:layout_marginRight="10dp"
+                android:layout_marginLeft="10dp"
+                android:layout_marginRight="21dp"
+                android:layout_marginTop="15dp"
+                android:layout_marginBottom="14dp"
                 android:background="@drawable/ic_rightarrow"
                 app:layout_constraintHeight_percent="0.05"
                 android:layout_weight="1"
@@ -166,9 +180,9 @@
         <ImageView
             android:id="@+id/iv_icon_statics_bar2"
             android:layout_width="match_parent"
-            android:layout_height="3dp"
-            android:layout_marginLeft="10dp"
-            android:layout_marginRight="10dp"
+            android:layout_height="2.5dp"
+            android:layout_marginLeft="8dp"
+            android:layout_marginRight="8dp"
             android:src="@drawable/bg_gray_fill_rect"
             app:layout_constraintBottom_toTopOf="@+id/scrollView"
             app:layout_constraintEnd_toEndOf="parent"
@@ -184,14 +198,14 @@
 
             <ImageView
                 android:id="@+id/iv_icon_statics_rainy"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
                 app:srcCompat="@drawable/ic_rain"
+                android:layout_width="47dp"
+                android:layout_height="46dp"
+                android:layout_gravity="center"
+                android:layout_marginLeft="8dp"
+                android:layout_weight="10"
                 tools:layout_editor_absoluteX="32dp"
                 tools:layout_editor_absoluteY="93dp"
-                android:layout_weight="10"
-                android:layout_gravity="center"
-                android:layout_marginLeft="10dp"
                 />
 
             <TextView
@@ -201,19 +215,23 @@
                 android:layout_weight="1"
                 android:layout_gravity="center"
                 android:text="40%"
-                android:textSize="20dp"
                 android:textColor="@color/black"
-                android:layout_marginLeft="230dp"
+                android:layout_marginLeft="222dp"
+                android:layout_marginTop="16dp"
+                android:layout_marginRight="10dp"
+                android:layout_marginBottom="14dp"
                 />
 
             <ImageButton
                 android:id="@+id/btn_statics_right_detail3"
                 style="?android:attr/borderlessButtonStyle"
-                android:layout_width="11dp"
-                android:layout_height="19dp"
+                android:layout_width="15dp"
+                android:layout_height="21dp"
                 android:layout_gravity="center"
-                android:layout_marginLeft="15dp"
-                android:layout_marginRight="10dp"
+                android:layout_marginLeft="10dp"
+                android:layout_marginRight="21dp"
+                android:layout_marginTop="15dp"
+                android:layout_marginBottom="14dp"
                 android:background="@drawable/ic_rightarrow"
                 app:layout_constraintHeight_percent="0.05"
                 android:layout_weight="1"
@@ -224,16 +242,17 @@
         <ImageView
             android:id="@+id/iv_icon_statics_bar3"
             android:layout_width="match_parent"
-            android:layout_height="3dp"
-            android:layout_marginLeft="10dp"
-            android:layout_marginRight="10dp"
+            android:layout_height="2.5dp"
+            android:layout_marginLeft="8dp"
+            android:layout_marginRight="8dp"
             android:src="@drawable/bg_gray_fill_rect"
             app:layout_constraintBottom_toTopOf="@+id/scrollView"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintHorizontal_bias="0.0"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toBottomOf="@+id/ll_analysis"
-            app:layout_constraintVertical_bias="0.036" />
+            app:layout_constraintVertical_bias="0.036"
+            />
 
 
         <LinearLayout
@@ -243,14 +262,14 @@
 
             <ImageView
                 android:id="@+id/iv_icon_statics_thunder"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
+                android:layout_width="47dp"
+                android:layout_height="46dp"
+                android:layout_gravity="center"
+                android:layout_marginLeft="8dp"
+                android:layout_weight="10"
                 app:srcCompat="@drawable/ic_thunder"
                 tools:layout_editor_absoluteX="32dp"
                 tools:layout_editor_absoluteY="93dp"
-                android:layout_weight="10"
-                android:layout_gravity="center"
-                android:layout_marginLeft="10dp"
                 />
 
             <TextView
@@ -260,19 +279,23 @@
                 android:layout_weight="1"
                 android:layout_gravity="center"
                 android:text="40%"
-                android:textSize="20dp"
                 android:textColor="@color/black"
-                android:layout_marginLeft="230dp"
+                android:layout_marginLeft="222dp"
+                android:layout_marginTop="16dp"
+                android:layout_marginRight="10dp"
+                android:layout_marginBottom="14dp"
                 />
 
             <ImageButton
                 android:id="@+id/btn_statics_right_detail4"
                 style="?android:attr/borderlessButtonStyle"
-                android:layout_width="11dp"
-                android:layout_height="19dp"
+                android:layout_width="15dp"
+                android:layout_height="21dp"
                 android:layout_gravity="center"
-                android:layout_marginLeft="15dp"
-                android:layout_marginRight="10dp"
+                android:layout_marginLeft="10dp"
+                android:layout_marginRight="21dp"
+                android:layout_marginTop="15dp"
+                android:layout_marginBottom="14dp"
                 android:background="@drawable/ic_rightarrow"
                 app:layout_constraintHeight_percent="0.05"
                 android:layout_weight="1"

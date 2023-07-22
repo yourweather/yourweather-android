@@ -6,76 +6,92 @@
     android:layout_height="match_parent"
     tools:context=".presentation.AnalysisActivity">
 
-    <TextView
-        android:id="@+id/tv_unwritten_title"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginStart="15dp"
-        android:layout_marginTop="45dp"
-        android:text="@string/tv_analysis_title"
-        android:textColor="@color/orange"
-        android:textSize="20sp"
-        android:textStyle="bold"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent" />
-
-    <ImageButton
-        android:id="@+id/btn_bell"
-        style="?android:attr/borderlessButtonStyle"
-        android:layout_width="21dp"
-        android:layout_height="24dp"
-        android:layout_marginStart="100dp"
-        android:layout_marginTop="48dp"
-        android:background="@drawable/ic_bell"
-        app:layout_constraintDimensionRatio="H,1:1"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHeight_percent="0.05"
-        app:layout_constraintHorizontal_bias="0.826"
-        app:layout_constraintStart_toEndOf="@id/tv_unwritten_title"
-        app:layout_constraintTop_toTopOf="parent" />
 
     <LinearLayout
-        android:id="@+id/ll_analysis"
-        android:layout_width="292dp"
-        android:layout_height="30dp"
-        android:layout_marginStart="60dp"
-        android:layout_marginTop="100dp"
-        android:layout_marginEnd="60dp"
-        android:background="@drawable/bg_btn_report_rec"
+        android:id="@+id/ll_analysis_title"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:layout_marginBottom="12dp"
         android:orientation="horizontal"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent">
 
+        <TextView
+            android:id="@+id/tv_unwritten_title"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="16dp"
+            android:layout_marginTop="26dp"
+            android:text="@string/tv_analysis_title"
+            android:textColor="@color/sorange"
+            android:textSize="20dp"
+            android:textStyle="bold" />
+
+        <Space
+            android:layout_width="0dp"
+            android:layout_height="0dp"
+            android:layout_weight="1" />
+
+        <ImageButton
+            android:id="@+id/btn_bell"
+            style="?android:attr/borderlessButtonStyle"
+            android:layout_width="30dp"
+            android:layout_height="35dp"
+            android:layout_marginTop="26dp"
+            android:layout_marginEnd="16dp"
+            android:background="@drawable/ic_bell_event" />
+
+    </LinearLayout>
+
+
+
+
+    <LinearLayout
+        android:id="@+id/ll_analysis_btn"
+        android:layout_width="match_parent"
+        android:layout_height="25dp"
+        android:layout_marginTop="18dp"
+        android:layout_marginLeft="75dp"
+        android:layout_marginRight="75dp"
+        android:background="@drawable/bg_btn_report_rec"
+        android:orientation="horizontal"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@id/ll_analysis_title"
+        app:layout_constraintBottom_toTopOf="@id/iv_bar1"
+        android:gravity="center">
+
         <androidx.appcompat.widget.AppCompatButton
             android:id="@+id/btn_analysis_weekly"
             android:layout_width="0dp"
             android:layout_height="match_parent"
-            android:layout_marginStart="4dp"
-            android:layout_marginTop="4dp"
-            android:layout_marginEnd="4dp"
-            android:layout_marginBottom="4dp"
+            android:layout_marginStart="2dp"
+            android:layout_marginTop="2dp"
+            android:layout_marginEnd="2dp"
+            android:layout_marginBottom="2dp"
             android:layout_weight="1"
             android:background="@drawable/bg_btn_report_nonselect_rec"
             android:text="주간"
             android:textColor="@color/black"
-            android:textSize="12sp"
-            android:textStyle="bold" />
+            android:textSize="12dp"
+             />
 
         <androidx.appcompat.widget.AppCompatButton
             android:id="@+id/btn_analysis_monthly"
             android:layout_width="0dp"
             android:layout_height="match_parent"
-            android:layout_marginStart="4dp"
-            android:layout_marginTop="4dp"
-            android:layout_marginEnd="4dp"
-            android:layout_marginBottom="4dp"
+            android:layout_marginStart="2dp"
+            android:layout_marginTop="2dp"
+            android:layout_marginEnd="2dp"
+            android:layout_marginBottom="2dp"
             android:layout_weight="1"
-            android:background="@drawable/bg_btn_report_nonselect_rec"
+            android:layout_gravity="center"
+            android:background="@drawable/bg_btn_select_brown_rec"
             android:text="월간"
-            android:textColor="@color/black"
-            android:textSize="12sp"
-            android:textStyle="bold" />
+            android:textColor="@color/white"
+            android:textSize="12dp"
+             />
 
     </LinearLayout>
 
@@ -84,13 +100,13 @@
         android:id="@+id/iv_bar1"
         android:layout_width="0dp"
         android:layout_height="2dp"
-        android:layout_marginTop="136.5px"
+        android:layout_marginTop="19.5dp"
         android:src="@drawable/bg_gray_fill_rect"
         app:layout_constraintBottom_toTopOf="@+id/scrollView"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.0"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/ll_analysis"
+        app:layout_constraintTop_toBottomOf="@+id/ll_analysis_btn"
         app:layout_constraintVertical_bias="0.036" />
 
     <ScrollView
@@ -124,8 +140,7 @@
                 layout="@layout/fragment_bar_statics_month"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:layout_marginBottom="20dp"
-                android:layout_marginTop="20dp"
+                android:layout_marginBottom="21dp"
                 />
 
             <ImageView
@@ -147,11 +162,25 @@
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_weight="1"
-                android:layout_marginBottom="20dp"
+                android:layout_marginBottom="90dp"
                 />
 
         </LinearLayout>
     </ScrollView>
 
+    <com.google.android.material.bottomnavigation.BottomNavigationView
+        android:id="@+id/bnv_main"
+        app:menu="@menu/menu_bnv"
+        android:background="@color/bnv_back"
+        android:layout_width="match_parent"
+        android:layout_height="?attr/actionBarSize"
+        app:itemHorizontalTranslationEnabled="false"
+        app:labelVisibilityMode="unlabeled"
+        app:itemIconTint="@drawable/menu_selector_color"
+        app:itemTextColor="@drawable/menu_selector_color"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        />
 
 </androidx.constraintlayout.widget.ConstraintLayout>

@@ -18,12 +18,11 @@ class SignIn : AppCompatActivity() {
         binding.tvSigninBtnfindpw.setOnClickListener{
             val mIntent = Intent(this, FindPw::class.java)
             startActivity(mIntent)
-            finish()
         }
+
         binding.tvSigninBtnsignup.setOnClickListener{
             val mIntent = Intent(this, SignUp::class.java)
             startActivity(mIntent)
-            finish()
         }
 
     }
