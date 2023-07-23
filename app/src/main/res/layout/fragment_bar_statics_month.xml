@@ -4,7 +4,8 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context=".presentation.AnalysisActivity">
+    tools:context=".presentation.AnalysisActivity"
+    >
 
     <TextView
         android:id="@+id/tv_unwritten_title"
@@ -157,6 +158,8 @@
                     android:layout_height="wrap_content"
                     android:layout_gravity="center"
                     android:layout_marginLeft="35dp"
+                    android:layout_marginTop="10dp"
+                    android:layout_marginBottom="5dp"
                     app:srcCompat="@drawable/ic_uparrow"
                     tools:layout_editor_absoluteX="32dp"
                     tools:layout_editor_absoluteY="93dp" />
@@ -171,7 +174,9 @@
                     android:layout_weight="1"
                     android:gravity="left"
                     android:text="맑음 비율이 20% 증가했습니다."
-                    android:textSize="14.6dp" />
+                    android:textSize="12dp"
+                    android:textStyle="bold"
+                    />
             </LinearLayout>
 
             <LinearLayout
@@ -186,6 +191,7 @@
                     android:layout_height="wrap_content"
                     android:layout_gravity="center"
                     android:layout_marginLeft="35dp"
+                    android:layout_marginTop="4dp"
                     app:srcCompat="@drawable/ic_uparrow"
                     tools:layout_editor_absoluteX="32dp"
                     tools:layout_editor_absoluteY="93dp" />
@@ -199,7 +205,8 @@
                     android:layout_marginBottom="5dp"                    android:layout_weight="1"
                     android:gravity="left"
                     android:text="다소 흐림 비율이 10% 증가했습니다."
-                    android:textSize="14.6dp" />
+                    android:textSize="12dp"
+                    android:textStyle="bold"/>
             </LinearLayout>
 
             <LinearLayout
@@ -214,6 +221,8 @@
                     android:layout_height="wrap_content"
                     android:layout_gravity="center"
                     android:layout_marginLeft="35dp"
+                    android:layout_marginTop="8dp"
+                    android:layout_marginBottom="5dp"
                     app:srcCompat="@drawable/ic_downarrow"
                     tools:layout_editor_absoluteX="32dp"
                     tools:layout_editor_absoluteY="93dp">
@@ -225,11 +234,12 @@
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_marginStart="48dp"
-                    android:layout_marginTop="5dp"
+                    android:layout_marginTop="8dp"
                     android:layout_marginBottom="5dp"                    android:layout_weight="1"
                     android:gravity="left"
                     android:text="비 비율이 5% 감소했습니다."
-                    android:textSize="14.6dp" />
+                    android:textSize="12dp"
+                    android:textStyle="bold"/>
             </LinearLayout>
 
             <LinearLayout
@@ -245,6 +255,8 @@
                     android:layout_height="wrap_content"
                     android:layout_gravity="center"
                     android:layout_marginLeft="35dp"
+                    android:layout_marginTop="8dp"
+                    android:layout_marginBottom="11dp"
                     app:srcCompat="@drawable/ic_downarrow"
                     tools:layout_editor_absoluteX="32dp"
                     tools:layout_editor_absoluteY="93dp">
@@ -261,7 +273,8 @@
                     android:layout_weight="1"
                     android:gravity="left"
                     android:text="번개 비율이 10% 감소했습니다."
-                    android:textSize="14.6dp" />
+                    android:textSize="12dp"
+                    android:textStyle="bold"/>
             </LinearLayout>
         </LinearLayout>
 
