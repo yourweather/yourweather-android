@@ -11,12 +11,12 @@
         android:id="@+id/tv_unwritten_title"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginStart="26dp"
+        android:layout_marginStart="16dp"
         android:layout_marginTop="16dp"
         android:text="@string/tv_unwritten_title"
         android:textColor="@color/black"
         android:textSize="15dp"
-        android:textStyle="bold"
+        android:fontFamily="@font/pretendardextrabold"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent" />
 
@@ -38,7 +38,7 @@
             android:layout_weight="1"
             android:text="@string/tv_analysis_lastmonth"
             android:textSize="15dp"
-            android:textStyle="bold" />
+            android:fontFamily="@font/pretendardsemibold" />
 
         <TextView
             android:id="@+id/tv_analysis_month_num"
@@ -48,7 +48,8 @@
             android:layout_weight="1"
             android:text="6월"
             android:textSize="12dp"
-            android:gravity="top"/>
+            android:gravity="top"
+            android:fontFamily="@font/pretendardmedium"/>
         <!--데이터 바인딩으로 상세 달 입력 받는 것 추후 추가 필요-->
 
     </LinearLayout>
@@ -88,7 +89,7 @@
             android:layout_weight="1"
             android:text="@string/tv_analysis_this_month"
             android:textSize="15dp"
-            android:textStyle="bold" />
+            android:fontFamily="@font/pretendardsemibold" />
 
         <TextView
             android:id="@+id/tv_analysis_month_this_num"
@@ -98,7 +99,8 @@
             android:layout_weight="1"
             android:text="7월"
             android:textSize="12dp"
-            android:gravity="top" />
+            android:gravity="top"
+            android:fontFamily="@font/pretendardmedium"/>
         <!--데이터 바인딩으로 상세 달 입력 받는 것 추후 추가 필요-->
 
 
@@ -137,7 +139,8 @@
             android:layout_marginBottom="14dp"
             android:gravity="center"
             android:text="@string/tv_statics_comparison_title"
-            android:textStyle="bold" />
+            android:fontFamily="@font/pretendardsemibold"
+            android:textSize="12dp"/>
 
         <LinearLayout
             android:layout_width="match_parent"
@@ -162,7 +165,8 @@
                     android:layout_marginBottom="5dp"
                     app:srcCompat="@drawable/ic_uparrow"
                     tools:layout_editor_absoluteX="32dp"
-                    tools:layout_editor_absoluteY="93dp" />
+                    tools:layout_editor_absoluteY="93dp"
+                    />
 
                 <TextView
                     android:id="@+id/tv_analysis_detail_statics_sunny"
@@ -174,8 +178,8 @@
                     android:layout_weight="1"
                     android:gravity="left"
                     android:text="맑음 비율이 20% 증가했습니다."
-                    android:textSize="12dp"
-                    android:textStyle="bold"
+                    android:textSize="11dp"
+                    android:fontFamily="@font/pretendardregular"
                     />
             </LinearLayout>
 
@@ -191,7 +195,7 @@
                     android:layout_height="wrap_content"
                     android:layout_gravity="center"
                     android:layout_marginLeft="35dp"
-                    android:layout_marginTop="4dp"
+                    android:layout_marginTop="1dp"
                     app:srcCompat="@drawable/ic_uparrow"
                     tools:layout_editor_absoluteX="32dp"
                     tools:layout_editor_absoluteY="93dp" />
@@ -205,8 +209,8 @@
                     android:layout_marginBottom="5dp"                    android:layout_weight="1"
                     android:gravity="left"
                     android:text="다소 흐림 비율이 10% 증가했습니다."
-                    android:textSize="12dp"
-                    android:textStyle="bold"/>
+                    android:textSize="11dp"
+                    android:fontFamily="@font/pretendardregular"/>
             </LinearLayout>
 
             <LinearLayout
@@ -221,7 +225,7 @@
                     android:layout_height="wrap_content"
                     android:layout_gravity="center"
                     android:layout_marginLeft="35dp"
-                    android:layout_marginTop="8dp"
+                    android:layout_marginTop="6dp"
                     android:layout_marginBottom="5dp"
                     app:srcCompat="@drawable/ic_downarrow"
                     tools:layout_editor_absoluteX="32dp"
@@ -238,8 +242,8 @@
                     android:layout_marginBottom="5dp"                    android:layout_weight="1"
                     android:gravity="left"
                     android:text="비 비율이 5% 감소했습니다."
-                    android:textSize="12dp"
-                    android:textStyle="bold"/>
+                    android:textSize="11dp"
+                    android:fontFamily="@font/pretendardregular"/>
             </LinearLayout>
 
             <LinearLayout
@@ -273,8 +277,8 @@
                     android:layout_weight="1"
                     android:gravity="left"
                     android:text="번개 비율이 10% 감소했습니다."
-                    android:textSize="12dp"
-                    android:textStyle="bold"/>
+                    android:textSize="11dp"
+                    android:fontFamily="@font/pretendardregular"/>
             </LinearLayout>
         </LinearLayout>
 

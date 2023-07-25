@@ -1,20 +1,21 @@
 package com.umc.yourweather.presentation
 
-import androidx.appcompat.app.AppCompatActivity
+import android.content.Intent
 import android.os.Bundle
-import com.umc.yourweather.R
+import androidx.appcompat.app.AppCompatActivity
 import com.umc.yourweather.databinding.ActivityFindPwBinding
-import com.umc.yourweather.databinding.ActivitySignInBinding
 
 class FindPw : AppCompatActivity() {
-    lateinit var binding : ActivityFindPwBinding
+    lateinit var binding: ActivityFindPwBinding
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         binding = ActivityFindPwBinding.inflate(layoutInflater)
         setContentView(binding.root)
-        binding.btnFindpwNext.setOnClickListener{
-
+        binding.btnFindpwNext.setOnClickListener {
+            val mIntent = Intent(this, AnalysisActivity::class.java)
+            startActivity(mIntent)
+            finish()
         }
     }
 }
