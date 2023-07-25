@@ -72,7 +72,7 @@
 
 
         <LinearLayout
-            android:layout_width="wrap_content"
+            android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:orientation="horizontal">
 
@@ -81,44 +81,41 @@
                 android:layout_width="47dp"
                 android:layout_height="46dp"
                 android:layout_gravity="center"
-                android:layout_marginStart="8dp"
-                android:layout_marginBottom="1dp"
+                android:layout_marginLeft="11dp"
                 android:layout_marginTop="3dp"
-                android:layout_weight="10"
+                android:layout_marginBottom="1dp"
                 app:srcCompat="@drawable/ic_sun"
                 tools:layout_editor_absoluteX="32dp"
                 tools:layout_editor_absoluteY="93dp" />
 
             <TextView
-                android:id="@+id/tv_static_icon_detail_sunny"
+                android:id="@+id/tv_static_icon_detail_sunny_monthly"
                 android:layout_width="45dp"
                 android:layout_height="wrap_content"
-                android:layout_weight="1"
                 android:layout_gravity="center"
-                android:text="40%"
-                android:textColor="@color/black"
-                android:layout_marginLeft="222dp"
+                android:layout_marginLeft="220dp"
                 android:layout_marginTop="16dp"
                 android:layout_marginRight="10dp"
                 android:layout_marginBottom="14dp"
                 android:fontFamily="@font/pretendardmedium"
+                android:gravity="center"
+                android:text="40%"
+                android:textColor="@color/black"
                 android:textSize="15dp"
-                android:gravity="center"/>
+                app:layout_constraintEnd_toStartOf="@id/btn_statics_right_detail1_monthly"
+                app:layout_constraintStart_toEndOf="@+id/iv_icon_statics_sunny"/>
 
             <ImageButton
-                android:id="@+id/btn_statics_right_detail1"
+                android:id="@+id/btn_statics_right_detail1_monthly"
                 style="?android:attr/borderlessButtonStyle"
                 android:layout_width="8dp"
                 android:layout_height="14dp"
                 android:layout_gravity="center"
-                android:layout_marginLeft="10dp"
-                android:layout_marginRight="22dp"
                 android:layout_marginTop="16dp"
+                android:layout_marginRight="21dp"
                 android:layout_marginBottom="14dp"
                 android:background="@drawable/ic_gray_rightarrow_8_14"
-                app:layout_constraintHeight_percent="0.05"
-                android:layout_weight="1"
-                />
+                app:layout_constraintHeight_percent="0.05" />
 
         </LinearLayout>
 
@@ -137,7 +134,7 @@
             app:layout_constraintVertical_bias="0.036" />
 
         <LinearLayout
-            android:layout_width="wrap_content"
+            android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:orientation="horizontal">
 
@@ -146,45 +143,41 @@
                 android:layout_width="47dp"
                 android:layout_height="46dp"
                 android:layout_gravity="center"
-                android:layout_marginLeft="8dp"
+                android:layout_marginLeft="11dp"
                 android:layout_marginBottom="1dp"
                 android:layout_marginTop="3dp"
-                android:layout_weight="10"
                 app:srcCompat="@drawable/ic_cloud"
                 tools:layout_editor_absoluteX="32dp"
                 tools:layout_editor_absoluteY="93dp" />
 
             <TextView
-                android:id="@+id/tv_static_icon_detail_cloudy"
+                android:id="@+id/tv_static_icon_detail_cloudy_monthly"
                 android:layout_width="45dp"
                 android:layout_height="wrap_content"
-                android:layout_weight="1"
                 android:layout_gravity="center"
                 android:text="40%"
                 android:textColor="@color/black"
-                android:layout_marginLeft="222dp"
+                android:layout_marginLeft="220dp"
                 android:layout_marginTop="16dp"
                 android:layout_marginRight="10dp"
                 android:layout_marginBottom="14dp"
                 android:fontFamily="@font/pretendardmedium"
                 android:textSize="15dp"
-                android:gravity="center"/>
+                android:gravity="center"
+                />
 
             <ImageButton
-                android:id="@+id/btn_statics_right_detail2"
+                android:id="@+id/btn_statics_right_detail2_monthly"
                 style="?android:attr/borderlessButtonStyle"
                 android:layout_width="8dp"
                 android:layout_height="14dp"
                 android:layout_gravity="center"
-                android:layout_marginLeft="10dp"
                 android:layout_marginRight="21dp"
                 android:layout_marginTop="16dp"
                 android:layout_marginBottom="14dp"
                 android:background="@drawable/ic_gray_rightarrow_8_14"
                 app:layout_constraintHeight_percent="0.05"
-                android:layout_weight="1"
                 />
-
         </LinearLayout>
 
         <ImageView
@@ -202,7 +195,7 @@
             app:layout_constraintVertical_bias="0.036" />
 
         <LinearLayout
-            android:layout_width="wrap_content"
+            android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:orientation="horizontal">
 
@@ -212,23 +205,21 @@
                 android:layout_width="47dp"
                 android:layout_height="46dp"
                 android:layout_gravity="center"
-                android:layout_marginStart="8dp"
+                android:layout_marginLeft="11dp"
                 android:layout_marginBottom="1dp"
                 android:layout_marginTop="1dp"
-                android:layout_weight="10"
                 tools:layout_editor_absoluteX="32dp"
                 tools:layout_editor_absoluteY="93dp"
                 />
 
             <TextView
-                android:id="@+id/tv_static_icon_detail_rainy"
+                android:id="@+id/tv_static_icon_detail_rainy_monthly"
                 android:layout_width="45dp"
                 android:layout_height="wrap_content"
-                android:layout_weight="1"
                 android:layout_gravity="center"
                 android:text="40%"
                 android:textColor="@color/black"
-                android:layout_marginLeft="222dp"
+                android:layout_marginLeft="220dp"
                 android:layout_marginTop="16dp"
                 android:layout_marginRight="10dp"
                 android:layout_marginBottom="14dp"
@@ -237,18 +228,16 @@
                 android:gravity="center"/>
 
             <ImageButton
-                android:id="@+id/btn_statics_right_detail3"
+                android:id="@+id/btn_statics_right_detail3_monthly"
                 style="?android:attr/borderlessButtonStyle"
                 android:layout_width="8dp"
                 android:layout_height="14dp"
                 android:layout_gravity="center"
-                android:layout_marginLeft="10dp"
                 android:layout_marginRight="21dp"
                 android:layout_marginTop="16dp"
                 android:layout_marginBottom="14dp"
                 android:background="@drawable/ic_gray_rightarrow_8_14"
                 app:layout_constraintHeight_percent="0.05"
-                android:layout_weight="1"
                 />
 
         </LinearLayout>
@@ -270,7 +259,7 @@
 
 
         <LinearLayout
-            android:layout_width="wrap_content"
+            android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:orientation="horizontal">
 
@@ -279,24 +268,22 @@
                 android:layout_width="47dp"
                 android:layout_height="46dp"
                 android:layout_gravity="center"
-                android:layout_marginStart="8dp"
+                android:layout_marginLeft="11dp"
                 android:layout_marginBottom="1dp"
                 android:layout_marginTop="1dp"
-                android:layout_weight="10"
                 app:srcCompat="@drawable/ic_thunder"
                 tools:layout_editor_absoluteX="32dp"
                 tools:layout_editor_absoluteY="93dp"
                 />
 
             <TextView
-                android:id="@+id/tv_static_icon_detail_thunder"
+                android:id="@+id/tv_static_icon_detail_thunder_monthly"
                 android:layout_width="45dp"
                 android:layout_height="wrap_content"
-                android:layout_weight="1"
                 android:layout_gravity="center"
                 android:text="40%"
                 android:textColor="@color/black"
-                android:layout_marginLeft="222dp"
+                android:layout_marginLeft="220dp"
                 android:layout_marginTop="16dp"
                 android:layout_marginRight="10dp"
                 android:layout_marginBottom="14dp"
@@ -305,20 +292,17 @@
                 android:gravity="center"/>
 
             <ImageButton
-                android:id="@+id/btn_statics_right_detail4"
+                android:id="@+id/btn_statics_right_detail4_monthly"
                 style="?android:attr/borderlessButtonStyle"
                 android:layout_width="8dp"
                 android:layout_height="14dp"
                 android:layout_gravity="center"
-                android:layout_marginLeft="10dp"
                 android:layout_marginRight="21dp"
                 android:layout_marginTop="16dp"
                 android:layout_marginBottom="14dp"
                 android:background="@drawable/ic_gray_rightarrow_8_14"
                 app:layout_constraintHeight_percent="0.05"
-                android:layout_weight="1"
                 />
-
         </LinearLayout>
     </LinearLayout>
 
