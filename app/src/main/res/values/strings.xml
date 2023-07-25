@@ -11,4 +11,7 @@
     <string name="tv_analysis_lastmonth">지난 달</string>
     <string name="tv_analysis_this_month">이번 달</string>
     <string name="tv_statics_comparison_title">지난 달과 비교한 이번 달의 감정 날씨</string>
+    <string name="tv_analysis_lastweek">지난 달</string>
+    <string name="tv_analysis_this_week">이번 달</string>
+    <string name="tv_statics_comparison_title_week">지난 주와 비교한 이번 주의 감정 날씨</string>
 </resources>
