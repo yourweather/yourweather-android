@@ -103,7 +103,7 @@
                         android:layout_width="350dp"
                         android:layout_height="wrap_content"
                         android:layout_gravity="center"
-                        android:background="@drawable/bg_grayFFECECEC_fill_rect"
+                        android:background="@drawable/bg_gray_ff_fill_rect"
                         android:textColorHint="#A9ADB4"
                         android:textCursorDrawable="@null"
                         android:textSize="16dp" />
@@ -151,7 +151,7 @@
                         android:id="@+id/et_signup_auth"
                         android:layout_width="match_parent"
                         android:layout_height="54dp"
-                        android:background="@drawable/bg_grayFFECECEC_fill_rect"
+                        android:background="@drawable/bg_gray_ff_fill_rect"
                         android:hint="인증코드 6자리 입력"
                         android:paddingLeft="15dp"
                         android:textColorHint="#A9ADB4"
