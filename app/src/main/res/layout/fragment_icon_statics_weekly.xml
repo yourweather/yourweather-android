@@ -28,7 +28,7 @@
             android:layout_marginLeft="12dp"
             android:layout_marginTop="1dp"
             android:layout_marginRight="11dp"
-            android:background="@drawable/ic_black_leftarrow_7_12"
+            android:background="@drawable/ic_gray_leftarrow_7_12"
             app:layout_constraintHeight_percent="0.05" />
 
         <TextView
@@ -51,7 +51,7 @@
             android:layout_gravity="center"
             android:layout_marginLeft="11dp"
             android:layout_marginTop="1dp"
-            android:background="@drawable/ic_black_rightarrow_7_12"
+            android:background="@drawable/ic_gray_rightarrow_7_12"
             app:layout_constraintHeight_percent="0.05" />
 
     </LinearLayout>
