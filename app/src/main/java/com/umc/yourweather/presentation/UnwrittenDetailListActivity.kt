@@ -2,11 +2,13 @@ package com.umc.yourweather.presentation
 
 import android.os.Bundle
 import androidx.appcompat.app.AppCompatActivity
-import com.umc.yourweather.R
+import com.umc.yourweather.databinding.ActivityUnwrittenDetailListBinding
 
 class UnwrittenDetailListActivity : AppCompatActivity() {
+    private lateinit var binding: ActivityUnwrittenDetailListBinding
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
-        setContentView(R.layout.activity_unwritten_detail_list)
+        binding = ActivityUnwrittenDetailListBinding.inflate(layoutInflater)
+        setContentView(binding.root)
     }
 }
