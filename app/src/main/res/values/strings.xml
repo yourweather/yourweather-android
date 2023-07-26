@@ -17,4 +17,5 @@
     <string name="tv_analysis_title">리포트</string>
     <string name="btn_analysis_monthly">월간</string>
     <string name="btn_analysis_weekly">주간</string>
+    <string name="tv_allwritten_title">미입력 내역</string>
 </resources>
