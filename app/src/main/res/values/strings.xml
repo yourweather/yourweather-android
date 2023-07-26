@@ -15,4 +15,6 @@
     <string name="tv_analysis_this_week">이번 달</string>
     <string name="tv_statics_comparison_title_week">지난 주와 비교한 이번 주의 감정 날씨</string>
     <string name="tv_analysis_title">리포트</string>
+    <string name="btn_analysis_monthly">월간</string>
+    <string name="btn_analysis_weekly">주간</string>
 </resources>
