@@ -1,0 +1,195 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:layout_margin="10dp"
+    android:orientation="vertical">
+
+    <TextView
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:fontFamily="@font/pretendardbold"
+        android:paddingTop="10sp"
+        android:paddingBottom="20sp"
+        android:text="마이페이지"
+        android:textColor="#F07818"
+        android:textSize="20sp"/>
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal">
+
+        <LinearLayout
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_margin="15sp"
+            android:orientation="vertical"
+            android:layout_weight="2">
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="match_parent"
+                android:fontFamily="@font/pretendardbold"
+                android:text="이다은 님"
+                android:textSize="20sp"
+                android:textColor="#5E412F"/>
+
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="horizontal"
+                android:paddingTop="13sp">
+
+
+                <ImageView
+                    android:id="@+id/kakao"
+                    android:layout_width="16sp"
+                    android:layout_height="16sp"
+                    app:srcCompat="@drawable/kakao" />
+
+
+                <View
+                    android:id="@+id/view"
+                    android:layout_width="10sp"
+                    android:layout_height="match_parent" />
+
+                <TextView
+                    android:layout_width="146dp"
+                    android:layout_height="match_parent"
+                    android:text="1234@naver.com"
+                    android:fontFamily="@font/pretendardmedium"
+                    android:textSize="14dp"
+                    android:textColor="#A65E412F"/>
+
+
+            </LinearLayout>
+
+        </LinearLayout>
+
+        <View
+            android:layout_width="10sp"
+            android:layout_height="10sp"
+            android:layout_weight="1" />
+
+        <ImageView
+            android:layout_width="18dp"
+            android:layout_height="match_parent"
+            app:srcCompat="@drawable/vector"
+            android:layout_margin="15sp" />
+
+
+
+    </LinearLayout>
+
+    <View
+        android:layout_width="match_parent"
+        android:layout_height="2dp"
+        android:layout_centerInParent="true"
+        android:padding="1.5sp"
+        android:background="#ECECEC"/>
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_margin="15sp"
+        android:orientation="vertical">
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="match_parent"
+            android:text="알림"
+            android:textSize="12sp"
+            android:textColor="#C9C9C9"
+            android:fontFamily="@font/pretendardsemibold"/>
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="match_parent"
+            android:text="알림 설정"
+            android:textColor="#424242"
+            android:textSize="15sp"
+            android:paddingTop="13sp"
+            android:fontFamily="@font/pretendardsemibold"/>
+
+    </LinearLayout>
+
+    <View
+        android:layout_width="match_parent"
+        android:layout_height="2dp"
+        android:layout_centerInParent="true"
+        android:padding="1.5sp"
+        android:background="#ECECEC"
+        android:fontFamily="@font/pretendardsemibold"/>
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_margin="15dp"
+        android:orientation="vertical"
+        >
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:fontFamily="@font/pretendardsemibold"
+            android:text="특별 기능"
+            android:textSize="12sp"
+            android:textColor="#C9C9C9"/>
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="match_parent"
+            android:text="이벤트 날씨 설정"
+            android:textColor="#424242"
+            android:textSize="15sp"
+            android:paddingTop="13sp"
+            android:fontFamily="@font/pretendardsemibold"/>
+
+    </LinearLayout>
+
+    <View
+        android:layout_width="match_parent"
+        android:layout_height="2dp"
+        android:layout_centerInParent="true"
+        android:padding="1.5sp"
+        android:background="#ECECEC"/>
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_margin="15dp"
+        android:orientation="vertical">
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="match_parent"
+            android:text="기타"
+            android:textSize="12sp"
+            android:textColor="#C9C9C9"
+            android:fontFamily="@font/pretendardsemibold"/>
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="match_parent"
+            android:text="이용약관"
+            android:textColor="#424242"
+            android:textSize="15sp"
+            android:paddingTop="13sp"
+            android:fontFamily="@font/pretendardsemibold"/>
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="match_parent"
+            android:text="개인정보 처리방침"
+            android:textColor="#424242"
+            android:textSize="15sp"
+            android:paddingTop="24sp"
+            android:fontFamily="@font/pretendardsemibold"/>
+
+    </LinearLayout>
+
+
+</LinearLayout>
