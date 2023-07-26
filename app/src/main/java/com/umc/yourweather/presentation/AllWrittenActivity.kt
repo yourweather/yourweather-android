@@ -1,7 +1,7 @@
 package com.umc.yourweather.presentation
 
-import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
+import androidx.appcompat.app.AppCompatActivity
 import com.umc.yourweather.R
 
 class AllWrittenActivity : AppCompatActivity() {
