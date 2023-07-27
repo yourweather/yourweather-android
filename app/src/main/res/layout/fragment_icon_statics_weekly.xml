@@ -1,0 +1,310 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context=".presentation.AnalysisActivity">
+
+    <!-- 상단 레이아웃 -->
+    <LinearLayout
+        android:id="@+id/linearLayout"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="16dp"
+        android:layout_marginTop="16dp"
+        android:layout_marginRight="256dp"
+        android:layout_marginBottom="10dp"
+        android:orientation="horizontal"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent">
+
+        <ImageButton
+            android:id="@+id/btn_statics_left_date_weekly"
+            style="?android:attr/borderlessButtonStyle"
+            android:layout_width="7dp"
+            android:layout_height="12dp"
+            android:layout_gravity="center"
+            android:layout_marginLeft="12dp"
+            android:layout_marginTop="1dp"
+            android:layout_marginRight="11dp"
+            android:background="@drawable/ic_gray_leftarrow_7_12"
+            app:layout_constraintHeight_percent="0.05" />
+
+        <TextView
+            android:id="@+id/tv_unwritten_title_weekly"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center"
+            android:layout_marginTop="4dp"
+            android:layout_marginBottom="4dp"
+            android:text="이번 주"
+            android:textColor="@color/black"
+            android:textSize="15dp"
+            android:fontFamily="@font/pretendardbold" />
+
+        <ImageButton
+            android:id="@+id/btn_statics_right_date_weekly"
+            style="?android:attr/borderlessButtonStyle"
+            android:layout_width="7dp"
+            android:layout_height="12dp"
+            android:layout_gravity="center"
+            android:layout_marginLeft="11dp"
+            android:layout_marginTop="1dp"
+            android:background="@drawable/ic_gray_rightarrow_7_12"
+            app:layout_constraintHeight_percent="0.05" />
+
+    </LinearLayout>
+
+    <LinearLayout
+        android:id="@+id/linearLayout2"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:background="@drawable/bg_line_gray_rec_round"
+        android:orientation="vertical"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/linearLayout"
+        android:layout_marginStart="27dp"
+        android:layout_marginEnd="26dp"
+        android:layout_marginTop="14dp">
+
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal">
+
+            <ImageView
+                android:id="@+id/iv_icon_statics_sunny"
+                android:layout_width="47dp"
+                android:layout_height="46dp"
+                android:layout_gravity="center"
+                android:layout_marginLeft="11dp"
+                android:layout_marginTop="3dp"
+                android:layout_marginBottom="1dp"
+                app:srcCompat="@drawable/ic_sun"
+                tools:layout_editor_absoluteX="32dp"
+                tools:layout_editor_absoluteY="93dp" />
+
+            <TextView
+                android:id="@+id/tv_static_icon_detail_sunny_weekly"
+                android:layout_width="45dp"
+                android:layout_height="wrap_content"
+                android:layout_gravity="center"
+                android:layout_marginLeft="220dp"
+                android:layout_marginTop="16dp"
+                android:layout_marginRight="10dp"
+                android:layout_marginBottom="14dp"
+                android:fontFamily="@font/pretendardmedium"
+                android:gravity="center"
+                android:text="40%"
+                android:textColor="@color/black"
+                android:textSize="15dp" />
+
+            <ImageButton
+                android:id="@+id/btn_statics_right_detail1_weekly"
+                style="?android:attr/borderlessButtonStyle"
+                android:layout_width="8dp"
+                android:layout_height="14dp"
+                android:layout_gravity="center"
+                android:layout_marginTop="16dp"
+                android:layout_marginRight="21dp"
+                android:layout_marginBottom="14dp"
+                android:background="@drawable/ic_gray_rightarrow_8_14"
+                app:layout_constraintHeight_percent="0.05" />
+
+        </LinearLayout>
+
+        <ImageView
+            android:id="@+id/iv_icon_statics_bar1"
+            android:layout_width="match_parent"
+            android:layout_height="2.5dp"
+            android:layout_marginLeft="8dp"
+            android:layout_marginRight="8dp"
+            android:src="@drawable/bg_gray_ff_fill_rect"
+            app:layout_constraintBottom_toTopOf="@+id/scrollView"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintHorizontal_bias="0.0"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/ll_analysis"
+            app:layout_constraintVertical_bias="0.036" />
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal">
+
+            <ImageView
+                android:id="@+id/iv_icon_statics_cloudy"
+                android:layout_width="47dp"
+                android:layout_height="46dp"
+                android:layout_gravity="center"
+                android:layout_marginLeft="11dp"
+                android:layout_marginBottom="1dp"
+                android:layout_marginTop="3dp"
+                app:srcCompat="@drawable/ic_cloud"
+                tools:layout_editor_absoluteX="32dp"
+                tools:layout_editor_absoluteY="93dp" />
+
+            <TextView
+                android:id="@+id/tv_static_icon_detail_cloudy_weekly"
+                android:layout_width="45dp"
+                android:layout_height="wrap_content"
+                android:layout_gravity="center"
+                android:text="40%"
+                android:textColor="@color/black"
+                android:layout_marginLeft="220dp"
+                android:layout_marginTop="16dp"
+                android:layout_marginRight="10dp"
+                android:layout_marginBottom="14dp"
+                android:fontFamily="@font/pretendardmedium"
+                android:textSize="15dp"
+                android:gravity="center"
+                />
+
+            <ImageButton
+                android:id="@+id/btn_statics_right_detail2_weekly"
+                style="?android:attr/borderlessButtonStyle"
+                android:layout_width="8dp"
+                android:layout_height="14dp"
+                android:layout_gravity="center"
+                android:layout_marginRight="21dp"
+                android:layout_marginTop="16dp"
+                android:layout_marginBottom="14dp"
+                android:background="@drawable/ic_gray_rightarrow_8_14"
+                app:layout_constraintHeight_percent="0.05"
+                />
+
+        </LinearLayout>
+
+        <ImageView
+            android:id="@+id/iv_icon_statics_bar2"
+            android:layout_width="match_parent"
+            android:layout_height="2.5dp"
+            android:layout_marginLeft="8dp"
+            android:layout_marginRight="8dp"
+            android:src="@drawable/bg_gray_ff_fill_rect"
+            app:layout_constraintBottom_toTopOf="@+id/scrollView"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintHorizontal_bias="0.0"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/ll_analysis"
+            app:layout_constraintVertical_bias="0.036" />
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal">
+
+            <ImageView
+                android:id="@+id/iv_icon_statics_rainy"
+                app:srcCompat="@drawable/ic_rain"
+                android:layout_width="47dp"
+                android:layout_height="46dp"
+                android:layout_gravity="center"
+                android:layout_marginLeft="11dp"
+                android:layout_marginBottom="1dp"
+                android:layout_marginTop="1dp"
+                tools:layout_editor_absoluteX="32dp"
+                tools:layout_editor_absoluteY="93dp"
+                />
+
+            <TextView
+                android:id="@+id/tv_static_icon_detail_rainy_weekly"
+                android:layout_width="45dp"
+                android:layout_height="wrap_content"
+                android:layout_gravity="center"
+                android:text="40%"
+                android:textColor="@color/black"
+                android:layout_marginLeft="220dp"
+                android:layout_marginTop="16dp"
+                android:layout_marginRight="10dp"
+                android:layout_marginBottom="14dp"
+                android:fontFamily="@font/pretendardmedium"
+                android:textSize="15dp"
+                android:gravity="center"/>
+
+            <ImageButton
+                android:id="@+id/btn_statics_right_detail3_weekly"
+                style="?android:attr/borderlessButtonStyle"
+                android:layout_width="8dp"
+                android:layout_height="14dp"
+                android:layout_gravity="center"
+                android:layout_marginRight="21dp"
+                android:layout_marginTop="16dp"
+                android:layout_marginBottom="14dp"
+                android:background="@drawable/ic_gray_rightarrow_8_14"
+                app:layout_constraintHeight_percent="0.05"
+                />
+
+        </LinearLayout>
+
+        <ImageView
+            android:id="@+id/iv_icon_statics_bar3"
+            android:layout_width="match_parent"
+            android:layout_height="2.5dp"
+            android:layout_marginLeft="8dp"
+            android:layout_marginRight="8dp"
+            android:src="@drawable/bg_gray_ff_fill_rect"
+            app:layout_constraintBottom_toTopOf="@+id/scrollView"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintHorizontal_bias="0.0"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/ll_analysis"
+            app:layout_constraintVertical_bias="0.036"
+            />
+
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal">
+
+            <ImageView
+                android:id="@+id/iv_icon_statics_thunder"
+                android:layout_width="47dp"
+                android:layout_height="46dp"
+                android:layout_gravity="center"
+                android:layout_marginLeft="11dp"
+                android:layout_marginBottom="1dp"
+                android:layout_marginTop="1dp"
+                app:srcCompat="@drawable/ic_thunder"
+                tools:layout_editor_absoluteX="32dp"
+                tools:layout_editor_absoluteY="93dp"
+                />
+
+            <TextView
+                android:id="@+id/tv_static_icon_detail_thunder_weekly"
+                android:layout_width="45dp"
+                android:layout_height="wrap_content"
+                android:layout_gravity="center"
+                android:text="40%"
+                android:textColor="@color/black"
+                android:layout_marginLeft="220dp"
+                android:layout_marginTop="14dp"
+                android:layout_marginRight="10dp"
+                android:layout_marginBottom="14dp"
+                android:fontFamily="@font/pretendardmedium"
+                android:textSize="15dp"
+                android:gravity="center"/>
+
+            <ImageButton
+                android:id="@+id/btn_statics_right_detail4_weekly"
+                style="?android:attr/borderlessButtonStyle"
+                android:layout_width="8dp"
+                android:layout_height="14dp"
+                android:layout_gravity="center"
+                android:layout_marginRight="21dp"
+                android:layout_marginTop="16dp"
+                android:layout_marginBottom="14dp"
+                android:background="@drawable/ic_gray_rightarrow_8_14"
+                app:layout_constraintHeight_percent="0.05"
+                />
+
+        </LinearLayout>
+    </LinearLayout>
+
+
+
+</androidx.constraintlayout.widget.ConstraintLayout>

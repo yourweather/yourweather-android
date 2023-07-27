@@ -5,6 +5,17 @@
     <string name="bnv_title3">리포트</string>
     <string name="bnv_title4">마이페이지</string>
     <string name="signup_resend"><u>인증코드 재전송</u></string>
-    <!-- TODO: Remove or change this placeholder text -->
-    <string name="hello_blank_fragment">Hello blank fragment</string>
+    <string name="tv_unwritten_title">감정 날씨 통계</string>
+    <string name="tv_analysis_lastmonth">지난 달</string>
+    <string name="tv_analysis_this_month">이번 달</string>
+    <string name="tv_statics_comparison_title">지난 달과 비교한 이번 달의 감정 날씨</string>
+    <string name="tv_analysis_lastweek">지난 달</string>
+    <string name="tv_analysis_this_week">이번 달</string>
+    <string name="tv_statics_comparison_title_week">지난 주와 비교한 이번 주의 감정 날씨</string>
+    <string name="tv_analysis_title">리포트</string>
+    <string name="btn_analysis_monthly">월간</string>
+    <string name="btn_analysis_weekly">주간</string>
+    <string name="tv_allwritten_title">미입력 내역</string>
+    <string name="tv_allwritten_clear">모든 기록을 완료하였어요</string>
+    <string name="ic_check">ic_check</string>
 </resources>

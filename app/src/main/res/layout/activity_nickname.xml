@@ -83,7 +83,7 @@
                     android:id="@+id/et_nickname_nickname"
                     android:layout_width="match_parent"
                     android:layout_height="54dp"
-                    android:background="@drawable/bg_gray_fill_rect"
+                    android:background="@drawable/bg_gray_ff_fill_rect"
                     android:gravity="center"
                     android:hint="맑은 비구름"
                     android:paddingLeft="16dp"

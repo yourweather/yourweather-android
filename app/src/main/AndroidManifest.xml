@@ -13,6 +13,39 @@
         android:theme="@style/Theme.Yourweather"
         tools:targetApi="31">
         <activity
+            android:name=".presentation.WrittenDetailListActivityCloud"
+            android:exported="false" />
+        <activity
+            android:name=".presentation.WrittenDetailListActivityThunder"
+            android:exported="false" />
+        <activity
+            android:name=".presentation.WrittenDetailListActivityRain"
+            android:exported="false" />
+        <activity
+            android:name=".presentation.WrittenDetailListActivitySun"
+            android:exported="false" />
+        <activity
+            android:name=".presentation.AllWrittenActivity"
+            android:exported="false" />
+        <activity
+            android:name=".presentation.UnwrittenDetailListActivity"
+            android:exported="false" />
+        <activity
+            android:name=".presentation.IconStaticsWeeklyFragment"
+            android:exported="false" />
+        <activity
+            android:name=".presentation.IconStaticsMonthlyFragment"
+            android:exported="false" />
+        <activity
+            android:name=".presentation.BarStaticsWeeklyFragment"
+            android:exported="false" />
+        <activity
+            android:name=".presentation.BarStaticsMonthlyFragment"
+            android:exported="false" />
+        <activity
+            android:name=".presentation.AnalysisActivity"
+            android:exported="false" />
+        <activity
             android:name=".presentation.Calendar"
             android:exported="false" />
         <activity

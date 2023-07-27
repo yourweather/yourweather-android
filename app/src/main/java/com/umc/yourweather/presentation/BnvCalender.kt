@@ -8,16 +8,15 @@ import android.view.ViewGroup
 import androidx.fragment.app.Fragment
 import com.umc.yourweather.R
 
-// TODO: Rename parameter arguments, choose names that match
-// the fragment initialization parameters, e.g. ARG_ITEM_NUMBER
-private const val ARG_PARAM1 = "param1"
-private const val ARG_PARAM2 = "param2"
-
 /**
  * A simple [Fragment] subclass.
  * Use the [BnvCalender.newInstance] factory method to
  * create an instance of this fragment.
  */
+
+private const val ARG_PARAM1 = "param1"
+private const val ARG_PARAM2 = "param2"
+
 class BnvCalender : Fragment() {
     // TODO: Rename and change types of parameters
     private var param1: String? = null
