@@ -20,8 +20,8 @@ class CalendarMonth @JvmOverloads constructor(
     }
 
     override fun onLayout(p0: Boolean, p1: Int, p2: Int, p3: Int, p4: Int) {
-        val marginHorizontal = dpToPx(context, 16).toInt()//좌우 마진
-        val marginVertical = dpToPx(context, 12).toInt() // 상하 마진 크기 (픽셀 단위)
+        val marginHorizontal = dpToPx(context, 16)//좌우 마진
+        val marginVertical = dpToPx(context, 12)// 상하 마진 크기 (픽셀 단위)
         var cWidth = (width - (DAYS_PER_WEEK-1) * marginHorizontal) / DAYS_PER_WEEK
         var cHeight = (height - (WEEKS_PER_MONTH-1) * marginVertical) / WEEKS_PER_MONTH
 
