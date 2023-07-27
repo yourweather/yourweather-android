@@ -1,3 +1,4 @@
+
 package com.umc.yourweather.presentation
 
 import android.os.Bundle
@@ -12,6 +13,7 @@ import com.umc.yourweather.R
  * Use the [BnvHome.newInstance] factory method to
  * create an instance of this fragment.
  */
+
 private const val ARG_PARAM1 = "param1"
 private const val ARG_PARAM2 = "param2"
 

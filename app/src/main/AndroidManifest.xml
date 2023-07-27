@@ -46,7 +46,7 @@
             android:name=".presentation.AnalysisActivity"
             android:exported="false" />
         <activity
-            android:name=".presentation.SocialSignUp"
+            android:name=".presentation.Calendar"
             android:exported="false" />
         <activity
             android:name=".presentation.SignUp2"
