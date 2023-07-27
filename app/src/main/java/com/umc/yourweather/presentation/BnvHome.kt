@@ -7,17 +7,15 @@ import android.view.ViewGroup
 import androidx.fragment.app.Fragment
 import com.umc.yourweather.R
 
-// TODO: Rename parameter arguments, choose names that match
-// the fragment initialization parameters, e.g. ARG_ITEM_NUMBER
+/**
+ * A simple [Fragment] subclass.
+ * Use the [BnvHome.newInstance] factory method to
+ * create an instance of this fragment.
+ */
 private const val ARG_PARAM1 = "param1"
 private const val ARG_PARAM2 = "param2"
 
-/**
- * A simple [Fragment] subclass.
- * Use the [BnvMyPage.newInstance] factory method to
- * create an instance of this fragment.
- */
-class BnvMyPage : Fragment() {
+class BnvHome : Fragment() {
     // TODO: Rename and change types of parameters
     private var param1: String? = null
     private var param2: String? = null
@@ -36,7 +34,7 @@ class BnvMyPage : Fragment() {
         savedInstanceState: Bundle?,
     ): View? {
         // Inflate the layout for this fragment
-        return inflater.inflate(R.layout.fragment_bnv_my_page, container, false)
+        return inflater.inflate(R.layout.fragment_bnv_home, container, false)
     }
 
     companion object {
@@ -46,12 +44,12 @@ class BnvMyPage : Fragment() {
          *
          * @param param1 Parameter 1.
          * @param param2 Parameter 2.
-         * @return A new instance of fragment BnvMyPage.
+         * @return A new instance of fragment BnvHome.
          */
         // TODO: Rename and change types and number of parameters
         @JvmStatic
         fun newInstance(param1: String, param2: String) =
-            BnvMyPage().apply {
+            BnvHome().apply {
                 arguments = Bundle().apply {
                     putString(ARG_PARAM1, param1)
                     putString(ARG_PARAM2, param2)
