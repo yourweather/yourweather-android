@@ -34,8 +34,8 @@
                 android:layout_marginBottom="6dp"
                 android:fontFamily="@font/pretendardmedium"
                 android:text="이다은"
-                android:textColor="@color/brown"
-                android:textSize="16dp"
+                android:textColor="#2B2B2B"
+                android:textSize="15dp"
                 app:layout_constraintBottom_toTopOf="@+id/tv_initial_msg2"
                 app:layout_constraintEnd_toStartOf="@+id/tv_initial_msg1"
                 app:layout_constraintHorizontal_bias="0.94"
@@ -50,8 +50,8 @@
                 android:layout_marginBottom="7dp"
                 android:fontFamily="@font/pretendardmedium"
                 android:text="님의 감정 날씨를"
-                android:textColor="@color/brown"
-                android:textSize="16dp"
+                android:textColor="#2B2B2B"
+                android:textSize="15dp"
                 app:layout_constraintBottom_toTopOf="@+id/tv_initial_msg2"
                 app:layout_constraintEnd_toEndOf="@+id/iv_initial_bg"
                 app:layout_constraintHorizontal_bias="0.64"
@@ -63,30 +63,29 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_gravity="center"
-                android:layout_marginBottom="8dp"
+                android:layout_marginTop="40dp"
                 android:fontFamily="@font/pretendardmedium"
                 android:text="지금 바로 만들어보세요!"
-                android:textColor="@color/brown"
-                android:textSize="16dp"
-                app:layout_constraintBottom_toTopOf="@+id/btn_initial_weather"
+                android:textColor="#2B2B2B"
+                android:textSize="15dp"
                 app:layout_constraintEnd_toEndOf="@+id/iv_initial_bg"
+                app:layout_constraintHorizontal_bias="0.494"
                 app:layout_constraintStart_toStartOf="@+id/iv_initial_bg"
-                app:layout_constraintTop_toTopOf="@+id/iv_initial_bg"
-                app:layout_constraintVertical_bias="0.8" />
+                app:layout_constraintTop_toTopOf="@+id/iv_initial_bg" />
 
             <androidx.appcompat.widget.AppCompatButton
                 android:id="@+id/btn_initial_weather"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
+                android:layout_marginBottom="27dp"
                 android:background="@drawable/ic_initial_btn"
                 android:fontFamily="@font/pretendardsemibold"
-                android:text="감정 날씨 입력하러 가기"
+                android:text="감정 날씨 입력하기"
                 android:textColor="@color/white"
+                android:textSize="15dp"
                 app:layout_constraintBottom_toBottomOf="@+id/iv_initial_bg"
                 app:layout_constraintEnd_toEndOf="parent"
-                app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toTopOf="parent"
-                app:layout_constraintVertical_bias="0.966" />
+                app:layout_constraintStart_toStartOf="parent" />
         </androidx.constraintlayout.widget.ConstraintLayout>
 
     </FrameLayout>
