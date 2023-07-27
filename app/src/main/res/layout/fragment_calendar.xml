@@ -1,0 +1,20 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/tv"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical"
+    tools:context=".presentation.CalendarFragment">
+
+    <com.umc.yourweather.presentation.CalendarMonth
+        android:id="@+id/ct_calendar_custom"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        app:dayTextSize="11dp"
+        app:temTextSize="10dp"
+        >
+    </com.umc.yourweather.presentation.CalendarMonth>
+
+</LinearLayout>

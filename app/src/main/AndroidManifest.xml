@@ -13,7 +13,7 @@
         android:theme="@style/Theme.Yourweather"
         tools:targetApi="31">
         <activity
-            android:name=".presentation.SocialSignUp"
+            android:name=".presentation.Calendar"
             android:exported="false" />
         <activity
             android:name=".presentation.SignUp2"
