@@ -4,5 +4,6 @@
         android:state_checked="true"
         android:color="@color/brown"/>
     <item
+        android:state_checked="false"
         android:color="@color/bnv_icon"/>
 </selector>
