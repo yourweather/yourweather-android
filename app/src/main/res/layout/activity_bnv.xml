@@ -24,6 +24,7 @@
         android:background="@drawable/shape_gray_line_rect"
         app:itemHorizontalTranslationEnabled="false"
         app:itemIconTint="@drawable/menu_selector_color"
+        app:itemIconSize="24dp"
         app:itemTextColor="@drawable/menu_selector_color"
         app:labelVisibilityMode="unlabeled"
         app:layout_constraintBottom_toBottomOf="parent"
