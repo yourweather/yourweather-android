@@ -139,7 +139,7 @@
             android:layout_marginBottom="14dp"
             android:gravity="center"
             android:text="@string/tv_statics_comparison_title"
-            android:fontFamily="@font/pretendardsemibold"
+            android:fontFamily="@font/pretendardbold"
             android:textSize="12dp"/>
 
         <LinearLayout
@@ -161,26 +161,23 @@
                     android:layout_height="wrap_content"
                     android:layout_gravity="center"
                     android:layout_marginLeft="50dp"
-                    android:layout_marginTop="10dp"
-                    android:layout_marginBottom="5dp"
+                    android:layout_marginTop="3dp"
                     app:srcCompat="@drawable/ic_uparrow"
                     tools:layout_editor_absoluteX="32dp"
-                    tools:layout_editor_absoluteY="93dp"
-                    />
+                    tools:layout_editor_absoluteY="93dp" />
 
                 <TextView
                     android:id="@+id/tv_analysis_detail_statics_sunny"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_marginStart="48dp"
-                    android:layout_marginTop="13dp"
+                    android:layout_marginTop="10dp"
                     android:layout_marginBottom="5dp"                    android:layout_marginRight="20dp"
                     android:layout_weight="1"
                     android:gravity="left"
                     android:text="맑음 비율이 20% 증가했습니다."
-                    android:textSize="11dp"
                     android:fontFamily="@font/pretendardregular"
-                    />
+                    android:textSize="11dp" />
             </LinearLayout>
 
             <LinearLayout
@@ -205,8 +202,8 @@
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_marginStart="48dp"
-                    android:layout_marginTop="4dp"
-                    android:layout_marginBottom="1dp"                    android:layout_weight="1"
+                    android:layout_marginTop="5dp"
+                    android:layout_marginBottom="4dp"                    android:layout_weight="1"
                     android:gravity="left"
                     android:text="다소 흐림 비율이 10% 증가했습니다."
                     android:textSize="11dp"
@@ -225,8 +222,7 @@
                     android:layout_height="wrap_content"
                     android:layout_gravity="center"
                     android:layout_marginLeft="50dp"
-                    android:layout_marginTop="6dp"
-                    android:layout_marginBottom="5dp"
+                    android:layout_marginTop="1dp"
                     app:srcCompat="@drawable/ic_downarrow"
                     tools:layout_editor_absoluteX="32dp"
                     tools:layout_editor_absoluteY="93dp">
@@ -238,7 +234,7 @@
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_marginStart="48dp"
-                    android:layout_marginTop="8dp"
+                    android:layout_marginTop="4dp"
                     android:layout_marginBottom="5dp"                    android:layout_weight="1"
                     android:gravity="left"
                     android:text="비 비율이 5% 감소했습니다."
@@ -259,8 +255,7 @@
                     android:layout_height="wrap_content"
                     android:layout_gravity="center"
                     android:layout_marginLeft="50dp"
-                    android:layout_marginTop="8dp"
-                    android:layout_marginBottom="11dp"
+                    android:layout_marginBottom="1dp"
                     app:srcCompat="@drawable/ic_downarrow"
                     tools:layout_editor_absoluteX="32dp"
                     tools:layout_editor_absoluteY="93dp">
@@ -273,7 +268,7 @@
                     android:layout_height="wrap_content"
                     android:layout_marginStart="48dp"
                     android:layout_marginTop="4dp"
-                    android:layout_marginBottom="13dp"
+                    android:layout_marginBottom="10dp"
                     android:layout_weight="1"
                     android:gravity="left"
                     android:text="번개 비율이 10% 감소했습니다."
