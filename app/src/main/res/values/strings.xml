@@ -18,4 +18,6 @@
     <string name="tv_allwritten_title">미입력 내역</string>
     <string name="tv_allwritten_clear">모든 기록을 완료하였어요</string>
     <string name="ic_check">ic_check</string>
+    <string name="tv_signup_title">회원가입</string>
+
 </resources>

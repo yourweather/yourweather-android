@@ -4,250 +4,224 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context=".presentation.SignIn"
-    >
+    tools:context=".presentation.SignIn">
 
-    <LinearLayout
-        android:id="@+id/ll_signin_l0"
-        android:layout_width="match_parent"
+    <ImageView
+        android:id="@+id/iv_signin_logo"
+        android:layout_width="0dp"
+        android:layout_height="58dp"
+        android:layout_marginStart="74dp"
+        android:layout_marginTop="76dp"
+        android:layout_marginEnd="17dp"
+        android:scaleType="centerInside"
+        android:src="@drawable/img_yourweatherlogo"
+        app:layout_constraintEnd_toStartOf="@+id/tv_signin_guide"
+        app:layout_constraintHorizontal_bias="0.028"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
+
+    <TextView
+        android:id="@+id/tv_signin_guide"
+        android:layout_width="wrap_content"
         android:layout_height="0dp"
-        android:gravity="center"
-        android:orientation="vertical"
-        app:layout_constraintBottom_toTopOf="@+id/ll_signin_l1"
+        android:layout_marginTop="106dp"
+        android:layout_marginEnd="69dp"
+        android:bufferType="spannable"
+        android:fontFamily="@font/pretendardregular"
+        android:gravity="left"
+        android:text="간편하게 기록을 남기고\n나만의 감정 날씨를 만들어보세요"
+        android:textColor="#8E7A6D"
+        android:textSize="12dp"
+        android:textStyle="bold"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
+
+    <TextView
+        android:id="@+id/tv_signin_email"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="16dp"
+        android:layout_marginTop="56dp"
+        android:layout_marginEnd="16dp"
+        android:bufferType="spannable"
+        android:gravity="left"
+        android:text="이메일"
+        android:textColor="#989898"
+        android:textSize="13dp"
+        android:textStyle="bold"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.5"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_weight="0.47"
-        >
+        app:layout_constraintTop_toBottomOf="@+id/tv_signin_guide" />
 
-        <Space
+    <com.google.android.material.textfield.TextInputLayout
+        android:id="@+id/textinput_signin_email"
+        android:layout_width="match_parent"
+        android:layout_height="0dp"
+        android:layout_marginStart="16dp"
+        android:layout_marginEnd="16dp"
+        android:inputType="text|textEmailAddress"
+        android:textSize="16dp"
+        app:layout_constraintDimensionRatio="7:1"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.0"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/tv_signin_email">
+
+        <com.google.android.material.textfield.TextInputEditText
+            android:id="@+id/et_signin_email"
             android:layout_width="match_parent"
-            android:layout_height="0dp"
-            android:layout_weight="4.5" />
+            android:layout_height="wrap_content"
+            android:layout_gravity="center"
+            android:background="@drawable/bg_gray_ff_fill_rect"
+            android:inputType="text|textEmailAddress"
+            android:textColorHint="#A9ADB4"
+            android:textSize="16dp" />
 
+    </com.google.android.material.textfield.TextInputLayout>
+
+
+    <TextView
+        android:id="@+id/tv_signin_pw"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="16dp"
+        android:layout_marginTop="6dp"
+        android:layout_marginEnd="16dp"
+        android:bufferType="spannable"
+        android:gravity="left"
+        android:text="비밀번호"
+        android:textColor="#989898"
+        android:textSize="13dp"
+        android:textStyle="bold"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="1.0"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/textinput_signin_email" />
+
+    <com.google.android.material.textfield.TextInputLayout
+        android:id="@+id/et_signin_pw"
+        android:layout_width="match_parent"
+        android:layout_height="0dp"
+        android:layout_marginStart="16dp"
+        android:layout_marginEnd="16dp"
+        android:textColorHint="#A9ADB4"
+        android:textSize="16dp"
+        app:layout_constraintDimensionRatio="7:1"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.5"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/tv_signin_pw"
+        app:passwordToggleDrawable="@drawable/ic_selector_pwtoggle"
+        app:passwordToggleEnabled="true">
+
+        <com.google.android.material.textfield.TextInputEditText
+            android:id="@+id/et_signin_repw"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center"
+            android:background="@drawable/bg_gray_ff_fill_rect"
+            android:inputType="textPassword"
+            android:textColorHint="#A9ADB4"
+            android:textSize="16dp" />
+
+    </com.google.android.material.textfield.TextInputLayout>
+
+    <androidx.appcompat.widget.AppCompatButton
+        android:id="@+id/btn_signin_signin"
+        android:layout_width="0dp"
+        android:layout_height="0dp"
+        android:layout_marginStart="16dp"
+        android:layout_marginTop="25dp"
+        android:layout_marginEnd="16dp"
+        android:background="@drawable/btn_selector_signin"
+        android:fontFamily="@font/pretendardsemibold"
+        android:text="로그인"
+        android:textColor="#FFFFFF"
+        android:textSize="16dp"
+        android:textStyle="bold"
+        app:layout_constraintDimensionRatio="7:1"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.0"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/et_signin_pw" />
+
+    <LinearLayout
+        android:id="@+id/ll_signin_socialbtns"
+        android:layout_width="0dp"
+        android:layout_height="34dp"
+        android:layout_marginStart="112dp"
+        android:layout_marginTop="24dp"
+        android:layout_marginEnd="112dp"
+        android:gravity="center"
+        android:orientation="horizontal"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.0"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/btn_signin_signin">
 
         <ImageView
-            android:id="@+id/iv_signin_logo"
-            android:layout_width="51dp"
-            android:layout_height="63dp"
+            android:id="@+id/btn_signin_naver"
+            android:layout_width="34dp"
+            android:layout_height="34dp"
             android:scaleType="centerInside"
-            android:src="@drawable/img_yourweatherlogo" />
+            app:srcCompat="@drawable/ic_signin_naver" />
 
-        <Space
-            android:layout_width="match_parent"
-            android:layout_height="0dp"
-            android:layout_weight="1.1" />
-
-        <TextView
-            android:id="@+id/tv_signin_guide"
-            android:layout_width="wrap_content"
-            android:layout_height="38dp"
-            android:bufferType="spannable"
-            android:gravity="center"
-            android:text="간편하게 기록을 남기고\n나만의 감정 날씨를 만들어보세요"
-            android:textColor="#8E7A6D"
-            android:textSize="12dp"
-            android:textStyle="bold" />
-
-        <Space
-            android:layout_width="match_parent"
-            android:layout_height="0dp"
-            android:layout_weight="1.6" />
-
-    </LinearLayout>
-
-    <LinearLayout
-        android:id="@+id/ll_signin_l1"
-        android:layout_width="350dp"
-        android:layout_height="157dp"
-        android:gravity="center"
-        android:orientation="vertical"
-        app:layout_constraintBottom_toTopOf="@+id/ll_signin_l2"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintVertical_weight="0.18"
-        app:layout_constraintHorizontal_bias="0.5"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/ll_signin_l0">
-
-        <LinearLayout
-            android:layout_width="match_parent"
+        <ImageView
+            android:id="@+id/btn_signin_kakao"
+            android:layout_width="34dp"
             android:layout_height="wrap_content"
-            android:layout_marginBottom="6dp"
-            android:layout_weight="2"
-            android:gravity="center"
-            android:orientation="vertical">
+            android:layout_marginLeft="17dp"
+            android:layout_marginRight="17dp"
+            app:srcCompat="@drawable/ic_signin_kakao" />
 
-            <TextView
-                android:id="@+id/tv_signin_email"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:bufferType="spannable"
-                android:gravity="left"
-                android:text="이메일"
-                android:textColor="#989898"
-                android:textSize="13dp"
-                android:textStyle="bold" />
-
-            <EditText
-                android:id="@+id/et_signin_email"
-                android:layout_width="match_parent"
-                android:layout_height="54dp"
-                android:layout_marginBottom="5dp"
-                android:background="@drawable/bg_gray_ff_fill_rect"
-                android:drawablePadding="8dp"
-                android:paddingLeft="16dp"
-                android:textColorHint="#A9ADB4"
-                android:textCursorDrawable="@null"
-                android:textSize="16dp" />
-
-            <LinearLayout
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:layout_weight="2"
-                android:background="#FFFFFF"
-                android:backgroundTint="#FFFFFF"
-                android:orientation="vertical">
-
-                <TextView
-                    android:id="@+id/tv_signin_pw"
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:layout_weight="10"
-                    android:bufferType="spannable"
-                    android:gravity="left"
-                    android:text="비밀번호"
-                    android:textColor="#989898"
-                    android:textSize="13dp"
-                    android:textStyle="bold" />
-
-                <EditText
-                    android:id="@+id/et_signin_pw"
-                    android:layout_width="match_parent"
-                    android:layout_height="54dp"
-                    android:layout_weight="28"
-                    android:background="@drawable/bg_gray_ff_fill_rect"
-                    android:drawablePadding="8dp"
-                    android:paddingLeft="16dp"
-                    android:textColorHint="#A9ADB4"
-                    android:textCursorDrawable="@null"
-                    android:textSize="16dp"
-                    tools:ignore="DuplicateIds" />
-
-            </LinearLayout>
-
-        </LinearLayout>
+        <ImageView
+            android:id="@+id/btn_signin_google"
+            android:layout_width="34dp"
+            android:layout_height="34dp"
+            app:srcCompat="@drawable/ic_signin_google" />
 
     </LinearLayout>
 
     <LinearLayout
-        android:id="@+id/ll_signin_l2"
-        android:layout_width="match_parent"
-        android:layout_height="0dp"
+        android:id="@+id/linearLayout"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="81dp"
+        android:layout_marginEnd="54dp"
+        android:layout_marginBottom="40dp"
         android:gravity="center"
-        android:orientation="vertical"
+        android:orientation="horizontal"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.5"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/ll_signin_l1"
-        app:layout_constraintVertical_weight="0.33"
-        >
+        app:layout_constraintStart_toStartOf="parent">
 
-        <Space
-            android:layout_width="match_parent"
-            android:layout_height="0dp"
-            android:layout_weight="1.3" />
-
-        <androidx.appcompat.widget.AppCompatButton
-            android:id="@+id/btn_signin_signin"
-            android:layout_width="190dp"
-            android:layout_height="56dp"
-            android:background="@drawable/btn_selector_color"
-            android:text="로그인"
-            android:textColor="#FFFFFF"
-            android:textSize="20dp"
-            android:textStyle="bold" />
-
-        <Space
-            android:layout_width="match_parent"
-            android:layout_height="0dp"
-            android:layout_weight="1.3" />
-
-        <LinearLayout
-            android:id="@+id/ll_signin_socialbtns"
-            android:layout_width="match_parent"
+        <TextView
+            android:id="@+id/tv_signin_btnsignup"
+            android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:gravity="center"
-            android:orientation="horizontal">
+            android:padding="0dp"
+            android:text="회원가입"
+            android:textColor="#808080"
+            android:textSize="15dp" />
 
-            <ImageView
-                android:id="@+id/btn_signin_naver"
-                android:layout_width="39dp"
-                android:layout_height="39dp"
-                app:srcCompat="@drawable/ic_signin_naver" />
-
-            <ImageView
-                android:id="@+id/btn_signin_kakao"
-                android:layout_width="39dp"
-                android:layout_height="39dp"
-                android:layout_marginLeft="19dp"
-                android:layout_marginRight="19dp"
-                app:srcCompat="@drawable/ic_signin_kakao" />
-
-            <ImageView
-                android:id="@+id/btn_signin_google"
-                android:layout_width="39dp"
-                android:layout_height="39dp"
-                app:srcCompat="@drawable/ic_signin_google" />
-
-        </LinearLayout>
-
-        <Space
-            android:layout_width="match_parent"
-            android:layout_height="0dp"
-            android:layout_weight="1.7" />
-
-        <LinearLayout
-            android:id="@+id/ll_signin_tvbtn"
-            android:layout_width="match_parent"
+        <TextView
+            android:layout_width="wrap_content"
             android:layout_height="wrap_content"
+            android:layout_marginLeft="51dp"
+            android:layout_marginRight="51dp"
             android:gravity="center"
-            android:orientation="horizontal">
+            android:text="|"
+            android:textColor="#DEDEDE" />
 
-            <TextView
-                android:id="@+id/tv_signin_btnsignup"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:padding="0dp"
-                android:text="회원가입"
-                android:textColor="#808080"
-                android:textSize="15dp" />
-
-            <TextView
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_marginLeft="51dp"
-                android:layout_marginRight="51dp"
-                android:gravity="center"
-                android:text="|"
-                android:textColor="#DEDEDE" />
-
-            <TextView
-                android:id="@+id/tv_signin_btnfindpw"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:text="비밀번호 찾기"
-                android:textAlignment="textEnd"
-                android:textColor="#808080"
-                android:textSize="15dp" />
-
-        </LinearLayout>
-
-        <Space
-            android:layout_width="match_parent"
-            android:layout_height="0dp"
-            android:layout_weight="1.7" />
+        <TextView
+            android:id="@+id/tv_signin_btnfindpw"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="비밀번호 찾기"
+            android:textAlignment="textEnd"
+            android:textColor="#808080"
+            android:textSize="15dp" />
     </LinearLayout>
 
 </androidx.constraintlayout.widget.ConstraintLayout>

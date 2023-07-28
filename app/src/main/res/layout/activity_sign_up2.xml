@@ -6,260 +6,249 @@
     tools:context=".presentation.SignUp2">
 
     <LinearLayout
-        android:id="@+id/ll_signup2_l0"
+        android:id="@+id/ll_singin2_0"
         android:layout_width="match_parent"
-        android:layout_height="0dp"
-        android:gravity="center"
-        android:orientation="vertical"
-        app:layout_constraintBottom_toTopOf="@+id/ll_signup2_l1"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.5"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_weight="0.47">
+        app:layout_constraintTop_toTopOf="parent">
 
-        <Space
-            android:layout_width="match_parent"
-            android:layout_height="0dp"
-            android:layout_weight="4.5" />
-
-
-        <ImageView
-            android:id="@+id/iv_signup2_logo"
-            android:layout_width="51dp"
-            android:layout_height="63dp"
-            android:scaleType="centerInside"
-            android:src="@drawable/img_yourweatherlogo" />
-
-        <Space
-            android:layout_width="match_parent"
-            android:layout_height="0dp"
-            android:layout_weight="1.1" />
+        <ImageButton
+            android:id="@+id/btn_signup2_left_arrow"
+            style="?android:attr/borderlessButtonStyle"
+            android:layout_width="10dp"
+            android:layout_height="18dp"
+            android:layout_gravity="center"
+            android:layout_marginStart="16dp"
+            android:layout_marginTop="20dp"
+            android:layout_marginBottom="20dp"
+            android:background="@drawable/ic_black_leftarrow_8_16"
+            app:layout_constraintHeight_percent="0.05" />
 
         <TextView
-            android:id="@+id/tv_signup2_guide"
+            android:id="@+id/tv_signup2_title"
             android:layout_width="wrap_content"
-            android:layout_height="38dp"
-            android:bufferType="spannable"
-            android:gravity="center"
-            android:text="간편하게 기록을 남기고\n나만의 감정 날씨를 만들어보세요"
-            android:textColor="#8E7A6D"
-            android:textSize="12dp"
-            android:textStyle="bold" />
-
-        <Space
-            android:layout_width="match_parent"
-            android:layout_height="0dp"
-            android:layout_weight="1.6" />
-
-    </LinearLayout>
-
-    <LinearLayout
-        android:id="@+id/ll_signup2_l1"
-        android:layout_width="0dp"
-        android:layout_height="200dp"
-        android:gravity="center"
-        android:orientation="vertical"
-        app:layout_constraintBottom_toTopOf="@+id/ll_signup2_l2"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.5"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/ll_signup2_l0"
-        app:layout_constraintVertical_weight="0.24">
-
-        <LinearLayout
-            android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:layout_marginBottom="6dp"
+            android:layout_gravity="center"
+            android:layout_marginStart="134dp"
+            android:layout_marginTop="16dp"
+            android:layout_marginEnd="134dp"
+            android:layout_marginBottom="16dp"
+            android:fontFamily="@font/pretendardbold"
             android:gravity="center"
-            android:orientation="vertical">
-
-            <TextView
-                android:id="@+id/tv_signup2_email2"
-                android:layout_width="350dp"
-                android:layout_height="wrap_content"
-                android:bufferType="spannable"
-                android:gravity="left"
-                android:text="비밀번호"
-                android:textColor="#989898"
-                android:textSize="13dp"
-                android:textStyle="bold" />
-
-
-            <FrameLayout
-                android:layout_width="wrap_content"
-                android:layout_height="match_parent">
-
-
-
-                <com.google.android.material.textfield.TextInputLayout
-                    android:id="@+id/textinput_signup2_pw"
-                    android:layout_width="380dp"
-                    android:layout_height="81dp"
-                    app:errorEnabled="true"
-                    app:helperText="*대소문자, 숫자 포함 8자 이상"
-                    app:helperTextEnabled="true"
-                    app:helperTextTextAppearance="@style/MyHelperTextAppearance"
-                    app:helperTextTextColor="#808080"
-                    app:passwordToggleDrawable="@drawable/ic_selector_pwtoggle"
-                    app:passwordToggleEnabled="true">
-
-                    <com.google.android.material.textfield.TextInputEditText
-                        android:id="@+id/et_signup2_pw"
-                        android:layout_width="350dp"
-                        android:layout_height="54dp"
-                        android:layout_gravity="center"
-                        android:background="@drawable/bg_gray_ff_fill_rect"
-                        android:inputType="textPassword"
-                        android:textColorHint="#A9ADB4"
-                        android:textCursorDrawable="@null"
-                        android:textSize="16dp" />
-
-                </com.google.android.material.textfield.TextInputLayout>
-
-                <ImageView
-                    android:id="@+id/iv_signup2_check0"
-                    android:layout_width="15dp"
-                    android:layout_height="15dp"
-                    android:layout_gravity="right"
-                    android:layout_marginTop="25dp"
-                    android:layout_marginRight="55dp"
-                    android:visibility="invisible"
-                    app:srcCompat="@drawable/ic_singup2_pwcheck" />
-            </FrameLayout>
-
-
-            <TextView
-                android:id="@+id/tv_signup_pw"
-                android:layout_width="350dp"
-                android:layout_height="wrap_content"
-                android:bufferType="spannable"
-                android:gravity="left"
-                android:text="비밀번호 재확인"
-                android:textColor="#989898"
-                android:textSize="13dp"
-                android:textStyle="bold" />
-
-
-            <FrameLayout
-                android:layout_width="wrap_content"
-                android:layout_height="match_parent">
-
-                <com.google.android.material.textfield.TextInputLayout
-                    android:id="@+id/textinput_signup2_repw"
-                    android:layout_width="380dp"
-                    android:layout_height="wrap_content"
-                    android:layout_marginBottom="8dp"
-                    app:passwordToggleDrawable="@drawable/ic_selector_pwtoggle"
-                    app:passwordToggleEnabled="true">
-
-                    <com.google.android.material.textfield.TextInputEditText
-                        android:id="@+id/et_signup2_repw"
-                        android:layout_width="350dp"
-                        android:layout_height="54dp"
-                        android:layout_gravity="center"
-                        android:background="@drawable/bg_gray_ff_fill_rect"
-                        android:inputType="textPassword"
-                        android:textColorHint="#A9ADB4"
-                        android:textCursorDrawable="@null"
-                        android:textSize="16dp" />
-
-                </com.google.android.material.textfield.TextInputLayout>
-
-                <ImageView
-                    android:id="@+id/iv_signup2_check1"
-                    android:layout_width="15dp"
-                    android:layout_height="15dp"
-                    android:layout_gravity="right"
-                    android:layout_marginTop="25dp"
-                    android:layout_marginRight="55dp"
-                    android:visibility="invisible"
-                    app:srcCompat="@drawable/ic_singup2_pwcheck" />
-
-            </FrameLayout>
-
-
-            <LinearLayout
-                android:layout_width="match_parent"
-                android:layout_height="12dp"
-                android:orientation="horizontal">
-
-                <Space
-                    android:layout_width="147dp"
-                    android:layout_height="wrap_content"
-                    android:layout_weight="1" />
-            </LinearLayout>
-
-        </LinearLayout>
-
-    </LinearLayout>
-
-    <LinearLayout
-        android:id="@+id/ll_signup2_l2"
-        android:layout_width="match_parent"
-        android:layout_height="0dp"
-        android:gravity="center"
-        android:orientation="vertical"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.5"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/ll_signup2_l1"
-        app:layout_constraintVertical_weight="0.28">
-
-        <Space
-            android:layout_width="match_parent"
-            android:layout_height="0dp"
-            android:layout_weight="2.7" />
-
-        <androidx.appcompat.widget.AppCompatButton
-            android:id="@+id/btn_signup2_signup"
-            android:layout_width="190dp"
-            android:layout_height="56dp"
-            android:background="@drawable/btn_selector_color"
-            android:text="회원가입"
-            android:textColor="#FFFFFF"
+            android:text="@string/tv_signup_title"
+            android:textColor="@color/sorange"
             android:textSize="20dp"
             android:textStyle="bold" />
 
-        <Space
-            android:layout_width="match_parent"
-            android:layout_height="0dp"
-            android:layout_weight="2.5" />
+    </LinearLayout>
 
-        <LinearLayout
+    <TextView
+        android:id="@+id/tv_signup2_pw"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="16dp"
+        android:layout_marginTop="30dp"
+        android:layout_marginEnd="16dp"
+        android:bufferType="spannable"
+        android:fontFamily="@font/pretendardbold"
+        android:gravity="left"
+        android:text="비밀번호"
+        android:textColor="#989898"
+        android:textSize="13dp"
+        android:textStyle="bold"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/ll_singin2_0" />
+
+    <FrameLayout
+        android:id="@+id/frameLayout_signup2_pw"
+        android:layout_width="match_parent"
+        android:layout_height="0dp"
+        android:layout_marginStart="16dp"
+        android:layout_marginEnd="16dp"
+        app:layout_constraintDimensionRatio="7:1"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/tv_signup2_pw"
+
+        >
+
+        <com.google.android.material.textfield.TextInputLayout
+            android:id="@+id/textinput_signup2_pw"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:gravity="center"
-            android:orientation="horizontal"
-            android:visibility="invisible">
+            app:passwordToggleDrawable="@drawable/ic_selector_pwtoggle"
+            app:passwordToggleEnabled="true"
+            >
 
-            <TextView
-                android:id="@+id/tv_signup2_guide2"
-                android:layout_width="wrap_content"
+            <com.google.android.material.textfield.TextInputEditText
+                android:id="@+id/et_signup2_pw"
+                android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:layout_marginRight="5dp"
-                android:padding="0dp"
-                android:text="이미 계정이 있다면?"
-                android:textColor="#191B1A"
-                android:textSize="15dp" />
+                android:background="@drawable/bg_gray_ed_fill_6_rect"
+                android:inputType="textPassword"
+                android:textColorHint="#A9ADB4"
+                android:textCursorDrawable="@null"
+                android:textSize="16dp" />
 
-            <TextView
-                android:id="@+id/tv_signup2_btngsignin"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:text="로그인"
-                android:textAlignment="textEnd"
-                android:textColor="#F07818"
-                android:textSize="15dp"
-                android:textStyle="bold" />
 
-        </LinearLayout>
 
-        <Space
+
+    </com.google.android.material.textfield.TextInputLayout>
+        <ImageView
+            android:id="@+id/iv_signup2_check0"
+            android:layout_width="15dp"
+            android:layout_height="15dp"
+            android:layout_gravity="right"
+            android:layout_marginTop="25dp"
+            android:layout_marginRight="40dp"
+            android:visibility="invisible"
+            app:srcCompat="@drawable/ic_singup2_pwcheck" />
+    </FrameLayout>
+
+    <TextView
+        android:id="@+id/tv_signup2_error"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="16dp"
+        android:layout_marginTop="4dp"
+        android:layout_marginEnd="16dp"
+        android:fontFamily="@font/pretendardmedium"
+        android:text="*대소문자, 숫자 포함 8자 이상"
+        android:textColor="#99808080"
+        android:textSize="10dp"
+        android:visibility="visible"
+        app:layout_constraintBottom_toTopOf="@+id/tv_signup2_guide2"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/frameLayout_signup2_pw" />
+
+    <TextView
+        android:id="@+id/tv_signup2_guide2"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="16dp"
+        android:layout_marginTop="11dp"
+        android:layout_marginEnd="16dp"
+        android:bufferType="spannable"
+        android:fontFamily="@font/pretendardbold"
+        android:gravity="left"
+        android:text="비밀번호 확인"
+        android:textColor="#989898"
+        android:textSize="12dp"
+        android:textStyle="bold"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/tv_signup2_error" />
+
+    <FrameLayout
+        android:id="@+id/frameLayout_signup2_repw"
+        android:layout_width="match_parent"
+        android:layout_height="0dp"
+        android:layout_marginStart="16dp"
+        android:layout_marginEnd="16dp"
+        app:layout_constraintDimensionRatio="7:1"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/tv_signup2_guide2"
+        >
+
+
+        <com.google.android.material.textfield.TextInputLayout
+            android:id="@+id/textinput_signup2_repw"
             android:layout_width="match_parent"
-            android:layout_height="0dp"
-            android:layout_weight="1.7" />
+            android:layout_height="match_parent"
+            app:passwordToggleDrawable="@drawable/ic_selector_pwtoggle"
+            app:passwordToggleEnabled="true"
+            >
+
+            <com.google.android.material.textfield.TextInputEditText
+                android:id="@+id/et_signup2_repw"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_gravity="center"
+                android:background="@drawable/bg_gray_ff_fill_rect"
+                android:inputType="textPassword"
+                android:textColorHint="#A9ADB4"
+                android:textSize="16dp" />
+
+
+    </com.google.android.material.textfield.TextInputLayout>
+
+        <ImageView
+            android:id="@+id/iv_signup2_check1"
+            android:layout_width="15dp"
+            android:layout_height="15dp"
+            android:layout_gravity="right"
+            android:layout_marginTop="25dp"
+            android:layout_marginRight="40dp"
+            android:visibility="invisible"
+            app:srcCompat="@drawable/ic_singup2_pwcheck" />
+</FrameLayout>
+    <LinearLayout
+        android:id="@+id/linearLayout5"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="16dp"
+        android:layout_marginTop="7dp"
+        android:layout_marginEnd="16dp"
+        android:gravity="center_vertical"
+        android:orientation="horizontal"
+        android:visibility="invisible"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/frameLayout_signup2_repw">
+
+        <ImageView
+            android:id="@+id/iv_signup2_authlogo"
+            android:layout_width="11dp"
+            android:layout_height="11dp"
+            android:layout_gravity="center|left"
+            app:srcCompat="@drawable/ic_signup_authic" />
+
+        <TextView
+            android:id="@+id/tv_signup2_guide3"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginLeft="5dp"
+            android:layout_marginRight="5dp"
+            android:fontFamily="@font/pretendardregular"
+            android:gravity="bottom"
+            android:text="인증코드를 받지 못하셨나요 ?"
+            android:textColor="#ACACAC"
+            android:textSize="11dp" />
+
+        <TextView
+            android:id="@+id/tv_signup2_btnresend"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginLeft="4dp"
+            android:fontFamily="@font/pretendardsemibold"
+            android:text="@string/signup_resend"
+            android:textColor="#ACACAC"
+            android:textSize="12dp"
+            android:textStyle="bold" />
     </LinearLayout>
+
+    <androidx.appcompat.widget.AppCompatButton
+        android:id="@+id/btn_signup2_next"
+        android:layout_width="0dp"
+        android:layout_height="0dp"
+        android:layout_marginStart="16dp"
+        android:layout_marginTop="24dp"
+        android:layout_marginEnd="16dp"
+        android:background="@drawable/btn_selector_signup"
+        android:enabled="false"
+        android:fontFamily="@font/pretendardsemibold"
+        android:text="확인"
+        android:textColor="#FFFFFF"
+        android:textSize="16dp"
+        android:textStyle="bold"
+        app:layout_constraintDimensionRatio="7:1"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.0"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/linearLayout5" />
 
 </androidx.constraintlayout.widget.ConstraintLayout>
