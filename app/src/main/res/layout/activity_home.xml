@@ -16,14 +16,73 @@
             android:layout_width="match_parent"
             android:layout_height="match_parent">
 
+
             <ImageView
                 android:id="@+id/bg_home_weather"
                 android:layout_width="match_parent"
                 android:layout_height="match_parent"
                 android:scaleType="fitXY"
                 app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintHorizontal_bias="1.0"
                 app:layout_constraintStart_toStartOf="parent"
-                app:srcCompat="@drawable/bg_home1_sun" />
+                app:srcCompat="@drawable/bg_home1_sun"
+                tools:layout_editor_absoluteY="62dp" />
+
+
+            <TextView
+                android:id="@+id/tv_home_ad"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="16dp"
+                android:layout_marginTop="58dp"
+                android:layout_marginEnd="14dp"
+                android:layout_marginBottom="33dp"
+                android:background="@drawable/bg_home_ad"
+                android:fontFamily="@font/pretendardsemibold"
+                android:gravity="center"
+                android:text="마시는 '스트레스 케어 쉼'을 만나보세요"
+                android:textSize="12dp"
+                app:layout_constraintBottom_toTopOf="@+id/tv_home_guide"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintHorizontal_bias="0.493"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toTopOf="@+id/bg_home_weather"
+                app:layout_constraintVertical_bias="1.0" />
+
+
+            <androidx.appcompat.widget.AppCompatButton
+                android:id="@+id/btn_home_ad_move"
+                android:layout_width="30dp"
+                android:layout_height="18dp"
+                android:layout_marginStart="270dp"
+                android:layout_marginTop="10dp"
+                android:layout_marginEnd="28dp"
+                android:layout_marginBottom="10dp"
+                android:background="@drawable/bg_home_movead"
+                android:fontFamily="@font/pretendardmedium"
+                android:text="이동"
+                android:textColor="@color/white"
+                android:textSize="8dp"
+                app:layout_constraintBottom_toBottomOf="@+id/tv_home_ad"
+                app:layout_constraintEnd_toEndOf="@+id/tv_home_ad"
+                app:layout_constraintStart_toStartOf="@+id/tv_home_ad"
+                app:layout_constraintTop_toTopOf="@+id/tv_home_ad" />
+
+
+            <ImageButton
+                android:id="@+id/btn_home_ad_exit"
+                android:layout_width="12dp"
+                android:layout_height="12dp"
+                android:layout_marginStart="313dp"
+                android:layout_marginTop="5dp"
+                android:layout_marginEnd="7dp"
+                android:layout_marginBottom="23dp"
+                android:background="transparent"
+                app:layout_constraintBottom_toBottomOf="@+id/tv_home_ad"
+                app:layout_constraintEnd_toEndOf="@+id/tv_home_ad"
+                app:layout_constraintStart_toStartOf="@+id/tv_home_ad"
+                app:layout_constraintTop_toTopOf="@+id/tv_home_ad"
+                app:srcCompat="@drawable/ic_home_exit" />
 
             <ImageButton
                 android:id="@+id/btn_home_share"
