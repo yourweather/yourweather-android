@@ -132,6 +132,21 @@
                 app:layout_constraintTop_toTopOf="parent"
                 app:layout_constraintVertical_bias="1.0" />
 
+            <com.google.android.material.bottomnavigation.BottomNavigationView
+                android:id="@+id/bnv_main"
+                android:layout_width="match_parent"
+                android:layout_height="56dp"
+                android:background="@drawable/shape_gray_line_rect"
+                app:itemHorizontalTranslationEnabled="false"
+                app:itemIconTint="@drawable/menu_selector_color"
+                app:itemIconSize="24dp"
+                app:itemTextColor="@drawable/menu_selector_color"
+                app:labelVisibilityMode="unlabeled"
+                app:layout_constraintBottom_toBottomOf="parent"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:menu="@menu/menu_bnv" />
+
         </androidx.constraintlayout.widget.ConstraintLayout>
 
     </FrameLayout>
