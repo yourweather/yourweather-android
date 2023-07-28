@@ -16,19 +16,20 @@
         app:layout_constraintVertical_bias="0.0">
 
     </FrameLayout>
+
     <com.google.android.material.bottomnavigation.BottomNavigationView
         android:id="@+id/bnv_main"
-        app:menu="@menu/menu_bnv"
-        android:background="@color/bnv_back"
         android:layout_width="match_parent"
-        android:layout_height="?attr/actionBarSize"
+        android:layout_height="56dp"
+        android:background="@color/bnv_back"
         app:itemHorizontalTranslationEnabled="false"
-        app:labelVisibilityMode="unlabeled"
         app:itemIconTint="@drawable/menu_selector_color"
         app:itemTextColor="@drawable/menu_selector_color"
+        app:labelVisibilityMode="unlabeled"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"/>
+        app:layout_constraintStart_toStartOf="parent"
+        app:menu="@menu/menu_bnv" />
 
 
 </androidx.constraintlayout.widget.ConstraintLayout>
