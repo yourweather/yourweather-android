@@ -50,7 +50,7 @@ class CalendarDate @JvmOverloads constructor(
                 val tempFont = ResourcesCompat.getFont(context, R.font.pretendardsemibold)
 
                 datePaint = TextPaint().apply {
-                    textSize = dpToPx(context, 12)
+                    textSize = dpToPx(context, 12).toFloat()
                     isAntiAlias = true
                     textAlign = Paint.Align.CENTER
                     typeface = dateFont
@@ -62,7 +62,7 @@ class CalendarDate @JvmOverloads constructor(
                     datePaint.color = Color.parseColor("#2B2B2B")
                     if (count > 0) {
                         temPaint = TextPaint().apply {
-                            textSize = dpToPx(context, 12)
+                            textSize = dpToPx(context, 12).toFloat()
                             color = Color.parseColor("#2B2B2B")
                             typeface = Typeface.DEFAULT_BOLD
                             isAntiAlias = true
@@ -85,18 +85,18 @@ class CalendarDate @JvmOverloads constructor(
             val dateText = cal.get(Calendar.DAY_OF_MONTH).toString()
             val temp = "40" + "°"
 
-            canvas?.drawText(dateText, (width / 2).toFloat(), dpToPx(context, 16), datePaint)
+            canvas?.drawText(dateText, (width / 2).toFloat(), dpToPx(context, 16).toFloat(), datePaint)
             //checkSize(datePaint, dateText)
             if (count > 0 && !isLaterDay()) {
-                val drawableleft = (width / 2) - dpToPx(context, 24).toInt()
-                val drawableright = drawableleft + dpToPx(context, 48).toInt()
+                val drawableleft = (width / 2) - dpToPx(context, 24)
+                val drawableright = drawableleft + dpToPx(context, 48)
                 val drawableTop = dpToPx(context, 18).toInt()
-                val drawableBoottom = drawableTop + dpToPx(context, 48).toInt()
+                val drawableBoottom = drawableTop + dpToPx(context, 48)
                 customDrawable?.let {
                     it.setBounds(drawableleft, drawableTop, drawableright, drawableBoottom)
                     it.draw(canvas!!)
                 }
-                canvas?.drawText(temp, (width /2).toFloat(), dpToPx(context, 70), temPaint)
+                canvas?.drawText(temp, (width /2).toFloat(), dpToPx(context, 70).toFloat(), temPaint)
                 //checkSize(temPaint, temp)
             }
         }

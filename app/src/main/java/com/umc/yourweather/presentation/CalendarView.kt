@@ -4,12 +4,10 @@ import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.util.Log
 import androidx.viewpager2.widget.ViewPager2
-import com.umc.yourweather.R
 import com.umc.yourweather.databinding.ActivityCalendarBinding
-import com.umc.yourweather.databinding.ActivityMainBinding
 import com.umc.yourweather.presentation.adapter.CalendarMonthAdapter
 
-class Calendar : AppCompatActivity() {
+class CalendarView : AppCompatActivity() {
     lateinit var binding : ActivityCalendarBinding
     lateinit var  monthrAdapter : CalendarMonthAdapter
 
