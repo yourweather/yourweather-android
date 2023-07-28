@@ -24,7 +24,7 @@ class SignUp2 : AppCompatActivity() {
             finish()
         }
 
-        binding.etSignup2Repw.addTextChangedListener(createTextWatcher())
+        binding.etSignup2Pw.addTextChangedListener(createTextWatcher())
         binding.etSignup2Repw.addTextChangedListener(createTextWatcher())
 
     }
@@ -52,8 +52,8 @@ class SignUp2 : AppCompatActivity() {
             binding.etSignup2Pw.background =  resources.getDrawable(R.drawable.bg_gray_ed_fill_6_rect)
             binding.etSignup2Repw.background = resources.getDrawable(R.drawable.bg_gray_ed_fill_6_rect)
 
-            binding.tvSignup2Error.setTextColor(Color.parseColor("#99808080"))
-
+            //binding.tvSignup2Check1.setTextColor(Color.parseColor("#99808080"))
+            binding.tvSignup2Check2.visibility =View.INVISIBLE
             binding.ivSignup2Check0.visibility = View.VISIBLE
             binding.ivSignup2Check1.visibility = View.VISIBLE
 
@@ -64,8 +64,8 @@ class SignUp2 : AppCompatActivity() {
             binding.etSignup2Pw.background =  resources.getDrawable(R.drawable.bg_gray_ed_fill_6_rect_border_red)
             binding.etSignup2Repw.background = resources.getDrawable(R.drawable.bg_gray_ed_fill_6_rect_border_red)
 
-            binding.tvSignup2Error.setTextColor(Color.parseColor("#CB443D"))
-
+            //binding.tvSignup2Check1.setTextColor(Color.parseColor("#CB443D"))
+            binding.tvSignup2Check2.visibility =View.VISIBLE
             binding.ivSignup2Check0.visibility = View.INVISIBLE
             binding.ivSignup2Check1.visibility = View.INVISIBLE
 

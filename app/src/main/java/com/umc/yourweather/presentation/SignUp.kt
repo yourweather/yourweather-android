@@ -38,11 +38,13 @@ class SignUp : AppCompatActivity() {
         binding.btnSignupNext.isEnabled = true
 
         binding.btnSignupSendauth.setOnClickListener{
-            showCustomAlertDialog()
+            showCustomAlertDialog("인증코드가 전송되었습니다. ")
         }
-
     }
-    fun showCustomAlertDialog() {
+
+
+
+    fun showCustomAlertDialog(text : String) {
         val layoutInflater = LayoutInflater.from(this@SignUp)
         val customLayout = layoutInflater.inflate(R.layout.alertdialog_signview, null)
 
@@ -62,7 +64,7 @@ class SignUp : AppCompatActivity() {
         //binding.viewBackgroundView2.visibility = View.VISIBLE
         alertDialog.show()
 
-        titleTextView.text = "인증코드가 전송되었습니다"
+        titleTextView.text = text
 
         alertButton.setOnClickListener {
             alertDialog.dismiss()

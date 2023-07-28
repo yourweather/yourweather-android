@@ -108,7 +108,7 @@
     </FrameLayout>
 
     <TextView
-        android:id="@+id/tv_signup2_error"
+        android:id="@+id/tv_signup2_check1"
         android:layout_width="0dp"
         android:layout_height="wrap_content"
         android:layout_marginStart="16dp"
@@ -140,7 +140,7 @@
         android:textStyle="bold"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/tv_signup2_error" />
+        app:layout_constraintTop_toBottomOf="@+id/tv_signup2_check1" />
 
     <FrameLayout
         android:id="@+id/frameLayout_signup2_repw"
@@ -186,6 +186,7 @@
             android:visibility="invisible"
             app:srcCompat="@drawable/ic_singup2_pwcheck" />
 </FrameLayout>
+
     <LinearLayout
         android:id="@+id/linearLayout5"
         android:layout_width="0dp"
@@ -195,40 +196,24 @@
         android:layout_marginEnd="16dp"
         android:gravity="center_vertical"
         android:orientation="horizontal"
-        android:visibility="invisible"
+        android:visibility="visible"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/frameLayout_signup2_repw">
 
-        <ImageView
-            android:id="@+id/iv_signup2_authlogo"
-            android:layout_width="11dp"
-            android:layout_height="11dp"
-            android:layout_gravity="center|left"
-            app:srcCompat="@drawable/ic_signup_authic" />
-
         <TextView
-            android:id="@+id/tv_signup2_guide3"
+            android:id="@+id/tv_signup2_check2"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_marginLeft="5dp"
             android:layout_marginRight="5dp"
             android:fontFamily="@font/pretendardregular"
             android:gravity="bottom"
-            android:text="인증코드를 받지 못하셨나요 ?"
-            android:textColor="#ACACAC"
-            android:textSize="11dp" />
+            android:text="*비밀번호와 일치하지 않습니다."
+            android:textColor="#C23F3F"
+            android:textSize="11dp"
+            android:visibility="invisible" />
 
-        <TextView
-            android:id="@+id/tv_signup2_btnresend"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_marginLeft="4dp"
-            android:fontFamily="@font/pretendardsemibold"
-            android:text="@string/signup_resend"
-            android:textColor="#ACACAC"
-            android:textSize="12dp"
-            android:textStyle="bold" />
     </LinearLayout>
 
     <androidx.appcompat.widget.AppCompatButton
