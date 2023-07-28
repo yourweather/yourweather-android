@@ -12,8 +12,8 @@ import com.umc.yourweather.databinding.ActivityAnalysisBinding
 @Suppress("DEPRECATION")
 class AnalysisActivity : AppCompatActivity() {
     private lateinit var binding: ActivityAnalysisBinding
-    private var isMonthlySelected = false
-    private var isWeeklySelected = true
+    private var isMonthlySelected = true
+    private var isWeeklySelected = false
 
     @SuppressLint("UseCompatLoadingForDrawables")
     override fun onCreate(savedInstanceState: Bundle?) {
@@ -23,6 +23,8 @@ class AnalysisActivity : AppCompatActivity() {
 
         val normalBackground: Drawable = resources.getDrawable(drawable.btn_brown_rec)
         val pressedBackground: Drawable = resources.getDrawable(drawable.btn_transp_rec)
+
+        viewMonthly()
 
         binding.btnAnalysisMonthly.setOnClickListener {
             if (isMonthlySelected) {
