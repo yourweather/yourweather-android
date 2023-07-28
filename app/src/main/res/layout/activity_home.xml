@@ -30,7 +30,7 @@
                 android:layout_width="35dp"
                 android:layout_height="35dp"
                 android:layout_marginStart="317dp"
-                android:layout_marginTop="13dp"
+                android:layout_marginTop="16dp"
                 android:layout_marginEnd="13dp"
                 android:layout_marginBottom="684dp"
                 android:background="@android:color/transparent"
