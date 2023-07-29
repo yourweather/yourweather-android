@@ -4,10 +4,12 @@ import android.content.Intent
 import android.graphics.Color
 import android.graphics.drawable.ColorDrawable
 import android.os.Bundle
+import android.os.CountDownTimer
 import android.text.Editable
 import android.text.TextWatcher
 import android.util.Patterns
 import android.view.LayoutInflater
+import android.view.View
 import android.view.Window
 import android.widget.Button
 import android.widget.TextView
@@ -19,6 +21,7 @@ import com.umc.yourweather.databinding.ActivitySignUpBinding
 
 class SignUp : AppCompatActivity() {
     lateinit var binding: ActivitySignUpBinding
+    private lateinit var countDownTimer: CountDownTimer
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         binding = ActivitySignUpBinding.inflate(layoutInflater)
@@ -68,19 +71,36 @@ class SignUp : AppCompatActivity() {
 
     private fun checkEmailError() {
         var email = binding.etSignupEmail.text.toString()
-        if (Patterns.EMAIL_ADDRESS.matcher(email).matches()){
-
-
+        if (Patterns.EMAIL_ADDRESS.matcher(email).matches()) {
+            binding.etSignupEmail.background = resources.getDrawable(R.drawable.bg_gray_ed_fill_6_rect)
+            binding.tvSignupError.visibility = View.INVISIBLE
             binding.btnSignupSendauth.isEnabled = true
-        }else{
+        } else {
+            binding.etSignupEmail.background = resources.getDrawable(R.drawable.bg_gray_ed_fill_6_rect_border_red)
+            binding.tvSignupError.visibility = View.VISIBLE
             binding.btnSignupSendauth.isEnabled = false
         }
-
     }
 
     private fun checkAuth() {
         var authCode = binding.etSignupAuth.text.toString()
         binding.btnSignupCheckauth.isEnabled = (authCode.length == 6)
+    }
+
+    private fun startTimer() {
+        val startTimeMillis = 3 * 60 * 1000 // 3 minutes in milliseconds
+        countDownTimer = object : CountDownTimer(startTimeMillis.toLong(), 1000) {
+            override fun onTick(millisUntilFinished: Long) {
+                val minutes = millisUntilFinished / (60 * 1000)
+                val seconds = (millisUntilFinished % (60 * 1000)) / 1000
+                binding.tvSignupTime.visibility = View.VISIBLE
+                binding.tvSignupTime.text = String.format("%02d:%02d", minutes, seconds)
+            }
+
+            override fun onFinish() {
+                binding.tvSignupTime.text = "00:00" // Timer finished
+            }
+        }.start()
     }
 
     fun showCustomAlertDialog(text: String, flag: Int) {
@@ -107,9 +127,12 @@ class SignUp : AppCompatActivity() {
         alertButton.setOnClickListener {
             alertDialog.dismiss()
             when (flag) {
-                // 확인 버튼 클릭
+                0 -> {
+                    startTimer()
+                }
                 1 -> {
                     binding.btnSignupNext.isEnabled = true
+                    countDownTimer?.cancel()
                 }
             }
         }
