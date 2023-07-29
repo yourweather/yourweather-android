@@ -40,6 +40,11 @@ class SignUp : AppCompatActivity() {
         binding.btnSignupSendauth.setOnClickListener{
             showCustomAlertDialog("인증코드가 전송되었습니다. ")
         }
+
+        binding.btnSingupBack.setOnClickListener{
+            finish()
+        }
+
     }
 
 

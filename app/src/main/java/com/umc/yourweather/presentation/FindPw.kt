@@ -16,5 +16,8 @@ class FindPw : AppCompatActivity() {
         binding.btnFindpwNext.setOnClickListener{
 
         }
+        binding.btnFindpwBack.setOnClickListener{
+            finish()
+        }
     }
 }
