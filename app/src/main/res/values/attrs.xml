@@ -1,0 +1,9 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <declare-styleable name="Calendar">
+        <attr name="month" format="integer|reference"/>
+        <attr name="weatherImg" format="integer|reference"/>
+        <attr name="temTextSize" format="dimension"/>
+        <attr name="dayTextSize" format="dimension"/>
+    </declare-styleable>
+</resources>

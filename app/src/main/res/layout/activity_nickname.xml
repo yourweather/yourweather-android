@@ -6,146 +6,89 @@
     android:layout_height="match_parent"
     tools:context=".presentation.Nickname">
 
-    <LinearLayout
-        android:id="@+id/ll_nickname_l0"
+    <ImageView
+        android:id="@+id/iv_nickname_logo"
+        android:layout_width="45dp"
+        android:layout_height="58dp"
+        android:layout_marginTop="81dp"
+        android:scaleType="centerInside"
+        android:src="@drawable/img_yourweatherlogo"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.463"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
+
+    <TextView
+        android:id="@+id/tv_nickname_guide"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_gravity="bottom"
+        android:layout_marginTop="40dp"
+        android:fontFamily="@font/pretendardregular"
+        android:gravity="center"
+        android:text="유어웨더에서 사용할 닉네임을 입력해주세요"
+        android:textColor="#5E412F"
+        android:textSize="17dp"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/iv_nickname_logo" />
+
+    <FrameLayout
+        android:id="@+id/frameLayout"
         android:layout_width="match_parent"
         android:layout_height="0dp"
-        android:gravity="center"
-        android:orientation="vertical"
-        app:layout_constraintBottom_toTopOf="@+id/ll_nickname_l1"
+        android:layout_marginStart="16dp"
+        android:layout_marginTop="25dp"
+        android:layout_marginEnd="16dp"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.5"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_weight="0.47">
+        app:layout_constraintTop_toBottomOf="@+id/tv_nickname_guide"
+        app:layout_constraintDimensionRatio="7:1"
+        >
 
-        <Space
+        <EditText
+            android:id="@+id/et_nickname_nickname"
             android:layout_width="match_parent"
-            android:layout_height="0dp"
-            android:layout_weight="4.5" />
-
-
-        <ImageView
-            android:id="@+id/iv_nickname_logo"
-            android:layout_width="51dp"
-            android:layout_height="63dp"
-            android:scaleType="centerInside"
-            android:src="@drawable/img_yourweatherlogo" />
-
-        <Space
-            android:layout_width="match_parent"
-            android:layout_height="0dp"
-            android:layout_weight="1.1" />
-
-        <TextView
-            android:id="@+id/tv_nickname_guide"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:layout_gravity="bottom"
+            android:layout_height="match_parent"
+            android:background="@drawable/bg_gray_ff_fill_rect"
             android:gravity="center"
-            android:text="유어웨더에서 사용할 닉네임을 입력해주세요"
-            android:textColor="#5E412F"
-            android:textSize="17dp" />
-
-        <Space
-            android:layout_width="match_parent"
-            android:layout_height="0dp"
-            android:layout_weight="0.6" />
-
-    </LinearLayout>
-
-    <LinearLayout
-        android:id="@+id/ll_nickname_l1"
-        android:layout_width="350dp"
-        android:layout_height="200dp"
-        android:gravity="center"
-        android:orientation="vertical"
-        app:layout_constraintBottom_toTopOf="@+id/ll_nickname_l2"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.5"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/ll_nickname_l0">
-
-        <LinearLayout
-            android:layout_width="match_parent"
-            android:layout_height="48dp"
-            android:layout_marginBottom="6dp"
-            android:layout_weight="2"
-            android:gravity="center"
-            android:orientation="vertical">
-
-
-            <FrameLayout
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content">
-
-                <EditText
-                    android:id="@+id/et_nickname_nickname"
-                    android:layout_width="match_parent"
-                    android:layout_height="54dp"
-                    android:background="@drawable/bg_gray_fill_rect"
-                    android:gravity="center"
-                    android:hint="맑은 비구름"
-                    android:paddingLeft="16dp"
-                    android:textColorHint="@color/gray"
-                    android:textCursorDrawable="@null"
-                    android:textSize="20dp"
-                    android:textStyle="bold" />
-
-                <androidx.appcompat.widget.AppCompatButton
-                    android:id="@+id/btn_nickname_refresh"
-                    android:layout_width="57dp"
-                    android:layout_height="23dp"
-                    android:layout_gravity="right|center_vertical"
-                    android:layout_marginEnd="23dp"
-                    android:background="@drawable/ic_nickname_refresh_btn"
-                    android:text="새로 고침"
-                    android:textColor="#FFFFFF"
-                    android:textSize="11dp"
-                    android:textStyle="bold" />
-            </FrameLayout>
-
-            <Space
-                android:layout_width="match_parent"
-                android:layout_height="match_parent" />
-
-        </LinearLayout>
-
-    </LinearLayout>
-
-    <LinearLayout
-        android:id="@+id/ll_nickname_l2"
-        android:layout_width="match_parent"
-        android:layout_height="0dp"
-        android:gravity="center"
-        android:orientation="vertical"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.5"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/ll_nickname_l1"
-        app:layout_constraintVertical_weight="0.33">
-
-        <Space
-            android:layout_width="match_parent"
-            android:layout_height="0dp"
-            android:layout_weight="6.6" />
-
-        <androidx.appcompat.widget.AppCompatButton
-            android:id="@+id/btn_nickname_next"
-            android:layout_width="190dp"
-            android:layout_height="56dp"
-            android:background="@drawable/bg_click_btn"
-            android:gravity="center"
-            android:text="다음"
-            android:textColor="#FFFFFF"
-            android:textSize="20dp"
+            android:hint="맑은 비구름"
+            android:paddingLeft="16dp"
+            android:textColorHint="@color/gray"
+            android:textCursorDrawable="@null"
+            android:textSize="12dp"
             android:textStyle="bold" />
 
-        <Space
-            android:layout_width="match_parent"
-            android:layout_height="0dp"
-            android:layout_weight="1.1" />
-    </LinearLayout>
+        <androidx.appcompat.widget.AppCompatButton
+            android:id="@+id/btn_nickname_refresh"
+            android:layout_width="57dp"
+            android:layout_height="23dp"
+            android:layout_gravity="right|center_vertical"
+            android:layout_marginEnd="23dp"
+            android:background="@drawable/ic_nickname_refresh_btn"
+            android:fontFamily="@font/pretendardmedium"
+            android:text="새로 고침"
+            android:textColor="#FFFFFF"
+            android:textSize="10dp"
+            android:textStyle="bold" />
+    </FrameLayout>
+
+    <androidx.appcompat.widget.AppCompatButton
+        android:id="@+id/btn_nickname_next"
+        android:layout_width="0dp"
+        android:layout_height="56dp"
+        android:layout_marginStart="16dp"
+        android:layout_marginTop="14dp"
+        android:layout_marginEnd="16dp"
+        android:background="@drawable/bg_click_btn"
+        android:fontFamily="@font/pretendardsemibold"
+        android:gravity="center"
+        android:text="다음"
+        android:textColor="#FFFFFF"
+        android:textSize="16dp"
+        android:textStyle="bold"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/frameLayout" />
 
 </androidx.constraintlayout.widget.ConstraintLayout>

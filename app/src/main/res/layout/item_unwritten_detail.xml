@@ -1,0 +1,64 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content">
+
+    <LinearLayout
+        android:id="@+id/linearLayout3"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="vertical"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        android:gravity="center">
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal">
+
+            <TextView
+                android:id="@+id/tv_static_icon_detail_sunny"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_gravity="left|center"
+                android:text="7월 4일 화요일"
+                android:textColor="@color/black"
+                android:textSize="25dp"
+                android:fontFamily="@font/pretendardsemibold"
+                android:layout_marginStart="16dp"
+                android:layout_marginBottom="23dp"
+                android:layout_marginTop="21dp" />
+
+            <ImageView
+                android:id="@+id/iv_icon_statics_bar1"
+                android:layout_width="0dp"
+                android:layout_height="4dp"
+                android:layout_weight="1"
+                android:layout_marginLeft="16dp"
+                android:layout_marginRight="16dp"
+                android:background="@android:color/transparent"  />
+
+            <ImageButton
+                android:id="@+id/btn_statics_right_detail1"
+                style="?android:attr/borderlessButtonStyle"
+                android:layout_width="14dp"
+                android:layout_height="24dp"
+                android:layout_marginEnd="21dp"
+                android:layout_marginBottom="23dp"
+                android:layout_marginTop="21dp"
+                app:layout_constraintEnd_toEndOf="@id/iv_icon_statics_bar1"
+                android:layout_gravity="right|center"
+                android:background="@drawable/ic_gray_rightarrow_9_17" />
+        </LinearLayout>
+        <ImageView
+            android:id="@+id/iv_icon_statics_bar2"
+            android:layout_width="match_parent"
+            android:layout_height="4dp"
+            android:layout_marginLeft="16dp"
+            android:layout_marginRight="16dp"
+            android:src="@drawable/bg_gray_ca_fill_rect" />
+    </LinearLayout>
+</androidx.constraintlayout.widget.ConstraintLayout>

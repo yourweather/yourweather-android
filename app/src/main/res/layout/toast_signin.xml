@@ -1,0 +1,19 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:id="@+id/ll_signin_toast"
+    android:layout_width="297dp"
+    android:layout_height="40dp">
+
+    <TextView
+        android:id="@+id/tv_signin_toast"
+        android:layout_width="297dp"
+        android:layout_height="40dp"
+        android:background="@drawable/bg_gray_f2_fill_10_rect"
+        android:gravity="center"
+        android:textColor="#CB443D"
+        android:textSize="12dp">
+
+    </TextView>
+
+</LinearLayout>
