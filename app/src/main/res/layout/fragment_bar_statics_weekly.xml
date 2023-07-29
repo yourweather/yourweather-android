@@ -57,7 +57,7 @@
 
     <View
         android:id="@+id/ll_analysis_bar_last_week"
-        android:layout_width="341dp"
+        android:layout_width="match_parent"
         android:layout_height="32dp"
         android:layout_marginTop="11dp"
         android:layout_marginBottom="32dp"
@@ -69,7 +69,7 @@
         app:layout_constraintHorizontal_bias="0.357"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/ll_analysis_weather1"
-        app:layout_constraintVertical_bias="0.529" />
+        app:layout_constraintVertical_bias="0.529"  />
 
     <LinearLayout
         android:id="@+id/ll_analysis_weather2"
@@ -108,7 +108,7 @@
 
     <View
         android:id="@+id/ll_analysis_bar_this_month"
-        android:layout_width="341dp"
+        android:layout_width="match_parent"
         android:layout_height="32dp"
         android:layout_marginTop="11dp"
         android:layout_marginLeft="33dp"
