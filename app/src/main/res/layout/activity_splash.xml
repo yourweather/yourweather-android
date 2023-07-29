@@ -13,7 +13,7 @@
         android:fontFamily="@font/bmhanna"
         android:text="당신의 감정 날씨,"
         android:textColor="#604913"
-        android:textSize="17dp"
+        android:textSize="13dp"
         app:layout_constraintBottom_toTopOf="@+id/tv_splash_msg2"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent" />
@@ -25,7 +25,7 @@
         android:fontFamily="@font/bmhanna"
         android:text="유어웨더"
         android:textColor="@color/orange"
-        android:textSize="45dp"
+        android:textSize="40dp"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
