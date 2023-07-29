@@ -31,7 +31,7 @@
 
             <TextView
                 android:id="@+id/tv_home_ad"
-                android:layout_width="wrap_content"
+                android:layout_width="381dp"
                 android:layout_height="wrap_content"
                 android:layout_marginStart="16dp"
                 android:layout_marginTop="58dp"
@@ -65,9 +65,10 @@
                 android:textSize="8dp"
                 app:layout_constraintBottom_toBottomOf="@+id/tv_home_ad"
                 app:layout_constraintEnd_toEndOf="@+id/tv_home_ad"
+                app:layout_constraintHorizontal_bias="1.0"
                 app:layout_constraintStart_toStartOf="@+id/tv_home_ad"
-                app:layout_constraintTop_toTopOf="@+id/tv_home_ad" />
-
+                app:layout_constraintTop_toTopOf="@+id/tv_home_ad"
+                app:layout_constraintVertical_bias="1.0" />
 
             <ImageButton
                 android:id="@+id/btn_home_ad_exit"
@@ -75,13 +76,15 @@
                 android:layout_height="12dp"
                 android:layout_marginStart="313dp"
                 android:layout_marginTop="5dp"
-                android:layout_marginEnd="7dp"
+                android:layout_marginEnd="6dp"
                 android:layout_marginBottom="23dp"
                 android:background="@android:color/transparent"
                 app:layout_constraintBottom_toBottomOf="@+id/tv_home_ad"
                 app:layout_constraintEnd_toEndOf="@+id/tv_home_ad"
+                app:layout_constraintHorizontal_bias="1.0"
                 app:layout_constraintStart_toStartOf="@+id/tv_home_ad"
                 app:layout_constraintTop_toTopOf="@+id/tv_home_ad"
+                app:layout_constraintVertical_bias="1.0"
                 app:srcCompat="@drawable/ic_home_exit" />
 
             <ImageButton
