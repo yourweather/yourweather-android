@@ -24,7 +24,7 @@
         android:layout_height="wrap_content"
         android:fontFamily="@font/bmhanna"
         android:text="유어웨더"
-        android:textColor="@color/sorange"
+        android:textColor="@color/orange"
         android:textSize="45dp"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
