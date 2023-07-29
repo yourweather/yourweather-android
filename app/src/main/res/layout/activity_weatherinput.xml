@@ -35,7 +35,7 @@
             android:layout_marginTop="15dp"
             android:layout_marginEnd="300dp"
             android:background="@android:color/transparent"
-            android:src="@drawable/ic_home_exit"
+            android:src="@drawable/ic_weatherinput_exit"
             app:layout_constraintEnd_toEndOf="@+id/iv_home_weather"
             app:layout_constraintStart_toStartOf="@+id/iv_home_weather"
             app:layout_constraintTop_toTopOf="@+id/iv_home_weather" />
