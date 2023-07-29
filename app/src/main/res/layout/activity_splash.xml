@@ -12,7 +12,7 @@
         android:layout_height="wrap_content"
         android:fontFamily="@font/bmhanna"
         android:text="당신의 감정 날씨,"
-        android:textColor="@color/brown"
+        android:textColor="#604913"
         android:textSize="17dp"
         app:layout_constraintBottom_toTopOf="@+id/tv_splash_msg2"
         app:layout_constraintEnd_toEndOf="parent"
@@ -36,6 +36,7 @@
         android:layout_width="35dp"
         android:layout_height="47dp"
 
+        android:layout_marginBottom="23dp"
         app:layout_constraintBottom_toTopOf="@+id/tv_splash_msg1"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
