@@ -28,16 +28,21 @@ class SignUp : AppCompatActivity() {
         setContentView(binding.root)
 
         binding.btnSingupBack.setOnClickListener {
+            val mIntent = Intent(this, SignIn::class.java)
+            startActivity(mIntent)
             finish()
         }
 
         binding.tvSignupBtnsignin.setOnClickListener {
             val mIntent = Intent(this, SignIn::class.java)
             startActivity(mIntent)
+            finish()
         }
+
         binding.btnSignupNext.setOnClickListener {
             val mIntent = Intent(this@SignUp, SignUp2::class.java)
             startActivity(mIntent)
+            finish()
         }
 
         binding.etSignupEmail.addTextChangedListener(createTextWatcher(::checkEmailError))
@@ -49,6 +54,11 @@ class SignUp : AppCompatActivity() {
 
         binding.btnSignupCheckauth.setOnClickListener {
             showCustomAlertDialog("인증이 완료되었습니다.", 1)
+        }
+
+        binding.tvSignupBtnresend.setOnClickListener {
+            countDownTimer?.cancel()
+            showCustomAlertDialog("인증코드가 전송되었습니다.", 0)
         }
     }
 
