@@ -67,7 +67,6 @@
         android:layout_height="0dp"
         android:layout_marginStart="16dp"
         android:layout_marginEnd="16dp"
-        app:layout_constraintDimensionRatio="7:1"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/tv_signup2_pw"
@@ -77,15 +76,14 @@
         <com.google.android.material.textfield.TextInputLayout
             android:id="@+id/textinput_signup2_pw"
             android:layout_width="match_parent"
-            android:layout_height="wrap_content"
+            android:layout_height="match_parent"
             app:passwordToggleDrawable="@drawable/ic_selector_pwtoggle"
-            app:passwordToggleEnabled="true"
-            >
+            app:passwordToggleEnabled="true">
 
             <com.google.android.material.textfield.TextInputEditText
                 android:id="@+id/et_signup2_pw"
                 android:layout_width="match_parent"
-                android:layout_height="wrap_content"
+                android:layout_height="match_parent"
                 android:background="@drawable/bg_gray_ed_fill_6_rect"
                 android:inputType="textPassword"
                 android:textColorHint="#A9ADB4"
@@ -93,9 +91,8 @@
                 android:textSize="16dp" />
 
 
+        </com.google.android.material.textfield.TextInputLayout>
 
-
-    </com.google.android.material.textfield.TextInputLayout>
         <ImageView
             android:id="@+id/iv_signup2_check0"
             android:layout_width="15dp"
@@ -148,11 +145,9 @@
         android:layout_height="0dp"
         android:layout_marginStart="16dp"
         android:layout_marginEnd="16dp"
-        app:layout_constraintDimensionRatio="7:1"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/tv_signup2_guide2"
-        >
+        app:layout_constraintTop_toBottomOf="@+id/tv_signup2_guide2">
 
 
         <com.google.android.material.textfield.TextInputLayout
@@ -160,13 +155,12 @@
             android:layout_width="match_parent"
             android:layout_height="match_parent"
             app:passwordToggleDrawable="@drawable/ic_selector_pwtoggle"
-            app:passwordToggleEnabled="true"
-            >
+            app:passwordToggleEnabled="true">
 
             <com.google.android.material.textfield.TextInputEditText
                 android:id="@+id/et_signup2_repw"
                 android:layout_width="match_parent"
-                android:layout_height="wrap_content"
+                android:layout_height="match_parent"
                 android:layout_gravity="center"
                 android:background="@drawable/bg_gray_ff_fill_rect"
                 android:inputType="textPassword"
@@ -174,7 +168,7 @@
                 android:textSize="16dp" />
 
 
-    </com.google.android.material.textfield.TextInputLayout>
+        </com.google.android.material.textfield.TextInputLayout>
 
         <ImageView
             android:id="@+id/iv_signup2_check1"
@@ -185,7 +179,7 @@
             android:layout_marginRight="40dp"
             android:visibility="invisible"
             app:srcCompat="@drawable/ic_singup2_pwcheck" />
-</FrameLayout>
+    </FrameLayout>
 
     <LinearLayout
         android:id="@+id/linearLayout5"

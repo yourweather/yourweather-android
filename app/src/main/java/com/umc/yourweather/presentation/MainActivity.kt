@@ -14,7 +14,8 @@ class MainActivity : AppCompatActivity() {
         setContentView(binding.root)
 
         binding.btnMain.setOnClickListener {
-            val mIntent = Intent(this, SignIn::class.java)
+            val mIntent = Intent(this, CalendarView::class.java)
+            //val mIntent = Intent(this, SignIn::class.java)
             startActivity(mIntent)
             finish()
         }

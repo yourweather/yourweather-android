@@ -1,15 +1,15 @@
 package com.umc.yourweather.presentation
 
-import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.util.Log
+import androidx.appcompat.app.AppCompatActivity
 import androidx.viewpager2.widget.ViewPager2
 import com.umc.yourweather.databinding.ActivityCalendarBinding
 import com.umc.yourweather.presentation.adapter.CalendarMonthAdapter
 
 class CalendarView : AppCompatActivity() {
-    lateinit var binding : ActivityCalendarBinding
-    lateinit var  monthrAdapter : CalendarMonthAdapter
+    lateinit var binding: ActivityCalendarBinding
+    lateinit var monthrAdapter: CalendarMonthAdapter
 
     var currentPosition = 0
 
@@ -24,21 +24,20 @@ class CalendarView : AppCompatActivity() {
         binding.vp2Calendar.setCurrentItem(CalendarMonthAdapter.START_POSITION, false)
         setDateInfo()
 
-        //전으로 이동
+        // 전으로 이동
         binding.btnCalendarBefore.setOnClickListener {
             currentPosition = binding.vp2Calendar.currentItem
             binding.vp2Calendar.setCurrentItem(currentPosition - 1, true)
             Log.d("앞으로 이동", "앞앞")
         }
 
-        //후로 이동
+        // 후로 이동
         binding.btnCalendarNext.setOnClickListener {
             currentPosition = binding.vp2Calendar.currentItem
             binding.vp2Calendar.setCurrentItem(currentPosition + 1, true)
-
         }
 
-        //연월띄우기
+        // 연월띄우기
         binding.vp2Calendar.registerOnPageChangeCallback(object :
             ViewPager2.OnPageChangeCallback() {
             override fun onPageSelected(position: Int) {
@@ -46,14 +45,15 @@ class CalendarView : AppCompatActivity() {
                 setDateInfo()
             }
         })
+
     }
 
-    private fun setDateInfo(){
+    private fun setDateInfo() {
         val currentPosition = binding.vp2Calendar.currentItem
         val itemId = monthrAdapter.getItemId(currentPosition)
         val year = itemId / 100L
         val month = itemId % 100L
-        binding.tvCalendarMonth.text = month.toString() +"월"
-        binding.tvCalendarYear.text = year.toString() +"년"
+        binding.tvCalendarMonth.text = month.toString() + "월"
+        binding.tvCalendarYear.text = year.toString() + "년"
     }
 }
