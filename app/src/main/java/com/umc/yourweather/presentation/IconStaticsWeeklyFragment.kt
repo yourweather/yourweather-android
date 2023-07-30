@@ -7,7 +7,6 @@ import android.view.View
 import android.view.ViewGroup
 import androidx.fragment.app.Fragment
 import com.umc.yourweather.R
-import com.umc.yourweather.databinding.FragmentIconStaticsMonthlyBinding
 import com.umc.yourweather.databinding.FragmentIconStaticsWeeklyBinding
 
 class IconStaticsWeeklyFragment : Fragment() {

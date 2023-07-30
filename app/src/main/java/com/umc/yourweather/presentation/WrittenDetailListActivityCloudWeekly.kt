@@ -26,9 +26,9 @@ class WrittenDetailListActivityCloudWeekly : AppCompatActivity() {
     }
     private fun fetchDataFromAPI(): List<ItemWritten> {
         val dataList = mutableListOf<ItemWritten>()
-        dataList.add(ItemWritten(6, 23,"월", "오후",10, 35))
-        dataList.add(ItemWritten(7, 15,"목", "오전",8, 55))
-        dataList.add(ItemWritten(7, 20, "금","오후",11, 10))
+        dataList.add(ItemWritten(6, 23, "월", "오후", 10, 35))
+        dataList.add(ItemWritten(7, 15, "목", "오전", 8, 55))
+        dataList.add(ItemWritten(7, 20, "금", "오후", 11, 10))
 
         return dataList
     }
