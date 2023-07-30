@@ -21,7 +21,7 @@ class WrittenDetailListActivityRain : AppCompatActivity() {
         val dataList = fetchDataFromAPI()
 
         binding.recyclerViewUnwrittenDetail.layoutManager = LinearLayoutManager(this)
-        val adapter = WrittenRVAdapter(dataList)
+        val adapter = WrittenRVAdapter(dataList, this)
         binding.recyclerViewUnwrittenDetail.adapter = adapter
     }
 
