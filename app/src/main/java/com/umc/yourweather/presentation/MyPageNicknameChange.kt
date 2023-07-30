@@ -6,6 +6,7 @@ import com.umc.yourweather.R
 import com.umc.yourweather.databinding.ActivityMyPageNicknameChangeBinding
 
 class MyPageNicknameChange : AppCompatActivity() {
+
     lateinit var binding: ActivityMyPageNicknameChangeBinding
 
     override fun onCreate(savedInstanceState: Bundle?) {
