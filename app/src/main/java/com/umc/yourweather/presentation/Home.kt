@@ -1,6 +1,8 @@
 package com.umc.yourweather.presentation
 
 import android.os.Bundle
+import android.view.LayoutInflater
+import android.widget.Toast
 import androidx.appcompat.app.AppCompatActivity
 import com.bumptech.glide.Glide
 import com.umc.yourweather.R
@@ -29,6 +31,19 @@ class Home : AppCompatActivity() {
         transaction.commit()
     }
     fun goToNewHome() {
+        showHomeToast()
         supportFragmentManager.popBackStack()
+    }
+    private fun showHomeToast() {
+        val customToastView = LayoutInflater.from(this).inflate(R.layout.toast_home, null)
+
+        val homeToast = Toast(this)
+        homeToast.view = customToastView
+
+        homeToast.duration = Toast.LENGTH_LONG
+
+        homeToast.setGravity(android.view.Gravity.BOTTOM or android.view.Gravity.CENTER, 0, resources.getDimensionPixelSize(R.dimen.home_toast_margin_bottom))
+
+        homeToast.show()
     }
 }
