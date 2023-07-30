@@ -19,6 +19,8 @@ class InitialNoWeather : AppCompatActivity() {
 
         initialToast.duration = Toast.LENGTH_LONG
 
+        initialToast.setGravity(android.view.Gravity.BOTTOM or android.view.Gravity.CENTER, 0, resources.getDimensionPixelSize(R.dimen.initial_toast_margin_bottom))
+
         initialToast.show()
     }
 }
