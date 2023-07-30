@@ -1,10 +1,8 @@
 package com.umc.yourweather.presentation
 
-import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
-import android.view.LayoutInflater
+import androidx.appcompat.app.AppCompatActivity
 import androidx.recyclerview.widget.LinearLayoutManager
-import com.umc.yourweather.R
 import com.umc.yourweather.data.ItemWritten
 import com.umc.yourweather.databinding.ActivityWrittenDetailListRainWeeklyBinding
 import com.umc.yourweather.presentation.adapter.WrittenRVAdapter

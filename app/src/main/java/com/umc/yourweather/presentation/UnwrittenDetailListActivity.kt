@@ -4,10 +4,8 @@ import android.os.Bundle
 import androidx.appcompat.app.AppCompatActivity
 import androidx.recyclerview.widget.LinearLayoutManager
 import com.umc.yourweather.data.ItemUnwritten
-import com.umc.yourweather.data.ItemWritten
 import com.umc.yourweather.databinding.ActivityUnwrittenDetailListBinding
 import com.umc.yourweather.presentation.adapter.UnwrittenRVAdapter
-import com.umc.yourweather.presentation.adapter.WrittenRVAdapter
 
 class UnwrittenDetailListActivity : AppCompatActivity() {
     private lateinit var binding: ActivityUnwrittenDetailListBinding

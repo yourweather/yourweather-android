@@ -1,10 +1,8 @@
 package com.umc.yourweather.presentation
 
-import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
-import android.view.LayoutInflater
+import androidx.appcompat.app.AppCompatActivity
 import androidx.recyclerview.widget.LinearLayoutManager
-import com.umc.yourweather.R
 import com.umc.yourweather.data.ItemWritten
 import com.umc.yourweather.databinding.ActivityWrittenDetailListThunderWeeklyBinding
 import com.umc.yourweather.presentation.adapter.WrittenRVAdapter
@@ -12,7 +10,7 @@ import com.umc.yourweather.presentation.adapter.WrittenRVAdapter
 class WrittenDetailListActivityThunderWeekly : AppCompatActivity() {
     private lateinit var binding: ActivityWrittenDetailListThunderWeeklyBinding
     override fun onCreate(savedInstanceState: Bundle?) {
-       binding = ActivityWrittenDetailListThunderWeeklyBinding.inflate(layoutInflater)
+        binding = ActivityWrittenDetailListThunderWeeklyBinding.inflate(layoutInflater)
         super.onCreate(savedInstanceState)
         setContentView(binding.root)
 
