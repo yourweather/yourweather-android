@@ -22,7 +22,7 @@
             android:adjustViewBounds="true"
             android:background="#00ff0000"
             android:scaleType="centerInside"
-            app:srcCompat="@drawable/back_btn"
+            app:srcCompat="@drawable/ic_calendardetailview_back"
             tools:ignore="SpeakableTextPresentCheck" />
 
         <Button
@@ -277,7 +277,7 @@
         <ImageView
             android:layout_width="59dp"
             android:layout_height="1dp"
-            app:srcCompat="@drawable/line">
+            app:srcCompat="@drawable/img_calendardetailview_line">
 
         </ImageView>
     </LinearLayout>

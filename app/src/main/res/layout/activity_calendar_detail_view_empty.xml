@@ -18,7 +18,7 @@
         app:layout_constraintEnd_toStartOf="@+id/button2"
         app:layout_constraintHorizontal_bias="0.042"
         app:layout_constraintStart_toStartOf="parent"
-        app:srcCompat="@drawable/back_btn"
+        app:srcCompat="@drawable/ic_calendardetailview_back"
         tools:ignore="SpeakableTextPresentCheck"/>
 
     <Button
@@ -86,5 +86,5 @@
         app:layout_constraintHorizontal_bias="1.0"
         app:layout_constraintStart_toStartOf="@+id/button3"
         app:layout_constraintTop_toBottomOf="@+id/some_id"
-        app:srcCompat="@drawable/line" />
+        app:srcCompat="@drawable/img_calendardetailview_line" />
 </androidx.constraintlayout.widget.ConstraintLayout>

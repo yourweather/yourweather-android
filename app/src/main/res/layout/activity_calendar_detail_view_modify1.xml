@@ -25,7 +25,7 @@
         android:adjustViewBounds="true"
         android:background="#00ff0000"
         android:scaleType="centerInside"
-        app:srcCompat="@drawable/back_btn"
+        app:srcCompat="@drawable/ic_calendardetailview_back"
         tools:ignore="SpeakableTextPresentCheck"
         tools:layout_editor_absoluteX="16dp"
         tools:layout_editor_absoluteY="16dp" />

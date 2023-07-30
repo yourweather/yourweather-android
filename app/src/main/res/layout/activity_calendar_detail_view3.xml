@@ -87,7 +87,7 @@
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/textView"
-        app:srcCompat="@drawable/rectangle_123" />
+        app:srcCompat="@drawable/bg_calendardetailview" />
 
     <ImageButton
         android:id="@+id/imageButton"
@@ -96,7 +96,7 @@
         android:adjustViewBounds="true"
         android:background="#00ff0000"
         android:scaleType="centerInside"
-        app:srcCompat="@drawable/back_btn"
+        app:srcCompat="@drawable/ic_calendardetailview_back"
         tools:layout_editor_absoluteX="7dp"
         tools:layout_editor_absoluteY="16dp"
         tools:ignore="SpeakableTextPresentCheck"/>
