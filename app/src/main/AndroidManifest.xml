@@ -18,6 +18,12 @@
             android:exported="true"
             android:windowSoftInputMode="adjustResize" />
         <activity
+            android:name=".presentation.MyPagePwChange"
+            android:exported="false" />
+        <activity
+            android:name=".presentation.MyPageNicknameChange"
+            android:exported="false" />
+        <activity
             android:name=".presentation.WrittenDetailListActivityCloud"
             android:exported="false" />
         <activity

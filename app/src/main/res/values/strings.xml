@@ -19,5 +19,6 @@
     <string name="tv_allwritten_clear">모든 기록을 완료하였어요</string>
     <string name="ic_check">ic_check</string>
     <string name="tv_signup_title">회원가입</string>
-
+    <string name="tv_mypage_nickname_title">닉네임 변경</string>
+    <string name="tv_mypage_pw_title">비밀번호 변경</string>
 </resources>

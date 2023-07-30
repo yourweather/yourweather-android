@@ -1,0 +1,119 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context=".presentation.MyPageNicknameChange">
+
+    <LinearLayout
+        android:id="@+id/ll_mypage_nickname_0"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent">
+
+        <ImageButton
+            android:id="@+id/btn_mypage_nickname_back"
+            style="?android:attr/borderlessButtonStyle"
+            android:layout_width="10dp"
+            android:layout_height="18dp"
+            android:layout_gravity="center"
+            android:layout_marginStart="16dp"
+            android:layout_marginTop="20dp"
+            android:layout_marginBottom="20dp"
+            android:background="@drawable/ic_black_leftarrow_8_16"
+            app:layout_constraintHeight_percent="0.05" />
+
+        <TextView
+            android:id="@+id/tv_mypage_nickname_title"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center"
+            android:layout_marginStart="134dp"
+            android:layout_marginTop="16dp"
+            android:layout_marginEnd="134dp"
+            android:layout_marginBottom="16dp"
+            android:fontFamily="@font/pretendardbold"
+            android:gravity="center"
+            android:text="@string/tv_mypage_nickname_title"
+            android:textColor="@color/sorange"
+            android:textSize="20dp"
+            android:textStyle="bold" />
+
+    </LinearLayout>
+
+    <TextView
+        android:id="@+id/tv_mypage_nickname_guide"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_gravity="bottom"
+        android:layout_marginStart="16dp"
+        android:layout_marginTop="46dp"
+        android:fontFamily="@font/pretendardmedium"
+        android:gravity="left"
+        android:text="유어웨더에서 사용할 닉네임을 입력해주세요"
+        android:textColor="#5E412F"
+        android:textSize="15dp"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/ll_mypage_nickname_0" />
+
+    <FrameLayout
+        android:id="@+id/fl_mypage_nickname"
+        android:layout_width="match_parent"
+        android:layout_height="0dp"
+        android:layout_marginStart="16dp"
+        android:layout_marginTop="11dp"
+        android:layout_marginEnd="16dp"
+        app:layout_constraintDimensionRatio="7:1"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/tv_mypage_nickname_guide">
+
+        <EditText
+            android:id="@+id/et_mypage_nickname_nickname"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:background="@drawable/bg_gray_ff_fill_rect"
+            android:gravity="left|center_vertical"
+            android:hint="맑은 비구름"
+            android:paddingLeft="16dp"
+            android:textColorHint="@color/gray"
+            android:textCursorDrawable="@null"
+            android:textSize="15dp"
+            android:textStyle="bold" />
+
+        <androidx.appcompat.widget.AppCompatButton
+            android:id="@+id/btn_mypage_nickname_refresh"
+            android:layout_width="57dp"
+            android:layout_height="23dp"
+            android:layout_gravity="right|center_vertical"
+            android:layout_marginEnd="23dp"
+            android:background="@drawable/ic_nickname_refresh_btn"
+            android:fontFamily="@font/pretendardmedium"
+            android:text="새로 고침"
+            android:textColor="#FFFFFF"
+            android:textSize="10dp"
+            android:textStyle="bold" />
+    </FrameLayout>
+
+    <androidx.appcompat.widget.AppCompatButton
+        android:id="@+id/btn_mypage_nickname_next"
+        android:layout_width="0dp"
+        android:layout_height="56dp"
+        android:layout_marginStart="16dp"
+        android:layout_marginTop="12dp"
+        android:layout_marginEnd="16dp"
+        android:background="@drawable/bg_click_btn"
+        android:fontFamily="@font/pretendardsemibold"
+        android:gravity="center"
+        android:text="확인"
+        android:textColor="#FFFFFF"
+        android:textSize="16dp"
+        android:textStyle="bold"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/fl_mypage_nickname" />
+</androidx.constraintlayout.widget.ConstraintLayout>
