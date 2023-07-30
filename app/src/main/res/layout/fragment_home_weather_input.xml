@@ -1,14 +1,236 @@
 <?xml version="1.0" encoding="utf-8"?>
 <FrameLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
+    android:background="#CC000000"
     tools:context=".presentation.HomeWeatherInputFragment">
 
-    <!-- TODO: Update blank fragment layout -->
-    <TextView
+    <androidx.constraintlayout.widget.ConstraintLayout
         android:layout_width="match_parent"
-        android:layout_height="match_parent"
-        android:text="hello_blank_fragment" />
+        android:layout_height="match_parent">
+
+        <ImageView
+            android:id="@+id/iv_home_weather"
+            android:layout_width="350dp"
+            android:layout_height="465dp"
+            android:layout_marginStart="16dp"
+            android:layout_marginEnd="16dp"
+            android:layout_marginBottom="91dp"
+            android:src="@drawable/bg_home_weatherinput"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintHorizontal_bias="0.482"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent"
+            app:layout_constraintVertical_bias="1.0" />
+
+        <ImageButton
+            android:id="@+id/btn_home_weather_exit"
+            android:layout_width="16dp"
+            android:layout_height="19dp"
+            android:layout_marginStart="14dp"
+            android:layout_marginTop="15dp"
+            android:layout_marginEnd="300dp"
+            android:background="@android:color/transparent"
+            android:src="@drawable/ic_weatherinput_exit"
+            app:layout_constraintEnd_toEndOf="@+id/iv_home_weather"
+            app:layout_constraintStart_toStartOf="@+id/iv_home_weather"
+            app:layout_constraintTop_toTopOf="@+id/iv_home_weather" />
+
+        <ImageButton
+            android:id="@+id/btn_home_weather_save"
+            android:layout_width="35dp"
+            android:layout_height="18dp"
+            android:layout_marginStart="261dp"
+            android:layout_marginTop="16dp"
+            android:layout_marginEnd="16dp"
+            android:background="@android:color/transparent"
+            android:src="@drawable/ic_home_save"
+            app:layout_constraintEnd_toEndOf="@+id/iv_home_weather"
+            app:layout_constraintHorizontal_bias="1.0"
+            app:layout_constraintStart_toEndOf="@+id/btn_home_weather_exit"
+            app:layout_constraintTop_toTopOf="@+id/iv_home_weather" />
+
+        <TextView
+            android:id="@+id/tv_home_weather_username2"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="63dp"
+            android:layout_marginTop="45dp"
+            android:fontFamily="@font/pretendardextrabold"
+            android:text="이다은"
+            android:textColor="#2B2B2B"
+            android:textSize="14dp"
+            app:layout_constraintEnd_toStartOf="@+id/tv_home_weather_guide2"
+            app:layout_constraintHorizontal_bias="0.68"
+            app:layout_constraintStart_toStartOf="@+id/iv_home_weather"
+            app:layout_constraintTop_toTopOf="@+id/iv_home_weather" />
+
+        <TextView
+            android:id="@+id/tv_home_weather_guide2"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="47dp"
+            android:layout_marginEnd="64dp"
+            android:fontFamily="@font/pretendardsemibold"
+            android:text="님의 현재 감정 상태는 어떠신가요?"
+            android:textColor="#2B2B2B"
+            android:textSize="13dp"
+            app:layout_constraintEnd_toEndOf="@+id/iv_home_weather"
+            app:layout_constraintTop_toTopOf="@+id/iv_home_weather" />
+
+        <androidx.appcompat.widget.AppCompatButton
+            android:id="@+id/btn_home_sun"
+            android:layout_width="62dp"
+            android:layout_height="62dp"
+            android:layout_marginStart="42dp"
+            android:layout_marginTop="63dp"
+            android:layout_marginEnd="5dp"
+            android:background="@drawable/ic_sun"
+            app:layout_constraintEnd_toStartOf="@+id/btn_home_cloud"
+            app:layout_constraintStart_toStartOf="@+id/iv_home_weather"
+            app:layout_constraintTop_toTopOf="@+id/iv_home_weather" />
+
+        <androidx.appcompat.widget.AppCompatButton
+            android:id="@+id/btn_home_cloud"
+            android:layout_width="62dp"
+            android:layout_height="62dp"
+            android:layout_marginStart="5dp"
+            android:layout_marginTop="63dp"
+            android:background="@drawable/ic_cloud"
+            app:layout_constraintStart_toEndOf="@+id/btn_home_sun"
+            app:layout_constraintTop_toTopOf="@+id/iv_home_weather" />
+
+        <androidx.appcompat.widget.AppCompatButton
+            android:id="@+id/btn_home_rain"
+            android:layout_width="62dp"
+            android:layout_height="62dp"
+            android:layout_marginStart="5dp"
+            android:layout_marginTop="63dp"
+            android:background="@drawable/ic_rain"
+            app:layout_constraintStart_toEndOf="@+id/btn_home_cloud"
+            app:layout_constraintTop_toTopOf="@+id/iv_home_weather" />
+
+        <androidx.appcompat.widget.AppCompatButton
+            android:id="@+id/btn_home_thunder"
+            android:layout_width="62dp"
+            android:layout_height="62dp"
+            android:layout_marginStart="5dp"
+            android:layout_marginTop="63dp"
+            android:layout_marginEnd="42dp"
+            android:background="@drawable/ic_thunder"
+            app:layout_constraintEnd_toEndOf="@+id/iv_home_weather"
+            app:layout_constraintHorizontal_bias="0.0"
+            app:layout_constraintStart_toEndOf="@+id/btn_home_rain"
+            app:layout_constraintTop_toTopOf="@+id/iv_home_weather" />
+
+        <TextView
+            android:id="@+id/tv_home_weather_guide3"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginBottom="16dp"
+            android:fontFamily="@font/pretendardregular"
+            android:text="클릭하여 선택해주세요"
+            android:textSize="10dp"
+            android:textColor="@color/gray"
+            app:layout_constraintBottom_toTopOf="@+id/tv_home_weather_guide4"
+            app:layout_constraintEnd_toEndOf="@+id/iv_home_weather"
+            app:layout_constraintHorizontal_bias="0.492"
+            app:layout_constraintStart_toStartOf="@+id/iv_home_weather" />
+
+        <TextView
+            android:id="@+id/tv_home_weather_username3"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="60dp"
+            android:layout_marginTop="91dp"
+            android:fontFamily="@font/pretendardextrabold"
+            android:text="이다은"
+            android:textColor="#2B2B2B"
+            android:textSize="14dp"
+            app:layout_constraintEnd_toStartOf="@+id/tv_home_weather_guide3"
+            app:layout_constraintHorizontal_bias="0.363"
+            app:layout_constraintStart_toStartOf="@+id/iv_home_weather"
+            app:layout_constraintTop_toBottomOf="@+id/tv_home_weather_username2" />
+
+        <TextView
+            android:id="@+id/tv_home_weather_guide4"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="92dp"
+            android:layout_marginEnd="52dp"
+            android:fontFamily="@font/pretendardsemibold"
+            android:text="님의 현재 감정의 온도는 어떠신가요?"
+            android:textColor="#2B2B2B"
+            android:textSize="13dp"
+            app:layout_constraintEnd_toEndOf="@+id/iv_home_weather"
+            app:layout_constraintTop_toBottomOf="@+id/tv_home_weather_guide2" />
+
+        <SeekBar
+            android:id="@+id/seekbar_home_temp"
+            android:layout_width="320dp"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="23dp"
+            android:layout_marginTop="23dp"
+            android:layout_marginEnd="20dp"
+            android:layout_marginBottom="40dp"
+            android:max="100"
+            android:progress="0"
+            android:progressDrawable="@drawable/bg_home_seekbar"
+            android:thumb="@drawable/ic_home_seekbarbtn"
+            app:layout_constraintBottom_toTopOf="@+id/et_home_memo"
+            app:layout_constraintEnd_toEndOf="@+id/iv_home_weather"
+            app:layout_constraintHorizontal_bias="0.493"
+            app:layout_constraintStart_toStartOf="@+id/iv_home_weather"
+            app:layout_constraintTop_toBottomOf="@+id/tv_home_weather_guide4" />
+
+        <TextView
+            android:id="@+id/iv_home_mintemp"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="20dp"
+            android:layout_marginTop="8dp"
+            android:layout_marginBottom="23dp"
+            android:fontFamily="@font/pretendardregular"
+            android:text="0°"
+            android:textSize="13dp"
+            app:layout_constraintBottom_toTopOf="@+id/et_home_memo"
+            app:layout_constraintStart_toStartOf="@+id/iv_home_weather"
+            app:layout_constraintTop_toBottomOf="@+id/seekbar_home_temp" />
+
+        <TextView
+            android:id="@+id/iv_home_maxtemp"
+            android:layout_width="27dp"
+            android:layout_height="18dp"
+            android:layout_marginStart="255dp"
+            android:layout_marginTop="8dp"
+            android:layout_marginEnd="10dp"
+            android:layout_marginBottom="23dp"
+            android:fontFamily="@font/pretendardregular"
+            android:text="100°"
+            android:textSize="13dp"
+            app:layout_constraintBottom_toTopOf="@+id/et_home_memo"
+            app:layout_constraintEnd_toEndOf="@+id/iv_home_weather"
+            app:layout_constraintStart_toEndOf="@+id/iv_home_mintemp"
+            app:layout_constraintTop_toBottomOf="@+id/seekbar_home_temp" />
+
+        <EditText
+            android:id="@+id/et_home_memo"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginBottom="108dp"
+            android:background="@drawable/bg_home_memo"
+            android:fontFamily="@font/pretendardmedium"
+            android:gravity="center"
+            android:hint="해당 감정으로부터 느낀 점이나\n 지금 이 순간 남기고 싶은 기록을 남겨주세요"
+            android:textSize="11dp"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent" />
+
+
+    </androidx.constraintlayout.widget.ConstraintLayout>
 
 </FrameLayout>
