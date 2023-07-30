@@ -10,5 +10,9 @@ class UnwrittenDetailListActivity : AppCompatActivity() {
         super.onCreate(savedInstanceState)
         binding = ActivityUnwrittenDetailListBinding.inflate(layoutInflater)
         setContentView(binding.root)
+
+        binding.btnAllwrittenLeftArrow.setOnClickListener {
+            finish()
+        }
     }
 }

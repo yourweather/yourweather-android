@@ -1,5 +1,6 @@
 package com.umc.yourweather.presentation
 
+import android.content.Intent
 import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.View
@@ -23,5 +24,28 @@ class IconStaticsMonthlyFragment : Fragment() {
     ): View? {
         // Inflate the layout for this fragment
         return inflater.inflate(R.layout.fragment_icon_statics_monthly, container, false)
+    }
+
+    override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
+        super.onViewCreated(view, savedInstanceState)
+
+        _binding = FragmentIconStaticsMonthlyBinding.bind(view)
+
+        binding.btnStaticsRightDetail1Monthly.setOnClickListener {
+            val intent = Intent(activity, WrittenDetailListActivitySun::class.java)
+            startActivity(intent)
+        }
+        binding.btnStaticsRightDetail2Monthly.setOnClickListener {
+            val intent = Intent(activity, WrittenDetailListActivityCloud::class.java)
+            startActivity(intent)
+        }
+        binding.btnStaticsRightDetail3Monthly.setOnClickListener {
+            val intent = Intent(activity, WrittenDetailListActivityRain::class.java)
+            startActivity(intent)
+        }
+        binding.btnStaticsRightDetail4Monthly.setOnClickListener {
+            val intent = Intent(activity, WrittenDetailListActivityThunder::class.java)
+            startActivity(intent)
+        }
     }
 }

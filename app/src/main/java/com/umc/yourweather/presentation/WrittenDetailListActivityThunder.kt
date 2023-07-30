@@ -11,5 +11,9 @@ class WrittenDetailListActivityThunder : AppCompatActivity() {
         binding = ActivityWrittenDetailListThunderBinding.inflate(layoutInflater)
         super.onCreate(savedInstanceState)
         setContentView(binding.root)
+
+        binding.btnAllwrittenLeftArrow.setOnClickListener {
+            finish()
+        }
     }
 }

@@ -11,5 +11,9 @@ class WrittenDetailListActivityRain : AppCompatActivity() {
         binding = ActivityWrittenDetailListRainBinding.inflate(layoutInflater)
         super.onCreate(savedInstanceState)
         setContentView(binding.root)
+
+        binding.btnAllwrittenLeftArrow.setOnClickListener {
+            finish()
+        }
     }
 }
