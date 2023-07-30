@@ -3,9 +3,9 @@ package com.umc.yourweather.presentation
 import android.os.Bundle
 import androidx.appcompat.app.AppCompatActivity
 import androidx.recyclerview.widget.LinearLayoutManager
-import com.umc.yourweather.data.ItemWrittenSun
+import com.umc.yourweather.data.ItemWritten
 import com.umc.yourweather.databinding.ActivityWrittenDetailListSunBinding
-import com.umc.yourweather.presentation.adapter.WrittenSunRVAdapter
+import com.umc.yourweather.presentation.adapter.WrittenRVAdapter
 
 class WrittenDetailListActivitySun : AppCompatActivity() {
     private lateinit var binding: ActivityWrittenDetailListSunBinding
@@ -22,18 +22,18 @@ class WrittenDetailListActivitySun : AppCompatActivity() {
         val dataList = fetchDataFromAPI()
 
         binding.recyclerViewUnwrittenDetail.layoutManager = LinearLayoutManager(this)
-        val adapter = WrittenSunRVAdapter(dataList)
+        val adapter = WrittenRVAdapter(dataList)
         binding.recyclerViewUnwrittenDetail.adapter = adapter
     }
 
-    private fun fetchDataFromAPI(): List<ItemWrittenSun> {
-        val dataList = mutableListOf<ItemWrittenSun>()
-        dataList.add(ItemWrittenSun(6, 1, 10, 30))
-        dataList.add(ItemWrittenSun(7, 1, 12, 55))
-        dataList.add(ItemWrittenSun(7, 2, 18, 10))
-        dataList.add(ItemWrittenSun(7, 3, 20, 10))
-        dataList.add(ItemWrittenSun(7, 4, 12, 14))
-        dataList.add(ItemWrittenSun(7, 5, 19, 20))
+    private fun fetchDataFromAPI(): List<ItemWritten> {
+        val dataList = mutableListOf<ItemWritten>()
+        dataList.add(ItemWritten(6, 1, 10, 30))
+        dataList.add(ItemWritten(7, 1, 12, 55))
+        dataList.add(ItemWritten(7, 2, 18, 10))
+        dataList.add(ItemWritten(7, 3, 20, 10))
+        dataList.add(ItemWritten(7, 4, 12, 14))
+        dataList.add(ItemWritten(7, 5, 19, 20))
 
         return dataList
     }

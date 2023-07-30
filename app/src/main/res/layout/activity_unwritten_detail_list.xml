@@ -7,7 +7,7 @@
     tools:context=".presentation.UnwrittenDetailListActivity">
 
     <LinearLayout
-        android:id="@+id/ll_allwritten1"
+        android:id="@+id/ll_Unwritten1"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:orientation="horizontal"
@@ -15,7 +15,7 @@
         app:layout_constraintTop_toTopOf="parent">
 
         <ImageButton
-            android:id="@+id/btn_allwritten_left_arrow"
+            android:id="@+id/btn_Unwritten_left_arrow"
             style="?android:attr/borderlessButtonStyle"
             android:layout_width="10dp"
             android:layout_height="18dp"
@@ -27,11 +27,11 @@
             app:layout_constraintHeight_percent="0.05" />
 
         <TextView
-            android:id="@+id/tv_allwritten_title"
+            android:id="@+id/tv_Unwritten_title"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_gravity="center"
-            android:text="@string/tv_allwritten_title"
+            android:text="@string/tv_Unwritten_title"
             android:textColor="@color/sorange"
             android:textSize="20dp"
             android:textStyle="bold"
@@ -51,7 +51,7 @@
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/ll_allwritten1"
+        app:layout_constraintTop_toBottomOf="@+id/ll_Unwritten1"
         android:layout_marginTop="22dp"
         tools:listitem="@layout/item_unwritten_detail" />
 
