@@ -1,38 +1,37 @@
 package com.umc.yourweather.presentation
 
 import android.content.Intent
-import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.view.Gravity
 import android.view.LayoutInflater
 import android.view.WindowManager
 import android.widget.TextView
 import android.widget.Toast
+import androidx.appcompat.app.AppCompatActivity
 import com.umc.yourweather.R
 import com.umc.yourweather.databinding.ActivitySignInBinding
-import com.umc.yourweather.databinding.ActivitySignUpBinding
 import com.umc.yourweather.util.CalendarUtils.Companion.dpToPx
 
 class SignIn : AppCompatActivity() {
-    lateinit var binding : ActivitySignInBinding
+    lateinit var binding: ActivitySignInBinding
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         binding = ActivitySignInBinding.inflate(layoutInflater)
         setContentView(binding.root)
 
-        binding.tvSigninBtnfindpw.setOnClickListener{
+        binding.tvSigninBtnfindpw.setOnClickListener {
             val mIntent = Intent(this, FindPw::class.java)
             startActivity(mIntent)
         }
 
-        binding.tvSigninBtnsignup.setOnClickListener{
+        binding.tvSigninBtnsignup.setOnClickListener {
             customToast()
             val mIntent = Intent(this, SignUp::class.java)
             startActivity(mIntent)
         }
     }
-    fun customToast(){
+    fun customToast() {
         val inflater = LayoutInflater.from(this)
         val layout = inflater.inflate(R.layout.toast_signin, findViewById(R.id.ll_signin_toast), false)
 
@@ -46,7 +45,7 @@ class SignIn : AppCompatActivity() {
         params.gravity = Gravity.CENTER
 
         toast.view?.layoutParams = params
-        toast.duration = Toast.LENGTH_SHORT //메시지 표시 시간
+        toast.duration = Toast.LENGTH_SHORT // 메시지 표시 시간
         toast.setGravity(Gravity.CENTER, 0, 0)
         toast.view = layout
         toast.show()
