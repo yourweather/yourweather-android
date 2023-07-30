@@ -1,0 +1,120 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context=".presentation.WrittenDetailListActivitySun">
+
+    <LinearLayout
+        android:id="@+id/ll_written_detail_list1"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent">
+
+        <ImageButton
+            android:id="@+id/btn_allwritten_left_arrow"
+            style="?android:attr/borderlessButtonStyle"
+            android:layout_width="10dp"
+            android:layout_height="18dp"
+            android:layout_gravity="center"
+            android:layout_marginStart="16dp"
+            android:layout_marginTop="20dp"
+            android:layout_marginBottom="20dp"
+            android:background="@drawable/ic_black_leftarrow_8_16"
+            app:layout_constraintHeight_percent="0.05" />
+
+    </LinearLayout>
+
+    <LinearLayout
+        android:id="@+id/ll_written_detail_list2"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="13dp"
+        android:orientation="horizontal"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/ll_written_detail_list1">
+
+        <LinearLayout
+            android:id="@+id/ll_written_detail_list3"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:orientation="vertical"
+            android:layout_marginStart="36dp">
+
+            <TextView
+                android:id="@+id/tv_written_detail_list_month_sun"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_gravity="left"
+                android:text="3주 전(7.3~7.9) 맑음"
+                android:textColor="@color/sorange"
+                android:textSize="20dp"
+                android:fontFamily="@font/pretendardbold"
+                android:layout_marginBottom="6dp"
+                />
+
+            <TextView
+                android:id="@+id/tv_written_detail_list_month_content"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_gravity="left"
+                android:text="이다은 님의 3주 전 중 40%가 맑은 날씨였어요"
+                android:textColor="#2B2B2B" />
+
+
+            <TextView
+                android:id="@+id/tv_written_detail_list_month_num"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_gravity="left"
+                android:layout_marginTop="9dp"
+                android:layout_weight="10"
+                android:background="@drawable/bg_gray_fill_rect_round"
+                android:paddingLeft="14dp"
+                android:paddingTop="4dp"
+                android:paddingRight="14dp"
+                android:paddingBottom="4dp"
+                android:text="총 8회"
+                android:textSize="10dp" />
+
+        </LinearLayout>
+
+        <ImageView
+            android:id="@+id/iv_icon_statics_sun"
+            android:layout_width="wrap_content"
+            android:layout_height="match_parent"
+            android:layout_gravity="right|center"
+            app:srcCompat="@drawable/ic_sun"
+            android:layout_marginEnd="10dp"/>
+
+    </LinearLayout>
+
+    <androidx.recyclerview.widget.RecyclerView
+        android:id="@+id/recyclerViewUnwrittenDetail"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="14dp"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/ll_written_detail_list2"
+        tools:listitem="@layout/item_written_detail_sun" />
+
+    <com.google.android.material.bottomnavigation.BottomNavigationView
+        android:id="@+id/bnv_main"
+        android:layout_width="match_parent"
+        android:layout_height="56dp"
+        android:background="@drawable/shape_gray_line_rect"
+        app:itemHorizontalTranslationEnabled="false"
+        app:itemIconTint="@drawable/menu_selector_color"
+        app:itemIconSize="24dp"
+        app:itemTextColor="@drawable/menu_selector_color"
+        app:labelVisibilityMode="unlabeled"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:menu="@menu/menu_bnv" />
+</androidx.constraintlayout.widget.ConstraintLayout>
