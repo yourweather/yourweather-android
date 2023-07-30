@@ -283,7 +283,7 @@
             android:layout_marginRight="5dp"
             android:fontFamily="@font/pretendardregular"
             android:gravity="bottom"
-            android:text="*비밀번호와 일치하지 않습니다."
+            android:text="*새 비밀번호와 일치하지 않습니다."
             android:textColor="#C23F3F"
             android:textSize="11dp"
             android:visibility="invisible" />
