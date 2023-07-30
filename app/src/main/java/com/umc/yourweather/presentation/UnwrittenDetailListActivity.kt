@@ -20,7 +20,7 @@ class UnwrittenDetailListActivity : AppCompatActivity() {
         val dataList = fetchDataFromAPI()
 
         binding.recyclerViewUnwrittenDetail.layoutManager = LinearLayoutManager(this)
-        val adapter = UnwrittenRVAdapter(dataList)
+        val adapter = UnwrittenRVAdapter(dataList, this)
         binding.recyclerViewUnwrittenDetail.adapter = adapter
     }
 

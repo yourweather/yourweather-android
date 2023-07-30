@@ -1,14 +1,15 @@
 package com.umc.yourweather.presentation.adapter
 
+import android.content.Context
+import android.content.Intent
 import android.view.LayoutInflater
 import android.view.ViewGroup
 import androidx.recyclerview.widget.RecyclerView
 import com.umc.yourweather.data.ItemUnwritten
-import com.umc.yourweather.data.ItemWritten
 import com.umc.yourweather.databinding.ItemUnwrittenDetailBinding
-import com.umc.yourweather.databinding.ItemWrittenDetailSunBinding
+import com.umc.yourweather.presentation.CalendarView
 
-class UnwrittenRVAdapter(private val dataList: List<ItemUnwritten>) :
+class UnwrittenRVAdapter(private val dataList: List<ItemUnwritten>, private val context: Context) :
     RecyclerView.Adapter<UnwrittenRVAdapter.MyViewHolder>() {
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): MyViewHolder {
@@ -29,11 +30,16 @@ class UnwrittenRVAdapter(private val dataList: List<ItemUnwritten>) :
         return dataList.size
     }
 
-    class MyViewHolder(private val binding: ItemUnwrittenDetailBinding) :
+    inner class MyViewHolder(val binding: ItemUnwrittenDetailBinding) :
         RecyclerView.ViewHolder(binding.root) {
 
         fun bind(data: ItemUnwritten) {
             binding.tvUnwrittenDetail.text = "${data.month}월 ${data.day}일 ${data.date}요일"
+
+            binding.btnStaticsRightDetail1.setOnClickListener {
+                val intent = Intent(context, CalendarView::class.java)
+                context.startActivity(intent)
+            }
         }
     }
 }

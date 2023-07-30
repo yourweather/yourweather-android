@@ -26,12 +26,12 @@ class WrittenDetailListActivityThunder : AppCompatActivity() {
     }
     private fun fetchDataFromAPI(): List<ItemWritten> {
         val dataList = mutableListOf<ItemWritten>()
-        dataList.add(ItemWritten(6, 15, 7, 24))
-        dataList.add(ItemWritten(7, 13, 11, 54))
-        dataList.add(ItemWritten(7, 19, 16, 10))
-        dataList.add(ItemWritten(7, 25, 16, 10))
-        dataList.add(ItemWritten(7, 26, 20, 11))
-        dataList.add(ItemWritten(7, 20, 11, 1))
+        dataList.add(ItemWritten(6, 15, "월", "오전", 7, 24))
+        dataList.add(ItemWritten(7, 13, "화", "오전", 11, 54))
+        dataList.add(ItemWritten(7, 19, "목", "오후", 4, 10))
+        dataList.add(ItemWritten(7, 25, "일", "오전", 11, 10))
+        dataList.add(ItemWritten(7, 26, "월", "오후", 8, 11))
+        dataList.add(ItemWritten(7, 20, "토", "오전", 11, 1))
 
         return dataList
     }

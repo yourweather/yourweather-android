@@ -16,7 +16,7 @@ class WrittenRVAdapter(private val dataList: List<ItemWritten>, private val cont
         val binding = ItemWrittenDetailSunBinding.inflate(
             LayoutInflater.from(parent.context),
             parent,
-            false
+            false,
         )
         return MyViewHolder(binding)
     }
@@ -34,9 +34,14 @@ class WrittenRVAdapter(private val dataList: List<ItemWritten>, private val cont
         RecyclerView.ViewHolder(binding.root) {
 
         fun bind(data: ItemWritten) {
-            binding.tvStaticIconDetailSunny.text = "${data.month}월 ${data.day}일 ${data.hour}:${data.minute}"
+            if (data.minute < 10) {
+                binding.tvStaticIconDetailSunny.text =
+                    "${data.month}월 ${data.day}일 ${data.date}요일 ${data.mer} ${data.hour}:0${data.minute}"
+            } else {
+                binding.tvStaticIconDetailSunny.text =
+                    "${data.month}월 ${data.day}일 ${data.date}요일 ${data.mer} ${data.hour}:${data.minute}"
+            }
 
-            // 버튼 클릭 이벤트 처리
             binding.btnStaticsRightDetail1.setOnClickListener {
                 val intent = Intent(context, CalendarView::class.java)
                 context.startActivity(intent)
@@ -44,4 +49,3 @@ class WrittenRVAdapter(private val dataList: List<ItemWritten>, private val cont
         }
     }
 }
-

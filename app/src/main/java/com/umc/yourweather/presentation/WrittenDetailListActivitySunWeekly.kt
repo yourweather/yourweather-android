@@ -25,12 +25,12 @@ class WrittenDetailListActivitySunWeekly : AppCompatActivity() {
     }
     private fun fetchDataFromAPI(): List<ItemWritten> {
         val dataList = mutableListOf<ItemWritten>()
-        dataList.add(ItemWritten(6, 1, 10, 30))
-        dataList.add(ItemWritten(7, 1, 12, 55))
-        dataList.add(ItemWritten(7, 2, 18, 10))
-        dataList.add(ItemWritten(7, 3, 20, 10))
-        dataList.add(ItemWritten(7, 4, 12, 14))
-        dataList.add(ItemWritten(7, 5, 19, 20))
+        dataList.add(ItemWritten(6, 1,"토", "오전",10, 30))
+        dataList.add(ItemWritten(7, 1,"일","오후",12, 55))
+        dataList.add(ItemWritten(7, 2,"월", "오후",6, 10))
+        dataList.add(ItemWritten(7, 3,"화","오후",8, 10))
+        dataList.add(ItemWritten(7, 4,"수", "오후",12, 14))
+        dataList.add(ItemWritten(7, 5,"목","오전",7, 20))
 
         return dataList
     }
