@@ -1,0 +1,446 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context=".presentation.CalendarDetailView1">
+
+    <TextView
+        android:id="@+id/textView"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="87dp"
+        android:layout_marginTop="82dp"
+        android:layout_marginEnd="88dp"
+        android:fontFamily="@font/bmhanna"
+        android:text="7월 4일 이다은 님의 날씨"
+        android:textColor="#2B2B2B"
+        android:textFontWeight="600"
+        android:textSize="20sp"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
+
+    <View
+        android:id="@+id/divider"
+        android:layout_width="415dp"
+        android:layout_height="8dp"
+        android:layout_marginTop="26dp"
+        android:background="#D9D9D9"
+
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/horizontalScrollView2" />
+
+    <ScrollView
+        android:layout_width="406dp"
+        android:layout_height="224dp"
+        android:layout_marginTop="74dp"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/divider">
+
+        <LinearLayout
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center"
+            android:orientation="vertical">
+
+            <TextView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:fontFamily="@font/pretendardregular"
+                android:text="오후 1시"
+                android:textColor="#2B2B2B"
+                android:textFontWeight="500"/>
+
+            <androidx.cardview.widget.CardView
+                android:id="@+id/card_view1"
+                android:layout_width="384dp"
+                android:layout_height="105dp"
+                android:layout_margin="5dp"
+                app:cardBackgroundColor="#f5f5f5"
+                app:cardCornerRadius="12dp"
+                app:cardElevation="3dp"
+                app:contentPadding="4dp">
+
+                <RelativeLayout
+                    android:layout_width="216dp"
+                    android:layout_height="wrap_content"
+                    android:padding="16dp">
+
+                    <TextView
+                        android:id="@+id/item_detail1"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="Detail 입니다."/>
+
+                </RelativeLayout>
+
+            </androidx.cardview.widget.CardView>
+
+            <TextView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:fontFamily="@font/pretendardregular"
+                android:text="오후 1시"
+                android:textColor="#2B2B2B"
+                android:textFontWeight="500"/>
+
+            <androidx.cardview.widget.CardView
+                android:id="@+id/card_view2"
+                android:layout_width="384dp"
+                android:layout_height="105dp"
+                android:layout_margin="5dp"
+                app:cardBackgroundColor="#f5f5f5"
+                app:cardCornerRadius="12dp"
+                app:cardElevation="3dp"
+                app:contentPadding="4dp">
+
+                <RelativeLayout
+                    android:layout_width="216dp"
+                    android:layout_height="wrap_content"
+                    android:padding="16dp">
+
+                    <TextView
+                        android:id="@+id/item_detail2"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="Detail 입니다." />
+
+                </RelativeLayout>
+
+            </androidx.cardview.widget.CardView>
+        </LinearLayout>
+
+
+    </ScrollView>
+
+    <ImageView
+        android:id="@+id/imageView"
+        android:layout_width="0dp"
+        android:layout_height="225dp"
+        android:layout_marginStart="9dp"
+        android:layout_marginEnd="10dp"
+        android:layout_marginBottom="26dp"
+        app:layout_constraintBottom_toTopOf="@+id/divider"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/textView"
+        app:srcCompat="@drawable/rectangle_123" />
+
+    <HorizontalScrollView
+        android:id="@+id/horizontalScrollView2"
+        android:layout_width="0dp"
+        android:layout_height="225dp"
+        android:layout_marginStart="9dp"
+        android:layout_marginTop="46dp"
+        android:layout_marginEnd="8dp"
+        android:background="@drawable/bg_gray_ed_fill_6_rect"
+        android:foregroundGravity="center"
+        android:scrollbars="none"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/textView"
+        tools:ignore="SpeakableTextPresentCheck">
+
+        <LinearLayout
+            android:layout_width="wrap_content"
+            android:layout_height="match_parent"
+            android:layout_gravity="center"
+            android:orientation="horizontal">
+
+            <LinearLayout
+                android:layout_width="82dp"
+                android:layout_height="match_parent"
+                android:orientation="vertical">
+
+                <TextView
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="33dp"
+                    android:fontFamily="@font/pretendardregular"
+                    android:text="오후 1:00"
+                    android:textAlignment="center"
+                    android:textColor="#2B2B2B"
+                    android:textFontWeight="600"
+                    android:textSize="14sp"/>
+
+                <FrameLayout
+                    android:layout_width="53dp"
+                    android:layout_height="52dp"
+                    android:layout_gravity="center"
+                    android:layout_marginTop="14dp">
+
+                    <ImageView
+                        android:layout_width="53dp"
+                        android:layout_height="52dp"
+                        android:layout_marginBottom="600dp"
+                        app:srcCompat="@drawable/bg_whitecircle" />
+
+                    <ImageView
+                        android:layout_width="73dp"
+                        android:layout_height="72dp"
+                        android:layout_gravity="center"
+                        app:srcCompat="@drawable/ic_sun"/>
+                </FrameLayout>
+
+                <TextView
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="10dp"
+                    android:layout_marginRight="19dp"
+                    android:fontFamily="@font/pretendardregular"
+                    android:text="0"
+                    android:textAlignment="center"
+                    android:textColor="#2B2B2B"
+                    android:textFontWeight="600"
+                    android:textSize="14sp"/>
+            </LinearLayout>
+
+            <LinearLayout
+                android:layout_width="82dp"
+                android:layout_height="match_parent"
+                android:orientation="vertical">
+
+                <TextView
+                    android:layout_width="76dp"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="33dp"
+                    android:fontFamily="@font/pretendardregular"
+                    android:text="오후 3:00"
+                    android:textAlignment="center"
+                    android:textColor="#2B2B2B"
+                    android:textFontWeight="600"
+                    android:textSize="14sp" />
+
+                <FrameLayout
+                    android:layout_width="53dp"
+                    android:layout_height="52dp"
+                    android:layout_gravity="center"
+                    android:layout_marginTop="14dp">
+
+                    <ImageView
+                        android:layout_width="53dp"
+                        android:layout_height="52dp"
+                        android:layout_marginBottom="600dp"
+                        app:srcCompat="@drawable/bg_whitecircle" />
+
+                    <ImageView
+                        android:layout_width="73dp"
+                        android:layout_height="72dp"
+                        android:layout_gravity="center"
+                        app:srcCompat="@drawable/ic_sun"/>
+                </FrameLayout>
+
+                <TextView
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="10dp"
+                    android:fontFamily="@font/pretendardregular"
+                    android:text="0"
+                    android:textAlignment="center"
+                    android:textColor="#2B2B2B"
+                    android:textFontWeight="600"
+                    android:textSize="14sp" />
+            </LinearLayout>
+
+            <LinearLayout
+                android:layout_width="82dp"
+                android:layout_height="match_parent"
+                android:orientation="vertical">
+
+                <TextView
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="33dp"
+                    android:fontFamily="@font/pretendardregular"
+                    android:text="오후 5:00"
+                    android:textAlignment="center"
+                    android:textColor="#2B2B2B"
+                    android:textFontWeight="600"
+                    android:textSize="14sp" />
+
+                <FrameLayout
+                    android:layout_width="53dp"
+                    android:layout_height="52dp"
+                    android:layout_gravity="center"
+                    android:layout_marginTop="14dp">
+
+                    <ImageView
+                        android:layout_width="53dp"
+                        android:layout_height="52dp"
+                        android:layout_marginBottom="600dp"
+                        app:srcCompat="@drawable/bg_whitecircle" />
+
+                    <ImageView
+                        android:layout_width="73dp"
+                        android:layout_height="72dp"
+                        android:layout_gravity="center"
+                        app:srcCompat="@drawable/ic_sun"/>
+                </FrameLayout>
+
+                <TextView
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="10dp"
+                    android:fontFamily="@font/pretendardregular"
+                    android:text="0"
+                    android:textAlignment="center"
+                    android:textColor="#2B2B2B"
+                    android:textFontWeight="600"
+                    android:textSize="14sp"></TextView>
+            </LinearLayout>
+
+            <LinearLayout
+                android:layout_width="82dp"
+                android:layout_height="match_parent"
+                android:orientation="vertical">
+
+                <TextView
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="33dp"
+                    android:fontFamily="@font/pretendardregular"
+                    android:text="오후 7:00"
+                    android:textAlignment="center"
+                    android:textColor="#2B2B2B"
+                    android:textFontWeight="600"
+                    android:textSize="14sp"></TextView>
+
+                <FrameLayout
+                    android:layout_width="53dp"
+                    android:layout_height="52dp"
+                    android:layout_gravity="center"
+                    android:layout_marginTop="14dp">
+
+                    <ImageView
+                        android:layout_width="53dp"
+                        android:layout_height="52dp"
+                        android:layout_marginBottom="600dp"
+                        app:srcCompat="@drawable/bg_whitecircle" />
+
+                    <ImageView
+                        android:layout_width="73dp"
+                        android:layout_height="72dp"
+                        android:layout_gravity="center"
+                        app:srcCompat="@drawable/ic_sun"/>
+                </FrameLayout>
+
+                <TextView
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="10dp"
+                    android:fontFamily="@font/pretendardregular"
+                    android:text="0"
+                    android:textAlignment="center"
+                    android:textColor="#2B2B2B"
+                    android:textFontWeight="600"
+                    android:textSize="14sp"></TextView>
+            </LinearLayout>
+
+            <LinearLayout
+                android:layout_width="82dp"
+                android:layout_height="match_parent"
+                android:orientation="vertical">
+
+                <TextView
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="33dp"
+                    android:fontFamily="@font/pretendardregular"
+                    android:text="오후 9:00"
+                    android:textAlignment="center"
+                    android:textColor="#2B2B2B"
+                    android:textFontWeight="600"
+                    android:textSize="14sp"></TextView>
+
+                <FrameLayout
+                    android:layout_width="53dp"
+                    android:layout_height="52dp"
+                    android:layout_gravity="center"
+                    android:layout_marginTop="14dp">
+
+                    <ImageView
+                        android:layout_width="53dp"
+                        android:layout_height="52dp"
+                        android:layout_marginBottom="600dp"
+                        app:srcCompat="@drawable/bg_whitecircle" />
+
+                    <ImageView
+                        android:layout_width="73dp"
+                        android:layout_height="72dp"
+                        android:layout_gravity="center"
+                        app:srcCompat="@drawable/ic_sun"/>
+                </FrameLayout>
+
+                <TextView
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="10dp"
+                    android:fontFamily="@font/pretendardregular"
+                    android:text="0"
+                    android:textAlignment="center"
+                    android:textColor="#2B2B2B"
+                    android:textFontWeight="600"
+                    android:textSize="14sp"></TextView>
+            </LinearLayout>
+        </LinearLayout>
+    </HorizontalScrollView>
+
+    <ImageButton
+            android:id="@+id/imageButton"
+            android:layout_width="40dp"
+            android:layout_height="27dp"
+            android:layout_marginStart="7dp"
+            android:layout_marginTop="16dp"
+            android:layout_marginEnd="283dp"
+            android:layout_marginBottom="41dp"
+            android:adjustViewBounds="true"
+            android:background="#00ff0000"
+            android:scaleType="centerInside"
+            app:layout_constraintBottom_toTopOf="@+id/textView"
+            app:layout_constraintEnd_toStartOf="@+id/button"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent"
+            app:srcCompat="@drawable/back_btn"
+            tools:ignore="SpeakableTextPresentCheck" />
+
+        <Button
+            android:id="@+id/button"
+            android:layout_width="75dp"
+            android:layout_height="54dp"
+            android:layout_marginTop="1dp"
+            android:layout_marginBottom="61dp"
+            android:background="#00ff0000"
+            android:fontFamily="@font/pretendardregular"
+            android:text="편집"
+            android:textColor="#5E412F"
+            android:textFontWeight="600"
+            android:textSize="20sp"
+            app:layout_constraintBottom_toTopOf="@+id/imageView"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toEndOf="@+id/imageButton"
+            app:layout_constraintTop_toTopOf="parent"></Button>
+
+    <TextView
+        android:id="@+id/textView3"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="20dp"
+        android:fontFamily="@font/pretendardregular"
+        android:text="7월 4일의 일기"
+        android:textAlignment="center"
+        android:textColor="#2B2B2B"
+        android:textFontWeight="600"
+        android:textSize="15sp"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/divider" />
+
+
+
+
+</androidx.constraintlayout.widget.ConstraintLayout>
