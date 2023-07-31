@@ -80,7 +80,7 @@ class CalendarView : AppCompatActivity() {
         var moveDates = addMoveDate()
 
         val adapter = CalendarSelectAdapter(this@CalendarView, moveDates, calendarDateInfo)
-        //val adapter = ArrayAdapter(this@CalendarView, R.layout.textview_item_listview_calendar, moveDates.map { it.toString() })
+
         rcView.adapter = adapter
         rcView.layoutManager = LinearLayoutManager(this@CalendarView)
 
