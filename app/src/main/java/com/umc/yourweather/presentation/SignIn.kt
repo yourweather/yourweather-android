@@ -32,6 +32,8 @@ class SignIn : AppCompatActivity() {
         }
 
         binding.btnSigninSignin.setOnClickListener {
+            val mIntent = Intent(this, BottomNavi::class.java)
+            startActivity(mIntent)
         }
     }
     fun customToast() {

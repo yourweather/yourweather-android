@@ -100,6 +100,10 @@
             android:exported="false"/>
 
         <activity
+            android:name=".presentation.BottomNavi"
+            android:exported="false"/>
+
+        <activity
             android:name=".presentation.MainActivity"
             android:exported="true">
             <intent-filter>
