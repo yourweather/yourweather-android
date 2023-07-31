@@ -7,32 +7,44 @@
     android:orientation="vertical">
 
 
-    <LinearLayout
+    <androidx.constraintlayout.widget.ConstraintLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:orientation="horizontal"
-        android:layout_marginBottom="45sp">
+        android:background="#FFFFFF"
+        android:layout_marginBottom="30sp">
 
+        <androidx.appcompat.widget.AppCompatImageView
+            android:id="@+id/iv_back"
+            android:layout_width="10sp"
+            android:layout_height="20sp"
+            android:src="@drawable/vector2_svg"
+            android:layout_margin="15dp"
+            android:tint="#2B2B2B"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toStartOf="@+id/appCompatTextView"
+            app:layout_constraintHorizontal_bias="0.027"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent"
+            app:layout_constraintVertical_bias="0.487" />
 
-
-
-        <TextView
-            android:layout_width="match_parent"
+        <androidx.appcompat.widget.AppCompatTextView
+            android:id="@+id/appCompatTextView"
+            android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:fontFamily="@font/pretendardbold"
-            android:textAlignment="center"
+            android:fontFamily="@font/bmhanna"
             android:gravity="center"
             android:paddingTop="10sp"
             android:paddingBottom="20sp"
             android:text="내 정보"
+            android:textAlignment="center"
             android:textColor="#F07818"
-            android:textSize="20sp"/>
+            android:textSize="20sp"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent" />
 
-
-
-
-    </LinearLayout>
-
+    </androidx.constraintlayout.widget.ConstraintLayout>
 
 
     <LinearLayout
@@ -52,7 +64,6 @@
                 android:layout_height="match_parent"
                 android:text="닉네임"
                 android:textSize="13sp"
-                android:textColor="#C9C9C9"
                 android:fontFamily="@font/pretendardsemibold"/>
 
             <TextView
@@ -69,15 +80,17 @@
         <android.widget.Button
             android:id="@+id/button1"
             android:layout_width="100sp"
-            android:layout_height="40sp"
-            android:layout_weight="1"
-            android:layout_marginTop="15sp"
+            android:layout_height="28sp"
+            android:padding="3sp"
+            android:layout_marginTop="22sp"
             android:layout_marginRight="15sp"
+            android:layout_weight="1"
             android:background="@drawable/my_info_btn"
+            android:fontFamily="@font/pretendardregular"
+            android:gravity="center"
             android:text="변경"
             android:textColor="#858585"
-            android:textSize="13sp"
-            android:fontFamily="@font/pretendardregular"/>
+            android:textSize="13sp" />
     </LinearLayout>
 
     <View
@@ -153,17 +166,56 @@
         </LinearLayout>
 
         <android.widget.Button
-            android:id="@+id/button2"
             android:layout_width="100sp"
-            android:layout_height="40sp"
-            android:layout_weight="1"
-            android:layout_marginTop="15sp"
+            android:layout_height="28sp"
+            android:padding="3sp"
+            android:layout_marginTop="22sp"
             android:layout_marginRight="15sp"
+            android:layout_weight="1"
             android:background="@drawable/my_info_btn"
+            android:fontFamily="@font/pretendardregular"
+            android:gravity="center"
             android:text="변경"
             android:textColor="#858585"
-            android:textSize="13sp"
-            android:fontFamily="@font/pretendardregular"/>
+            android:textSize="13sp"/>
+
+    </LinearLayout>
+    <View
+        android:layout_width="0dp"
+        android:layout_height="0dp"
+        android:layout_weight="1"/>
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginBottom="25sp"
+        android:gravity="center"
+        android:layout_alignParentBottom="true"
+        android:layout_centerHorizontal="true">
+
+        <TextView
+            android:id="@+id/logout"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:fontFamily="@font/pretendardsemibold"
+            android:text="로그아웃"
+            android:textColor="#808080"
+            android:textSize="13sp" />
+
+        <com.google.android.material.divider.MaterialDivider
+            android:layout_width="20sp"
+            android:layout_height="wrap_content"
+            android:layout_marginLeft="10dp"
+            android:layout_marginRight="10dp"
+            android:rotation="90"/>
+
+        <TextView
+            android:id="@+id/withdraw"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:fontFamily="@font/pretendardsemibold"
+            android:text="회원탈퇴"
+            android:textColor="#808080"
+            android:textSize="13sp" />
 
     </LinearLayout>
 

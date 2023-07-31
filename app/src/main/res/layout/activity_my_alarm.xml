@@ -1,36 +1,57 @@
 <?xml version="1.0" encoding="utf-8"?>
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:layout_margin="10dp"
     android:orientation="vertical">
 
 
-    <LinearLayout
+    <androidx.constraintlayout.widget.ConstraintLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:orientation="horizontal"
+        android:background="#FFFFFF"
         android:layout_marginBottom="30sp">
 
+        <androidx.appcompat.widget.AppCompatImageView
+            android:id="@+id/iv_back"
+            android:layout_width="10sp"
+            android:layout_height="20sp"
+            android:src="@drawable/vector2_svg"
+            android:tint="#2B2B2B"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toStartOf="@+id/appCompatTextView"
+            app:layout_constraintHorizontal_bias="0.027"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent"
+            app:layout_constraintVertical_bias="0.487" />
 
-
-        <TextView
-            android:layout_width="match_parent"
+        <androidx.appcompat.widget.AppCompatTextView
+            android:id="@+id/appCompatTextView"
+            android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:fontFamily="@font/pretendardbold"
-            android:textAlignment="center"
+            android:fontFamily="@font/bmhanna"
             android:gravity="center"
             android:paddingTop="10sp"
             android:paddingBottom="20sp"
             android:text="알림 설정"
+            android:textAlignment="center"
             android:textColor="#F07818"
-            android:textSize="20sp"/>
+            android:textSize="20sp"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent" />
+
+    </androidx.constraintlayout.widget.ConstraintLayout>
 
 
-
-
-    </LinearLayout>
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal"
+        android:layout_marginBottom="0sp"/>
 
 
     <Switch
@@ -43,6 +64,9 @@
         android:text="주간 비교 분석 알림"
         android:textSize="15sp"
         android:textColor="#424242"
+        android:trackTintMode="add"
+        android:thumbTint="@color/switch_thumb_color"
+        android:trackTint="@color/switch_track_color"
         android:fontFamily="@font/pretendardsemibold"
 
         />
@@ -67,6 +91,9 @@
         android:text="월간 비교 분석 알림"
         android:textSize="15sp"
         android:textColor="#424242"
+        android:trackTintMode="add"
+        android:thumbTint="@color/switch_thumb_color"
+        android:trackTint="@color/switch_track_color"
         android:fontFamily="@font/pretendardsemibold"
 
         />
