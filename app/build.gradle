@@ -44,6 +44,7 @@ android {
 }
 
 dependencies {
+
     //hilt
     implementation "com.google.dagger:hilt-android:2.44"
     kapt "com.google.dagger:hilt-compiler:2.44"
@@ -73,4 +74,7 @@ dependencies {
     //홈화면 날씨.gif 재생을 위한 항목
     implementation 'com.github.bumptech.glide:glide:4.15.1'
     annotationProcessor 'com.github.bumptech.glide:compiler:4.15.1'
+
+    //캘린더 상세보기 꺾은선 그래프를 위한 항목
+    implementation 'com.github.PhilJay:MPAndroidChart:v3.1.0'
 }
