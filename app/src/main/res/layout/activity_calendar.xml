@@ -31,8 +31,10 @@
     <LinearLayout
         android:id="@+id/ll_calendar_year"
         android:layout_width="match_parent"
-        android:layout_height="wrap_content"
+        android:layout_height="0dp"
+        android:layout_marginStart="121dp"
         android:layout_marginTop="9dp"
+        android:layout_marginEnd="121dp"
         android:gravity="center"
         android:orientation="horizontal"
         app:layout_constraintEnd_toEndOf="parent"
@@ -203,6 +205,6 @@
         android:id="@+id/view_backgroundView"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        android:visibility="invisible"
-        android:background="#80000000" />
+        android:background="#CC000000"
+        android:visibility="invisible" />
 </androidx.constraintlayout.widget.ConstraintLayout>

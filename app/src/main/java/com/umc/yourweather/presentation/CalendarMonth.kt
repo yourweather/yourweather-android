@@ -27,16 +27,16 @@ class CalendarMonth @JvmOverloads constructor(
             val cal = Calendar.getInstance()
             cal.time = date
 
-            var year = cal.get(Calendar.YEAR)
-            var month = cal.get(Calendar.MONTH) + 1
-            var date = cal.get(Calendar.DAY_OF_MONTH)
+            var year = cal.get(Calendar.YEAR).toString()
+            var month = (cal.get(Calendar.MONTH) + 1).toString()
+            var date = cal.get(Calendar.DAY_OF_MONTH).toString()
 
-            mIntent.putExtra("year", cal.get(Calendar.YEAR))
-            mIntent.putExtra("month", cal.get(Calendar.MONTH) + 1)
-            mIntent.putExtra("date", cal.get(Calendar.DAY_OF_MONTH))
+            mIntent.putExtra("year", year)
+            mIntent.putExtra("month", month)
+            mIntent.putExtra("date", date)
 
             Toast.makeText(context, "캘린더 클릭 확인 ${year}년 ${month}월 ${date}일", Toast.LENGTH_SHORT).show()
-            // context.startActivity(mIntent)
+            context.startActivity(mIntent)
         }
     }
 
