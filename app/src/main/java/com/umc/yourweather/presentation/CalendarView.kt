@@ -1,15 +1,26 @@
 package com.umc.yourweather.presentation
 
+import android.graphics.Color
+import android.graphics.drawable.ColorDrawable
 import android.os.Bundle
 import android.util.Log
+import android.view.LayoutInflater
+import android.view.View
+import android.view.ViewGroup
+import android.widget.ArrayAdapter
+import android.widget.ListView
+import android.widget.PopupWindow
 import androidx.appcompat.app.AppCompatActivity
 import androidx.viewpager2.widget.ViewPager2
+import com.umc.yourweather.R
 import com.umc.yourweather.databinding.ActivityCalendarBinding
 import com.umc.yourweather.presentation.adapter.CalendarMonthAdapter
+import com.umc.yourweather.util.CalendarUtils.Companion.dpToPx
 
 class CalendarView : AppCompatActivity() {
     lateinit var binding: ActivityCalendarBinding
     lateinit var monthrAdapter: CalendarMonthAdapter
+    lateinit var popupWindow: PopupWindow
 
     var currentPosition = 0
 
@@ -45,7 +56,9 @@ class CalendarView : AppCompatActivity() {
                 setDateInfo()
             }
         })
-
+        binding.btnCalendarYear.setOnClickListener {
+            showPopupWindow(it)
+        }
     }
 
     private fun setDateInfo() {
@@ -55,5 +68,31 @@ class CalendarView : AppCompatActivity() {
         val month = itemId % 100L
         binding.tvCalendarMonth.text = month.toString() + "월"
         binding.tvCalendarYear.text = year.toString() + "년"
+    }
+
+    fun showPopupWindow(anchorView: View) {
+        val popupView = LayoutInflater.from(this@CalendarView).inflate(R.layout.popupwindow_calendar, null)
+        val listView = popupView.findViewById<ListView>(R.id.lv_caledar_popup)
+        var moveDates = addMoveDate()
+
+        // Create an ArrayAdapter to populate the ListView
+        val adapter = ArrayAdapter(this@CalendarView, android.R.layout.simple_list_item_1, moveDates)
+        listView.adapter = adapter
+
+        // Calculate the width and height of the PopupWindow
+        val width = dpToPx(this@CalendarView, 167)
+        val height = dpToPx(this@CalendarView, 405)
+
+        // Initialize the PopupWindow
+        popupWindow = PopupWindow(popupView, width, height, true)
+        popupWindow.isOutsideTouchable = true
+        popupWindow.showAsDropDown(anchorView)
+    }
+
+    fun addMoveDate(): ArrayList<String> {
+        var moveDates = ArrayList<String>()
+        for (i in 1..120)
+            moveDates.add("test")
+        return moveDates
     }
 }
