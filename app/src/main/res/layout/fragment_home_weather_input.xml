@@ -5,7 +5,7 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:background="#CC000000"
-    tools:context=".presentation.HomeWeatherinput">
+    tools:context=".presentation.HomeWeatherInputFragment">
 
     <androidx.constraintlayout.widget.ConstraintLayout
         android:layout_width="match_parent"
@@ -14,15 +14,14 @@
         <ImageView
             android:id="@+id/iv_home_weather"
             android:layout_width="350dp"
-            android:layout_height="wrap_content"
+            android:layout_height="465dp"
             android:layout_marginStart="16dp"
-            android:layout_marginTop="199dp"
             android:layout_marginEnd="16dp"
-            android:layout_marginBottom="64dp"
+            android:layout_marginBottom="91dp"
             android:src="@drawable/bg_home_weatherinput"
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintHorizontal_bias="0.551"
+            app:layout_constraintHorizontal_bias="0.482"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toTopOf="parent"
             app:layout_constraintVertical_bias="1.0" />
@@ -45,16 +44,17 @@
             android:layout_width="35dp"
             android:layout_height="18dp"
             android:layout_marginStart="261dp"
-            android:layout_marginTop="14dp"
-            android:layout_marginEnd="30dp"
+            android:layout_marginTop="16dp"
+            android:layout_marginEnd="16dp"
             android:background="@android:color/transparent"
             android:src="@drawable/ic_home_save"
             app:layout_constraintEnd_toEndOf="@+id/iv_home_weather"
+            app:layout_constraintHorizontal_bias="1.0"
             app:layout_constraintStart_toEndOf="@+id/btn_home_weather_exit"
             app:layout_constraintTop_toTopOf="@+id/iv_home_weather" />
 
         <TextView
-            android:id="@+id/tv_home_weather_username1"
+            android:id="@+id/tv_home_weather_username2"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_marginStart="63dp"
@@ -63,21 +63,21 @@
             android:text="이다은"
             android:textColor="#2B2B2B"
             android:textSize="14dp"
-            app:layout_constraintEnd_toStartOf="@+id/tv_home_weather_guide1"
+            app:layout_constraintEnd_toStartOf="@+id/tv_home_weather_guide2"
             app:layout_constraintHorizontal_bias="0.68"
             app:layout_constraintStart_toStartOf="@+id/iv_home_weather"
             app:layout_constraintTop_toTopOf="@+id/iv_home_weather" />
 
         <TextView
-            android:id="@+id/tv_home_weather_guide1"
+            android:id="@+id/tv_home_weather_guide2"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_marginTop="47dp"
             android:layout_marginEnd="64dp"
+            android:fontFamily="@font/pretendardsemibold"
             android:text="님의 현재 감정 상태는 어떠신가요?"
             android:textColor="#2B2B2B"
             android:textSize="13dp"
-            android:fontFamily="@font/pretendardsemibold"
             app:layout_constraintEnd_toEndOf="@+id/iv_home_weather"
             app:layout_constraintTop_toTopOf="@+id/iv_home_weather" />
 
@@ -127,44 +127,46 @@
             app:layout_constraintTop_toTopOf="@+id/iv_home_weather" />
 
         <TextView
-            android:id="@+id/tv_home_weather_guide2"
+            android:id="@+id/tv_home_weather_guide3"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_marginBottom="24dp"
+            android:layout_marginBottom="16dp"
+            android:fontFamily="@font/pretendardregular"
             android:text="클릭하여 선택해주세요"
             android:textSize="10dp"
-            android:fontFamily="@font/pretendardregular"
-            app:layout_constraintBottom_toTopOf="@+id/tv_home_weather_guide3"
+            android:textColor="@color/gray"
+            app:layout_constraintBottom_toTopOf="@+id/tv_home_weather_guide4"
             app:layout_constraintEnd_toEndOf="@+id/iv_home_weather"
+            app:layout_constraintHorizontal_bias="0.492"
             app:layout_constraintStart_toStartOf="@+id/iv_home_weather" />
 
         <TextView
-            android:id="@+id/tv_home_weather_username2"
+            android:id="@+id/tv_home_weather_username3"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_marginStart="60dp"
-            android:layout_marginTop="90dp"
+            android:layout_marginTop="91dp"
             android:fontFamily="@font/pretendardextrabold"
             android:text="이다은"
             android:textColor="#2B2B2B"
             android:textSize="14dp"
             app:layout_constraintEnd_toStartOf="@+id/tv_home_weather_guide3"
-            app:layout_constraintHorizontal_bias="0.7"
+            app:layout_constraintHorizontal_bias="0.363"
             app:layout_constraintStart_toStartOf="@+id/iv_home_weather"
-            app:layout_constraintTop_toBottomOf="@+id/tv_home_weather_username1" />
+            app:layout_constraintTop_toBottomOf="@+id/tv_home_weather_username2" />
 
         <TextView
-            android:id="@+id/tv_home_weather_guide3"
+            android:id="@+id/tv_home_weather_guide4"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_marginTop="91dp"
-            android:layout_marginEnd="56dp"
+            android:layout_marginTop="92dp"
+            android:layout_marginEnd="52dp"
             android:fontFamily="@font/pretendardsemibold"
             android:text="님의 현재 감정의 온도는 어떠신가요?"
             android:textColor="#2B2B2B"
             android:textSize="13dp"
             app:layout_constraintEnd_toEndOf="@+id/iv_home_weather"
-            app:layout_constraintTop_toBottomOf="@+id/tv_home_weather_guide1" />
+            app:layout_constraintTop_toBottomOf="@+id/tv_home_weather_guide2" />
 
         <SeekBar
             android:id="@+id/seekbar_home_temp"
@@ -182,7 +184,7 @@
             app:layout_constraintEnd_toEndOf="@+id/iv_home_weather"
             app:layout_constraintHorizontal_bias="0.493"
             app:layout_constraintStart_toStartOf="@+id/iv_home_weather"
-            app:layout_constraintTop_toBottomOf="@+id/tv_home_weather_guide3" />
+            app:layout_constraintTop_toBottomOf="@+id/tv_home_weather_guide4" />
 
         <TextView
             android:id="@+id/iv_home_mintemp"
@@ -191,9 +193,9 @@
             android:layout_marginStart="20dp"
             android:layout_marginTop="8dp"
             android:layout_marginBottom="23dp"
+            android:fontFamily="@font/pretendardregular"
             android:text="0°"
             android:textSize="13dp"
-            android:fontFamily="@font/pretendardregular"
             app:layout_constraintBottom_toTopOf="@+id/et_home_memo"
             app:layout_constraintStart_toStartOf="@+id/iv_home_weather"
             app:layout_constraintTop_toBottomOf="@+id/seekbar_home_temp" />
@@ -206,9 +208,9 @@
             android:layout_marginTop="8dp"
             android:layout_marginEnd="10dp"
             android:layout_marginBottom="23dp"
+            android:fontFamily="@font/pretendardregular"
             android:text="100°"
             android:textSize="13dp"
-            android:fontFamily="@font/pretendardregular"
             app:layout_constraintBottom_toTopOf="@+id/et_home_memo"
             app:layout_constraintEnd_toEndOf="@+id/iv_home_weather"
             app:layout_constraintStart_toEndOf="@+id/iv_home_mintemp"
@@ -218,16 +220,17 @@
             android:id="@+id/et_home_memo"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_marginBottom="34dp"
+            android:layout_marginBottom="108dp"
             android:background="@drawable/bg_home_memo"
+            android:fontFamily="@font/pretendardmedium"
             android:gravity="center"
             android:hint="해당 감정으로부터 느낀 점이나\n 지금 이 순간 남기고 싶은 기록을 남겨주세요"
             android:textSize="11dp"
-            android:fontFamily="@font/pretendardmedium"
-            app:layout_constraintBottom_toBottomOf="@+id/iv_home_weather"
-            app:layout_constraintEnd_toEndOf="@+id/iv_home_weather"
-            app:layout_constraintHorizontal_bias="0.48"
-            app:layout_constraintStart_toStartOf="@+id/iv_home_weather" />
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent" />
+
+
     </androidx.constraintlayout.widget.ConstraintLayout>
 
 </FrameLayout>

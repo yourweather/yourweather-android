@@ -81,15 +81,5 @@ class SignUp2 : AppCompatActivity() {
 
             binding.btnSignup2Next.isEnabled = false
         }
-        changeVisible(binding.tvSignup2Check2)
-        changeVisible(binding.ivSignup2Check0)
-        changeVisible(binding.tvSignup2Check1)
-    }
-    fun changeVisible(view: View): Int {
-        if (view.visibility == View.VISIBLE) {
-            return View.INVISIBLE
-        } else {
-            return View.VISIBLE
-        }
     }
 }
