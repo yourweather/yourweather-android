@@ -17,6 +17,7 @@ import com.umc.yourweather.entity.CalendarDateInfo
 import com.umc.yourweather.presentation.adapter.CalendarMonthAdapter
 import com.umc.yourweather.util.CalendarUtils.Companion.dpToPx
 import java.time.LocalDate
+import java.time.temporal.ChronoUnit
 
 class CalendarView : AppCompatActivity() {
     lateinit var binding: ActivityCalendarBinding
@@ -39,15 +40,12 @@ class CalendarView : AppCompatActivity() {
 
         // 전으로 이동
         binding.btnCalendarBefore.setOnClickListener {
-            currentPosition = binding.vp2Calendar.currentItem
-            binding.vp2Calendar.setCurrentItem(currentPosition - 1, true)
-            Log.d("앞으로 이동", "앞앞")
+            moveDate(-1)
         }
 
         // 후로 이동
         binding.btnCalendarNext.setOnClickListener {
-            currentPosition = binding.vp2Calendar.currentItem
-            binding.vp2Calendar.setCurrentItem(currentPosition + 1, true)
+            moveDate(1)
         }
 
         // 연월띄우기
@@ -58,6 +56,7 @@ class CalendarView : AppCompatActivity() {
                 setDateInfo()
             }
         })
+
         binding.btnCalendarYear.setOnClickListener {
             val anchorView = findViewById<View>(R.id.ll_calendar_year)
             showPopupWindow(anchorView)
@@ -65,7 +64,7 @@ class CalendarView : AppCompatActivity() {
     }
 
     private fun setDateInfo() {
-        val currentPosition = binding.vp2Calendar.currentItem
+        currentPosition = binding.vp2Calendar.currentItem
         val itemId = monthrAdapter.getItemId(currentPosition).toInt()
 
         calendarDateInfo = CalendarDateInfo(itemId / 100, itemId % 100)
@@ -94,6 +93,24 @@ class CalendarView : AppCompatActivity() {
         popupWindow.setOnDismissListener {
             binding.viewBackgroundView.visibility = View.INVISIBLE
         }
+
+        listView.setOnItemClickListener { _, _, position, _ ->
+            val selectedDate = moveDates[position]
+            val date1 = LocalDate.of(calendarDateInfo.year, calendarDateInfo.month, 1)
+            val date2 = LocalDate.of(selectedDate.year, selectedDate.month, 1)
+
+            // 개월수차이
+            val monthsDifference = ChronoUnit.MONTHS.between(date1, date2)
+            moveDate(monthsDifference.toInt())
+            Log.d("ListView Click", "$monthsDifference 개월")
+            Log.d("ListView Click", "Selected Date: ${selectedDate.year}")
+            popupWindow.dismiss()
+        }
+    }
+
+    fun moveDate(move: Int) {
+        currentPosition = binding.vp2Calendar.currentItem
+        binding.vp2Calendar.setCurrentItem(currentPosition + move, true)
     }
 
     @RequiresApi(Build.VERSION_CODES.O)
