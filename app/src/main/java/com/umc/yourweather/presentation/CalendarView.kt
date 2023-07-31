@@ -40,10 +40,10 @@ class CalendarView : AppCompatActivity() {
 
         // 전으로 이동
         binding.flCalendarBtnback.setOnClickListener {
-            moveDate(-1)
+            moveDate(-1, true)
         }
         binding.flCalendarBtnnext.setOnClickListener {
-            moveDate(1)
+            moveDate(1, true)
         }
         // 연월띄우기
         binding.vp2Calendar.registerOnPageChangeCallback(object :
@@ -98,16 +98,16 @@ class CalendarView : AppCompatActivity() {
 
             // 개월수차이
             val monthsDifference = ChronoUnit.MONTHS.between(date1, date2)
-            moveDate(monthsDifference.toInt())
+            moveDate(monthsDifference.toInt(), false)
             Log.d("ListView Click", "$monthsDifference 개월")
             Log.d("ListView Click", "Selected Date: ${selectedDate.year}")
             popupWindow.dismiss()
         }
     }
 
-    fun moveDate(move: Int) {
+    fun moveDate(move: Int, smoothScroll : Boolean) {
         currentPosition = binding.vp2Calendar.currentItem
-        binding.vp2Calendar.setCurrentItem(currentPosition + move, true)
+        binding.vp2Calendar.setCurrentItem(currentPosition + move, smoothScroll)
     }
 
     @RequiresApi(Build.VERSION_CODES.O)
