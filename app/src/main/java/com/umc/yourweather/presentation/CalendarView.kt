@@ -1,12 +1,9 @@
 package com.umc.yourweather.presentation
 
-import android.graphics.Color
-import android.graphics.drawable.ColorDrawable
 import android.os.Bundle
 import android.util.Log
 import android.view.LayoutInflater
 import android.view.View
-import android.view.ViewGroup
 import android.widget.ArrayAdapter
 import android.widget.ListView
 import android.widget.PopupWindow
@@ -80,9 +77,10 @@ class CalendarView : AppCompatActivity() {
         listView.adapter = adapter
 
         // Calculate the width and height of the PopupWindow
-        val width = dpToPx(this@CalendarView, 167)
+        val width = dpToPx(this@CalendarView, 160)
         val height = dpToPx(this@CalendarView, 405)
-
+        Log.d("가로세로", "가로 : $width 세로: +$height")
+        // dpToPx(this@CalendarView, 405)
         // Initialize the PopupWindow
         popupWindow = PopupWindow(popupView, width, height, true)
         popupWindow.isOutsideTouchable = true
@@ -92,7 +90,7 @@ class CalendarView : AppCompatActivity() {
     fun addMoveDate(): ArrayList<String> {
         var moveDates = ArrayList<String>()
         for (i in 1..120)
-            moveDates.add("test")
+            moveDates.add("$i")
         return moveDates
     }
 }
