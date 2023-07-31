@@ -6,11 +6,11 @@
     android:layout_height="wrap_content"
     android:background="@drawable/bg_gray_f9_fill_10_rect">
 
-    <ListView
-        android:id="@+id/lv_caledar_popup"
+    <androidx.recyclerview.widget.RecyclerView
+        android:id="@+id/rv_caledar_popup"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        android:divider="#525252"
-        android:dividerHeight="1dp"
-        />
+        android:divider="@color/black"
+        android:dividerHeight="1dp" />
+
 </LinearLayout>
