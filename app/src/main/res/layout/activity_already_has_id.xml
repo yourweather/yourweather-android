@@ -1,0 +1,82 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:layout_margin="10dp"
+    android:padding="5dp"
+    android:orientation="vertical">
+
+
+
+    <ImageView
+        android:id="@+id/back_btn"
+        android:layout_width="20sp"
+        android:layout_height="20sp"
+        android:layout_marginTop="10sp"
+        android:src="@drawable/vector2_svg"/>
+
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="30sp"
+        android:text="이미 가입한 계정이 있어요"
+        android:textColor="#F07818"
+        android:textSize="23sp"
+        android:textStyle="bold"/>
+
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:paddingTop="10sp"
+        android:paddingBottom="20sp"
+        android:text="정보가 일치하는 계정이 존재합니다\n아래의 계정으로 로그인해주세요."
+        android:textColor="#ACACAC"/>
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal"
+        android:background="@drawable/rectangle">
+
+        <ImageView
+            android:layout_width="28sp"
+            android:layout_height="28sp"
+            android:layout_marginLeft="20sp"
+            android:layout_marginTop="20sp"
+            android:layout_marginBottom="20sp"
+            android:layout_marginRight="10sp"
+            android:src="@drawable/kakao"/>
+        
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="카카오"
+            android:layout_gravity="center"
+            android:textColor="@color/black"/>
+        
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center"
+            android:layout_margin="10sp"
+            android:text="1234****"
+            android:textSize="10sp"
+            android:textColor="#B5B5B5"/>
+        <View
+            android:layout_width="0sp"
+            android:layout_height="0sp"
+            android:layout_weight="1"/>
+
+        <Button
+            android:layout_width="62sp"
+            android:layout_height="24sp"
+            android:layout_gravity="end|center"
+            android:layout_margin="15sp"
+            android:background="@drawable/login_button"
+            android:foreground="@drawable/login_button"/>
+
+    </LinearLayout>
+
+</LinearLayout>
