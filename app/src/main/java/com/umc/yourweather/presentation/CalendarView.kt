@@ -39,15 +39,12 @@ class CalendarView : AppCompatActivity() {
         setDateInfo()
 
         // 전으로 이동
-        binding.btnCalendarBefore.setOnClickListener {
+        binding.flCalendarBtnback.setOnClickListener {
             moveDate(-1)
         }
-
-        // 후로 이동
-        binding.btnCalendarNext.setOnClickListener {
+        binding.flCalendarBtnnext.setOnClickListener {
             moveDate(1)
         }
-
         // 연월띄우기
         binding.vp2Calendar.registerOnPageChangeCallback(object :
             ViewPager2.OnPageChangeCallback() {
@@ -78,7 +75,7 @@ class CalendarView : AppCompatActivity() {
         val listView = popupView.findViewById<ListView>(R.id.lv_caledar_popup)
         var moveDates = addMoveDate()
 
-        val adapter = ArrayAdapter(this@CalendarView, android.R.layout.simple_list_item_1, moveDates.map { it.toString() })
+        val adapter = ArrayAdapter(this@CalendarView, R.layout.textview_item_listview_calendar, moveDates.map { it.toString() })
         listView.adapter = adapter
 
         val width = dpToPx(this@CalendarView, 190)
