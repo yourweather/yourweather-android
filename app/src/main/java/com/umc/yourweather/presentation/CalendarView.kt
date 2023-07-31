@@ -1,7 +1,5 @@
 package com.umc.yourweather.presentation
 
-import android.graphics.Color
-import android.graphics.drawable.ColorDrawable
 import android.os.Build
 import android.os.Bundle
 import android.util.Log
@@ -10,7 +8,6 @@ import android.view.View
 import android.widget.PopupWindow
 import androidx.annotation.RequiresApi
 import androidx.appcompat.app.AppCompatActivity
-import androidx.recyclerview.widget.DividerItemDecoration
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
 import androidx.viewpager2.widget.ViewPager2
@@ -79,13 +76,6 @@ class CalendarView : AppCompatActivity() {
             LayoutInflater.from(this@CalendarView).inflate(R.layout.popupwindow_calendar, null)
         val rcView = popupView.findViewById<RecyclerView>(R.id.rv_caledar_popup)
         var moveDates = addMoveDate()
-
-        val decoration = DividerItemDecoration(this, DividerItemDecoration.VERTICAL)
-        val dividerDrawable = ColorDrawable(Color.parseColor("#000000"))
-        dividerDrawable.setBounds(0, 0, rcView.width, 1)
-
-        decoration.setDrawable(dividerDrawable)
-        rcView.addItemDecoration(decoration)
 
         val adapter = CalendarSelectAdapter(this@CalendarView, moveDates, calendarDateInfo)
 

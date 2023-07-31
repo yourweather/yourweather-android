@@ -15,4 +15,9 @@
         android:text="textview"
         android:textColor="#000000"
         android:textSize="12dp" />
+
+    <View
+        android:layout_width="match_parent"
+        android:layout_height="1dp"
+        android:background="#0C0000" />
 </LinearLayout>
