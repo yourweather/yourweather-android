@@ -18,6 +18,7 @@
             android:id="@+id/iv_back"
             android:layout_width="10sp"
             android:layout_height="20sp"
+            android:layout_margin="15dp"
             android:src="@drawable/vector2_svg"
             android:tint="#2B2B2B"
             app:layout_constraintBottom_toBottomOf="parent"

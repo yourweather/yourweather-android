@@ -64,13 +64,21 @@
             android:name=".presentation.FindPw"
             android:exported="false" />
         <activity
-            android:name=".presentation.MainActivity"
-            android:exported="true">
-            <intent-filter>
-                <action android:name="android.intent.action.MAIN" />
+            android:name=".presentation.my_alarm"
+            android:exported="false" />
+        <activity
+            android:name=".presentation.my_info"
+            android:exported="false" />
+        <activity
+            android:name=".presentation.myPage"
+            android:exported="false" />
+        <activity
+            android:name=".presentation.WithdrawPage"
+            android:exported="false" />
 
-                <category android:name="android.intent.category.LAUNCHER" />
-            </intent-filter>
+        <activity
+            android:name=".presentation.MainActivity"
+            android:exported="false" >
         </activity>
         <activity
             android:name=".presentation.Splash"
