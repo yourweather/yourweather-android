@@ -95,7 +95,6 @@
         <activity
             android:name=".presentation.CalendarDetailView3"
             android:exported="false"/>
-
         <activity
             android:name=".presentation.BottomNavi"
             android:exported="false"/>
