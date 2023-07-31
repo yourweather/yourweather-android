@@ -10,11 +10,14 @@ import android.widget.ListView
 import android.widget.PopupWindow
 import androidx.annotation.RequiresApi
 import androidx.appcompat.app.AppCompatActivity
+import androidx.recyclerview.widget.LinearLayoutManager
+import androidx.recyclerview.widget.RecyclerView
 import androidx.viewpager2.widget.ViewPager2
 import com.umc.yourweather.R
 import com.umc.yourweather.databinding.ActivityCalendarBinding
 import com.umc.yourweather.entity.CalendarDateInfo
 import com.umc.yourweather.presentation.adapter.CalendarMonthAdapter
+import com.umc.yourweather.presentation.adapter.CalendarSelectAdapter
 import com.umc.yourweather.util.CalendarUtils.Companion.dpToPx
 import java.time.LocalDate
 import java.time.temporal.ChronoUnit
@@ -71,12 +74,15 @@ class CalendarView : AppCompatActivity() {
 
     @RequiresApi(Build.VERSION_CODES.O)
     fun showPopupWindow(anchorView: View) {
-        val popupView = LayoutInflater.from(this@CalendarView).inflate(R.layout.popupwindow_calendar, null)
-        val listView = popupView.findViewById<ListView>(R.id.lv_caledar_popup)
+        val popupView =
+            LayoutInflater.from(this@CalendarView).inflate(R.layout.popupwindow_calendar, null)
+        val rcView = popupView.findViewById<RecyclerView>(R.id.rv_caledar_popup)
         var moveDates = addMoveDate()
 
-        val adapter = ArrayAdapter(this@CalendarView, R.layout.textview_item_listview_calendar, moveDates.map { it.toString() })
-        listView.adapter = adapter
+        val adapter = CalendarSelectAdapter(this@CalendarView, moveDates, calendarDateInfo)
+        //val adapter = ArrayAdapter(this@CalendarView, R.layout.textview_item_listview_calendar, moveDates.map { it.toString() })
+        rcView.adapter = adapter
+        rcView.layoutManager = LinearLayoutManager(this@CalendarView)
 
         val width = dpToPx(this@CalendarView, 190)
         val height = dpToPx(this@CalendarView, 462)
@@ -91,21 +97,23 @@ class CalendarView : AppCompatActivity() {
             binding.viewBackgroundView.visibility = View.INVISIBLE
         }
 
-        listView.setOnItemClickListener { _, _, position, _ ->
-            val selectedDate = moveDates[position]
-            val date1 = LocalDate.of(calendarDateInfo.year, calendarDateInfo.month, 1)
-            val date2 = LocalDate.of(selectedDate.year, selectedDate.month, 1)
+        adapter.setOnItemClickListener(object : CalendarSelectAdapter.OnItemClickListener {
+            override fun onItemClick(view: View, position: Int) {
+                val selectedDate = moveDates[position]
+                val date1 = LocalDate.of(calendarDateInfo.year, calendarDateInfo.month, 1)
+                val date2 = LocalDate.of(selectedDate.year, selectedDate.month, 1)
 
-            // 개월수차이
-            val monthsDifference = ChronoUnit.MONTHS.between(date1, date2)
-            moveDate(monthsDifference.toInt(), false)
-            Log.d("ListView Click", "$monthsDifference 개월")
-            Log.d("ListView Click", "Selected Date: ${selectedDate.year}")
-            popupWindow.dismiss()
-        }
+                // 개월수차이
+                val monthsDifference = ChronoUnit.MONTHS.between(date1, date2)
+                moveDate(monthsDifference.toInt(), false)
+                Log.d("ListView Click", "$monthsDifference 개월")
+                Log.d("ListView Click", "Selected Date: ${selectedDate.year}")
+                popupWindow.dismiss()
+            }
+        })
     }
 
-    fun moveDate(move: Int, smoothScroll : Boolean) {
+    fun moveDate(move: Int, smoothScroll: Boolean) {
         currentPosition = binding.vp2Calendar.currentItem
         binding.vp2Calendar.setCurrentItem(currentPosition + move, smoothScroll)
     }
