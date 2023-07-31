@@ -84,9 +84,6 @@
             android:name=".presentation.SignUp"
             android:exported="false" />
         <activity
-            android:name=".presentation.SignIn"
-            android:exported="false" />
-        <activity
             android:name=".presentation.FindPw"
             android:exported="false" />
         <activity
@@ -104,7 +101,7 @@
             android:exported="false"/>
 
         <activity
-            android:name=".presentation.MainActivity"
+            android:name=".presentation.SignIn"
             android:exported="true">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
