@@ -9,5 +9,8 @@
     <ListView
         android:id="@+id/lv_caledar_popup"
         android:layout_width="match_parent"
-        android:layout_height="match_parent" />
+        android:layout_height="match_parent"
+        android:divider="#525252"
+        android:dividerHeight="1dp"
+        />
 </LinearLayout>

@@ -1,28 +1,31 @@
 package com.umc.yourweather.presentation
 
+import android.os.Build
 import android.os.Bundle
 import android.util.Log
-import android.view.Gravity
 import android.view.LayoutInflater
 import android.view.View
-import android.view.ViewGroup
 import android.widget.ArrayAdapter
 import android.widget.ListView
 import android.widget.PopupWindow
+import androidx.annotation.RequiresApi
 import androidx.appcompat.app.AppCompatActivity
 import androidx.viewpager2.widget.ViewPager2
 import com.umc.yourweather.R
 import com.umc.yourweather.databinding.ActivityCalendarBinding
+import com.umc.yourweather.entity.CalendarDateInfo
 import com.umc.yourweather.presentation.adapter.CalendarMonthAdapter
 import com.umc.yourweather.util.CalendarUtils.Companion.dpToPx
+import java.time.LocalDate
 
 class CalendarView : AppCompatActivity() {
     lateinit var binding: ActivityCalendarBinding
     lateinit var monthrAdapter: CalendarMonthAdapter
     lateinit var popupWindow: PopupWindow
-
+    lateinit var calendarDateInfo: CalendarDateInfo
     var currentPosition = 0
 
+    @RequiresApi(Build.VERSION_CODES.O)
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         binding = ActivityCalendarBinding.inflate(layoutInflater)
@@ -63,19 +66,20 @@ class CalendarView : AppCompatActivity() {
 
     private fun setDateInfo() {
         val currentPosition = binding.vp2Calendar.currentItem
-        val itemId = monthrAdapter.getItemId(currentPosition)
-        val year = itemId / 100L
-        val month = itemId % 100L
-        binding.tvCalendarMonth.text = month.toString() + "월"
-        binding.tvCalendarYear.text = year.toString() + "년"
+        val itemId = monthrAdapter.getItemId(currentPosition).toInt()
+
+        calendarDateInfo = CalendarDateInfo(itemId / 100, itemId % 100)
+        binding.tvCalendarMonth.text = calendarDateInfo.month.toString() + "월"
+        binding.tvCalendarYear.text = calendarDateInfo.year.toString() + "년"
     }
 
+    @RequiresApi(Build.VERSION_CODES.O)
     fun showPopupWindow(anchorView: View) {
         val popupView = LayoutInflater.from(this@CalendarView).inflate(R.layout.popupwindow_calendar, null)
         val listView = popupView.findViewById<ListView>(R.id.lv_caledar_popup)
         var moveDates = addMoveDate()
 
-        val adapter = ArrayAdapter(this@CalendarView, android.R.layout.simple_list_item_1, moveDates)
+        val adapter = ArrayAdapter(this@CalendarView, android.R.layout.simple_list_item_1, moveDates.map { it.toString() })
         listView.adapter = adapter
 
         val width = dpToPx(this@CalendarView, 190)
@@ -92,10 +96,27 @@ class CalendarView : AppCompatActivity() {
         }
     }
 
-    fun addMoveDate(): ArrayList<String> {
-        var moveDates = ArrayList<String>()
-        for (i in 1..120)
-            moveDates.add("$i")
+    @RequiresApi(Build.VERSION_CODES.O)
+    fun addMoveDate(): ArrayList<CalendarDateInfo> {
+        var moveDates = ArrayList<CalendarDateInfo>()
+
+        val todayDate = LocalDate.now()
+        // CurrentDate : 현재 위치하고 있는곳
+        var currentDate = LocalDate.of(calendarDateInfo.year, calendarDateInfo.month, calendarDateInfo.date)
+
+        // 현재 기준 이번달~현재 위치하고 있는 달 전까지
+        var tmpDate = todayDate
+        while (!tmpDate.monthValue.equals(currentDate.monthValue)) {
+            moveDates.add(CalendarDateInfo(tmpDate.year, tmpDate.monthValue, 1))
+            tmpDate = tmpDate.minusMonths(1)
+        }
+
+        // 현재 위치하고 있는달 ~ 그로부터 10년간의 달
+        for (i in 1..120) {
+            moveDates.add(CalendarDateInfo(tmpDate.year, tmpDate.monthValue, 1))
+            tmpDate = tmpDate.minusMonths(1)
+        }
+
         return moveDates
     }
 }
