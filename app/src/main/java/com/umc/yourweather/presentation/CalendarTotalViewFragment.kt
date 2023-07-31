@@ -5,14 +5,15 @@ import android.os.Bundle
 import android.util.Log
 import android.view.LayoutInflater
 import android.view.View
+import android.view.ViewGroup
 import android.widget.PopupWindow
 import androidx.annotation.RequiresApi
-import androidx.appcompat.app.AppCompatActivity
+import androidx.fragment.app.Fragment
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
 import androidx.viewpager2.widget.ViewPager2
 import com.umc.yourweather.R
-import com.umc.yourweather.databinding.ActivityCalendarBinding
+import com.umc.yourweather.databinding.FragmentCalendarTotalViewBinding
 import com.umc.yourweather.entity.CalendarDateInfo
 import com.umc.yourweather.presentation.adapter.CalendarMonthAdapter
 import com.umc.yourweather.presentation.adapter.CalendarSelectAdapter
@@ -20,20 +21,27 @@ import com.umc.yourweather.util.CalendarUtils.Companion.dpToPx
 import java.time.LocalDate
 import java.time.temporal.ChronoUnit
 
-class CalendarView : AppCompatActivity() {
-    lateinit var binding: ActivityCalendarBinding
+class CalendarTotalViewFragment : Fragment() {
+    lateinit var binding: FragmentCalendarTotalViewBinding
     lateinit var monthrAdapter: CalendarMonthAdapter
     lateinit var popupWindow: PopupWindow
     lateinit var calendarDateInfo: CalendarDateInfo
     var currentPosition = 0
 
-    @RequiresApi(Build.VERSION_CODES.O)
-    override fun onCreate(savedInstanceState: Bundle?) {
-        super.onCreate(savedInstanceState)
-        binding = ActivityCalendarBinding.inflate(layoutInflater)
+    override fun onCreateView(
+        inflater: LayoutInflater,
+        container: ViewGroup?,
+        savedInstanceState: Bundle?,
+    ): View? {
+        binding = FragmentCalendarTotalViewBinding.inflate(inflater, container, false)
+        return binding.root
+    }
 
-        setContentView(binding.root)
-        monthrAdapter = CalendarMonthAdapter(this)
+    @RequiresApi(Build.VERSION_CODES.O)
+    override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
+        super.onViewCreated(view, savedInstanceState)
+
+        monthrAdapter = CalendarMonthAdapter(requireActivity())
 
         binding.vp2Calendar.adapter = monthrAdapter
         binding.vp2Calendar.setCurrentItem(CalendarMonthAdapter.START_POSITION, false)
@@ -56,7 +64,7 @@ class CalendarView : AppCompatActivity() {
         })
 
         binding.btnCalendarYear.setOnClickListener {
-            val anchorView = findViewById<View>(R.id.ll_calendar_year)
+            val anchorView = binding.llCalendarYear
             showPopupWindow(anchorView)
         }
     }
@@ -73,17 +81,17 @@ class CalendarView : AppCompatActivity() {
     @RequiresApi(Build.VERSION_CODES.O)
     fun showPopupWindow(anchorView: View) {
         val popupView =
-            LayoutInflater.from(this@CalendarView).inflate(R.layout.popupwindow_calendar, null)
+            LayoutInflater.from(requireContext()).inflate(R.layout.popupwindow_calendar, null)
         val rcView = popupView.findViewById<RecyclerView>(R.id.rv_caledar_popup)
         var moveDates = addMoveDate()
 
-        val adapter = CalendarSelectAdapter(this@CalendarView, moveDates, calendarDateInfo)
+        val adapter = CalendarSelectAdapter(requireContext(), moveDates, calendarDateInfo)
 
         rcView.adapter = adapter
-        rcView.layoutManager = LinearLayoutManager(this@CalendarView)
+        rcView.layoutManager = LinearLayoutManager(requireContext())
 
-        val width = dpToPx(this@CalendarView, 190)
-        val height = dpToPx(this@CalendarView, 462)
+        val width = dpToPx(requireContext(), 190)
+        val height = dpToPx(requireContext(), 462)
 
         popupWindow = PopupWindow(popupView, width, height, true)
 

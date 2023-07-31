@@ -72,7 +72,7 @@
             android:name=".presentation.AnalysisActivity"
             android:exported="false" />
         <activity
-            android:name=".presentation.CalendarView"
+            android:name=".presentation.CalendarTotalViewFragment"
             android:exported="false" />
         <activity
             android:name=".presentation.SignUp2"
