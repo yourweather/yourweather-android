@@ -23,7 +23,7 @@ class CalendarMonth @JvmOverloads constructor(
     private val onDateClickListener = object : CalendarDate.OnDateClickListener {
         override fun onDateClick(date: Date) {
             Log.d("캘린더 클릭", "Clicked date: $date, 여기는 CalendarMonth")
-            val mIntent = Intent(context, SignIn::class.java)
+            val mIntent = Intent(context, CalendarDetailView1::class.java)
             val cal = Calendar.getInstance()
             cal.time = date
 
@@ -35,7 +35,7 @@ class CalendarMonth @JvmOverloads constructor(
             mIntent.putExtra("month", month)
             mIntent.putExtra("date", date)
 
-            Toast.makeText(context, "캘린더 클릭 확인 ${year}년 ${month}월 ${date}일", Toast.LENGTH_SHORT).show()
+            // Toast.makeText(context, "캘린더 클릭 확인 ${year}년 ${month}월 ${date}일", Toast.LENGTH_SHORT).show()
             context.startActivity(mIntent)
         }
     }
