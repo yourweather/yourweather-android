@@ -205,6 +205,6 @@
         android:id="@+id/view_backgroundView"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        android:visibility="invisible"
-        android:background="#80000000" />
+        android:background="#CC000000"
+        android:visibility="invisible" />
 </androidx.constraintlayout.widget.ConstraintLayout>
