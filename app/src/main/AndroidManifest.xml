@@ -27,6 +27,18 @@
             android:name=".presentation.MyPageNicknameChange"
             android:exported="false" />
         <activity
+            android:name=".presentation.WrittenDetailListActivityThunderWeekly"
+            android:exported="false" />
+        <activity
+            android:name=".presentation.WrittenDetailListActivitySunWeekly"
+            android:exported="false" />
+        <activity
+            android:name=".presentation.WrittenDetailListActivityRainWeekly"
+            android:exported="false" />
+        <activity
+            android:name=".presentation.WrittenDetailListActivityCloudWeekly"
+            android:exported="false" />
+        <activity
             android:name=".presentation.WrittenDetailListActivityCloud"
             android:exported="false" />
         <activity

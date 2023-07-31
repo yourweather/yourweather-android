@@ -73,7 +73,6 @@ class AnalysisActivity : AppCompatActivity() {
         binding.btnBell.setOnClickListener {
             val mIntent = Intent(this, UnwrittenDetailListActivity::class.java)
             startActivity(mIntent)
-            finish()
         }
     }
 
