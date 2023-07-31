@@ -2,8 +2,10 @@ package com.umc.yourweather.presentation
 
 import android.os.Bundle
 import android.util.Log
+import android.view.Gravity
 import android.view.LayoutInflater
 import android.view.View
+import android.view.ViewGroup
 import android.widget.ArrayAdapter
 import android.widget.ListView
 import android.widget.PopupWindow
@@ -54,7 +56,8 @@ class CalendarView : AppCompatActivity() {
             }
         })
         binding.btnCalendarYear.setOnClickListener {
-            showPopupWindow(it)
+            val anchorView = findViewById<View>(R.id.ll_calendar_year)
+            showPopupWindow(anchorView)
         }
     }
 
@@ -72,19 +75,21 @@ class CalendarView : AppCompatActivity() {
         val listView = popupView.findViewById<ListView>(R.id.lv_caledar_popup)
         var moveDates = addMoveDate()
 
-        // Create an ArrayAdapter to populate the ListView
         val adapter = ArrayAdapter(this@CalendarView, android.R.layout.simple_list_item_1, moveDates)
         listView.adapter = adapter
 
-        // Calculate the width and height of the PopupWindow
-        val width = dpToPx(this@CalendarView, 160)
-        val height = dpToPx(this@CalendarView, 405)
-        Log.d("가로세로", "가로 : $width 세로: +$height")
-        // dpToPx(this@CalendarView, 405)
-        // Initialize the PopupWindow
+        val width = dpToPx(this@CalendarView, 190)
+        val height = dpToPx(this@CalendarView, 462)
+
         popupWindow = PopupWindow(popupView, width, height, true)
+
         popupWindow.isOutsideTouchable = true
         popupWindow.showAsDropDown(anchorView)
+        binding.viewBackgroundView.visibility = View.VISIBLE
+
+        popupWindow.setOnDismissListener {
+            binding.viewBackgroundView.visibility = View.INVISIBLE
+        }
     }
 
     fun addMoveDate(): ArrayList<String> {
