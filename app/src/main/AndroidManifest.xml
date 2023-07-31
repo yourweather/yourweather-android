@@ -12,6 +12,32 @@
         android:supportsRtl="true"
         android:theme="@style/Theme.Yourweather"
         tools:targetApi="31">
+
+        <activity
+            android:name=".presentation.InitialNoWeather"
+            android:exported="true"/>
+        <activity
+            android:name=".presentation.Home"
+            android:exported="true"
+            android:windowSoftInputMode="adjustResize" />
+        <activity
+            android:name=".presentation.MyPagePwChange"
+            android:exported="false" />
+        <activity
+            android:name=".presentation.MyPageNicknameChange"
+            android:exported="false" />
+        <activity
+            android:name=".presentation.WrittenDetailListActivityThunderWeekly"
+            android:exported="false" />
+        <activity
+            android:name=".presentation.WrittenDetailListActivitySunWeekly"
+            android:exported="false" />
+        <activity
+            android:name=".presentation.WrittenDetailListActivityRainWeekly"
+            android:exported="false" />
+        <activity
+            android:name=".presentation.WrittenDetailListActivityCloudWeekly"
+            android:exported="false" />
         <activity
             android:name=".presentation.WrittenDetailListActivityCloud"
             android:exported="false" />
@@ -75,11 +101,23 @@
         <activity
             android:name=".presentation.WithdrawPage"
             android:exported="false" />
+        <activity
+            android:name=".presentation.CalendarDetailView1"
+            android:exported="false"/>
+        <activity
+            android:name=".presentation.CalendarDetailView2"
+            android:exported="false"/>
+        <activity
+            android:name=".presentation.CalendarDetailView3"
+            android:exported="false"/>
 
         <activity
             android:name=".presentation.MainActivity"
-            android:exported="false" >
-        </activity>
+            android:exported="true">
+            <intent-filter>
+                <action android:name="android.intent.action.MAIN" />
+
+              
         <activity
             android:name=".presentation.Splash"
             android:exported="true"

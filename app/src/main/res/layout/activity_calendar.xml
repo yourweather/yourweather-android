@@ -5,6 +5,7 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     tools:context=".presentation.CalendarView">
+
     <LinearLayout
         android:id="@+id/ll_calendar_bar"
         android:layout_width="0dp"
@@ -18,21 +19,33 @@
             android:id="@+id/tv_unwritten_title"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_marginLeft="16dp"
-            android:layout_marginTop="26dp"
-            android:fontFamily="@font/pretendardbold"
+            android:layout_gravity="center|center_vertical"
+            android:layout_marginLeft="19dp"
+            android:layout_marginTop="19dp"
+            android:layout_marginRight="12dp"
+            android:layout_marginBottom="20dp"
+            android:fontFamily="@font/bmhanna"
             android:text="캘린더"
             android:textColor="#F07818"
             android:textSize="24dp"
             android:textStyle="bold" />
+
+        <ImageView
+            android:id="@+id/imageView"
+            android:layout_width="12dp"
+            android:layout_height="12dp"
+            android:layout_marginTop="25dp"
+            app:srcCompat="@drawable/ic_signup_authic" />
 
     </LinearLayout>
 
     <LinearLayout
         android:id="@+id/ll_calendar_year"
         android:layout_width="match_parent"
-        android:layout_height="wrap_content"
+        android:layout_height="0dp"
+        android:layout_marginStart="121dp"
         android:layout_marginTop="9dp"
+        android:layout_marginEnd="121dp"
         android:gravity="center"
         android:orientation="horizontal"
         app:layout_constraintEnd_toEndOf="parent"
@@ -65,12 +78,19 @@
         android:orientation="horizontal"
         app:layout_constraintTop_toBottomOf="@+id/ll_calendar_year">
 
-        <androidx.appcompat.widget.AppCompatButton
-            android:id="@+id/btn_calendar_before"
-            android:layout_width="7dp"
-            android:layout_height="14dp"
-            android:layout_marginLeft="123dp"
-            android:background="@drawable/btn_calendar_left" />
+        <FrameLayout
+            android:id="@+id/fl_calendar_btnback"
+            android:layout_width="20dp"
+            android:layout_height="match_parent"
+            android:layout_marginLeft="120dp">
+
+            <androidx.appcompat.widget.AppCompatButton
+                android:id="@+id/btn_calendar_before"
+                android:layout_width="7dp"
+                android:layout_height="14dp"
+                android:layout_gravity="center"
+                android:background="@drawable/btn_calendar_left" />
+        </FrameLayout>
 
         <TextView
             android:id="@+id/tv_calendar_month"
@@ -83,12 +103,20 @@
             android:text="nn 월"
             android:textSize="16dp" />
 
-        <androidx.appcompat.widget.AppCompatButton
-            android:id="@+id/btn_calendar_next"
-            android:layout_width="7dp"
-            android:layout_height="14dp"
-            android:layout_marginRight="123dp"
-            android:background="@drawable/btn_calendar_right" />
+        <FrameLayout
+            android:id="@+id/fl_calendar_btnnext"
+            android:layout_width="20dp"
+            android:layout_height="match_parent"
+            android:layout_marginRight="120dp">
+
+            <androidx.appcompat.widget.AppCompatButton
+                android:id="@+id/btn_calendar_next"
+                android:layout_width="7dp"
+                android:layout_height="14dp"
+                android:layout_gravity="center"
+                android:background="@drawable/btn_calendar_right" />
+        </FrameLayout>
+
     </LinearLayout>
 
     <LinearLayout
@@ -203,6 +231,6 @@
         android:id="@+id/view_backgroundView"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        android:visibility="invisible"
-        android:background="#80000000" />
+        android:background="#CC000000"
+        android:visibility="invisible" />
 </androidx.constraintlayout.widget.ConstraintLayout>

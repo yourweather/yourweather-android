@@ -7,14 +7,14 @@ import com.umc.yourweather.presentation.CalendarFragment
 import java.util.Calendar
 import java.util.Date
 
-class CalendarMonthAdapter (fragmentActivity: FragmentActivity) : FragmentStateAdapter(fragmentActivity){
-    companion object{
+class CalendarMonthAdapter(fragmentActivity: FragmentActivity) : FragmentStateAdapter(fragmentActivity) {
+    companion object {
         const val START_POSITION = Int.MAX_VALUE / 2
     }
 
-    override fun getItemCount() : Int =  Int.MAX_VALUE
+    override fun getItemCount(): Int = Int.MAX_VALUE
 
-    override fun createFragment (position: Int): CalendarFragment {
+    override fun createFragment(position: Int): CalendarFragment {
         val itemId = getItemId(position).toInt()
         return CalendarFragment().apply {
             arguments = Bundle().apply {

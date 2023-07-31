@@ -1,0 +1,602 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context=".presentation.CalendarDetailView1">
+
+    <TextView
+        android:id="@+id/textView"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="87dp"
+        android:layout_marginTop="82dp"
+        android:layout_marginEnd="88dp"
+        android:fontFamily="@font/bmhanna"
+        android:text="7월 1일 이다은 님의 날씨"
+        android:textColor="#2B2B2B"
+        android:textFontWeight="600"
+        android:textSize="20sp"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
+
+    <View
+        android:id="@+id/divider"
+        android:layout_width="415dp"
+        android:layout_height="8dp"
+        android:layout_marginTop="26dp"
+        android:background="#D9D9D9"
+
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/horizontalScrollView2" />
+
+    <ScrollView
+        android:layout_width="0dp"
+        android:layout_height="0dp"
+        android:layout_marginStart="17dp"
+        android:layout_marginTop="50dp"
+        android:layout_marginEnd="19dp"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/divider">
+
+        <LinearLayout
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center"
+            android:orientation="vertical">
+
+            <TextView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:fontFamily="@font/pretendardregular"
+                android:text="오후 1시"
+                android:textColor="#2B2B2B"
+                android:textFontWeight="500" />
+
+            <androidx.cardview.widget.CardView
+                android:id="@+id/card_view1"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_margin="5dp"
+                app:cardBackgroundColor="#f5f5f5"
+                app:cardCornerRadius="12dp"
+                app:cardElevation="3dp"
+                app:contentPadding="4dp">
+
+                <RelativeLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:padding="16dp">
+
+                    <TextView
+                        android:id="@+id/item_detail1"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:textSize="13sp"
+                        android:fontFamily="@font/pretendardregular"
+                        android:text="맑음으로 기분좋게 하루를 시작하고 싶다!" />
+
+                </RelativeLayout>
+
+            </androidx.cardview.widget.CardView>
+
+            <TextView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:fontFamily="@font/pretendardregular"
+                android:text="오후 3시"
+                android:textColor="#2B2B2B"
+                android:textFontWeight="500" />
+
+            <androidx.cardview.widget.CardView
+                android:id="@+id/card_view2"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_margin="5dp"
+                app:cardBackgroundColor="#f5f5f5"
+                app:cardCornerRadius="12dp"
+                app:cardElevation="3dp"
+                app:contentPadding="4dp">
+
+                <RelativeLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:padding="16dp">
+
+                    <TextView
+                        android:id="@+id/item_detail2"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:textSize="13sp"
+                        android:fontFamily="@font/pretendardregular"
+                        android:text="비와서 우울해ㅜ" />
+
+                </RelativeLayout>
+
+            </androidx.cardview.widget.CardView>
+
+            <TextView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:fontFamily="@font/pretendardregular"
+                android:text="오후 5시"
+                android:textColor="#2B2B2B"
+                android:textFontWeight="500" />
+
+            <androidx.cardview.widget.CardView
+                android:id="@+id/card_view3"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_margin="5dp"
+                app:cardBackgroundColor="#f5f5f5"
+                app:cardCornerRadius="12dp"
+                app:cardElevation="3dp"
+                app:contentPadding="4dp">
+
+                <RelativeLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:padding="16dp">
+
+                    <TextView
+                        android:id="@+id/item_detail3"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:textSize="13sp"
+                        android:fontFamily="@font/pretendardregular"
+                        android:text="비는 오지만 내 마음의 비는 제로! 그저 빨리 집에 가고 싶은 마음 뿐.." />
+
+                </RelativeLayout>
+
+            </androidx.cardview.widget.CardView>
+
+            <TextView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:fontFamily="@font/pretendardregular"
+                android:text="오후 7시"
+                android:textColor="#2B2B2B"
+                android:textFontWeight="500" />
+
+            <androidx.cardview.widget.CardView
+                android:id="@+id/card_view4"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_margin="5dp"
+                app:cardBackgroundColor="#f5f5f5"
+                app:cardCornerRadius="12dp"
+                app:cardElevation="3dp"
+                app:contentPadding="4dp">
+
+                <RelativeLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:padding="16dp">
+
+                    <TextView
+                        android:id="@+id/item_detail4"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:textSize="13sp"
+                        android:fontFamily="@font/pretendardregular"
+                        android:text="늘 적응 안되는 퇴근길..천둥이 친다." />
+
+                </RelativeLayout>
+
+            </androidx.cardview.widget.CardView>
+
+            <TextView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:fontFamily="@font/pretendardregular"
+                android:text="오후 9시"
+                android:textColor="#2B2B2B"
+                android:textFontWeight="500" />
+
+            <androidx.cardview.widget.CardView
+                android:id="@+id/card_view5"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_margin="5dp"
+                app:cardBackgroundColor="#f5f5f5"
+                app:cardCornerRadius="12dp"
+                app:cardElevation="3dp"
+                app:contentPadding="4dp">
+
+                <RelativeLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:padding="16dp">
+
+                    <TextView
+                        android:id="@+id/item_detail5"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:textSize="13sp"
+                        android:fontFamily="@font/pretendardregular"
+                        android:text="야식 먹고 싶었던 가게가 문을 일찍 닫아버렸다. 천둥 가득가득.. " />
+
+                </RelativeLayout>
+
+            </androidx.cardview.widget.CardView>
+        </LinearLayout>
+
+
+    </ScrollView>
+
+
+    <HorizontalScrollView
+        android:id="@+id/horizontalScrollView2"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="9dp"
+        android:layout_marginTop="46dp"
+        android:layout_marginEnd="8dp"
+        android:background="@drawable/bg_gray_ed_fill_6_rect"
+        android:foregroundGravity="center"
+        android:orientation="vertical"
+        android:scrollbars="none"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/textView"
+        tools:ignore="SpeakableTextPresentCheck">
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="vertical">
+
+            <LinearLayout
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_gravity="center"
+                android:orientation="horizontal">
+
+                <TextView
+                    android:layout_width="64dp"
+                    android:layout_height="27dp"
+                    android:layout_marginTop="6dp"
+                    android:fontFamily="@font/pretendardregular"
+                    android:text="오후 1:00"
+                    android:layout_marginStart="9dp"
+                    android:layout_marginEnd="19dp"
+                    android:textAlignment="center"
+                    android:textColor="#2B2B2B"
+                    android:textFontWeight="600"
+                    android:textSize="14sp" />
+
+                <TextView
+                    android:layout_width="64dp"
+                    android:layout_height="27dp"
+                    android:layout_marginTop="6dp"
+                    android:fontFamily="@font/pretendardregular"
+                    android:layout_marginEnd="19dp"
+                    android:text="오후 3:00"
+                    android:textAlignment="center"
+                    android:textColor="#2B2B2B"
+                    android:textFontWeight="600"
+                    android:textSize="14sp" />
+
+                <TextView
+                    android:layout_width="64dp"
+                    android:layout_height="27dp"
+                    android:layout_marginTop="6dp"
+                    android:layout_marginEnd="19dp"
+                    android:fontFamily="@font/pretendardregular"
+                    android:text="오후 5:00"
+                    android:textAlignment="center"
+                    android:textColor="#2B2B2B"
+                    android:textFontWeight="600"
+                    android:textSize="14sp" />
+
+                <TextView
+                    android:layout_width="64dp"
+                    android:layout_height="27dp"
+                    android:layout_marginTop="6dp"
+                    android:layout_marginEnd="19dp"
+                    android:fontFamily="@font/pretendardregular"
+                    android:text="오후 7:00"
+                    android:textAlignment="center"
+                    android:textColor="#2B2B2B"
+                    android:textFontWeight="600"
+                    android:textSize="14sp"></TextView>
+
+                <TextView
+                    android:layout_width="64dp"
+                    android:layout_height="27dp"
+                    android:layout_marginTop="6dp"
+                    android:fontFamily="@font/pretendardregular"
+                    android:text="오후 9:00"
+                    android:textAlignment="center"
+                    android:textColor="#2B2B2B"
+                    android:textFontWeight="600"
+                    android:textSize="14sp"></TextView>
+
+            </LinearLayout>
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="horizontal"
+                android:layout_gravity="center"
+                >
+
+                <FrameLayout
+                    android:layout_width="53dp"
+                    android:layout_height="54dp"
+                    android:layout_gravity="center"
+                    android:layout_marginEnd="14dp"
+                    android:layout_marginStart="19dp"
+                    >
+
+                    <ImageView
+                        android:layout_width="53dp"
+                        android:layout_height="52dp"
+                        android:layout_marginBottom="600dp"
+                        app:srcCompat="@drawable/bg_whitecircle" />
+
+                    <ImageView
+                        android:layout_width="73dp"
+                        android:layout_height="72dp"
+                        android:layout_gravity="center"
+                        app:srcCompat="@drawable/ic_sun"
+                        />
+                </FrameLayout>
+
+                <FrameLayout
+                    android:layout_width="53dp"
+                    android:layout_height="54dp"
+                    android:layout_gravity="center"
+                    android:layout_marginEnd="15dp"
+                    android:layout_marginStart="15dp">
+
+                    <ImageView
+                        android:layout_width="53dp"
+                        android:layout_height="52dp"
+                        android:layout_marginBottom="600dp"
+                        app:srcCompat="@drawable/bg_whitecircle" />
+
+                    <ImageView
+                        android:layout_width="73dp"
+                        android:layout_height="72dp"
+                        android:layout_gravity="center"
+                        app:srcCompat="@drawable/ic_cloud" />
+                </FrameLayout>
+
+                <FrameLayout
+                    android:layout_width="53dp"
+                    android:layout_height="52dp"
+                    android:layout_gravity="center"
+                    android:layout_marginEnd="15dp"
+                    android:layout_marginStart="15dp">
+
+                    <ImageView
+                        android:layout_width="53dp"
+                        android:layout_height="52dp"
+                        android:layout_marginBottom="600dp"
+                        app:srcCompat="@drawable/bg_whitecircle" />
+
+                    <ImageView
+                        android:layout_width="73dp"
+                        android:layout_height="72dp"
+                        android:layout_gravity="center"
+                        app:srcCompat="@drawable/ic_rain" />
+                </FrameLayout>
+
+                <FrameLayout
+                    android:layout_width="53dp"
+                    android:layout_height="52dp"
+                    android:layout_gravity="center"
+                    android:layout_marginEnd="15dp"
+                    android:layout_marginStart="15dp">
+
+                    <ImageView
+                        android:layout_width="53dp"
+                        android:layout_height="52dp"
+                        android:layout_marginBottom="600dp"
+                        app:srcCompat="@drawable/bg_whitecircle" />
+
+                    <ImageView
+                        android:layout_width="73dp"
+                        android:layout_height="72dp"
+                        android:layout_gravity="center"
+                        app:srcCompat="@drawable/ic_thunder"
+                        />
+                </FrameLayout>
+
+                <FrameLayout
+                    android:layout_width="53dp"
+                    android:layout_height="52dp"
+                    android:layout_gravity="center"
+                    android:layout_marginStart="15dp"
+                    >
+
+                    <ImageView
+                        android:layout_width="53dp"
+                        android:layout_height="52dp"
+                        android:layout_marginBottom="600dp"
+                        app:srcCompat="@drawable/bg_whitecircle" />
+
+                    <ImageView
+                        android:layout_width="73dp"
+                        android:layout_height="72dp"
+                        android:layout_gravity="center"
+                        app:srcCompat="@drawable/ic_thunder" />
+                </FrameLayout>
+            </LinearLayout>
+
+            <LinearLayout
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:orientation="horizontal">
+
+                <TextView
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="10dp"
+                    android:layout_marginEnd="60dp"
+                    android:layout_marginStart="29dp"
+                    android:fontFamily="@font/pretendardregular"
+                    android:text="10°"
+                    android:textAlignment="center"
+                    android:textColor="#2B2B2B"
+                    android:textFontWeight="600"
+                    android:textSize="14sp" />
+
+                <TextView
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="10dp"
+                    android:fontFamily="@font/pretendardregular"
+                    android:text="100°"
+                    android:layout_marginEnd="60dp"
+                    android:textAlignment="center"
+                    android:textColor="#2B2B2B"
+                    android:textFontWeight="600"
+                    android:textSize="14sp" />
+
+                <TextView
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="10dp"
+                    android:fontFamily="@font/pretendardregular"
+                    android:text="0°"
+                    android:layout_marginEnd="60dp"
+                    android:textAlignment="center"
+                    android:textColor="#2B2B2B"
+                    android:textFontWeight="600"
+                    android:textSize="14sp"></TextView>
+
+                <TextView
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="10dp"
+                    android:fontFamily="@font/pretendardregular"
+                    android:text="30°"
+                    android:layout_marginEnd="60dp"
+                    android:textAlignment="center"
+                    android:textColor="#2B2B2B"
+                    android:textFontWeight="600"
+                    android:textSize="14sp"></TextView>
+
+                <TextView
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="10dp"
+                    android:fontFamily="@font/pretendardregular"
+                    android:text="80°"
+                    android:textAlignment="center"
+                    android:textColor="#2B2B2B"
+                    android:textFontWeight="600"
+                    android:textSize="14sp"></TextView>
+            </LinearLayout>
+<FrameLayout
+    android:layout_width="wrap_content"
+    android:layout_height="wrap_content">
+    <ImageView
+        android:id="@+id/imageView"
+        android:layout_width="350dp"
+        android:layout_height="110dp"
+        android:layout_gravity="center"
+        android:layout_marginStart="23dp"
+        app:srcCompat="@drawable/ic_calendardetailview_graphline" />
+
+    <ImageView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="34dp"
+        android:layout_marginTop="71dp"
+        app:srcCompat="@drawable/ic_calendardetailview_temp" />
+
+    <ImageView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="130dp"
+        android:layout_marginTop="11dp"
+        app:srcCompat="@drawable/ic_calendardetailview_temp"/>
+    <ImageView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="225dp"
+        android:layout_marginTop="91dp"
+        app:srcCompat="@drawable/ic_calendardetailview_temp"/>
+    <ImageView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="285dp"
+        android:layout_marginTop="78dp"
+        app:srcCompat="@drawable/ic_calendardetailview_temp"/>
+    <ImageView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="365dp"
+        android:layout_marginTop="53dp"
+        app:srcCompat="@drawable/ic_calendardetailview_temp"/>
+</FrameLayout>
+
+        </LinearLayout>
+
+
+    </HorizontalScrollView>
+
+    <ImageButton
+        android:id="@+id/imageButton"
+        android:layout_width="0dp"
+        android:layout_height="0dp"
+        android:layout_marginStart="17dp"
+        android:layout_marginTop="20dp"
+        android:layout_marginEnd="335dp"
+        android:layout_marginBottom="365dp"
+        android:adjustViewBounds="true"
+        android:background="#00ff0000"
+        android:scaleType="centerInside"
+        app:layout_constraintBottom_toTopOf="@+id/divider"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:srcCompat="@drawable/ic_calendardetailview_back"
+        tools:ignore="SpeakableTextPresentCheck" />
+
+    <Button
+        android:id="@+id/button"
+        android:layout_width="87dp"
+        android:layout_height="49dp"
+        android:layout_marginStart="311dp"
+        android:layout_marginTop="16dp"
+        android:layout_marginBottom="361dp"
+        android:background="#00ff0000"
+        android:fontFamily="@font/pretendardregular"
+        android:text="편집"
+        android:textAlignment="center"
+        android:textColor="#5E412F"
+        android:textFontWeight="600"
+        android:textSize="20sp"
+        app:layout_constraintBottom_toTopOf="@+id/divider"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="1.0"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintVertical_bias="0.375"></Button>
+
+    <TextView
+        android:id="@+id/textView3"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="20dp"
+        android:fontFamily="@font/pretendardregular"
+        android:text="7월 4일의 일기"
+        android:textAlignment="center"
+        android:textColor="#2B2B2B"
+        android:textFontWeight="600"
+        android:textSize="15sp"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/divider" />
+
+
+</androidx.constraintlayout.widget.ConstraintLayout>
