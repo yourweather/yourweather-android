@@ -1,0 +1,257 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context=".presentation.CalendarDetailViewModify1">
+
+    <TextView
+        android:id="@+id/textView1"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:fontFamily="@font/pretendardsemibold"
+        android:text="7월 4일 오후 1:00"
+        android:textColor="#2B2B2B"
+        android:textFontWeight="700"
+        android:textSize="20sp"
+        tools:layout_editor_absoluteX="58dp"
+        tools:layout_editor_absoluteY="82dp"></TextView>
+
+    <ImageButton
+        android:id="@+id/imageButton"
+        android:layout_width="26dp"
+        android:layout_height="26dp"
+        android:adjustViewBounds="true"
+        android:background="#00ff0000"
+        android:scaleType="centerInside"
+        app:srcCompat="@drawable/ic_calendardetailview_back"
+        tools:ignore="SpeakableTextPresentCheck"
+        tools:layout_editor_absoluteX="16dp"
+        tools:layout_editor_absoluteY="16dp" />
+
+    <Button
+        android:id="@+id/button"
+        android:layout_width="75dp"
+        android:layout_height="54dp"
+        android:layout_marginTop="4dp"
+        android:background="#00ff0000"
+        android:fontFamily="@font/pretendardregular"
+        android:text="저장"
+        android:textColor="#BCBCBC"
+        android:textFontWeight="600"
+        android:textSize="20sp"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="1.0"
+        app:layout_constraintStart_toEndOf="@+id/imageButton"
+        app:layout_constraintTop_toTopOf="parent"></Button>
+
+    <View
+        android:id="@+id/divider"
+        android:layout_width="0dp"
+        android:layout_height="7dp"
+        android:layout_marginTop="8dp"
+        android:background="#D9D9D9"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.0"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/textView1" />
+
+    <ImageButton
+        android:id="@+id/imageButton2"
+        android:layout_width="321dp"
+        android:layout_height="115dp"
+        android:background="#00ff0000"
+        android:scaleType="centerInside"
+        app:srcCompat="@drawable/deletebutton"
+        tools:layout_editor_absoluteX="45dp"
+        tools:layout_editor_absoluteY="629dp" />
+
+    <TextView
+        android:id="@+id/textView6"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:fontFamily="@font/pretendardregular"
+        android:text="삭제"
+        android:textColor="#FFFFFF"
+        android:textFontWeight="600"
+        android:textSize="14sp"
+        tools:layout_editor_absoluteX="193dp"
+        tools:layout_editor_absoluteY="676dp" />
+
+    <CheckBox
+        android:id="@+id/cb_bus_select_foggy"
+        android:layout_width="83dp"
+        android:layout_height="85dp"
+        android:adjustViewBounds="true"
+        android:background="@drawable/ic_cloud"
+        android:button="@null"
+        android:checked="false"
+        android:enabled="true"
+        android:gravity="center_horizontal"
+
+        tools:layout_editor_absoluteX="117dp"
+        tools:layout_editor_absoluteY="199dp" />
+
+    <CheckBox
+        android:id="@+id/cb_bus_select_rainy"
+        android:layout_width="83dp"
+        android:layout_height="85dp"
+        android:adjustViewBounds="true"
+        android:background="@drawable/ic_rain"
+        android:button="@null"
+        android:checked="false"
+        android:enabled="true"
+        android:gravity="center_horizontal"
+        tools:layout_editor_absoluteX="200dp"
+        tools:layout_editor_absoluteY="199dp" />
+
+    <CheckBox
+        android:id="@+id/cb_bus_select_thunder"
+        android:layout_width="83dp"
+        android:layout_height="85dp"
+        android:adjustViewBounds="true"
+        android:background="@drawable/ic_thunder"
+        android:button="@null"
+        android:checked="false"
+        android:enabled="true"
+        android:gravity="center_horizontal"
+        tools:layout_editor_absoluteX="283dp"
+        tools:layout_editor_absoluteY="199dp" />
+
+    <TextView
+        android:id="@+id/textView2"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:fontFamily="@font/pretendardregular"
+        android:text="이다은 님의 감정 상태"
+        android:textColor="#2B2B2B"
+        android:textFontWeight="600"
+        android:textSize="14sp"
+        tools:layout_editor_absoluteX="16dp"
+        tools:layout_editor_absoluteY="155dp" />
+
+    <CheckBox
+        android:id="@+id/cb_bus_select_sunny"
+        android:layout_width="83dp"
+        android:layout_height="85dp"
+        android:adjustViewBounds="true"
+        android:background="@drawable/ic_sun"
+        android:button="@null"
+        android:checked="false"
+        android:enabled="true"
+        android:gravity="center_horizontal"
+        tools:layout_editor_absoluteX="34dp"
+        tools:layout_editor_absoluteY="199dp" />
+
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:fontFamily="@font/pretendardregular"
+        android:text="클릭하여 선택해주세요"
+        android:textColor="#ACACAC"
+        android:textFontWeight="600"
+        android:textSize="10sp"
+        tools:layout_editor_absoluteX="159dp"
+        tools:layout_editor_absoluteY="284dp"/>
+
+    <TextView
+        android:id="@+id/textView4"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:fontFamily="@font/pretendardregular"
+        android:text="이다은 님의 감정 온도"
+        android:textColor="#2B2B2B"
+        android:textFontWeight="600"
+        android:textSize="14sp"
+        tools:layout_editor_absoluteX="16dp"
+        tools:layout_editor_absoluteY="355dp" />
+
+    <SeekBar
+        android:id="@+id/seekbar_home_temp"
+        android:layout_width="320dp"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="23dp"
+        android:layout_marginTop="23dp"
+        android:layout_marginEnd="20dp"
+        android:layout_marginBottom="40dp"
+        android:max="100"
+        android:progress="0"
+        android:progressDrawable="@drawable/bg_home_seekbar"
+        android:thumb="@drawable/ic_home_seekbarbtn"
+        app:layout_constraintBottom_toTopOf="@+id/et_home_memo"
+        app:layout_constraintEnd_toEndOf="@+id/iv_home_weather"
+        app:layout_constraintHorizontal_bias="0.493"
+        app:layout_constraintStart_toStartOf="@+id/iv_home_weather"
+        app:layout_constraintTop_toBottomOf="@+id/tv_home_weather_guide3" />
+
+    <TextView
+        android:id="@+id/iv_home_mintemp"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="20dp"
+        android:layout_marginTop="8dp"
+        android:layout_marginBottom="23dp"
+        android:text="0°"
+        android:textSize="13dp"
+        android:fontFamily="@font/pretendardregular"
+        app:layout_constraintBottom_toTopOf="@+id/et_home_memo"
+        app:layout_constraintStart_toStartOf="@+id/iv_home_weather"
+        app:layout_constraintTop_toBottomOf="@+id/seekbar_home_temp" />
+
+    <TextView
+        android:id="@+id/iv_home_maxtemp"
+        android:layout_width="27dp"
+        android:layout_height="18dp"
+        android:layout_marginStart="255dp"
+        android:layout_marginTop="8dp"
+        android:layout_marginEnd="10dp"
+        android:layout_marginBottom="23dp"
+        android:text="100°"
+        android:textSize="13dp"
+        android:fontFamily="@font/pretendardregular"
+        app:layout_constraintBottom_toTopOf="@+id/et_home_memo"
+        app:layout_constraintEnd_toEndOf="@+id/iv_home_weather"
+        app:layout_constraintStart_toEndOf="@+id/iv_home_mintemp"
+        app:layout_constraintTop_toBottomOf="@+id/seekbar_home_temp" />
+
+
+    <TextView
+        android:id="@+id/textView5"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:fontFamily="@font/pretendardregular"
+        android:text="이다은 님의 일기"
+        android:textColor="#2B2B2B"
+        android:textFontWeight="600"
+        android:textSize="14sp"
+        tools:layout_editor_absoluteX="16dp"
+        tools:layout_editor_absoluteY="488dp" />
+
+    <androidx.cardview.widget.CardView
+        android:id="@+id/card_view"
+        android:layout_width="384dp"
+        android:layout_height="105dp"
+        android:layout_margin="5dp"
+        app:cardBackgroundColor="#f5f5f5"
+        app:cardCornerRadius="12dp"
+        app:cardElevation="3dp"
+        app:contentPadding="4dp"
+        tools:layout_editor_absoluteX="16dp"
+        tools:layout_editor_absoluteY="516dp">
+
+        <RelativeLayout
+            android:layout_width="216dp"
+            android:layout_height="wrap_content"
+            android:padding="16dp">
+
+            <TextView
+                android:id="@+id/item_detail"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="Detail 입니다." />
+
+        </RelativeLayout>
+
+    </androidx.cardview.widget.CardView>
+</androidx.constraintlayout.widget.ConstraintLayout>

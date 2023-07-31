@@ -90,6 +90,16 @@
             android:name=".presentation.FindPw"
             android:exported="false" />
         <activity
+            android:name=".presentation.CalendarDetailView1"
+            android:exported="false"/>
+        <activity
+            android:name=".presentation.CalendarDetailView2"
+            android:exported="false"/>
+        <activity
+            android:name=".presentation.CalendarDetailView3"
+            android:exported="false"/>
+
+        <activity
             android:name=".presentation.MainActivity"
             android:exported="true">
             <intent-filter>
