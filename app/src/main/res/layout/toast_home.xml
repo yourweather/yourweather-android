@@ -14,7 +14,7 @@
         android:layout_weight="1"
         android:background="@drawable/bg_home_toast"
         android:text="감정 날씨가 저장 되었습니다"
-        android:fontFamily="@font/pretendard"
+        android:fontFamily="@font/pretendardsemibold"
         android:textColor="@color/brown"
         android:gravity="center"/>
 
