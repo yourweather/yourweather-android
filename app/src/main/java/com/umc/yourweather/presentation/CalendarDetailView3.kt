@@ -1,6 +1,7 @@
 package com.umc.yourweather.presentation
 
 import android.content.Intent
+import android.graphics.Paint
 import android.os.Bundle
 import android.widget.ImageButton
 import android.widget.TextView
