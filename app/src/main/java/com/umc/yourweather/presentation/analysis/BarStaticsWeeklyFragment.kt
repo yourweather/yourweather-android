@@ -5,7 +5,6 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import androidx.fragment.app.Fragment
-import com.umc.yourweather.R
 import com.umc.yourweather.databinding.FragmentBarStaticsWeeklyBinding
 
 class BarStaticsWeeklyFragment : Fragment() {
@@ -21,6 +20,6 @@ class BarStaticsWeeklyFragment : Fragment() {
         savedInstanceState: Bundle?,
     ): View? {
         // Inflate the layout for this fragment
-        return inflater.inflate(R.layout.fragment_bar_statics_weekly, container, false)
-    }
+        _binding = FragmentBarStaticsWeeklyBinding.inflate(inflater, container, false)
+        return binding.root }
 }
