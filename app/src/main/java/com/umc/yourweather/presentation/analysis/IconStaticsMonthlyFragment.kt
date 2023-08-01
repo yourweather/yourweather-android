@@ -40,8 +40,11 @@ class IconStaticsMonthlyFragment : Fragment() {
             startActivity(intent)
         }
         binding.btnStaticsRightDetail3Monthly.setOnClickListener {
-            val intent = Intent(activity, WrittenDetailListActivityRain::class.java)
-            startActivity(intent)
+            val mFragment = WrittenDetailListFragmentCloud()
+            requireActivity().supportFragmentManager.beginTransaction()
+                .replace(R.id.fl_content, mFragment)
+                .addToBackStack(null)
+                .commit()
         }
         binding.btnStaticsRightDetail4Monthly.setOnClickListener {
             val intent = Intent(activity, WrittenDetailListActivityThunder::class.java)
