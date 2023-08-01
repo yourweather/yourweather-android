@@ -21,24 +21,29 @@ class BottomNavi : AppCompatActivity() {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_bnv)
 
-        supportFragmentManager.beginTransaction().add(fl.id, BnvHome()).commit()
+        // 최초 한 번만 트랜잭션을 시작하여 InitialNoWeatherFragment를 추가
+        if (savedInstanceState == null) {
+            supportFragmentManager.beginTransaction()
+                .replace(fl.id, InitialNoWeatherFragment())
+                .commit()
+        }
 
         bn.setOnItemSelectedListener {
-            replaceFragment(
-                when (it.itemId) {
-                    // 홈화면 이동
-                    R.id.bnv_home -> HomeFragment()
-//                    R.id.bnv_calender -> BnvCalender()
-                    R.id.bnv_calender -> CalendarTotalViewFragment()
-                    R.id.bnv_report -> BnvReport()
-                    else -> BnvMyPage()
-                },
-            )
+            // 프래그먼트 전환 시 미리 시작된 트랜잭션을 사용
+            when (it.itemId) {
+                R.id.bnv_home -> replaceFragment(InitialNoWeatherFragment())
+//                R.id.bnv_calender -> replaceFragment(BnvCalender())
+                R.id.bnv_calender -> replaceFragment(CalendarTotalViewFragment())
+                R.id.bnv_report -> replaceFragment(BnvReport())
+                else -> replaceFragment(BnvMyPage())
+            }
             true
         }
     }
 
     private fun replaceFragment(fragment: Fragment) {
-        supportFragmentManager.beginTransaction().replace(fl.id, fragment).commit()
+        supportFragmentManager.beginTransaction()
+            .replace(fl.id, fragment)
+            .commit()
     }
 }
