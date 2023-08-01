@@ -9,6 +9,7 @@ import com.google.android.material.bottomnavigation.BottomNavigationView
 import com.umc.yourweather.R
 import com.umc.yourweather.presentation.analysis.AnalysisFragment
 
+
 class BottomNavi : AppCompatActivity() {
     private val fl: FrameLayout by lazy {
         findViewById(R.id.fl_content)
@@ -22,23 +23,29 @@ class BottomNavi : AppCompatActivity() {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_bnv)
 
-        supportFragmentManager.beginTransaction().add(fl.id, BnvHome()).commit()
+        // 최초 한 번만 트랜잭션을 시작
+        if (savedInstanceState == null) {
+            supportFragmentManager.beginTransaction()
+                .replace(fl.id, InitialNoWeatherFragment())
+                .commit()
+        }
 
         bn.setOnItemSelectedListener {
-            replaceFragment(
-                when (it.itemId) {
-                    R.id.bnv_home -> BnvHome()
-//                    R.id.bnv_calender -> BnvCalender()
-                    R.id.bnv_calender -> CalendarTotalViewFragment()
-                    R.id.bnv_report -> AnalysisFragment()
-                    else -> BnvMyPage()
-                },
-            )
+            when (it.itemId) {
+                R.id.bnv_home -> replaceFragment(InitialNoWeatherFragment())
+//                R.id.bnv_calender -> replaceFragment(BnvCalender())
+                R.id.bnv_calender -> replaceFragment(CalendarTotalViewFragment())
+                R.id.bnv_report -> replaceFragment(AnalysisFragment())
+                else -> replaceFragment(BnvMyPage())
+            }
+
             true
         }
     }
 
     private fun replaceFragment(fragment: Fragment) {
-        supportFragmentManager.beginTransaction().replace(fl.id, fragment).commit()
+        supportFragmentManager.beginTransaction()
+            .replace(fl.id, fragment)
+            .commit()
     }
 }

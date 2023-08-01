@@ -169,13 +169,27 @@
                 android:id="@+id/tv_home_temp"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
+                android:layout_marginStart="135dp"
+                android:layout_marginTop="32dp"
+                android:fontFamily="@font/bmhanna"
+                android:text="100"
+                android:textColor="@color/brown"
+                android:textSize="53dp"
+                app:layout_constraintEnd_toStartOf="@+id/tv_home_temp_unit"
+                app:layout_constraintStart_toStartOf="@+id/bg_home_weather"
+                app:layout_constraintTop_toBottomOf="@+id/motion_home_weather" />
+
+            <TextView
+                android:id="@+id/tv_home_temp_unit"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
                 android:layout_marginTop="21dp"
+                android:layout_marginEnd="136dp"
                 android:fontFamily="@font/pretendardsemibold"
-                android:text="40°C"
+                android:text="°C"
                 android:textColor="@color/brown"
                 android:textSize="53dp"
                 app:layout_constraintEnd_toEndOf="parent"
-                app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintTop_toBottomOf="@+id/motion_home_weather" />
 
             <androidx.appcompat.widget.AppCompatButton
