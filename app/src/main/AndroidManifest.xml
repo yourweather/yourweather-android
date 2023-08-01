@@ -50,9 +50,7 @@
         <activity
             android:name=".presentation.analysis.WrittenDetailListActivitySun"
             android:exported="false" />
-        <activity
-            android:name=".presentation.analysis.AllWrittenActivity"
-            android:exported="false" />
+
         <activity
             android:name=".presentation.analysis.UnwrittenDetailListActivity"
             android:exported="false" />

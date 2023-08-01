@@ -7,7 +7,7 @@ import androidx.appcompat.app.AppCompatActivity
 import androidx.fragment.app.Fragment
 import com.google.android.material.bottomnavigation.BottomNavigationView
 import com.umc.yourweather.R
-import com.umc.yourweather.entity.CalendarDateInfo
+import com.umc.yourweather.presentation.analysis.AnalysisFragment
 
 class BottomNavi : AppCompatActivity() {
     private val fl: FrameLayout by lazy {
@@ -30,7 +30,7 @@ class BottomNavi : AppCompatActivity() {
                     R.id.bnv_home -> BnvHome()
 //                    R.id.bnv_calender -> BnvCalender()
                     R.id.bnv_calender -> CalendarTotalViewFragment()
-                    R.id.bnv_report -> BnvReport()
+                    R.id.bnv_report -> AnalysisFragment()
                     else -> BnvMyPage()
                 },
             )
