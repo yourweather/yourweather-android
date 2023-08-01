@@ -36,7 +36,7 @@
             android:layout_height="wrap_content"
             android:layout_marginLeft="10dp"
             android:layout_weight="1"
-            android:text="@string/tv_analysis_lastweek"
+            android:text="@string/tv_analysis_last_week"
             android:textSize="15dp"
             android:fontFamily="@font/pretendardsemibold" />
 
@@ -55,21 +55,22 @@
     </LinearLayout>
 
 
-    <View
+    <LinearLayout
         android:id="@+id/ll_analysis_bar_last_week"
         android:layout_width="match_parent"
         android:layout_height="32dp"
         android:layout_marginTop="11dp"
         android:layout_marginBottom="32dp"
-        android:layout_marginLeft="33dp"
-        android:layout_marginRight="32dp"
-        android:background="@android:color/darker_gray"
+        android:layout_marginStart="33dp"
+        android:layout_marginEnd="32dp"
         app:layout_constraintBottom_toTopOf="@+id/ll_analysis_weather2"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.357"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/ll_analysis_weather1"
-        app:layout_constraintVertical_bias="0.529"  />
+        app:layout_constraintVertical_bias="0.529"
+        android:orientation="horizontal">
+        </LinearLayout>
 
     <LinearLayout
         android:id="@+id/ll_analysis_weather2"
@@ -85,7 +86,7 @@
             android:id="@+id/tv_analysis_this_week"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_marginLeft="10dp"
+            android:layout_marginStart="10dp"
             android:layout_weight="1"
             android:text="@string/tv_analysis_this_week"
             android:textSize="15dp"
@@ -95,7 +96,7 @@
             android:id="@+id/tv_analysis_month_this_num"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_marginLeft="7dp"
+            android:layout_marginStart="7dp"
             android:layout_weight="1"
             android:text="7.10 ~ 7.16"
             android:textSize="12dp"
@@ -106,18 +107,19 @@
 
     </LinearLayout>
 
-    <View
-        android:id="@+id/ll_analysis_bar_this_month"
+    <LinearLayout
+        android:id="@+id/ll_analysis_bar_this_Week"
         android:layout_width="match_parent"
         android:layout_height="32dp"
         android:layout_marginTop="11dp"
-        android:layout_marginLeft="33dp"
-        android:layout_marginRight="32dp"
-        android:background="@android:color/darker_gray"
+        android:layout_marginStart="33dp"
+        android:layout_marginEnd="32dp"
+        android:orientation="horizontal"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.357"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/ll_analysis_weather2" />
+        app:layout_constraintTop_toBottomOf="@+id/ll_analysis_weather2" >
+    </LinearLayout>
 
     <LinearLayout
         android:id="@+id/linearLayout4"
@@ -129,7 +131,7 @@
         android:orientation="vertical"
         app:layout_constraintLeft_toLeftOf="parent"
         app:layout_constraintRight_toRightOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/ll_analysis_bar_this_month">
+        app:layout_constraintTop_toBottomOf="@+id/ll_analysis_bar_this_Week">
 
 
         <TextView
@@ -160,7 +162,7 @@
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_gravity="center"
-                    android:layout_marginLeft="50dp"
+                    android:layout_marginStart="50dp"
                     android:layout_marginTop="3dp"
                     app:srcCompat="@drawable/ic_uparrow"
                     tools:layout_editor_absoluteX="32dp"
@@ -191,7 +193,7 @@
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_gravity="center"
-                    android:layout_marginLeft="50dp"
+                    android:layout_marginStart="50dp"
                     android:layout_marginTop="1dp"
                     app:srcCompat="@drawable/ic_uparrow"
                     tools:layout_editor_absoluteX="32dp"
@@ -221,7 +223,7 @@
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_gravity="center"
-                    android:layout_marginLeft="50dp"
+                    android:layout_marginStart="50dp"
                     android:layout_marginTop="1dp"
                     app:srcCompat="@drawable/ic_downarrow"
                     tools:layout_editor_absoluteX="32dp"
@@ -254,7 +256,7 @@
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_gravity="center"
-                    android:layout_marginLeft="50dp"
+                    android:layout_marginStart="50dp"
                     android:layout_marginBottom="1dp"
                     app:srcCompat="@drawable/ic_downarrow"
                     tools:layout_editor_absoluteX="32dp"

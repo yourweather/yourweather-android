@@ -31,7 +31,7 @@
         app:layout_constraintTop_toTopOf="parent">
 
         <TextView
-            android:id="@+id/tv_analysis_lastmonth"
+            android:id="@+id/tv_analysis_last_month"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_marginLeft="10dp"
@@ -55,7 +55,7 @@
     </LinearLayout>
 
 
-    <View
+    <LinearLayout
         android:id="@+id/ll_analysis_bar_last_month"
         android:layout_width="match_parent"
         android:layout_height="32dp"
@@ -63,13 +63,16 @@
         android:layout_marginBottom="32dp"
         android:layout_marginLeft="33dp"
         android:layout_marginRight="32dp"
-        android:background="@android:color/darker_gray"
         app:layout_constraintBottom_toTopOf="@+id/ll_analysis_weather2"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.357"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/ll_analysis_weather1"
-        app:layout_constraintVertical_bias="0.529" />
+        app:layout_constraintVertical_bias="0.529"
+        android:orientation="horizontal"
+        >
+
+    </LinearLayout>
 
     <LinearLayout
         android:id="@+id/ll_analysis_weather2"
@@ -106,18 +109,20 @@
 
     </LinearLayout>
 
-    <View
+    <LinearLayout
         android:id="@+id/ll_analysis_bar_this_month"
         android:layout_width="match_parent"
         android:layout_height="32dp"
         android:layout_marginTop="11dp"
         android:layout_marginLeft="33dp"
         android:layout_marginRight="32dp"
-        android:background="@android:color/darker_gray"
+        android:orientation="horizontal"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.357"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/ll_analysis_weather2" />
+        app:layout_constraintTop_toBottomOf="@+id/ll_analysis_weather2" >
+
+    </LinearLayout>
 
     <LinearLayout
         android:id="@+id/linearLayout4"
