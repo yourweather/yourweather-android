@@ -1,6 +1,5 @@
-package com.umc.yourweather.presentation
+package com.umc.yourweather.presentation.analysis
 
-import android.content.Intent
 import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.View
@@ -32,20 +31,32 @@ class IconStaticsWeeklyFragment : Fragment() {
         _binding = FragmentIconStaticsWeeklyBinding.bind(view)
 
         binding.btnStaticsRightDetail1Weekly.setOnClickListener {
-            val intent = Intent(activity, WrittenDetailListActivitySunWeekly::class.java)
-            startActivity(intent)
+            val mFragment = WrittenDetailListFragmentSunWeekly()
+            requireActivity().supportFragmentManager.beginTransaction()
+                .replace(R.id.fl_content, mFragment)
+                .addToBackStack(null)
+                .commit()
         }
         binding.btnStaticsRightDetail2Weekly.setOnClickListener {
-            val intent = Intent(activity, WrittenDetailListActivityCloudWeekly::class.java)
-            startActivity(intent)
+            val mFragment = WrittenDetailListFragmentRainWeekly()
+            requireActivity().supportFragmentManager.beginTransaction()
+                .replace(R.id.fl_content, mFragment)
+                .addToBackStack(null)
+                .commit()
         }
         binding.btnStaticsRightDetail3Weekly.setOnClickListener {
-            val intent = Intent(activity, WrittenDetailListActivityRainWeekly::class.java)
-            startActivity(intent)
+            val mFragment = WrittenDetailListFragmentCloudWeekly()
+            requireActivity().supportFragmentManager.beginTransaction()
+                .replace(R.id.fl_content, mFragment)
+                .addToBackStack(null)
+                .commit()
         }
         binding.btnStaticsRightDetail4Weekly.setOnClickListener {
-            val intent = Intent(activity, WrittenDetailListActivityThunderWeekly::class.java)
-            startActivity(intent)
+            val mFragment = WrittenDetailListFragmentThunderWeekly()
+            requireActivity().supportFragmentManager.beginTransaction()
+                .replace(R.id.fl_content, mFragment)
+                .addToBackStack(null)
+                .commit()
         }
     }
 }

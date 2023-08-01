@@ -29,49 +29,47 @@
             android:name=".presentation.MyPageNicknameChange"
             android:exported="false" />
         <activity
-            android:name=".presentation.WrittenDetailListActivityThunderWeekly"
+            android:name=".presentation.analysis.WrittenDetailListActivityThunderWeekly"
             android:exported="false" />
         <activity
-            android:name=".presentation.WrittenDetailListActivitySunWeekly"
+            android:name=".presentation.analysis.WrittenDetailListActivitySunWeekly"
             android:exported="false" />
         <activity
-            android:name=".presentation.WrittenDetailListActivityRainWeekly"
+            android:name=".presentation.analysis.WrittenDetailListActivityRainWeekly"
             android:exported="false" />
         <activity
-            android:name=".presentation.WrittenDetailListActivityCloudWeekly"
+            android:name=".presentation.analysis.WrittenDetailListActivityCloudWeekly"
             android:exported="false" />
         <activity
-            android:name=".presentation.WrittenDetailListActivityCloud"
+            android:name=".presentation.analysis.WrittenDetailListActivityCloud"
             android:exported="false" />
         <activity
-            android:name=".presentation.WrittenDetailListActivityThunder"
+            android:name=".presentation.analysis.WrittenDetailListActivityThunder"
             android:exported="false" />
         <activity
-            android:name=".presentation.WrittenDetailListActivityRain"
+            android:name=".presentation.analysis.WrittenDetailListActivityRain"
             android:exported="false" />
         <activity
-            android:name=".presentation.WrittenDetailListActivitySun"
+            android:name=".presentation.analysis.WrittenDetailListActivitySun"
+            android:exported="false" />
+
+        <activity
+            android:name=".presentation.analysis.activity.UnwrittenDetailListActivity"
             android:exported="false" />
         <activity
-            android:name=".presentation.AllWrittenActivity"
+            android:name=".presentation.analysis.IconStaticsWeeklyFragment"
             android:exported="false" />
         <activity
-            android:name=".presentation.UnwrittenDetailListActivity"
+            android:name=".presentation.analysis.IconStaticsMonthlyFragment"
             android:exported="false" />
         <activity
-            android:name=".presentation.IconStaticsWeeklyFragment"
+            android:name=".presentation.analysis.BarStaticsWeeklyFragment"
             android:exported="false" />
         <activity
-            android:name=".presentation.IconStaticsMonthlyFragment"
+            android:name=".presentation.analysis.BarStaticsMonthlyFragment"
             android:exported="false" />
         <activity
-            android:name=".presentation.BarStaticsWeeklyFragment"
-            android:exported="false" />
-        <activity
-            android:name=".presentation.BarStaticsMonthlyFragment"
-            android:exported="false" />
-        <activity
-            android:name=".presentation.AnalysisActivity"
+            android:name=".presentation.analysis.activity.AnalysisActivity"
             android:exported="false" />
         <activity
             android:name=".presentation.CalendarTotalViewFragment"

@@ -4,7 +4,7 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context=".presentation.WrittenDetailListActivitySun">
+    tools:context=".presentation.analysis.WrittenDetailListFragmentCloudWeekly">
 
     <LinearLayout
         android:id="@+id/ll_written_detail_list1"
@@ -15,7 +15,7 @@
         app:layout_constraintTop_toTopOf="parent">
 
         <ImageButton
-            android:id="@+id/btn_allwritten_left_arrow"
+            android:id="@+id/btn_detail_left_arrow"
             style="?android:attr/borderlessButtonStyle"
             android:layout_width="10dp"
             android:layout_height="18dp"
@@ -46,11 +46,11 @@
             android:layout_marginStart="36dp">
 
             <TextView
-                android:id="@+id/tv_written_detail_list_month_sun"
+                android:id="@+id/tv_written_detail_list_month_cloud"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_gravity="left"
-                android:text="3주 전(7.3~7.9) 맑음"
+                android:text="3주 전(7.3~7.9) 다소 흐림"
                 android:textColor="@color/sorange"
                 android:textSize="20dp"
                 android:fontFamily="@font/pretendardbold"
@@ -62,7 +62,7 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_gravity="left"
-                android:text="이다은 님의 3주 전 중 40%가 맑은 날씨였어요"
+                android:text="이다은 님의 3주 전 중 40%가 흐린 날씨였어요"
                 android:textColor="#2B2B2B" />
 
 
@@ -84,24 +84,24 @@
         </LinearLayout>
 
         <ImageView
-            android:id="@+id/iv_icon_statics_sun"
+            android:id="@+id/iv_icon_statics_cloudy"
             android:layout_width="wrap_content"
             android:layout_height="match_parent"
             android:layout_gravity="right|center"
-            android:src="@drawable/ic_sun"
+            android:src="@drawable/ic_cloud"
             android:layout_marginEnd="10dp"/>
 
     </LinearLayout>
 
     <androidx.recyclerview.widget.RecyclerView
-        android:id="@+id/recyclerViewUnwrittenDetail"
+        android:id="@+id/recyclerViewDetailWeeklyCloud"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_marginTop="14dp"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/ll_written_detail_list2"
-        tools:listitem="@layout/item_written_detail_sun" />
+        tools:listitem="@layout/item_written_detail_cloud" />
 
     <com.google.android.material.bottomnavigation.BottomNavigationView
         android:id="@+id/bnv_main"
