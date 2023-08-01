@@ -15,7 +15,7 @@
         app:layout_constraintTop_toTopOf="parent">
 
         <ImageButton
-            android:id="@+id/btn_allwritten_left_arrow"
+            android:id="@+id/btn_detail_left_arrow"
             style="?android:attr/borderlessButtonStyle"
             android:layout_width="10dp"
             android:layout_height="18dp"
@@ -94,7 +94,7 @@
     </LinearLayout>
 
     <androidx.recyclerview.widget.RecyclerView
-        android:id="@+id/recyclerViewUnwrittenDetail"
+        android:id="@+id/recyclerViewDetailSun"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_marginTop="14dp"

@@ -15,15 +15,15 @@ class WrittenDetailListActivitySun : AppCompatActivity() {
         super.onCreate(savedInstanceState)
         setContentView(binding.root)
 
-        binding.btnAllwrittenLeftArrow.setOnClickListener {
+        binding.btnDetailLeftArrow.setOnClickListener {
             finish()
         }
 
         val dataList = fetchDataFromAPI()
 
-        binding.recyclerViewUnwrittenDetail.layoutManager = LinearLayoutManager(this)
+        binding.recyclerViewDetailSun.layoutManager = LinearLayoutManager(this)
         val adapter = WrittenRVAdapter(dataList, this)
-        binding.recyclerViewUnwrittenDetail.adapter = adapter
+        binding.recyclerViewDetailSun.adapter = adapter
     }
 
     private fun fetchDataFromAPI(): List<ItemWritten> {

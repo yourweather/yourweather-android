@@ -32,8 +32,11 @@ class IconStaticsWeeklyFragment : Fragment() {
         _binding = FragmentIconStaticsWeeklyBinding.bind(view)
 
         binding.btnStaticsRightDetail1Weekly.setOnClickListener {
-            val intent = Intent(activity, WrittenDetailListActivitySunWeekly::class.java)
-            startActivity(intent)
+            val mFragment = WrittenDetailListFragmentSunWeekly()
+            requireActivity().supportFragmentManager.beginTransaction()
+                .replace(R.id.fl_content, mFragment)
+                .addToBackStack(null)
+                .commit()
         }
         binding.btnStaticsRightDetail2Weekly.setOnClickListener {
             val mFragment = WrittenDetailListFragmentRainWeekly()
