@@ -33,6 +33,9 @@ class CalendarDetailView1 : AppCompatActivity() {
 
         btnModify.setOnClickListener {
             val intent = Intent(this@CalendarDetailView1, CalendarDetailView3::class.java)
+            intent.putExtra("year", year)
+            intent.putExtra("month", month)
+            intent.putExtra("date", date)
             startActivity(intent)
         }
     }
