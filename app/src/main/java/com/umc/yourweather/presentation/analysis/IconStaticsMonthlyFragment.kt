@@ -1,6 +1,5 @@
-package com.umc.yourweather.presentation
+package com.umc.yourweather.presentation.analysis
 
-import android.content.Intent
 import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.View
@@ -32,20 +31,32 @@ class IconStaticsMonthlyFragment : Fragment() {
         _binding = FragmentIconStaticsMonthlyBinding.bind(view)
 
         binding.btnStaticsRightDetail1Monthly.setOnClickListener {
-            val intent = Intent(activity, WrittenDetailListActivitySun::class.java)
-            startActivity(intent)
+            val mFragment = WrittenDetailListFragmentSun()
+            requireActivity().supportFragmentManager.beginTransaction()
+                .replace(R.id.fl_content, mFragment)
+                .addToBackStack(null)
+                .commit()
         }
         binding.btnStaticsRightDetail2Monthly.setOnClickListener {
-            val intent = Intent(activity, WrittenDetailListActivityCloud::class.java)
-            startActivity(intent)
+            val mFragment = WrittenDetailListFragmentCloud()
+            requireActivity().supportFragmentManager.beginTransaction()
+                .replace(R.id.fl_content, mFragment)
+                .addToBackStack(null)
+                .commit()
         }
         binding.btnStaticsRightDetail3Monthly.setOnClickListener {
-            val intent = Intent(activity, WrittenDetailListActivityRain::class.java)
-            startActivity(intent)
+            val mFragment = WrittenDetailListFragmentRain()
+            requireActivity().supportFragmentManager.beginTransaction()
+                .replace(R.id.fl_content, mFragment)
+                .addToBackStack(null)
+                .commit()
         }
         binding.btnStaticsRightDetail4Monthly.setOnClickListener {
-            val intent = Intent(activity, WrittenDetailListActivityThunder::class.java)
-            startActivity(intent)
+            val mFragment = WrittenDetailListFragmentThunder()
+            requireActivity().supportFragmentManager.beginTransaction()
+                .replace(R.id.fl_content, mFragment)
+                .addToBackStack(null)
+                .commit()
         }
     }
 }

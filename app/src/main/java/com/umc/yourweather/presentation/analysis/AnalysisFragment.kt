@@ -1,25 +1,36 @@
-package com.umc.yourweather.presentation
+package com.umc.yourweather.presentation.analysis
 
 import android.annotation.SuppressLint
-import android.content.Intent
 import android.graphics.drawable.Drawable
 import android.os.Bundle
-import androidx.appcompat.app.AppCompatActivity
+import android.view.LayoutInflater
+import android.view.View
+import android.view.ViewGroup
+import androidx.fragment.app.Fragment
 import com.umc.yourweather.R
 import com.umc.yourweather.R.drawable
-import com.umc.yourweather.databinding.ActivityAnalysisBinding
+import com.umc.yourweather.databinding.FragmentAnalysisBinding
 
 @Suppress("DEPRECATION")
-class AnalysisActivity : AppCompatActivity() {
-    private lateinit var binding: ActivityAnalysisBinding
+class AnalysisFragment : Fragment() {
+    private var _binding: FragmentAnalysisBinding? = null
+    private val binding get() = _binding!!
+
     private var isMonthlySelected = true
     private var isWeeklySelected = false
 
     @SuppressLint("UseCompatLoadingForDrawables")
-    override fun onCreate(savedInstanceState: Bundle?) {
-        super.onCreate(savedInstanceState)
-        binding = ActivityAnalysisBinding.inflate(layoutInflater)
-        setContentView(binding.root)
+    override fun onCreateView(
+        inflater: LayoutInflater,
+        container: ViewGroup?,
+        savedInstanceState: Bundle?,
+    ): View? {
+        _binding = FragmentAnalysisBinding.inflate(inflater, container, false)
+        return binding.root
+    }
+
+    override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
+        super.onViewCreated(view, savedInstanceState)
 
         val normalBackground: Drawable = resources.getDrawable(drawable.btn_brown_rec)
         val pressedBackground: Drawable = resources.getDrawable(drawable.btn_transp_rec)
@@ -71,13 +82,16 @@ class AnalysisActivity : AppCompatActivity() {
         }
 
         binding.btnBell.setOnClickListener {
-            val mIntent = Intent(this, UnwrittenDetailListActivity::class.java)
-            startActivity(mIntent)
+            val mFragment = UnwrittenDetailListFragment()
+            requireActivity().supportFragmentManager.beginTransaction()
+                .replace(R.id.fl_content, mFragment)
+                .addToBackStack(null)
+                .commit()
         }
     }
 
     private fun viewMonthly() {
-        val transaction = supportFragmentManager.beginTransaction()
+        val transaction = childFragmentManager.beginTransaction()
         transaction.replace(R.id.f_barStatic, BarStaticsMonthlyFragment())
         transaction.replace(R.id.f_iconStatic, IconStaticsMonthlyFragment())
         transaction.addToBackStack(null)
@@ -85,10 +99,15 @@ class AnalysisActivity : AppCompatActivity() {
     }
 
     private fun viewWeekly() {
-        val transaction = supportFragmentManager.beginTransaction()
+        val transaction = childFragmentManager.beginTransaction()
         transaction.replace(R.id.f_barStatic, BarStaticsWeeklyFragment())
         transaction.replace(R.id.f_iconStatic, IconStaticsWeeklyFragment())
         transaction.addToBackStack(null)
         transaction.commit()
+    }
+
+    override fun onDestroyView() {
+        super.onDestroyView()
+        _binding = null
     }
 }
