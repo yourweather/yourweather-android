@@ -61,10 +61,10 @@
             android:name=".presentation.analysis.IconStaticsMonthlyFragment"
             android:exported="false" />
         <activity
-            android:name=".presentation.BarStaticsWeeklyFragment"
+            android:name=".presentation.analysis.BarStaticsWeeklyFragment"
             android:exported="false" />
         <activity
-            android:name=".presentation.BarStaticsMonthlyFragment"
+            android:name=".presentation.analysis.BarStaticsMonthlyFragment"
             android:exported="false" />
         <activity
             android:name=".presentation.analysis.activity.AnalysisActivity"
