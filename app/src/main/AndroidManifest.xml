@@ -72,19 +72,19 @@
             android:name=".presentation.analysis.activity.AnalysisActivity"
             android:exported="false" />
         <activity
-            android:name=".presentation.CalendarTotalViewFragment"
+            android:name=".presentation.calendar.CalendarTotalViewFragment"
             android:exported="false" />
         <activity
-            android:name=".presentation.SignUp2"
+            android:name=".presentation.sign.SignUp2"
             android:exported="false" />
         <activity
-            android:name=".presentation.Nickname"
+            android:name=".presentation.sign.Nickname"
             android:exported="false" />
         <activity
-            android:name=".presentation.SignUp"
+            android:name=".presentation.sign.SignUp"
             android:exported="false" />
         <activity
-            android:name=".presentation.FindPw"
+            android:name=".presentation.sign.FindPw"
             android:exported="false" />
         <activity
             android:name=".presentation.CalendarDetailView1"
@@ -100,7 +100,7 @@
             android:exported="false"/>
 
         <activity
-            android:name=".presentation.SignIn"
+            android:name=".presentation.sign.SignIn"
             android:exported="true">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />

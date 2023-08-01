@@ -1,4 +1,4 @@
-package com.umc.yourweather.presentation
+package com.umc.yourweather.presentation.calendar
 
 import android.content.Context
 import android.content.Intent
@@ -8,6 +8,7 @@ import android.util.Log
 import android.view.ViewGroup
 import androidx.annotation.RequiresApi
 import androidx.core.view.children
+import com.umc.yourweather.presentation.CalendarDetailView1
 import com.umc.yourweather.util.CalendarUtils.Companion.DAYS_PER_WEEK
 import com.umc.yourweather.util.CalendarUtils.Companion.WEEKS_PER_MONTH
 import com.umc.yourweather.util.CalendarUtils.Companion.dpToPx

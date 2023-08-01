@@ -1,4 +1,4 @@
-package com.umc.yourweather.presentation
+package com.umc.yourweather.presentation.calendar
 
 import android.content.Context
 import android.graphics.Canvas
@@ -18,7 +18,6 @@ import androidx.core.content.withStyledAttributes
 import com.umc.yourweather.R
 import com.umc.yourweather.util.CalendarUtils.Companion.dpToPx
 import java.time.LocalDate
-import java.util.Calendar
 
 @RequiresApi(Build.VERSION_CODES.O)
 class CalendarDate @JvmOverloads constructor(
