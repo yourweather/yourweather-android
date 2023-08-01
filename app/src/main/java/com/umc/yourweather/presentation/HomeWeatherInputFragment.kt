@@ -27,9 +27,7 @@ class HomeWeatherInputFragment : Fragment() {
         }
         // btn_home_weather_save 버튼 클릭 이벤트 처리
         binding.btnHomeWeatherSave.setOnClickListener {
-            // 새로워진 Home 화면으로 이동
-            val homeActivity = activity as Home
-            homeActivity.goToNewHome()
+            (requireActivity() as? HomeFragment.HomeFragmentInteractionListener)?.goToNewHome()
         }
     }
 }

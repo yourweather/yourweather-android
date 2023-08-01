@@ -56,4 +56,8 @@ class HomeFragment : Fragment() {
 
         homeToast.show()
     }
+
+    interface HomeFragmentInteractionListener {
+        fun goToNewHome()
+    }
 }
