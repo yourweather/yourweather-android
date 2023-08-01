@@ -7,7 +7,7 @@ import android.view.ViewGroup
 import androidx.recyclerview.widget.RecyclerView
 import com.umc.yourweather.data.ItemWritten
 import com.umc.yourweather.databinding.ItemWrittenDetailSunBinding
-import com.umc.yourweather.presentation.CalendarView
+import com.umc.yourweather.presentation.CalendarTotalViewFragment
 
 class WrittenRVAdapter(private val dataList: List<ItemWritten>, private val context: Context) :
     RecyclerView.Adapter<WrittenRVAdapter.MyViewHolder>() {
@@ -43,7 +43,7 @@ class WrittenRVAdapter(private val dataList: List<ItemWritten>, private val cont
             }
 
             binding.btnStaticsRightDetail1.setOnClickListener {
-                val intent = Intent(context, CalendarView::class.java)
+                val intent = Intent(context, CalendarTotalViewFragment::class.java)
                 context.startActivity(intent)
             }
         }
