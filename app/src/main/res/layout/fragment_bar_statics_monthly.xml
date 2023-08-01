@@ -116,35 +116,11 @@
         android:layout_marginTop="11dp"
         android:layout_marginLeft="33dp"
         android:layout_marginRight="32dp"
-        android:background="@android:color/darker_gray"
+        android:orientation="horizontal"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.357"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/ll_analysis_weather2" >
-
-        <View
-            android:id="@+id/bar_sun_this"
-            android:layout_width="0dp"
-            android:layout_height="match_parent"
-            android:layout_weight="1" />
-
-        <View
-            android:id="@+id/bar_cloud_this"
-            android:layout_width="0dp"
-            android:layout_height="match_parent"
-            android:layout_weight="1" />
-
-        <View
-            android:id="@+id/bar_rain_this"
-            android:layout_width="0dp"
-            android:layout_height="match_parent"
-            android:layout_weight="1" />
-
-        <View
-            android:id="@+id/bar_thunder_this"
-            android:layout_width="0dp"
-            android:layout_height="match_parent"
-            android:layout_weight="1" />
 
     </LinearLayout>
 
