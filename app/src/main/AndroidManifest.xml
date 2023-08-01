@@ -52,7 +52,7 @@
             android:exported="false" />
 
         <activity
-            android:name=".presentation.analysis.UnwrittenDetailListActivity"
+            android:name=".presentation.analysis.activity.UnwrittenDetailListActivity"
             android:exported="false" />
         <activity
             android:name=".presentation.analysis.IconStaticsWeeklyFragment"
@@ -67,7 +67,7 @@
             android:name=".presentation.BarStaticsMonthlyFragment"
             android:exported="false" />
         <activity
-            android:name=".presentation.analysis.AnalysisActivity"
+            android:name=".presentation.analysis.activity.AnalysisActivity"
             android:exported="false" />
         <activity
             android:name=".presentation.CalendarTotalViewFragment"
