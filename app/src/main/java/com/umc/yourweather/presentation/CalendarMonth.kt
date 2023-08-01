@@ -2,16 +2,16 @@ package com.umc.yourweather.presentation
 
 import android.content.Context
 import android.content.Intent
+import android.os.Build
 import android.util.AttributeSet
 import android.util.Log
 import android.view.ViewGroup
-import android.widget.Toast
+import androidx.annotation.RequiresApi
 import androidx.core.view.children
 import com.umc.yourweather.util.CalendarUtils.Companion.DAYS_PER_WEEK
 import com.umc.yourweather.util.CalendarUtils.Companion.WEEKS_PER_MONTH
 import com.umc.yourweather.util.CalendarUtils.Companion.dpToPx
-import java.util.Calendar
-import java.util.Date
+import java.time.LocalDate
 
 class CalendarMonth @JvmOverloads constructor(
     context: Context,
@@ -21,21 +21,15 @@ class CalendarMonth @JvmOverloads constructor(
     ViewGroup(context, attrs, defStyleAttr) {
 
     private val onDateClickListener = object : CalendarDate.OnDateClickListener {
-        override fun onDateClick(date: Date) {
+        @RequiresApi(Build.VERSION_CODES.O)
+        override fun onDateClick(date: LocalDate) {
             Log.d("캘린더 클릭", "Clicked date: $date, 여기는 CalendarMonth")
             val mIntent = Intent(context, CalendarDetailView1::class.java)
-            val cal = Calendar.getInstance()
-            cal.time = date
 
-            var year = cal.get(Calendar.YEAR).toString()
-            var month = (cal.get(Calendar.MONTH) + 1).toString()
-            var date = cal.get(Calendar.DAY_OF_MONTH).toString()
+            mIntent.putExtra("year", date.year.toString())
+            mIntent.putExtra("month", date.monthValue.toString())
+            mIntent.putExtra("date", date.dayOfMonth.toString())
 
-            mIntent.putExtra("year", year)
-            mIntent.putExtra("month", month)
-            mIntent.putExtra("date", date)
-
-            // Toast.makeText(context, "캘린더 클릭 확인 ${year}년 ${month}월 ${date}일", Toast.LENGTH_SHORT).show()
             context.startActivity(mIntent)
         }
     }
@@ -60,13 +54,13 @@ class CalendarMonth @JvmOverloads constructor(
         Log.d("캘린더 순서", "onLayout")
     }
 
-    fun initCalendar(year: Int, month: Int, list: MutableList<Date>) {
+    @RequiresApi(Build.VERSION_CODES.O)
+    fun initCalendar(month: Int, list: MutableList<LocalDate>) {
         list.forEach {
             val calendarDateView = CalendarDate(
                 context = context,
-                date = it,
-                calendarYear = year,
-                calendarMonth = month,
+                thisDate = it,
+                thisMonth = month,
             )
             // 클릭 이벤트 리스너를 설정하여 콜백 등록
             calendarDateView.setOnDateClickListener(onDateClickListener)
