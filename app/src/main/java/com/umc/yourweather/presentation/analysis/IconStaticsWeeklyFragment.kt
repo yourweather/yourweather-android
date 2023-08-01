@@ -53,8 +53,11 @@ class IconStaticsWeeklyFragment : Fragment() {
                 .commit()
         }
         binding.btnStaticsRightDetail4Weekly.setOnClickListener {
-            val intent = Intent(activity, WrittenDetailListActivityThunderWeekly::class.java)
-            startActivity(intent)
+            val mFragment = WrittenDetailListFragmentThunderWeekly()
+            requireActivity().supportFragmentManager.beginTransaction()
+                .replace(R.id.fl_content, mFragment)
+                .addToBackStack(null)
+                .commit()
         }
     }
 }
