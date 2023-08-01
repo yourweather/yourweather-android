@@ -1,12 +1,12 @@
 package com.umc.yourweather.presentation.analysis
 
 import android.os.Bundle
-import androidx.fragment.app.Fragment
-import androidx.recyclerview.widget.LinearLayoutManager
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import androidx.activity.OnBackPressedCallback
+import androidx.fragment.app.Fragment
+import androidx.recyclerview.widget.LinearLayoutManager
 import com.umc.yourweather.R
 import com.umc.yourweather.data.ItemWritten
 import com.umc.yourweather.databinding.FragmentWrittenDetailListRainBinding
@@ -17,8 +17,9 @@ class WrittenDetailListFragmentRain : Fragment() {
     private val binding get() = _binding!!
 
     override fun onCreateView(
-        inflater: LayoutInflater, container: ViewGroup?,
-        savedInstanceState: Bundle?
+        inflater: LayoutInflater,
+        container: ViewGroup?,
+        savedInstanceState: Bundle?,
     ): View {
         _binding = FragmentWrittenDetailListRainBinding.inflate(inflater, container, false)
         return binding.root

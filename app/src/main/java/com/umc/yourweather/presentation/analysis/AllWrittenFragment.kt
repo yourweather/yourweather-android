@@ -2,7 +2,6 @@ package com.umc.yourweather.presentation.analysis
 
 import android.os.Bundle
 import android.view.LayoutInflater
-import android.view.MenuItem
 import android.view.View
 import android.view.ViewGroup
 import androidx.activity.OnBackPressedCallback
@@ -17,7 +16,7 @@ class AllWrittenFragment : Fragment() {
     override fun onCreateView(
         inflater: LayoutInflater,
         container: ViewGroup?,
-        savedInstanceState: Bundle?
+        savedInstanceState: Bundle?,
     ): View? {
         _binding = FragmentAllWrittenBinding.inflate(inflater, container, false)
         return binding.root
