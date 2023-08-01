@@ -5,11 +5,16 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import androidx.fragment.app.Fragment
+import com.umc.yourweather.R
 import com.umc.yourweather.databinding.FragmentHomeWeatherInputBinding
 
-class HomeWeatherInputFragment(private val listener: HomeFragmentInteractionListener) : Fragment() {
+class HomeWeatherInputFragment : Fragment() {
     private lateinit var binding: FragmentHomeWeatherInputBinding
+    private var listener: HomeFragmentInteractionListener? = null
 
+    fun setListener(listener: HomeFragmentInteractionListener) {
+        this.listener = listener
+    }
     override fun onCreateView(
         inflater: LayoutInflater,
         container: ViewGroup?,
@@ -22,17 +27,16 @@ class HomeWeatherInputFragment(private val listener: HomeFragmentInteractionList
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
 
-        // btn_home_weather_exit 버튼 클릭 이벤트 처리
         binding.btnHomeWeatherExit.setOnClickListener {
-            // 이전 프래그먼트로 돌아가기
             parentFragmentManager.popBackStack()
         }
-        // btn_home_weather_save 버튼 클릭 이벤트 처리
+
         binding.btnHomeWeatherSave.setOnClickListener {
-            listener?.goToNewHome()
+            val homeFragment = HomeFragment()
+            val transaction = parentFragmentManager.beginTransaction()
+            transaction.replace(R.id.fl_initial_l1, homeFragment)
+            transaction.addToBackStack(null)
+            transaction.commit()
         }
-    }
-    interface HomeFragmentInteractionListener {
-        fun goToNewHome()
     }
 }
