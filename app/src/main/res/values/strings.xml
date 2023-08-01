@@ -9,8 +9,8 @@
     <string name="tv_analysis_lastmonth">지난 달</string>
     <string name="tv_analysis_this_month">이번 달</string>
     <string name="tv_statics_comparison_title">지난 달과 비교한 이번 달의 감정 날씨</string>
-    <string name="tv_analysis_lastweek">지난 달</string>
-    <string name="tv_analysis_this_week">이번 달</string>
+    <string name="tv_analysis_lastweek">지난 주</string>
+    <string name="tv_analysis_this_week">이번 주</string>
     <string name="tv_statics_comparison_title_week">지난 주와 비교한 이번 주의 감정 날씨</string>
     <string name="tv_analysis_title">리포트</string>
     <string name="btn_analysis_monthly">월간</string>
@@ -23,4 +23,5 @@
     <string name="tv_mypage_pw_title">비밀번호 변경</string>
     <!-- TODO: Remove or change this placeholder text -->
     <string name="hello_blank_fragment">Hello blank fragment</string>
+    <string name="tv_analysis_last_week">지난 주</string>
 </resources>

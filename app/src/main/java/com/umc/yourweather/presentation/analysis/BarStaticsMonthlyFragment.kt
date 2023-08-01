@@ -1,5 +1,6 @@
 package com.umc.yourweather.presentation.analysis
 
+import android.graphics.Color
 import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.View
@@ -49,10 +50,10 @@ class BarStaticsMonthlyFragment : Fragment() {
 
         // 색상 리스트 생성
         val colorList = listOf(
-            BarColor("맑음", R.color.black),
-            BarColor("흐림", R.color.brown),
-            BarColor("번개", R.color.orange),
-            BarColor("비", R.color.green),
+            BarColor("맑음", "#FCC112"),
+            BarColor("흐림", "#C7C7C7"),
+            BarColor("번개", "#8299BB"),
+            BarColor("비", "#1A1D34"),
         )
 
         // 각 데이터 값에 해당하는 너비 계산
@@ -70,7 +71,7 @@ class BarStaticsMonthlyFragment : Fragment() {
                 width,
             )
             val colorResId = colorList.first { it.label == data.label }.colorResId
-            view.setBackgroundColor(ContextCompat.getColor(requireContext(), colorResId))
+            view.setBackgroundColor(Color.parseColor(colorResId))
             binding.llAnalysisBarLastMonth.addView(view)
         }
 
@@ -86,7 +87,7 @@ class BarStaticsMonthlyFragment : Fragment() {
                 width,
             )
             val colorResId = colorList.first { it.label == data.label }.colorResId
-            view.setBackgroundColor(ContextCompat.getColor(requireContext(), colorResId))
+            view.setBackgroundColor(Color.parseColor(colorResId))
             binding.llAnalysisBarThisMonth.addView(view)
         }
     }
