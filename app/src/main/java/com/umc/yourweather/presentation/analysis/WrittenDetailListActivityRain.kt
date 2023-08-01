@@ -1,16 +1,17 @@
-package com.umc.yourweather.presentation
+package com.umc.yourweather.presentation.analysis
 
 import android.os.Bundle
 import androidx.appcompat.app.AppCompatActivity
 import androidx.recyclerview.widget.LinearLayoutManager
 import com.umc.yourweather.data.ItemWritten
-import com.umc.yourweather.databinding.ActivityWrittenDetailListSunWeeklyBinding
+import com.umc.yourweather.databinding.ActivityWrittenDetailListRainBinding
 import com.umc.yourweather.presentation.adapter.WrittenRVAdapter
 
-class WrittenDetailListActivitySunWeekly : AppCompatActivity() {
-    private lateinit var binding: ActivityWrittenDetailListSunWeeklyBinding
+class WrittenDetailListActivityRain : AppCompatActivity() {
+    private lateinit var binding: ActivityWrittenDetailListRainBinding
+
     override fun onCreate(savedInstanceState: Bundle?) {
-        binding = ActivityWrittenDetailListSunWeeklyBinding.inflate(layoutInflater)
+        binding = ActivityWrittenDetailListRainBinding.inflate(layoutInflater)
         super.onCreate(savedInstanceState)
         setContentView(binding.root)
 
@@ -23,14 +24,13 @@ class WrittenDetailListActivitySunWeekly : AppCompatActivity() {
         val adapter = WrittenRVAdapter(dataList, this)
         binding.recyclerViewUnwrittenDetail.adapter = adapter
     }
+
     private fun fetchDataFromAPI(): List<ItemWritten> {
         val dataList = mutableListOf<ItemWritten>()
-        dataList.add(ItemWritten(6, 1, "토", "오전", 10, 30))
-        dataList.add(ItemWritten(7, 1, "일", "오후", 12, 55))
-        dataList.add(ItemWritten(7, 2, "월", "오후", 6, 10))
-        dataList.add(ItemWritten(7, 3, "화", "오후", 8, 10))
-        dataList.add(ItemWritten(7, 4, "수", "오후", 12, 14))
-        dataList.add(ItemWritten(7, 5, "목", "오전", 7, 20))
+        dataList.add(ItemWritten(6, 21, "월", "오전", 8, 2))
+        dataList.add(ItemWritten(6, 22, "토", "오전", 10, 51))
+        dataList.add(ItemWritten(7, 20, "일", "오후", 6, 40))
+        dataList.add(ItemWritten(7, 22, "수", "오전", 11, 43))
 
         return dataList
     }

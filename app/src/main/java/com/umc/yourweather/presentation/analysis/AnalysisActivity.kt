@@ -1,4 +1,4 @@
-package com.umc.yourweather.presentation
+package com.umc.yourweather.presentation.analysis
 
 import android.annotation.SuppressLint
 import android.content.Intent
@@ -8,6 +8,8 @@ import androidx.appcompat.app.AppCompatActivity
 import com.umc.yourweather.R
 import com.umc.yourweather.R.drawable
 import com.umc.yourweather.databinding.ActivityAnalysisBinding
+import com.umc.yourweather.presentation.BarStaticsMonthlyFragment
+import com.umc.yourweather.presentation.BarStaticsWeeklyFragment
 
 @Suppress("DEPRECATION")
 class AnalysisActivity : AppCompatActivity() {

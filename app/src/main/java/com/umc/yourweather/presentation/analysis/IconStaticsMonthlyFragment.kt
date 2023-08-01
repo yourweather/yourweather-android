@@ -1,4 +1,4 @@
-package com.umc.yourweather.presentation
+package com.umc.yourweather.presentation.analysis
 
 import android.content.Intent
 import android.os.Bundle

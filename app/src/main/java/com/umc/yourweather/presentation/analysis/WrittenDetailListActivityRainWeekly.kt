@@ -1,16 +1,16 @@
-package com.umc.yourweather.presentation
+package com.umc.yourweather.presentation.analysis
 
 import android.os.Bundle
 import androidx.appcompat.app.AppCompatActivity
 import androidx.recyclerview.widget.LinearLayoutManager
 import com.umc.yourweather.data.ItemWritten
-import com.umc.yourweather.databinding.ActivityWrittenDetailListThunderWeeklyBinding
+import com.umc.yourweather.databinding.ActivityWrittenDetailListRainWeeklyBinding
 import com.umc.yourweather.presentation.adapter.WrittenRVAdapter
 
-class WrittenDetailListActivityThunderWeekly : AppCompatActivity() {
-    private lateinit var binding: ActivityWrittenDetailListThunderWeeklyBinding
+class WrittenDetailListActivityRainWeekly : AppCompatActivity() {
+    private lateinit var binding: ActivityWrittenDetailListRainWeeklyBinding
     override fun onCreate(savedInstanceState: Bundle?) {
-        binding = ActivityWrittenDetailListThunderWeeklyBinding.inflate(layoutInflater)
+        binding = ActivityWrittenDetailListRainWeeklyBinding.inflate(layoutInflater)
         super.onCreate(savedInstanceState)
         setContentView(binding.root)
 
@@ -25,12 +25,10 @@ class WrittenDetailListActivityThunderWeekly : AppCompatActivity() {
     }
     private fun fetchDataFromAPI(): List<ItemWritten> {
         val dataList = mutableListOf<ItemWritten>()
-        dataList.add(ItemWritten(6, 15, "일", "오전", 7, 24))
-        dataList.add(ItemWritten(7, 13, "화", "오전", 11, 54))
-        dataList.add(ItemWritten(7, 19, "월", "오후", 4, 10))
-        dataList.add(ItemWritten(7, 25, "수", "오후", 4, 10))
-        dataList.add(ItemWritten(7, 26, "목", "오후", 8, 11))
-        dataList.add(ItemWritten(7, 28, "토", "오전", 11, 1))
+        dataList.add(ItemWritten(6, 21, "목", "오전", 8, 2))
+        dataList.add(ItemWritten(6, 22, "월", "오전", 10, 51))
+        dataList.add(ItemWritten(7, 20, "수", "오전", 12, 40))
+        dataList.add(ItemWritten(7, 22, "일", "오후", 1, 43))
 
         return dataList
     }
