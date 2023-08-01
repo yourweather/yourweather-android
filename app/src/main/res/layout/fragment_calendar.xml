@@ -6,15 +6,15 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:orientation="vertical"
-    tools:context=".presentation.CalendarFragment">
+    tools:context=".presentation.calendar.CalendarFragment">
 
-    <com.umc.yourweather.presentation.CalendarMonth
+    <com.umc.yourweather.presentation.calendar.CalendarMonth
         android:id="@+id/ct_calendar_custom"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
         app:dayTextSize="11dp"
         app:temTextSize="10dp"
         >
-    </com.umc.yourweather.presentation.CalendarMonth>
+    </com.umc.yourweather.presentation.calendar.CalendarMonth>
 
 </LinearLayout>

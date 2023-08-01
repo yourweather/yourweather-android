@@ -7,7 +7,7 @@ import android.view.ViewGroup
 import androidx.recyclerview.widget.RecyclerView
 import com.umc.yourweather.data.ItemUnwritten
 import com.umc.yourweather.databinding.ItemUnwrittenDetailBinding
-import com.umc.yourweather.presentation.CalendarTotalViewFragment
+import com.umc.yourweather.presentation.calendar.CalendarTotalViewFragment
 
 class UnwrittenRVAdapter(private val dataList: List<ItemUnwritten>, private val context: Context) :
     RecyclerView.Adapter<UnwrittenRVAdapter.MyViewHolder>() {

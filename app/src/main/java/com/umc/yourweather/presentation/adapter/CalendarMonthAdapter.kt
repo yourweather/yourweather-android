@@ -3,7 +3,7 @@ package com.umc.yourweather.presentation.adapter
 import android.os.Bundle
 import androidx.fragment.app.FragmentActivity
 import androidx.viewpager2.adapter.FragmentStateAdapter
-import com.umc.yourweather.presentation.CalendarFragment
+import com.umc.yourweather.presentation.calendar.CalendarFragment
 import java.util.Calendar
 import java.util.Date
 
