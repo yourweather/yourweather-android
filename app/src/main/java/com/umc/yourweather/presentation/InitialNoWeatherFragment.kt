@@ -36,15 +36,13 @@ class InitialNoWeatherFragment : Fragment() {
 
         initialToast.show()
 
-
         binding.btnInitialWeather.setOnClickListener {
             val newFragment = HomeFragment() // 전환할 프래그먼트 생성
-            Log.d("왜안되느", "${newFragment}")
+            Log.d("왜안되느", "$newFragment")
             val transaction = requireActivity().supportFragmentManager.beginTransaction()
             transaction.replace(R.id.fl_content, newFragment) // 프래그먼트 교체
             transaction.addToBackStack(null) // 백 스택에 추가하여 뒤로가기 버튼 동작을 지원
             transaction.commit()
         }
     }
-
 }
