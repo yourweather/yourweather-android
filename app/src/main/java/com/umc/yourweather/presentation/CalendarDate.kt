@@ -1,38 +1,37 @@
 package com.umc.yourweather.presentation
 
 import android.content.Context
-import android.content.Intent
 import android.graphics.Canvas
 import android.graphics.Color
 import android.graphics.Paint
 import android.graphics.Typeface
 import android.graphics.drawable.Drawable
+import android.os.Build
 import android.text.TextPaint
 import android.util.AttributeSet
 import android.util.Log
 import android.view.View
+import androidx.annotation.RequiresApi
 import androidx.core.content.ContextCompat
-import androidx.core.content.ContextCompat.startActivity
 import androidx.core.content.res.ResourcesCompat
 import androidx.core.content.withStyledAttributes
 import com.umc.yourweather.R
 import com.umc.yourweather.util.CalendarUtils.Companion.dpToPx
+import java.time.LocalDate
 import java.util.Calendar
-import java.util.Date
 
+@RequiresApi(Build.VERSION_CODES.O)
 class CalendarDate @JvmOverloads constructor(
     context: Context,
     attrs: AttributeSet? = null,
     defStyleAttr: Int = 0,
-    val calendarMonth: Int,
-    val calendarYear: Int,
-    val date: Date,
+    val thisMonth: Int,
+    val thisDate: LocalDate,
 ) : View(context, attrs, defStyleAttr) {
     val count = 1 // 데이터 개수
     lateinit var datePaint: Paint
     lateinit var temPaint: Paint
     var customDrawable: Drawable? = null
-    var cal = Calendar.getInstance()
 
 //    //**삭제예정!!!!!
 //    private val borderPaint = Paint().apply {
@@ -42,7 +41,7 @@ class CalendarDate @JvmOverloads constructor(
 //    }
 
     interface OnDateClickListener {
-        fun onDateClick(date: Date)
+        fun onDateClick(date: LocalDate)
     }
 
     private var onDateClickListener: OnDateClickListener? = null
@@ -53,7 +52,8 @@ class CalendarDate @JvmOverloads constructor(
 
     init {
         // setCustomPadding() 삭제예정
-        cal.time = date
+
+        Log.d("date 클래스 ", "${thisDate.year}, ${thisDate.monthValue}, ${thisDate.dayOfMonth}")
         if (isSameMonth() == true) {
             context.withStyledAttributes(
                 attrs,
@@ -88,17 +88,19 @@ class CalendarDate @JvmOverloads constructor(
                 }
             }
         }
+
         setOnClickListener {
             // 클릭 이벤트가 발생했을 때 콜백으로 해당 날짜 전달
-            onDateClickListener?.onDateClick(date)
+            onDateClickListener?.onDateClick(thisDate)
         }
     }
 
+    @RequiresApi(Build.VERSION_CODES.O)
     override fun onDraw(canvas: Canvas?) {
         super.onDraw(canvas)
         // canvas?.drawRect(0f, 0f, width.toFloat(), height.toFloat(), borderPaint)
         if (isSameMonth() == true) {
-            val dateText = cal.get(Calendar.DAY_OF_MONTH).toString()
+            val dateText = thisDate.dayOfMonth.toString()
             val temp = "40" + "°"
 
             canvas?.drawText(dateText, (width / 2).toFloat(), dpToPx(context, 16).toFloat(), datePaint)
@@ -118,13 +120,14 @@ class CalendarDate @JvmOverloads constructor(
         }
     }
 
+    @RequiresApi(Build.VERSION_CODES.O)
     fun isSameMonth(): Boolean {
-        val month = cal.get(Calendar.MONTH) + 1
-        return month == calendarMonth
+        return thisMonth == thisDate.monthValue
     }
 
+    @RequiresApi(Build.VERSION_CODES.O)
     fun isLaterDay(): Boolean {
-        val todayCalendar = Calendar.getInstance()
-        return todayCalendar.before(cal)
+        val today = LocalDate.now()
+        return today.isBefore(thisDate)
     }
 }
