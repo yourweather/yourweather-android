@@ -21,7 +21,7 @@ class BottomNavi : AppCompatActivity() {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_bnv)
 
-        // 최초 한 번만 트랜잭션을 시작하여 InitialNoWeatherFragment를 추가
+        // 최초 한 번만 트랜잭션을 시작
         if (savedInstanceState == null) {
             supportFragmentManager.beginTransaction()
                 .replace(fl.id, InitialNoWeatherFragment())
@@ -29,7 +29,6 @@ class BottomNavi : AppCompatActivity() {
         }
 
         bn.setOnItemSelectedListener {
-            // 프래그먼트 전환 시 미리 시작된 트랜잭션을 사용
             when (it.itemId) {
                 R.id.bnv_home -> replaceFragment(InitialNoWeatherFragment())
 //                R.id.bnv_calender -> replaceFragment(BnvCalender())
