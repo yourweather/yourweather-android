@@ -3,8 +3,9 @@
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
-    android:layout_height="match_parent"
+    android:layout_height="wrap_content"
     tools:context=".presentation.CalendarDetailView3">
+
     <TextView
         android:id="@+id/textView"
         android:layout_width="wrap_content"
@@ -33,22 +34,21 @@
         app:layout_constraintTop_toBottomOf="@+id/horizontalScrollView2" />
 
     <ScrollView
-        android:id="@+id/scrollView2"
-        android:layout_width="0dp"
-        android:layout_height="0dp"
+        android:layout_width="382dp"
+        android:layout_height="364dp"
         android:layout_marginStart="17dp"
-        android:layout_marginTop="50dp"
+        android:layout_marginTop="490dp"
         android:layout_marginEnd="19dp"
-        android:layout_marginBottom="45dp"
+        android:layout_marginBottom="72dp"
+        android:scrollbars="none"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/divider">
+        app:layout_constraintTop_toTopOf="parent">
 
         <LinearLayout
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_gravity="center"
             android:orientation="vertical">
 
             <TextView
@@ -78,9 +78,9 @@
                         android:id="@+id/item_detail1"
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
-                        android:textSize="13sp"
                         android:fontFamily="@font/pretendardregular"
-                        android:text="맑음으로 기분좋게 하루를 시작하고 싶다!" />
+                        android:text="맑음으로 기분좋게 하루를 시작하고 싶다!"
+                        android:textSize="13sp" />
 
                 </RelativeLayout>
 
@@ -113,9 +113,9 @@
                         android:id="@+id/item_detail2"
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
-                        android:textSize="13sp"
                         android:fontFamily="@font/pretendardregular"
-                        android:text="비와서 우울해ㅜ" />
+                        android:text="비와서 우울해ㅜ"
+                        android:textSize="13sp" />
 
                 </RelativeLayout>
 
@@ -148,9 +148,9 @@
                         android:id="@+id/item_detail3"
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
-                        android:textSize="13sp"
                         android:fontFamily="@font/pretendardregular"
-                        android:text="비는 오지만 내 마음의 비는 제로! 그저 빨리 집에 가고 싶은 마음 뿐.." />
+                        android:text="비는 오지만 내 마음의 비는 제로! 그저 빨리 집에 가고 싶은 마음 뿐.."
+                        android:textSize="13sp" />
 
                 </RelativeLayout>
 
@@ -183,9 +183,9 @@
                         android:id="@+id/item_detail4"
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
-                        android:textSize="13sp"
                         android:fontFamily="@font/pretendardregular"
-                        android:text="늘 적응 안되는 퇴근길..천둥이 친다." />
+                        android:text="늘 적응 안되는 퇴근길..천둥이 친다."
+                        android:textSize="13sp" />
 
                 </RelativeLayout>
 
@@ -218,9 +218,9 @@
                         android:id="@+id/item_detail5"
                         android:layout_width="match_parent"
                         android:layout_height="match_parent"
-                        android:textSize="13sp"
                         android:fontFamily="@font/pretendardregular"
-                        android:text="야식 먹고 싶었던 가게가 문을 일찍 닫아버렸다. 천둥 가득가득.. " />
+                        android:text="야식 먹고 싶었던 가게가 문을 일찍 닫아버렸다. 천둥 가득가득.. "
+                        android:textSize="13sp" />
 
                 </RelativeLayout>
 
@@ -259,24 +259,26 @@
                 android:orientation="horizontal">
 
                 <TextView
+                    android:id="@+id/timeTextView1"
                     android:layout_width="64dp"
                     android:layout_height="27dp"
+                    android:layout_marginStart="9dp"
                     android:layout_marginTop="6dp"
+                    android:layout_marginEnd="19dp"
                     android:fontFamily="@font/pretendardregular"
                     android:text="오후 1:00"
-                    android:layout_marginStart="9dp"
-                    android:layout_marginEnd="19dp"
                     android:textAlignment="center"
                     android:textColor="#2B2B2B"
                     android:textFontWeight="600"
                     android:textSize="14sp" />
 
                 <TextView
+                    android:id="@+id/timeTextView2"
                     android:layout_width="64dp"
                     android:layout_height="27dp"
                     android:layout_marginTop="6dp"
-                    android:fontFamily="@font/pretendardregular"
                     android:layout_marginEnd="19dp"
+                    android:fontFamily="@font/pretendardregular"
                     android:text="오후 3:00"
                     android:textAlignment="center"
                     android:textColor="#2B2B2B"
@@ -284,6 +286,7 @@
                     android:textSize="14sp" />
 
                 <TextView
+                    android:id="@+id/timeTextView3"
                     android:layout_width="64dp"
                     android:layout_height="27dp"
                     android:layout_marginTop="6dp"
@@ -296,6 +299,7 @@
                     android:textSize="14sp" />
 
                 <TextView
+                    android:id="@+id/timeTextView4"
                     android:layout_width="64dp"
                     android:layout_height="27dp"
                     android:layout_marginTop="6dp"
@@ -308,6 +312,7 @@
                     android:textSize="14sp"></TextView>
 
                 <TextView
+                    android:id="@+id/timeTextView5"
                     android:layout_width="64dp"
                     android:layout_height="27dp"
                     android:layout_marginTop="6dp"
@@ -323,17 +328,15 @@
             <LinearLayout
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:orientation="horizontal"
                 android:layout_gravity="center"
-                >
+                android:orientation="horizontal">
 
                 <FrameLayout
                     android:layout_width="53dp"
                     android:layout_height="54dp"
                     android:layout_gravity="center"
-                    android:layout_marginEnd="14dp"
                     android:layout_marginStart="19dp"
-                    >
+                    android:layout_marginEnd="14dp">
 
                     <ImageView
                         android:layout_width="53dp"
@@ -345,16 +348,15 @@
                         android:layout_width="73dp"
                         android:layout_height="72dp"
                         android:layout_gravity="center"
-                        app:srcCompat="@drawable/ic_sun"
-                        />
+                        app:srcCompat="@drawable/ic_sun" />
                 </FrameLayout>
 
                 <FrameLayout
                     android:layout_width="53dp"
                     android:layout_height="54dp"
                     android:layout_gravity="center"
-                    android:layout_marginEnd="15dp"
-                    android:layout_marginStart="15dp">
+                    android:layout_marginStart="15dp"
+                    android:layout_marginEnd="15dp">
 
                     <ImageView
                         android:layout_width="53dp"
@@ -373,8 +375,8 @@
                     android:layout_width="53dp"
                     android:layout_height="52dp"
                     android:layout_gravity="center"
-                    android:layout_marginEnd="15dp"
-                    android:layout_marginStart="15dp">
+                    android:layout_marginStart="15dp"
+                    android:layout_marginEnd="15dp">
 
                     <ImageView
                         android:layout_width="53dp"
@@ -393,8 +395,8 @@
                     android:layout_width="53dp"
                     android:layout_height="52dp"
                     android:layout_gravity="center"
-                    android:layout_marginEnd="15dp"
-                    android:layout_marginStart="15dp">
+                    android:layout_marginStart="15dp"
+                    android:layout_marginEnd="15dp">
 
                     <ImageView
                         android:layout_width="53dp"
@@ -406,16 +408,14 @@
                         android:layout_width="73dp"
                         android:layout_height="72dp"
                         android:layout_gravity="center"
-                        app:srcCompat="@drawable/ic_thunder"
-                        />
+                        app:srcCompat="@drawable/ic_thunder" />
                 </FrameLayout>
 
                 <FrameLayout
                     android:layout_width="53dp"
                     android:layout_height="52dp"
                     android:layout_gravity="center"
-                    android:layout_marginStart="15dp"
-                    >
+                    android:layout_marginStart="15dp">
 
                     <ImageView
                         android:layout_width="53dp"
@@ -439,9 +439,9 @@
                 <TextView
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
+                    android:layout_marginStart="29dp"
                     android:layout_marginTop="10dp"
                     android:layout_marginEnd="60dp"
-                    android:layout_marginStart="29dp"
                     android:fontFamily="@font/pretendardregular"
                     android:text="10°"
                     android:textAlignment="center"
@@ -453,9 +453,9 @@
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:layout_marginTop="10dp"
+                    android:layout_marginEnd="60dp"
                     android:fontFamily="@font/pretendardregular"
                     android:text="100°"
-                    android:layout_marginEnd="60dp"
                     android:textAlignment="center"
                     android:textColor="#2B2B2B"
                     android:textFontWeight="600"
@@ -465,9 +465,9 @@
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:layout_marginTop="10dp"
+                    android:layout_marginEnd="60dp"
                     android:fontFamily="@font/pretendardregular"
                     android:text="0°"
-                    android:layout_marginEnd="60dp"
                     android:textAlignment="center"
                     android:textColor="#2B2B2B"
                     android:textFontWeight="600"
@@ -477,9 +477,9 @@
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:layout_marginTop="10dp"
+                    android:layout_marginEnd="60dp"
                     android:fontFamily="@font/pretendardregular"
                     android:text="30°"
-                    android:layout_marginEnd="60dp"
                     android:textAlignment="center"
                     android:textColor="#2B2B2B"
                     android:textFontWeight="600"
@@ -496,9 +496,11 @@
                     android:textFontWeight="600"
                     android:textSize="14sp"></TextView>
             </LinearLayout>
+
             <FrameLayout
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content">
+
                 <ImageView
                     android:id="@+id/imageView"
                     android:layout_width="350dp"
@@ -519,25 +521,28 @@
                     android:layout_height="wrap_content"
                     android:layout_marginStart="130dp"
                     android:layout_marginTop="11dp"
-                    app:srcCompat="@drawable/ic_calendardetailview_temp"/>
+                    app:srcCompat="@drawable/ic_calendardetailview_temp" />
+
                 <ImageView
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_marginStart="225dp"
                     android:layout_marginTop="91dp"
-                    app:srcCompat="@drawable/ic_calendardetailview_temp"/>
+                    app:srcCompat="@drawable/ic_calendardetailview_temp" />
+
                 <ImageView
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_marginStart="285dp"
                     android:layout_marginTop="78dp"
-                    app:srcCompat="@drawable/ic_calendardetailview_temp"/>
+                    app:srcCompat="@drawable/ic_calendardetailview_temp" />
+
                 <ImageView
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_marginStart="365dp"
                     android:layout_marginTop="53dp"
-                    app:srcCompat="@drawable/ic_calendardetailview_temp"/>
+                    app:srcCompat="@drawable/ic_calendardetailview_temp" />
             </FrameLayout>
 
         </LinearLayout>
@@ -550,9 +555,9 @@
         android:layout_width="0dp"
         android:layout_height="0dp"
         android:layout_marginStart="17dp"
-        android:layout_marginTop="20dp"
+        android:layout_marginTop="25dp"
         android:layout_marginEnd="335dp"
-        android:layout_marginBottom="365dp"
+        android:layout_marginBottom="360dp"
         android:adjustViewBounds="true"
         android:background="#00ff0000"
         android:scaleType="centerInside"
@@ -579,10 +584,10 @@
         android:textSize="20sp"
         app:layout_constraintBottom_toTopOf="@+id/divider"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.0"
+        app:layout_constraintHorizontal_bias="1.0"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="0.583"></Button>
+        app:layout_constraintVertical_bias="0.375"></Button>
 
     <TextView
         android:id="@+id/textView3"
@@ -607,10 +612,10 @@
         android:layout_marginTop="133dp"
         android:layout_marginEnd="134dp"
         android:layout_marginBottom="258dp"
-        android:textColor="#BDBDBD"
-        android:textSize="12sp"
         android:fontFamily="@font/pretendardregular"
         android:text="기록 수정하고자 하는 시간대를 선택해주세요 "
+        android:textColor="#BDBDBD"
+        android:textSize="12sp"
         app:layout_constraintBottom_toTopOf="@+id/divider"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
@@ -623,13 +628,13 @@
         android:layout_marginStart="311dp"
         android:layout_marginTop="861dp"
         android:layout_marginEnd="19dp"
-        android:layout_marginBottom="17dp"
+        android:layout_marginBottom="35dp"
+        android:background="#00ff0000"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
-        app:srcCompat="@drawable/btn_calendardetailview_plus"
-        tools:background="#00ff0000" />
+        app:srcCompat="@drawable/btn_calendardetailview_plus" />
 
 
 </androidx.constraintlayout.widget.ConstraintLayout>

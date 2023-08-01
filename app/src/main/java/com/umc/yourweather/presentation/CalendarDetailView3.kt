@@ -26,5 +26,18 @@ class CalendarDetailView3 : AppCompatActivity() {
             val intent = Intent(this@CalendarDetailView3, CalendarDetailView1::class.java)
             startActivity(intent)
         }
+
+        val myTextView1 = findViewById<TextView>(R.id.timeTextView1)
+        val myTextView2 = findViewById<TextView>(R.id.timeTextView2)
+        val myTextView3 = findViewById<TextView>(R.id.timeTextView3)
+        val myTextView4 = findViewById<TextView>(R.id.timeTextView4)
+        val myTextView5 = findViewById<TextView>(R.id.timeTextView5)
+
+        myTextView1.paintFlags = myTextView1.paintFlags or Paint.UNDERLINE_TEXT_FLAG
+        myTextView2.paintFlags = myTextView1.paintFlags or Paint.UNDERLINE_TEXT_FLAG
+        myTextView3.paintFlags = myTextView1.paintFlags or Paint.UNDERLINE_TEXT_FLAG
+        myTextView4.paintFlags = myTextView1.paintFlags or Paint.UNDERLINE_TEXT_FLAG
+        myTextView5.paintFlags = myTextView1.paintFlags or Paint.UNDERLINE_TEXT_FLAG
+
     }
 }
