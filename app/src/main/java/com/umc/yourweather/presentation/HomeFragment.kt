@@ -10,7 +10,7 @@ import com.bumptech.glide.Glide
 import com.umc.yourweather.R
 import com.umc.yourweather.databinding.FragmentHomeBinding
 
-class HomeFragment : Fragment() {
+class HomeFragment : Fragment(), HomeWeatherInputFragment.HomeFragmentInteractionListener {
     private lateinit var binding: FragmentHomeBinding
 
     override fun onCreateView(
@@ -33,13 +33,14 @@ class HomeFragment : Fragment() {
     }
 
     private fun setFragment() {
+        val homeWeatherInputFragment = HomeWeatherInputFragment(this) // Pass HomeFragment as the listener
         val transaction = parentFragmentManager.beginTransaction()
-            .replace(R.id.fl_home_l1, HomeWeatherInputFragment())
+            .replace(R.id.fl_home_l1, homeWeatherInputFragment)
             .addToBackStack(null)
         transaction.commit()
     }
 
-    fun goToNewHome() {
+    override fun goToNewHome() {
         showHomeToast()
         parentFragmentManager.popBackStack()
     }
@@ -55,9 +56,5 @@ class HomeFragment : Fragment() {
         homeToast.setGravity(android.view.Gravity.BOTTOM or android.view.Gravity.CENTER, 0, resources.getDimensionPixelSize(R.dimen.home_toast_margin_bottom))
 
         homeToast.show()
-    }
-
-    interface HomeFragmentInteractionListener {
-        fun goToNewHome()
     }
 }

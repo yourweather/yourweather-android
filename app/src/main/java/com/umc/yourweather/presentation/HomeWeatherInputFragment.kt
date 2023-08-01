@@ -7,8 +7,9 @@ import android.view.ViewGroup
 import androidx.fragment.app.Fragment
 import com.umc.yourweather.databinding.FragmentHomeWeatherInputBinding
 
-class HomeWeatherInputFragment : Fragment() {
+class HomeWeatherInputFragment(private val listener: HomeFragmentInteractionListener) : Fragment() {
     private lateinit var binding: FragmentHomeWeatherInputBinding
+
     override fun onCreateView(
         inflater: LayoutInflater,
         container: ViewGroup?,
@@ -17,6 +18,7 @@ class HomeWeatherInputFragment : Fragment() {
         binding = FragmentHomeWeatherInputBinding.inflate(inflater, container, false)
         return binding.root
     }
+
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
 
@@ -27,7 +29,10 @@ class HomeWeatherInputFragment : Fragment() {
         }
         // btn_home_weather_save 버튼 클릭 이벤트 처리
         binding.btnHomeWeatherSave.setOnClickListener {
-            (requireActivity() as? HomeFragment.HomeFragmentInteractionListener)?.goToNewHome()
+            listener?.goToNewHome()
         }
+    }
+    interface HomeFragmentInteractionListener {
+        fun goToNewHome()
     }
 }
