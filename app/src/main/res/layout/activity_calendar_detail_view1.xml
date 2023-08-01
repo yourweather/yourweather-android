@@ -34,20 +34,21 @@
         app:layout_constraintTop_toBottomOf="@+id/horizontalScrollView2" />
 
     <ScrollView
-        android:layout_width="0dp"
-        android:layout_height="0dp"
+        android:layout_width="389dp"
+        android:layout_height="399dp"
         android:layout_marginStart="17dp"
-        android:layout_marginTop="50dp"
+        android:layout_marginTop="490dp"
         android:layout_marginEnd="19dp"
+        android:layout_marginBottom="40dp"
+        android:scrollbars="none"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/divider">
+        app:layout_constraintTop_toTopOf="parent">
 
         <LinearLayout
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_gravity="center"
             android:orientation="vertical">
 
             <TextView
@@ -77,9 +78,9 @@
                         android:id="@+id/item_detail1"
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
-                        android:textSize="13sp"
                         android:fontFamily="@font/pretendardregular"
-                        android:text="맑음으로 기분좋게 하루를 시작하고 싶다!" />
+                        android:text="맑음으로 기분좋게 하루를 시작하고 싶다!"
+                        android:textSize="13sp" />
 
                 </RelativeLayout>
 
@@ -112,9 +113,9 @@
                         android:id="@+id/item_detail2"
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
-                        android:textSize="13sp"
                         android:fontFamily="@font/pretendardregular"
-                        android:text="비와서 우울해ㅜ" />
+                        android:text="비와서 우울해ㅜ"
+                        android:textSize="13sp" />
 
                 </RelativeLayout>
 
@@ -147,9 +148,9 @@
                         android:id="@+id/item_detail3"
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
-                        android:textSize="13sp"
                         android:fontFamily="@font/pretendardregular"
-                        android:text="비는 오지만 내 마음의 비는 제로! 그저 빨리 집에 가고 싶은 마음 뿐.." />
+                        android:text="비는 오지만 내 마음의 비는 제로! 그저 빨리 집에 가고 싶은 마음 뿐.."
+                        android:textSize="13sp" />
 
                 </RelativeLayout>
 
@@ -182,9 +183,9 @@
                         android:id="@+id/item_detail4"
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
-                        android:textSize="13sp"
                         android:fontFamily="@font/pretendardregular"
-                        android:text="늘 적응 안되는 퇴근길..천둥이 친다." />
+                        android:text="늘 적응 안되는 퇴근길..천둥이 친다."
+                        android:textSize="13sp" />
 
                 </RelativeLayout>
 
@@ -216,10 +217,10 @@
                     <TextView
                         android:id="@+id/item_detail5"
                         android:layout_width="match_parent"
-                        android:layout_height="wrap_content"
-                        android:textSize="13sp"
+                        android:layout_height="match_parent"
                         android:fontFamily="@font/pretendardregular"
-                        android:text="야식 먹고 싶었던 가게가 문을 일찍 닫아버렸다. 천둥 가득가득.. " />
+                        android:text="야식 먹고 싶었던 가게가 문을 일찍 닫아버렸다. 천둥 가득가득.. "
+                        android:textSize="13sp" />
 
                 </RelativeLayout>
 
@@ -549,9 +550,9 @@
         android:layout_width="0dp"
         android:layout_height="0dp"
         android:layout_marginStart="17dp"
-        android:layout_marginTop="20dp"
+        android:layout_marginTop="25dp"
         android:layout_marginEnd="335dp"
-        android:layout_marginBottom="365dp"
+        android:layout_marginBottom="360dp"
         android:adjustViewBounds="true"
         android:background="#00ff0000"
         android:scaleType="centerInside"

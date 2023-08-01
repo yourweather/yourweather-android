@@ -91,7 +91,7 @@
             android:exported="false" />
         <activity
             android:name=".presentation.CalendarDetailView1"
-            android:exported="false"/>
+            android:exported="true"/>
         <activity
             android:name=".presentation.CalendarDetailView2"
             android:exported="false"/>
