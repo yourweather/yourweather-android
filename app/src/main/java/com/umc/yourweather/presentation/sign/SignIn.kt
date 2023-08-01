@@ -1,4 +1,4 @@
-package com.umc.yourweather.presentation
+package com.umc.yourweather.presentation.sign
 
 import android.content.Intent
 import android.os.Bundle
@@ -10,6 +10,7 @@ import android.widget.Toast
 import androidx.appcompat.app.AppCompatActivity
 import com.umc.yourweather.R
 import com.umc.yourweather.databinding.ActivitySignInBinding
+import com.umc.yourweather.presentation.BottomNavi
 import com.umc.yourweather.util.CalendarUtils.Companion.dpToPx
 
 class SignIn : AppCompatActivity() {

@@ -1,4 +1,4 @@
-package com.umc.yourweather.presentation
+package com.umc.yourweather.presentation.sign
 
 import android.os.Bundle
 import android.widget.Button
