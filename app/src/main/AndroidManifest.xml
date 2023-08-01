@@ -17,9 +17,11 @@
             android:name=".presentation.InitialNoWeather"
             android:exported="true"/>
         <activity
-            android:name=".presentation.Home"
-            android:exported="true"
-            android:windowSoftInputMode="adjustResize" />
+            android:name=".presentation.HomeFragment"
+            android:exported="true" />
+        <activity
+            android:name=".presentation.HomeWeatherInputFragment"
+            android:exported="true" />
         <activity
             android:name=".presentation.MyPagePwChange"
             android:exported="false" />
