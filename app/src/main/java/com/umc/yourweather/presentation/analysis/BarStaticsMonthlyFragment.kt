@@ -92,10 +92,10 @@ class BarStaticsMonthlyFragment : Fragment() {
 
             // 모서리를 깎은 드로어블 적용
             val drawableRes = when (data.label) {
-                "맑음" -> R.drawable.bg_gray_ca_fill_rect
-                "흐림" -> R.drawable.btn_brown_rec
-                "번개" -> R.drawable.bg_gray_ca_fill_rect
-                "비" -> R.drawable.btn_brown_rec
+                "맑음" -> R.drawable.bg_yellow_rec_round_sun
+                "흐림" -> R.drawable.bg_gray_rec_cloud
+                "번개" -> R.drawable.bg_blue_rec_rain
+                "비" -> R.drawable.bg_darkblue_rec_round_thunder
                 else -> R.drawable.bg_gray_ca_fill_rect
             }
 
