@@ -49,14 +49,6 @@ class BarStaticsMonthlyFragment : Fragment() {
             BarData("비", 66),
         )
 
-        // 색상 리스트 생성
-        val colorList = listOf(
-            BarColor("맑음", "#FCC112"),
-            BarColor("흐림", "#C7C7C7"),
-            BarColor("번개", "#8299BB"),
-            BarColor("비", "#1A1D34"),
-        )
-
         // 각 데이터 값에 해당하는 너비 계산
         val sum = dataList.sumOf { it.value }
 
@@ -71,8 +63,6 @@ class BarStaticsMonthlyFragment : Fragment() {
                 ViewGroup.LayoutParams.MATCH_PARENT,
                 width,
             )
-            val colorResId = colorList.first { it.label == data.label }.colorResId
-            view.setBackgroundColor(Color.parseColor(colorResId))
 
             val drawableRes = when (data.label) {
                 "맑음" -> R.drawable.bg_yellow_rec_round_sun
@@ -97,8 +87,6 @@ class BarStaticsMonthlyFragment : Fragment() {
                 ViewGroup.LayoutParams.MATCH_PARENT,
                 width,
             )
-            val colorResId = colorList.first { it.label == data.label }.colorResId
-            view.setBackgroundColor(Color.parseColor(colorResId))
 
             //배경 drawable 적용
             val drawableRes = when (data.label) {
@@ -110,7 +98,6 @@ class BarStaticsMonthlyFragment : Fragment() {
             }
 
             view.background = ContextCompat.getDrawable(requireContext(), drawableRes)
-
             binding.llAnalysisBarThisMonth.addView(view)
         }
     }
