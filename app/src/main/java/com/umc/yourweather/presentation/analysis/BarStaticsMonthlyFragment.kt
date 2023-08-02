@@ -28,6 +28,7 @@ class BarStaticsMonthlyFragment : Fragment() {
     ): View? {
         // Inflate the layout for this fragment
         _binding = FragmentBarStaticsMonthlyBinding.inflate(inflater, container, false)
+
         return binding.root
     }
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
@@ -88,6 +89,18 @@ class BarStaticsMonthlyFragment : Fragment() {
             )
             val colorResId = colorList.first { it.label == data.label }.colorResId
             view.setBackgroundColor(Color.parseColor(colorResId))
+
+            // 모서리를 깎은 드로어블 적용
+            val drawableRes = when (data.label) {
+                "맑음" -> R.drawable.bg_gray_ca_fill_rect
+                "흐림" -> R.drawable.btn_brown_rec
+                "번개" -> R.drawable.bg_gray_ca_fill_rect
+                "비" -> R.drawable.btn_brown_rec
+                else -> R.drawable.bg_gray_ca_fill_rect
+            }
+
+            view.background = ContextCompat.getDrawable(requireContext(), drawableRes)
+
             binding.llAnalysisBarThisMonth.addView(view)
         }
     }
