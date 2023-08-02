@@ -10,12 +10,9 @@ import androidx.annotation.RequiresApi
 import androidx.fragment.app.Fragment
 import com.umc.yourweather.databinding.FragmentCalendarBinding
 import java.time.LocalDate
-import java.util.Calendar
 
 class CalendarFragment : Fragment() {
     lateinit var binding: FragmentCalendarBinding
-    lateinit var cal: Calendar
-    lateinit var todayCalendar: Calendar
     var dateList: MutableList<LocalDate> = mutableListOf()
 
     override fun onCreate(savedInstanceState: Bundle?) {
@@ -25,15 +22,14 @@ class CalendarFragment : Fragment() {
     @RequiresApi(Build.VERSION_CODES.O)
     override fun onCreateView(inflater: LayoutInflater, container: ViewGroup?, savedInstanceState: Bundle?): View? {
         binding = FragmentCalendarBinding.inflate(layoutInflater)
-        cal = Calendar.getInstance()
 
         val year = arguments?.getInt("year")
         val month = arguments?.getInt("month")
         val id = arguments?.getString("id")
 
-        cal.set(year!!, month!! - 1, 1)
         getDate(year!!, month!!)
         Log.d("날짜확인확인", "$year $month")
+
         binding.ctCalendarCustom.initCalendar(month!!, dateList)
 
         return binding.root

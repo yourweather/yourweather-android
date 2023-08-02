@@ -57,11 +57,15 @@ class CalendarMonth @JvmOverloads constructor(
 
     @RequiresApi(Build.VERSION_CODES.O)
     fun initCalendar(month: Int, list: MutableList<LocalDate>) {
-        list.forEach {
+        // demo
+        var dataList = testCalendarData().weatherDatas
+
+        list.forEach { localdata ->
             val calendarDateView = CalendarDate(
                 context = context,
-                thisDate = it,
+                thisDate = localdata,
                 thisMonth = month,
+                dataList = dataList.filter { it.date == localdata },
             )
             // 클릭 이벤트 리스너를 설정하여 콜백 등록
             calendarDateView.setOnDateClickListener(onDateClickListener)
