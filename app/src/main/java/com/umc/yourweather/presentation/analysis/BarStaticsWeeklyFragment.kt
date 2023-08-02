@@ -37,20 +37,20 @@ class BarStaticsWeeklyFragment : Fragment() {
 
         // 텍스트 색 변환 코드
         val ssb1 = SpannableStringBuilder("맑음 비율이 20% 증가했습니다.")
-        ssb1.apply{
-            setSpan(ForegroundColorSpan(Color.parseColor("#70AD47")), 7,10, Spannable.SPAN_EXCLUSIVE_INCLUSIVE)
+        ssb1.apply {
+            setSpan(ForegroundColorSpan(Color.parseColor("#70AD47")), 7, 10, Spannable.SPAN_EXCLUSIVE_INCLUSIVE)
         }
         val ssb2 = SpannableStringBuilder("다소 흐림 비율이 10% 증가했습니다.")
-        ssb2.apply{
-            setSpan(ForegroundColorSpan(Color.parseColor("#70AD47")), 10,13, Spannable.SPAN_EXCLUSIVE_INCLUSIVE)
+        ssb2.apply {
+            setSpan(ForegroundColorSpan(Color.parseColor("#70AD47")), 10, 13, Spannable.SPAN_EXCLUSIVE_INCLUSIVE)
         }
         val ssb3 = SpannableStringBuilder("비 비율이 5% 감소했습니다.")
-        ssb3.apply{
-            setSpan(ForegroundColorSpan(Color.parseColor("#F7931E")), 6,9, Spannable.SPAN_EXCLUSIVE_INCLUSIVE)
+        ssb3.apply {
+            setSpan(ForegroundColorSpan(Color.parseColor("#F7931E")), 6, 9, Spannable.SPAN_EXCLUSIVE_INCLUSIVE)
         }
         val ssb4 = SpannableStringBuilder("번개 비율이 10% 감소했습니다.")
-        ssb4.apply{
-            setSpan(ForegroundColorSpan(Color.parseColor("#F7931E")), 7,10, Spannable.SPAN_EXCLUSIVE_INCLUSIVE)
+        ssb4.apply {
+            setSpan(ForegroundColorSpan(Color.parseColor("#F7931E")), 7, 10, Spannable.SPAN_EXCLUSIVE_INCLUSIVE)
         }
         binding.tvAnalysisDetailStaticsSunny.text = ssb1
         binding.tvAnalysisDetailStaticsCloudy.text = ssb2
