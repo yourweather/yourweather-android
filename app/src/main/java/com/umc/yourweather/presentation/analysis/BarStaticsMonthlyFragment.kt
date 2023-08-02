@@ -73,6 +73,16 @@ class BarStaticsMonthlyFragment : Fragment() {
             )
             val colorResId = colorList.first { it.label == data.label }.colorResId
             view.setBackgroundColor(Color.parseColor(colorResId))
+
+            val drawableRes = when (data.label) {
+                "맑음" -> R.drawable.bg_yellow_rec_round_sun
+                "흐림" -> R.drawable.bg_gray_rec_cloud
+                "번개" -> R.drawable.bg_blue_rec_rain
+                "비" -> R.drawable.bg_darkblue_rec_round_thunder
+                else -> R.drawable.bg_gray_rec_cloud
+            }
+
+            view.background = ContextCompat.getDrawable(requireContext(), drawableRes)
             binding.llAnalysisBarLastMonth.addView(view)
         }
 
@@ -90,13 +100,13 @@ class BarStaticsMonthlyFragment : Fragment() {
             val colorResId = colorList.first { it.label == data.label }.colorResId
             view.setBackgroundColor(Color.parseColor(colorResId))
 
-            // 모서리를 깎은 드로어블 적용
+            //배경 drawable 적용
             val drawableRes = when (data.label) {
                 "맑음" -> R.drawable.bg_yellow_rec_round_sun
                 "흐림" -> R.drawable.bg_gray_rec_cloud
                 "번개" -> R.drawable.bg_blue_rec_rain
                 "비" -> R.drawable.bg_darkblue_rec_round_thunder
-                else -> R.drawable.bg_gray_ca_fill_rect
+                else -> R.drawable.bg_gray_rec_cloud
             }
 
             view.background = ContextCompat.getDrawable(requireContext(), drawableRes)
