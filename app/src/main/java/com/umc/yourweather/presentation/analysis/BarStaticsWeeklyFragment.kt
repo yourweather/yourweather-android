@@ -6,7 +6,9 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import android.widget.LinearLayout
+import androidx.core.content.ContextCompat
 import androidx.fragment.app.Fragment
+import com.umc.yourweather.R
 import com.umc.yourweather.data.BarColor
 import com.umc.yourweather.data.BarData
 import com.umc.yourweather.databinding.FragmentBarStaticsWeeklyBinding
@@ -69,6 +71,16 @@ class BarStaticsWeeklyFragment : Fragment() {
             )
             val colorResId = colorList.first { it.label == data.label }.colorResId
             view.setBackgroundColor(Color.parseColor(colorResId))
+
+            val drawableRes = when (data.label) {
+                "맑음" -> R.drawable.bg_yellow_rec_round_sun
+                "흐림" -> R.drawable.bg_gray_rec_cloud
+                "번개" -> R.drawable.bg_blue_rec_rain
+                "비" -> R.drawable.bg_darkblue_rec_round_thunder
+                else -> R.drawable.bg_gray_rec_cloud
+            }
+
+            view.background = ContextCompat.getDrawable(requireContext(), drawableRes)
             binding.llAnalysisBarLastWeek.addView(view)
         }
 
@@ -85,6 +97,16 @@ class BarStaticsWeeklyFragment : Fragment() {
             )
             val colorResId = colorList.first { it.label == data.label }.colorResId
             view.setBackgroundColor(Color.parseColor(colorResId))
+
+            val drawableRes = when (data.label) {
+                "맑음" -> R.drawable.bg_yellow_rec_round_sun
+                "흐림" -> R.drawable.bg_gray_rec_cloud
+                "번개" -> R.drawable.bg_blue_rec_rain
+                "비" -> R.drawable.bg_darkblue_rec_round_thunder
+                else -> R.drawable.bg_gray_rec_cloud
+            }
+
+            view.background = ContextCompat.getDrawable(requireContext(), drawableRes)
             binding.llAnalysisBarThisWeek.addView(view)
         }
     }
