@@ -33,7 +33,7 @@ class BarStaticsWeeklyFragment : Fragment() {
         // 데이터 리스트 생성
         val dataList = listOf(
             BarData("맑음", 44),
-            BarData("흐림", 2),
+            BarData("흐림", 60),
             BarData("번개", 100),
             BarData("비", 24),
         )
