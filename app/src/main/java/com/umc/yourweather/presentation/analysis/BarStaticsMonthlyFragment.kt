@@ -36,6 +36,7 @@ class BarStaticsMonthlyFragment : Fragment() {
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
 
+        // 텍스트 색 변환 코드
         val ssb1 = SpannableStringBuilder("맑음 비율이 20% 증가했습니다.")
         ssb1.apply{
             setSpan(ForegroundColorSpan(Color.parseColor("#70AD47")), 7,10, Spannable.SPAN_EXCLUSIVE_INCLUSIVE)
@@ -56,9 +57,6 @@ class BarStaticsMonthlyFragment : Fragment() {
         binding.tvAnalysisDetailStaticsCloudy.text = ssb2
         binding.tvAnalysisDetailStaticsRainy.text = ssb3
         binding.tvAnalysisDetailStaticsThunder.text = ssb4
-
-
-
 
         // 데이터 리스트 생성
         val dataList = listOf(
