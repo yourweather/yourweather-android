@@ -8,6 +8,7 @@
     tools:context=".presentation.InitialNoWeatherFragment">
 
     <FrameLayout
+        android:id="@+id/fl_initial_l1"
         android:layout_width="match_parent"
         android:layout_height="match_parent">
 
