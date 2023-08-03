@@ -36,7 +36,7 @@ class CalendarDate @JvmOverloads constructor(
 //    //**삭제예정!!!!!
 //    private val borderPaint = Paint().apply {
 //        color = Color.BLACK // 테두리 색상
-//        style = Paint.Style.STROKE // 선 스타일 (STROKE는 외곽선)
+//        style = Paint.Style.STROKE // 선 스타일
 //        strokeWidth = 5f // 선 두께
 //    }
 
@@ -55,7 +55,7 @@ class CalendarDate @JvmOverloads constructor(
         // 가장 높은 온도
 
         Log.d("date 클래스 ", "${thisDate.year}, ${thisDate.monthValue}, ${thisDate.dayOfMonth}")
-        if (isSameMonth() == true) {
+        if (thisMonth == thisDate.monthValue) {
             context.withStyledAttributes(
                 attrs,
                 R.styleable.Calendar,
@@ -115,7 +115,7 @@ class CalendarDate @JvmOverloads constructor(
     override fun onDraw(canvas: Canvas?) {
         super.onDraw(canvas)
         // canvas?.drawRect(0f, 0f, width.toFloat(), height.toFloat(), borderPaint)
-        if (isSameMonth() == true) {
+        if (thisMonth == thisDate.monthValue) {
             val dateText = thisDate.dayOfMonth.toString()
             val temp = "${thisInfo?.temper}°"
 
@@ -136,10 +136,10 @@ class CalendarDate @JvmOverloads constructor(
         }
     }
 
-    @RequiresApi(Build.VERSION_CODES.O)
-    fun isSameMonth(): Boolean {
-        return thisMonth == thisDate.monthValue
-    }
+//    @RequiresApi(Build.VERSION_CODES.O)
+//    fun isSameMonth(): Boolean {
+//        return thisMonth == thisDate.monthValue
+//    }
 
     @RequiresApi(Build.VERSION_CODES.O)
     fun isLaterDay(): Boolean {
