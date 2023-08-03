@@ -47,7 +47,7 @@
             android:layout_weight="1"
             android:fontFamily="@font/pretendardmedium"
             android:gravity="top"
-            android:text="6월"
+            android:text="7월"
             android:textSize="12dp" />
         <!--데이터 바인딩으로 상세 달 입력 받는 것 추후 추가 필요-->
 
@@ -168,7 +168,7 @@
             android:layout_weight="1"
             android:fontFamily="@font/pretendardmedium"
             android:gravity="top"
-            android:text="7월"
+            android:text="8월"
             android:textSize="12dp" />
         <!--데이터 바인딩으로 상세 달 입력 받는 것 추후 추가 필요-->
 
