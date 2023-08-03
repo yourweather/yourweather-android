@@ -52,7 +52,8 @@
             android:layout_marginLeft="11dp"
             android:layout_marginTop="1dp"
             android:background="@drawable/ic_gray_rightarrow_7_12"
-            app:layout_constraintHeight_percent="0.05" />
+            app:layout_constraintHeight_percent="0.05"
+            android:alpha="0.5"/>
 
     </LinearLayout>
 
