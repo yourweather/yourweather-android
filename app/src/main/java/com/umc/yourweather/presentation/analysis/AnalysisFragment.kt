@@ -82,7 +82,7 @@ class AnalysisFragment : Fragment() {
         }
 
         binding.btnBell.setOnClickListener {
-            val mFragment = UnwrittenDetailListFragment()
+            val mFragment = AllWrittenFragment()
             requireActivity().supportFragmentManager.beginTransaction()
                 .replace(R.id.fl_content, mFragment)
                 .addToBackStack(null)
