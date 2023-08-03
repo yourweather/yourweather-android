@@ -26,8 +26,8 @@ class CalendarDetailView1 : AppCompatActivity() {
             finish()
         }
 
-        textView1.text = "${month}월 ${date}일 이다은님의 날씨"
-        textView3.text = "${month}월 ${date}일의 일기"
+        textView1.text = "8월 1일 이다은님의 날씨"
+        textView3.text = "8월 1일의 일기"
 
         val btnModify: Button = findViewById(R.id.button)
 
