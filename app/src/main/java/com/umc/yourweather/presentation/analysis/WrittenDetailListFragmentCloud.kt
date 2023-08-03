@@ -62,10 +62,10 @@ class WrittenDetailListFragmentCloud : Fragment() {
 
     private fun fetchDataFromAPI(): List<ItemWritten> {
         val dataList = mutableListOf<ItemWritten>()
-        dataList.add(ItemWritten(7, 15, "화", "오후", 2, 55))
-        dataList.add(ItemWritten(7, 20, "수", "오후", 6, 10))
-        dataList.add(ItemWritten(7, 20, "수", "오후", 6, 10))
-        dataList.add(ItemWritten(7, 20, "수", "오후", 6, 10))
+        dataList.add(ItemWritten(8, 1, "화", "오후", 2, 55))
+        dataList.add(ItemWritten(8, 2, "수", "오후", 6, 14))
+        dataList.add(ItemWritten(8, 3, "목", "오후", 10, 44))
+
 
 
         return dataList
