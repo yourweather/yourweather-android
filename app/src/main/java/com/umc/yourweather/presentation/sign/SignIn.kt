@@ -27,7 +27,7 @@ class SignIn : AppCompatActivity() {
         }
 
         binding.tvSigninBtnsignup.setOnClickListener {
-            customToast()
+            // customToast()
             val mIntent = Intent(this, SignUp::class.java)
             startActivity(mIntent)
         }
