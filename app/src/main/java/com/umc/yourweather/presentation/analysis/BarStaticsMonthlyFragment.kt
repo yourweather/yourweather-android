@@ -38,19 +38,19 @@ class BarStaticsMonthlyFragment : Fragment() {
         super.onViewCreated(view, savedInstanceState)
 
         // 텍스트 색 변환 코드
-        val ssb1 = SpannableStringBuilder("맑음 비율이 20% 증가했습니다.")
+        val ssb1 = SpannableStringBuilder("맑음 비율이 10% 증가했습니다.")
         ssb1.apply {
             setSpan(ForegroundColorSpan(Color.parseColor("#70AD47")), 7, 10, Spannable.SPAN_EXCLUSIVE_INCLUSIVE)
         }
-        val ssb2 = SpannableStringBuilder("다소 흐림 비율이 10% 증가했습니다.")
+        val ssb2 = SpannableStringBuilder("다소 흐림 비율이 40% 증가했습니다.")
         ssb2.apply {
             setSpan(ForegroundColorSpan(Color.parseColor("#70AD47")), 10, 13, Spannable.SPAN_EXCLUSIVE_INCLUSIVE)
         }
-        val ssb3 = SpannableStringBuilder("비 비율이 5% 감소했습니다.")
+        val ssb3 = SpannableStringBuilder("비 비율이 15% 감소했습니다.")
         ssb3.apply {
             setSpan(ForegroundColorSpan(Color.parseColor("#F7931E")), 6, 9, Spannable.SPAN_EXCLUSIVE_INCLUSIVE)
         }
-        val ssb4 = SpannableStringBuilder("번개 비율이 10% 감소했습니다.")
+        val ssb4 = SpannableStringBuilder("번개 비율이 20% 감소했습니다.")
         ssb4.apply {
             setSpan(ForegroundColorSpan(Color.parseColor("#F7931E")), 7, 10, Spannable.SPAN_EXCLUSIVE_INCLUSIVE)
         }
@@ -69,10 +69,10 @@ class BarStaticsMonthlyFragment : Fragment() {
         )
 
         val dataList2 = listOf(
-            BarData("맑음", 14),
-            BarData("흐림", 43),
-            BarData("비", 66),
-            BarData("번개", 20),
+            BarData("맑음", 48),
+            BarData("흐림", 42),
+            BarData("비", 20),
+            BarData("번개", 37),
 
         )
 
