@@ -49,6 +49,6 @@ class testCalendarData {
         weatherDatas.add(Info("cloudy", 100, LocalDate.of(2023, 8, 1)))
         weatherDatas.add(Info("rainy", 17, LocalDate.of(2023, 8, 2)))
         weatherDatas.add(Info("sunny", 65, LocalDate.of(2023, 8, 3)))
-        weatherDatas.add(Info("sunny", 71, LocalDate.of(2023, 8, 4)))
+        weatherDatas.add(Info("sunny", 100, LocalDate.of(2023, 8, 4)))
     }
 }
