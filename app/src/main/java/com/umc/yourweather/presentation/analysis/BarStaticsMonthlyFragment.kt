@@ -1,5 +1,6 @@
 package com.umc.yourweather.presentation.analysis
 
+import android.graphics.Color
 import android.os.Bundle
 import android.text.Spannable
 import android.text.SpannableStringBuilder
@@ -8,6 +9,7 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import android.widget.LinearLayout
+import androidx.core.content.ContextCompat
 import androidx.fragment.app.Fragment
 import com.umc.yourweather.R
 import com.umc.yourweather.data.BarData
