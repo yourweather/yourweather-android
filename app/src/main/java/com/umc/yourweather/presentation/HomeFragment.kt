@@ -42,6 +42,7 @@ class HomeFragment : Fragment(), HomeFragmentInteractionListener {
             replace(R.id.fl_home_l1, fragment)
             addToBackStack(null)
         }
+        showHomeToast()
     }
 
     override fun goToNewHome() {
