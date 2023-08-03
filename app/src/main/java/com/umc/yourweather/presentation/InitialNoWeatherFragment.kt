@@ -2,6 +2,7 @@
 package com.umc.yourweather.presentation
 
 import android.os.Bundle
+import android.view.Gravity
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
@@ -39,6 +40,7 @@ class InitialNoWeatherFragment : Fragment() {
         val toastView = layoutInflater.inflate(R.layout.toast_initial, binding.root, false)
         val toast = Toast.makeText(context, "", Toast.LENGTH_LONG)
         toast.view = toastView
+        toast.setGravity(Gravity.BOTTOM or Gravity.CENTER, 0, resources.getDimensionPixelSize(R.dimen.initial_toast_margin_bottom))
         toast.show()
     }
 }
