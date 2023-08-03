@@ -72,6 +72,73 @@
         android:orientation="horizontal">
         </LinearLayout>
 
+    <TextView
+        android:id="@+id/tv_balloon_sun_last_week"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="-4dp"
+        android:layout_marginEnd="250dp"
+        android:background="@drawable/bg_gray_balloon"
+        android:gravity="center"
+        android:text="맑음"
+        android:fontFamily="@font/pretendardmedium"
+        android:textColor="@android:color/black"
+        android:textSize="13dp"
+        android:paddingTop="6dp"
+        app:layout_constraintEnd_toEndOf="@+id/ll_analysis_bar_last_week"
+        app:layout_constraintTop_toBottomOf="@+id/ll_analysis_bar_last_week"
+        android:visibility="gone"/>
+    <TextView
+        android:id="@+id/tv_balloon_cloud_last_week"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="-4dp"
+        android:layout_marginEnd="180dp"
+        android:background="@drawable/bg_gray_balloon"
+        android:gravity="center"
+        android:text="흐림"
+        android:fontFamily="@font/pretendardmedium"
+        android:textColor="@android:color/black"
+        android:textSize="13dp"
+        android:paddingTop="6dp"
+        app:layout_constraintEnd_toEndOf="@+id/ll_analysis_bar_last_week"
+        app:layout_constraintTop_toBottomOf="@+id/ll_analysis_bar_last_week"
+        android:visibility="gone"/>
+    <TextView
+        android:id="@+id/tv_balloon_rain_last_week"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="-4dp"
+        android:layout_marginEnd="120dp"
+        android:background="@drawable/bg_gray_balloon"
+        android:gravity="center"
+        android:text="비"
+        android:fontFamily="@font/pretendardmedium"
+        android:textColor="@android:color/black"
+        android:textSize="13dp"
+        android:paddingTop="6dp"
+        app:layout_constraintEnd_toEndOf="@+id/ll_analysis_bar_last_week"
+        app:layout_constraintTop_toBottomOf="@+id/ll_analysis_bar_last_week"
+        android:visibility="gone"/>
+
+
+    <TextView
+        android:id="@+id/tv_balloon_thunder_last_week"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="-4dp"
+        android:layout_marginEnd="20dp"
+        android:background="@drawable/bg_gray_balloon"
+        android:fontFamily="@font/pretendardmedium"
+        android:gravity="center"
+        android:paddingTop="6dp"
+        android:text="번개"
+        android:textColor="@android:color/black"
+        android:textSize="13dp"
+        app:layout_constraintEnd_toEndOf="@+id/ll_analysis_bar_last_week"
+        app:layout_constraintTop_toBottomOf="@+id/ll_analysis_bar_last_week"
+        android:visibility="gone"/>
+
     <LinearLayout
         android:id="@+id/ll_analysis_weather2"
         android:layout_width="wrap_content"
@@ -120,6 +187,73 @@
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/ll_analysis_weather2" >
     </LinearLayout>
+
+    <TextView
+        android:id="@+id/tv_balloon_sun_this_week"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="-4dp"
+        android:layout_marginEnd="250dp"
+        android:background="@drawable/bg_gray_balloon"
+        android:gravity="center"
+        android:text="맑음"
+        android:fontFamily="@font/pretendardmedium"
+        android:textColor="@android:color/black"
+        android:textSize="13dp"
+        android:paddingTop="6dp"
+        app:layout_constraintEnd_toEndOf="@+id/ll_analysis_bar_this_Week"
+        app:layout_constraintTop_toBottomOf="@+id/ll_analysis_bar_this_Week"
+        android:visibility="gone"/>
+    <TextView
+        android:id="@+id/tv_balloon_cloud_this_week"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="-4dp"
+        android:layout_marginEnd="180dp"
+        android:background="@drawable/bg_gray_balloon"
+        android:gravity="center"
+        android:text="흐림"
+        android:fontFamily="@font/pretendardmedium"
+        android:textColor="@android:color/black"
+        android:textSize="13dp"
+        android:paddingTop="6dp"
+        app:layout_constraintEnd_toEndOf="@+id/ll_analysis_bar_this_Week"
+        app:layout_constraintTop_toBottomOf="@+id/ll_analysis_bar_this_Week"
+        android:visibility="gone"/>
+    <TextView
+        android:id="@+id/tv_balloon_rain_this_week"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="-4dp"
+        android:layout_marginEnd="120dp"
+        android:background="@drawable/bg_gray_balloon"
+        android:gravity="center"
+        android:text="비"
+        android:fontFamily="@font/pretendardmedium"
+        android:textColor="@android:color/black"
+        android:textSize="13dp"
+        android:paddingTop="6dp"
+        app:layout_constraintEnd_toEndOf="@+id/ll_analysis_bar_this_Week"
+        app:layout_constraintTop_toBottomOf="@+id/ll_analysis_bar_this_Week"
+        android:visibility="gone"/>
+
+
+    <TextView
+        android:id="@+id/tv_balloon_thunder_this_week"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="-4dp"
+        android:layout_marginEnd="20dp"
+        android:background="@drawable/bg_gray_balloon"
+        android:fontFamily="@font/pretendardmedium"
+        android:gravity="center"
+        android:paddingTop="6dp"
+        android:text="번개"
+        android:textColor="@android:color/black"
+        android:textSize="13dp"
+        app:layout_constraintEnd_toEndOf="@+id/ll_analysis_bar_this_Week"
+        app:layout_constraintTop_toBottomOf="@+id/ll_analysis_bar_this_Week"
+        android:visibility="gone"/>
 
     <LinearLayout
         android:id="@+id/linearLayout4"
