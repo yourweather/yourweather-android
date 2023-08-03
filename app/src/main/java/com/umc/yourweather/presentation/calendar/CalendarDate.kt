@@ -15,6 +15,7 @@ import androidx.core.content.ContextCompat
 import androidx.core.content.res.ResourcesCompat
 import androidx.core.content.withStyledAttributes
 import com.umc.yourweather.R
+import com.umc.yourweather.util.CalendarUtils.Companion.checkTextSize
 import com.umc.yourweather.util.CalendarUtils.Companion.dpToPx
 import java.time.LocalDate
 
@@ -36,7 +37,7 @@ class CalendarDate @JvmOverloads constructor(
 //    //**삭제예정!!!!!
 //    private val borderPaint = Paint().apply {
 //        color = Color.BLACK // 테두리 색상
-//        style = Paint.Style.STROKE // 선 스타일 (STROKE는 외곽선)
+//        style = Paint.Style.STROKE // 선 스타일
 //        strokeWidth = 5f // 선 두께
 //    }
 
@@ -55,7 +56,7 @@ class CalendarDate @JvmOverloads constructor(
         // 가장 높은 온도
 
         Log.d("date 클래스 ", "${thisDate.year}, ${thisDate.monthValue}, ${thisDate.dayOfMonth}")
-        if (isSameMonth() == true) {
+        if (thisMonth == thisDate.monthValue) {
             context.withStyledAttributes(
                 attrs,
                 R.styleable.Calendar,
@@ -115,12 +116,21 @@ class CalendarDate @JvmOverloads constructor(
     override fun onDraw(canvas: Canvas?) {
         super.onDraw(canvas)
         // canvas?.drawRect(0f, 0f, width.toFloat(), height.toFloat(), borderPaint)
-        if (isSameMonth() == true) {
+        if (thisMonth == thisDate.monthValue) {
             val dateText = thisDate.dayOfMonth.toString()
             val temp = "${thisInfo?.temper}°"
 
-            canvas?.drawText(dateText, (width / 2).toFloat(), dpToPx(context, 16).toFloat(), datePaint)
-            // checkSize(datePaint, dateText)
+            if (LocalDate.now() == thisDate) {
+                circlePaint(dateText, canvas)
+                datePaint.color = Color.WHITE
+            }
+
+            canvas?.drawText(
+                dateText,
+                (width / 2).toFloat(),
+                dpToPx(context, 16).toFloat(),
+                datePaint,
+            )
             if (thisInfo != null && !isLaterDay()) {
                 val drawableleft = (width / 2) - dpToPx(context, 24)
                 val drawableright = drawableleft + dpToPx(context, 48)
@@ -137,13 +147,23 @@ class CalendarDate @JvmOverloads constructor(
     }
 
     @RequiresApi(Build.VERSION_CODES.O)
-    fun isSameMonth(): Boolean {
-        return thisMonth == thisDate.monthValue
-    }
-
-    @RequiresApi(Build.VERSION_CODES.O)
     fun isLaterDay(): Boolean {
         val today = LocalDate.now()
         return today.isBefore(thisDate)
+    }
+
+    fun circlePaint(text: String, canvas: Canvas?) {
+        val textBounds = checkTextSize(datePaint, text)
+        val roundPaint = Paint()
+
+        val x = (width / 2).toFloat()
+        val y = dpToPx(context, 16).toFloat() - (textBounds.height() / 2)
+
+        val radius = y
+
+        roundPaint.color = Color.parseColor("#5E412F")
+
+        // 원 그리기
+        canvas?.drawCircle(x, y, radius, roundPaint)
     }
 }
