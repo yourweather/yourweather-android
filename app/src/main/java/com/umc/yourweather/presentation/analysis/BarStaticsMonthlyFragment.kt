@@ -2,6 +2,7 @@ package com.umc.yourweather.presentation.analysis
 
 import android.graphics.Color
 import android.os.Bundle
+import android.os.Handler
 import android.text.Spannable
 import android.text.SpannableStringBuilder
 import android.text.style.ForegroundColorSpan
@@ -62,15 +63,17 @@ class BarStaticsMonthlyFragment : Fragment() {
         val dataList = listOf(
             BarData("맑음", 44),
             BarData("흐림", 29),
-            BarData("번개", 59),
             BarData("비", 24),
+            BarData("번개", 59),
+
         )
 
         val dataList2 = listOf(
             BarData("맑음", 14),
             BarData("흐림", 43),
-            BarData("번개", 20),
             BarData("비", 66),
+            BarData("번개", 20),
+
         )
 
         // 각 데이터 값에 해당하는 너비 계산
@@ -91,13 +94,18 @@ class BarStaticsMonthlyFragment : Fragment() {
             val drawableRes = when (data.label) {
                 "맑음" -> R.drawable.bg_yellow_rec_round_sun
                 "흐림" -> R.drawable.bg_gray_rec_cloud
-                "번개" -> R.drawable.bg_blue_rec_rain
-                "비" -> R.drawable.bg_darkblue_rec_round_thunder
-                else -> R.drawable.bg_gray_rec_cloud
+                "비" -> R.drawable.bg_blue_rec_rain
+                "번개" -> R.drawable.bg_darkblue_rec_round_thunder
+                else -> -1
             }
 
             view.background = ContextCompat.getDrawable(requireContext(), drawableRes)
             binding.llAnalysisBarLastMonth.addView(view)
+
+            // 클릭 시 말풍선 보이게
+            view.setOnClickListener {
+                showBallView(data.label)
+            }
         }
 
         for (data in dataList2) {
@@ -116,16 +124,83 @@ class BarStaticsMonthlyFragment : Fragment() {
             val drawableRes = when (data.label) {
                 "맑음" -> R.drawable.bg_yellow_rec_round_sun
                 "흐림" -> R.drawable.bg_gray_rec_cloud
-                "번개" -> R.drawable.bg_blue_rec_rain
-                "비" -> R.drawable.bg_darkblue_rec_round_thunder
-                else -> R.drawable.bg_gray_rec_cloud
+                "비" -> R.drawable.bg_blue_rec_rain
+                "번개" -> R.drawable.bg_darkblue_rec_round_thunder
+
+                else -> -1
             }
 
             view.background = ContextCompat.getDrawable(requireContext(), drawableRes)
             binding.llAnalysisBarThisMonth.addView(view)
+
+            // 클릭 시 말풍선 보이게
+            view.setOnClickListener {
+                showBallViewThisMonth(data.label)
+            }
         }
     }
 
+    private fun showBallView(weatherLabel: String) {
+        // 모든 텍스트뷰 숨기기
+        binding.tvBalloonSun.visibility = View.GONE
+        binding.tvBalloonRain.visibility = View.GONE
+        binding.tvBalloonCloud.visibility = View.GONE
+        binding.tvBalloonThunder.visibility = View.GONE
+
+        // 선택한 날씨에 맞는 TextView를 보이도록 설정
+        when (weatherLabel) {
+            "맑음" -> {
+                binding.tvBalloonSun.visibility = View.VISIBLE
+                hideBallViewAfterDelay(binding.tvBalloonSun)
+            }
+            "흐림" -> {
+                binding.tvBalloonCloud.visibility = View.VISIBLE
+                hideBallViewAfterDelay(binding.tvBalloonCloud)
+            }
+            "번개" -> {
+                binding.tvBalloonThunder.visibility = View.VISIBLE
+                hideBallViewAfterDelay(binding.tvBalloonThunder)
+            }
+            "비" -> {
+                binding.tvBalloonRain.visibility = View.VISIBLE
+                hideBallViewAfterDelay(binding.tvBalloonRain)
+            }
+        }
+    }
+
+    private fun showBallViewThisMonth(weatherLabel: String) {
+        // 모든 텍스트뷰 숨기기
+        binding.tvBalloonSunThis.visibility = View.GONE
+        binding.tvBalloonRainThis.visibility = View.GONE
+        binding.tvBalloonCloudThis.visibility = View.GONE
+        binding.tvBalloonThunderThis.visibility = View.GONE
+
+        // 선택한 날씨에 맞는 TextView를 보이도록 설정
+        when (weatherLabel) {
+            "맑음" -> {
+                binding.tvBalloonSunThis.visibility = View.VISIBLE
+                hideBallViewAfterDelay(binding.tvBalloonSunThis)
+            }
+            "흐림" -> {
+                binding.tvBalloonCloudThis.visibility = View.VISIBLE
+                hideBallViewAfterDelay(binding.tvBalloonCloudThis)
+            }
+            "번개" -> {
+                binding.tvBalloonThunderThis.visibility = View.VISIBLE
+                hideBallViewAfterDelay(binding.tvBalloonThunderThis)
+            }
+            "비" -> {
+                binding.tvBalloonRainThis.visibility = View.VISIBLE
+                hideBallViewAfterDelay(binding.tvBalloonRainThis)
+            }
+        }
+    }
+    private fun hideBallViewAfterDelay(view: View) {
+        val handler = Handler()
+        handler.postDelayed({
+            view.visibility = View.GONE
+        }, 1500) // 1.5초 후에 말풍선을 숨김
+    }
     override fun onDestroyView() {
         super.onDestroyView()
         _binding = null
