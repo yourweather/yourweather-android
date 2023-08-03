@@ -35,10 +35,9 @@ class InitialNoWeatherFragment : Fragment() {
             transaction.commit()
         }
     }
-
     private fun showInitialToast() {
         val toastView = layoutInflater.inflate(R.layout.toast_initial, binding.root, false)
-        val toast = Toast(context)
+        val toast = Toast.makeText(context, "", Toast.LENGTH_LONG)
         toast.view = toastView
         toast.show()
     }
