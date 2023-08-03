@@ -149,7 +149,7 @@
     <LinearLayout
         android:id="@+id/ll_signin_socialbtns"
         android:layout_width="0dp"
-        android:layout_height="34dp"
+        android:layout_height="wrap_content"
         android:layout_marginStart="112dp"
         android:layout_marginTop="24dp"
         android:layout_marginEnd="112dp"
@@ -162,23 +162,23 @@
 
         <ImageView
             android:id="@+id/btn_signin_naver"
-            android:layout_width="34dp"
-            android:layout_height="34dp"
+            android:layout_width="38dp"
+            android:layout_height="38dp"
             android:scaleType="centerInside"
             app:srcCompat="@drawable/ic_signin_naver" />
 
         <ImageView
             android:id="@+id/btn_signin_kakao"
-            android:layout_width="34dp"
-            android:layout_height="wrap_content"
+            android:layout_width="38dp"
+            android:layout_height="38dp"
             android:layout_marginLeft="17dp"
             android:layout_marginRight="17dp"
             app:srcCompat="@drawable/ic_signin_kakao" />
 
         <ImageView
             android:id="@+id/btn_signin_google"
-            android:layout_width="34dp"
-            android:layout_height="34dp"
+            android:layout_width="38dp"
+            android:layout_height="38dp"
             app:srcCompat="@drawable/ic_signin_google" />
 
     </LinearLayout>
