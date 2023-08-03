@@ -1,4 +1,4 @@
-package com.umc.yourweather.presentation
+package com.umc.yourweather.presentation.weatherinput
 
 interface HomeFragmentInteractionListener {
     fun goToNewHome()

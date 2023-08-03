@@ -1,5 +1,5 @@
 
-package com.umc.yourweather.presentation
+package com.umc.yourweather.presentation.weatherinput
 
 import android.os.Bundle
 import android.view.Gravity

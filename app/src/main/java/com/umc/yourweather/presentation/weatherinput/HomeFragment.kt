@@ -1,4 +1,4 @@
-package com.umc.yourweather.presentation
+package com.umc.yourweather.presentation.weatherinput
 
 import android.os.Bundle
 import android.util.Log
@@ -33,6 +33,7 @@ class HomeFragment : Fragment(), HomeFragmentInteractionListener {
         binding.btnHomeWeatherinput.setOnClickListener {
             openHomeWeatherInputFragment()
         }
+        showHomeToast()
     }
 
     private fun openHomeWeatherInputFragment() {
@@ -42,7 +43,6 @@ class HomeFragment : Fragment(), HomeFragmentInteractionListener {
             replace(R.id.fl_home_l1, fragment)
             addToBackStack(null)
         }
-        showHomeToast()
     }
 
     override fun goToNewHome() {
