@@ -33,6 +33,7 @@ class HomeFragment : Fragment(), HomeFragmentInteractionListener {
         binding.btnHomeWeatherinput.setOnClickListener {
             openHomeWeatherInputFragment()
         }
+        showHomeToast()
     }
 
     private fun openHomeWeatherInputFragment() {
