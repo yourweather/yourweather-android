@@ -50,7 +50,7 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_gravity="left"
-                android:text="3주 전(7.3~7.9) 맑음"
+                android:text="이번 주(7.31~8.6) 맑음"
                 android:textColor="@color/sorange"
                 android:textSize="20dp"
                 android:fontFamily="@font/pretendardbold"
@@ -62,7 +62,7 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_gravity="left"
-                android:text="이다은 님의 3주 전 중 40%가 맑은 날씨였어요"
+                android:text="이다은 님의 이번 주 중 28%가 맑은 날씨였어요"
                 android:textColor="#2B2B2B" />
 
 
@@ -78,7 +78,7 @@
                 android:paddingTop="4dp"
                 android:paddingRight="14dp"
                 android:paddingBottom="4dp"
-                android:text="총 8회"
+                android:text="총 2회"
                 android:textSize="10dp" />
 
         </LinearLayout>

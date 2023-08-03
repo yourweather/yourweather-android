@@ -63,15 +63,15 @@ class BarStaticsWeeklyFragment : Fragment() {
         val dataList = listOf(
             BarData("맑음", 44),
             BarData("흐림", 60),
-            BarData("비", 24),
+            BarData("비", 40),
             BarData("번개", 100),
             )
 
         val dataList2 = listOf(
-            BarData("맑음", 100),
-            BarData("흐림", 34),
-            BarData("비", 66),
-            BarData("번개", 20),
+            BarData("맑음", 52),
+            BarData("흐림", 66),
+            BarData("비", 38),
+            BarData("번개", 90),
         )
 
         // 각 데이터 값에 해당하는 너비 계산
