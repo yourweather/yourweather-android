@@ -1,5 +1,5 @@
 # yourweather_android
-![image](https://github.com/yourweather/yourweather_android/assets/102938120/ad5beeb8-4593-4c48-bd16-253cf893dac5)
+![image](https://github.com/yourweather/yourweather-server/assets/65557784/d6b7ce15-3df7-4110-b605-c3ae19c0fcab)
 ## ☀️ 협업 규칙
 ### GitHub Flow
 브랜치 새로 생성시 main 브랜치를 기점으로 생성
