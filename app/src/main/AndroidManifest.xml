@@ -29,34 +29,6 @@
             android:name=".presentation.MyPageNicknameChange"
             android:exported="false" />
         <activity
-            android:name=".presentation.analysis.WrittenDetailListActivityThunderWeekly"
-            android:exported="false" />
-        <activity
-            android:name=".presentation.analysis.WrittenDetailListActivitySunWeekly"
-            android:exported="false" />
-        <activity
-            android:name=".presentation.analysis.WrittenDetailListActivityRainWeekly"
-            android:exported="false" />
-        <activity
-            android:name=".presentation.analysis.WrittenDetailListActivityCloudWeekly"
-            android:exported="false" />
-        <activity
-            android:name=".presentation.analysis.WrittenDetailListActivityCloud"
-            android:exported="false" />
-        <activity
-            android:name=".presentation.analysis.WrittenDetailListActivityThunder"
-            android:exported="false" />
-        <activity
-            android:name=".presentation.analysis.WrittenDetailListActivityRain"
-            android:exported="false" />
-        <activity
-            android:name=".presentation.analysis.WrittenDetailListActivitySun"
-            android:exported="false" />
-
-        <activity
-            android:name=".presentation.analysis.activity.UnwrittenDetailListActivity"
-            android:exported="false" />
-        <activity
             android:name=".presentation.analysis.IconStaticsWeeklyFragment"
             android:exported="false" />
         <activity
@@ -67,9 +39,6 @@
             android:exported="false" />
         <activity
             android:name=".presentation.analysis.BarStaticsMonthlyFragment"
-            android:exported="false" />
-        <activity
-            android:name=".presentation.analysis.activity.AnalysisActivity"
             android:exported="false" />
         <activity
             android:name=".presentation.calendar.CalendarTotalViewFragment"
