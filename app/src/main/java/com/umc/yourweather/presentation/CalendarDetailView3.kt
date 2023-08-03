@@ -20,12 +20,12 @@ class CalendarDetailView3 : AppCompatActivity() {
         val month = intent.getStringExtra("month")
         val date = intent.getStringExtra("date")
 
-        textView1.text = "${month}월 ${date}일 이다은님의 날씨"
-        textView3.text = "${month}월 ${date}일의 일기"
+        textView1.text = "8월 1일 이다은님의 날씨"
+        textView3.text = "8월 1일의 일기"
 
         btnBack2.setOnClickListener {
             val intent = Intent(this@CalendarDetailView3, CalendarDetailView1::class.java)
-            startActivity(intent)
+            finish()
         }
 
         val myTextView1 = findViewById<TextView>(R.id.timeTextView1)
