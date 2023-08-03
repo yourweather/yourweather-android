@@ -50,19 +50,18 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_gravity="left"
-                android:text="6월 다소 흐림"
-                android:textColor="@color/sorange"
-                android:textSize="20dp"
-                android:fontFamily="@font/pretendardbold"
                 android:layout_marginBottom="6dp"
-                />
+                android:fontFamily="@font/pretendardbold"
+                android:text="8월 다소 흐림"
+                android:textColor="@color/sorange"
+                android:textSize="20dp" />
 
             <TextView
                 android:id="@+id/tv_written_detail_list_month_content"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_gravity="left"
-                android:text="이다은 님의 6월 중 40%가 흐린 날씨였어요"
+                android:text="이다은 님의 8월 중 30%가 흐린 날씨였어요"
                 android:textColor="#2B2B2B" />
 
 
@@ -78,7 +77,7 @@
                 android:paddingTop="4dp"
                 android:paddingRight="14dp"
                 android:paddingBottom="4dp"
-                android:text="총 8회"
+                android:text="총 3회"
                 android:textSize="10dp" />
 
         </LinearLayout>
