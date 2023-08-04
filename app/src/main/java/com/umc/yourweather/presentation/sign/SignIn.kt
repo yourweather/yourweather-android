@@ -39,7 +39,8 @@ class SignIn : AppCompatActivity() {
     }
     fun customToast() {
         val inflater = LayoutInflater.from(this)
-        val layout = inflater.inflate(R.layout.toast_signin, findViewById(R.id.ll_signin_toast), false)
+        val layout =
+            inflater.inflate(R.layout.toast_signin, findViewById(R.id.ll_signin_toast), false)
 
         val textViewMessage = layout.findViewById<TextView>(R.id.tv_signin_toast)
         textViewMessage.text = "이메일 또는 비밀번호를 다시 입력해주세요"
@@ -55,23 +56,5 @@ class SignIn : AppCompatActivity() {
         toast.setGravity(Gravity.CENTER, 0, 0)
         toast.view = layout
         toast.show()
-
-//        val inflater = LayoutInflater.from(this)
-//        val layout = inflater.inflate(R.layout.toast_signin, null)
-//
-//        val popupWindow = PopupWindow(
-//            layout,
-//        )
-//
-//        val textViewMessage = layout.findViewById<TextView>(R.id.tv_signin_toast)
-//        textViewMessage.text = "이메일 또는 비밀번호를 다시 입력해주세요"
-//
-//        // 원하는 위치에 팝업 표시
-//        popupWindow.showAtLocation(binding.root, Gravity.CENTER, 0, 0)
-//
-//        // 원하는 시간만큼 팝업 유지
-//        Handler(Looper.getMainLooper()).postDelayed({
-//            popupWindow.dismiss()
-//        }, 2000)
     }
 }
