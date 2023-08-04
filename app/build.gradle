@@ -57,6 +57,8 @@ dependencies {
 
     //shard preference
     implementation 'androidx.security:security-crypto-ktx:1.1.0-alpha06'
+    //카카오 로그인 의존성
+    implementation 'com.kakao.sdk:v2-user:2.11.1'
 
     //ktx
     implementation 'androidx.core:core-ktx:1.10.1'
