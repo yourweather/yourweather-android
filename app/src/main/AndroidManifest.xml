@@ -12,10 +12,12 @@
         android:supportsRtl="true"
         android:theme="@style/Theme.Yourweather"
         tools:targetApi="31">
-
+        <activity
+            android:name=".presentation.sign.SocialSignCheck"
+            android:exported="false" />
         <activity
             android:name=".presentation.weatherinput.InitialNoWeatherFragment"
-            android:exported="true"/>
+            android:exported="true" />
         <activity
             android:name=".presentation.weatherinput.HomeFragment"
             android:exported="true" />
@@ -57,17 +59,16 @@
             android:exported="false" />
         <activity
             android:name=".presentation.CalendarDetailView1"
-            android:exported="true"/>
+            android:exported="true" />
         <activity
             android:name=".presentation.CalendarDetailView2"
-            android:exported="false"/>
+            android:exported="false" />
         <activity
             android:name=".presentation.CalendarDetailView3"
-            android:exported="false"/>
+            android:exported="false" />
         <activity
             android:name=".presentation.BottomNavi"
-            android:exported="false"/>
-
+            android:exported="false" />
         <activity
             android:name=".presentation.sign.SignIn"
             android:exported="true">
