@@ -10,6 +10,9 @@ kotlin {
     jvmToolchain(17)
 }
 
+Properties properties = new Properties()
+properties.load(project.rootProject.file('local.properties').newDataInputStream())
+
 android {
     namespace 'com.umc.yourweather'
     compileSdk 33
@@ -20,9 +23,11 @@ android {
         targetSdk 33
         versionCode 1
         versionName "1.0"
-
         testInstrumentationRunner "androidx.test.runner.AndroidJUnitRunner"
-    }
+        buildConfigField "String", "KAKAO_API_KEY", properties['KAKAO_API_KEY']
+        buildConfigField "String", "BASE_URL", properties['BASE_URL']
+        manifestPlaceholders = [KAKAO_API_KEY:properties['KAKAO_API_KEY']]
+   }
 
     buildTypes {
         release {
@@ -38,6 +43,7 @@ android {
         jvmTarget = JavaVersion.VERSION_17.toString()
     }
     buildFeatures {
+        buildConfig true
         viewBinding true
         dataBinding true
     }
@@ -57,6 +63,8 @@ dependencies {
 
     //shard preference
     implementation 'androidx.security:security-crypto-ktx:1.1.0-alpha06'
+    //카카오 로그인 의존성
+    implementation 'com.kakao.sdk:v2-user:2.11.1'
 
     //ktx
     implementation 'androidx.core:core-ktx:1.10.1'
@@ -83,4 +91,12 @@ dependencies {
 
     //캘린더 상세보기 꺾은선 그래프를 위한 항목
     implementation 'com.github.PhilJay:MPAndroidChart:v3.1.0'
+
+    //레트로핏
+    implementation 'com.squareup.retrofit2:retrofit:2.9.0'
+    implementation 'com.squareup.retrofit2:converter-gson:2.9.0'
+
+    //OkHttp: 통신 로그 확인하기 위함
+    implementation 'com.squareup.okhttp3:okhttp:4.9.3'
+    implementation 'com.squareup.okhttp3:logging-interceptor:4.9.3'
 }
