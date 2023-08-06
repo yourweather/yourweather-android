@@ -24,8 +24,9 @@ android {
         versionCode 1
         versionName "1.0"
         testInstrumentationRunner "androidx.test.runner.AndroidJUnitRunner"
-        // buildConfigField "String", "e63211e693de3d91517e6f77a70d4f6b", properties['KAKAO_API_KEY']
-
+        buildConfigField "String", "KAKAO_API_KEY", properties['KAKAO_API_KEY']
+        buildConfigField "String", "BASE_URL", properties['BASE_URL']
+        manifestPlaceholders = [KAKAO_API_KEY:properties['KAKAO_API_KEY']]
    }
 
     buildTypes {
@@ -42,6 +43,7 @@ android {
         jvmTarget = JavaVersion.VERSION_17.toString()
     }
     buildFeatures {
+        buildConfig true
         viewBinding true
         dataBinding true
     }

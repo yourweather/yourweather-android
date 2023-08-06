@@ -9,7 +9,7 @@ import android.view.WindowManager
 import android.widget.TextView
 import android.widget.Toast
 import androidx.appcompat.app.AppCompatActivity
-import com.kakao.sdk.common.util.Utility
+import com.umc.yourweather.BuildConfig
 import com.umc.yourweather.R
 import com.umc.yourweather.databinding.ActivitySignInBinding
 import com.umc.yourweather.presentation.BottomNavi
@@ -36,11 +36,13 @@ class SignIn : AppCompatActivity() {
             startActivity(mIntent)
         }
 
-        //로그인 버튼 클릭
+        // 로그인 버튼 클릭
         binding.btnSigninSignin.setOnClickListener {
             val mIntent = Intent(this, BottomNavi::class.java)
             startActivity(mIntent)
         }
+
+        Log.d("base url", "${BuildConfig.BASE_URL}")
     }
 
     fun customToast() {
