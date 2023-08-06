@@ -54,7 +54,9 @@
         app:layout_constraintTop_toBottomOf="@id/tv_my_alarm_title"
         app:layout_constraintEnd_toEndOf="parent"
         android:layout_marginEnd="33dp"
-        android:layout_marginTop="63dp"/>
+        android:layout_marginTop="63dp"
+        android:track="@drawable/switch_selector"
+        android:thumb="@drawable/switch_thumb_selector"/>
 
     <View
         android:id="@+id/my_alarm_bar"
@@ -90,6 +92,8 @@
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintTop_toBottomOf="@id/my_alarm_bar"
         android:layout_marginTop="33dp"
-        android:layout_marginEnd="33dp"/>
+        android:layout_marginEnd="33dp"
+        android:track="@drawable/switch_selector"
+        android:thumb="@drawable/switch_thumb_selector"/>
 
 </androidx.constraintlayout.widget.ConstraintLayout>
