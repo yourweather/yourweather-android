@@ -1,85 +1,95 @@
 <?xml version="1.0" encoding="utf-8"?>
-<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:layout_margin="10dp"
     android:orientation="vertical">
 
+    <ImageButton
+        android:id="@+id/btn_my_alarm"
+        style="?android:attr/borderlessButtonStyle"
+        android:layout_width="10dp"
+        android:layout_height="18dp"
+        android:layout_marginStart="17dp"
+        android:layout_marginTop="17dp"
+        android:background="@drawable/ic_black_leftarrow_8_16"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"/>
 
-    <LinearLayout
-        android:layout_width="match_parent"
+    <TextView
+        android:id="@+id/tv_my_alarm_title"
+        android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:orientation="horizontal"
-        android:layout_marginBottom="30sp">
+        android:fontFamily="@font/pretendardbold"
+        android:gravity="center"
+        android:text="@string/tv_my_alarm_title"
+        android:textAlignment="center"
+        android:textColor="#F07818"
+        android:textSize="20sp"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        android:layout_marginTop="12dp" />
 
-
-
-        <TextView
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:fontFamily="@font/pretendardbold"
-            android:textAlignment="center"
-            android:gravity="center"
-            android:paddingTop="10sp"
-            android:paddingBottom="20sp"
-            android:text="알림 설정"
-            android:textColor="#F07818"
-            android:textSize="20sp"/>
-
-
-
-
-    </LinearLayout>
-
-
-    <Switch
-        android:id="@+id/switch1"
-        android:layout_width="match_parent"
+    <TextView
+        android:id="@+id/tv_my_alarm_weekly"
+        android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginTop="15sp"
-        android:layout_marginRight="15sp"
-        android:layout_margin="15dp"
-        android:text="주간 비교 분석 알림"
-        android:textSize="15sp"
-        android:textColor="#424242"
+        android:text="@string/tv_my_alarm_weekly"
+        android:textSize="15dp"
         android:fontFamily="@font/pretendardsemibold"
-
+        android:layout_marginStart="35dp"
+        android:layout_marginTop="60dp"
+        app:layout_constraintTop_toBottomOf="@id/tv_my_alarm_title"
+        app:layout_constraintStart_toStartOf="parent"
         />
 
-
+    <Switch
+        android:id="@+id/sw_weekly"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:fontFamily="@font/pretendardsemibold"
+        tools:ignore="UseSwitchCompatOrMaterialXml"
+        app:layout_constraintTop_toBottomOf="@id/tv_my_alarm_title"
+        app:layout_constraintEnd_toEndOf="parent"
+        android:layout_marginEnd="33dp"
+        android:layout_marginTop="63dp"/>
 
     <View
+        android:id="@+id/my_alarm_bar"
         android:layout_width="match_parent"
         android:layout_height="2dp"
         android:layout_centerInParent="true"
-        android:padding="1.5sp"
-        android:background="#ECECEC"/>
+        android:background="#ECECEC"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@id/tv_my_alarm_title"
+        android:layout_marginTop="110dp"
+        android:layout_marginStart="33dp"
+        android:layout_marginEnd="24dp"/>
 
-
-    <Switch
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-
-        android:layout_marginTop="15sp"
-        android:layout_marginRight="15sp"
-        android:layout_margin="15dp"
-        android:text="월간 비교 분석 알림"
-        android:textSize="15sp"
-        android:textColor="#424242"
-        android:fontFamily="@font/pretendardsemibold"
-
-        />
-
-    <!--
-    <Switch
-        android:id="@+id/switch2"
+    <TextView
+        android:id="@+id/tv_my_alarm_monthly"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:track="@drawable/switch_selector"
-        android:thumb="@drawable/switch_thumb"/>-->
+        android:text="@string/tv_my_alarm_monthly"
+        android:textSize="15dp"
+        android:fontFamily="@font/pretendardsemibold"
+        app:layout_constraintTop_toBottomOf="@id/my_alarm_bar"
+        app:layout_constraintStart_toStartOf="parent"
+        android:layout_marginStart="35dp"
+        android:layout_marginTop="30dp"/>
 
+    <Switch
+        android:id="@+id/sw_monthly"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:fontFamily="@font/pretendardsemibold"
+        tools:ignore="UseSwitchCompatOrMaterialXml"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintTop_toBottomOf="@id/my_alarm_bar"
+        android:layout_marginTop="33dp"
+        android:layout_marginEnd="33dp"/>
 
-
-
-</LinearLayout>
+</androidx.constraintlayout.widget.ConstraintLayout>
