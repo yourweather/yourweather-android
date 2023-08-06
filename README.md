@@ -37,7 +37,7 @@
 2) 작업 완료 후 add, commit, push
 3) pull request 생성
 4) 본인을 제외한 각 팀원 코드 리뷰
-5) Merge : 카야←진←리유←클로이←코이←카야
+5) Merge : 카야←진←리유←코이←카야
    [예시 : 카야 코드 merge = 진]
 
 ## 🌀 Package 규칙
@@ -55,6 +55,6 @@
 📁 util
 
 ## ⛄ Android Developers
-| 리유/강유리 | 진/박서진 | 클로이/박예진 | 카야/송예린 | 코이/한혜진 |
-|:---------:|:----------:|:----------:|:----------:|:----------:|
-| [kangyuri1114](https://github.com/kangyuri1114) | [ParkSeojin1101](https://github.com/ParkSeojin1101) | [yejin-park](https://github.com/yejin-park) | [yeriinnn](https://github.com/yeriinnn) | [hyemyu](https://github.com/hyemyu) |
+| 리유/강유리 | 진/박서진 | 카야/송예린 | 코이/한혜진 |
+|:---------:|:----------:|:----------:|:----------:|
+| [kangyuri1114](https://github.com/kangyuri1114) | [ParkSeojin1101](https://github.com/ParkSeojin1101) | [yeriinnn](https://github.com/yeriinnn) | [hyemyu](https://github.com/hyemyu) |
