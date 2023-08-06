@@ -21,7 +21,5 @@
     <string name="tv_signup_title">회원가입</string>
     <string name="tv_mypage_nickname_title">닉네임 변경</string>
     <string name="tv_mypage_pw_title">비밀번호 변경</string>
-    <!-- TODO: Remove or change this placeholder text -->
-    <string name="hello_blank_fragment">Hello blank fragment</string>
     <string name="tv_analysis_last_week">지난 주</string>
 </resources>
