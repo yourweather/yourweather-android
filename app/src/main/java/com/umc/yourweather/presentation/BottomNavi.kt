@@ -7,10 +7,9 @@ import androidx.appcompat.app.AppCompatActivity
 import androidx.fragment.app.Fragment
 import com.google.android.material.bottomnavigation.BottomNavigationView
 import com.umc.yourweather.R
-import com.umc.yourweather.presentation.calendar.CalendarTotalViewFragment
 import com.umc.yourweather.presentation.analysis.AnalysisFragment
+import com.umc.yourweather.presentation.calendar.CalendarTotalViewFragment
 import com.umc.yourweather.presentation.weatherinput.InitialNoWeatherFragment
-
 
 class BottomNavi : AppCompatActivity() {
     private val fl: FrameLayout by lazy {
@@ -38,7 +37,7 @@ class BottomNavi : AppCompatActivity() {
 //                R.id.bnv_calender -> replaceFragment(BnvCalender())
                 R.id.bnv_calender -> replaceFragment(CalendarTotalViewFragment())
                 R.id.bnv_report -> replaceFragment(AnalysisFragment())
-                else -> replaceFragment(BnvMyPage())
+                else -> replaceFragment(InitialNoWeatherFragment()) //마이페이지 첫 뷰 생성시 변경 예정(우선 홈화면으로 해둠)
             }
 
             true
