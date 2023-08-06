@@ -37,7 +37,7 @@ class BottomNavi : AppCompatActivity() {
 //                R.id.bnv_calender -> replaceFragment(BnvCalender())
                 R.id.bnv_calender -> replaceFragment(CalendarTotalViewFragment())
                 R.id.bnv_report -> replaceFragment(AnalysisFragment())
-                else -> replaceFragment(InitialNoWeatherFragment()) //마이페이지 첫 뷰 생성시 변경 예정(우선 홈화면으로 해둠)
+                else -> replaceFragment(MyPageFragment())
             }
 
             true
