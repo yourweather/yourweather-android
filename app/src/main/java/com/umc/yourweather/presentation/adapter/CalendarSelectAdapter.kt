@@ -6,7 +6,7 @@ import android.view.View
 import android.view.ViewGroup
 import androidx.recyclerview.widget.RecyclerView
 import com.umc.yourweather.databinding.TextviewItemListviewCalendarBinding
-import com.umc.yourweather.entity.CalendarDateInfo
+import com.umc.yourweather.data.entity.CalendarDateInfo
 
 class CalendarSelectAdapter(
     private val context: Context,

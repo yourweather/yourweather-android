@@ -14,7 +14,7 @@ import androidx.recyclerview.widget.RecyclerView
 import androidx.viewpager2.widget.ViewPager2
 import com.umc.yourweather.R
 import com.umc.yourweather.databinding.FragmentCalendarTotalViewBinding
-import com.umc.yourweather.entity.CalendarDateInfo
+import com.umc.yourweather.data.entity.CalendarDateInfo
 import com.umc.yourweather.presentation.adapter.CalendarMonthAdapter
 import com.umc.yourweather.presentation.adapter.CalendarSelectAdapter
 import com.umc.yourweather.util.CalendarUtils.Companion.dpToPx
