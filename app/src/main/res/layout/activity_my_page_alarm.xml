@@ -1,0 +1,99 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context=".presentation.MyPageAlarm">
+
+    <ImageButton
+        android:id="@+id/btn_my_alarm"
+        style="?android:attr/borderlessButtonStyle"
+        android:layout_width="10dp"
+        android:layout_height="18dp"
+        android:layout_marginStart="17dp"
+        android:layout_marginTop="17dp"
+        android:background="@drawable/ic_black_leftarrow_8_16"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"/>
+
+    <TextView
+        android:id="@+id/tv_my_alarm_title"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:fontFamily="@font/pretendardbold"
+        android:gravity="center"
+        android:text="@string/tv_my_alarm_title"
+        android:textAlignment="center"
+        android:textColor="#F07818"
+        android:textSize="20sp"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        android:layout_marginTop="12dp" />
+
+    <TextView
+        android:id="@+id/tv_my_alarm_weekly"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="@string/tv_my_alarm_weekly"
+        android:textSize="15dp"
+        android:fontFamily="@font/pretendardsemibold"
+        android:layout_marginStart="35dp"
+        android:layout_marginTop="60dp"
+        app:layout_constraintTop_toBottomOf="@id/tv_my_alarm_title"
+        app:layout_constraintStart_toStartOf="parent"
+        />
+
+    <Switch
+        android:id="@+id/sw_weekly"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:fontFamily="@font/pretendardsemibold"
+        tools:ignore="UseSwitchCompatOrMaterialXml"
+        app:layout_constraintTop_toBottomOf="@id/tv_my_alarm_title"
+        app:layout_constraintEnd_toEndOf="parent"
+        android:layout_marginEnd="33dp"
+        android:layout_marginTop="63dp"
+        android:track="@drawable/switch_selector"
+        android:thumb="@drawable/switch_thumb_selector"/>
+
+    <View
+        android:id="@+id/my_alarm_bar"
+        android:layout_width="match_parent"
+        android:layout_height="2dp"
+        android:layout_centerInParent="true"
+        android:background="#ECECEC"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@id/tv_my_alarm_title"
+        android:layout_marginTop="110dp"
+        android:layout_marginStart="33dp"
+        android:layout_marginEnd="24dp"/>
+
+    <TextView
+        android:id="@+id/tv_my_alarm_monthly"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="@string/tv_my_alarm_monthly"
+        android:textSize="15dp"
+        android:fontFamily="@font/pretendardsemibold"
+        app:layout_constraintTop_toBottomOf="@id/my_alarm_bar"
+        app:layout_constraintStart_toStartOf="parent"
+        android:layout_marginStart="35dp"
+        android:layout_marginTop="30dp"/>
+
+    <Switch
+        android:id="@+id/sw_monthly"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:fontFamily="@font/pretendardsemibold"
+        tools:ignore="UseSwitchCompatOrMaterialXml"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintTop_toBottomOf="@id/my_alarm_bar"
+        android:layout_marginTop="33dp"
+        android:layout_marginEnd="33dp"
+        android:track="@drawable/switch_selector"
+        android:thumb="@drawable/switch_thumb_selector"/>
+
+</androidx.constraintlayout.widget.ConstraintLayout>
