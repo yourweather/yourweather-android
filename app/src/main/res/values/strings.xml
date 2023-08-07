@@ -22,4 +22,7 @@
     <string name="tv_mypage_nickname_title">닉네임 변경</string>
     <string name="tv_mypage_pw_title">비밀번호 변경</string>
     <string name="tv_analysis_last_week">지난 주</string>
+    <string name="tv_my_alarm_title">알림 설정</string>
+    <string name="tv_my_alarm_monthly">월간 비교 분석 알림</string>
+    <string name="tv_my_alarm_weekly">주간 비교 분석 알림</string>
 </resources>
