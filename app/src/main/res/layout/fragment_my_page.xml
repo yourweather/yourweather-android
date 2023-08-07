@@ -31,7 +31,7 @@
     <FrameLayout
         android:id="@+id/fl_my_page_l1"
         android:layout_width="match_parent"
-        android:layout_height="50dp"
+        android:layout_height="wrap_content"
         android:layout_marginStart="16dp"
         android:layout_marginTop="40dp"
         android:layout_marginEnd="16dp"
@@ -49,6 +49,7 @@
                 android:id="@+id/tv_my_page_username"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
+                android:layout_marginStart="12dp"
                 android:layout_marginBottom="1dp"
                 android:fontFamily="@font/pretendardbold"
                 android:text="이다은"
@@ -78,10 +79,12 @@
                 android:id="@+id/tv_my_page_email"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:layout_marginStart="8dp"
+                android:layout_marginStart="12dp"
+                android:layout_marginTop="5dp"
+                android:layout_marginBottom="12dp"
                 android:fontFamily="@font/pretendardmedium"
                 android:text="1234@naver.com"
-                android:textColor="#5E412F"
+                android:textColor="#A65E412F"
                 android:textSize="14dp"
                 app:layout_constraintBottom_toBottomOf="parent"
                 app:layout_constraintStart_toEndOf="@+id/iv_my_page_platform"
@@ -91,11 +94,14 @@
                 android:id="@+id/iv_my_page_platform"
                 android:layout_width="18dp"
                 android:layout_height="18dp"
-                android:layout_marginStart="2dp"
+                android:layout_marginStart="12dp"
+                android:layout_marginTop="5dp"
+                android:layout_marginBottom="12dp"
                 android:src="@drawable/ic_signin_kakao"
                 app:layout_constraintBottom_toBottomOf="parent"
                 app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toBottomOf="@+id/tv_my_page_username" />
+                app:layout_constraintTop_toBottomOf="@+id/tv_my_page_username"
+                app:layout_constraintVertical_bias="0.0" />
 
             <ImageView
                 android:id="@+id/iv_my_page_next_info"
@@ -103,10 +109,10 @@
                 android:layout_height="20dp"
                 app:layout_constraintBottom_toBottomOf="parent"
                 app:layout_constraintEnd_toEndOf="parent"
-                app:layout_constraintHorizontal_bias="0.95"
+                app:layout_constraintHorizontal_bias="0.956"
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintTop_toTopOf="parent"
-                app:layout_constraintVertical_bias="0.533"
+                app:layout_constraintVertical_bias="0.4"
                 app:srcCompat="@drawable/vector" />
         </androidx.constraintlayout.widget.ConstraintLayout>
 
@@ -148,7 +154,7 @@
 
         <TextView
             android:id="@+id/tv_my_page_alarm"
-            android:layout_width="wrap_content"
+            android:layout_width="match_parent"
             android:layout_height="match_parent"
             android:fontFamily="@font/pretendardsemibold"
             android:paddingTop="13dp"
@@ -194,7 +200,7 @@
 
         <TextView
             android:id="@+id/tv_my_page_event_weather"
-            android:layout_width="wrap_content"
+            android:layout_width="match_parent"
             android:layout_height="match_parent"
             android:fontFamily="@font/pretendardsemibold"
             android:paddingTop="13dp"
@@ -240,7 +246,7 @@
 
         <TextView
             android:id="@+id/tv_my_page_terms"
-            android:layout_width="wrap_content"
+            android:layout_width="match_parent"
             android:layout_height="match_parent"
             android:fontFamily="@font/pretendardsemibold"
             android:paddingTop="13sp"
@@ -250,7 +256,7 @@
 
         <TextView
             android:id="@+id/tv_my_page_policy"
-            android:layout_width="wrap_content"
+            android:layout_width="match_parent"
             android:layout_height="match_parent"
             android:fontFamily="@font/pretendardsemibold"
             android:paddingTop="24dp"
