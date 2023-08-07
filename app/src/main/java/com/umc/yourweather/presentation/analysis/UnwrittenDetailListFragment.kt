@@ -8,7 +8,7 @@ import androidx.activity.OnBackPressedCallback
 import androidx.fragment.app.Fragment
 import androidx.recyclerview.widget.LinearLayoutManager
 import com.umc.yourweather.R
-import com.umc.yourweather.data.ItemUnwritten
+import com.umc.yourweather.data.entity.ItemUnwritten
 import com.umc.yourweather.databinding.FragmentUnwrittenDetailListBinding
 import com.umc.yourweather.presentation.adapter.UnwrittenRVAdapter
 

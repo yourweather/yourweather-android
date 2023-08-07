@@ -5,7 +5,7 @@ import android.content.Intent
 import android.view.LayoutInflater
 import android.view.ViewGroup
 import androidx.recyclerview.widget.RecyclerView
-import com.umc.yourweather.data.ItemUnwritten
+import com.umc.yourweather.data.entity.ItemUnwritten
 import com.umc.yourweather.databinding.ItemUnwrittenDetailBinding
 import com.umc.yourweather.presentation.calendar.CalendarTotalViewFragment
 
