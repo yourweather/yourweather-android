@@ -4,12 +4,12 @@ data class MemoRequest(
     val status: Status,
     val content: String,
     val localDateTime: String?,
-    val temperature: Int?
+    val temperature: Int?,
 ) {
     enum class Status {
         SUNNY,
         CLOUDY,
         RAINY,
-        LIGHTNING
+        LIGHTNING,
     }
 }
