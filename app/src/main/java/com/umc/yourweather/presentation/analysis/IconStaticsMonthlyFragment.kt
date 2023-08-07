@@ -53,16 +53,30 @@ class IconStaticsMonthlyFragment : Fragment() {
         // 오른쪽 버튼 투명도 0.5로 고정
         binding.btnStaticsRightDateMonthly.alpha = 0.5f
 
+        var updateMonth = currentMonth
         // 과거 달로 이동
         binding.btnStaticsLeftDateMonthly.setOnClickListener {
-            if (currentMonth > 1) {
-                currentMonth--
-                binding.tvUnwrittenTitleMonthly.text = currentMonth.toString() + "월"
+            if (updateMonth > 1) {
+                updateMonth--
+                binding.tvUnwrittenTitleMonthly.text = updateMonth.toString() + "월"
                 binding.btnStaticsRightDateMonthly.alpha = 1f
             }
-            if (currentMonth == 1) {
+            if (updateMonth == 1) {
                 binding.btnStaticsLeftDateMonthly.alpha = 0.5f
                 binding.btnStaticsRightDateMonthly.alpha = 1f
+            }
+        }
+
+        // 현재 달로 오기
+        binding.btnStaticsRightDateMonthly.setOnClickListener {
+            if (updateMonth < currentMonth) {
+                updateMonth++
+                binding.tvUnwrittenTitleMonthly.text = updateMonth.toString() + "월"
+                binding.btnStaticsRightDateMonthly.alpha = 1f
+            }
+            if (updateMonth == currentMonth) {
+                binding.btnStaticsRightDateMonthly.alpha = 0.5f
+                binding.btnStaticsLeftDateMonthly.alpha = 1f
             }
         }
     }
