@@ -6,56 +6,46 @@
     android:layout_height="match_parent"
     tools:context=".presentation.analysis.IconStaticsMonthlyFragment">
 
-    <!-- 상단 레이아웃 -->
-    <LinearLayout
-        android:id="@+id/linearLayout"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginStart="16dp"
-        android:layout_marginTop="16dp"
-        android:layout_marginRight="256dp"
-        android:layout_marginBottom="10dp"
-        android:orientation="horizontal"
+    <ImageButton
+        android:id="@+id/btn_statics_left_date_monthly"
+        style="?android:attr/borderlessButtonStyle"
+        android:layout_width="7dp"
+        android:layout_height="12dp"
+        android:layout_gravity="center"
+        android:layout_marginStart="28dp"
+        android:layout_marginTop="24dp"
+        android:background="@drawable/ic_gray_leftarrow_7_12"
+        app:layout_constraintHeight_percent="0.05"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent">
+        app:layout_constraintTop_toTopOf="parent"/>
 
-        <ImageButton
-            android:id="@+id/btn_statics_left_date_monthly"
-            style="?android:attr/borderlessButtonStyle"
-            android:layout_width="7dp"
-            android:layout_height="12dp"
-            android:layout_gravity="center"
-            android:layout_marginLeft="12dp"
-            android:layout_marginTop="1dp"
-            android:layout_marginRight="11dp"
-            android:background="@drawable/ic_gray_leftarrow_7_12"
-            app:layout_constraintHeight_percent="0.05" />
+    <TextView
+        android:id="@+id/tv_unwritten_title_monthly"
+        android:layout_width="45dp"
+        android:layout_height="wrap_content"
+        android:layout_gravity="center"
+        android:textColor="@color/black"
+        android:textSize="15dp"
+        android:fontFamily="@font/pretendardbold"
+        android:gravity="center"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        android:layout_marginTop="19dp"
+        android:layout_marginStart="44dp"/>
 
-        <TextView
-            android:id="@+id/tv_unwritten_title_monthly"
-            android:layout_width="45dp"
-            android:layout_height="wrap_content"
-            android:layout_gravity="center"
-            android:layout_marginTop="4dp"
-            android:layout_marginBottom="4dp"
-            android:textColor="@color/black"
-            android:textSize="15dp"
-            android:fontFamily="@font/pretendardbold"
-            android:gravity="center"/>
-
-        <ImageButton
-            android:id="@+id/btn_statics_right_date_monthly"
-            style="?android:attr/borderlessButtonStyle"
-            android:layout_width="7dp"
-            android:layout_height="12dp"
-            android:layout_gravity="center"
-            android:layout_marginLeft="11dp"
-            android:layout_marginTop="1dp"
-            android:background="@drawable/ic_gray_rightarrow_7_12"
-            app:layout_constraintHeight_percent="0.05"
-            android:alpha="0.5"/>
-
-    </LinearLayout>
+    <ImageButton
+        android:id="@+id/btn_statics_right_date_monthly"
+        style="?android:attr/borderlessButtonStyle"
+        android:layout_width="7dp"
+        android:layout_height="12dp"
+        android:layout_gravity="center"
+        android:layout_marginStart="99dp"
+        android:layout_marginTop="24dp"
+        android:background="@drawable/ic_gray_rightarrow_7_12"
+        app:layout_constraintHeight_percent="0.05"
+        android:alpha="0.5"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"/>
 
     <LinearLayout
         android:id="@+id/linearLayout2"
@@ -65,10 +55,10 @@
         android:orientation="vertical"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/linearLayout"
+        app:layout_constraintTop_toBottomOf="@+id/tv_unwritten_title_monthly"
         android:layout_marginStart="27dp"
         android:layout_marginEnd="26dp"
-        android:layout_marginTop="14dp">
+        android:layout_marginTop="16dp">
 
 
         <LinearLayout
