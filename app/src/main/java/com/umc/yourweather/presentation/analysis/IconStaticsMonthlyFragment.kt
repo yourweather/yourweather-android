@@ -13,6 +13,7 @@ import java.util.Calendar
 class IconStaticsMonthlyFragment : Fragment() {
     private var _binding: FragmentIconStaticsMonthlyBinding? = null
     private val binding: FragmentIconStaticsMonthlyBinding get() = _binding!!
+    private var currentMonth = monthGenerator()
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -46,12 +47,29 @@ class IconStaticsMonthlyFragment : Fragment() {
             replaceFragment(WrittenDetailListFragmentThunder())
         }
 
-        binding.tvUnwrittenTitleMonthly.text = monthGenerator() + "월"
+        // 현재 달
+        binding.tvUnwrittenTitleMonthly.text = currentMonth.toString() + "월"
+
+        // 오른쪽 버튼 투명도 0.5로 고정
+        binding.btnStaticsRightDateMonthly.alpha = 0.5f
+
+        // 과거 달로 이동
+        binding.btnStaticsLeftDateMonthly.setOnClickListener {
+            if (currentMonth > 1) {
+                currentMonth--
+                binding.tvUnwrittenTitleMonthly.text = currentMonth.toString() + "월"
+                binding.btnStaticsRightDateMonthly.alpha = 1f
+            }
+            if (currentMonth == 1) {
+                binding.btnStaticsLeftDateMonthly.alpha = 0.5f
+                binding.btnStaticsRightDateMonthly.alpha = 1f
+            }
+        }
     }
 
-    fun monthGenerator(): String {
+    fun monthGenerator(): Int {
         val instance = Calendar.getInstance()
-        var month = (instance.get(Calendar.MONTH) + 1).toString()
+        var month = (instance.get(Calendar.MONTH) + 1)
         // var week = instance.get(Calendar.WEEK_OF_MONTH).toString()
         Log.d("TimeGenerator", "Current Date: $month")
 
