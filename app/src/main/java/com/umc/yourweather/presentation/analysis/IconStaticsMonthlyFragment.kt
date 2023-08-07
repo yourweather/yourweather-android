@@ -1,12 +1,14 @@
 package com.umc.yourweather.presentation.analysis
 
 import android.os.Bundle
+import android.util.Log
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import androidx.fragment.app.Fragment
 import com.umc.yourweather.R
 import com.umc.yourweather.databinding.FragmentIconStaticsMonthlyBinding
+import java.util.Calendar
 
 class IconStaticsMonthlyFragment : Fragment() {
     private var _binding: FragmentIconStaticsMonthlyBinding? = null
@@ -43,6 +45,17 @@ class IconStaticsMonthlyFragment : Fragment() {
         binding.btnStaticsRightDetail4Monthly.setOnClickListener {
             replaceFragment(WrittenDetailListFragmentThunder())
         }
+
+        binding.tvUnwrittenTitleMonthly.text = monthGenerator() + "월"
+    }
+
+    fun monthGenerator(): String {
+        val instance = Calendar.getInstance()
+        var month = (instance.get(Calendar.MONTH) + 1).toString()
+        // var week = instance.get(Calendar.WEEK_OF_MONTH).toString()
+        Log.d("TimeGenerator", "Current Date: $month")
+
+        return month
     }
 
     private fun replaceFragment(fragment: Fragment) {
