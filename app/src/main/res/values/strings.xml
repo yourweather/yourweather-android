@@ -25,4 +25,5 @@
     <string name="tv_my_alarm_title">알림 설정</string>
     <string name="tv_my_alarm_monthly">월간 비교 분석 알림</string>
     <string name="tv_my_alarm_weekly">주간 비교 분석 알림</string>
+    <string name="tv_myinfo_title">내 정보</string>
 </resources>
