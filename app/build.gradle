@@ -73,6 +73,8 @@ dependencies {
     //네이버 로그인 의존성
     implementation 'com.navercorp.nid:oauth-jdk8:5.7.0' // jdk 8
     implementation "org.jetbrains.kotlinx:kotlinx-coroutines-android:1.6.0"
+    //구글 로그인 의존성
+    implementation 'com.google.android.gms:play-services-auth:20.6.0'
 
     //ktx
     implementation 'androidx.core:core-ktx:1.10.1'
