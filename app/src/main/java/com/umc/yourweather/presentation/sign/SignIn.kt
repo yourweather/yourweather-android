@@ -9,11 +9,15 @@ import android.view.WindowManager
 import android.widget.TextView
 import android.widget.Toast
 import androidx.appcompat.app.AppCompatActivity
-import com.umc.yourweather.BuildConfig
+import com.kakao.sdk.auth.model.OAuthToken
+import com.kakao.sdk.common.model.ClientError
+import com.kakao.sdk.common.model.ClientErrorCause
+import com.kakao.sdk.user.UserApiClient
 import com.umc.yourweather.R
 import com.umc.yourweather.databinding.ActivitySignInBinding
 import com.umc.yourweather.presentation.BottomNavi
 import com.umc.yourweather.util.CalendarUtils.Companion.dpToPx
+import com.umc.yourweather.util.SignUtils.Companion.KAKAOTAG
 
 class SignIn : AppCompatActivity() {
     lateinit var binding: ActivitySignInBinding
@@ -42,7 +46,10 @@ class SignIn : AppCompatActivity() {
             startActivity(mIntent)
         }
 
-        Log.d("base url", "${BuildConfig.BASE_URL}")
+        // 카카오로그인
+        binding.btnSigninKakao.setOnClickListener {
+            kakaoSignIn()
+        }
     }
 
     fun customToast() {
@@ -64,5 +71,36 @@ class SignIn : AppCompatActivity() {
         toast.setGravity(Gravity.CENTER, 0, 0)
         toast.view = layout
         toast.show()
+    }
+
+    fun kakaoSignIn() { // 카카오 소셜로그인
+        val callback: (OAuthToken?, Throwable?) -> Unit = { token, error ->
+            if (error != null) {
+                Log.d(KAKAOTAG, "카카오계정으로 로그인 실패", error)
+            } else if (token != null) {
+                Log.d(KAKAOTAG, "카카오계정으로 로그인 성공 ${token.accessToken}")
+                val mIntent = Intent(this@SignIn, SocialSignCheck::class.java)
+                mIntent.putExtra("SIGN", "KAKAO")
+                startActivity(mIntent)
+                finish()
+            }
+        }
+
+        if (UserApiClient.instance.isKakaoTalkLoginAvailable(this)) {
+            UserApiClient.instance.loginWithKakaoTalk(this) { token, error ->
+                if (error != null) {
+                    Log.d(KAKAOTAG, "카카오톡으로 로그인 실패", error)
+                    if (error is ClientError && error.reason == ClientErrorCause.Cancelled) {
+                        return@loginWithKakaoTalk
+                    }
+                    // 카카오톡에 연결된 카카오계정이 없는 경우, 카카오계정으로 로그인 시도
+                    UserApiClient.instance.loginWithKakaoAccount(this@SignIn, callback = callback)
+                } else if (token != null) {
+                    Log.i(KAKAOTAG, "카카오톡으로 로그인 성공 ${token.accessToken}")
+                }
+            }
+        } else {
+            UserApiClient.instance.loginWithKakaoAccount(this@SignIn, callback = callback)
+        }
     }
 }

@@ -1,9 +1,9 @@
 package com.umc.yourweather.util
 
-import android.view.View
-
 class SignUtils {
     companion object {
+        const val KAKAOTAG = "카카오소셜로그인"
+
         fun isValidPassword(password: String): Boolean {
             val passwordPattern = "^(?=.*[a-zA-Z])(?=.*\\d).{8,}$"
             return password.matches(passwordPattern.toRegex())
