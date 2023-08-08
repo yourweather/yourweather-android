@@ -1,4 +1,4 @@
-package com.umc.yourweather.presentation
+package com.umc.yourweather.presentation.mypage
 
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle

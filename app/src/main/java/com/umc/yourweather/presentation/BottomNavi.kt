@@ -7,6 +7,7 @@ import androidx.appcompat.app.AppCompatActivity
 import androidx.fragment.app.Fragment
 import com.google.android.material.bottomnavigation.BottomNavigationView
 import com.umc.yourweather.R
+import com.umc.yourweather.presentation.mypage.MyPageFragment
 import com.umc.yourweather.presentation.analysis.AnalysisFragment
 import com.umc.yourweather.presentation.calendar.CalendarTotalViewFragment
 import com.umc.yourweather.presentation.weatherinput.InitialNoWeatherFragment
