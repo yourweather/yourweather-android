@@ -3,6 +3,7 @@ package com.umc.yourweather.util
 class SignUtils {
     companion object {
         const val KAKAOTAG = "카카오소셜로그인"
+        const val NAVERTAG = "네이버소셜로그인"
 
         fun isValidPassword(password: String): Boolean {
             val passwordPattern = "^(?=.*[a-zA-Z])(?=.*\\d).{8,}$"
