@@ -69,9 +69,9 @@ class HomeWeatherInputFragment : Fragment() {
             parentFragmentManager.popBackStack()
         }
 
-        // 버튼이 활성화된 경우에만 클릭 리스너 설정
-        if (binding.btnHomeWeatherSave.isEnabled) {
-            binding.btnHomeWeatherSave.setOnClickListener {
+        binding.btnHomeWeatherSave.setOnClickListener {
+            // 버튼이 활성화된 경우에만 클릭 리스너 동작
+            if (isButtonClicked && isSeekBarAdjusted) {
                 val homeFragment = HomeFragment()
                 val transaction = parentFragmentManager.beginTransaction()
                 transaction.replace(R.id.fl_initial_l1, homeFragment)
