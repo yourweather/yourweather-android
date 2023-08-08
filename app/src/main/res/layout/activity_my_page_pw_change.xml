@@ -5,50 +5,61 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     tools:context=".presentation.MyPagePwChange">
-    <LinearLayout
-        android:id="@+id/ll_mypage_pw_0"
+
+    <androidx.constraintlayout.widget.ConstraintLayout
+        android:id="@+id/cl_mypage_nickname_title"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:orientation="horizontal"
+        app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent">
 
-        <ImageButton
-            android:id="@+id/btn_mypage_pw_back"
-            style="?android:attr/borderlessButtonStyle"
-            android:layout_width="10dp"
-            android:layout_height="18dp"
-            android:layout_gravity="center"
-            android:layout_marginStart="16dp"
-            android:layout_marginTop="20dp"
-            android:layout_marginBottom="20dp"
-            android:background="@drawable/ic_black_leftarrow_8_16"
-            app:layout_constraintHeight_percent="0.05" />
+        <FrameLayout
+            android:id="@+id/fl_mypage_pw_backbtn"
+            android:layout_width="wrap_content"
+            android:layout_height="match_parent"
+            android:layout_marginStart="10dp"
+            android:padding="7dp"
+            android:paddingRight="7dp"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent">
+
+            <ImageButton
+                android:id="@+id/btn_singup_back"
+                style="?android:attr/borderlessButtonStyle"
+                android:layout_width="10dp"
+                android:layout_height="18dp"
+                android:layout_gravity="center"
+                android:background="@drawable/ic_black_leftarrow_8_16" />
+        </FrameLayout>
 
         <TextView
             android:id="@+id/tv_mypage_pw_title"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_gravity="center"
-            android:layout_marginStart="134dp"
             android:layout_marginTop="16dp"
-            android:layout_marginEnd="134dp"
             android:layout_marginBottom="16dp"
             android:fontFamily="@font/pretendardbold"
             android:gravity="center"
             android:text="@string/tv_mypage_pw_title"
             android:textColor="@color/sorange"
             android:textSize="20dp"
-            android:textStyle="bold" />
-
-    </LinearLayout>
+            android:textStyle="bold"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent"
+            app:layout_constraintVertical_bias="1.0" />
+    </androidx.constraintlayout.widget.ConstraintLayout>
 
     <TextView
         android:id="@+id/tv_mypage_pw_mypw"
         android:layout_width="0dp"
         android:layout_height="wrap_content"
         android:layout_marginStart="16dp"
-        android:layout_marginTop="46dp"
+        android:layout_marginTop="48dp"
         android:layout_marginEnd="16dp"
         android:fontFamily="@font/pretendardbold"
         android:text="현재 비밀번호"
@@ -57,7 +68,7 @@
         android:visibility="visible"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/ll_mypage_pw_0" />
+        app:layout_constraintTop_toBottomOf="@+id/cl_mypage_nickname_title" />
 
 
     <FrameLayout
