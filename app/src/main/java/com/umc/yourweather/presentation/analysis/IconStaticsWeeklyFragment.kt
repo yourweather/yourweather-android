@@ -21,42 +21,39 @@ class IconStaticsWeeklyFragment : Fragment() {
         container: ViewGroup?,
         savedInstanceState: Bundle?,
     ): View? {
-        // Inflate the layout for this fragment
-        return inflater.inflate(R.layout.fragment_icon_statics_weekly, container, false)
+        _binding = FragmentIconStaticsWeeklyBinding.inflate(inflater, container, false)
+        return binding.root
     }
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
+        setupOnClickListeners()
+    }
 
-        _binding = FragmentIconStaticsWeeklyBinding.bind(view)
-
+    private fun setupOnClickListeners() {
         binding.btnStaticsRightDetail1Weekly.setOnClickListener {
-            val mFragment = WrittenDetailListFragmentSunWeekly()
-            requireActivity().supportFragmentManager.beginTransaction()
-                .replace(R.id.fl_content, mFragment)
-                .addToBackStack(null)
-                .commit()
+            replaceFragment(WrittenDetailListFragmentSunWeekly())
         }
         binding.btnStaticsRightDetail2Weekly.setOnClickListener {
-            val mFragment = WrittenDetailListFragmentRainWeekly()
-            requireActivity().supportFragmentManager.beginTransaction()
-                .replace(R.id.fl_content, mFragment)
-                .addToBackStack(null)
-                .commit()
+            replaceFragment(WrittenDetailListFragmentRainWeekly())
         }
         binding.btnStaticsRightDetail3Weekly.setOnClickListener {
-            val mFragment = WrittenDetailListFragmentCloudWeekly()
-            requireActivity().supportFragmentManager.beginTransaction()
-                .replace(R.id.fl_content, mFragment)
-                .addToBackStack(null)
-                .commit()
+            replaceFragment(WrittenDetailListFragmentCloudWeekly())
         }
         binding.btnStaticsRightDetail4Weekly.setOnClickListener {
-            val mFragment = WrittenDetailListFragmentThunderWeekly()
-            requireActivity().supportFragmentManager.beginTransaction()
-                .replace(R.id.fl_content, mFragment)
-                .addToBackStack(null)
-                .commit()
+            replaceFragment(WrittenDetailListFragmentThunderWeekly())
         }
+    }
+
+    private fun replaceFragment(fragment: Fragment) {
+        requireActivity().supportFragmentManager.beginTransaction()
+            .replace(R.id.fl_content, fragment)
+            .addToBackStack(null)
+            .commit()
+    }
+
+    override fun onDestroyView() {
+        super.onDestroyView()
+        _binding = null
     }
 }
