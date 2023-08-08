@@ -47,7 +47,7 @@
             android:layout_marginTop="16dp"
             android:layout_marginEnd="16dp"
             android:background="@android:color/transparent"
-            android:src="@drawable/ic_home_save"
+            android:src="@drawable/ic_home_unsave"
             app:layout_constraintEnd_toEndOf="@+id/iv_home_weather"
             app:layout_constraintHorizontal_bias="1.0"
             app:layout_constraintStart_toEndOf="@+id/btn_home_weather_exit"
