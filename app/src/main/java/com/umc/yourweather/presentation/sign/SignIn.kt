@@ -13,11 +13,15 @@ import com.kakao.sdk.auth.model.OAuthToken
 import com.kakao.sdk.common.model.ClientError
 import com.kakao.sdk.common.model.ClientErrorCause
 import com.kakao.sdk.user.UserApiClient
+import com.navercorp.nid.NaverIdLoginSDK
+import com.navercorp.nid.oauth.OAuthLoginCallback
+import com.umc.yourweather.BuildConfig
 import com.umc.yourweather.R
 import com.umc.yourweather.databinding.ActivitySignInBinding
 import com.umc.yourweather.presentation.BottomNavi
 import com.umc.yourweather.util.CalendarUtils.Companion.dpToPx
 import com.umc.yourweather.util.SignUtils.Companion.KAKAOTAG
+import com.umc.yourweather.util.SignUtils.Companion.NAVERTAG
 
 class SignIn : AppCompatActivity() {
     lateinit var binding: ActivitySignInBinding
@@ -46,9 +50,14 @@ class SignIn : AppCompatActivity() {
             startActivity(mIntent)
         }
 
-        // 카카오로그인
+        // 카카오 소셜로그인
         binding.btnSigninKakao.setOnClickListener {
             kakaoSignIn()
+        }
+
+        // 네이버 소셜로그인
+        binding.btnSigninNaver.setOnClickListener {
+            naverSignIn()
         }
     }
 
@@ -102,5 +111,44 @@ class SignIn : AppCompatActivity() {
         } else {
             UserApiClient.instance.loginWithKakaoAccount(this@SignIn, callback = callback)
         }
+    }
+
+    fun naverSignIn() { // 네이버 소셜로그인
+        Log.d(NAVERTAG, "네이버 로그인 : ${BuildConfig.NAVER_CLIENT_ID}")
+
+        val oauthLoginCallback = object : OAuthLoginCallback {
+            override fun onSuccess() {
+                // 네이버 로그인 인증이 성공시 정보 받아옴
+//                NidOAuthLogin().callProfileApi(object : NidProfileCallback<NidProfileResponse> {
+//                    override fun onSuccess(result: NidProfileResponse) {
+//                        // email = result.profile?.email.toString()
+//                        // result.profile?.id
+//                        Log.d(NAVERTAG, "네이버 로그인 : ${result.profile?.email}")
+//                        Log.d(NAVERTAG, "네이버 로그인한 유저 정보 - 이메일 : ${result.profile?.id}")
+//                    }
+//
+//                    override fun onError(errorCode: Int, message: String) {
+//                        //
+//                    }
+//
+//                    override fun onFailure(httpStatus: Int, message: String) {
+//                        //
+//                    }
+//                })
+                val mIntent = Intent(this@SignIn, SocialSignCheck::class.java)
+                mIntent.putExtra("SIGN", "NAVER")
+                startActivity(mIntent)
+            }
+            override fun onFailure(httpStatus: Int, message: String) {
+                val errorCode = NaverIdLoginSDK.getLastErrorCode().code
+                val errorDescription = NaverIdLoginSDK.getLastErrorDescription()
+                Toast.makeText(this@SignIn, "errorCode:$errorCode, errorDesc:$errorDescription", Toast.LENGTH_SHORT).show()
+            }
+            override fun onError(errorCode: Int, message: String) {
+                onFailure(errorCode, message)
+            }
+        }
+
+        NaverIdLoginSDK.authenticate(this@SignIn, oauthLoginCallback)
     }
 }

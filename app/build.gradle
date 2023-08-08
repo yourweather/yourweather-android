@@ -26,6 +26,8 @@ android {
         testInstrumentationRunner "androidx.test.runner.AndroidJUnitRunner"
         buildConfigField "String", "KAKAO_API_KEY", properties['KAKAO_API_KEY']
         buildConfigField "String", "BASE_URL", properties['BASE_URL']
+        buildConfigField "String", "NAVER_CLIENT_ID", properties['NAVER_CLIENT_ID']
+        buildConfigField "String", "NAVER_CLIENT_SECRET", properties['NAVER_CLIENT_SECRET']
         manifestPlaceholders = [KAKAO_API_KEY: properties['KAKAO_API_KEY_MANIFEST']]
    }
 
@@ -68,6 +70,9 @@ dependencies {
     implementation 'androidx.security:security-crypto-ktx:1.1.0-alpha06'
     //카카오 로그인 의존성
     implementation 'com.kakao.sdk:v2-user:2.11.1'
+    //네이버 로그인 의존성
+    implementation 'com.navercorp.nid:oauth-jdk8:5.7.0' // jdk 8
+    implementation "org.jetbrains.kotlinx:kotlinx-coroutines-android:1.6.0"
 
     //ktx
     implementation 'androidx.core:core-ktx:1.10.1'
