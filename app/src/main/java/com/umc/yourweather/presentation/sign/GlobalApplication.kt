@@ -8,7 +8,7 @@ import com.umc.yourweather.util.PreferenceUtil
 
 class GlobalApplication : Application() {
     companion object {
-        lateinit var prefs: PreferenceUtil
+        lateinit var tokenPrefs: PreferenceUtil
     }
 
     override fun onCreate() {

@@ -1,6 +1,7 @@
 package com.umc.yourweather.di
 
 import com.umc.yourweather.BuildConfig
+import com.umc.yourweather.presentation.sign.GlobalApplication
 import okhttp3.Interceptor
 import okhttp3.OkHttpClient
 import okhttp3.Response
@@ -35,7 +36,7 @@ object RetrofitApi {
             val requestBuilder = request().newBuilder()
                 .addHeader("accept", "application/hal+json")
                 .addHeader("Content-Type", "application/json")
-            // .addHeader("Authorization", "Bearer ${App.token_prefs.accessToken}")
+                .addHeader("Authorization", "Bearer ${GlobalApplication.tokenPrefs.accessToken}")
 
             val newRequest = requestBuilder.build()
             proceed(newRequest)
