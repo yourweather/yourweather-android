@@ -5,6 +5,7 @@
     <uses-permission android:name="android.permission.INTERNET" />
 
     <application
+        android:name=".presentation.sign.GlobalApplication"
         android:allowBackup="true"
         android:dataExtractionRules="@xml/data_extraction_rules"
         android:fullBackupContent="@xml/backup_rules"
@@ -34,7 +35,7 @@
 
                 <data
                     android:host="oauth"
-                    android:scheme="kakao${KAKAO_API_KEY}" />
+                    android:scheme="${KAKAO_API_KEY}" />
             </intent-filter>
         </activity>
         <activity
