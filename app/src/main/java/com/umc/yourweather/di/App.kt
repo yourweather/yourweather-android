@@ -14,10 +14,9 @@ class App : Application() {
 
     override fun onCreate() {
         super.onCreate()
-        token_prefs = TokenSharedPreferences(applicationContext)
-
-        appContext = this
         KakaoSdk.init(this, BuildConfig.KAKAO_API_KEY)
         NaverIdLoginSDK.initialize(this, BuildConfig.NAVER_CLIENT_ID, BuildConfig.NAVER_CLIENT_SECRET, "yourweather")
+        token_prefs = TokenSharedPreferences(applicationContext)
+        appContext = this
     }
 }
