@@ -19,6 +19,7 @@ class MyPageNicknameChange : AppCompatActivity() {
             binding.etMypageNicknameNickname.setText("")
             binding.etMypageNicknameNickname.hint = NicknameUtils.getRandomHintText()
         }
+
         binding.flMypageNicknameBackbtn.setOnClickListener {
             finish()
         }

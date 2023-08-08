@@ -22,7 +22,8 @@ class MyPagePwChange : AppCompatActivity() {
 //            val mIntent = Intent(this, Nickname::class.java)
 //            startActivity(mIntent)
         }
-        binding.btnMypagePwBack.setOnClickListener {
+
+        binding.flMypagePwBackbtn.setOnClickListener {
             finish()
         }
 
