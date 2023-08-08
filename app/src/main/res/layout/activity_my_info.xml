@@ -1,171 +1,287 @@
 <?xml version="1.0" encoding="utf-8"?>
-<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
-    android:layout_height="match_parent"
-    android:layout_margin="10dp"
-    android:orientation="vertical">
+    android:layout_height="match_parent">
 
 
     <LinearLayout
+        android:id="@+id/ll_singup0"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:orientation="horizontal"
-        android:layout_marginBottom="45sp">
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent">
 
-
-
+        <ImageButton
+            android:id="@+id/btn_singup_back"
+            style="?android:attr/borderlessButtonStyle"
+            android:layout_width="10dp"
+            android:layout_height="18dp"
+            android:layout_gravity="center"
+            android:layout_marginStart="16dp"
+            android:layout_marginTop="20dp"
+            android:layout_marginBottom="20dp"
+            android:background="@drawable/ic_black_leftarrow_8_16"
+            app:layout_constraintHeight_percent="0.05" />
 
         <TextView
-            android:layout_width="match_parent"
+            android:id="@+id/tv_signup_title"
+            android:layout_width="wrap_content"
             android:layout_height="wrap_content"
+            android:layout_gravity="center"
+            android:layout_marginStart="134dp"
+            android:layout_marginTop="16dp"
+            android:layout_marginEnd="134dp"
+            android:layout_marginBottom="16dp"
             android:fontFamily="@font/pretendardbold"
-            android:textAlignment="center"
             android:gravity="center"
-            android:paddingTop="10sp"
-            android:paddingBottom="20sp"
-            android:text="내 정보"
-            android:textColor="#F07818"
-            android:textSize="20sp"/>
-
-
-
+            android:text="@string/tv_signup_title"
+            android:textColor="@color/sorange"
+            android:textSize="20dp"
+            android:textStyle="bold" />
 
     </LinearLayout>
 
 
-
     <LinearLayout
-        android:layout_width="match_parent"
+        android:id="@+id/ll_myinfo_l1"
+        android:layout_width="0dp"
         android:layout_height="wrap_content"
-        android:orientation="horizontal">
+        android:layout_marginStart="34dp"
+        android:layout_marginTop="43dp"
+        android:layout_marginEnd="34dp"
+        android:orientation="horizontal"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/ll_singup0">
 
         <LinearLayout
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:layout_margin="15sp"
-            android:orientation="vertical"
-            android:layout_weight="3">
+            android:layout_weight="4"
+            android:orientation="vertical">
 
             <TextView
                 android:layout_width="wrap_content"
                 android:layout_height="match_parent"
+                android:layout_marginBottom="7dp"
+                android:fontFamily="@font/pretendardmedium"
                 android:text="닉네임"
-                android:textSize="13sp"
-                android:textColor="#C9C9C9"
-                android:fontFamily="@font/pretendardsemibold"/>
+                android:textColor="#858585"
+                android:textSize="13dp" />
+
+            <TextView
+                android:id="@+id/tv_myinfo_nickname"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:fontFamily="@font/pretendardsemibold"
+                android:text="이다은"
+                android:textColor="#424242"
+                android:textSize="13dp" />
+
+        </LinearLayout>
+
+        <android.widget.Button
+            android:id="@+id/btn_myinfo_nickname_change"
+            android:layout_width="wrap_content"
+            android:layout_height="25dp"
+            android:layout_gravity="center"
+            android:layout_weight="1"
+            android:background="@drawable/btn_myinfo"
+            android:fontFamily="@font/pretendardregular"
+            android:text="변경"
+            android:textColor="#858585"
+            android:textSize="13dp" />
+    </LinearLayout>
+
+    <View
+        android:id="@+id/view2"
+        android:layout_width="match_parent"
+        android:layout_height="2dp"
+        android:layout_marginStart="26dp"
+        android:layout_marginTop="9dp"
+        android:layout_marginEnd="26dp"
+        android:background="#DDDDDD"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/ll_myinfo_l1" />
+
+    <LinearLayout
+        android:id="@+id/ll_myinfo_l2"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="34dp"
+        android:layout_marginTop="16dp"
+        android:layout_marginEnd="34dp"
+        android:orientation="horizontal"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/view2">
+
+        <LinearLayout
+            android:layout_width="0dp"
+            android:layout_height="match_parent"
+            android:layout_weight="4"
+            android:orientation="vertical">
 
             <TextView
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
+                android:layout_marginBottom="7dp"
+                android:fontFamily="@font/pretendardmedium"
+                android:text="이메일 아이디"
+                android:textColor="#858585"
+                android:textSize="13dp" />
+
+            <TextView
+                android:id="@+id/tv_myinfo_email"
+                android:layout_width="wrap_content"
+                android:layout_height="match_parent"
                 android:fontFamily="@font/pretendardsemibold"
-                android:paddingTop="10sp"
-                android:text="이다은"
+                android:text="1234@naver.com"
                 android:textColor="#424242"
                 android:textSize="13sp" />
+        </LinearLayout>
+
+        <FrameLayout
+            android:layout_width="0dp"
+            android:layout_height="match_parent"
+            android:layout_weight="1">
+
+            <ImageView
+                android:id="@+id/iv_myinfo_social_ic"
+                android:layout_width="38dp"
+                android:layout_height="38dp"
+                android:layout_gravity="center"
+                android:visibility="invisible"
+                app:srcCompat="@drawable/ic_signin_kakao" />
+        </FrameLayout>
+
+    </LinearLayout>
+
+    <View
+        android:id="@+id/view"
+        android:layout_width="match_parent"
+        android:layout_height="2dp"
+        android:layout_centerInParent="true"
+        android:layout_marginStart="26dp"
+        android:layout_marginTop="17dp"
+        android:layout_marginEnd="26dp"
+        android:background="#DDDDDD"
+        android:padding="1.5sp"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/ll_myinfo_l2" />
+
+    <LinearLayout
+        android:id="@+id/linearLayout7"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="34dp"
+        android:layout_marginTop="16dp"
+        android:layout_marginEnd="34dp"
+        android:orientation="horizontal"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/view">
+
+        <LinearLayout
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_weight="4"
+            android:orientation="vertical">
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="match_parent"
+                android:layout_marginBottom="7dp"
+                android:fontFamily="@font/pretendardmedium"
+                android:text="비밀번호"
+                android:textColor="#858585"
+                android:textSize="13dp" />
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="match_parent"
+                android:fontFamily="@font/pretendardsemibold"
+                android:text="********"
+                android:textColor="#424242"
+                android:textSize="13dp" />
 
         </LinearLayout>
 
         <android.widget.Button
-            android:id="@+id/button1"
-            android:layout_width="100sp"
-            android:layout_height="40sp"
+            android:id="@+id/btn_myinfo_pw_change"
+            android:layout_width="0dp"
+            android:layout_height="25dp"
+            android:layout_gravity="center"
             android:layout_weight="1"
-            android:layout_marginTop="15sp"
-            android:layout_marginRight="15sp"
-            android:background="@drawable/my_info_btn"
+            android:background="@drawable/btn_myinfo"
+            android:fontFamily="@font/pretendardregular"
             android:text="변경"
             android:textColor="#858585"
-            android:textSize="13sp"
-            android:fontFamily="@font/pretendardregular"/>
+            android:textSize="13dp" />
+
     </LinearLayout>
 
     <View
+        android:id="@+id/view3"
         android:layout_width="match_parent"
         android:layout_height="2dp"
         android:layout_centerInParent="true"
+        android:layout_marginStart="26dp"
+        android:layout_marginTop="17dp"
+        android:layout_marginEnd="26dp"
+        android:layout_weight="1"
+        android:background="#DDDDDD"
         android:padding="1.5sp"
-        android:background="#ECECEC"
-        android:fontFamily="@font/pretendardsemibold"/>
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/linearLayout7" />
 
     <LinearLayout
-        android:layout_width="match_parent"
+        android:id="@+id/linearLayout"
+        android:layout_width="0dp"
         android:layout_height="wrap_content"
-        android:layout_margin="15dp"
-        android:orientation="vertical"
-        >
+        android:layout_marginStart="105dp"
+        android:layout_marginEnd="105dp"
+        android:layout_marginBottom="49dp"
+        android:gravity="center"
+        android:orientation="horizontal"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent">
 
         <TextView
+            android:id="@+id/tv_signin_btnsignup"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:fontFamily="@font/pretendardsemibold"
-            android:text="이메일 아이디"
-            android:textSize="13sp"
-            android:textColor="#C9C9C9"/>
+            android:paddingRight="22dp"
+            android:text="로그아웃"
+            android:textColor="#808080"
+            android:textSize="15dp" />
 
         <TextView
             android:layout_width="wrap_content"
-            android:layout_height="match_parent"
-            android:text="1234@naver.com"
-            android:textColor="#424242"
-            android:textSize="13sp"
-            android:paddingTop="10sp"
-            android:fontFamily="@font/pretendardsemibold"/>
-
-    </LinearLayout>
-
-    <View
-        android:layout_width="match_parent"
-        android:layout_height="2dp"
-        android:layout_centerInParent="true"
-        android:padding="1.5sp"
-        android:background="#ECECEC"/>
-
-    <LinearLayout
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:orientation="horizontal">
-
-        <LinearLayout
-            android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:layout_margin="15dp"
-            android:orientation="vertical"
-            android:layout_weight="3">
+            android:gravity="center"
+            android:text="|"
+            android:textColor="#DEDEDE" />
 
-            <TextView
-                android:layout_width="wrap_content"
-                android:layout_height="match_parent"
-                android:text="비밀번호"
-                android:textSize="13sp"
-                android:textColor="#C9C9C9"
-                android:fontFamily="@font/pretendardsemibold"/>
-
-            <TextView
-                android:layout_width="wrap_content"
-                android:layout_height="match_parent"
-                android:text="********"
-                android:textColor="#424242"
-                android:textSize="13sp"
-                android:paddingTop="10sp"
-                android:fontFamily="@font/pretendardsemibold"/>
-
-        </LinearLayout>
-
-        <android.widget.Button
-            android:id="@+id/button2"
-            android:layout_width="100sp"
-            android:layout_height="40sp"
-            android:layout_weight="1"
-            android:layout_marginTop="15sp"
-            android:layout_marginRight="15sp"
-            android:background="@drawable/my_info_btn"
-            android:text="변경"
-            android:textColor="#858585"
-            android:textSize="13sp"
-            android:fontFamily="@font/pretendardregular"/>
-
+        <TextView
+            android:id="@+id/tv_signin_btnfindpw"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:fontFamily="@font/pretendardsemibold"
+            android:paddingLeft="22dp"
+            android:text="회원탈퇴"
+            android:textAlignment="textEnd"
+            android:textColor="#808080"
+            android:textSize="15dp" />
     </LinearLayout>
 
 
-</LinearLayout>
+</androidx.constraintlayout.widget.ConstraintLayout>
