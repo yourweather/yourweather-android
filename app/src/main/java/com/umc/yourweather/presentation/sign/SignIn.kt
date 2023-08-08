@@ -23,7 +23,10 @@ import com.kakao.sdk.common.model.ClientError
 import com.kakao.sdk.common.model.ClientErrorCause
 import com.kakao.sdk.user.UserApiClient
 import com.navercorp.nid.NaverIdLoginSDK
+import com.navercorp.nid.oauth.NidOAuthLogin
 import com.navercorp.nid.oauth.OAuthLoginCallback
+import com.navercorp.nid.profile.NidProfileCallback
+import com.navercorp.nid.profile.data.NidProfileResponse
 import com.umc.yourweather.BuildConfig
 import com.umc.yourweather.R
 import com.umc.yourweather.databinding.ActivitySignInBinding
@@ -35,6 +38,8 @@ import com.umc.yourweather.util.SignUtils.Companion.NAVERTAG
 class SignIn : AppCompatActivity() {
     lateinit var binding: ActivitySignInBinding
     lateinit var resultLauncherGoogle: ActivityResultLauncher<Intent>
+    var userEmail: String? = null
+    var userPw: String? = null
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -112,10 +117,7 @@ class SignIn : AppCompatActivity() {
                 Log.d(KAKAOTAG, "카카오계정으로 로그인 실패", error)
             } else if (token != null) {
                 Log.d(KAKAOTAG, "카카오계정으로 로그인 성공 ${token.accessToken}")
-                val mIntent = Intent(this@SignIn, SocialSignCheck::class.java)
-                mIntent.putExtra("SIGN", "KAKAO")
-                startActivity(mIntent)
-                finish()
+                kakaoInfo()
             }
         }
 
@@ -130,10 +132,23 @@ class SignIn : AppCompatActivity() {
                     UserApiClient.instance.loginWithKakaoAccount(this@SignIn, callback = callback)
                 } else if (token != null) {
                     Log.i(KAKAOTAG, "카카오톡으로 로그인 성공 ${token.accessToken}")
+                    kakaoInfo()
                 }
             }
         } else {
             UserApiClient.instance.loginWithKakaoAccount(this@SignIn, callback = callback)
+        }
+    }
+
+    fun kakaoInfo() {
+        UserApiClient.instance.me { user, error ->
+            if (error != null) {
+                Log.d(KAKAOTAG, "사용자 정보 요청 실패", error)
+            } else if (user != null) {
+                userEmail = user.kakaoAccount?.email
+                userPw = user.id?.toString()
+                Toast.makeText(this@SignIn, "email : $userEmail pw : $userPw", Toast.LENGTH_LONG).show()
+            }
         }
     }
 
@@ -143,25 +158,20 @@ class SignIn : AppCompatActivity() {
         val oauthLoginCallback = object : OAuthLoginCallback {
             override fun onSuccess() {
                 // 네이버 로그인 인증이 성공시 정보 받아옴
-//                NidOAuthLogin().callProfileApi(object : NidProfileCallback<NidProfileResponse> {
-//                    override fun onSuccess(result: NidProfileResponse) {
-//                        // email = result.profile?.email.toString()
-//                        // result.profile?.id
-//                        Log.d(NAVERTAG, "네이버 로그인 : ${result.profile?.email}")
-//                        Log.d(NAVERTAG, "네이버 로그인한 유저 정보 - 이메일 : ${result.profile?.id}")
-//                    }
-//
-//                    override fun onError(errorCode: Int, message: String) {
-//                        //
-//                    }
-//
-//                    override fun onFailure(httpStatus: Int, message: String) {
-//                        //
-//                    }
-//                })
-                val mIntent = Intent(this@SignIn, SocialSignCheck::class.java)
-                mIntent.putExtra("SIGN", "NAVER")
-                startActivity(mIntent)
+                NidOAuthLogin().callProfileApi(object : NidProfileCallback<NidProfileResponse> {
+                    override fun onSuccess(result: NidProfileResponse) {
+                        userEmail = result.profile?.email.toString()
+                        userPw = result.profile?.id
+                        Toast.makeText(this@SignIn, "email : $userEmail pw : $userPw", Toast.LENGTH_LONG).show()
+                    }
+                    override fun onError(errorCode: Int, message: String) {
+                        //
+                    }
+
+                    override fun onFailure(httpStatus: Int, message: String) {
+                        //
+                    }
+                })
             }
             override fun onFailure(httpStatus: Int, message: String) {
                 val errorCode = NaverIdLoginSDK.getLastErrorCode().code
@@ -189,15 +199,10 @@ class SignIn : AppCompatActivity() {
     private fun handleSignInResult(completedTask: Task<GoogleSignInAccount>) {
         try {
             val account = completedTask.getResult(ApiException::class.java)
-//            val email = account?.email.toString()
-//            val id = account?.id.toString()
 
-            val mIntent = Intent(this@SignIn, SocialSignCheck::class.java)
-            mIntent.putExtra("email", account?.email.toString())
-            mIntent.putExtra("id", account?.id.toString())
-            mIntent.putExtra("SIGN", "GOOGLE")
-            startActivity(mIntent)
-            finish()
+            userEmail = account?.email.toString()
+            userPw = account?.id.toString()
+            Toast.makeText(this@SignIn, "email : $userEmail pw : $userPw", Toast.LENGTH_LONG).show()
         } catch (e: ApiException) {
             Log.w("failed", "signInResult:failed code=" + e.statusCode)
         }
