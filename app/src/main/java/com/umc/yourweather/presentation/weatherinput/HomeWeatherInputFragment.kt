@@ -6,79 +6,113 @@ import android.view.View
 import android.view.ViewGroup
 import android.view.animation.Animation
 import android.view.animation.AnimationUtils
+import android.widget.SeekBar
 import androidx.fragment.app.Fragment
 import com.umc.yourweather.R
 import com.umc.yourweather.databinding.FragmentHomeWeatherInputBinding
 
 class HomeWeatherInputFragment : Fragment() {
+
     private lateinit var binding: FragmentHomeWeatherInputBinding
     private var listener: HomeFragmentInteractionListener? = null
+    private var isButtonClicked = false
+    private var isSeekBarAdjusted = false
 
     fun setListener(listener: HomeFragmentInteractionListener) {
         this.listener = listener
     }
+
     override fun onCreateView(
         inflater: LayoutInflater,
         container: ViewGroup?,
         savedInstanceState: Bundle?,
     ): View? {
         binding = FragmentHomeWeatherInputBinding.inflate(inflater, container, false)
+        setupUI()
         return binding.root
     }
 
-    override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
-        super.onViewCreated(view, savedInstanceState)
+    private fun setupUI() {
+        val buttonAnimation: Animation =
+            AnimationUtils.loadAnimation(requireContext(), R.anim.btn_weather_scale)
 
-        // 애니메이션 리소스 가져오기
-        val buttonAnimation: Animation = AnimationUtils.loadAnimation(requireContext(), R.anim.btn_weather_scale)
-
-        // 각 버튼과 애니메이션 연결
         binding.btnHomeSun.setOnClickListener {
-            binding.btnHomeCloud.clearAnimation()
-            binding.btnHomeThunder.clearAnimation()
-            binding.btnHomeRain.clearAnimation()
-
+            clearAnimations()
             it.startAnimation(buttonAnimation)
+            isButtonClicked = true
+            updateSaveButtonState()
             // 향후 클릭 시 추가할 동작 설정
         }
 
         binding.btnHomeCloud.setOnClickListener {
-            binding.btnHomeSun.clearAnimation()
-            binding.btnHomeThunder.clearAnimation()
-            binding.btnHomeRain.clearAnimation()
-
+            clearAnimations()
             it.startAnimation(buttonAnimation)
-
+            isButtonClicked = true
+            updateSaveButtonState()
         }
 
         binding.btnHomeThunder.setOnClickListener {
-            binding.btnHomeSun.clearAnimation()
-            binding.btnHomeCloud.clearAnimation()
-            binding.btnHomeRain.clearAnimation()
-
+            clearAnimations()
             it.startAnimation(buttonAnimation)
-
+            isButtonClicked = true
+            updateSaveButtonState()
         }
 
         binding.btnHomeRain.setOnClickListener {
-            binding.btnHomeSun.clearAnimation()
-            binding.btnHomeCloud.clearAnimation()
-            binding.btnHomeThunder.clearAnimation()
-
+            clearAnimations()
             it.startAnimation(buttonAnimation)
-
+            isButtonClicked = true
+            updateSaveButtonState()
         }
 
         binding.btnHomeWeatherExit.setOnClickListener {
             parentFragmentManager.popBackStack()
         }
 
-        binding.btnHomeWeatherSave.setOnClickListener {
-            val homeFragment = HomeFragment()
-            val transaction = parentFragmentManager.beginTransaction()
-            transaction.replace(R.id.fl_initial_l1, homeFragment)
-            transaction.addToBackStack(null)
-            transaction.commit()
+        // 버튼이 활성화된 경우에만 클릭 리스너 설정
+        if (binding.btnHomeWeatherSave.isEnabled) {
+            binding.btnHomeWeatherSave.setOnClickListener {
+                val homeFragment = HomeFragment()
+                val transaction = parentFragmentManager.beginTransaction()
+                transaction.replace(R.id.fl_initial_l1, homeFragment)
+                transaction.addToBackStack(null)
+                transaction.commit()
+            }
+        }
+
+        binding.seekbarHomeTemp.setOnSeekBarChangeListener(object :
+            SeekBar.OnSeekBarChangeListener {
+            override fun onProgressChanged(seekBar: SeekBar?, progress: Int, fromUser: Boolean) {
+                isSeekBarAdjusted = fromUser
+                updateSaveButtonState()
+            }
+
+            override fun onStartTrackingTouch(seekBar: SeekBar?) {
+                // 필요한 경우 구현
+            }
+
+            override fun onStopTrackingTouch(seekBar: SeekBar?) {
+                // 필요한 경우 구현
+            }
+        })
+    }
+
+    private fun clearAnimations() {
+        binding.btnHomeSun.clearAnimation()
+        binding.btnHomeCloud.clearAnimation()
+        binding.btnHomeThunder.clearAnimation()
+        binding.btnHomeRain.clearAnimation()
+    }
+
+    private fun updateSaveButtonState() {
+        val context = requireContext()
+        val isActive = isButtonClicked && isSeekBarAdjusted
+
+        binding.btnHomeWeatherSave.isEnabled = isActive
+        if (isActive) {
+            binding.btnHomeWeatherSave.setImageResource(R.drawable.ic_home_save)
+        } else {
+            binding.btnHomeWeatherSave.setImageResource(R.drawable.ic_home_unsave)
         }
     }
 }
