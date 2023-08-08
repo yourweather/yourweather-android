@@ -13,7 +13,7 @@ import android.widget.LinearLayout
 import androidx.core.content.ContextCompat
 import androidx.fragment.app.Fragment
 import com.umc.yourweather.R
-import com.umc.yourweather.data.BarData
+import com.umc.yourweather.data.entity.BarData
 import com.umc.yourweather.databinding.FragmentBarStaticsMonthlyBinding
 
 class BarStaticsMonthlyFragment : Fragment() {
