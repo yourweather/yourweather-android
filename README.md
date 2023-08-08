@@ -43,7 +43,6 @@
 ## 🌀 Package 규칙
 📁 data<br/>
 ┣ 📁 entity<br/>
-┣ 📁 repository<br/>
 ┣ 📁 service<br/>
 ┣ 📁 source<br/>
 ┃ ┣ 📁 local<br/>
