@@ -1,5 +1,6 @@
 package com.umc.yourweather.presentation.sign
 
+import android.app.Activity
 import android.content.Intent
 import android.os.Bundle
 import android.util.Log
@@ -8,7 +9,15 @@ import android.view.LayoutInflater
 import android.view.WindowManager
 import android.widget.TextView
 import android.widget.Toast
+import androidx.activity.result.ActivityResultLauncher
+import androidx.activity.result.contract.ActivityResultContracts
 import androidx.appcompat.app.AppCompatActivity
+import androidx.core.content.ContextCompat.startActivity
+import com.google.android.gms.auth.api.signin.GoogleSignIn
+import com.google.android.gms.auth.api.signin.GoogleSignInAccount
+import com.google.android.gms.auth.api.signin.GoogleSignInOptions
+import com.google.android.gms.common.api.ApiException
+import com.google.android.gms.tasks.Task
 import com.kakao.sdk.auth.model.OAuthToken
 import com.kakao.sdk.common.model.ClientError
 import com.kakao.sdk.common.model.ClientErrorCause
@@ -25,6 +34,7 @@ import com.umc.yourweather.util.SignUtils.Companion.NAVERTAG
 
 class SignIn : AppCompatActivity() {
     lateinit var binding: ActivitySignInBinding
+    lateinit var resultLauncherGoogle: ActivityResultLauncher<Intent>
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -59,6 +69,20 @@ class SignIn : AppCompatActivity() {
         binding.btnSigninNaver.setOnClickListener {
             naverSignIn()
         }
+
+        binding.btnSigninGoogle.setOnClickListener {
+            googleSignIn()
+        }
+
+        resultLauncherGoogle =
+            registerForActivityResult(ActivityResultContracts.StartActivityForResult()) { result ->
+                if (result.resultCode == Activity.RESULT_OK) {
+                    val data: Intent? = result.data
+                    val task: Task<GoogleSignInAccount> =
+                        GoogleSignIn.getSignedInAccountFromIntent(data)
+                    handleSignInResult(task)
+                }
+            }
     }
 
     fun customToast() {
@@ -82,7 +106,7 @@ class SignIn : AppCompatActivity() {
         toast.show()
     }
 
-    fun kakaoSignIn() { // 카카오 소셜로그인
+    private fun kakaoSignIn() { // 카카오 소셜로그인
         val callback: (OAuthToken?, Throwable?) -> Unit = { token, error ->
             if (error != null) {
                 Log.d(KAKAOTAG, "카카오계정으로 로그인 실패", error)
@@ -113,7 +137,7 @@ class SignIn : AppCompatActivity() {
         }
     }
 
-    fun naverSignIn() { // 네이버 소셜로그인
+    private fun naverSignIn() { // 네이버 소셜로그인
         Log.d(NAVERTAG, "네이버 로그인 : ${BuildConfig.NAVER_CLIENT_ID}")
 
         val oauthLoginCallback = object : OAuthLoginCallback {
@@ -150,5 +174,32 @@ class SignIn : AppCompatActivity() {
         }
 
         NaverIdLoginSDK.authenticate(this@SignIn, oauthLoginCallback)
+    }
+
+    private fun googleSignIn() {
+        val gso = GoogleSignInOptions.Builder(GoogleSignInOptions.DEFAULT_SIGN_IN)
+            .requestEmail()
+            .build()
+        val mGoogleSignInClient = GoogleSignIn.getClient(this, gso)
+
+        val signInIntent = mGoogleSignInClient.signInIntent
+        resultLauncherGoogle.launch(signInIntent)
+    }
+
+    private fun handleSignInResult(completedTask: Task<GoogleSignInAccount>) {
+        try {
+            val account = completedTask.getResult(ApiException::class.java)
+//            val email = account?.email.toString()
+//            val id = account?.id.toString()
+
+            val mIntent = Intent(this@SignIn, SocialSignCheck::class.java)
+            mIntent.putExtra("email", account?.email.toString())
+            mIntent.putExtra("id", account?.id.toString())
+            mIntent.putExtra("SIGN", "GOOGLE")
+            startActivity(mIntent)
+            finish()
+        } catch (e: ApiException) {
+            Log.w("failed", "signInResult:failed code=" + e.statusCode)
+        }
     }
 }

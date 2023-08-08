@@ -4,6 +4,8 @@ import android.content.Intent
 import android.os.Bundle
 import android.util.Log
 import androidx.appcompat.app.AppCompatActivity
+import com.google.android.gms.auth.api.signin.GoogleSignIn
+import com.google.android.gms.auth.api.signin.GoogleSignInOptions
 import com.kakao.sdk.user.UserApiClient
 import com.navercorp.nid.NaverIdLoginSDK
 import com.navercorp.nid.oauth.NidOAuthLogin
@@ -47,6 +49,8 @@ class SocialSignCheck : AppCompatActivity() {
                     //
                 }
             })
+        } else if (flag.equals("GOOGLE")) {
+            setEmail(intent.getStringExtra("email"), intent.getStringExtra("id"))
         }
 
         binding.button5.setOnClickListener {
@@ -66,6 +70,15 @@ class SocialSignCheck : AppCompatActivity() {
                 NaverIdLoginSDK.logout()
                 startActivity(mIntent)
                 finish()
+            } else if (flag.equals("GOOGLE")) {
+                val gso = GoogleSignInOptions.Builder(GoogleSignInOptions.DEFAULT_SIGN_IN)
+                    .requestEmail()
+                    .build()
+                val mGoogleSignInClient = GoogleSignIn.getClient(this, gso)
+                mGoogleSignInClient.signOut().addOnCompleteListener(this) {
+                    startActivity(mIntent)
+                    finish()
+                }
             }
         }
     }
