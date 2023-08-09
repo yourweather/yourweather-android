@@ -5,6 +5,7 @@ import android.graphics.Color
 import android.os.Bundle
 import android.text.Editable
 import android.text.TextWatcher
+import android.util.Log
 import android.view.View
 import androidx.appcompat.app.AppCompatActivity
 import com.umc.yourweather.R
@@ -20,8 +21,7 @@ class SignUp2 : AppCompatActivity() {
         setContentView(binding.root)
 
         binding.btnSignup2Next.setOnClickListener {
-            val mIntent = Intent(this, Nickname::class.java)
-            startActivity(mIntent)
+            getPw()
         }
         binding.btnSignup2Back.setOnClickListener {
             val mIntent = Intent(this, SignUp::class.java)
@@ -30,8 +30,24 @@ class SignUp2 : AppCompatActivity() {
         }
         binding.etSignup2Pw.addTextChangedListener(createTextWatcher(::checkPwFormat))
         binding.etSignup2Repw.addTextChangedListener(createTextWatcher(::checkRePw))
+
+
     }
 
+    private fun getPw() {
+        // SignUp1 에서 email 값 받아오기
+        val email = intent.getStringExtra("email")
+        Log.d("EmailDebug2", "Email value2: $email")
+
+        // 비밀번호 받고 넘기기
+        var pw = binding.etSignup2Pw.text.toString()
+        val mIntent = Intent(this@SignUp2, Nickname::class.java)
+        mIntent.putExtra("password", pw)
+        mIntent.putExtra("email", email)
+        startActivity(mIntent)
+        Log.d("pwDebug", "pw value2: $pw")
+
+    }
     private fun createTextWatcher(checkError: () -> Unit): TextWatcher {
         return object : TextWatcher {
             override fun afterTextChanged(p0: Editable?) {
