@@ -20,7 +20,7 @@ class MyPageFragment : Fragment() {
     }
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
-        binding.ivMyPageNextInfo.setOnClickListener {
+        binding.flMyPageL1.setOnClickListener {
             val mIntent = Intent(activity, MyPageMyInfo::class.java)
             startActivity(mIntent)
         }

@@ -120,7 +120,7 @@
 
     <View
         android:id="@+id/iv_my_page_line_1"
-        android:layout_width="380dp"
+        android:layout_width="match_parent"
         android:layout_height="2dp"
         android:layout_marginStart="16dp"
         android:layout_marginTop="99dp"
@@ -166,7 +166,7 @@
 
     <View
         android:id="@+id/iv_my_page_line_2"
-        android:layout_width="380dp"
+        android:layout_width="match_parent"
         android:layout_height="2dp"
         android:layout_marginStart="16dp"
         android:layout_marginTop="174dp"
@@ -212,7 +212,7 @@
 
     <View
         android:id="@+id/iv_my_page_line_3"
-        android:layout_width="380dp"
+        android:layout_width="match_parent"
         android:layout_height="2dp"
         android:layout_marginStart="16dp"
         android:layout_marginTop="254dp"
@@ -268,7 +268,7 @@
 
     <View
         android:id="@+id/iv_my_page_line_4"
-        android:layout_width="380dp"
+        android:layout_width="match_parent"
         android:layout_height="2dp"
         android:layout_marginStart="16dp"
         android:layout_marginTop="384dp"
