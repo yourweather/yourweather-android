@@ -8,6 +8,7 @@ import android.widget.EditText
 import androidx.appcompat.app.AppCompatActivity
 import com.umc.yourweather.R
 import com.umc.yourweather.databinding.ActivityNicknameBinding
+import com.umc.yourweather.di.App
 import com.umc.yourweather.presentation.BottomNavi
 import com.umc.yourweather.util.NicknameUtils.Companion.getRandomHintText
 
@@ -29,6 +30,16 @@ class Nickname : AppCompatActivity() {
         }
 
         binding.btnNicknameNext.setOnClickListener {
+            val enteredNickname = editText.text.toString() // 사용자가 입력한 닉네임
+
+            // 사용자가 아무런 글자를 입력하지 않았다면, hint 값을 닉네임으로 사용
+            val fixedNickname = if (enteredNickname.isBlank()) {
+                editText.hint.toString()
+            } else {
+                enteredNickname
+            }
+
+            App.globalNickname = fixedNickname // 전역 닉네임 변수에 값을 설정
             val mIntent = Intent(this, BottomNavi::class.java)
             startActivity(mIntent)
         }
