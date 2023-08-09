@@ -60,6 +60,7 @@
 
 
         <LinearLayout
+            android:id="@+id/ll_sun_weekly"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:orientation="horizontal">
@@ -120,6 +121,7 @@
             app:layout_constraintVertical_bias="0.036" />
 
         <LinearLayout
+            android:id="@+id/ll_cloud_weekly"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:orientation="horizontal">
@@ -182,6 +184,7 @@
             app:layout_constraintVertical_bias="0.036" />
 
         <LinearLayout
+            android:id="@+id/ll_rain_weekly"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:orientation="horizontal">
@@ -246,6 +249,7 @@
 
 
         <LinearLayout
+            android:id="@+id/ll_thunder_weekly"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:orientation="horizontal">
