@@ -7,6 +7,7 @@ import android.os.Bundle
 import android.os.CountDownTimer
 import android.text.Editable
 import android.text.TextWatcher
+import android.util.Log
 import android.util.Patterns
 import android.view.LayoutInflater
 import android.view.View
@@ -39,9 +40,7 @@ class SignUp : AppCompatActivity() {
         }
 
         binding.btnSignupNext.setOnClickListener {
-            val mIntent = Intent(this@SignUp, SignUp2::class.java)
-            startActivity(mIntent)
-            finish()
+            userEmail()
         }
 
         binding.etSignupEmail.addTextChangedListener(createTextWatcher(::checkEmailError))
@@ -89,6 +88,15 @@ class SignUp : AppCompatActivity() {
             binding.tvSignupError.visibility = View.VISIBLE
             binding.btnSignupSendauth.isEnabled = false
         }
+    }
+
+    private fun userEmail() {
+        var email = binding.etSignupEmail.text.toString()
+        val mIntent = Intent(this@SignUp, SignUp2::class.java)
+        mIntent.putExtra("email", email)
+        startActivity(mIntent)
+        finish()
+        Log.d("EmailDebug", "Email value: $email")
     }
 
     private fun checkAuth() {
