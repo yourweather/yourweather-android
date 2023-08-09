@@ -2,117 +2,73 @@ package com.umc.yourweather.di
 
 import com.umc.yourweather.BuildConfig
 import okhttp3.Interceptor
-import okhttp3.OkHttpClient
-import okhttp3.Response
-import okhttp3.*
-import okhttp3.logging.HttpLoggingInterceptor
 import retrofit2.Retrofit
 import retrofit2.converter.gson.GsonConverterFactory
-import java.io.IOException
+import okhttp3.OkHttpClient
+import okhttp3.logging.HttpLoggingInterceptor
 
-//object RetrofitImpl {
-//    private const val BASE_URL = BuildConfig.BASE_URL
-//    private val nonOkHttpClient: OkHttpClient by lazy {
-//        val httpLoggingInterceptor = HttpLoggingInterceptor()
-//            .setLevel(HttpLoggingInterceptor.Level.BODY)
-//        OkHttpClient.Builder()
-//            .addInterceptor(httpLoggingInterceptor)
-//            .addInterceptor(NonAppInterceptor())
-//            .build()
-//    }
-//
-//    val nonRetrofit: Retrofit by lazy {
-//        Retrofit.Builder()
-//            .addConverterFactory(GsonConverterFactory.create())
-//            .client(nonOkHttpClient)
-//            .baseUrl(BASE_URL)
-//            .build()
-//    }
-//
-//    class NonAppInterceptor : Interceptor {
-//        @Throws(IOException::class)
-//        override fun intercept(chain: Interceptor.Chain): Response = with(chain) {
-//            val requestBuilder = request().newBuilder()
-//                .addHeader("accept", "application/hal+json")
-//                .addHeader("Content-Type", "application/json")
-////                .addHeader("Authorization", "Bearer ${App.token_prefs.accessToken}")
-//
-////            App.token_prefs.accessToken?.let { accessToken ->
-////                requestBuilder.addHeader("Authorization", "Bearer $accessToken")
-////            }
-//
-//            val newRequest = requestBuilder.build()
-//            proceed(newRequest)
-//        }
-//    }
-//
-////    private val okHttpClient: OkHttpClient by lazy {
-////        val httpLoggingInterceptor = HttpLoggingInterceptor()
-////            .setLevel(HttpLoggingInterceptor.Level.BODY)
-////        OkHttpClient.Builder()
-////            .addInterceptor(httpLoggingInterceptor)
-////            .addInterceptor(AppInterceptor())
-////            .authenticator(TokenAuthenticator())
-////            .build()
-////    }
-//
-//    val retrofit: Retrofit by lazy {
-//        Retrofit.Builder()
-//            .addConverterFactory(GsonConverterFactory.create())
-//            .client(okHttpClient)
-//            .baseUrl(BASE_URL)
-//            .build()
-//    }
-//
-//    class AppInterceptor : Interceptor {
-//        @Throws(IOException::class)
-//        override fun intercept(chain: Interceptor.Chain): Response = with(chain) {
-//            val requestBuilder = request().newBuilder()
-//                .addHeader("accept", "application/hal+json")
-//                .addHeader("Content-Type", "application/json")
-//                .addHeader("Authorization", "Bearer ${App.token_prefs.accessToken}")
-//
-////            App.token_prefs.accessToken?.let { accessToken ->
-////                requestBuilder.addHeader("Authorization", "Bearer $accessToken")
-////            }
-//
-//            val newRequest = requestBuilder.build()
-//            proceed(newRequest)
-//        }
-//    }
-//
-//
-//    private val mOkHttpClient: OkHttpClient by lazy {
-//        val httpLoggingInterceptor = HttpLoggingInterceptor()
-//            .setLevel(HttpLoggingInterceptor.Level.BODY)
-//        OkHttpClient.Builder()
-//            .addInterceptor(httpLoggingInterceptor)
-//            .addInterceptor(mAppInterceptor())
-//            .build()
-//    }
-//
-//    val mRetrofit: Retrofit by lazy {
-//        Retrofit.Builder()
-//            .addConverterFactory(GsonConverterFactory.create())
-//            .client(mOkHttpClient)
-//            .baseUrl(BASE_URL)
-//            .build()
-//    }
-//
-//    class mAppInterceptor : Interceptor {
-//        @Throws(IOException::class)
-//        override fun intercept(chain: Interceptor.Chain): Response = with(chain) {
-//            val requestBuilder = request().newBuilder()
-////                .addHeader("accept", "application/hal+json")
-//                .addHeader("Content-Type", "multipart/form-data")
-//                .addHeader("Authorization", "Bearer ${App.token_prefs.accessToken}")
-//
-////            App.token_prefs.accessToken?.let { accessToken ->
-////                requestBuilder.addHeader("Authorization", "Bearer $accessToken")
-////            }
-//
-//            val newRequest = requestBuilder.build()
-//            proceed(newRequest)
-//        }
-//    }
-//}
+object RetrofitImpl {
+
+    private const val BASE_URL = BuildConfig.BASE_URL
+
+    // Retrofit without token
+    private val nonTokenHttpClient: OkHttpClient
+        get() {
+            val loggingInterceptor = HttpLoggingInterceptor()
+                .setLevel(HttpLoggingInterceptor.Level.BODY)
+
+            return OkHttpClient.Builder()
+                .addInterceptor(loggingInterceptor)
+                .build()
+        }
+
+    private val nonTokenRetrofit: Retrofit
+        get() {
+            return Retrofit.Builder()
+                .baseUrl(BASE_URL)
+                .client(nonTokenHttpClient)
+                .addConverterFactory(GsonConverterFactory.create())
+                .build()
+        }
+
+    // Retrofit with token
+    private val tokenHttpClient: OkHttpClient
+        get() {
+            val loggingInterceptor = HttpLoggingInterceptor()
+                .setLevel(HttpLoggingInterceptor.Level.BODY)
+
+            return OkHttpClient.Builder()
+                .addInterceptor(loggingInterceptor)
+                .addInterceptor(TokenInterceptor())
+                .build()
+        }
+
+    val tokenRetrofit: Retrofit
+        get() {
+            return Retrofit.Builder()
+                .baseUrl(BASE_URL)
+                .client(tokenHttpClient)
+                .addConverterFactory(GsonConverterFactory.create())
+                .build()
+        }
+
+    val retrofit: Retrofit
+        get() {
+            return if (App.token_prefs.accessToken != null) {
+                tokenRetrofit
+            } else {
+                nonTokenRetrofit
+            }
+        }
+
+    // Custom interceptor for adding token to headers
+    private class TokenInterceptor : Interceptor {
+        override fun intercept(chain: Interceptor.Chain): okhttp3.Response {
+            val originalRequest = chain.request()
+            val newRequest = originalRequest.newBuilder()
+                .addHeader("Authorization", "Bearer ${App.token_prefs.accessToken}")
+                .build()
+            return chain.proceed(newRequest)
+        }
+    }
+}
