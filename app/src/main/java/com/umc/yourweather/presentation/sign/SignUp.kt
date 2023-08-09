@@ -238,6 +238,8 @@ class SignUp : AppCompatActivity() {
                         // 인증 성공한 경우
                         Log.d("CertifyEmailDebug", "이메일 인증 성공")
                         showCustomAlertDialog("인증 성공했습니다.", 1, true)
+                        // 다음 화면(Signup2)으로 이동
+                        userEmail()
                     } else {
                         // 인증 실패한 경우
                         Log.d("CertifyEmailDebug", "이메일 인증 실패")
