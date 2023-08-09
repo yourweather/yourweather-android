@@ -3,9 +3,9 @@ package com.umc.yourweather.data.remote.response
 import com.google.gson.annotations.SerializedName
 
 data class TokenResponse(
-    @SerializedName("accessToken")
+    @SerializedName("Authorization")
     val accessToken: String,
 
-    @SerializedName("refreshToken")
-    val refreshToken: String
+    @SerializedName("Authorization-refresh")
+    val refreshToken: String,
 )
