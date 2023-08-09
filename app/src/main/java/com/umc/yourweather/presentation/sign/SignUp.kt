@@ -22,8 +22,8 @@ import com.umc.yourweather.data.service.EmailService
 import com.umc.yourweather.databinding.ActivitySignUpBinding
 import com.umc.yourweather.di.RetrofitImpl
 import retrofit2.Call
+import retrofit2.Callback
 import retrofit2.Response
-
 
 class SignUp : AppCompatActivity() {
     lateinit var binding: ActivitySignUpBinding
@@ -38,36 +38,41 @@ class SignUp : AppCompatActivity() {
         binding = ActivitySignUpBinding.inflate(layoutInflater)
         setContentView(binding.root)
 
+        // "뒤로 가기" 버튼 클릭 시 이벤트 처리
         binding.btnSingupBack.setOnClickListener {
             val mIntent = Intent(this, SignIn::class.java)
             startActivity(mIntent)
             finish()
         }
 
+        // "로그인하러 가기" 버튼 클릭 시 이벤트 처리
         binding.tvSignupBtnsignin.setOnClickListener {
             val mIntent = Intent(this, SignIn::class.java)
             startActivity(mIntent)
             finish()
         }
 
+        // "다음" 버튼 클릭 시 이벤트 처리
         binding.btnSignupNext.setOnClickListener {
             userEmail()
         }
 
+        // 이메일 입력란 텍스트 변화 감지
         binding.etSignupEmail.addTextChangedListener(createTextWatcher(::checkEmailError))
         binding.etSignupAuth.addTextChangedListener(createTextWatcher(::checkAuth))
 
+        // "인증코드 전송" 버튼 클릭 시 이벤트 처리
         binding.btnSignupSendauth.setOnClickListener {
             val email = binding.etSignupEmail.text.toString()
-
-            // 이메일 전송 요청
             sendEmail(email)
         }
 
+        // "인증 확인" 버튼 클릭 시 이벤트 처리
         binding.btnSignupCheckauth.setOnClickListener {
             showCustomAlertDialog("인증이 완료되었습니다.", 1)
         }
 
+        // "인증코드 재전송" 버튼 클릭 시 이벤트 처리
         binding.tvSignupBtnresend.setOnClickListener {
             countDownTimer?.cancel()
             showCustomAlertDialog("인증코드가 전송되었습니다.", 0)
@@ -96,11 +101,13 @@ class SignUp : AppCompatActivity() {
     private fun checkEmailError() {
         val email = binding.etSignupEmail.text.toString()
         if (Patterns.EMAIL_ADDRESS.matcher(email).matches()) {
-            binding.etSignupEmail.background = resources.getDrawable(R.drawable.bg_gray_ed_fill_6_rect)
+            binding.etSignupEmail.background =
+                resources.getDrawable(R.drawable.bg_gray_ed_fill_6_rect)
             binding.tvSignupError.visibility = View.INVISIBLE
             binding.btnSignupSendauth.isEnabled = true
         } else {
-            binding.etSignupEmail.background = resources.getDrawable(R.drawable.bg_gray_ed_fill_6_rect_border_red)
+            binding.etSignupEmail.background =
+                resources.getDrawable(R.drawable.bg_gray_ed_fill_6_rect_border_red)
             binding.tvSignupError.visibility = View.VISIBLE
             binding.btnSignupSendauth.isEnabled = false
         }
@@ -165,6 +172,7 @@ class SignUp : AppCompatActivity() {
                 0 -> {
                     startTimer()
                 }
+
                 1 -> {
                     binding.btnSignupNext.isEnabled = true
                     countDownTimer?.cancel()
@@ -177,34 +185,29 @@ class SignUp : AppCompatActivity() {
         }
     }
 
-    // 이메일 전송 요청 함수
+    // 이메일 전송 API 호출
     private fun sendEmail(email: String) {
-        emailService.sendEmail(email).enqueue(object : retrofit2.Callback<BaseResponse<Unit>> {
+        emailService.sendEmail(email).enqueue(object : Callback<BaseResponse<Unit>> {
             override fun onResponse(
                 call: Call<BaseResponse<Unit>>,
                 response: Response<BaseResponse<Unit>>,
             ) {
                 if (response.isSuccessful) {
-                    if (response.code() == 200) {
-                        // 이메일 전송 성공 처리
-                        showCustomAlertDialog("인증코드가 전송되었습니다.", 0)
-                        binding.etSignupEmail.isEnabled = false
-                    } else {
-                        // 이메일 전송 실패 처리
-                        Log.d("post", "이메일 전송 실패: " + response.body().toString())
-                        showCustomAlertDialog("이메일 전송에 실패했습니다.", -1)
-                    }
+                    // 성공한 경우
+                    Log.d("SendEmailDebug", "이메일 전송 성공: " + response.body().toString())
+                    showCustomAlertDialog("인증코드가 전송되었습니다.", 0)
                 } else {
-                    // 이메일 전송 실패 처리
-                    Log.d("post", "이메일 전송 실패: " + response.body().toString())
-                    showCustomAlertDialog("이메일 전송에 실패했습니다.", -1)
+                    // 실패한 경우
+                    Log.d("SendEmailDebug", "이메일 전송 실패: " + response.body().toString())
+                    // 서버 응답 에러 처리
+                    // 예를 들어, showCustomAlertDialog("이메일 전송 실패", 0) 등의 메시지 표시
                 }
             }
 
             override fun onFailure(call: Call<BaseResponse<Unit>>, t: Throwable) {
-                // 네트워크 에러 등 실패 처리
-                Log.e("post", "이메일 전송 실패: " + t.message)
-                showCustomAlertDialog("네트워크 에러입니다.", -1)
+                // 네트워크 에러 처리
+                // 예를 들어, showCustomAlertDialog("네트워크 오류", 0) 등의 메시지 표시
+                Log.d("SendEmailDebug", "네트워크 오류: " + t.message.toString())
             }
         })
     }
