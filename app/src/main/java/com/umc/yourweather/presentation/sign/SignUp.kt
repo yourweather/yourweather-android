@@ -69,6 +69,9 @@ class SignUp : AppCompatActivity() {
 
         // "인증 확인" 버튼 클릭 시 이벤트 처리
         binding.btnSignupCheckauth.setOnClickListener {
+            val email = binding.etSignupEmail.text.toString()
+            val authCode = binding.etSignupAuth.text.toString()
+            certifyEmail(email, authCode)
             showCustomAlertDialog("인증이 완료되었습니다.", 1)
         }
 
@@ -208,6 +211,34 @@ class SignUp : AppCompatActivity() {
             override fun onFailure(call: Call<BaseResponse<Unit>>, t: Throwable) {
                 // 네트워크 에러 처리
                 Log.d("SendEmailDebug", "네트워크 오류: " + t.message.toString())
+            }
+        })
+    }
+
+    // 이메일 인증 API 호출
+    private fun certifyEmail(email: String, code: String) {
+        emailService.certifyEmail(email, code).enqueue(object : Callback<BaseResponse<Boolean>> {
+            override fun onResponse(
+                call: Call<BaseResponse<Boolean>>,
+                response: Response<BaseResponse<Boolean>>,
+            ) {
+                if (response.isSuccessful) {
+                    val code = response.body()?.code
+                    if (code == 200) {
+                        // 인증 성공한 경우
+                        Log.d("CertifyEmailDebug", "이메일 인증 성공")
+                        // 여기에 인증 성공시 처리할 내용을 추가하세요
+                    } else {
+                        // 인증 실패한 경우
+                        Log.d("CertifyEmailDebug", "이메일 인증 실패")
+                        // 여기에 인증 실패시 처리할 내용을 추가하세요
+                    }
+                }
+            }
+
+            override fun onFailure(call: Call<BaseResponse<Boolean>>, t: Throwable) {
+                // 네트워크 에러 처리
+                Log.d("CertifyEmailDebug", "네트워크 오류: " + t.message.toString())
             }
         })
     }
