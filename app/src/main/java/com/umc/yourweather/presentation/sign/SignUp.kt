@@ -49,6 +49,7 @@ class SignUp : AppCompatActivity() {
 
         binding.btnSignupSendauth.setOnClickListener {
             showCustomAlertDialog("인증코드가 전송되었습니다.", 0)
+            binding.etSignupEmail.isEnabled = false
         }
 
         binding.btnSignupCheckauth.setOnClickListener {
@@ -97,7 +98,7 @@ class SignUp : AppCompatActivity() {
     }
 
     private fun startTimer() {
-        val startTimeMillis = 3 * 60 * 1000 // 3 minutes in milliseconds
+        val startTimeMillis = 5 * 60 * 1000 // 3 minutes in milliseconds
         countDownTimer = object : CountDownTimer(startTimeMillis.toLong(), 1000) {
             override fun onTick(millisUntilFinished: Long) {
                 val minutes = millisUntilFinished / (60 * 1000)
