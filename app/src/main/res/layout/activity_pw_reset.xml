@@ -1,0 +1,221 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context=".presentation.sign.ResetPw">
+
+    <ImageButton
+        android:id="@+id/btn_reset_pw_left_arrow"
+        style="?android:attr/borderlessButtonStyle"
+        android:layout_width="10dp"
+        android:layout_height="18dp"
+        android:layout_gravity="center"
+        android:layout_marginStart="16dp"
+        android:layout_marginTop="19dp"
+        android:background="@drawable/ic_black_leftarrow_8_16"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintStart_toStartOf="parent"/>
+
+    <TextView
+        android:id="@+id/tv_reset_pw_email_title"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="@string/tv_reset_pw_email_title"
+        android:textColor="@color/sorange"
+        android:textSize="20dp"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        android:layout_marginBottom="16dp"
+        android:layout_marginTop="16dp"
+        android:fontFamily="@font/pretendardbold"/>
+
+    <TextView
+        android:id="@+id/tv_reset_pw_guide1"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="16dp"
+        android:layout_marginTop="46dp"
+        android:layout_marginEnd="16dp"
+        android:bufferType="spannable"
+        android:fontFamily="@font/pretendardbold"
+        android:gravity="left"
+        android:text="@string/tv_new_pw"
+        android:textColor="#989898"
+        android:textSize="13dp"
+        android:textStyle="bold"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/tv_reset_pw_email_title" />
+
+    <FrameLayout
+        android:id="@+id/frameLayout_reset_pw"
+        android:layout_width="match_parent"
+        android:layout_height="0dp"
+        android:layout_marginStart="16dp"
+        android:layout_marginEnd="16dp"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/tv_reset_pw_guide1"
+
+        >
+
+        <com.google.android.material.textfield.TextInputLayout
+            android:id="@+id/textinput_reset_pw"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            app:passwordToggleDrawable="@drawable/ic_selector_pwtoggle"
+            app:passwordToggleEnabled="true">
+
+            <com.google.android.material.textfield.TextInputEditText
+                android:id="@+id/et_reset_pw"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:background="@drawable/bg_gray_ed_fill_6_rect"
+                android:inputType="textPassword"
+                android:textColorHint="#A9ADB4"
+                android:textCursorDrawable="@null"
+                android:textSize="16dp" />
+
+
+        </com.google.android.material.textfield.TextInputLayout>
+
+        <ImageView
+            android:id="@+id/iv_signup2_check0"
+            android:layout_width="15dp"
+            android:layout_height="15dp"
+            android:layout_gravity="right"
+            android:layout_marginTop="25dp"
+            android:layout_marginRight="40dp"
+            android:visibility="invisible"
+            app:srcCompat="@drawable/ic_singup2_pwcheck" />
+    </FrameLayout>
+
+    <TextView
+        android:id="@+id/tv_reset_pw_check1"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="16dp"
+        android:layout_marginTop="4dp"
+        android:layout_marginEnd="16dp"
+        android:fontFamily="@font/pretendardmedium"
+        android:text="@string/tv_reset_pw_check1"
+        android:textColor="#99808080"
+        android:textSize="10dp"
+        android:visibility="visible"
+        app:layout_constraintBottom_toTopOf="@+id/tv_reset_pw_guide2"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/frameLayout_reset_pw" />
+
+    <TextView
+        android:id="@+id/tv_reset_pw_guide2"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="16dp"
+        android:layout_marginTop="11dp"
+        android:layout_marginEnd="16dp"
+        android:bufferType="spannable"
+        android:fontFamily="@font/pretendardbold"
+        android:gravity="left"
+        android:text="@string/tv_reset_pw_guide2"
+        android:textColor="#989898"
+        android:textSize="12dp"
+        android:textStyle="bold"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/tv_reset_pw_check1" />
+
+    <FrameLayout
+        android:id="@+id/frameLayout_reset_pw_repw"
+        android:layout_width="match_parent"
+        android:layout_height="0dp"
+        android:layout_marginStart="16dp"
+        android:layout_marginEnd="16dp"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/tv_reset_pw_guide2">
+
+
+        <com.google.android.material.textfield.TextInputLayout
+            android:id="@+id/textinput_reset_pw_repw"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            app:passwordToggleDrawable="@drawable/ic_selector_pwtoggle"
+            app:passwordToggleEnabled="true">
+
+            <com.google.android.material.textfield.TextInputEditText
+                android:id="@+id/et_reset_pw_repw"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:layout_gravity="center"
+                android:background="@drawable/bg_gray_ff_fill_rect"
+                android:inputType="textPassword"
+                android:textColorHint="#A9ADB4"
+                android:textSize="16dp" />
+
+
+        </com.google.android.material.textfield.TextInputLayout>
+
+        <ImageView
+            android:id="@+id/iv_reset_pw_check1"
+            android:layout_width="15dp"
+            android:layout_height="15dp"
+            android:layout_gravity="right"
+            android:layout_marginTop="25dp"
+            android:layout_marginRight="40dp"
+            android:visibility="invisible"
+            app:srcCompat="@drawable/ic_singup2_pwcheck" />
+    </FrameLayout>
+
+    <LinearLayout
+        android:id="@+id/linearLayout5"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="16dp"
+        android:layout_marginTop="7dp"
+        android:layout_marginEnd="16dp"
+        android:gravity="center_vertical"
+        android:orientation="horizontal"
+        android:visibility="visible"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/frameLayout_reset_pw_repw">
+
+        <TextView
+            android:id="@+id/tv_reset_pw_check2"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginLeft="5dp"
+            android:layout_marginRight="5dp"
+            android:fontFamily="@font/pretendardregular"
+            android:gravity="bottom"
+            android:text="*비밀번호와 일치하지 않습니다."
+            android:textColor="#C23F3F"
+            android:textSize="11dp"
+            android:visibility="invisible" />
+
+    </LinearLayout>
+
+    <androidx.appcompat.widget.AppCompatButton
+        android:id="@+id/btn_reset_pw_next"
+        android:layout_width="0dp"
+        android:layout_height="0dp"
+        android:layout_marginStart="16dp"
+        android:layout_marginTop="24dp"
+        android:layout_marginEnd="16dp"
+        android:background="@drawable/btn_selector_signup"
+        android:enabled="false"
+        android:fontFamily="@font/pretendardsemibold"
+        android:text="확인"
+        android:textColor="#FFFFFF"
+        android:textSize="16dp"
+        android:textStyle="bold"
+        app:layout_constraintDimensionRatio="7:1"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.0"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/linearLayout5" />
+</androidx.constraintlayout.widget.ConstraintLayout>
