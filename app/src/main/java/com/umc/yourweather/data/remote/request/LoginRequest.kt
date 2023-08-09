@@ -1,9 +1,8 @@
-package com.umc.yourweather.data.remote.request
-
+package com.umc.yourweather.data.remote.request // ktlint-disable filename
 
 import com.google.gson.annotations.SerializedName
 
-data class LoginRequset(
+data class LoginRequest(
     @SerializedName("email")
     val email: String,
     @SerializedName("password")
