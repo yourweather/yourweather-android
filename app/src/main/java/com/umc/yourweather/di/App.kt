@@ -10,6 +10,7 @@ class App : Application() {
     companion object {
         var appContext: Context? = null
         lateinit var token_prefs: TokenSharedPreferences
+        var nickname: String? = null
     }
 
     override fun onCreate() {
