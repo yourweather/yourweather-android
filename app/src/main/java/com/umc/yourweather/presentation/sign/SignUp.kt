@@ -193,20 +193,20 @@ class SignUp : AppCompatActivity() {
                 response: Response<BaseResponse<Unit>>,
             ) {
                 if (response.isSuccessful) {
-                    // 성공한 경우
-                    Log.d("SendEmailDebug", "이메일 전송 성공: " + response.body().toString())
-                    showCustomAlertDialog("인증코드가 전송되었습니다.", 0)
-                } else {
-                    // 실패한 경우
-                    Log.d("SendEmailDebug", "이메일 전송 실패: " + response.body().toString())
-                    // 서버 응답 에러 처리
-                    // 예를 들어, showCustomAlertDialog("이메일 전송 실패", 0) 등의 메시지 표시
+                    val code = response.body()?.code
+                    if (code == 200) {
+                        // 성공한 경우
+                        Log.d("SendEmailDebug", "이메일 전송 성공")
+                        showCustomAlertDialog("인증코드가 전송되었습니다.", 0)
+                    } else {
+                        // 실패한 경우
+                        Log.d("SendEmailDebug", "이메일 전송 실패: code = $code")
+                    }
                 }
             }
 
             override fun onFailure(call: Call<BaseResponse<Unit>>, t: Throwable) {
                 // 네트워크 에러 처리
-                // 예를 들어, showCustomAlertDialog("네트워크 오류", 0) 등의 메시지 표시
                 Log.d("SendEmailDebug", "네트워크 오류: " + t.message.toString())
             }
         })
