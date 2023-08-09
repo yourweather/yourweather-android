@@ -7,5 +7,5 @@ data class TokenResponse(
     val accessToken: String,
 
     @SerializedName("Authorization-refresh")
-    val refreshToken: String,
+    val refreshToken: String
 )
