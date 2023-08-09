@@ -1,4 +1,4 @@
-package com.umc.yourweather.presentation
+package com.umc.yourweather.presentation.mypage
 
 import android.content.Intent
 import android.os.Bundle
@@ -22,6 +22,10 @@ class MyPageFragment : Fragment() {
         super.onViewCreated(view, savedInstanceState)
         binding.ivMyPageNextInfo.setOnClickListener {
             val mIntent = Intent(activity, MyPageMyInfo::class.java)
+            startActivity(mIntent)
+        }
+        binding.tvMyPageAlarm.setOnClickListener {
+            val mIntent = Intent(activity, MyPageAlarm::class.java)
             startActivity(mIntent)
         }
     }

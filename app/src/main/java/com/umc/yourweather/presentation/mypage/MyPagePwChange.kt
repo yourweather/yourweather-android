@@ -1,4 +1,4 @@
-package com.umc.yourweather.presentation
+package com.umc.yourweather.presentation.mypage
 
 import android.graphics.Color
 import android.os.Bundle

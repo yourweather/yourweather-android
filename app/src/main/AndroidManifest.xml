@@ -16,13 +16,13 @@
         android:theme="@style/Theme.Yourweather"
         tools:targetApi="31">
         <activity
-            android:name=".presentation.MyPageMyInfo"
+            android:name=".presentation.mypage.MyPageMyInfo"
             android:exported="false" />
         <activity
-            android:name=".presentation.MyPageAlarm"
+            android:name=".presentation.mypage.MyPageAlarm"
             android:exported="false" />
         <activity
-            android:name=".presentation.MyPageAlarm"
+            android:name=".presentation.mypage.MyPageAlarm"
             android:exported="false" />
         <activity
             android:name="com.kakao.sdk.auth.AuthCodeHandlerActivity"
@@ -51,10 +51,10 @@
             android:name=".presentation.weatherinput.HomeWeatherInputFragment"
             android:exported="true" />
         <activity
-            android:name=".presentation.MyPagePwChange"
+            android:name=".presentation.mypage.MyPagePwChange"
             android:exported="false" />
         <activity
-            android:name=".presentation.MyPageNicknameChange"
+            android:name=".presentation.mypage.MyPageNicknameChange"
             android:exported="false" />
         <activity
             android:name=".presentation.analysis.IconStaticsWeeklyFragment"
