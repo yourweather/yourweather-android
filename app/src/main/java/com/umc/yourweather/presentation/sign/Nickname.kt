@@ -43,13 +43,13 @@ class Nickname : AppCompatActivity() {
             val mIntent = Intent(this, BottomNavi::class.java)
             startActivity(mIntent)
         }
-        localUser()
+        User()
     }
-    private fun localUser() {
+    private fun User() {
         val pw = intent.getStringExtra("password")
         val email = intent.getStringExtra("email")
         Log.d("pwDebug2", "pw value2: $pw")
         Log.d("EmailDebug3", "Email value3: $email")
-        val platform = "YOURWEATHER"
+        val platform = intent.getStringExtra("platform")
     }
 }
