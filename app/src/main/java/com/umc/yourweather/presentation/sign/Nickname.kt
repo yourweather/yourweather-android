@@ -51,5 +51,7 @@ class Nickname : AppCompatActivity() {
         Log.d("pwDebug2", "pw value2: $pw")
         Log.d("EmailDebug3", "Email value3: $email")
         val platform = intent.getStringExtra("platform")
+        val fixedNickname = App.globalNickname // 전역 닉네임 변수 값 사용
+        Log.d("NicknameDebug", "Fixed Nickname value: $fixedNickname")
     }
 }
