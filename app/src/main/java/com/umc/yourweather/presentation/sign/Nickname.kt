@@ -32,7 +32,9 @@ class Nickname : AppCompatActivity() {
             val mIntent = Intent(this, BottomNavi::class.java)
             startActivity(mIntent)
         }
-        // SignUp2 에서 pw 값 받아오기
+        localUser()
+    }
+    private fun localUser() {
         val pw = intent.getStringExtra("password")
         val email = intent.getStringExtra("email")
         Log.d("pwDebug2", "pw value2: $pw")
