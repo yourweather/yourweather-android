@@ -22,7 +22,7 @@
         android:id="@+id/tv_reset_pw_email_title"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="@string/tv_find_pw_email_title"
+        android:text="@string/tv_reset_pw_email_title"
         android:textColor="@color/sorange"
         android:textSize="20dp"
         app:layout_constraintStart_toStartOf="parent"
