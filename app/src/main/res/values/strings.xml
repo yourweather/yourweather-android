@@ -29,4 +29,7 @@
     <string name="tv_find_pw_email_title">이메일 본인 인증</string>
     <string name="tv_findpw_email_context">가입 시 사용한 이메일을 입력해 주세요</string>
     <string name="tv_FindPwEmail_email">이메일로 전송된 인증코드를 입력해주세요.</string>
+    <string name="tv_new_pw">새 비밀번호</string>
+    <string name="tv_reset_pw_guide2">새 비밀번호 확인</string>
+    <string name="tv_reset_pw_check1">*대소문자, 숫자 포함 8자 이상</string>
 </resources>

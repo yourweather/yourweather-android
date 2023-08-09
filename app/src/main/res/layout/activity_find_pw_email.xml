@@ -7,7 +7,7 @@
     tools:context=".presentation.sign.FindPwEmail">
 
     <ImageButton
-        android:id="@+id/btn_allwritten_left_arrow"
+        android:id="@+id/btn_find_pw_email_left_arrow"
         style="?android:attr/borderlessButtonStyle"
         android:layout_width="10dp"
         android:layout_height="18dp"
