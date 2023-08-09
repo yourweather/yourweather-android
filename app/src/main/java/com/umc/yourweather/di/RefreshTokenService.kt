@@ -1,12 +1,12 @@
 package com.umc.yourweather.di
 
+
 import com.umc.yourweather.data.service.UserService
-// import com.umc.yourweather.di.RetrofitImpl.retrofit
 
 
-object RefreshTokenService {
-/* userservie 내에 토근 발급 관련 함수 getNewtoken 추가한 이후 주석 없애기
-    private val userService = retrofit.create(UserService::class.java)
+/*object RefreshTokenService {
+
+    private val userService = RetrofitImpl.tokenRetrofit.create(UserService::class.java)
 
     fun refreshToken(): String {
         val res = userService.getNewToken().execute()
@@ -21,5 +21,4 @@ object RefreshTokenService {
         }
         throw IllegalStateException("토큰 재발급 실패")
     }
- */
-}
+}*/

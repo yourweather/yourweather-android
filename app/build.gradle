@@ -59,6 +59,9 @@ android {
 
 dependencies {
 
+    //OkHttp: 통신 로그 확인하기 위함
+    implementation 'com.squareup.okhttp3:logging-interceptor:4.9.3'
+
     //hilt
     implementation "com.google.dagger:hilt-android:2.44"
     kapt "com.google.dagger:hilt-compiler:2.44"
