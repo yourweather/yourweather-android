@@ -6,7 +6,7 @@ import okhttp3.Request
 import okhttp3.Response
 import okhttp3.Route
 
-class TokenAuthenticator: Authenticator {
+/*class TokenAuthenticator: Authenticator {
     override fun authenticate(route: Route?, response: Response): Request? {
         Log.i("Authenticator", response.toString())
         Log.i("Authenticator", "토큰 재발급 시도")
@@ -22,4 +22,4 @@ class TokenAuthenticator: Authenticator {
             null // 만약 토큰 재발급이 실패했다면 헤더에 아무것도 추가하지 않는다.
         }
     }
-}
+}*/

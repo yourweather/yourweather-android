@@ -4,7 +4,7 @@ package com.umc.yourweather.di
 import com.umc.yourweather.data.service.UserService
 
 
-object RefreshTokenService {
+/*object RefreshTokenService {
 
     private val userService = RetrofitImpl.tokenRetrofit.create(UserService::class.java)
 
@@ -21,4 +21,4 @@ object RefreshTokenService {
         }
         throw IllegalStateException("토큰 재발급 실패")
     }
-}
+}*/

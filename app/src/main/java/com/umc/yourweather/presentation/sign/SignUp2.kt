@@ -30,8 +30,6 @@ class SignUp2 : AppCompatActivity() {
         }
         binding.etSignup2Pw.addTextChangedListener(createTextWatcher(::checkPwFormat))
         binding.etSignup2Repw.addTextChangedListener(createTextWatcher(::checkRePw))
-
-
     }
 
     private fun getPw() {
@@ -46,7 +44,6 @@ class SignUp2 : AppCompatActivity() {
         mIntent.putExtra("email", email)
         startActivity(mIntent)
         Log.d("pwDebug", "pw value2: $pw")
-
     }
     private fun createTextWatcher(checkError: () -> Unit): TextWatcher {
         return object : TextWatcher {
