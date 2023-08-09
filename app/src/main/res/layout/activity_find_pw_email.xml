@@ -31,4 +31,181 @@
         android:layout_marginBottom="16dp"
         android:layout_marginTop="16dp"
         android:fontFamily="@font/pretendardbold"/>
+
+    <TextView
+        android:id="@+id/tv_findpw_email_context"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="15dp"
+        android:layout_marginTop="80dp"
+        android:fontFamily="@font/pretendardbold"
+        android:gravity="left"
+        android:text="아래 주소로 인증코드를 전송하였습니다."
+        android:textColor="#2B2B2B"
+        android:textSize="18dp"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
+
+    <TextView
+        android:id="@+id/tv_find_pw_user_email"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="15dp"
+        android:layout_marginTop="6dp"
+        android:fontFamily="@font/pretendardsemibold"
+        android:text="123425@naver.com"
+        android:textColor="#2B2B2B"
+        android:textSize="13dp"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.0"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/tv_findpw_email_context" />
+
+    <TextView
+
+        android:id="@+id/tv_signup_guide2"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="16dp"
+        android:layout_marginTop="40dp"
+        android:layout_marginEnd="16dp"
+        android:bufferType="spannable"
+        android:fontFamily="@font/pretendardbold"
+        android:gravity="left"
+        android:text="이메일로 전송된 인증코드를 입력해주세요"
+        android:textColor="#989898"
+        android:textSize="12dp"
+        android:textStyle="bold"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/tv_find_pw_user_email" />
+
+
+    <androidx.appcompat.widget.AppCompatButton
+        android:id="@+id/btn_find_pw_email_next"
+        android:layout_width="0dp"
+        android:layout_height="0dp"
+        android:layout_marginStart="16dp"
+        android:layout_marginTop="25dp"
+        android:layout_marginEnd="16dp"
+        android:background="@drawable/btn_selector_signup"
+        android:enabled="false"
+        android:fontFamily="@font/pretendardsemibold"
+        android:text="다음"
+        android:textColor="#FFFFFF"
+        android:textSize="16dp"
+        android:textStyle="bold"
+        app:layout_constraintDimensionRatio="7:1"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.0"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/linearLayout5" />
+
+    <LinearLayout
+        android:id="@+id/linearLayout5"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="16dp"
+        android:layout_marginTop="7dp"
+        android:layout_marginEnd="16dp"
+        android:gravity="center_vertical"
+        android:orientation="horizontal"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/textinput_find_pw_email_auth">
+
+        <ImageView
+            android:id="@+id/iv_find_pw_email_authlogo"
+            android:layout_width="11dp"
+            android:layout_height="11dp"
+            android:layout_gravity="center|left"
+            app:srcCompat="@drawable/ic_signup_authic" />
+
+        <TextView
+            android:id="@+id/tv_find_pw_email_guide3"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginLeft="5dp"
+            android:layout_marginRight="5dp"
+            android:fontFamily="@font/pretendardregular"
+            android:gravity="bottom"
+            android:text="인증코드를 받지 못하셨나요 ?"
+            android:textColor="#ACACAC"
+            android:textSize="11dp" />
+
+        <TextView
+            android:id="@+id/tv_find_pw_email_btnresend"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginLeft="4dp"
+            android:fontFamily="@font/pretendardsemibold"
+            android:text="@string/signup_resend"
+            android:textColor="#ACACAC"
+            android:textSize="12dp"
+            android:textStyle="bold" />
+    </LinearLayout>
+
+    <com.google.android.material.textfield.TextInputLayout
+        android:id="@+id/textinput_find_pw_email_auth"
+        android:layout_width="match_parent"
+        android:layout_height="0dp"
+        android:layout_marginStart="16dp"
+        android:layout_marginEnd="16dp"
+        app:layout_constraintDimensionRatio="7:1"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/tv_signup_guide2">
+
+        <FrameLayout
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:layout_gravity="center">
+
+            <com.google.android.material.textfield.TextInputEditText
+                android:id="@+id/et_find_pw_email_auth"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:background="@drawable/bg_gray_ed_fill_6_rect"
+                android:fontFamily="@font/pretendardmedium"
+                android:hint="인증코드 6자리 입력"
+                android:inputType="number"
+                android:maxLength="6"
+                android:paddingLeft="15dp"
+                android:textColorHint="#ACACAC"
+                android:textCursorDrawable="@null"
+                android:textSize="14dp"
+                tools:ignore="DuplicateIds" />
+
+            <TextView
+                android:id="@+id/tv_find_pw_email_time"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_gravity="right"
+                android:layout_marginTop="17dp"
+                android:layout_marginRight="65dp"
+                android:layout_marginBottom="0dp"
+                android:fontFamily="@font/pretendardregular"
+                android:gravity="right"
+                android:text="TextView"
+                android:textColor="#C23F3F"
+                android:visibility="invisible" />
+
+            <androidx.appcompat.widget.AppCompatButton
+                android:id="@+id/btn_find_pw_email_checkauth"
+                android:layout_width="41dp"
+                android:layout_height="24dp"
+                android:layout_gravity="right"
+                android:layout_marginTop="13dp"
+                android:layout_marginRight="12dp"
+                android:layout_marginBottom="13dp"
+                android:background="@drawable/btn_selecotor_etbtncolor"
+                android:enabled="false"
+                android:fontFamily="@font/pretendardmedium"
+                android:text="확인"
+                android:textColor="#FFFFFF"
+                android:textSize="10dp" />
+        </FrameLayout>
+    </com.google.android.material.textfield.TextInputLayout>
+
 </androidx.constraintlayout.widget.ConstraintLayout>
