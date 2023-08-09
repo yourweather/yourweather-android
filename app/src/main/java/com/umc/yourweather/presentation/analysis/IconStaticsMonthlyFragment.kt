@@ -34,17 +34,36 @@ class IconStaticsMonthlyFragment : Fragment() {
     }
 
     private fun setupOnClickListeners() {
+        // sun 상세 리스트 넘어가기
+        binding.llSunMonthly.setOnClickListener {
+            replaceFragment(WrittenDetailListFragmentSun())
+        }
         binding.btnStaticsRightDetail1Monthly.setOnClickListener {
             replaceFragment(WrittenDetailListFragmentSun())
         }
-        binding.btnStaticsRightDetail2Monthly.setOnClickListener {
+
+        // cloud 상세 리스트 넘어가기
+        binding.llCloudMonthly.setOnClickListener {
             replaceFragment(WrittenDetailListFragmentCloud())
         }
-        binding.btnStaticsRightDetail3Monthly.setOnClickListener {
+        binding.btnStaticsRightDetail2Monthly.setOnClickListener {
+            replaceFragment(WrittenDetailListFragmentSun())
+        }
+
+        // rain 상세 리스트 넘어가기
+        binding.llRainMonthly.setOnClickListener {
             replaceFragment(WrittenDetailListFragmentRain())
         }
-        binding.btnStaticsRightDetail4Monthly.setOnClickListener {
+        binding.btnStaticsRightDetail3Monthly.setOnClickListener {
+            replaceFragment(WrittenDetailListFragmentSun())
+        }
+
+        // thunder 상세 리스트 넘어가기
+        binding.llThunderMonthly.setOnClickListener {
             replaceFragment(WrittenDetailListFragmentThunder())
+        }
+        binding.btnStaticsRightDetail4Monthly.setOnClickListener {
+            replaceFragment(WrittenDetailListFragmentSun())
         }
 
         // 현재 달
