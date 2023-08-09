@@ -6,4 +6,29 @@
     android:layout_height="match_parent"
     tools:context=".presentation.sign.FindPwEmail">
 
+    <ImageButton
+        android:id="@+id/btn_allwritten_left_arrow"
+        style="?android:attr/borderlessButtonStyle"
+        android:layout_width="10dp"
+        android:layout_height="18dp"
+        android:layout_gravity="center"
+        android:layout_marginStart="16dp"
+        android:layout_marginTop="19dp"
+        android:background="@drawable/ic_black_leftarrow_8_16"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintStart_toStartOf="parent"/>
+
+    <TextView
+        android:id="@+id/tv_find_pw_email_title"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="@string/tv_find_pw_email_title"
+        android:textColor="@color/sorange"
+        android:textSize="20dp"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        android:layout_marginBottom="16dp"
+        android:layout_marginTop="16dp"
+        android:fontFamily="@font/pretendardbold"/>
 </androidx.constraintlayout.widget.ConstraintLayout>

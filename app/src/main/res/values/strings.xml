@@ -26,4 +26,5 @@
     <string name="tv_my_alarm_monthly">월간 비교 분석 알림</string>
     <string name="tv_my_alarm_weekly">주간 비교 분석 알림</string>
     <string name="tv_myinfo_title">내 정보</string>
+    <string name="tv_find_pw_email_title">이메일 본인 인증</string>
 </resources>
