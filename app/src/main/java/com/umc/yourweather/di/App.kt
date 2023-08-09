@@ -19,5 +19,7 @@ class App : Application() {
         NaverIdLoginSDK.initialize(this, BuildConfig.NAVER_CLIENT_ID, BuildConfig.NAVER_CLIENT_SECRET, "yourweather")
         token_prefs = TokenSharedPreferences(applicationContext)
         appContext = this
+
+        globalNickname = ""
     }
 }
