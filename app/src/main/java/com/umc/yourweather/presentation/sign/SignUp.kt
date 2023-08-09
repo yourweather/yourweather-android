@@ -95,7 +95,6 @@ class SignUp : AppCompatActivity() {
         val mIntent = Intent(this@SignUp, SignUp2::class.java)
         mIntent.putExtra("email", email)
         startActivity(mIntent)
-        finish()
         Log.d("EmailDebug", "Email value: $email")
     }
 

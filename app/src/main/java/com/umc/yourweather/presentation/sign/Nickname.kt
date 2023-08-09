@@ -2,6 +2,7 @@ package com.umc.yourweather.presentation.sign
 
 import android.content.Intent
 import android.os.Bundle
+import android.util.Log
 import android.widget.Button
 import android.widget.EditText
 import androidx.appcompat.app.AppCompatActivity
@@ -31,5 +32,11 @@ class Nickname : AppCompatActivity() {
             val mIntent = Intent(this, BottomNavi::class.java)
             startActivity(mIntent)
         }
+        // SignUp2 에서 pw 값 받아오기
+        val pw = intent.getStringExtra("password")
+        val email = intent.getStringExtra("email")
+        Log.d("pwDebug2", "pw value2: $pw")
+        Log.d("EmailDebug3", "Email value3: $email")
+        val platform = "YOURWEATHER"
     }
 }
