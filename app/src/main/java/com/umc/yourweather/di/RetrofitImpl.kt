@@ -11,6 +11,8 @@ import java.io.IOException
 
 object RetrofitImpl {
     private const val BASE_URL = BuildConfig.BASE_URL
+
+    // 토큰이 필요하지 않은 OkHttpClient
     private val nonOkHttpClient: OkHttpClient by lazy {
         val httpLoggingInterceptor = HttpLoggingInterceptor()
             .setLevel(HttpLoggingInterceptor.Level.BODY)
@@ -20,6 +22,7 @@ object RetrofitImpl {
             .build()
     }
 
+    // 토큰이 필요한 OkHttpClient
     private val authenticatedOkHttpClient: OkHttpClient by lazy {
         val httpLoggingInterceptor = HttpLoggingInterceptor()
             .setLevel(HttpLoggingInterceptor.Level.BODY)
@@ -29,6 +32,7 @@ object RetrofitImpl {
             .build()
     }
 
+    // 토큰이 필요하지 않은 Retrofit
     val nonRetrofit: Retrofit by lazy {
         Retrofit.Builder()
             .addConverterFactory(GsonConverterFactory.create())
@@ -37,6 +41,7 @@ object RetrofitImpl {
             .build()
     }
 
+    // 토큰이 필요한 Retrofit
     val authenticatedRetrofit: Retrofit by lazy {
         Retrofit.Builder()
             .addConverterFactory(GsonConverterFactory.create())
@@ -45,6 +50,7 @@ object RetrofitImpl {
             .build()
     }
 
+    // 토큰이 필요하지 않은 요청에 사용할 인터셉터
     class NonAppInterceptor : Interceptor {
         @Throws(IOException::class)
         override fun intercept(chain: Interceptor.Chain): Response = with(chain) {
@@ -57,6 +63,7 @@ object RetrofitImpl {
         }
     }
 
+    // 토큰이 필요한 요청에 사용할 인터셉터
     class AuthenticatedInterceptor : Interceptor {
         @Throws(IOException::class)
         override fun intercept(chain: Interceptor.Chain): Response = with(chain) {
