@@ -26,7 +26,7 @@ class AllWrittenFragment : Fragment() {
         super.onViewCreated(view, savedInstanceState)
 
         // 왼쪽 화살표를 누를 때 AnalysisFragment로 이동하도록 설정
-        binding.btnAllwrittenLeftArrow.setOnClickListener {
+        binding.rlBtn.setOnClickListener {
             navigateToAnalysisFragment()
         }
 
