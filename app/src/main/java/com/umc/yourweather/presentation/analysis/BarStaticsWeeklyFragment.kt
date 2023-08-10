@@ -37,38 +37,17 @@ class BarStaticsWeeklyFragment : Fragment() {
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
 
+        // 날씨 통계 색상 변환 함수
         applyWeatherTextFormatting()
 
-//        // 텍스트 색 변환 코드
-//        val ssb1 = SpannableStringBuilder("맑음 비율이 20% 증가했습니다.")
-//        ssb1.apply {
-//            setSpan(ForegroundColorSpan(Color.parseColor("#70AD47")), 7, 10, Spannable.SPAN_EXCLUSIVE_INCLUSIVE)
-//        }
-//        val ssb2 = SpannableStringBuilder("다소 흐림 비율이 10% 증가했습니다.")
-//        ssb2.apply {
-//            setSpan(ForegroundColorSpan(Color.parseColor("#70AD47")), 10, 13, Spannable.SPAN_EXCLUSIVE_INCLUSIVE)
-//        }
-//        val ssb3 = SpannableStringBuilder("비 비율이 5% 감소했습니다.")
-//        ssb3.apply {
-//            setSpan(ForegroundColorSpan(Color.parseColor("#F7931E")), 6, 9, Spannable.SPAN_EXCLUSIVE_INCLUSIVE)
-//        }
-//        val ssb4 = SpannableStringBuilder("번개 비율이 10% 감소했습니다.")
-//        ssb4.apply {
-//            setSpan(ForegroundColorSpan(Color.parseColor("#F7931E")), 7, 10, Spannable.SPAN_EXCLUSIVE_INCLUSIVE)
-//        }
-//        binding.tvAnalysisDetailStaticsSunny.text = ssb1
-//        binding.tvAnalysisDetailStaticsCloudy.text = ssb2
-//        binding.tvAnalysisDetailStaticsRainy.text = ssb3
-//        binding.tvAnalysisDetailStaticsThunder.text = ssb4
-
-        // 데이터 리스트 생성
+        // 지난 주 데이터 리스트 생성
         val dataList = listOf(
             BarData("맑음", 44),
             BarData("흐림", 60),
             BarData("비", 40),
             BarData("번개", 100),
         )
-
+        // 이번 주 데이터 리스트 생성
         val dataList2 = listOf(
             BarData("맑음", 52),
             BarData("흐림", 66),
@@ -79,67 +58,6 @@ class BarStaticsWeeklyFragment : Fragment() {
         bindWeatherData(dataList, binding.llAnalysisBarLastWeek, ::showBallViewLastWeek)
         bindWeatherData(dataList2, binding.llAnalysisBarThisWeek, ::showBallViewThisWeek)
 
-//
-//        // 각 데이터 값에 해당하는 너비 계산
-//        val sum = dataList.sumOf { it.value }
-//
-//        for (data in dataList) {
-//            val ratio = data.value.toFloat() / sum
-//            val width = (ratio * 100).toFloat()
-//
-//            // 해당 데이터에 해당하는 View 생성 및 추가
-//            val view = View(requireContext())
-//            view.layoutParams = LinearLayout.LayoutParams(
-//                0,
-//                ViewGroup.LayoutParams.MATCH_PARENT,
-//                width,
-//            )
-//
-//            val drawableRes = when (data.label) {
-//                "맑음" -> R.drawable.bg_yellow_rec_round_sun
-//                "흐림" -> R.drawable.bg_gray_rec_cloud
-//                "비" -> R.drawable.bg_blue_rec_rain
-//                "번개" -> R.drawable.bg_darkblue_rec_round_thunder
-//                else -> R.drawable.bg_gray_rec_cloud
-//            }
-//
-//            view.background = ContextCompat.getDrawable(requireContext(), drawableRes)
-//            binding.llAnalysisBarLastWeek.addView(view)
-//
-//            // 클릭 시 말풍선 보이게
-//            view.setOnClickListener {
-//                showBallViewLastWeek(data.label)
-//            }
-//        }
-//
-//        for (data in dataList2) {
-//            val ratio = data.value.toFloat() / sum
-//            val width = (ratio * 100).toFloat()
-//
-//            // 해당 데이터에 해당하는 View 생성 및 추가
-//            val view = View(requireContext())
-//            view.layoutParams = LinearLayout.LayoutParams(
-//                0,
-//                ViewGroup.LayoutParams.MATCH_PARENT,
-//                width,
-//            )
-//
-//            val drawableRes = when (data.label) {
-//                "맑음" -> R.drawable.bg_yellow_rec_round_sun
-//                "흐림" -> R.drawable.bg_gray_rec_cloud
-//                "비" -> R.drawable.bg_blue_rec_rain
-//                "번개" -> R.drawable.bg_darkblue_rec_round_thunder
-//                else -> R.drawable.bg_gray_rec_cloud
-//            }
-//
-//            view.background = ContextCompat.getDrawable(requireContext(), drawableRes)
-//            binding.llAnalysisBarThisWeek.addView(view)
-//
-//            // 클릭 시 말풍선 보이게
-//            view.setOnClickListener {
-//                showBallViewThisWeek(data.label)
-//            }
-//        }
     }
 
     // 날씨 통계 색상 변환 함수
@@ -178,6 +96,7 @@ class BarStaticsWeeklyFragment : Fragment() {
                 width,
             )
 
+            // 배경 파일 적용
             val drawableRes = getDrawableResForWeather(data.label)
             view.background = ContextCompat.getDrawable(requireContext(), drawableRes)
             layout.addView(view)
@@ -188,6 +107,7 @@ class BarStaticsWeeklyFragment : Fragment() {
         }
     }
 
+    // 각 날씨별 배경 파일 지정
     private fun getDrawableResForWeather(weatherLabel: String): Int {
         return when (weatherLabel) {
             "맑음" -> R.drawable.bg_yellow_rec_round_sun
@@ -198,6 +118,7 @@ class BarStaticsWeeklyFragment : Fragment() {
         }
     }
 
+    // 날씨별 말풍선 - 지난 주
     private fun showBallViewLastWeek(weatherLabel: String) {
         // 모든 텍스트뷰 숨기기
         binding.tvBalloonSunLastWeek.visibility = View.GONE
@@ -226,6 +147,7 @@ class BarStaticsWeeklyFragment : Fragment() {
         }
     }
 
+    // 날씨별 말풍선 - 이번 주
     private fun showBallViewThisWeek(weatherLabel: String) {
         // 모든 텍스트뷰 숨기기
         binding.tvBalloonSunThisWeek.visibility = View.GONE
@@ -253,6 +175,8 @@ class BarStaticsWeeklyFragment : Fragment() {
             }
         }
     }
+
+    // 일정 시간 지난 후 말풍선 숨기기
     private fun hideBallViewAfterDelay(view: View) {
         val handler = Handler()
         handler.postDelayed({
