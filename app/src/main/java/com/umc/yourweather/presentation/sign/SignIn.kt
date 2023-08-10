@@ -31,6 +31,7 @@ import com.umc.yourweather.BuildConfig
 import com.umc.yourweather.R
 import com.umc.yourweather.data.remote.request.LoginRequest
 import com.umc.yourweather.data.remote.response.BaseResponse
+import com.umc.yourweather.data.remote.response.TokenResponse
 import com.umc.yourweather.data.service.LoginService
 import com.umc.yourweather.databinding.ActivitySignInBinding
 import com.umc.yourweather.di.App
@@ -126,15 +127,12 @@ class SignIn : AppCompatActivity() {
         val service = RetrofitImpl.nonRetrofit.create(LoginService::class.java)
 
         val LoginInfo = LoginRequest(userEmail, userPw)
-        Log.d("SignInDebug", LoginInfo.toString())
-
-        service.logIn(LoginInfo).enqueue(object : Callback<BaseResponse<String>> {
+        service.logIn(LoginInfo).enqueue(object : Callback<BaseResponse<TokenResponse>> {
 
             override fun onResponse(
-                call: Call<BaseResponse<String>>,
-                response: Response<BaseResponse<String>>,
+                call: Call<BaseResponse<TokenResponse>>,
+                response: Response<BaseResponse<TokenResponse>>,
             ) {
-                Log.d("SignInDebug", "여기도 안되냐? 된다 여기는")
                 val code = response.body()?.code
 
                 if (response.isSuccessful) {
@@ -142,25 +140,23 @@ class SignIn : AppCompatActivity() {
                         Log.d("SignInDebug", "로그인 성공~ : " + response.headers().toString())
 //                        MySharedPreferences.setUserId(this@SignIn, userEmail)
 //                        MySharedPreferences.setUserPw(this@SignIn, userPw) // 자동로그인
-                        Log.d("SignInDebug", "로그인 = ${response.headers()}")
-
-                        App.token_prefs.accessToken = response.headers()["Authorization"]
-                        App.token_prefs.refreshToken = response.headers()["Authorization-refresh"]
-
+                        App.token_prefs.accessToken = response.body()!!.result?.accessToken
+                        App.token_prefs.refreshToken = response.body()!!.result?.refreshToken
+                    } else {
                         Log.d(
                             "SignInDebug",
-                            App.token_prefs.accessToken + App.token_prefs.refreshToken,
+                            "아이디 비번 틀림",
                         )
+                        customToast()
                     }
-                } else { //비번/아이디 틀렸을 경
+                } else {
                     Log.d(
                         "SignInDebug",
                         "onResponse 오류: ${response?.toString()}",
                     )
-                    customToast()
                 }
             }
-            override fun onFailure(call: Call<BaseResponse<String>>, t: Throwable) {
+            override fun onFailure(call: Call<BaseResponse<TokenResponse>>, t: Throwable) {
                 Log.d("SignInDebug", "onFailure 에러: " + t.message.toString())
             }
         })
