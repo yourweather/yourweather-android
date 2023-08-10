@@ -31,11 +31,9 @@ import com.umc.yourweather.BuildConfig
 import com.umc.yourweather.R
 import com.umc.yourweather.data.remote.request.LoginRequest
 import com.umc.yourweather.data.remote.response.BaseResponse
-import com.umc.yourweather.data.remote.response.TokenResponse
 import com.umc.yourweather.data.service.LoginService
 import com.umc.yourweather.databinding.ActivitySignInBinding
 import com.umc.yourweather.di.App
-import com.umc.yourweather.di.MySharedPreferences
 import com.umc.yourweather.di.RetrofitImpl
 import com.umc.yourweather.presentation.BottomNavi
 import com.umc.yourweather.util.CalendarUtils.Companion.dpToPx
@@ -66,14 +64,14 @@ class SignIn : AppCompatActivity() {
         binding.tvSigninBtnsignup.setOnClickListener {
             // customToast()
             val mIntent = Intent(this, SignUp::class.java)
-            // startActivity(mIntent)
+            startActivity(mIntent)
         }
 
         // 로그인 버튼 클릭
         binding.btnSigninSignin.setOnClickListener {
             val mIntent = Intent(this, BottomNavi::class.java)
-            userEmail = binding.tvSigninEmail.text.toString()
-            userPw = binding.tvSigninPw.text.toString()
+            userEmail = binding.etSigninEmail.text.toString()
+            userPw = binding.etSigninPw.text.toString()
             SignInApi(userEmail!!, userPw!!)
             // startActivity(mIntent)
         }
@@ -127,39 +125,43 @@ class SignIn : AppCompatActivity() {
     private fun SignInApi(userEmail: String, userPw: String) {
         val service = RetrofitImpl.nonRetrofit.create(LoginService::class.java)
 
-        service.logIn(LoginRequest(userEmail, userPw)).enqueue(object : Callback<BaseResponse<TokenResponse>> {
+        val LoginInfo = LoginRequest(userEmail, userPw)
+        Log.d("SignInDebug", LoginInfo.toString())
+
+        service.logIn(LoginInfo).enqueue(object : Callback<BaseResponse<String>> {
+
             override fun onResponse(
-                call: Call<BaseResponse<TokenResponse>>,
-                response: Response<BaseResponse<TokenResponse>>,
+                call: Call<BaseResponse<String>>,
+                response: Response<BaseResponse<String>>,
             ) {
+                Log.d("SignInDebug", "여기도 안되냐? 된다 여기는")
+                val code = response.body()?.code
+
                 if (response.isSuccessful) {
-                    if (response.code() == 200) {
-                        Log.d("post", "onResponse 성공: " + response.body().toString())
+                    if (code == 200) {
+                        Log.d("SignInDebug", "로그인 성공~ : " + response.headers().toString())
 //                        MySharedPreferences.setUserId(this@SignIn, userEmail)
 //                        MySharedPreferences.setUserPw(this@SignIn, userPw) // 자동로그인
+                        Log.d("SignInDebug", "로그인 = ${response.headers()}")
 
                         App.token_prefs.accessToken = response.headers()["Authorization"]
                         App.token_prefs.refreshToken = response.headers()["Authorization-refresh"]
 
-                        Toast.makeText(
-                            this@SignIn,
-                            userEmail + " 계정으로 로그인에 성공하였습니다.",
-                            Toast.LENGTH_SHORT,
-                        ).show()
-                        Log.d("api 확인", App.token_prefs.accessToken + App.token_prefs.refreshToken)
-                    } else {
-                        Log.d("post", "onResponse 오류: " + response.body().toString())
-                        Toast.makeText(
-                            this@SignIn,
-                            "error: " + response.message(),
-                            Toast.LENGTH_SHORT,
-                        ).show()
+                        Log.d(
+                            "SignInDebug",
+                            App.token_prefs.accessToken + App.token_prefs.refreshToken,
+                        )
                     }
+                } else { //비번/아이디 틀렸을 경
+                    Log.d(
+                        "SignInDebug",
+                        "onResponse 오류: ${response?.toString()}",
+                    )
+                    customToast()
                 }
             }
-
-            override fun onFailure(call: Call<BaseResponse<TokenResponse>>, t: Throwable) {
-                Log.d("post", "onFailure 에러: " + t.message.toString())
+            override fun onFailure(call: Call<BaseResponse<String>>, t: Throwable) {
+                Log.d("SignInDebug", "onFailure 에러: " + t.message.toString())
             }
         })
     }
@@ -200,6 +202,10 @@ class SignIn : AppCompatActivity() {
             } else if (user != null) {
                 userEmail = user.kakaoAccount?.email
                 userPw = user.id?.toString()
+                // val mIntent = Intent(this, SignUp::class.java)
+                // SignInApi(userEmail, userPw)
+
+                // startActivity(mIntent)
                 Toast.makeText(this@SignIn, "email : $userEmail pw : $userPw", Toast.LENGTH_LONG).show()
             }
         }
