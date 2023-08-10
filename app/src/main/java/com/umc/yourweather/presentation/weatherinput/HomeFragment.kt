@@ -57,7 +57,7 @@ class HomeFragment : Fragment(), HomeFragmentInteractionListener {
         val homeToast = Toast(requireContext())
         homeToast.view = customToastView
 
-        homeToast.duration = Toast.LENGTH_LONG
+        homeToast.duration = Toast.LENGTH_SHORT
 
         homeToast.setGravity(android.view.Gravity.BOTTOM or android.view.Gravity.CENTER, 0, resources.getDimensionPixelSize(R.dimen.home_toast_margin_bottom))
 
