@@ -32,6 +32,8 @@ class SignUp : AppCompatActivity() {
     // Retrofit을 이용한 이메일 전송 서비스 생성
     private val retrofitWithoutToken = RetrofitImpl.nonRetrofit
     private val emailService = retrofitWithoutToken.create(EmailService::class.java)
+    // 이메일 인증 여부를 나타내는 변수
+    private var isEmailCertified = false
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -238,8 +240,10 @@ class SignUp : AppCompatActivity() {
                         // 인증 성공한 경우
                         Log.d("CertifyEmailDebug", "이메일 인증 성공")
                         showCustomAlertDialog("인증 성공했습니다.", 1, true)
-                        // 다음 화면(Signup2)으로 이동
-                        userEmail()
+                        // 이메일 인증이 완료되었으므로 버튼 활성화 및 상태 변경
+                        isEmailCertified = true
+                        binding.btnSignupNext.isEnabled = true
+                        countDownTimer?.cancel()
                     } else {
                         // 인증 실패한 경우
                         Log.d("CertifyEmailDebug", "이메일 인증 실패")
