@@ -108,8 +108,9 @@
                 android:id="@+id/tv_home_username"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:layout_marginStart="114dp"
+                android:layout_marginStart="100dp"
                 android:layout_marginTop="129dp"
+                android:layout_marginEnd="5dp"
                 android:fontFamily="@font/bmhanna"
                 android:gravity="center"
                 android:text="이다은"
@@ -118,7 +119,6 @@
                 app:layout_constraintBottom_toBottomOf="parent"
                 app:layout_constraintEnd_toStartOf="@+id/tv_home_guide"
                 app:layout_constraintHorizontal_bias="0.34"
-                app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintTop_toTopOf="parent"
                 app:layout_constraintVertical_bias="0.0" />
 
@@ -127,7 +127,7 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_marginTop="129dp"
-                android:layout_marginEnd="104dp"
+                android:layout_marginEnd="100dp"
                 android:fontFamily="@font/bmhanna"
                 android:gravity="center"
                 android:text="님의 감정날씨"
@@ -169,14 +169,13 @@
                 android:id="@+id/tv_home_temp"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:layout_marginStart="135dp"
                 android:layout_marginTop="32dp"
+                android:layout_marginEnd="5dp"
                 android:fontFamily="@font/bmhanna"
-                android:text="100"
+                android:text="40"
                 android:textColor="@color/brown"
                 android:textSize="53dp"
                 app:layout_constraintEnd_toStartOf="@+id/tv_home_temp_unit"
-                app:layout_constraintStart_toStartOf="@+id/bg_home_weather"
                 app:layout_constraintTop_toBottomOf="@+id/motion_home_weather" />
 
             <TextView
@@ -184,7 +183,7 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_marginTop="21dp"
-                android:layout_marginEnd="136dp"
+                android:layout_marginEnd="125dp"
                 android:fontFamily="@font/pretendardsemibold"
                 android:text="°C"
                 android:textColor="@color/brown"
