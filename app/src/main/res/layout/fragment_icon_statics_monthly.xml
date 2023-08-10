@@ -9,8 +9,8 @@
     <ImageButton
         android:id="@+id/btn_statics_left_date_monthly"
         style="?android:attr/borderlessButtonStyle"
-        android:layout_width="7dp"
-        android:layout_height="12dp"
+        android:layout_width="14dp"
+        android:layout_height="24dp"
         android:layout_gravity="center"
         android:layout_marginStart="28dp"
         android:layout_marginTop="24dp"
@@ -36,8 +36,8 @@
     <ImageButton
         android:id="@+id/btn_statics_right_date_monthly"
         style="?android:attr/borderlessButtonStyle"
-        android:layout_width="7dp"
-        android:layout_height="12dp"
+        android:layout_width="14dp"
+        android:layout_height="24dp"
         android:layout_gravity="center"
         android:layout_marginStart="99dp"
         android:layout_marginTop="24dp"
