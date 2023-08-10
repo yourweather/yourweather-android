@@ -33,4 +33,6 @@
     <string name="tv_reset_pw_guide2">새 비밀번호 확인</string>
     <string name="tv_reset_pw_check1">*대소문자, 숫자 포함 8자 이상</string>
     <string name="tv_reset_pw_email_title">비밀번호 재설정</string>
+    <!-- TODO: Remove or change this placeholder text -->
+    <string name="hello_blank_fragment">Hello blank fragment</string>
 </resources>

@@ -5,4 +5,8 @@
         <item name="boxStrokeColor">#880000</item>
     </style>
 
+    <style name="CustomRadioTheme" parent="Theme.AppCompat.Light">
+        <item name="android:colorControlNormal">#989898</item>
+        <item name="android:colorControlActivated">#F07818</item>
+    </style>
 </resources>
