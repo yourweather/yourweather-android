@@ -91,13 +91,25 @@
             android:name=".presentation.sign.FindPw"
             android:exported="false" />
         <activity
-            android:name=".presentation.CalendarDetailView1"
+            android:name=".presentation.calendardetailview.CalendarDetailView1"
             android:exported="true" />
         <activity
-            android:name=".presentation.CalendarDetailView2"
+            android:name=".presentation.calendardetailview.CalendarDetailView2"
             android:exported="false" />
         <activity
-            android:name=".presentation.CalendarDetailView3"
+            android:name=".presentation.calendardetailview.CalendarDetailView3"
+            android:exported="false" />
+        <activity
+            android:name=".presentation.calendardetailview.CalendarDetailViewEmpty"
+            android:exported="false" />
+        <activity
+            android:name=".presentation.calendardetailview.CalendarDetailviewModify1"
+            android:exported="false" />
+        <activity
+            android:name=".presentation.calendardetailview.CalendarDetailviewModify2"
+            android:exported="false" />
+        <activity
+            android:name=".presentation.calendardetailview.CalendardetailviewAlarm"
             android:exported="false" />
         <activity
             android:name=".presentation.BottomNavi"
