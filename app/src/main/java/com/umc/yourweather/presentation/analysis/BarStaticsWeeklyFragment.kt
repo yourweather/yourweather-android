@@ -57,7 +57,6 @@ class BarStaticsWeeklyFragment : Fragment() {
 
         bindWeatherData(dataList, binding.llAnalysisBarLastWeek, ::showBallViewLastWeek)
         bindWeatherData(dataList2, binding.llAnalysisBarThisWeek, ::showBallViewThisWeek)
-
     }
 
     // 날씨 통계 색상 변환 함수
@@ -81,7 +80,6 @@ class BarStaticsWeeklyFragment : Fragment() {
     }
 
     private fun bindWeatherData(dataList: List<BarData>, layout: LinearLayout, clickListener: (String) -> Unit) {
-
         // 각 데이터 값에 해당하는 너비 계산
         val sum = dataList.sumOf { it.value }
 
