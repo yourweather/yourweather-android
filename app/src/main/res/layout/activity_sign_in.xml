@@ -99,7 +99,7 @@
         app:layout_constraintTop_toBottomOf="@+id/textinput_signin_email" />
 
     <com.google.android.material.textfield.TextInputLayout
-        android:id="@+id/et_signin_pw"
+        android:id="@+id/textinput_signin_pw"
         android:layout_width="match_parent"
         android:layout_height="0dp"
         android:layout_marginStart="16dp"
@@ -115,7 +115,7 @@
         app:passwordToggleEnabled="true">
 
         <com.google.android.material.textfield.TextInputEditText
-            android:id="@+id/et_signin_repw"
+            android:id="@+id/et_signin_pw"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_gravity="center"
@@ -143,7 +143,7 @@
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.0"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/et_signin_pw" />
+        app:layout_constraintTop_toBottomOf="@+id/textinput_signin_pw" />
 
     <LinearLayout
         android:id="@+id/ll_signin_socialbtns"

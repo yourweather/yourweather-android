@@ -1,5 +1,6 @@
 package com.umc.yourweather.di
 
+import android.util.Log
 import com.umc.yourweather.BuildConfig
 import okhttp3.Interceptor
 import okhttp3.OkHttpClient
