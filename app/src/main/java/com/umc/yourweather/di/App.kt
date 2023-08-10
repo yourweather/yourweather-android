@@ -10,6 +10,7 @@ class App : Application() {
     companion object {
         var appContext: Context? = null
         lateinit var token_prefs: TokenSharedPreferences
+        lateinit var globalNickname: String
     }
 
     override fun onCreate() {
@@ -18,5 +19,7 @@ class App : Application() {
         NaverIdLoginSDK.initialize(this, BuildConfig.NAVER_CLIENT_ID, BuildConfig.NAVER_CLIENT_SECRET, "yourweather")
         token_prefs = TokenSharedPreferences(applicationContext)
         appContext = this
+
+        globalNickname = ""
     }
 }

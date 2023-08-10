@@ -42,6 +42,7 @@ class SignUp2 : AppCompatActivity() {
         val mIntent = Intent(this@SignUp2, Nickname::class.java)
         mIntent.putExtra("password", pw)
         mIntent.putExtra("email", email)
+        mIntent.putExtra("platform", "yourweather")
         startActivity(mIntent)
         Log.d("pwDebug", "pw value2: $pw")
     }

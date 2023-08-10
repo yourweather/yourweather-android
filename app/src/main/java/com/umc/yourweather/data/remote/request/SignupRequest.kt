@@ -3,19 +3,12 @@ package com.umc.yourweather.data.remote.request
 import com.google.gson.annotations.SerializedName
 
 class SignupRequest(
-    @SerializedName("signup_email")
+    @SerializedName("email")
     val email: String,
-    @SerializedName("signup_password")
+    @SerializedName("password")
     val password: String,
-    @SerializedName("signup_nickname")
+    @SerializedName("nickname")
     val nickname: String,
-    @SerializedName("signup_platform")
+    @SerializedName("platform")
     val platform: String,
-) {
-    enum class platformList {
-        KAKAO,
-        GOOGLE,
-        NAVER,
-        YOURWEATHER,
-    }
-}
+)
