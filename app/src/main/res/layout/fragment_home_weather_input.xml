@@ -34,39 +34,52 @@
             tools:layout_editor_absoluteX="0dp"
             tools:layout_editor_absoluteY="201dp">
 
-            <LinearLayout
-                android:id="@+id/ll_weather_input_exit_l2"
+            <FrameLayout
+                android:id="@+id/fl_weather_input_exit_l2"
                 android:layout_width="90dp"
-                android:layout_height="match_parent"
-                android:orientation="vertical">
+                android:layout_height="match_parent">
 
-                <ImageButton
-                    android:id="@+id/btn_home_weather_exit"
-                    android:layout_width="16dp"
-                    android:layout_height="19dp"
-                    android:layout_marginStart="16dp"
-                    android:layout_marginTop="16dp"
-                    android:layout_marginEnd="300dp"
-                    android:background="@android:color/transparent"
-                    android:src="@drawable/ic_weatherinput_exit" />
-            </LinearLayout>
+                <androidx.constraintlayout.widget.ConstraintLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent">
 
-            <LinearLayout
+                    <ImageButton
+                        android:id="@+id/btn_home_weather_exit"
+                        android:layout_width="16dp"
+                        android:layout_height="19dp"
+                        android:layout_marginStart="16dp"
+                        android:background="@android:color/transparent"
+                        android:src="@drawable/ic_weatherinput_exit"
+                        app:layout_constraintBottom_toBottomOf="parent"
+                        app:layout_constraintStart_toStartOf="parent"
+                        app:layout_constraintTop_toTopOf="parent" />
+                </androidx.constraintlayout.widget.ConstraintLayout>
+
+            </FrameLayout>
+
+            <FrameLayout
                 android:id="@+id/ll_weather_input_save_l3"
                 android:layout_width="90dp"
                 android:layout_height="match_parent"
-                android:layout_alignParentEnd="true"
-                android:orientation="vertical">
+                android:layout_alignParentEnd="true">
 
-                <ImageButton
-                    android:id="@+id/btn_home_weather_save"
-                    android:layout_width="35dp"
-                    android:layout_height="18dp"
-                    android:layout_marginTop="16dp"
-                    android:layout_marginStart="40dp"
-                    android:background="@android:color/transparent"
-                    android:src="@drawable/ic_home_unsave" />
-            </LinearLayout>
+                <androidx.constraintlayout.widget.ConstraintLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent">
+
+                    <ImageButton
+                        android:id="@+id/btn_home_weather_save"
+                        android:layout_width="35dp"
+                        android:layout_height="18dp"
+                        android:layout_marginEnd="16dp"
+                        android:background="@android:color/transparent"
+                        android:src="@drawable/ic_home_unsave"
+                        app:layout_constraintBottom_toBottomOf="parent"
+                        app:layout_constraintEnd_toEndOf="parent"
+                        app:layout_constraintTop_toTopOf="parent" />
+                </androidx.constraintlayout.widget.ConstraintLayout>
+
+            </FrameLayout>
 
         </RelativeLayout>
 
