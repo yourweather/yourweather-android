@@ -65,7 +65,12 @@ class HomeWeatherInputFragment : Fragment() {
             updateSaveButtonState()
         }
 
+        //exit버튼 직접 클릭한 경우
         binding.btnHomeWeatherExit.setOnClickListener {
+            parentFragmentManager.popBackStack()
+        }
+        //exit버튼이 담긴 영역 클릭한 경우
+        binding.llWeatherInputExitL2.setOnClickListener {
             parentFragmentManager.popBackStack()
         }
 
