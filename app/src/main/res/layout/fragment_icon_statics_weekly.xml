@@ -10,8 +10,8 @@
     <ImageButton
         android:id="@+id/btn_statics_left_date_weekly"
         style="?android:attr/borderlessButtonStyle"
-        android:layout_width="7dp"
-        android:layout_height="12dp"
+        android:layout_width="14dp"
+        android:layout_height="24dp"
         android:layout_gravity="center"
         android:layout_marginStart="28dp"
         android:layout_marginTop="24dp"
@@ -35,8 +35,8 @@
     <ImageButton
         android:id="@+id/btn_statics_right_date_weekly"
         style="?android:attr/borderlessButtonStyle"
-        android:layout_width="7dp"
-        android:layout_height="12dp"
+        android:layout_width="14dp"
+        android:layout_height="24dp"
         android:layout_gravity="center"
         android:layout_marginStart="99dp"
         android:layout_marginTop="24dp"
@@ -60,6 +60,7 @@
 
 
         <LinearLayout
+            android:id="@+id/ll_sun_weekly"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:orientation="horizontal">
@@ -120,6 +121,7 @@
             app:layout_constraintVertical_bias="0.036" />
 
         <LinearLayout
+            android:id="@+id/ll_cloud_weekly"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:orientation="horizontal">
@@ -182,6 +184,7 @@
             app:layout_constraintVertical_bias="0.036" />
 
         <LinearLayout
+            android:id="@+id/ll_rain_weekly"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:orientation="horizontal">
@@ -246,6 +249,7 @@
 
 
         <LinearLayout
+            android:id="@+id/ll_thunder_weekly"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:orientation="horizontal">

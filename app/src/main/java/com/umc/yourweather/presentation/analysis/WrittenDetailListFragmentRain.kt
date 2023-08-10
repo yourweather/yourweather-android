@@ -34,7 +34,7 @@ class WrittenDetailListFragmentRain : Fragment() {
         val adapter = WrittenRVAdapter(dataList, requireContext())
         binding.recyclerViewDetailRain.adapter = adapter
 
-        binding.btnDetailLeftArrow.setOnClickListener {
+        binding.rlBtn1.setOnClickListener {
             navigateToAnalysisFragment()
         }
 

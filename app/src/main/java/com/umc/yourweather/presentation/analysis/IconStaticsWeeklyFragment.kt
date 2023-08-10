@@ -31,17 +31,36 @@ class IconStaticsWeeklyFragment : Fragment() {
     }
 
     private fun setupOnClickListeners() {
+        // sun 상세 리스트 넘어가기
+        binding.llSunWeekly.setOnClickListener {
+            replaceFragment(WrittenDetailListFragmentSunWeekly())
+        }
         binding.btnStaticsRightDetail1Weekly.setOnClickListener {
             replaceFragment(WrittenDetailListFragmentSunWeekly())
         }
+
+        // cloud 상세 리스트 넘어가기
+        binding.llCloudWeekly.setOnClickListener {
+            replaceFragment(WrittenDetailListFragmentCloudWeekly())
+        }
         binding.btnStaticsRightDetail2Weekly.setOnClickListener {
+            replaceFragment(WrittenDetailListFragmentSunWeekly())
+        }
+
+        // rain 상세 리스트 넘어가기
+        binding.llRainWeekly.setOnClickListener {
             replaceFragment(WrittenDetailListFragmentRainWeekly())
         }
         binding.btnStaticsRightDetail3Weekly.setOnClickListener {
-            replaceFragment(WrittenDetailListFragmentCloudWeekly())
+            replaceFragment(WrittenDetailListFragmentSunWeekly())
+        }
+
+        // thunder 상세 리스트 넘어가기
+        binding.llThunderWeekly.setOnClickListener {
+            replaceFragment(WrittenDetailListFragmentThunderWeekly())
         }
         binding.btnStaticsRightDetail4Weekly.setOnClickListener {
-            replaceFragment(WrittenDetailListFragmentThunderWeekly())
+            replaceFragment(WrittenDetailListFragmentSunWeekly())
         }
     }
 

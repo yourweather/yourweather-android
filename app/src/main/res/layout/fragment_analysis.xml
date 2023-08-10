@@ -7,43 +7,40 @@
     tools:context=".presentation.analysis.AnalysisFragment">
 
 
-    <LinearLayout
-        android:id="@+id/ll_analysis_title"
-        android:layout_width="0dp"
+    <TextView
+        android:id="@+id/tv_unwritten_title"
+        android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginBottom="12dp"
-        android:orientation="horizontal"
-        app:layout_constraintEnd_toEndOf="parent"
+        android:layout_marginStart="18dp"
+        android:layout_marginTop="26dp"
+        android:text="@string/tv_analysis_title"
+        android:textColor="@color/sorange"
+        android:textSize="20dp"
+        android:fontFamily="@font/bmhanna"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent">
+        app:layout_constraintTop_toTopOf="parent"/>
 
-        <TextView
-            android:id="@+id/tv_unwritten_title"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_marginStart="16dp"
-            android:layout_marginTop="26dp"
-            android:text="@string/tv_analysis_title"
-            android:textColor="@color/sorange"
-            android:textSize="20dp"
-            android:fontFamily="@font/bmhanna"
-            />
+    <ImageButton
+        android:id="@+id/btn_bell"
+        style="?android:attr/borderlessButtonStyle"
+        android:layout_width="22dp"
+        android:layout_height="25dp"
+        android:layout_marginTop="26dp"
+        android:layout_marginEnd="16dp"
+        android:background="@drawable/ic_bell"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintTop_toTopOf="parent"/>
 
-        <Space
-            android:layout_width="0dp"
-            android:layout_height="0dp"
-            android:layout_weight="1" />
-
-        <ImageButton
-            android:id="@+id/btn_bell"
-            style="?android:attr/borderlessButtonStyle"
-            android:layout_width="22dp"
-            android:layout_height="25dp"
-            android:layout_marginTop="26dp"
-            android:layout_marginEnd="16dp"
-            android:background="@drawable/ic_bell_event" />
-
-    </LinearLayout>
+    <ImageButton
+        android:id="@+id/img_bell_event"
+        style="?android:attr/borderlessButtonStyle"
+        android:layout_width="7dp"
+        android:layout_height="7dp"
+        android:layout_marginTop="20dp"
+        android:layout_marginEnd="13dp"
+        android:background="@drawable/img_bell_event"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintTop_toTopOf="parent"/>
 
     <LinearLayout
         android:id="@+id/ll_analysis_btn"
@@ -53,11 +50,11 @@
         android:layout_marginLeft="75dp"
         android:layout_marginRight="75dp"
         android:layout_alignParentTop="true"
-        android:layout_marginTop="18dp"
+        android:layout_marginTop="22dp"
         android:orientation="horizontal"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@id/ll_analysis_title"
+        app:layout_constraintTop_toBottomOf="@+id/tv_unwritten_title"
         app:layout_constraintBottom_toTopOf="@id/iv_bar1"
         android:gravity="center"
         android:background="@drawable/bg_gray_line_rec"

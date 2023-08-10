@@ -34,7 +34,7 @@ class WrittenDetailListFragmentSunWeekly : Fragment() {
         val adapter = WrittenRVAdapter(dataList, requireContext())
         binding.recyclerViewDetailWeeklySun.adapter = adapter
 
-        binding.btnDetailLeftArrow.setOnClickListener {
+        binding.rlBtn1.setOnClickListener {
             navigateToAnalysisFragment()
         }
 
