@@ -37,8 +37,22 @@ class BarStaticsWeeklyFragment : Fragment() {
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
 
-        // 날씨 통계 색상 변환 함수
-        applyWeatherTextFormatting()
+        // 날씨 통계 색상 변환 함수 데이터
+        val increases = mapOf(
+            "맑음" to 10,
+            "다소 흐림" to 40,
+            "비" to 0,
+            "번개" to 0,
+        )
+        val decreases = mapOf(
+            "맑음" to 0,
+            "다소 흐림" to 0,
+            "비" to 15,
+            "번개" to 20,
+        )
+
+        applyWeatherTextFormatting(increases, decreases)
+
 
         // 지난 주 데이터 리스트 생성
         val dataList = listOf(
@@ -60,23 +74,50 @@ class BarStaticsWeeklyFragment : Fragment() {
     }
 
     // 날씨 통계 색상 변환 함수
-    private fun applyWeatherTextFormatting() {
-        val ssb1 = SpannableStringBuilder("맑음 비율이 20% 증가했습니다.")
-        ssb1.setSpan(ForegroundColorSpan(Color.parseColor("#70AD47")), 7, 10, Spannable.SPAN_EXCLUSIVE_INCLUSIVE)
+    private fun applyWeatherTextFormatting(increases: Map<String, Int>, decreases: Map<String, Int>) {
+        val increaseColor = "#70AD47" // Increase color
+        val decreaseColor = "#F7931E" // Decrease color
 
-        val ssb2 = SpannableStringBuilder("다소 흐림 비율이 10% 증가했습니다.")
-        ssb2.setSpan(ForegroundColorSpan(Color.parseColor("#70AD47")), 10, 13, Spannable.SPAN_EXCLUSIVE_INCLUSIVE)
+        val weatherToViewMap = mapOf(
+            "맑음" to binding.tvAnalysisDetailStaticsSunny,
+            "다소 흐림" to binding.tvAnalysisDetailStaticsCloudy,
+            "비" to binding.tvAnalysisDetailStaticsRainy,
+            "번개" to binding.tvAnalysisDetailStaticsThunder,
+        )
 
-        val ssb3 = SpannableStringBuilder("비 비율이 5% 감소했습니다.")
-        ssb3.setSpan(ForegroundColorSpan(Color.parseColor("#F7931E")), 6, 9, Spannable.SPAN_EXCLUSIVE_INCLUSIVE)
+        for ((weather, view) in weatherToViewMap) {
+            val increaseValue = increases[weather] ?: 0
+            val decreaseValue = decreases[weather] ?: 0
+            val actionText = if (increaseValue > 0) "증가" else if (decreaseValue > 0) "감소" else "변화 없음"
+            val changeValue = if (increaseValue > 0) increaseValue else decreaseValue
 
-        val ssb4 = SpannableStringBuilder("번개 비율이 10% 감소했습니다.")
-        ssb4.setSpan(ForegroundColorSpan(Color.parseColor("#F7931E")), 7, 10, Spannable.SPAN_EXCLUSIVE_INCLUSIVE)
+            val formattedText = SpannableStringBuilder()
+            formattedText.append(weather)
+            formattedText.append(" 비율이 ")
+            val valueStart = formattedText.length
+            formattedText.append("$changeValue%")
+            formattedText.append(" ")
 
-        binding.tvAnalysisDetailStaticsSunny.text = ssb1
-        binding.tvAnalysisDetailStaticsCloudy.text = ssb2
-        binding.tvAnalysisDetailStaticsRainy.text = ssb3
-        binding.tvAnalysisDetailStaticsThunder.text = ssb4
+            val color = if (increaseValue > 0) increaseColor else decreaseColor
+            formattedText.setSpan(
+                ForegroundColorSpan(Color.parseColor(color)),
+                valueStart,
+                formattedText.length,
+                Spannable.SPAN_EXCLUSIVE_INCLUSIVE,
+            )
+
+            formattedText.setSpan(
+                ForegroundColorSpan(Color.parseColor("#000000")), // 원하는 색상으로 변경
+                formattedText.length - 1,
+                formattedText.length,
+                Spannable.SPAN_EXCLUSIVE_INCLUSIVE,
+            )
+
+            formattedText.append("$actionText")
+            formattedText.append("했습니다.")
+
+            view.text = formattedText
+        }
     }
 
     private fun bindWeatherData(dataList: List<BarData>, layout: LinearLayout, clickListener: (String) -> Unit) {
