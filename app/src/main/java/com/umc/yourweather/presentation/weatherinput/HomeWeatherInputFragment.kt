@@ -65,18 +65,28 @@ class HomeWeatherInputFragment : Fragment() {
             updateSaveButtonState()
         }
 
+        // exit 버튼 직접 클릭한 경우
         binding.btnHomeWeatherExit.setOnClickListener {
             parentFragmentManager.popBackStack()
         }
+        // exit 버튼이 담긴 영역 클릭한 경우
+        binding.flWeatherInputExit.setOnClickListener {
+            parentFragmentManager.popBackStack()
+        }
 
+        // save 버튼 직접 클릭한 경우
         binding.btnHomeWeatherSave.setOnClickListener {
             // 버튼이 활성화된 경우에만 클릭 리스너 동작
             if (isButtonClicked && isSeekBarAdjusted) {
-                val homeFragment = HomeFragment()
-                val transaction = parentFragmentManager.beginTransaction()
-                transaction.replace(R.id.fl_initial_l1, homeFragment)
-                transaction.addToBackStack(null)
-                transaction.commit()
+                navigateToHomeFragment()
+            }
+        }
+
+        // save 버튼이 담긴 영역 클릭한 경우
+        binding.flWeatherInputSave.setOnClickListener {
+            // 버튼이 활성화된 경우에만 클릭 리스너 동작
+            if (isButtonClicked && isSeekBarAdjusted) {
+                navigateToHomeFragment()
             }
         }
 
@@ -114,5 +124,13 @@ class HomeWeatherInputFragment : Fragment() {
         } else {
             binding.btnHomeWeatherSave.setImageResource(R.drawable.ic_home_unsave)
         }
+    }
+
+    private fun navigateToHomeFragment() {
+        val homeFragment = HomeFragment()
+        val transaction = parentFragmentManager.beginTransaction()
+        transaction.replace(R.id.fl_initial_l1, homeFragment)
+        transaction.addToBackStack(null)
+        transaction.commit()
     }
 }

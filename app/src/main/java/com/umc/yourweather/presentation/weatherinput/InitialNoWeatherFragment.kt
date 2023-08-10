@@ -39,7 +39,7 @@ class InitialNoWeatherFragment : Fragment() {
 
     private fun showInitialToast() {
         val toastView = layoutInflater.inflate(R.layout.toast_initial, binding.root, false)
-        val toast = Toast.makeText(context, "", Toast.LENGTH_LONG)
+        val toast = Toast.makeText(context, "", Toast.LENGTH_SHORT)
         toast.view = toastView
         toast.setGravity(Gravity.BOTTOM or Gravity.CENTER, 0, resources.getDimensionPixelSize(R.dimen.initial_toast_margin_bottom))
         toast.show()
