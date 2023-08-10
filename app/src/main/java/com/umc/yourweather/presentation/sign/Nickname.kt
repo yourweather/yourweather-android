@@ -73,19 +73,23 @@ class Nickname : AppCompatActivity() {
                     if (code == 200) {
                         // 회원 가입 성공
                         Log.d("SignupDebug", "회원 가입 성공")
-                        // 원하는 처리 작업 수행
+
                     } else {
                         // 회원 가입 실패
                         Log.d("SignupDebug", "회원 가입 실패: code = $code")
-                        // 원하는 실패 처리 작업 수행
+
                     }
+                } else {
+                    // API 호출 실패
+                    Log.d("SignupDebug", "API 호출 실패")
+
                 }
             }
 
             override fun onFailure(call: Call<BaseResponse<String>>, t: Throwable) {
                 // 네트워크 에러 처리
                 Log.d("SignupDebug", "네트워크 오류: " + t.message.toString())
-                // 원하는 실패 처리 작업 수행
+
             }
         })
     }
