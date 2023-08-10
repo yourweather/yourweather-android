@@ -11,11 +11,4 @@ class SignupRequest(
     val nickname: String,
     @SerializedName("platform")
     val platform: String,
-) {
-    enum class platformList {
-        KAKAO,
-        GOOGLE,
-        NAVER,
-        YOURWEATHER,
-    }
-}
+)
