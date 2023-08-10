@@ -70,7 +70,7 @@ class HomeWeatherInputFragment : Fragment() {
             parentFragmentManager.popBackStack()
         }
         //exit버튼이 담긴 영역 클릭한 경우
-        binding.llWeatherInputExitL2.setOnClickListener {
+        binding.flWeatherInputExit.setOnClickListener {
             parentFragmentManager.popBackStack()
         }
 
