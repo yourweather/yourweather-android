@@ -34,7 +34,7 @@ class UnwrittenDetailListFragment : Fragment() {
         val adapter = UnwrittenRVAdapter(dataList, requireContext())
         binding.recyclerViewUnwrittenDetail.adapter = adapter
 
-        binding.btnUnwrittenLeftArrow.setOnClickListener {
+        binding.rlBtn1.setOnClickListener {
             navigateToAnalysisFragment()
         }
 
