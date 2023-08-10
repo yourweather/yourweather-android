@@ -70,22 +70,34 @@
                 app:layout_constraintTop_toTopOf="@+id/tv_home_ad"
                 app:layout_constraintVertical_bias="1.0" />
 
-            <ImageButton
-                android:id="@+id/btn_home_ad_exit"
-                android:layout_width="12dp"
-                android:layout_height="12dp"
-                android:layout_marginStart="313dp"
-                android:layout_marginTop="5dp"
-                android:layout_marginEnd="6dp"
-                android:layout_marginBottom="23dp"
-                android:background="@android:color/transparent"
-                app:layout_constraintBottom_toBottomOf="@+id/tv_home_ad"
-                app:layout_constraintEnd_toEndOf="@+id/tv_home_ad"
-                app:layout_constraintHorizontal_bias="1.0"
-                app:layout_constraintStart_toStartOf="@+id/tv_home_ad"
-                app:layout_constraintTop_toTopOf="@+id/tv_home_ad"
-                app:layout_constraintVertical_bias="1.0"
-                app:srcCompat="@drawable/ic_home_exit" />
+
+            <FrameLayout
+                android:id="@+id/fl_home_ad_exit"
+                android:layout_width="25dp"
+                android:layout_height="30dp"
+                tools:layout_editor_absoluteX="345dp"
+                tools:layout_editor_absoluteY="61dp">
+
+                <androidx.constraintlayout.widget.ConstraintLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent">
+
+                    <ImageButton
+                        android:id="@+id/btn_home_ad_exit"
+                        android:layout_width="12dp"
+                        android:layout_height="12dp"
+                        android:layout_marginEnd="6dp"
+                        android:layout_marginBottom="23dp"
+                        android:background="@android:color/transparent"
+                        app:layout_constraintBottom_toBottomOf="parent"
+                        app:layout_constraintEnd_toEndOf="parent"
+                        app:layout_constraintHorizontal_bias="1.0"
+                        app:layout_constraintStart_toStartOf="parent"
+                        app:layout_constraintTop_toTopOf="parent"
+                        app:layout_constraintVertical_bias="0.0"
+                        app:srcCompat="@drawable/ic_home_exit" />
+                </androidx.constraintlayout.widget.ConstraintLayout>
+            </FrameLayout>
 
             <ImageButton
                 android:id="@+id/btn_home_share"
@@ -221,6 +233,7 @@
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintStart_toStartOf="parent"
                 app:menu="@menu/menu_bnv" />
+
 
         </androidx.constraintlayout.widget.ConstraintLayout>
 
