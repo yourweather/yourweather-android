@@ -29,11 +29,20 @@ import com.navercorp.nid.profile.NidProfileCallback
 import com.navercorp.nid.profile.data.NidProfileResponse
 import com.umc.yourweather.BuildConfig
 import com.umc.yourweather.R
+import com.umc.yourweather.data.remote.request.LoginRequest
+import com.umc.yourweather.data.remote.response.BaseResponse
+import com.umc.yourweather.data.remote.response.TokenResponse
+import com.umc.yourweather.data.service.LoginService
 import com.umc.yourweather.databinding.ActivitySignInBinding
+import com.umc.yourweather.di.App
+import com.umc.yourweather.di.RetrofitImpl
 import com.umc.yourweather.presentation.BottomNavi
 import com.umc.yourweather.util.CalendarUtils.Companion.dpToPx
 import com.umc.yourweather.util.SignUtils.Companion.KAKAOTAG
 import com.umc.yourweather.util.SignUtils.Companion.NAVERTAG
+import retrofit2.Call
+import retrofit2.Callback
+import retrofit2.Response
 
 class SignIn : AppCompatActivity() {
     lateinit var binding: ActivitySignInBinding
@@ -62,7 +71,10 @@ class SignIn : AppCompatActivity() {
         // 로그인 버튼 클릭
         binding.btnSigninSignin.setOnClickListener {
             val mIntent = Intent(this, BottomNavi::class.java)
-            startActivity(mIntent)
+            userEmail = binding.etSigninEmail.text.toString()
+            userPw = binding.etSigninPw.text.toString()
+            SignInApi(userEmail!!, userPw!!)
+            // startActivity(mIntent)
         }
 
         // 카카오 소셜로그인
@@ -111,6 +123,45 @@ class SignIn : AppCompatActivity() {
         toast.show()
     }
 
+    private fun SignInApi(userEmail: String, userPw: String) {
+        val service = RetrofitImpl.nonRetrofit.create(LoginService::class.java)
+
+        val LoginInfo = LoginRequest(userEmail, userPw)
+        service.logIn(LoginInfo).enqueue(object : Callback<BaseResponse<TokenResponse>> {
+
+            override fun onResponse(
+                call: Call<BaseResponse<TokenResponse>>,
+                response: Response<BaseResponse<TokenResponse>>,
+            ) {
+                val code = response.body()?.code
+
+                if (response.isSuccessful) {
+                    if (code == 200) {
+                        Log.d("SignInDebug", "로그인 성공~ : " + response.headers().toString())
+//                        MySharedPreferences.setUserId(this@SignIn, userEmail)
+//                        MySharedPreferences.setUserPw(this@SignIn, userPw) // 자동로그인
+                        App.token_prefs.accessToken = response.body()!!.result?.accessToken
+                        App.token_prefs.refreshToken = response.body()!!.result?.refreshToken
+                    } else {
+                        Log.d(
+                            "SignInDebug",
+                            "아이디 비번 틀림",
+                        )
+                        customToast()
+                    }
+                } else {
+                    Log.d(
+                        "SignInDebug",
+                        "onResponse 오류: ${response?.toString()}",
+                    )
+                }
+            }
+            override fun onFailure(call: Call<BaseResponse<TokenResponse>>, t: Throwable) {
+                Log.d("SignInDebug", "onFailure 에러: " + t.message.toString())
+            }
+        })
+    }
+
     private fun kakaoSignIn() { // 카카오 소셜로그인
         val callback: (OAuthToken?, Throwable?) -> Unit = { token, error ->
             if (error != null) {
@@ -147,6 +198,10 @@ class SignIn : AppCompatActivity() {
             } else if (user != null) {
                 userEmail = user.kakaoAccount?.email
                 userPw = user.id?.toString()
+                // val mIntent = Intent(this, SignUp::class.java)
+                // SignInApi(userEmail, userPw)
+
+                // startActivity(mIntent)
                 Toast.makeText(this@SignIn, "email : $userEmail pw : $userPw", Toast.LENGTH_LONG).show()
             }
         }
