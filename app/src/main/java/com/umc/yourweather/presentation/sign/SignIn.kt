@@ -137,11 +137,13 @@ class SignIn : AppCompatActivity() {
 
                 if (response.isSuccessful) {
                     if (code == 200) {
+                        val mIntent = Intent(this@SignIn, BottomNavi::class.java)
                         Log.d("SignInDebug", "로그인 성공~ : " + response.headers().toString())
 //                        MySharedPreferences.setUserId(this@SignIn, userEmail)
 //                        MySharedPreferences.setUserPw(this@SignIn, userPw) // 자동로그인
                         App.token_prefs.accessToken = response.body()!!.result?.accessToken
                         App.token_prefs.refreshToken = response.body()!!.result?.refreshToken
+                        startActivity(mIntent)
                     } else {
                         Log.d(
                             "SignInDebug",
