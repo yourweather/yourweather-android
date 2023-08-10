@@ -13,11 +13,11 @@
 
         <ImageView
             android:id="@+id/iv_home_weather"
-            android:layout_width="350dp"
-            android:layout_height="465dp"
-            android:layout_marginStart="16dp"
-            android:layout_marginEnd="16dp"
-            android:layout_marginBottom="91dp"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center"
+            android:scaleType="fitXY"
+            android:layout_marginBottom="54dp"
             android:src="@drawable/bg_home_weatherinput"
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintEnd_toEndOf="parent"
