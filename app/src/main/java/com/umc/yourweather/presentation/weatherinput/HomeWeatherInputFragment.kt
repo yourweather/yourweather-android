@@ -12,6 +12,7 @@ import android.widget.SeekBar
 import androidx.annotation.RequiresApi
 import androidx.fragment.app.Fragment
 import com.umc.yourweather.R
+import com.umc.yourweather.data.enums.Status
 import com.umc.yourweather.data.remote.request.MemoRequest
 import com.umc.yourweather.data.remote.response.BaseResponse
 import com.umc.yourweather.data.remote.response.MemoResponse
@@ -54,7 +55,7 @@ class HomeWeatherInputFragment : Fragment() {
             it.startAnimation(buttonAnimation)
             isButtonClicked = true
             updateSaveButtonState()
-            // 향후 클릭 시 추가할 동작 설정
+            updateStatus(Status.SUNNY) // 선택한 버튼에 따라 상태 갱신
         }
 
         binding.btnHomeCloud.setOnClickListener {
@@ -62,6 +63,7 @@ class HomeWeatherInputFragment : Fragment() {
             it.startAnimation(buttonAnimation)
             isButtonClicked = true
             updateSaveButtonState()
+            updateStatus(Status.CLOUDY)
         }
 
         binding.btnHomeThunder.setOnClickListener {
@@ -69,6 +71,7 @@ class HomeWeatherInputFragment : Fragment() {
             it.startAnimation(buttonAnimation)
             isButtonClicked = true
             updateSaveButtonState()
+            updateStatus(Status.LIGHTNING)
         }
 
         binding.btnHomeRain.setOnClickListener {
@@ -76,6 +79,7 @@ class HomeWeatherInputFragment : Fragment() {
             it.startAnimation(buttonAnimation)
             isButtonClicked = true
             updateSaveButtonState()
+            updateStatus(Status.RAINY)
         }
 
         // exit 버튼 직접 클릭한 경우
@@ -119,7 +123,12 @@ class HomeWeatherInputFragment : Fragment() {
             }
         })
     }
-
+    private fun updateStatus(status: Status) {
+        binding.btnHomeSun.isSelected = status == Status.SUNNY
+        binding.btnHomeCloud.isSelected = status == Status.CLOUDY
+        binding.btnHomeThunder.isSelected = status == Status.LIGHTNING
+        binding.btnHomeRain.isSelected = status == Status.RAINY
+    }
 
     private fun clearAnimations() {
         binding.btnHomeSun.clearAnimation()
@@ -143,20 +152,20 @@ class HomeWeatherInputFragment : Fragment() {
     @RequiresApi(Build.VERSION_CODES.O)
     private fun updateUserInputsAndCallApi() {
         val status = when {
-            binding.btnHomeSun.isSelected -> MemoRequest.Status.SUNNY
-            binding.btnHomeCloud.isSelected -> MemoRequest.Status.CLOUDY
-            binding.btnHomeRain.isSelected -> MemoRequest.Status.RAINY
-            binding.btnHomeThunder.isSelected -> MemoRequest.Status.LIGHTNING
-            else -> MemoRequest.Status.SUNNY // 기본값 설정
+            binding.btnHomeSun.isSelected -> Status.SUNNY
+            binding.btnHomeCloud.isSelected -> Status.CLOUDY
+            binding.btnHomeRain.isSelected -> Status.RAINY
+            binding.btnHomeThunder.isSelected -> Status.LIGHTNING
+            else -> Status.SUNNY // 기본값 설정
         }
-
-        val content = binding.etHomeMemo.text.toString()
 
         val currentDateTime = LocalDateTime.now()
         val formatter = DateTimeFormatter.ofPattern("yyyy-MM-dd'T'HH:mm:ss")
         val formattedDateTime = currentDateTime.format(formatter)
 
         val temperature = binding.seekbarHomeTemp.progress // SeekBar 등에서 입력 받음
+
+        val content = binding.etHomeMemo.text.toString().takeIf { it.isNotBlank() } ?: "" // 메모가 비어있다면 빈 문자열로 처리
 
         val memoRequest = MemoRequest(
             status = status,
@@ -167,9 +176,6 @@ class HomeWeatherInputFragment : Fragment() {
 
         callMemoWriteApi(memoRequest)
     }
-
-
-
     private fun callMemoWriteApi(request: MemoRequest) {
         val memoService = RetrofitImpl.authenticatedRetrofit.create(MemoService::class.java)
 
@@ -195,7 +201,7 @@ class HomeWeatherInputFragment : Fragment() {
             override fun onFailure(call: Call<BaseResponse<MemoResponse>>, t: Throwable) {
                 // 네트워크 오류 처리
                 t.printStackTrace()
-                Log.e("weatherInput", "memo 저장 실패: ${t.message}")
+                Log.e("weatherInput", "네트워크오류: ${t.message}")
             }
         })
     }
