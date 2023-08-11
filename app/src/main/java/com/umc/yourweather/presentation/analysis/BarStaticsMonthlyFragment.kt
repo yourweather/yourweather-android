@@ -270,7 +270,7 @@ class BarStaticsMonthlyFragment : Fragment() {
         }, 1500) // 1.5초 후에 말풍선을 숨김
     }
 
-    // 이번 주 통계
+    // 이번 달 통계
     private fun barStatisticsThisMonthApi() {
         val service = RetrofitImpl.authenticatedRetrofit.create(ReportService::class.java)
         val call = service.monthlyStatistic(ago = 0) // 이번 달
