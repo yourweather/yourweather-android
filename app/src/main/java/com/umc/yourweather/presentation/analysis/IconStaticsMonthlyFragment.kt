@@ -7,7 +7,14 @@ import android.view.View
 import android.view.ViewGroup
 import androidx.fragment.app.Fragment
 import com.umc.yourweather.R
+import com.umc.yourweather.data.remote.response.BaseResponse
+import com.umc.yourweather.data.remote.response.StatisticResponse
+import com.umc.yourweather.data.service.ReportService
 import com.umc.yourweather.databinding.FragmentIconStaticsMonthlyBinding
+import com.umc.yourweather.di.RetrofitImpl
+import retrofit2.Call
+import retrofit2.Callback
+import retrofit2.Response
 import java.util.Calendar
 
 class IconStaticsMonthlyFragment : Fragment() {
@@ -30,7 +37,41 @@ class IconStaticsMonthlyFragment : Fragment() {
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
+
+        // 버튼 클릭 시 화면 전환 함수
         setupOnClickListeners()
+
+        // 각 월별 통계 함수
+        barStatisticsThisMonthApi()
+    }
+
+    // 이번 달 통계
+    private fun barStatisticsThisMonthApi() {
+        val service = RetrofitImpl.authenticatedRetrofit.create(ReportService::class.java)
+        val call = service.monthlyStatistic(ago = 0) // 이번 달
+
+        call.enqueue(object : Callback<BaseResponse<StatisticResponse>> {
+            override fun onResponse(
+                call: Call<BaseResponse<StatisticResponse>>,
+                response: Response<BaseResponse<StatisticResponse>>,
+            ) {
+                if (response.isSuccessful) {
+                    val statisticResponse = response.body()?.result // 'data'가 실제 응답 데이터를 담고 있는 필드일 경우
+                    if (statisticResponse != null) {
+                        Log.d("월별 디테일 API Success", "월별 디테일 Sunny: ${statisticResponse.sunny}, Cloudy: ${statisticResponse.cloudy}, Rainy: ${statisticResponse.rainy}, Lightning: ${statisticResponse.lightning}")
+                    } else {
+                        Log.e("월별 디테일 API Error", "Response body 비었음")
+                    }
+                } else {
+                    val errorBody = response.errorBody()?.string()
+                    Log.e("월별 디테일 API Error", "Response Code: ${response.code()}, Error Body: $errorBody")
+                }
+            }
+
+            override fun onFailure(call: Call<BaseResponse<StatisticResponse>>, t: Throwable) {
+                Log.e("월별 디테일 bar API Failure", "Error: ${t.message}", t)
+            }
+        })
     }
 
     private fun setupOnClickListeners() {
