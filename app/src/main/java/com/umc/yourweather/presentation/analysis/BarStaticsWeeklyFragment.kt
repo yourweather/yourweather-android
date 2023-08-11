@@ -44,7 +44,7 @@ class BarStaticsWeeklyFragment : Fragment() {
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
-
+/*
         // 날씨 통계 색상 변환 함수 데이터
         val increases = mapOf(
             "맑음" to 10,
@@ -60,7 +60,7 @@ class BarStaticsWeeklyFragment : Fragment() {
         )
 
         applyWeatherTextFormatting(increases, decreases)
-
+*/
 //        // 지난 주 데이터 리스트 생성
 //        val dataList = listOf(
 //            BarData("맑음", 44),
@@ -81,6 +81,7 @@ class BarStaticsWeeklyFragment : Fragment() {
 
         barStatisticsThisWeekApi()
         barStatisticsLastWeekApi()
+        weeklyComparisonApi()
     }
 
     // 날씨 통계 색상 변환 함수
@@ -98,7 +99,7 @@ class BarStaticsWeeklyFragment : Fragment() {
         for ((weather, view) in weatherToViewMap) {
             val increaseValue = increases[weather] ?: 0
             val decreaseValue = decreases[weather] ?: 0
-            val actionText = if (increaseValue > 0) "증가" else if (decreaseValue > 0) "감소" else "변화 없음"
+            val actionText = if (increaseValue > 0) "증가" else if (decreaseValue > 0) "감소" else "변화가 없습니다"
             val changeValue = if (increaseValue > 0) increaseValue else decreaseValue
 
             val formattedText = SpannableStringBuilder()
@@ -124,7 +125,11 @@ class BarStaticsWeeklyFragment : Fragment() {
             )
 
             formattedText.append("$actionText")
-            formattedText.append("했습니다.")
+            if (actionText == "변화가 없습니다.") {
+                formattedText.append("")
+            } else {
+                formattedText.append("했습니다.")
+            }
 
             view.text = formattedText
         }
@@ -240,7 +245,7 @@ class BarStaticsWeeklyFragment : Fragment() {
         }, 1500) // 1.5초 후에 말풍선을 숨김
     }
 
-    // 이번 주 통계
+    // 이번 주 bar 통계
     private fun barStatisticsThisWeekApi() {
         val service = RetrofitImpl.authenticatedRetrofit.create(ReportService::class.java)
         val call = service.weeklyStatistic(ago = 0) // 'ago'에 적절한 값을 설정해주세요
@@ -280,7 +285,7 @@ class BarStaticsWeeklyFragment : Fragment() {
         })
     }
 
-    // 지난 주 통계
+    // 지난 주 bar 통계
     private fun barStatisticsLastWeekApi() {
         val service = RetrofitImpl.authenticatedRetrofit.create(ReportService::class.java)
         val call = service.weeklyStatistic(ago = 1) // '지난 주
@@ -316,6 +321,45 @@ class BarStaticsWeeklyFragment : Fragment() {
 
             override fun onFailure(call: Call<BaseResponse<StatisticResponse>>, t: Throwable) {
                 Log.e("지난 주 bar API Failure", "Error: ${t.message}", t)
+            }
+        })
+    }
+
+    // 주간 데이터 비교
+    private fun weeklyComparisonApi() {
+        val service = RetrofitImpl.authenticatedRetrofit.create(ReportService::class.java)
+        val call = service.weeklyComparison(ago = 1)
+
+        call.enqueue(object : Callback<BaseResponse<StatisticResponse>> {
+            override fun onResponse(
+                call: Call<BaseResponse<StatisticResponse>>,
+                response: Response<BaseResponse<StatisticResponse>>,
+            ) {
+                if (response.isSuccessful) {
+                    val statisticResponse = response.body()?.result // 'data'가 실제 응답 데이터를 담고 있는 필드일 경우
+                    if (statisticResponse != null) {
+                        Log.d("주간 데이터 비교 API Success", "Sunny: ${statisticResponse.sunny}, Cloudy: ${statisticResponse.cloudy}, Rainy: ${statisticResponse.rainy}, Lightning: ${statisticResponse.lightning}")
+
+                        val increases = mutableMapOf<String, Int>()
+                        val decreases = mutableMapOf<String, Int>()
+
+                        if (statisticResponse.sunny >= 0) increases["맑음"] = statisticResponse.sunny.toInt() else decreases["맑음"] = 0
+                        if (statisticResponse.cloudy >= 0) increases["다소 흐림"] = statisticResponse.cloudy.toInt() else decreases["다소 흐림"] = 0
+                        if (statisticResponse.rainy >= 0) increases["비"] = statisticResponse.rainy.toInt() else decreases["비"] = 15
+                        if (statisticResponse.lightning >= 0) increases["번개"] = statisticResponse.lightning.toInt() else decreases["번개"] = 20
+
+                        applyWeatherTextFormatting(increases, decreases)
+                    } else {
+                        Log.e("주간 데이터 비교 bar API Error", "Response body 비었음")
+                    }
+                } else {
+                    val errorBody = response.errorBody()?.string()
+                    Log.e("주간 데이터 비교 bar API Error", "Response Code: ${response.code()}, Error Body: $errorBody")
+                }
+            }
+
+            override fun onFailure(call: Call<BaseResponse<StatisticResponse>>, t: Throwable) {
+                Log.e("주간 데이터 비교 bar API Failure", "Error: ${t.message}", t)
             }
         })
     }
