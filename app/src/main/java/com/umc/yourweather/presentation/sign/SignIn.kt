@@ -127,6 +127,7 @@ class SignIn : AppCompatActivity() {
         val service = RetrofitImpl.nonRetrofit.create(LoginService::class.java)
 
         val LoginInfo = LoginRequest(userEmail, userPw)
+
         service.logIn(LoginInfo).enqueue(object : Callback<BaseResponse<TokenResponse>> {
 
             override fun onResponse(
