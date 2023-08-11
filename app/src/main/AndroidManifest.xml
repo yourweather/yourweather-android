@@ -121,7 +121,6 @@
             android:exported="false" />
         <activity
             android:name=".presentation.calendardetailview.CalendardetailviewAlarm"
-            android:theme="@style/AppTheme"
             android:exported="true" />
         <activity
             android:name=".presentation.BottomNavi"
