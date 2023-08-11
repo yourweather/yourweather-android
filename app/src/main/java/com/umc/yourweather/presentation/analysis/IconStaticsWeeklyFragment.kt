@@ -39,7 +39,7 @@ class IconStaticsWeeklyFragment : Fragment() {
         // 초기화 때 이번 달의 통계를 가져오기 위해 ago 값을 설정
         val initialAgo = 0
         barStatisticsThisWeekApi(initialAgo)
-        Log.d("${initialAgo}전으로", "${initialAgo}")
+        Log.d("${initialAgo}전으로", "$initialAgo")
 
         setupOnClickListeners()
     }
@@ -110,7 +110,6 @@ class IconStaticsWeeklyFragment : Fragment() {
     private fun barStatisticsThisWeekApi(ago: Int) {
         val service = RetrofitImpl.authenticatedRetrofit.create(ReportService::class.java)
         val call = service.weeklyStatistic(ago = ago) // 이번 달
-
 
         call.enqueue(object : Callback<BaseResponse<StatisticResponse>> {
             override fun onResponse(

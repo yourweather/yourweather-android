@@ -41,11 +41,10 @@ class IconStaticsMonthlyFragment : Fragment() {
         // 초기화 때 이번 달의 통계를 가져오기 위해 ago 값을 설정
         val initialAgo = 0
         barStatisticsThisMonthApi(initialAgo)
-        Log.d("${initialAgo}전으로", "${initialAgo}")
+        Log.d("${initialAgo}전으로", "$initialAgo")
 
         // 버튼 클릭 시 화면 전환 함수
         setupOnClickListeners()
-
     }
 
     // 이번 달 통계
