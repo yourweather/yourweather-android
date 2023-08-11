@@ -129,6 +129,8 @@ class AnalysisFragment : Fragment() {
             ) {
                 if (response.isSuccessful) {
                     val baseResponse = response.body() // BaseResponse 객체 가져오기
+                    Log.d("baseResponse", "baseResponse: $baseResponse")
+
                     if (baseResponse != null) {
                         if (baseResponse.success) {
                             val missedInputResponse = baseResponse.result
