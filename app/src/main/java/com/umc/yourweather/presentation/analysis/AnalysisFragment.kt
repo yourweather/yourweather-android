@@ -128,31 +128,40 @@ class AnalysisFragment : Fragment() {
                 response: Response<BaseResponse<MissedInputResponse>>,
             ) {
                 if (response.isSuccessful) {
-                    val missedInputResponse = response.body()?.result // 'data'가 실제 응답 데이터를 담고 있는 필드일 경우
-                    if (missedInputResponse != null) {
-                        val localDates = missedInputResponse.localDates
-                        Log.d("Success", "localDates: $localDates")
+                    val baseResponse = response.body() // BaseResponse 객체 가져오기
+                    if (baseResponse != null) {
+                        if (baseResponse.success) {
+                            val missedInputResponse = baseResponse.result
+                            if (missedInputResponse != null) {
+                                val localDates = missedInputResponse.localDates
+                                Log.d("미입력 내역 Success", "localDates: $localDates")
 
-                        if (localDates == null) {
-                            binding.btnBell.setOnClickListener {
-                                val mFragment = AllWrittenFragment()
-                                requireActivity().supportFragmentManager.beginTransaction()
-                                    .replace(R.id.fl_content, mFragment)
-                                    .addToBackStack(null)
-                                    .commit()
+                                if (localDates.isNullOrEmpty()) {
+                                    binding.btnBell.setOnClickListener {
+                                        val mFragment = AllWrittenFragment()
+                                        requireActivity().supportFragmentManager.beginTransaction()
+                                            .replace(R.id.fl_content, mFragment)
+                                            .addToBackStack(null)
+                                            .commit()
+                                    }
+                                } else {
+                                    binding.imgBellEvent.visibility = View.VISIBLE
+                                    binding.btnBell.setOnClickListener {
+                                        val mFragment = UnwrittenDetailListFragment()
+                                        requireActivity().supportFragmentManager.beginTransaction()
+                                            .replace(R.id.fl_content, mFragment)
+                                            .addToBackStack(null)
+                                            .commit()
+                                    }
+                                }
+                            } else {
+                                Log.e("Error (null)", "Response body 비었음")
                             }
                         } else {
-                            binding.imgBellEvent.visibility = View.VISIBLE
-                            binding.btnBell.setOnClickListener {
-                                val mFragment = UnwrittenDetailListFragment()
-                                requireActivity().supportFragmentManager.beginTransaction()
-                                    .replace(R.id.fl_content, mFragment)
-                                    .addToBackStack(null)
-                                    .commit()
-                            }
+                            Log.e("API Error", "API 호출 성공, 하지만 success 값이 false입니다.")
                         }
                     } else {
-                        Log.e("Success (null)", "Response body 비었음")
+                        Log.e("Error (null)", "Response body 비었음")
                     }
                 } else {
                     val errorBody = response.errorBody()?.string()
@@ -165,6 +174,8 @@ class AnalysisFragment : Fragment() {
             }
         })
     }
+
+
 
     override fun onDestroyView() {
         super.onDestroyView()
