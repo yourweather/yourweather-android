@@ -14,6 +14,6 @@ interface LoginService {
     fun logIn(@Body request: LoginRequest): Call<BaseResponse<TokenResponse>>
 
     // 소셜 로그인
-    @POST("/api/v1/users/oauth-login")
+    @POST("api/v1/users/oauth-login")
     fun oauthLogIn(@Body request: LoginRequest): Call<BaseResponse<TokenResponse>>
 }

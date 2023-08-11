@@ -137,6 +137,58 @@ class SignIn : AppCompatActivity() {
         })
     }
 
+    private fun socialSignInApi(userEmail: String, userPw: String, platform: String) {
+        val service = RetrofitImpl.nonRetrofit.create(LoginService::class.java)
+
+        val LoginInfo = LoginRequest(userEmail, userPw)
+        service.oauthLogIn(LoginInfo).enqueue(object : Callback<BaseResponse<TokenResponse>> {
+
+            override fun onResponse(
+                call: Call<BaseResponse<TokenResponse>>,
+                response: Response<BaseResponse<TokenResponse>>,
+            ) {
+                val code = response.body()?.code
+
+                if (response.isSuccessful) {
+                    if (code == 200) {
+                        val mIntent = Intent(this@SignIn, BottomNavi::class.java)
+                        Log.d("SignInDebug", "소셜 로그인 성공~ : " + response.headers().toString())
+//                        MySharedPreferences.setUserId(this@SignIn, userEmail)
+//                        MySharedPreferences.setUserPw(this@SignIn, userPw) // 자동로그인
+                        App.token_prefs.accessToken = response.body()!!.result?.accessToken
+                        App.token_prefs.refreshToken = response.body()!!.result?.refreshToken
+                        startActivity(mIntent)
+                    } else {
+                        Log.d(
+                            "SignInDebug",
+                            "아이디 비번 틀림",
+                        )
+                        customSingInPopupWindow(
+                            this@SignIn,
+                            alertTextSignIn,
+                            binding.root,
+                            binding.btnSigninSignin,
+                        )
+                    }
+                } else {
+                    Log.d(
+                        "SignInDebug",
+                        "소셜로그인, 정보 존재하지 않음. 회원가입 필요한경우임 ${response?.toString()}",
+                    )
+                    val mIntent = Intent(this@SignIn, Nickname::class.java)
+                    mIntent.putExtra("email", userEmail)
+                    mIntent.putExtra("password", userPw)
+                    mIntent.putExtra("platform", platform)
+                    startActivity(mIntent)
+                }
+            }
+
+            override fun onFailure(call: Call<BaseResponse<TokenResponse>>, t: Throwable) {
+                Log.d("SignInDebug", "onFailure 에러: " + t.message.toString())
+            }
+        })
+    }
+
     private fun kakaoSignIn() { // 카카오 소셜로그인
         val callback: (OAuthToken?, Throwable?) -> Unit = { token, error ->
             if (error != null) {
@@ -173,11 +225,8 @@ class SignIn : AppCompatActivity() {
             } else if (user != null) {
                 userEmail = user.kakaoAccount?.email
                 userPw = user.id?.toString()
-                // val mIntent = Intent(this, SignUp::class.java)
-                // SignInApi(userEmail, userPw)
-
-                // startActivity(mIntent)
-                Toast.makeText(this@SignIn, "email : $userEmail pw : $userPw", Toast.LENGTH_LONG).show()
+                socialSignInApi(userEmail!!, userPw!!, "kakao")
+                // Toast.makeText(this@SignIn, "email : $userEmail pw : $userPw", Toast.LENGTH_LONG).show()
             }
         }
     }
@@ -192,7 +241,8 @@ class SignIn : AppCompatActivity() {
                     override fun onSuccess(result: NidProfileResponse) {
                         userEmail = result.profile?.email.toString()
                         userPw = result.profile?.id
-                        Toast.makeText(this@SignIn, "email : $userEmail pw : $userPw", Toast.LENGTH_LONG).show()
+                        // Toast.makeText(this@SignIn, "email : $userEmail pw : $userPw", Toast.LENGTH_LONG).show()
+                        socialSignInApi(userEmail!!, userPw!!, "naver")
                     }
                     override fun onError(errorCode: Int, message: String) {
                         //
@@ -231,7 +281,8 @@ class SignIn : AppCompatActivity() {
             val account = completedTask.getResult(ApiException::class.java)
             userEmail = account?.email.toString()
             userPw = account?.id.toString()
-            Toast.makeText(this@SignIn, "email : $userEmail pw : $userPw", Toast.LENGTH_LONG).show()
+            // Toast.makeText(this@SignIn, "email : $userEmail pw : $userPw", Toast.LENGTH_LONG).show()
+            socialSignInApi(userEmail!!, userPw!!, "google")
         } catch (e: ApiException) {
             Log.w("failed", "signInResult:failed code=" + e.statusCode)
         }
