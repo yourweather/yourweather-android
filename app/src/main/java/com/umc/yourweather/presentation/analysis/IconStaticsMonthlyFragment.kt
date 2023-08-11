@@ -84,7 +84,6 @@ class IconStaticsMonthlyFragment : Fragment() {
     }
 
     private fun setupOnClickListeners() {
-
         // 현재 달
         binding.tvUnwrittenTitleMonthly.text = currentMonth.toString() + "월"
 
@@ -165,8 +164,8 @@ class IconStaticsMonthlyFragment : Fragment() {
             args.putInt("ago", currentMonth - updateMonth)
             fragment.arguments = args
 
-            replaceFragment(fragment)        }
-
+            replaceFragment(fragment)
+        }
         // rain 상세 리스트 넘어가기
         binding.llRainMonthly.setOnClickListener {
             val fragment = WrittenDetailListFragmentRain()
