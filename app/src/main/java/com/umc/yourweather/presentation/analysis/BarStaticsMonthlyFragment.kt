@@ -46,20 +46,20 @@ class BarStaticsMonthlyFragment : Fragment() {
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
 
-        val increases = mapOf(
-            "맑음" to 10,
-            "다소 흐림" to 40,
-            "비" to 0,
-            "번개" to 0,
-        )
-        val decreases = mapOf(
-            "맑음" to 0,
-            "다소 흐림" to 0,
-            "비" to 15,
-            "번개" to 20,
-        )
-
-        applyWeatherTextFormatting(increases, decreases)
+//        val increases = mapOf(
+//            "맑음" to 10,
+//            "다소 흐림" to 40,
+//            "비" to 0,
+//            "번개" to 0,
+//        )
+//        val decreases = mapOf(
+//            "맑음" to 0,
+//            "다소 흐림" to 0,
+//            "비" to 15,
+//            "번개" to 20,
+//        )
+//
+//        applyWeatherTextFormatting(increases, decreases)
 
 //        val dataList = listOf(
 //            BarData("맑음", 44),
@@ -80,6 +80,7 @@ class BarStaticsMonthlyFragment : Fragment() {
 
         barStatisticsThisMonthApi()
         barStatisticsLastMonthApi()
+        weeklyComparisonApi()
     }
 
     private fun applyWeatherTextFormatting(increases: Map<String, Int>, decreases: Map<String, Int>) {
@@ -122,7 +123,11 @@ class BarStaticsMonthlyFragment : Fragment() {
             )
 
             formattedText.append("$actionText")
-            formattedText.append("했습니다.")
+            if (actionText == "변화가 없습니다.") {
+                formattedText.append("")
+            } else {
+                formattedText.append("했습니다.")
+            }
 
             view.text = formattedText
         }
@@ -308,6 +313,45 @@ class BarStaticsMonthlyFragment : Fragment() {
 
             override fun onFailure(call: Call<BaseResponse<StatisticResponse>>, t: Throwable) {
                 Log.e("지난 달 bar API Failure", "Error: ${t.message}", t)
+            }
+        })
+    }
+
+    // 월간 데이터 비교
+    private fun weeklyComparisonApi() {
+        val service = RetrofitImpl.authenticatedRetrofit.create(ReportService::class.java)
+        val call = service.monthlyComparison(ago = 1)
+
+        call.enqueue(object : Callback<BaseResponse<StatisticResponse>> {
+            override fun onResponse(
+                call: Call<BaseResponse<StatisticResponse>>,
+                response: Response<BaseResponse<StatisticResponse>>,
+            ) {
+                if (response.isSuccessful) {
+                    val statisticResponse = response.body()?.result // 'data'가 실제 응답 데이터를 담고 있는 필드일 경우
+                    if (statisticResponse != null) {
+                        Log.d("월간 데이터 비교 API Success", "Sunny: ${statisticResponse.sunny}, Cloudy: ${statisticResponse.cloudy}, Rainy: ${statisticResponse.rainy}, Lightning: ${statisticResponse.lightning}")
+
+                        val increases = mutableMapOf<String, Int>()
+                        val decreases = mutableMapOf<String, Int>()
+
+                        if (statisticResponse.sunny >= 0) increases["맑음"] = statisticResponse.sunny.toInt() else decreases["맑음"] = 0
+                        if (statisticResponse.cloudy >= 0) increases["다소 흐림"] = statisticResponse.cloudy.toInt() else decreases["다소 흐림"] = 0
+                        if (statisticResponse.rainy >= 0) increases["비"] = statisticResponse.rainy.toInt() else decreases["비"] = 15
+                        if (statisticResponse.lightning >= 0) increases["번개"] = statisticResponse.lightning.toInt() else decreases["번개"] = 20
+
+                        applyWeatherTextFormatting(increases, decreases)
+                    } else {
+                        Log.e("월간 데이터 비교 bar API Error", "Response body 비었음")
+                    }
+                } else {
+                    val errorBody = response.errorBody()?.string()
+                    Log.e("월간 데이터 비교 bar API Error", "Response Code: ${response.code()}, Error Body: $errorBody")
+                }
+            }
+
+            override fun onFailure(call: Call<BaseResponse<StatisticResponse>>, t: Throwable) {
+                Log.e("월간 데이터 비교 bar API Failure", "Error: ${t.message}", t)
             }
         })
     }
