@@ -77,7 +77,7 @@ class WrittenDetailListFragmentSun : Fragment() {
                 response: Response<BaseResponse<StatisticResponse>>,
             ) {
                 if (response.isSuccessful) {
-                    val statisticResponse = response.body()?.result // 'data'가 실제 응답 데이터를 담고 있는 필드일 경우
+                    val statisticResponse = response.body()?.result
                     if (statisticResponse != null) {
                         Log.d("${ago}개월 전 ${viewMonth}월 Success", "${viewMonth}월 디테일 Sunny: ${statisticResponse.sunny}")
                         binding.tvWrittenDetailListMonthContent.text = "맑음이 ${viewMonth}월 전체 날씨의 ${statisticResponse.sunny.toInt()}%를 차지했어요"
