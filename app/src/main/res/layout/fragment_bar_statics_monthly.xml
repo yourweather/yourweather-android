@@ -49,7 +49,6 @@
             android:gravity="top"
             android:text="7월"
             android:textSize="12dp" />
-        <!--데이터 바인딩으로 상세 달 입력 받는 것 추후 추가 필요-->
 
     </LinearLayout>
 

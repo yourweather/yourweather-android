@@ -23,6 +23,9 @@ import com.umc.yourweather.di.RetrofitImpl
 import retrofit2.Call
 import retrofit2.Callback
 import retrofit2.Response
+import java.text.SimpleDateFormat
+import java.util.Calendar
+import java.util.Locale
 
 class BarStaticsMonthlyFragment : Fragment() {
     private var _binding: FragmentBarStaticsMonthlyBinding? = null
@@ -78,9 +81,32 @@ class BarStaticsMonthlyFragment : Fragment() {
 //        bindWeatherData(dataList, binding.llAnalysisBarLastMonth, ::showBallViewLastMonth)
 //        bindWeatherData(dataList2, binding.llAnalysisBarThisMonth, ::showBallViewThisMonth)
 
+        // 지난 달, 이번 달 정확한 달 숫자
+        val previousMonth = getPreviousMonth()
+        val currentMonth = getCurrentMonth()
+        binding.tvAnalysisMonthNum.text = previousMonth
+        binding.tvAnalysisMonthThisNum.text = currentMonth
+
         barStatisticsThisMonthApi()
         barStatisticsLastMonthApi()
         weeklyComparisonApi()
+    }
+
+    // 지난 달 숫자
+    private fun getPreviousMonth(): String {
+        val calendar = Calendar.getInstance()
+        calendar.add(Calendar.MONTH, -1) // Subtract 1 month to get the previous month
+
+        val dateFormat = SimpleDateFormat("M월", Locale.getDefault())
+        return dateFormat.format(calendar.time)
+    }
+
+    // 이번 달 숫자
+    private fun getCurrentMonth(): String {
+        val calendar = Calendar.getInstance()
+
+        val dateFormat = SimpleDateFormat("M월", Locale.getDefault())
+        return dateFormat.format(calendar.time)
     }
 
     private fun applyWeatherTextFormatting(increases: Map<String, Int>, decreases: Map<String, Int>) {
