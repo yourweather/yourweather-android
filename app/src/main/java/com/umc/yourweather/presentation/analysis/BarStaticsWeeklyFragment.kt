@@ -79,8 +79,8 @@ class BarStaticsWeeklyFragment : Fragment() {
 //        bindWeatherData(dataList, binding.llAnalysisBarLastWeek, ::showBallViewLastWeek)
 //        bindWeatherData(dataList2, binding.llAnalysisBarThisWeek, ::showBallViewThisWeek)
 
-        barStaticsThisWeekApi()
-        barStaticsLastWeekApi()
+        barStatisticsThisWeekApi()
+        barStatisticsLastWeekApi()
     }
 
     // 날씨 통계 색상 변환 함수
@@ -170,7 +170,7 @@ class BarStaticsWeeklyFragment : Fragment() {
             "흐림" -> R.drawable.bg_gray_rec_cloud
             "비" -> R.drawable.bg_blue_rec_rain
             "번개" -> R.drawable.bg_darkblue_rec_round_thunder
-            else -> R.drawable.bg_gray_rec_cloud
+            else -> R.drawable.bg_darkblue_rec_round_thunder
         }
     }
 
@@ -241,7 +241,7 @@ class BarStaticsWeeklyFragment : Fragment() {
     }
 
     // 이번 주 통계
-    private fun barStaticsThisWeekApi() {
+    private fun barStatisticsThisWeekApi() {
         val service = RetrofitImpl.authenticatedRetrofit.create(ReportService::class.java)
         val call = service.weeklyStatistic(ago = 0) // 'ago'에 적절한 값을 설정해주세요
 
@@ -280,8 +280,8 @@ class BarStaticsWeeklyFragment : Fragment() {
         })
     }
 
-    // 이번 주 통계
-    private fun barStaticsLastWeekApi() {
+    // 지난 주 통계
+    private fun barStatisticsLastWeekApi() {
         val service = RetrofitImpl.authenticatedRetrofit.create(ReportService::class.java)
         val call = service.weeklyStatistic(ago = 1) // '지난 주
 

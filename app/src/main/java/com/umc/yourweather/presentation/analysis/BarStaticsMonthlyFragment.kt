@@ -6,6 +6,7 @@ import android.os.Handler
 import android.text.Spannable
 import android.text.SpannableStringBuilder
 import android.text.style.ForegroundColorSpan
+import android.util.Log
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
@@ -14,7 +15,14 @@ import androidx.core.content.ContextCompat
 import androidx.fragment.app.Fragment
 import com.umc.yourweather.R
 import com.umc.yourweather.data.entity.BarData
+import com.umc.yourweather.data.remote.response.BaseResponse
+import com.umc.yourweather.data.remote.response.StatisticResponse
+import com.umc.yourweather.data.service.ReportService
 import com.umc.yourweather.databinding.FragmentBarStaticsMonthlyBinding
+import com.umc.yourweather.di.RetrofitImpl
+import retrofit2.Call
+import retrofit2.Callback
+import retrofit2.Response
 
 class BarStaticsMonthlyFragment : Fragment() {
     private var _binding: FragmentBarStaticsMonthlyBinding? = null
@@ -53,22 +61,25 @@ class BarStaticsMonthlyFragment : Fragment() {
 
         applyWeatherTextFormatting(increases, decreases)
 
-        val dataList = listOf(
-            BarData("맑음", 44),
-            BarData("흐림", 29),
-            BarData("비", 24),
-            BarData("번개", 59),
-        )
+//        val dataList = listOf(
+//            BarData("맑음", 44),
+//            BarData("흐림", 29),
+//            BarData("비", 24),
+//            BarData("번개", 59),
+//        )
+//
+//        val dataList2 = listOf(
+//            BarData("맑음", 48),
+//            BarData("흐림", 42),
+//            BarData("비", 20),
+//            BarData("번개", 37),
+//        )
+//
+//        bindWeatherData(dataList, binding.llAnalysisBarLastMonth, ::showBallViewLastMonth)
+//        bindWeatherData(dataList2, binding.llAnalysisBarThisMonth, ::showBallViewThisMonth)
 
-        val dataList2 = listOf(
-            BarData("맑음", 48),
-            BarData("흐림", 42),
-            BarData("비", 20),
-            BarData("번개", 37),
-        )
-
-        bindWeatherData(dataList, binding.llAnalysisBarLastMonth, ::showBallViewLastMonth)
-        bindWeatherData(dataList2, binding.llAnalysisBarThisMonth, ::showBallViewThisMonth)
+        barStatisticsThisMonthApi()
+        barStatisticsLastMonthApi()
     }
 
     private fun applyWeatherTextFormatting(increases: Map<String, Int>, decreases: Map<String, Int>) {
@@ -118,23 +129,32 @@ class BarStaticsMonthlyFragment : Fragment() {
     }
 
     private fun bindWeatherData(dataList: List<BarData>, layout: LinearLayout, clickListener: (String) -> Unit) {
+        // 각 데이터 값에 해당하는 너비 계산
         val sum = dataList.sumOf { it.value }
 
         for (data in dataList) {
-            val ratio = data.value.toFloat() / sum
-            val width = (ratio * 100).toFloat()
+            val value = data.value
+            val ratio = if (sum != 0) value / sum else 0.0
+            val width: Float = (ratio.toFloat() * 100)
 
+            // 새로운 View 생성
             val view = View(requireContext())
+
+            // View의 레이아웃 파라미터 설정
             view.layoutParams = LinearLayout.LayoutParams(
                 0,
                 ViewGroup.LayoutParams.MATCH_PARENT,
                 width,
             )
 
+            // 배경 파일 적용
             val drawableRes = getDrawableResForWeather(data.label)
             view.background = ContextCompat.getDrawable(requireContext(), drawableRes)
+
+            // 레이아웃에 View 추가
             layout.addView(view)
 
+            // 클릭 리스너 설정
             view.setOnClickListener {
                 clickListener(data.label)
             }
@@ -147,7 +167,7 @@ class BarStaticsMonthlyFragment : Fragment() {
             "흐림" -> R.drawable.bg_gray_rec_cloud
             "비" -> R.drawable.bg_blue_rec_rain
             "번개" -> R.drawable.bg_darkblue_rec_round_thunder
-            else -> -1
+            else -> R.drawable.bg_darkblue_rec_round_thunder
         }
     }
     private fun showBallViewLastMonth(weatherLabel: String) {
@@ -211,6 +231,87 @@ class BarStaticsMonthlyFragment : Fragment() {
             view.visibility = View.GONE
         }, 1500) // 1.5초 후에 말풍선을 숨김
     }
+
+    // 이번 주 통계
+    private fun barStatisticsThisMonthApi() {
+        val service = RetrofitImpl.authenticatedRetrofit.create(ReportService::class.java)
+        val call = service.monthlyStatistic(ago = 0) // 이번 달
+
+        call.enqueue(object : Callback<BaseResponse<StatisticResponse>> {
+            override fun onResponse(
+                call: Call<BaseResponse<StatisticResponse>>,
+                response: Response<BaseResponse<StatisticResponse>>,
+            ) {
+                if (response.isSuccessful) {
+                    val statisticResponse = response.body()?.result // 'data'가 실제 응답 데이터를 담고 있는 필드일 경우
+                    if (statisticResponse != null) {
+                        Log.d("이번 달 bar API Success", "이번 달 Sunny: ${statisticResponse.sunny}, Cloudy: ${statisticResponse.cloudy}, Rainy: ${statisticResponse.rainy}, Lightning: ${statisticResponse.lightning}")
+
+                        // 데이터 리스트 생성
+                        val dataList = listOf(
+                            BarData("맑음", statisticResponse.sunny.toInt()),
+                            BarData("다소 흐림", statisticResponse.cloudy.toInt()),
+                            BarData("비", statisticResponse.rainy.toInt()),
+                            BarData("번개", statisticResponse.lightning.toInt()),
+                        )
+
+                        // 데이터 표시 함수 호출
+                        bindWeatherData(dataList, binding.llAnalysisBarThisMonth, ::showBallViewThisMonth)
+                    } else {
+                        Log.e("이번 달 bar API Error", "Response body 비었음")
+                    }
+                } else {
+                    val errorBody = response.errorBody()?.string()
+                    Log.e("이번 달 bar API Error", "Response Code: ${response.code()}, Error Body: $errorBody")
+                }
+            }
+
+            override fun onFailure(call: Call<BaseResponse<StatisticResponse>>, t: Throwable) {
+                Log.e("이번 달 bar API Failure", "Error: ${t.message}", t)
+            }
+        })
+    }
+
+    // 지난 주 통계
+    private fun barStatisticsLastMonthApi() {
+        val service = RetrofitImpl.authenticatedRetrofit.create(ReportService::class.java)
+        val call = service.monthlyStatistic(ago = 1) // 지난 달
+
+        call.enqueue(object : Callback<BaseResponse<StatisticResponse>> {
+            override fun onResponse(
+                call: Call<BaseResponse<StatisticResponse>>,
+                response: Response<BaseResponse<StatisticResponse>>,
+            ) {
+                if (response.isSuccessful) {
+                    val statisticResponse = response.body()?.result // 'data'가 실제 응답 데이터를 담고 있는 필드일 경우
+                    if (statisticResponse != null) {
+                        Log.d("지난 달 bar API Success", "지난 달 Sunny: ${statisticResponse.sunny}, Cloudy: ${statisticResponse.cloudy}, Rainy: ${statisticResponse.rainy}, Lightning: ${statisticResponse.lightning}")
+
+                        // 데이터 리스트 생성
+                        val dataList = listOf(
+                            BarData("맑음", statisticResponse.sunny.toInt()),
+                            BarData("다소 흐림", statisticResponse.cloudy.toInt()),
+                            BarData("비", statisticResponse.rainy.toInt()),
+                            BarData("번개", statisticResponse.lightning.toInt()),
+                        )
+
+                        // 데이터 표시 함수 호출
+                        bindWeatherData(dataList, binding.llAnalysisBarLastMonth, ::showBallViewLastMonth)
+                    } else {
+                        Log.e("지난 달 bar API Error", "Response body 비었음")
+                    }
+                } else {
+                    val errorBody = response.errorBody()?.string()
+                    Log.e("지난 달 bar API Error", "Response Code: ${response.code()}, Error Body: $errorBody")
+                }
+            }
+
+            override fun onFailure(call: Call<BaseResponse<StatisticResponse>>, t: Throwable) {
+                Log.e("지난 달 bar API Failure", "Error: ${t.message}", t)
+            }
+        })
+    }
+
     override fun onDestroyView() {
         super.onDestroyView()
         _binding = null
