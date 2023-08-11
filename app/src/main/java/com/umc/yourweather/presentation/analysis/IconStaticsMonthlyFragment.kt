@@ -84,37 +84,6 @@ class IconStaticsMonthlyFragment : Fragment() {
     }
 
     private fun setupOnClickListeners() {
-        // sun 상세 리스트 넘어가기
-        binding.llSunMonthly.setOnClickListener {
-            replaceFragment(WrittenDetailListFragmentSun())
-        }
-        binding.btnStaticsRightDetail1Monthly.setOnClickListener {
-            replaceFragment(WrittenDetailListFragmentSun())
-        }
-
-        // cloud 상세 리스트 넘어가기
-        binding.llCloudMonthly.setOnClickListener {
-            replaceFragment(WrittenDetailListFragmentCloud())
-        }
-        binding.btnStaticsRightDetail2Monthly.setOnClickListener {
-            replaceFragment(WrittenDetailListFragmentSun())
-        }
-
-        // rain 상세 리스트 넘어가기
-        binding.llRainMonthly.setOnClickListener {
-            replaceFragment(WrittenDetailListFragmentRain())
-        }
-        binding.btnStaticsRightDetail3Monthly.setOnClickListener {
-            replaceFragment(WrittenDetailListFragmentSun())
-        }
-
-        // thunder 상세 리스트 넘어가기
-        binding.llThunderMonthly.setOnClickListener {
-            replaceFragment(WrittenDetailListFragmentThunder())
-        }
-        binding.btnStaticsRightDetail4Monthly.setOnClickListener {
-            replaceFragment(WrittenDetailListFragmentSun())
-        }
 
         // 현재 달
         binding.tvUnwrittenTitleMonthly.text = currentMonth.toString() + "월"
@@ -153,6 +122,45 @@ class IconStaticsMonthlyFragment : Fragment() {
                 binding.btnStaticsRightDateMonthly.alpha = 0.5f
                 binding.btnStaticsLeftDateMonthly.alpha = 1f
             }
+        }
+
+        // sun 상세 리스트 넘어가기
+        binding.llSunMonthly.setOnClickListener {
+            val fragment = WrittenDetailListFragmentSun()
+
+            // ago 값을 인자로 전달
+            val args = Bundle()
+            args.putInt("ago", currentMonth - updateMonth)
+            fragment.arguments = args
+
+            replaceFragment(fragment)
+        }
+        binding.btnStaticsRightDetail1Monthly.setOnClickListener {
+            replaceFragment(WrittenDetailListFragmentSun())
+        }
+
+        // cloud 상세 리스트 넘어가기
+        binding.llCloudMonthly.setOnClickListener {
+            replaceFragment(WrittenDetailListFragmentCloud())
+        }
+        binding.btnStaticsRightDetail2Monthly.setOnClickListener {
+            replaceFragment(WrittenDetailListFragmentSun())
+        }
+
+        // rain 상세 리스트 넘어가기
+        binding.llRainMonthly.setOnClickListener {
+            replaceFragment(WrittenDetailListFragmentRain())
+        }
+        binding.btnStaticsRightDetail3Monthly.setOnClickListener {
+            replaceFragment(WrittenDetailListFragmentSun())
+        }
+
+        // thunder 상세 리스트 넘어가기
+        binding.llThunderMonthly.setOnClickListener {
+            replaceFragment(WrittenDetailListFragmentThunder())
+        }
+        binding.btnStaticsRightDetail4Monthly.setOnClickListener {
+            replaceFragment(WrittenDetailListFragmentSun())
         }
     }
 
