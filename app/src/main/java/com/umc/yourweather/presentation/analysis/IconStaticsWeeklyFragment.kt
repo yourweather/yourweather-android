@@ -62,6 +62,46 @@ class IconStaticsWeeklyFragment : Fragment() {
         binding.btnStaticsRightDetail4Weekly.setOnClickListener {
             replaceFragment(WrittenDetailListFragmentSunWeekly())
         }
+        // 현재 주
+        binding.tvUnwrittenTitleWeekly.text = "이번 주"
+
+        // 오른쪽 버튼 투명도 0.5로 고정
+        binding.btnStaticsRightDateWeekly.alpha = 0.5f
+
+        var updateWeek = 0 // 현재 주
+        // 과거 주로 이동
+        binding.btnStaticsLeftDateWeekly.setOnClickListener {
+            if (updateWeek < 4) {
+                updateWeek++
+                updateTitleAndFetchStatistics(updateWeek)
+            }
+            if (updateWeek == 4) {
+                binding.btnStaticsLeftDateWeekly.alpha = 0.5f
+                binding.btnStaticsRightDateWeekly.alpha = 1f
+            }
+        }
+
+        // 현재 주로 오기
+        binding.btnStaticsRightDateWeekly.setOnClickListener {
+            if (updateWeek > 0) {
+                updateWeek--
+                updateTitleAndFetchStatistics(updateWeek)
+            }
+            if (updateWeek == 0) {
+                binding.btnStaticsRightDateWeekly.alpha = 0.5f
+                binding.btnStaticsLeftDateWeekly.alpha = 1f
+            }
+        }
+
+    }
+    private fun updateTitleAndFetchStatistics(weekAgo: Int) {
+        val ago = weekAgo
+        binding.tvUnwrittenTitleWeekly.text = "${ago}주 전"
+        // barStatisticsThisWeekApi(ago)
+
+        if (ago == 0) {
+            binding.tvUnwrittenTitleWeekly.text = "이번 주"
+        }
     }
 
     private fun replaceFragment(fragment: Fragment) {
