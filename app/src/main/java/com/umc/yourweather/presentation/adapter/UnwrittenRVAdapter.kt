@@ -34,7 +34,7 @@ class UnwrittenRVAdapter(private val dataList: List<ItemUnwritten>, private val 
         RecyclerView.ViewHolder(binding.root) {
 
         fun bind(data: ItemUnwritten) {
-            binding.tvUnwrittenDetail.text = "${data.month}월 ${data.day}일 ${data.date}요일"
+            binding.tvUnwrittenDetail.text = data.formattedDate
 
             binding.btnStaticsRightDetail1.setOnClickListener {
                 val intent = Intent(context, CalendarTotalViewFragment::class.java)
