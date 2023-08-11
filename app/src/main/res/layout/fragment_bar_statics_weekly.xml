@@ -291,13 +291,12 @@
                 >
 
                 <ImageView
-                    android:id="@+id/iv_bar_statics_uparrow1"
+                    android:id="@+id/iv_bar_statics_arrow1"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_gravity="center"
                     android:layout_marginStart="50dp"
                     android:layout_marginTop="3dp"
-                    app:srcCompat="@drawable/ic_uparrow"
                     tools:layout_editor_absoluteX="32dp"
                     tools:layout_editor_absoluteY="93dp" />
 
@@ -322,13 +321,12 @@
                 >
 
                 <ImageView
-                    android:id="@+id/iv_bar_statics_uparrow2"
+                    android:id="@+id/iv_bar_statics_arrow2"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_gravity="center"
                     android:layout_marginStart="50dp"
                     android:layout_marginTop="1dp"
-                    app:srcCompat="@drawable/ic_uparrow"
                     tools:layout_editor_absoluteX="32dp"
                     tools:layout_editor_absoluteY="93dp" />
 
@@ -353,13 +351,12 @@
                 >
 
                 <ImageView
-                    android:id="@+id/iv_bar_statics_downarrow1"
+                    android:id="@+id/iv_bar_statics_arrow3"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_gravity="center"
                     android:layout_marginStart="50dp"
                     android:layout_marginTop="1dp"
-                    app:srcCompat="@drawable/ic_downarrow"
                     tools:layout_editor_absoluteX="32dp"
                     tools:layout_editor_absoluteY="93dp">
 
@@ -386,13 +383,12 @@
                 >
 
                 <ImageView
-                    android:id="@+id/iv_bar_statics_downarrow2"
+                    android:id="@+id/iv_bar_statics_arrow4"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_gravity="center"
                     android:layout_marginStart="50dp"
                     android:layout_marginBottom="1dp"
-                    app:srcCompat="@drawable/ic_downarrow"
                     tools:layout_editor_absoluteX="32dp"
                     tools:layout_editor_absoluteY="93dp">
 

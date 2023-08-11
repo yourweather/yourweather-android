@@ -114,59 +114,57 @@ class BarStaticsMonthlyFragment : Fragment() {
         val decreaseColor = "#F7931E" // Decrease color
 
         val weatherToViewMap = mapOf(
-            "맑음" to binding.tvAnalysisDetailStaticsSunny,
-            "구름 약간" to binding.tvAnalysisDetailStaticsCloudy,
-            "비" to binding.tvAnalysisDetailStaticsRainy,
-            "번개" to binding.tvAnalysisDetailStaticsThunder,
+            "맑음" to Pair(binding.tvAnalysisDetailStaticsSunny, binding.ivBarStaticsArrow1),
+            "구름 약간" to Pair(binding.tvAnalysisDetailStaticsCloudy, binding.ivBarStaticsArrow2),
+            "비" to Pair(binding.tvAnalysisDetailStaticsRainy, binding.ivBarStaticsArrow3),
+            "번개" to Pair(binding.tvAnalysisDetailStaticsThunder, binding.ivBarStaticsArrow4),
         )
 
-        for ((weather, view) in weatherToViewMap) {
+        for ((weather, viewPair) in weatherToViewMap) {
+            val (textView, imageView) = viewPair
             val increaseValue = increases[weather] ?: 0
             val decreaseValue = decreases[weather] ?: 0
 
-            if (increaseValue == 0 && decreaseValue == 0) {
-                val formattedText = SpannableStringBuilder()
-                formattedText.append(weather)
-                formattedText.append(" 비율이 동일합니다.")
-                view.text = formattedText
+            // Update text view
+            val formattedText = if (increaseValue == 0 && decreaseValue == 0) {
+                "$weather 비율이 동일합니다."
             } else {
                 val actionText = if (increaseValue > 0) "증가" else if (decreaseValue > 0) "감소" else "변화가 없습니다"
                 val changeValue = if (increaseValue > 0) increaseValue else decreaseValue
 
-                val formattedText = SpannableStringBuilder()
-                formattedText.append(weather)
-                formattedText.append(" 비율이 ")
-                val valueStart = formattedText.length
-                formattedText.append("$changeValue%")
-                formattedText.append(" ")
-
                 val color = if (increaseValue > 0) increaseColor else decreaseColor
-                formattedText.setSpan(
-                    ForegroundColorSpan(Color.parseColor(color)),
-                    valueStart,
-                    formattedText.length,
-                    Spannable.SPAN_EXCLUSIVE_INCLUSIVE,
-                )
 
-                formattedText.setSpan(
-                    ForegroundColorSpan(Color.parseColor("#000000")), // 원하는 색상으로 변경
-                    formattedText.length - 1,
-                    formattedText.length,
-                    Spannable.SPAN_EXCLUSIVE_INCLUSIVE,
-                )
-
-                formattedText.append("$actionText")
-                if (actionText == "변화가 없습니다.") {
-                    formattedText.append("")
-                } else {
-                    formattedText.append("했습니다.")
-                }
-
-                view.text = formattedText
+                val spannableText = SpannableStringBuilder()
+                    .append("$weather 비율이 ")
+                    .apply {
+                        append("$changeValue%")
+                        setSpan(
+                            ForegroundColorSpan(Color.parseColor(color)),
+                            length - changeValue.toString().length - 1,
+                            length - 1,
+                            Spannable.SPAN_EXCLUSIVE_INCLUSIVE,
+                        )
+                    }
+                    .append(" $actionText")
+                    .apply {
+                        if (actionText != "변화가 없습니다.") {
+                            append("했습니다.")
+                        }
+                    }
+                spannableText
             }
+
+            textView.text = formattedText
+
+            // Update image view
+            val arrowDrawableId = when {
+                increaseValue > 0 -> R.drawable.ic_uparrow
+                decreaseValue > 0 -> R.drawable.ic_downarrow
+                else -> R.drawable.ic_certain
+            }
+            imageView.setImageResource(arrowDrawableId)
         }
     }
-
 
     private fun bindWeatherData(dataList: List<BarData>, layout: LinearLayout, clickListener: (String) -> Unit) {
         // 각 데이터 값에 해당하는 너비 계산
@@ -272,7 +270,7 @@ class BarStaticsMonthlyFragment : Fragment() {
         }, 1500) // 1.5초 후에 말풍선을 숨김
     }
 
-    // 이번 주 통계
+    // 이번 달 통계
     private fun barStatisticsThisMonthApi() {
         val service = RetrofitImpl.authenticatedRetrofit.create(ReportService::class.java)
         val call = service.monthlyStatistic(ago = 0) // 이번 달
