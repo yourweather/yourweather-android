@@ -61,7 +61,6 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_gravity="left"
-                android:text="이다은 님의 8월 중 39%가 맑은 날씨였어요"
                 android:textColor="#2B2B2B" />
 
 
