@@ -38,17 +38,23 @@ class IconStaticsMonthlyFragment : Fragment() {
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
 
+        // 초기화 때 이번 달의 통계를 가져오기 위해 ago 값을 설정
+        val initialAgo = 0
+        barStatisticsThisMonthApi(initialAgo)
+        Log.d("${initialAgo}전으로", "${initialAgo}")
+
         // 버튼 클릭 시 화면 전환 함수
         setupOnClickListeners()
 
-        // 각 월별 통계 함수
-        barStatisticsThisMonthApi()
     }
 
     // 이번 달 통계
-    private fun barStatisticsThisMonthApi() {
+    private fun barStatisticsThisMonthApi(ago: Int) {
         val service = RetrofitImpl.authenticatedRetrofit.create(ReportService::class.java)
-        val call = service.monthlyStatistic(ago = 0) // 이번 달
+        val call = service.monthlyStatistic(ago = ago) // 이번 달
+
+        // 로그로 확인하기 위한 언제 달인지 변수
+        var viewMonth = currentMonth - ago
 
         call.enqueue(object : Callback<BaseResponse<StatisticResponse>> {
             override fun onResponse(
@@ -58,18 +64,22 @@ class IconStaticsMonthlyFragment : Fragment() {
                 if (response.isSuccessful) {
                     val statisticResponse = response.body()?.result // 'data'가 실제 응답 데이터를 담고 있는 필드일 경우
                     if (statisticResponse != null) {
-                        Log.d("월별 디테일 API Success", "월별 디테일 Sunny: ${statisticResponse.sunny}, Cloudy: ${statisticResponse.cloudy}, Rainy: ${statisticResponse.rainy}, Lightning: ${statisticResponse.lightning}")
+                        Log.d("${ago}개월 전 ${viewMonth}월 Success", "${viewMonth}월 디테일 Sunny: ${statisticResponse.sunny}, Cloudy: ${statisticResponse.cloudy}, Rainy: ${statisticResponse.rainy}, Lightning: ${statisticResponse.lightning}")
+                        binding.tvStaticIconDetailSunnyMonthly.text = "${statisticResponse.sunny.toInt()}%"
+                        binding.tvStaticIconDetailCloudyMonthly.text = "${statisticResponse.cloudy.toInt()}%"
+                        binding.tvStaticIconDetailRainyMonthly.text = "${statisticResponse.rainy.toInt()}%"
+                        binding.tvStaticIconDetailThunderMonthly.text = "${statisticResponse.lightning.toInt()}%"
                     } else {
-                        Log.e("월별 디테일 API Error", "Response body 비었음")
+                        Log.e("${ago}개월 전 디테일 API Error", "Response body 비었음")
                     }
                 } else {
                     val errorBody = response.errorBody()?.string()
-                    Log.e("월별 디테일 API Error", "Response Code: ${response.code()}, Error Body: $errorBody")
+                    Log.e("${ago}개월 전 디테일 API Error", "Response Code: ${response.code()}, Error Body: $errorBody")
                 }
             }
 
             override fun onFailure(call: Call<BaseResponse<StatisticResponse>>, t: Throwable) {
-                Log.e("월별 디테일 bar API Failure", "Error: ${t.message}", t)
+                Log.e("${ago}개월 전 디테일 bar API Failure", "Error: ${t.message}", t)
             }
         })
     }
@@ -120,6 +130,9 @@ class IconStaticsMonthlyFragment : Fragment() {
                 updateMonth--
                 binding.tvUnwrittenTitleMonthly.text = updateMonth.toString() + "월"
                 binding.btnStaticsRightDateMonthly.alpha = 1f
+                // api로 보낼 값지정
+                val ago = currentMonth - updateMonth
+                barStatisticsThisMonthApi(ago)
             }
             if (updateMonth == 1) {
                 binding.btnStaticsLeftDateMonthly.alpha = 0.5f
@@ -133,6 +146,9 @@ class IconStaticsMonthlyFragment : Fragment() {
                 updateMonth++
                 binding.tvUnwrittenTitleMonthly.text = updateMonth.toString() + "월"
                 binding.btnStaticsRightDateMonthly.alpha = 1f
+                // api로 보낼 값지정
+                val ago = currentMonth - updateMonth
+                barStatisticsThisMonthApi(ago)
             }
             if (updateMonth == currentMonth) {
                 binding.btnStaticsRightDateMonthly.alpha = 0.5f
