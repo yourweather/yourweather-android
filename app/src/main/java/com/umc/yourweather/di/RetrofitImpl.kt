@@ -2,6 +2,7 @@ package com.umc.yourweather.di
 
 import android.util.Log
 import com.umc.yourweather.BuildConfig
+import com.umc.yourweather.data.service.WeatherService
 import okhttp3.Interceptor
 import okhttp3.OkHttpClient
 import okhttp3.Response
@@ -49,6 +50,11 @@ object RetrofitImpl {
             .client(authenticatedOkHttpClient)
             .baseUrl(BASE_URL)
             .build()
+    }
+
+    // 토큰이 필요한 WeatherService
+    val weatherService: WeatherService by lazy {
+        authenticatedRetrofit.create(WeatherService::class.java)
     }
 
     // 토큰이 필요하지 않은 요청에 사용할 인터셉터
