@@ -50,7 +50,6 @@
             android:textSize="12dp"
             android:fontFamily="@font/pretendardmedium"
             android:gravity="top"/>
-        <!--데이터 바인딩으로 상세 달 입력 받는 것 추후 추가 필요-->
 
     </LinearLayout>
 
@@ -311,7 +310,6 @@
                     android:layout_marginBottom="5dp"                    android:layout_marginRight="20dp"
                     android:layout_weight="1"
                     android:gravity="left"
-                    android:text="맑음 비율이 20% 증가했습니다."
                     android:fontFamily="@font/pretendardregular"
                     android:textSize="11dp"
                     android:textColor="@color/black"/>
@@ -343,7 +341,6 @@
                     android:layout_marginBottom="4dp"
                     android:layout_weight="1"
                     android:gravity="left"
-                    android:text="다소 흐림 비율이 10% 증가했습니다."
                     android:textSize="11dp"
                     android:fontFamily="@font/pretendardregular"
                     android:textColor="@color/black"/>
@@ -376,7 +373,6 @@
                     android:layout_marginTop="4dp"
                     android:layout_marginBottom="5dp"                    android:layout_weight="1"
                     android:gravity="left"
-                    android:text="비 비율이 5% 감소했습니다."
                     android:textSize="11dp"
                     android:fontFamily="@font/pretendardregular"
                     android:textColor="@color/black"/>
@@ -411,7 +407,6 @@
                     android:layout_marginBottom="10dp"
                     android:layout_weight="1"
                     android:gravity="left"
-                    android:text="번개 비율이 10% 감소했습니다."
                     android:textSize="11dp"
                     android:fontFamily="@font/pretendardregular"
                     android:textColor="@color/black"/>
