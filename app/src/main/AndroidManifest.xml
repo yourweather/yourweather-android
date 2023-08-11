@@ -104,13 +104,16 @@
             android:exported="false" />
         <activity
             android:name=".presentation.calendardetailview.CalendarDetailviewModify1"
-            android:exported="false" />
+            android:windowSoftInputMode="adjustPan"
+            android:exported="true" />
         <activity
             android:name=".presentation.calendardetailview.CalendarDetailviewModify2"
+            android:windowSoftInputMode="adjustPan"
             android:exported="false" />
         <activity
             android:name=".presentation.calendardetailview.CalendardetailviewAlarm"
-            android:exported="false" />
+            android:theme="@style/AppTheme"
+            android:exported="true" />
         <activity
             android:name=".presentation.BottomNavi"
             android:exported="false" />

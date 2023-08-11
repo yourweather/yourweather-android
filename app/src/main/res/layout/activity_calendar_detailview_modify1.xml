@@ -14,9 +14,7 @@
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent">
-        <RelativeLayout
-            android:layout_width="match_parent"
-            android:layout_height="match_parent">
+
 
             <LinearLayout
                 android:layout_width="match_parent"
@@ -56,7 +54,7 @@
                         android:layout_height="95dp"
                         android:orientation="horizontal">
 
-                        <androidx.appcompat.widget.AppCompatButton
+                        <ImageButton
                             android:id="@+id/btn_home_sun"
                             android:layout_width="83dp"
                             android:layout_height="85dp"
@@ -70,7 +68,7 @@
                             app:layout_constraintStart_toStartOf="parent"
                             app:layout_constraintTop_toBottomOf="@+id/divider" />
 
-                        <androidx.appcompat.widget.AppCompatButton
+                        <ImageButton
                             android:id="@+id/btn_home_cloud"
                             android:layout_width="83dp"
                             android:layout_height="85dp"
@@ -82,7 +80,7 @@
                             app:layout_constraintStart_toEndOf="@+id/btn_home_sun"
                             app:layout_constraintTop_toBottomOf="@+id/divider" />
 
-                        <androidx.appcompat.widget.AppCompatButton
+                        <ImageButton
                             android:id="@+id/btn_home_rain"
                             android:layout_width="83dp"
                             android:layout_height="85dp"
@@ -94,7 +92,7 @@
                             app:layout_constraintStart_toEndOf="@+id/btn_home_cloud"
                             app:layout_constraintTop_toBottomOf="@+id/divider" />
 
-                        <androidx.appcompat.widget.AppCompatButton
+                        <ImageButton
                             android:id="@+id/btn_home_thunder"
                             android:layout_width="83dp"
                             android:layout_height="85dp"
@@ -151,7 +149,7 @@
                         app:layout_constraintVertical_bias="0.472" />
 
                     <SeekBar
-                        android:id="@+id/seekbar_home_temp"
+                        android:id="@+id/seekbar_calendar_detailview_temp"
                         android:layout_width="320dp"
                         android:layout_height="wrap_content"
                         android:layout_marginStart="41dp"
@@ -212,17 +210,17 @@
 
                 <LinearLayout
                     android:layout_width="match_parent"
-                    android:layout_height="300dp"
+                    android:layout_height="236dp"
                     android:orientation="vertical">
 
                     <TextView
-                        android:id="@+id/tv_calendar_detailview_modify1_7"
+                        android:id="@+id/tv_calendar_detailview_modify2_7"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:layout_marginStart="16dp"
-                        android:layout_marginTop="30dp"
-                        android:layout_marginEnd="250dp"
-                        android:layout_marginBottom="6dp"
+                        android:layout_marginTop="10dp"
+                        android:layout_marginEnd="266dp"
+                        android:layout_marginBottom="15dp"
                         android:fontFamily="@font/pretendardregular"
                         android:text="이다은 님의 일기"
                         android:textColor="#2B2B2B"
@@ -235,41 +233,46 @@
                         app:layout_constraintTop_toBottomOf="@+id/divider"
                         app:layout_constraintVertical_bias="0.4" />
 
-                    <RelativeLayout
-                        android:layout_width="match_parent"
-                        android:layout_height="200dp"
-                        android:padding="13dp">
+                    <androidx.cardview.widget.CardView
+                        android:id="@+id/cv_calendardetailview_modify1"
+                        android:layout_width="344dp"
+                        android:layout_height="173dp"
+                        android:layout_gravity="center"
+                        android:layout_margin="0dp"
+                        android:layout_marginStart="16dp"
+                        android:layout_marginTop="456dp"
+                        android:layout_marginEnd="26dp"
+                        app:cardBackgroundColor="#f5f5f5"
+                        app:cardCornerRadius="12dp"
+                        app:cardElevation="3dp"
+                        app:contentPadding="0dp"
+                        app:layout_constraintBottom_toBottomOf="parent"
+                        app:layout_constraintEnd_toEndOf="parent"
+                        app:layout_constraintStart_toStartOf="parent"
+                        app:layout_constraintTop_toBottomOf="@+id/tv_calendar_detailview_modify1_2">
 
-                        <androidx.cardview.widget.CardView
-                            android:id="@+id/cv_calendardetailview_modify1"
-                            android:layout_width="384dp"
-                            android:layout_height="400dp"
-                            android:layout_gravity="center"
-                            android:layout_marginStart="8dp"
-                            android:layout_marginTop="0dp"
-                            android:layout_marginEnd="0dp"
-                            android:layout_marginBottom="10dp"
-                            app:cardBackgroundColor="#f5f5f5"
-                            app:cardCornerRadius="12dp"
-                            app:cardElevation="3dp"
-                            app:contentPadding="0dp"
-                            app:layout_constraintBottom_toBottomOf="parent"
-                            app:layout_constraintEnd_toEndOf="parent"
-                            app:layout_constraintStart_toStartOf="parent">
-
+                        <RelativeLayout
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:padding="16dp">
 
                             <EditText
-                                android:id="@+id/editText"
+                                android:id="@+id/editText_modify1"
                                 android:layout_width="match_parent"
                                 android:layout_height="wrap_content"
+                                android:inputType="textMultiLine"
                                 android:background="@null"
-                                android:inputType="text"
+                                android:ellipsize="none"
+                                android:scrollbars="vertical"
+                                android:imeOptions="actionDone"
                                 android:maxLength="500" />
 
+                        </RelativeLayout>
 
-                        </androidx.cardview.widget.CardView>
-                    </RelativeLayout>
+                    </androidx.cardview.widget.CardView>
+
                 </LinearLayout>
+
             </LinearLayout>
 
 
@@ -315,7 +318,6 @@
                     app:layout_constraintTop_toBottomOf="@+id/divider" />
 
             </FrameLayout>
-        </RelativeLayout>
 
     </FrameLayout>
 
