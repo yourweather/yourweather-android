@@ -10,16 +10,21 @@ import androidx.fragment.app.Fragment
 import androidx.recyclerview.widget.LinearLayoutManager
 import com.umc.yourweather.R
 import com.umc.yourweather.data.entity.ItemWritten
+import com.umc.yourweather.data.remote.request.MemoRequest
 import com.umc.yourweather.data.remote.response.BaseResponse
+import com.umc.yourweather.data.remote.response.SpecificMemoResponse
 import com.umc.yourweather.data.remote.response.StatisticResponse
 import com.umc.yourweather.data.service.ReportService
 import com.umc.yourweather.databinding.FragmentWrittenDetailListSunBinding
 import com.umc.yourweather.di.RetrofitImpl
+import com.umc.yourweather.di.RetrofitImpl.authenticatedRetrofit
 import com.umc.yourweather.presentation.adapter.WrittenRVAdapter
 import retrofit2.Call
 import retrofit2.Callback
 import retrofit2.Response
+import java.text.SimpleDateFormat
 import java.util.Calendar
+import java.util.Locale
 
 class WrittenDetailListFragmentSun : Fragment() {
     private var _binding: FragmentWrittenDetailListSunBinding? = null
@@ -38,12 +43,6 @@ class WrittenDetailListFragmentSun : Fragment() {
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
 
-        val dataList = fetchDataFromAPI()
-
-        binding.recyclerViewDetailSun.layoutManager = LinearLayoutManager(requireContext())
-        val adapter = WrittenRVAdapter(dataList, requireContext())
-        binding.recyclerViewDetailSun.adapter = adapter
-
         binding.rlBtn1.setOnClickListener {
             navigateToAnalysisFragment()
         }
@@ -59,7 +58,10 @@ class WrittenDetailListFragmentSun : Fragment() {
         // 인자(bundle)로부터 ago 값을 가져오기
         val ago = arguments?.getInt("ago", 0) ?: 0
         iconStatisticsMonthApi(ago)
+
+        binding.recyclerViewDetailSun.layoutManager = LinearLayoutManager(requireContext())
     }
+
     // 이번 달 통계
     private fun iconStatisticsMonthApi(ago: Int) {
         val service = RetrofitImpl.authenticatedRetrofit.create(ReportService::class.java)
@@ -79,7 +81,7 @@ class WrittenDetailListFragmentSun : Fragment() {
                     if (statisticResponse != null) {
                         Log.d("${ago}개월 전 ${viewMonth}월 Success", "${viewMonth}월 디테일 Sunny: ${statisticResponse.sunny}")
                         binding.tvWrittenDetailListMonthContent.text = "맑음이 ${viewMonth}월 전체 날씨의 ${statisticResponse.sunny.toInt()}%를 차지했어요"
-
+                        fetchSpecificMemoListByWeather(viewMonth, MemoRequest.Status.SUNNY)
                     } else {
                         Log.e("${ago}개월 전 디테일 API Error", "Response body 비었음")
                     }
@@ -91,6 +93,43 @@ class WrittenDetailListFragmentSun : Fragment() {
 
             override fun onFailure(call: Call<BaseResponse<StatisticResponse>>, t: Throwable) {
                 Log.e("${ago}개월 전 디테일 bar API Failure", "Error: ${t.message}", t)
+            }
+        })
+    }
+
+    // 특정 달 sunny 리스트
+    fun fetchSpecificMemoListByWeather(month: Int, weather: MemoRequest.Status) {
+        val retrofit = authenticatedRetrofit
+        val reportService = retrofit.create(ReportService::class.java)
+
+        val call = reportService.getMonthlyReport(month, weather)
+        call.enqueue(object : Callback<BaseResponse<SpecificMemoResponse>> {
+            override fun onResponse(
+                call: Call<BaseResponse<SpecificMemoResponse>>,
+                response: Response<BaseResponse<SpecificMemoResponse>>,
+            ) {
+                if (response.isSuccessful) {
+                    val memoList = response.body()?.result?.memoList
+                    val memoListSize = memoList?.size ?: 0 // 리스트 개수
+                    binding.tvWrittenDetailListMonthNum.text = "총 ${memoListSize}회"
+                    val dataList = fetchDataFromAPI(memoList)
+
+                    // 어댑터 초기화 및 데이터 설정
+                    val adapter = WrittenRVAdapter(dataList, requireContext())
+                    binding.recyclerViewDetailSun.adapter = adapter
+
+                    memoList?.forEach { memoReportResponse ->
+                        val memoId = memoReportResponse.memoId
+                        val dateTime = memoReportResponse.dateTime
+                        Log.d("SUNNY API", "Memo ID: $memoId, Date Time: $dateTime")
+                    }
+                } else {
+                    Log.d("API call failed", "${response.code()} - ${response.message()}")
+                }
+            }
+
+            override fun onFailure(call: Call<BaseResponse<SpecificMemoResponse>>, t: Throwable) {
+                Log.d("API call failed", "${t.message}")
             }
         })
     }
@@ -111,15 +150,43 @@ class WrittenDetailListFragmentSun : Fragment() {
             .commit()
     }
 
-    private fun fetchDataFromAPI(): List<ItemWritten> {
+    // MemoReportResponse를 ItemWritten으로 변환하는 함수
+    private fun fetchDataFromAPI(memoList: List<SpecificMemoResponse.MemoReportResponse>?): List<ItemWritten> {
         val dataList = mutableListOf<ItemWritten>()
-        dataList.add(ItemWritten(8, 1, "화", "오전", 6, 10))
-        dataList.add(ItemWritten(8, 1, "화", "오전", 10, 9))
-        dataList.add(ItemWritten(8, 1, "화", "오후", 6, 30))
-        dataList.add(ItemWritten(8, 2, "수", "오전", 8, 10))
-        dataList.add(ItemWritten(8, 3, "목", "오전", 11, 42))
+
+        memoList?.forEach { memoReportResponse ->
+            val dateTime = memoReportResponse.dateTime
+            val date = SimpleDateFormat("yyyy-MM-dd'T'HH:mm:ss.SSS'Z'", Locale.getDefault()).parse(dateTime)
+            Log.d("리스트 날짜", "$date")
+            val calendar = Calendar.getInstance()
+            calendar.time = date
+
+            val itemWritten = ItemWritten(
+                calendar.get(Calendar.MONTH) + 1,
+                calendar.get(Calendar.DAY_OF_MONTH),
+                getDayOfWeek(calendar.get(Calendar.DAY_OF_WEEK)),
+                if (calendar.get(Calendar.AM_PM) == Calendar.AM) "오전" else "오후",
+                calendar.get(Calendar.HOUR),
+                calendar.get(Calendar.MINUTE),
+            )
+            dataList.add(itemWritten)
+        }
 
         return dataList
+    }
+
+    // Calendar.DAY_OF_WEEK 값을 요일 문자열로 변환하는 함수
+    private fun getDayOfWeek(dayOfWeek: Int): String {
+        return when (dayOfWeek) {
+            Calendar.SUNDAY -> "일요일"
+            Calendar.MONDAY -> "월요일"
+            Calendar.TUESDAY -> "화요일"
+            Calendar.WEDNESDAY -> "수요일"
+            Calendar.THURSDAY -> "목요일"
+            Calendar.FRIDAY -> "금요일"
+            Calendar.SATURDAY -> "토요일"
+            else -> ""
+        }
     }
     override fun onDestroyView() {
         super.onDestroyView()

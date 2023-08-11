@@ -76,7 +76,6 @@
                 android:paddingTop="4dp"
                 android:paddingRight="14dp"
                 android:paddingBottom="4dp"
-                android:text="총 5회"
                 android:textSize="10dp" />
 
         </LinearLayout>
