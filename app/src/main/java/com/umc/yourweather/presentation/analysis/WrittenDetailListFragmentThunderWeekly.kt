@@ -11,6 +11,9 @@ import com.umc.yourweather.R
 import com.umc.yourweather.data.entity.ItemWritten
 import com.umc.yourweather.databinding.FragmentWrittenDetailListThunderWeeklyBinding
 import com.umc.yourweather.presentation.adapter.WrittenRVAdapter
+import java.text.SimpleDateFormat
+import java.util.Calendar
+import java.util.Locale
 
 class WrittenDetailListFragmentThunderWeekly : Fragment() {
     private var _binding: FragmentWrittenDetailListThunderWeeklyBinding? = null
@@ -45,6 +48,30 @@ class WrittenDetailListFragmentThunderWeekly : Fragment() {
             }
         }
         requireActivity().onBackPressedDispatcher.addCallback(viewLifecycleOwner, callback)
+
+        // 인자(bundle)로부터 ago 값을 가져오기
+        val updateWeek = arguments?.getInt("updateWeek", 0) ?: 0
+        // 정확한 주 숫자
+        val getWeekText = getWeekText(updateWeek)
+        binding.tvWrittenDetailListMonthThunder.text = "이번 주(${getWeekText})의 번개 통계"
+    }
+    private fun getWeekText(updateWeek: Int): String {
+        val calendar = Calendar.getInstance()
+        calendar.add(Calendar.WEEK_OF_YEAR, -updateWeek)
+
+        val dateFormat = SimpleDateFormat("M.d", Locale.getDefault())
+
+        // Find the first day of the specified previous week (Monday)
+        while (calendar.get(Calendar.DAY_OF_WEEK) != Calendar.MONDAY) {
+            calendar.add(Calendar.DAY_OF_WEEK, -1)
+        }
+        val previousWeekStart = dateFormat.format(calendar.time)
+
+        // Find the last day of the specified previous week (Sunday)
+        calendar.add(Calendar.DAY_OF_WEEK, 6)
+        val previousWeekEnd = dateFormat.format(calendar.time)
+
+        return "$previousWeekStart ~ $previousWeekEnd"
     }
 
     override fun onDestroyView() {
