@@ -23,6 +23,9 @@ import com.umc.yourweather.di.RetrofitImpl
 import retrofit2.Call
 import retrofit2.Callback
 import retrofit2.Response
+import java.text.SimpleDateFormat
+import java.util.Calendar
+import java.util.Locale
 
 class BarStaticsWeeklyFragment : Fragment() {
     private var _binding: FragmentBarStaticsWeeklyBinding? = null
@@ -79,9 +82,52 @@ class BarStaticsWeeklyFragment : Fragment() {
 //        bindWeatherData(dataList, binding.llAnalysisBarLastWeek, ::showBallViewLastWeek)
 //        bindWeatherData(dataList2, binding.llAnalysisBarThisWeek, ::showBallViewThisWeek)
 
+        // 지난 주, 이번 주 정확한 달 숫자
+        val previousWeekText = getPreviousWeekText()
+        val currentWeekText = getCurrentWeekText()
+        binding.tvAnalysisMonthNum.text = previousWeekText
+        binding.tvAnalysisMonthThisNum.text = currentWeekText
+
         barStatisticsThisWeekApi()
         barStatisticsLastWeekApi()
         weeklyComparisonApi()
+    }
+
+    private fun getPreviousWeekText(): String {
+        val calendar = Calendar.getInstance()
+        calendar.add(Calendar.WEEK_OF_YEAR, -1)
+
+        val dateFormat = SimpleDateFormat("M.d", Locale.getDefault())
+
+        // Find the first day of the previous week (Monday)
+        while (calendar.get(Calendar.DAY_OF_WEEK) != Calendar.MONDAY) {
+            calendar.add(Calendar.DAY_OF_WEEK, -1)
+        }
+        val previousWeekStart = dateFormat.format(calendar.time)
+
+        // Find the last day of the previous week (Sunday)
+        calendar.add(Calendar.DAY_OF_WEEK, 6)
+        val previousWeekEnd = dateFormat.format(calendar.time)
+
+        return "$previousWeekStart ~ $previousWeekEnd"
+    }
+
+    private fun getCurrentWeekText(): String {
+        val calendar = Calendar.getInstance()
+
+        val dateFormat = SimpleDateFormat("M.d", Locale.getDefault())
+
+        // Find the first day of the current week (Monday)
+        while (calendar.get(Calendar.DAY_OF_WEEK) != Calendar.MONDAY) {
+            calendar.add(Calendar.DAY_OF_WEEK, -1)
+        }
+        val currentWeekStart = dateFormat.format(calendar.time)
+
+        // Find the last day of the current week (Sunday)
+        calendar.add(Calendar.DAY_OF_WEEK, 6)
+        val currentWeekEnd = dateFormat.format(calendar.time)
+
+        return "$currentWeekStart ~ $currentWeekEnd"
     }
 
     // 날씨 통계 색상 변환 함수
