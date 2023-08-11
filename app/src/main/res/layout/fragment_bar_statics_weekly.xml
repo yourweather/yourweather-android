@@ -386,7 +386,7 @@
                 >
 
                 <ImageView
-                    android:id="@+id/iv_bar_statics_arrow3"
+                    android:id="@+id/iv_bar_statics_arrow4"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_gravity="center"
