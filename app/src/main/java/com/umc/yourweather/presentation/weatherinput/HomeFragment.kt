@@ -108,9 +108,21 @@ class HomeFragment : Fragment(), HomeFragmentInteractionListener {
             Log.d("HomeFragment", "홈 온도 변경 성공: $homeResponse")
             updateMotionWeather(homeResponse.status)
             Log.d("HomeFragment", "홈 모션 변경 성공: $homeResponse")
+            updateBackgroundImage(homeResponse.status)
+            Log.d("HomeFragment", "홈 배경 변경 성공: $homeResponse")
             showHomeToast()
             Log.d("HomeFragment", "홈 토스트 출력 성공: $homeResponse")
         }
+    }
+
+    private fun updateBackgroundImage(status: Status) {
+        val backgroundImageResource = when (status) {
+            Status.SUNNY -> R.drawable.bg_home1_sun
+            Status.CLOUDY -> R.drawable.bg_home1_cloud
+            Status.RAINY -> R.drawable.bg_home1_rain
+            Status.LIGHTNING -> R.drawable.bg_home1_thunder
+        }
+        binding.bgHomeWeather.setImageResource(backgroundImageResource)
     }
 
     private fun updateMotionWeather(status: Status) {
