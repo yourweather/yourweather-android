@@ -15,6 +15,7 @@ import com.umc.yourweather.presentation.adapter.WrittenRVAdapter
 class WrittenDetailListFragmentRain : Fragment() {
     private var _binding: FragmentWrittenDetailListRainBinding? = null
     private val binding get() = _binding!!
+    private var currentMonth = monthGenerator()
 
     override fun onCreateView(
         inflater: LayoutInflater,
@@ -45,6 +46,10 @@ class WrittenDetailListFragmentRain : Fragment() {
             }
         }
         requireActivity().onBackPressedDispatcher.addCallback(viewLifecycleOwner, callback)
+
+        // 인자(bundle)로부터 ago 값을 가져오기
+        val ago = arguments?.getInt("ago", 0) ?: 0
+        iconStatisticsMonthApi(ago)
     }
 
     override fun onDestroyView() {

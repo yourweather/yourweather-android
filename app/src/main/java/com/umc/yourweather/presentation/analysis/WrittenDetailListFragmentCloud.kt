@@ -79,7 +79,7 @@ class WrittenDetailListFragmentCloud : Fragment() {
                     val statisticResponse = response.body()?.result // 'data'가 실제 응답 데이터를 담고 있는 필드일 경우
                     if (statisticResponse != null) {
                         Log.d("${ago}개월 전 ${viewMonth}월 Success", "${viewMonth}월 디테일 cloudy: ${statisticResponse.cloudy}")
-                        binding.tvWrittenDetailListMonthContent.text = "구름 약간이 ${viewMonth}월 전체 날씨의 ${statisticResponse.cloudy.toInt()}%를 차지했어요."
+                        binding.tvWrittenDetailListMonthContent.text = "구름 약간이 ${viewMonth}월 전체 날씨의 ${statisticResponse.cloudy.toInt()}%를 차지했어요"
 
                     } else {
                         Log.e("${ago}개월 전 디테일 API Error", "Response body 비었음")
