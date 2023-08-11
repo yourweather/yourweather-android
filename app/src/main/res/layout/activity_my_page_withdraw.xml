@@ -1,0 +1,321 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context=".presentation.mypage.MyPageWithdraw">
+    <FrameLayout
+        android:id="@+id/fragment_container"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent">
+
+
+
+
+        <LinearLayout
+            android:id="@+id/linearLayout1"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="80dp"
+            android:orientation="vertical"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintTop_toTopOf="parent">
+            <View
+                android:id="@+id/divider"
+                android:layout_width="match_parent"
+                android:layout_height="7dp"
+
+                android:background="#D9D9D9"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintHorizontal_bias="0.0"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toTopOf="parent" />
+
+            <ScrollView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_weight="1"
+                android:fadingEdge="none"
+                android:overScrollMode="never"
+                android:scrollbars="none">
+
+
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:orientation="vertical">
+
+                    <LinearLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_margin="10dp"
+                        android:orientation="vertical">
+                        <TextView
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_gravity="center"
+                            android:layout_marginTop="10dp"
+                            android:layout_marginBottom="20dp"
+                            android:text="유어웨더를 탈퇴하시겠어요?"
+                            android:textColor="@color/black"
+                            android:textSize="20sp"
+                            android:textStyle="bold" />
+
+                        <ImageView
+                            android:id="@+id/mypage_line"
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:src="@drawable/mypage_line" />
+
+                        <TextView
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_gravity="center"
+                            android:layout_marginTop="20dp"
+                            android:fontFamily="@font/pretendardsemibold"
+                            android:gravity="center"
+                            android:text="탈퇴 시\n 이다은 님만의 기록이 모두 사라지게 됩니다."
+                            android:textColor="#F07818"
+                            android:textFontWeight="700"
+                            android:textSize="19sp"
+                            android:textStyle="bold" />
+
+                        <LinearLayout
+                            android:layout_width="match_parent"
+                            android:layout_height="105dp"
+                            android:layout_gravity="center"
+                            android:layout_margin="10dp"
+                            android:background="@drawable/mypage_record"
+                            android:elevation="8dp"
+                            android:orientation="vertical"
+                            android:padding="20dp">
+
+                            <TextView
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:layout_marginBottom="10dp"
+                                android:text="현재까지 기록된 이다은 님의 시간별 날씨"
+                                android:textColor="#2B2B2B"
+                                android:textFontWeight="400"
+                                android:textSize="14sp"
+                                android:textStyle="bold" />
+
+                            <TextView
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:background="@drawable/mypage_record2"
+                                android:paddingLeft="20dp"
+                                android:paddingTop="4dp"
+                                android:paddingRight="20dp"
+                                android:paddingBottom="5dp"
+                                android:text="총 290개"
+                                android:textColor="#424242"
+                                android:textFontWeight="400"
+                                android:textSize="10sp" />
+                        </LinearLayout>
+
+                        <LinearLayout
+                            android:layout_width="match_parent"
+                            android:layout_height="105dp"
+                            android:layout_margin="10dp"
+                            android:background="@drawable/mypage_record"
+                            android:elevation="8dp"
+                            android:orientation="vertical"
+                            android:padding="20dp">
+
+                            <TextView
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:layout_marginBottom="10dp"
+                                android:text="현재까지 기록된 이다은 님의 일기"
+                                android:textColor="#2B2B2B"
+                                android:textFontWeight="400"
+                                android:textSize="14sp"
+                                android:textStyle="bold" />
+
+                            <TextView
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:background="@drawable/mypage_record2"
+                                android:paddingLeft="20dp"
+                                android:paddingTop="4dp"
+                                android:paddingRight="20dp"
+                                android:paddingBottom="5dp"
+                                android:text="총 200개"
+                                android:textColor="#424242"
+                                android:textFontWeight="400"
+                                android:textSize="10sp" />
+                        </LinearLayout>
+
+                        <LinearLayout
+                            android:layout_width="match_parent"
+                            android:layout_height="60dp"
+                            android:layout_margin="10dp"
+                            android:background="@drawable/mypage_record"
+                            android:elevation="8dp"
+                            android:orientation="vertical"
+                            android:padding="20dp">
+
+                            <TextView
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:text="주별, 월별 감정 통계"
+                                android:textColor="#2B2B2B"
+                                android:textFontWeight="400"
+                                android:textSize="14sp"
+                                android:textStyle="bold" />
+
+                        </LinearLayout>
+
+                        <LinearLayout
+                            android:layout_width="match_parent"
+                            android:layout_height="60dp"
+                            android:layout_marginLeft="10dp"
+                            android:layout_marginTop="10dp"
+                            android:layout_marginRight="10dp"
+                            android:layout_marginBottom="20dp"
+                            android:background="@drawable/mypage_record"
+                            android:elevation="8dp"
+                            android:orientation="vertical"
+
+                            android:padding="20dp">
+
+                            <TextView
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:text="날짜, 시간 별 기록"
+                                android:textColor="#2B2B2B"
+                                android:textFontWeight="400"
+                                android:textSize="14sp"
+                                android:textStyle="bold" />
+
+
+                        </LinearLayout>
+
+
+                        <ImageView
+                            android:id="@+id/mypage_line2"
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:layout_marginTop="16dp"
+                            android:src="@drawable/mypage_line" />
+
+                        <TextView
+                            android:layout_width="match_parent"
+                            android:layout_height="match_parent"
+                            android:layout_marginTop="29dp"
+                            android:layout_marginBottom="29dp"
+                            android:fontFamily="@font/pretendardsemibold"
+                            android:text="탈퇴 시\n이다은 님만의 감정 날씨 생성을\n
+더이상 이용하실 수 없어요."
+                            android:textAlignment="center"
+                            android:textColor="#F07818"
+                            android:textFontWeight="700"
+                            android:textSize="19sp" />
+                    </LinearLayout>
+
+                    <LinearLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="match_parent"
+                        android:orientation="vertical">
+
+                        <TextView
+                            android:layout_width="match_parent"
+                            android:layout_height="match_parent"
+                            android:background="#D9D9D9"
+                            android:fontFamily="@font/pretendardregular"
+                            android:paddingStart="28dp"
+                            android:paddingTop="25dp"
+                            android:paddingBottom="25dp"
+                            android:text="탈퇴 유의사항\n  ㆍ회원 탈퇴 후 30일 이내에 동일한 명의로 재가입 불가능\n  ㆍ유어웨더 회원탈퇴 시 모든 데이터가 삭제되며,\n     삭제된 데이터는 재가입 시에도 복구 불가능"
+                            android:textColor="#454545"
+                            android:textFontWeight="500"
+                            android:textSize="14sp" />
+
+                        <TextView
+                            android:layout_width="match_parent"
+                            android:layout_height="match_parent"
+                            android:layout_marginTop="30dp"
+                            android:layout_marginBottom="30dp"
+                            android:fontFamily="@font/pretendardsemibold"
+                            android:text="삭제된 데이터는 복구가 불가능합니다.\n
+정말 탈퇴하시겠어요?"
+                            android:textAlignment="center"
+                            android:textColor="#2B2B2B"
+                            android:textFontWeight="700"
+                            android:textSize="15sp" />
+                    </LinearLayout>
+
+                    <LinearLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:orientation="horizontal">
+
+                        <FrameLayout
+                            android:layout_width="200dp"
+                            android:layout_height="50dp">
+
+                            <ImageView
+                                android:id="@+id/imageView2"
+                                android:layout_width="180dp"
+                                android:layout_height="48dp"
+                                android:layout_marginStart="16dp"
+                                android:layout_marginEnd="19dp"
+                                android:src="@drawable/button_no" />
+
+                            <Button
+                                android:id="@+id/btn_withdrawContinue"
+                                android:layout_width="match_parent"
+                                android:layout_height="wrap_content"
+                                android:layout_marginStart="10dp"
+                                android:layout_marginTop="3dp"
+                                android:background="#00ff0000"
+                                android:minWidth="0dp"
+                                android:minHeight="0dp"
+                                android:text="그래도 탈퇴 할래요"
+                                android:textColor="#F07818"
+                                android:textSize="14sp"
+                                android:textStyle="bold" />
+                        </FrameLayout>
+
+
+                        <FrameLayout
+                            android:layout_width="200dp"
+                            android:layout_height="50dp">
+
+                            <ImageView
+                                android:id="@+id/imageView3"
+                                android:layout_width="180dp"
+                                android:layout_height="48dp"
+                                android:layout_marginStart="16dp"
+                                android:layout_marginEnd="19dp"
+                                android:src="@drawable/button_yes" />
+
+                            <Button
+                                android:id="@+id/btn_withdrawCancel"
+                                android:layout_width="match_parent"
+                                android:layout_height="wrap_content"
+                                android:layout_marginStart="9dp"
+                                android:layout_marginTop="3dp"
+                                android:layout_weight="1"
+                                android:background="#00ff0000"
+                                android:minWidth="0dp"
+                                android:minHeight="0dp"
+                                android:text="탈퇴 안 할래요"
+                                android:textColor="@color/white"
+                                android:textStyle="bold" />
+                        </FrameLayout>
+                    </LinearLayout>
+                </LinearLayout>
+
+            </ScrollView>
+
+        </LinearLayout>
+    </FrameLayout>
+
+</androidx.constraintlayout.widget.ConstraintLayout>

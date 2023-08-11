@@ -4,15 +4,10 @@ import android.app.Activity
 import android.content.Intent
 import android.os.Bundle
 import android.util.Log
-import android.view.Gravity
-import android.view.LayoutInflater
-import android.view.WindowManager
-import android.widget.TextView
 import android.widget.Toast
 import androidx.activity.result.ActivityResultLauncher
 import androidx.activity.result.contract.ActivityResultContracts
 import androidx.appcompat.app.AppCompatActivity
-import androidx.core.content.ContextCompat.startActivity
 import com.google.android.gms.auth.api.signin.GoogleSignIn
 import com.google.android.gms.auth.api.signin.GoogleSignInAccount
 import com.google.android.gms.auth.api.signin.GoogleSignInOptions
@@ -28,7 +23,6 @@ import com.navercorp.nid.oauth.OAuthLoginCallback
 import com.navercorp.nid.profile.NidProfileCallback
 import com.navercorp.nid.profile.data.NidProfileResponse
 import com.umc.yourweather.BuildConfig
-import com.umc.yourweather.R
 import com.umc.yourweather.data.remote.request.LoginRequest
 import com.umc.yourweather.data.remote.response.BaseResponse
 import com.umc.yourweather.data.remote.response.TokenResponse
@@ -37,9 +31,10 @@ import com.umc.yourweather.databinding.ActivitySignInBinding
 import com.umc.yourweather.di.App
 import com.umc.yourweather.di.RetrofitImpl
 import com.umc.yourweather.presentation.BottomNavi
-import com.umc.yourweather.util.CalendarUtils.Companion.dpToPx
 import com.umc.yourweather.util.SignUtils.Companion.KAKAOTAG
 import com.umc.yourweather.util.SignUtils.Companion.NAVERTAG
+import com.umc.yourweather.util.SignUtils.Companion.alertTextSignIn
+import com.umc.yourweather.util.SignUtils.Companion.customSingInPopupWindow
 import retrofit2.Call
 import retrofit2.Callback
 import retrofit2.Response
@@ -63,7 +58,6 @@ class SignIn : AppCompatActivity() {
 
         // 회원가입으로 이동
         binding.tvSigninBtnsignup.setOnClickListener {
-            // customToast()
             val mIntent = Intent(this, SignUp::class.java)
             startActivity(mIntent)
         }
@@ -101,28 +95,6 @@ class SignIn : AppCompatActivity() {
                 }
             }
     }
-
-    fun customToast() {
-        val inflater = LayoutInflater.from(this)
-        val layout =
-            inflater.inflate(R.layout.toast_signin, findViewById(R.id.ll_signin_toast), false)
-
-        val textViewMessage = layout.findViewById<TextView>(R.id.tv_signin_toast)
-        textViewMessage.text = "이메일 또는 비밀번호를 다시 입력해주세요"
-        val toast = Toast(applicationContext)
-
-        val params = WindowManager.LayoutParams()
-        params.width = dpToPx(this@SignIn, 297).toInt()
-        params.height = dpToPx(this@SignIn, 40).toInt()
-        params.gravity = Gravity.CENTER
-
-        toast.view?.layoutParams = params
-        toast.duration = Toast.LENGTH_SHORT // 메시지 표시 시간
-        toast.setGravity(Gravity.CENTER, 0, 0)
-        toast.view = layout
-        toast.show()
-    }
-
     private fun SignInApi(userEmail: String, userPw: String) {
         val service = RetrofitImpl.nonRetrofit.create(LoginService::class.java)
 
@@ -137,25 +109,80 @@ class SignIn : AppCompatActivity() {
 
                 if (response.isSuccessful) {
                     if (code == 200) {
+                        val mIntent = Intent(this@SignIn, BottomNavi::class.java)
                         Log.d("SignInDebug", "로그인 성공~ : " + response.headers().toString())
 //                        MySharedPreferences.setUserId(this@SignIn, userEmail)
 //                        MySharedPreferences.setUserPw(this@SignIn, userPw) // 자동로그인
                         App.token_prefs.accessToken = response.body()!!.result?.accessToken
                         App.token_prefs.refreshToken = response.body()!!.result?.refreshToken
+                        startActivity(mIntent)
                     } else {
                         Log.d(
                             "SignInDebug",
                             "아이디 비번 틀림",
                         )
-                        customToast()
+                        customSingInPopupWindow(this@SignIn, alertTextSignIn, binding.root, binding.btnSigninSignin)
                     }
                 } else {
                     Log.d(
                         "SignInDebug",
                         "onResponse 오류: ${response?.toString()}",
                     )
+                    customSingInPopupWindow(this@SignIn, alertTextSignIn, binding.root, binding.btnSigninSignin)
                 }
             }
+            override fun onFailure(call: Call<BaseResponse<TokenResponse>>, t: Throwable) {
+                Log.d("SignInDebug", "onFailure 에러: " + t.message.toString())
+            }
+        })
+    }
+
+    private fun socialSignInApi(userEmail: String, userPw: String, platform: String) {
+        val service = RetrofitImpl.nonRetrofit.create(LoginService::class.java)
+
+        val LoginInfo = LoginRequest(userEmail, userPw)
+        service.oauthLogIn(LoginInfo).enqueue(object : Callback<BaseResponse<TokenResponse>> {
+
+            override fun onResponse(
+                call: Call<BaseResponse<TokenResponse>>,
+                response: Response<BaseResponse<TokenResponse>>,
+            ) {
+                val code = response.body()?.code
+
+                if (response.isSuccessful) {
+                    if (code == 200) {
+                        val mIntent = Intent(this@SignIn, BottomNavi::class.java)
+                        Log.d("SignInDebug", "소셜 로그인 성공~ : " + response.headers().toString())
+//                        MySharedPreferences.setUserId(this@SignIn, userEmail)
+//                        MySharedPreferences.setUserPw(this@SignIn, userPw) // 자동로그인
+                        App.token_prefs.accessToken = response.body()!!.result?.accessToken
+                        App.token_prefs.refreshToken = response.body()!!.result?.refreshToken
+                        startActivity(mIntent)
+                    } else {
+                        Log.d(
+                            "SignInDebug",
+                            "아이디 비번 틀림",
+                        )
+                        customSingInPopupWindow(
+                            this@SignIn,
+                            alertTextSignIn,
+                            binding.root,
+                            binding.btnSigninSignin,
+                        )
+                    }
+                } else {
+                    Log.d(
+                        "SignInDebug",
+                        "소셜로그인, 정보 존재하지 않음. 회원가입 필요한경우임 ${response?.toString()}",
+                    )
+                    val mIntent = Intent(this@SignIn, Nickname::class.java)
+                    mIntent.putExtra("email", userEmail)
+                    mIntent.putExtra("password", userPw)
+                    mIntent.putExtra("platform", platform)
+                    startActivity(mIntent)
+                }
+            }
+
             override fun onFailure(call: Call<BaseResponse<TokenResponse>>, t: Throwable) {
                 Log.d("SignInDebug", "onFailure 에러: " + t.message.toString())
             }
@@ -198,11 +225,8 @@ class SignIn : AppCompatActivity() {
             } else if (user != null) {
                 userEmail = user.kakaoAccount?.email
                 userPw = user.id?.toString()
-                // val mIntent = Intent(this, SignUp::class.java)
-                // SignInApi(userEmail, userPw)
-
-                // startActivity(mIntent)
-                Toast.makeText(this@SignIn, "email : $userEmail pw : $userPw", Toast.LENGTH_LONG).show()
+                socialSignInApi(userEmail!!, userPw!!, "kakao")
+                // Toast.makeText(this@SignIn, "email : $userEmail pw : $userPw", Toast.LENGTH_LONG).show()
             }
         }
     }
@@ -217,7 +241,8 @@ class SignIn : AppCompatActivity() {
                     override fun onSuccess(result: NidProfileResponse) {
                         userEmail = result.profile?.email.toString()
                         userPw = result.profile?.id
-                        Toast.makeText(this@SignIn, "email : $userEmail pw : $userPw", Toast.LENGTH_LONG).show()
+                        // Toast.makeText(this@SignIn, "email : $userEmail pw : $userPw", Toast.LENGTH_LONG).show()
+                        socialSignInApi(userEmail!!, userPw!!, "naver")
                     }
                     override fun onError(errorCode: Int, message: String) {
                         //
@@ -256,7 +281,8 @@ class SignIn : AppCompatActivity() {
             val account = completedTask.getResult(ApiException::class.java)
             userEmail = account?.email.toString()
             userPw = account?.id.toString()
-            Toast.makeText(this@SignIn, "email : $userEmail pw : $userPw", Toast.LENGTH_LONG).show()
+            // Toast.makeText(this@SignIn, "email : $userEmail pw : $userPw", Toast.LENGTH_LONG).show()
+            socialSignInApi(userEmail!!, userPw!!, "google")
         } catch (e: ApiException) {
             Log.w("failed", "signInResult:failed code=" + e.statusCode)
         }
