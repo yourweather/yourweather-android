@@ -33,7 +33,7 @@ import com.umc.yourweather.di.RetrofitImpl
 import com.umc.yourweather.presentation.BottomNavi
 import com.umc.yourweather.util.SignUtils.Companion.KAKAOTAG
 import com.umc.yourweather.util.SignUtils.Companion.NAVERTAG
-import com.umc.yourweather.util.SignUtils.Companion.customSingInToast
+import com.umc.yourweather.util.SignUtils.Companion.customSingInPopupWindow
 import retrofit2.Call
 import retrofit2.Callback
 import retrofit2.Response
@@ -120,7 +120,7 @@ class SignIn : AppCompatActivity() {
                             "SignInDebug",
                             "아이디 비번 틀림",
                         )
-                        customSingInToast(this@SignIn, binding.root, binding.btnSigninSignin)
+                        customSingInPopupWindow(this@SignIn, binding.root, binding.btnSigninSignin)
                     }
                 } else {
                     Log.d(

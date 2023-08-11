@@ -28,7 +28,7 @@ class SignUtils {
 //            }
 //        }
 
-        fun customSingInToast(context: Context, parentView: View, button: AppCompatButton) {
+        fun customSingInPopupWindow(context: Context, parentView: View, button: AppCompatButton) {
             val popupView =
                 LayoutInflater.from(context).inflate(R.layout.toast_signin, null)
 
