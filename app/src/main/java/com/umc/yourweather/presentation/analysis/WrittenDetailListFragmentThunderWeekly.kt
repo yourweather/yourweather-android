@@ -53,7 +53,15 @@ class WrittenDetailListFragmentThunderWeekly : Fragment() {
         val updateWeek = arguments?.getInt("updateWeek", 0) ?: 0
         // 정확한 주 숫자
         val getWeekText = getWeekText(updateWeek)
-        binding.tvWrittenDetailListMonthThunder.text = "이번 주(${getWeekText})의 번개 통계"
+        // updateWeek에 따른 주차 텍스트 분기문
+        val weekTitle = when (updateWeek) {
+            0 -> "이번 주"
+            1 -> "1주 전"
+            2 -> "2주 전"
+            3 -> "3주 전"
+            else -> "$updateWeek 주 전" // 4주 이상 전의 경우
+        }
+        binding.tvWrittenDetailListMonthThunder.text = "$weekTitle (${getWeekText})의 번개 통계"
     }
     private fun getWeekText(updateWeek: Int): String {
         val calendar = Calendar.getInstance()
