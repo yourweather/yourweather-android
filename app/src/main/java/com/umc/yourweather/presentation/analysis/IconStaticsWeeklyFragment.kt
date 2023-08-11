@@ -88,6 +88,7 @@ class IconStaticsWeeklyFragment : Fragment() {
             if (updateWeek < 4) {
                 updateWeek++
                 updateTitleAndFetchStatistics(updateWeek)
+                binding.btnStaticsRightDateWeekly.alpha = 1f
             }
             if (updateWeek == 4) {
                 binding.btnStaticsLeftDateWeekly.alpha = 0.5f
