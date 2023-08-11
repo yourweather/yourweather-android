@@ -180,10 +180,8 @@
 
     <LinearLayout
         android:id="@+id/linearLayout"
-        android:layout_width="wrap_content"
+        android:layout_width="0dp"
         android:layout_height="wrap_content"
-        android:layout_marginStart="81dp"
-        android:layout_marginEnd="54dp"
         android:layout_marginBottom="40dp"
         android:gravity="center"
         android:orientation="horizontal"
