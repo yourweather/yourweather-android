@@ -67,7 +67,7 @@ class WrittenDetailListFragmentSun : Fragment() {
 
         // 로그로 확인하기 위한 언제 달인지 변수
         var viewMonth = currentMonth - ago
-        binding.tvWrittenDetailListMonthSun.text = "${viewMonth}월 맑음"
+        binding.tvWrittenDetailListMonthSun.text = "${viewMonth}월 맑음 통계"
 
         call.enqueue(object : Callback<BaseResponse<StatisticResponse>> {
             override fun onResponse(
@@ -78,7 +78,7 @@ class WrittenDetailListFragmentSun : Fragment() {
                     val statisticResponse = response.body()?.result // 'data'가 실제 응답 데이터를 담고 있는 필드일 경우
                     if (statisticResponse != null) {
                         Log.d("${ago}개월 전 ${viewMonth}월 Success", "${viewMonth}월 디테일 Sunny: ${statisticResponse.sunny}")
-                        binding.tvWrittenDetailListMonthContent.text = "이다은 님의 ${viewMonth}월 중 ${statisticResponse.sunny.toInt()}%가 맑은 날씨였어요"
+                        binding.tvWrittenDetailListMonthContent.text = "맑음이 ${viewMonth}월 전체 날씨의 ${statisticResponse.sunny.toInt()}%를 차지했어요"
 
                     } else {
                         Log.e("${ago}개월 전 디테일 API Error", "Response body 비었음")
