@@ -2,14 +2,15 @@
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     android:id="@+id/ll_signin_toast"
-    android:layout_width="297dp"
-    android:layout_height="40dp">
+    android:layout_width="wrap_content"
+    android:layout_height="wrap_content">
 
     <TextView
         android:id="@+id/tv_signin_toast"
-        android:layout_width="297dp"
-        android:layout_height="40dp"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
         android:background="@drawable/bg_gray_f2_fill_10_rect"
+        android:fontFamily="@font/pretendardsemibold"
         android:gravity="center"
         android:textColor="#CB443D"
         android:textSize="12dp">

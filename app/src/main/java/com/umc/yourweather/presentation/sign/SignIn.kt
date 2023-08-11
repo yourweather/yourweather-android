@@ -4,15 +4,10 @@ import android.app.Activity
 import android.content.Intent
 import android.os.Bundle
 import android.util.Log
-import android.view.Gravity
-import android.view.LayoutInflater
-import android.view.WindowManager
-import android.widget.TextView
 import android.widget.Toast
 import androidx.activity.result.ActivityResultLauncher
 import androidx.activity.result.contract.ActivityResultContracts
 import androidx.appcompat.app.AppCompatActivity
-import androidx.core.content.ContextCompat.startActivity
 import com.google.android.gms.auth.api.signin.GoogleSignIn
 import com.google.android.gms.auth.api.signin.GoogleSignInAccount
 import com.google.android.gms.auth.api.signin.GoogleSignInOptions
@@ -28,7 +23,6 @@ import com.navercorp.nid.oauth.OAuthLoginCallback
 import com.navercorp.nid.profile.NidProfileCallback
 import com.navercorp.nid.profile.data.NidProfileResponse
 import com.umc.yourweather.BuildConfig
-import com.umc.yourweather.R
 import com.umc.yourweather.data.remote.request.LoginRequest
 import com.umc.yourweather.data.remote.response.BaseResponse
 import com.umc.yourweather.data.remote.response.TokenResponse
@@ -37,9 +31,9 @@ import com.umc.yourweather.databinding.ActivitySignInBinding
 import com.umc.yourweather.di.App
 import com.umc.yourweather.di.RetrofitImpl
 import com.umc.yourweather.presentation.BottomNavi
-import com.umc.yourweather.util.CalendarUtils.Companion.dpToPx
 import com.umc.yourweather.util.SignUtils.Companion.KAKAOTAG
 import com.umc.yourweather.util.SignUtils.Companion.NAVERTAG
+import com.umc.yourweather.util.SignUtils.Companion.customSingInToast
 import retrofit2.Call
 import retrofit2.Callback
 import retrofit2.Response
@@ -63,7 +57,6 @@ class SignIn : AppCompatActivity() {
 
         // 회원가입으로 이동
         binding.tvSigninBtnsignup.setOnClickListener {
-            // customToast()
             val mIntent = Intent(this, SignUp::class.java)
             startActivity(mIntent)
         }
@@ -101,28 +94,6 @@ class SignIn : AppCompatActivity() {
                 }
             }
     }
-
-    fun customToast() {
-        val inflater = LayoutInflater.from(this)
-        val layout =
-            inflater.inflate(R.layout.toast_signin, findViewById(R.id.ll_signin_toast), false)
-
-        val textViewMessage = layout.findViewById<TextView>(R.id.tv_signin_toast)
-        textViewMessage.text = "이메일 또는 비밀번호를 다시 입력해주세요"
-        val toast = Toast(applicationContext)
-
-        val params = WindowManager.LayoutParams()
-        params.width = dpToPx(this@SignIn, 297).toInt()
-        params.height = dpToPx(this@SignIn, 40).toInt()
-        params.gravity = Gravity.CENTER
-
-        toast.view?.layoutParams = params
-        toast.duration = Toast.LENGTH_SHORT // 메시지 표시 시간
-        toast.setGravity(Gravity.CENTER, 0, 0)
-        toast.view = layout
-        toast.show()
-    }
-
     private fun SignInApi(userEmail: String, userPw: String) {
         val service = RetrofitImpl.nonRetrofit.create(LoginService::class.java)
 
@@ -149,7 +120,7 @@ class SignIn : AppCompatActivity() {
                             "SignInDebug",
                             "아이디 비번 틀림",
                         )
-                        customToast()
+                        customSingInToast(this@SignIn, binding.root, binding.btnSigninSignin)
                     }
                 } else {
                     Log.d(
