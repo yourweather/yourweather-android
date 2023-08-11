@@ -45,37 +45,7 @@ class IconStaticsWeeklyFragment : Fragment() {
     }
 
     private fun setupOnClickListeners() {
-        // sun 상세 리스트 넘어가기
-        binding.llSunWeekly.setOnClickListener {
-            replaceFragment(WrittenDetailListFragmentSunWeekly())
-        }
-        binding.btnStaticsRightDetail1Weekly.setOnClickListener {
-            replaceFragment(WrittenDetailListFragmentSunWeekly())
-        }
 
-        // cloud 상세 리스트 넘어가기
-        binding.llCloudWeekly.setOnClickListener {
-            replaceFragment(WrittenDetailListFragmentCloudWeekly())
-        }
-        binding.btnStaticsRightDetail2Weekly.setOnClickListener {
-            replaceFragment(WrittenDetailListFragmentSunWeekly())
-        }
-
-        // rain 상세 리스트 넘어가기
-        binding.llRainWeekly.setOnClickListener {
-            replaceFragment(WrittenDetailListFragmentRainWeekly())
-        }
-        binding.btnStaticsRightDetail3Weekly.setOnClickListener {
-            replaceFragment(WrittenDetailListFragmentSunWeekly())
-        }
-
-        // thunder 상세 리스트 넘어가기
-        binding.llThunderWeekly.setOnClickListener {
-            replaceFragment(WrittenDetailListFragmentThunderWeekly())
-        }
-        binding.btnStaticsRightDetail4Weekly.setOnClickListener {
-            replaceFragment(WrittenDetailListFragmentSunWeekly())
-        }
         // 현재 주
         binding.tvUnwrittenTitleWeekly.text = "이번 주"
 
@@ -106,6 +76,92 @@ class IconStaticsWeeklyFragment : Fragment() {
                 binding.btnStaticsRightDateWeekly.alpha = 0.5f
                 binding.btnStaticsLeftDateWeekly.alpha = 1f
             }
+        }
+        // sun 상세 리스트 넘어가기
+        binding.llSunWeekly.setOnClickListener {
+            val fragment = WrittenDetailListFragmentSunWeekly()
+
+            // ago 값을 인자로 전달
+            val args = Bundle()
+            args.putInt("updateWeek", updateWeek)
+            fragment.arguments = args
+
+            replaceFragment(fragment)
+        }
+        binding.btnStaticsRightDetail1Weekly.setOnClickListener {
+            val fragment = WrittenDetailListFragmentSunWeekly()
+
+            // ago 값을 인자로 전달
+            val args = Bundle()
+            args.putInt("updateWeek", updateWeek)
+            fragment.arguments = args
+
+            replaceFragment(fragment)        }
+
+        // cloud 상세 리스트 넘어가기
+        binding.llCloudWeekly.setOnClickListener {
+            val fragment = WrittenDetailListFragmentCloudWeekly()
+
+            // ago 값을 인자로 전달
+            val args = Bundle()
+            args.putInt("updateWeek", updateWeek)
+            fragment.arguments = args
+
+            replaceFragment(fragment)
+        }
+        binding.btnStaticsRightDetail2Weekly.setOnClickListener {
+            val fragment = WrittenDetailListFragmentCloudWeekly()
+
+            // ago 값을 인자로 전달
+            val args = Bundle()
+            args.putInt("updateWeek", updateWeek)
+            fragment.arguments = args
+
+            replaceFragment(fragment)
+        }
+
+        // rain 상세 리스트 넘어가기
+        binding.llRainWeekly.setOnClickListener {
+            val fragment = WrittenDetailListFragmentRainWeekly()
+
+            // ago 값을 인자로 전달
+            val args = Bundle()
+            args.putInt("updateWeek", updateWeek)
+            fragment.arguments = args
+
+            replaceFragment(fragment)
+        }
+        binding.btnStaticsRightDetail3Weekly.setOnClickListener {
+            val fragment = WrittenDetailListFragmentRainWeekly()
+
+            // ago 값을 인자로 전달
+            val args = Bundle()
+            args.putInt("updateWeek", updateWeek)
+            fragment.arguments = args
+
+            replaceFragment(fragment)
+        }
+
+        // thunder 상세 리스트 넘어가기
+        binding.llThunderWeekly.setOnClickListener {
+            val fragment = WrittenDetailListFragmentThunderWeekly()
+
+            // ago 값을 인자로 전달
+            val args = Bundle()
+            args.putInt("updateWeek", updateWeek)
+            fragment.arguments = args
+
+            replaceFragment(fragment)
+        }
+        binding.btnStaticsRightDetail4Weekly.setOnClickListener {
+            val fragment = WrittenDetailListFragmentThunderWeekly()
+
+            // ago 값을 인자로 전달
+            val args = Bundle()
+            args.putInt("updateWeek", updateWeek)
+            fragment.arguments = args
+
+            replaceFragment(fragment)
         }
     }
     private fun StatisticsWeekApi(ago: Int) {
