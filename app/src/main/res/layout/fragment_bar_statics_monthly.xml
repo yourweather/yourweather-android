@@ -313,7 +313,6 @@
                     android:layout_weight="1"
                     android:fontFamily="@font/pretendardregular"
                     android:gravity="left"
-                    android:text="맑음 비율이 20% 증가했습니다."
                     android:textSize="11dp"
                     android:textColor="@color/black"/>
             </LinearLayout>
@@ -344,7 +343,6 @@
                     android:layout_weight="1"
                     android:fontFamily="@font/pretendardregular"
                     android:gravity="left"
-                    android:text="다소 흐림 비율이 10% 증가했습니다."
                     android:textSize="11dp"
                     android:textColor="@color/black"/>
             </LinearLayout>
@@ -377,7 +375,6 @@
                     android:layout_weight="1"
                     android:fontFamily="@font/pretendardregular"
                     android:gravity="left"
-                    android:text="비 비율이 5% 감소했습니다."
                     android:textSize="11dp"
                     android:textColor="@color/black"/>
             </LinearLayout>
@@ -411,7 +408,6 @@
                     android:layout_weight="1"
                     android:fontFamily="@font/pretendardregular"
                     android:gravity="left"
-                    android:text="번개 비율이 10% 감소했습니다."
                     android:textSize="11dp"
                     android:textColor="@color/black"/>
             </LinearLayout>
