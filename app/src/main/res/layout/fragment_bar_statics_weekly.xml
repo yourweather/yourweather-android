@@ -291,7 +291,7 @@
                 >
 
                 <ImageView
-                    android:id="@+id/iv_bar_statics_uparrow1"
+                    android:id="@+id/iv_bar_statics_arrow1"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_gravity="center"
@@ -322,7 +322,7 @@
                 >
 
                 <ImageView
-                    android:id="@+id/iv_bar_statics_uparrow2"
+                    android:id="@+id/iv_bar_statics_arrow2"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_gravity="center"
@@ -353,7 +353,7 @@
                 >
 
                 <ImageView
-                    android:id="@+id/iv_bar_statics_downarrow1"
+                    android:id="@+id/iv_bar_statics_arrow3"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_gravity="center"
@@ -386,7 +386,7 @@
                 >
 
                 <ImageView
-                    android:id="@+id/iv_bar_statics_downarrow2"
+                    android:id="@+id/iv_bar_statics_arrow3"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_gravity="center"
