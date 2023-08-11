@@ -6,6 +6,7 @@ import android.os.Handler
 import android.text.Spannable
 import android.text.SpannableStringBuilder
 import android.text.style.ForegroundColorSpan
+import android.util.Log
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
@@ -14,7 +15,14 @@ import androidx.core.content.ContextCompat
 import androidx.fragment.app.Fragment
 import com.umc.yourweather.R
 import com.umc.yourweather.data.entity.BarData
+import com.umc.yourweather.data.remote.response.BaseResponse
+import com.umc.yourweather.data.remote.response.StatisticResponse
+import com.umc.yourweather.data.service.ReportService
 import com.umc.yourweather.databinding.FragmentBarStaticsWeeklyBinding
+import com.umc.yourweather.di.RetrofitImpl
+import retrofit2.Call
+import retrofit2.Callback
+import retrofit2.Response
 
 class BarStaticsWeeklyFragment : Fragment() {
     private var _binding: FragmentBarStaticsWeeklyBinding? = null
@@ -54,23 +62,25 @@ class BarStaticsWeeklyFragment : Fragment() {
         applyWeatherTextFormatting(increases, decreases)
 
 
-        // 지난 주 데이터 리스트 생성
-        val dataList = listOf(
-            BarData("맑음", 44),
-            BarData("흐림", 60),
-            BarData("비", 40),
-            BarData("번개", 100),
-        )
-        // 이번 주 데이터 리스트 생성
-        val dataList2 = listOf(
-            BarData("맑음", 52),
-            BarData("흐림", 66),
-            BarData("비", 38),
-            BarData("번개", 90),
-        )
+//        // 지난 주 데이터 리스트 생성
+//        val dataList = listOf(
+//            BarData("맑음", 44),
+//            BarData("흐림", 60),
+//            BarData("비", 40),
+//            BarData("번개", 100),
+//        )
+//        // 이번 주 데이터 리스트 생성
+//        val dataList2 = listOf(
+//            BarData("맑음", 52),
+//            BarData("흐림", 66),
+//            BarData("비", 38),
+//            BarData("번개", 90),
+//        )
+//
+//        bindWeatherData(dataList, binding.llAnalysisBarLastWeek, ::showBallViewLastWeek)
+//        bindWeatherData(dataList2, binding.llAnalysisBarThisWeek, ::showBallViewThisWeek)
 
-        bindWeatherData(dataList, binding.llAnalysisBarLastWeek, ::showBallViewLastWeek)
-        bindWeatherData(dataList2, binding.llAnalysisBarThisWeek, ::showBallViewThisWeek)
+        barStaticsWeekApi()
     }
 
     // 날씨 통계 색상 변환 함수
@@ -125,26 +135,34 @@ class BarStaticsWeeklyFragment : Fragment() {
         val sum = dataList.sumOf { it.value }
 
         for (data in dataList) {
-            val ratio = data.value.toFloat() / sum
-            val width = (ratio * 100).toFloat()
+            val value = data.value
+            val ratio = if (sum != 0) value / sum else 0.0
+            val width: Float = (ratio.toFloat() * 100)
 
+            // 새로운 View 생성
             val view = View(requireContext())
+
+            // View의 레이아웃 파라미터 설정
             view.layoutParams = LinearLayout.LayoutParams(
                 0,
                 ViewGroup.LayoutParams.MATCH_PARENT,
-                width,
+                width
             )
 
             // 배경 파일 적용
             val drawableRes = getDrawableResForWeather(data.label)
             view.background = ContextCompat.getDrawable(requireContext(), drawableRes)
+
+            // 레이아웃에 View 추가
             layout.addView(view)
 
+            // 클릭 리스너 설정
             view.setOnClickListener {
                 clickListener(data.label)
             }
         }
     }
+
 
     // 각 날씨별 배경 파일 지정
     private fun getDrawableResForWeather(weatherLabel: String): Int {
@@ -222,6 +240,49 @@ class BarStaticsWeeklyFragment : Fragment() {
             view.visibility = View.GONE
         }, 1500) // 1.5초 후에 말풍선을 숨김
     }
+
+
+    private fun barStaticsWeekApi() {
+        val service = RetrofitImpl.authenticatedRetrofit.create(ReportService::class.java)
+        val call = service.weeklyStatistic(ago = 0) // 'ago'에 적절한 값을 설정해주세요
+
+        call.enqueue(object : Callback<BaseResponse<StatisticResponse>> {
+            override fun onResponse(
+                call: Call<BaseResponse<StatisticResponse>>,
+                response: Response<BaseResponse<StatisticResponse>>
+            ) {
+                if (response.isSuccessful) {
+                    val statisticResponse = response.body()?.result // 'data'가 실제 응답 데이터를 담고 있는 필드일 경우
+                    if (statisticResponse != null) {
+                        Log.d("API Success", "Sunny: ${statisticResponse.sunny}, Cloudy: ${statisticResponse.cloudy}, Rainy: ${statisticResponse.rainy}, Lightning: ${statisticResponse.lightning}")
+
+                        // 데이터 리스트 생성
+                        val dataList2 = listOf(
+                            BarData("맑음", statisticResponse.sunny.toInt()),
+                            BarData("다소 흐림", statisticResponse.cloudy.toInt()),
+                            BarData("비", statisticResponse.rainy.toInt()),
+                            BarData("번개", statisticResponse.lightning.toInt()),
+                        )
+
+                        // 데이터 표시 함수 호출
+                        bindWeatherData(dataList2, binding.llAnalysisBarThisWeek, ::showBallViewThisWeek)
+                    } else {
+                        Log.e("barStaticsWeekApi Error", "Response body 비었음")
+                    }
+                } else {
+                    val errorBody = response.errorBody()?.string()
+                    Log.e("barStaticsWeekApi Error", "Response Code: ${response.code()}, Error Body: $errorBody")
+                }
+            }
+
+            override fun onFailure(call: Call<BaseResponse<StatisticResponse>>, t: Throwable) {
+                Log.e("barStaticsWeekApi Failure", "Error: ${t.message}", t)
+            }
+        })
+    }
+
+
+
     override fun onDestroyView() {
         super.onDestroyView()
         _binding = null
