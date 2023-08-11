@@ -48,13 +48,13 @@ class BarStaticsWeeklyFragment : Fragment() {
         // 날씨 통계 색상 변환 함수 데이터
         val increases = mapOf(
             "맑음" to 10,
-            "다소 흐림" to 40,
+            "구름 약간" to 40,
             "비" to 0,
             "번개" to 0,
         )
         val decreases = mapOf(
             "맑음" to 0,
-            "다소 흐림" to 0,
+            "구름 약간" to 0,
             "비" to 15,
             "번개" to 20,
         )
@@ -91,7 +91,7 @@ class BarStaticsWeeklyFragment : Fragment() {
 
         val weatherToViewMap = mapOf(
             "맑음" to binding.tvAnalysisDetailStaticsSunny,
-            "다소 흐림" to binding.tvAnalysisDetailStaticsCloudy,
+            "구름 약간" to binding.tvAnalysisDetailStaticsCloudy,
             "비" to binding.tvAnalysisDetailStaticsRainy,
             "번개" to binding.tvAnalysisDetailStaticsThunder,
         )
@@ -263,7 +263,7 @@ class BarStaticsWeeklyFragment : Fragment() {
                         // 데이터 리스트 생성
                         val dataList = listOf(
                             BarData("맑음", statisticResponse.sunny.toInt()),
-                            BarData("다소 흐림", statisticResponse.cloudy.toInt()),
+                            BarData("구름 약간", statisticResponse.cloudy.toInt()),
                             BarData("비", statisticResponse.rainy.toInt()),
                             BarData("번개", statisticResponse.lightning.toInt()),
                         )
@@ -303,7 +303,7 @@ class BarStaticsWeeklyFragment : Fragment() {
                         // 데이터 리스트 생성
                         val dataList = listOf(
                             BarData("맑음", statisticResponse.sunny.toInt()),
-                            BarData("다소 흐림", statisticResponse.cloudy.toInt()),
+                            BarData("구름 약간", statisticResponse.cloudy.toInt()),
                             BarData("비", statisticResponse.rainy.toInt()),
                             BarData("번개", statisticResponse.lightning.toInt()),
                         )
@@ -344,7 +344,7 @@ class BarStaticsWeeklyFragment : Fragment() {
                         val decreases = mutableMapOf<String, Int>()
 
                         if (statisticResponse.sunny >= 0) increases["맑음"] = statisticResponse.sunny.toInt() else decreases["맑음"] = 0
-                        if (statisticResponse.cloudy >= 0) increases["다소 흐림"] = statisticResponse.cloudy.toInt() else decreases["다소 흐림"] = 0
+                        if (statisticResponse.cloudy >= 0) increases["구름 약간"] = statisticResponse.cloudy.toInt() else decreases["구름 약간"] = 0
                         if (statisticResponse.rainy >= 0) increases["비"] = statisticResponse.rainy.toInt() else decreases["비"] = 15
                         if (statisticResponse.lightning >= 0) increases["번개"] = statisticResponse.lightning.toInt() else decreases["번개"] = 20
 
