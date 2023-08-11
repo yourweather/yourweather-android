@@ -61,7 +61,6 @@ class BarStaticsWeeklyFragment : Fragment() {
 
         applyWeatherTextFormatting(increases, decreases)
 
-
 //        // 지난 주 데이터 리스트 생성
 //        val dataList = listOf(
 //            BarData("맑음", 44),
@@ -80,7 +79,8 @@ class BarStaticsWeeklyFragment : Fragment() {
 //        bindWeatherData(dataList, binding.llAnalysisBarLastWeek, ::showBallViewLastWeek)
 //        bindWeatherData(dataList2, binding.llAnalysisBarThisWeek, ::showBallViewThisWeek)
 
-        barStaticsWeekApi()
+        barStaticsThisWeekApi()
+        barStaticsLastWeekApi()
     }
 
     // 날씨 통계 색상 변환 함수
@@ -146,7 +146,7 @@ class BarStaticsWeeklyFragment : Fragment() {
             view.layoutParams = LinearLayout.LayoutParams(
                 0,
                 ViewGroup.LayoutParams.MATCH_PARENT,
-                width
+                width,
             )
 
             // 배경 파일 적용
@@ -162,7 +162,6 @@ class BarStaticsWeeklyFragment : Fragment() {
             }
         }
     }
-
 
     // 각 날씨별 배경 파일 지정
     private fun getDrawableResForWeather(weatherLabel: String): Int {
@@ -241,23 +240,23 @@ class BarStaticsWeeklyFragment : Fragment() {
         }, 1500) // 1.5초 후에 말풍선을 숨김
     }
 
-
-    private fun barStaticsWeekApi() {
+    // 이번 주 통계
+    private fun barStaticsThisWeekApi() {
         val service = RetrofitImpl.authenticatedRetrofit.create(ReportService::class.java)
         val call = service.weeklyStatistic(ago = 0) // 'ago'에 적절한 값을 설정해주세요
 
         call.enqueue(object : Callback<BaseResponse<StatisticResponse>> {
             override fun onResponse(
                 call: Call<BaseResponse<StatisticResponse>>,
-                response: Response<BaseResponse<StatisticResponse>>
+                response: Response<BaseResponse<StatisticResponse>>,
             ) {
                 if (response.isSuccessful) {
                     val statisticResponse = response.body()?.result // 'data'가 실제 응답 데이터를 담고 있는 필드일 경우
                     if (statisticResponse != null) {
-                        Log.d("API Success", "Sunny: ${statisticResponse.sunny}, Cloudy: ${statisticResponse.cloudy}, Rainy: ${statisticResponse.rainy}, Lightning: ${statisticResponse.lightning}")
+                        Log.d("이번 주 bar API Success", "Sunny: ${statisticResponse.sunny}, Cloudy: ${statisticResponse.cloudy}, Rainy: ${statisticResponse.rainy}, Lightning: ${statisticResponse.lightning}")
 
                         // 데이터 리스트 생성
-                        val dataList2 = listOf(
+                        val dataList = listOf(
                             BarData("맑음", statisticResponse.sunny.toInt()),
                             BarData("다소 흐림", statisticResponse.cloudy.toInt()),
                             BarData("비", statisticResponse.rainy.toInt()),
@@ -265,23 +264,61 @@ class BarStaticsWeeklyFragment : Fragment() {
                         )
 
                         // 데이터 표시 함수 호출
-                        bindWeatherData(dataList2, binding.llAnalysisBarThisWeek, ::showBallViewThisWeek)
+                        bindWeatherData(dataList, binding.llAnalysisBarThisWeek, ::showBallViewThisWeek)
                     } else {
-                        Log.e("barStaticsWeekApi Error", "Response body 비었음")
+                        Log.e("이번 주 bar API Error", "Response body 비었음")
                     }
                 } else {
                     val errorBody = response.errorBody()?.string()
-                    Log.e("barStaticsWeekApi Error", "Response Code: ${response.code()}, Error Body: $errorBody")
+                    Log.e("이번 주 bar API Error", "Response Code: ${response.code()}, Error Body: $errorBody")
                 }
             }
 
             override fun onFailure(call: Call<BaseResponse<StatisticResponse>>, t: Throwable) {
-                Log.e("barStaticsWeekApi Failure", "Error: ${t.message}", t)
+                Log.e("이번 주 bar API Failure", "Error: ${t.message}", t)
             }
         })
     }
 
+    // 이번 주 통계
+    private fun barStaticsLastWeekApi() {
+        val service = RetrofitImpl.authenticatedRetrofit.create(ReportService::class.java)
+        val call = service.weeklyStatistic(ago = 1) // '지난 주
 
+        call.enqueue(object : Callback<BaseResponse<StatisticResponse>> {
+            override fun onResponse(
+                call: Call<BaseResponse<StatisticResponse>>,
+                response: Response<BaseResponse<StatisticResponse>>,
+            ) {
+                if (response.isSuccessful) {
+                    val statisticResponse = response.body()?.result // 'data'가 실제 응답 데이터를 담고 있는 필드일 경우
+                    if (statisticResponse != null) {
+                        Log.d("지난 주 bar API Success", "Sunny: ${statisticResponse.sunny}, Cloudy: ${statisticResponse.cloudy}, Rainy: ${statisticResponse.rainy}, Lightning: ${statisticResponse.lightning}")
+
+                        // 데이터 리스트 생성
+                        val dataList = listOf(
+                            BarData("맑음", statisticResponse.sunny.toInt()),
+                            BarData("다소 흐림", statisticResponse.cloudy.toInt()),
+                            BarData("비", statisticResponse.rainy.toInt()),
+                            BarData("번개", statisticResponse.lightning.toInt()),
+                        )
+
+                        // 데이터 표시 함수 호출
+                        bindWeatherData(dataList, binding.llAnalysisBarLastWeek, ::showBallViewLastWeek)
+                    } else {
+                        Log.e("지난 주 bar API Error", "Response body 비었음")
+                    }
+                } else {
+                    val errorBody = response.errorBody()?.string()
+                    Log.e("지난 주 bar API Error", "Response Code: ${response.code()}, Error Body: $errorBody")
+                }
+            }
+
+            override fun onFailure(call: Call<BaseResponse<StatisticResponse>>, t: Throwable) {
+                Log.e("지난 주 bar API Failure", "Error: ${t.message}", t)
+            }
+        })
+    }
 
     override fun onDestroyView() {
         super.onDestroyView()
