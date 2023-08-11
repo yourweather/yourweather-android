@@ -1,6 +1,7 @@
 package com.umc.yourweather.presentation.analysis
 
 import android.os.Bundle
+import android.util.Log
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
@@ -9,8 +10,15 @@ import androidx.fragment.app.Fragment
 import androidx.recyclerview.widget.LinearLayoutManager
 import com.umc.yourweather.R
 import com.umc.yourweather.data.entity.ItemWritten
+import com.umc.yourweather.data.remote.response.BaseResponse
+import com.umc.yourweather.data.remote.response.StatisticResponse
+import com.umc.yourweather.data.service.ReportService
 import com.umc.yourweather.databinding.FragmentWrittenDetailListCloudWeeklyBinding
+import com.umc.yourweather.di.RetrofitImpl
 import com.umc.yourweather.presentation.adapter.WrittenRVAdapter
+import retrofit2.Call
+import retrofit2.Callback
+import retrofit2.Response
 import java.text.SimpleDateFormat
 import java.util.Calendar
 import java.util.Locale
@@ -61,6 +69,39 @@ class WrittenDetailListFragmentCloudWeekly : Fragment() {
             else -> "$updateWeek 주 전" // 4주 이상 전의 경우
         }
         binding.tvWrittenDetailListMonthCloud.text = "$weekTitle (${getWeekText})의 구름 약간 통계"
+        iconStatisticsWeekApi(updateWeek)
+    }
+    private fun iconStatisticsWeekApi(ago: Int) {
+        val service = RetrofitImpl.authenticatedRetrofit.create(ReportService::class.java)
+        val call = service.weeklyStatistic(ago = ago)
+
+        call.enqueue(object : Callback<BaseResponse<StatisticResponse>> {
+            override fun onResponse(
+                call: Call<BaseResponse<StatisticResponse>>,
+                response: Response<BaseResponse<StatisticResponse>>,
+            ) {
+                if (response.isSuccessful) {
+                    val statisticResponse = response.body()?.result
+                    if (statisticResponse != null) {
+                        Log.d("${ago}주 전 Success", "${ago}주 전 디테일 Sunny: ${statisticResponse.sunny}")
+                        if (ago == 0) {
+                            binding.tvWrittenDetailListMonthContent.text = "맑음이 이번 주 날씨의 ${statisticResponse.sunny.toInt()}%를 차지했어요"
+                        } else {
+                            binding.tvWrittenDetailListMonthContent.text = "맑음이 ${ago}주 전 날씨의 ${statisticResponse.sunny.toInt()}%를 차지했어요"
+                        }
+                    } else {
+                        Log.e("${ago}개월 전 디테일 API Error", "Response body 비었음")
+                    }
+                } else {
+                    val errorBody = response.errorBody()?.string()
+                    Log.e("${ago}개월 전 디테일 API Error", "Response Code: ${response.code()}, Error Body: $errorBody")
+                }
+            }
+
+            override fun onFailure(call: Call<BaseResponse<StatisticResponse>>, t: Throwable) {
+                Log.e("${ago}개월 전 디테일 bar API Failure", "Error: ${t.message}", t)
+            }
+        })
     }
     private fun getWeekText(updateWeek: Int): String {
         val calendar = Calendar.getInstance()
