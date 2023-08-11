@@ -5,4 +5,16 @@
         <item name="boxStrokeColor">#880000</item>
     </style>
 
+    <style name="TimePickerStyle" parent="@android:style/Widget.Material.TimePicker">
+        <item name="android:fontFamily">@font/pretendardsemibold</item>
+        <item name="android:textColor">#2B2B2B</item>
+    </style>
+    <style name="AppTheme" parent="Theme.AppCompat.Light.DarkActionBar">
+        <!-- ... 다른 스타일 설정 ... -->
+        <item name="android:timePickerStyle">@style/TimePickerStyle</item>
+    </style>
+    <style name="CustomSpinnerStyle" parent="Widget.AppCompat.Spinner.Underlined">
+        <item name="android:colorControlActivated">#F2F2F2</item> <!-- 스피너 선택된 색상을 설정하세요 -->
+        <item name="android:colorControlNormal">#F2F2F2</item> <!-- 스피너 비선택 상태 색상을 설정하세요 -->
+    </style>
 </resources>
