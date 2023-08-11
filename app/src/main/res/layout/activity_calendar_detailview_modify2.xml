@@ -13,9 +13,7 @@
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent">
-        <RelativeLayout
-            android:layout_width="match_parent"
-            android:layout_height="match_parent">
+
             <LinearLayout
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
@@ -208,7 +206,7 @@
                         app:layout_constraintVertical_bias="0.472" />
 
                     <SeekBar
-                        android:id="@+id/seekbar_home_temp"
+                        android:id="@+id/seekbar_calendar_detailview_temp2"
                         android:layout_width="320dp"
                         android:layout_height="wrap_content"
                         android:layout_marginStart="41dp"
@@ -374,6 +372,6 @@
                     app:layout_constraintTop_toBottomOf="@+id/divider" />
 
             </FrameLayout>
-        </RelativeLayout>
+
     </FrameLayout>
 </androidx.constraintlayout.widget.ConstraintLayout>

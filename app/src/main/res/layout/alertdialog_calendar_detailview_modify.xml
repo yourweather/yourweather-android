@@ -9,7 +9,7 @@
         android:layout_width="0dp"
         android:layout_height="wrap_content"
         android:layout_marginStart="36dp"
-        android:layout_marginTop="395dp"
+        android:layout_marginTop="306dp"
         android:layout_marginEnd="36dp"
         android:layout_marginBottom="316dp"
         android:background="@drawable/bg_calendardetailview_backdialog"
@@ -31,6 +31,7 @@
             android:textColor="#5E412F"
             android:textFontWeight="600"
             android:textSize="13sp" />
+
         <TextView
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
