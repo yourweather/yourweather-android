@@ -1,6 +1,5 @@
 package com.umc.yourweather.presentation.sign
 
-import android.content.Intent
 import android.os.Bundle
 import android.util.Log
 import androidx.appcompat.app.AppCompatActivity
@@ -18,7 +17,6 @@ import retrofit2.Response
 class Nickname : AppCompatActivity() {
 
     lateinit var binding: ActivityNicknameBinding
-
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         binding = ActivityNicknameBinding.inflate(layoutInflater)
@@ -70,20 +68,13 @@ class Nickname : AppCompatActivity() {
         signupService.signUp(signupRequest).enqueue(object : Callback<BaseResponse<String>> {
             override fun onResponse(
                 call: Call<BaseResponse<String>>,
-                response: Response<BaseResponse<String>>
+                response: Response<BaseResponse<String>>,
             ) {
                 if (response.isSuccessful) {
                     val code = response.body()?.code
                     if (code == 200) {
                         // 회원 가입 성공
                         Log.d("SignupDebug", "회원 가입 성공")
-
-                        // 회원 가입 성공 시 SignIn로 이동
-                        val intent = Intent(this@Nickname, SignIn::class.java)
-                        startActivity(intent)
-
-                        // 현재 액티비티 (Nickname)를 종료하여 뒤로 가기를 방지
-                        finish()
                     } else {
                         // 회원 가입 실패
                         Log.d("SignupDebug", "회원 가입 실패: code = $code")
