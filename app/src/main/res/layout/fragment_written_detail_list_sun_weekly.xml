@@ -28,29 +28,22 @@
     </RelativeLayout>
 
     <LinearLayout
-        android:id="@+id/ll_written_detail_list2"
-        android:layout_width="match_parent"
+        android:id="@+id/ll_written_detail_list3"
+        android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginTop="13dp"
-        android:orientation="horizontal"
-        app:layout_constraintEnd_toEndOf="parent"
+        android:orientation="vertical"
+        android:layout_marginStart="36dp"
+        android:layout_marginTop="69dp"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/rl_btn1">
-
-        <LinearLayout
-            android:id="@+id/ll_written_detail_list3"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:orientation="vertical"
-            android:layout_marginStart="36dp">
-
+        app:layout_constraintTop_toTopOf="parent"
+        >
             <TextView
                 android:id="@+id/tv_written_detail_list_month_sun"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_gravity="left"
                 android:textColor="@color/sorange"
-                android:textSize="20dp"
+                android:textSize="18dp"
                 android:fontFamily="@font/pretendardbold"
                 android:layout_marginBottom="6dp"
                 />
@@ -60,7 +53,7 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_gravity="left"
-                android:text="이다은 님의 이번 주 중 28%가 맑은 날씨였어요"
+                android:textSize="14dp"
                 android:textColor="#2B2B2B" />
 
 
@@ -76,29 +69,30 @@
                 android:paddingTop="4dp"
                 android:paddingRight="14dp"
                 android:paddingBottom="4dp"
-                android:text="총 2회"
                 android:textSize="10dp" />
 
         </LinearLayout>
 
-        <ImageView
-            android:id="@+id/iv_icon_statics_sun"
-            android:layout_width="wrap_content"
-            android:layout_height="match_parent"
-            android:layout_gravity="right|center"
-            android:src="@drawable/ic_sun"
-            android:layout_marginEnd="10dp"/>
+    <ImageView
+        android:id="@+id/iv_icon_statics_sun"
+        android:layout_width="80dp"
+        android:layout_height="80dp"
+        android:src="@drawable/ic_sun"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        android:layout_marginEnd="15dp"
+        android:layout_marginTop="65dp"
+        />
 
-    </LinearLayout>
 
     <androidx.recyclerview.widget.RecyclerView
         android:id="@+id/recyclerViewDetailWeeklySun"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_marginTop="14dp"
+        android:layout_marginTop="16dp"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/ll_written_detail_list2"
+        app:layout_constraintTop_toBottomOf="@+id/ll_written_detail_list3"
         tools:listitem="@layout/item_written_detail_sun" />
 
     <com.google.android.material.bottomnavigation.BottomNavigationView
