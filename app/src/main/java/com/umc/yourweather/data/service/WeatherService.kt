@@ -1,6 +1,5 @@
 package com.umc.yourweather.data.service
 
-import com.umc.yourweather.data.enums.Status
 import com.umc.yourweather.data.remote.response.BaseResponse
 import com.umc.yourweather.data.remote.response.HomeResponse
 import com.umc.yourweather.data.remote.response.MissedInputResponse
@@ -10,8 +9,6 @@ import retrofit2.Call
 import retrofit2.http.DELETE
 import retrofit2.http.GET
 import retrofit2.http.Path
-import retrofit2.http.Query
-import java.time.Month
 
 interface WeatherService {
     // 날씨 미입력 조회
