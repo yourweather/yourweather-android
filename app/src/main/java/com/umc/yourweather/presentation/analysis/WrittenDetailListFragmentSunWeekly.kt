@@ -106,7 +106,7 @@ class WrittenDetailListFragmentSunWeekly : Fragment() {
         })
     }
 
-    // 특정 wn sunny 리스트
+    // 특정 주 sunny 리스트
     fun fetchSpecificMemoListByWeather(week: Int, weather: Status) {
         val retrofit = RetrofitImpl.authenticatedRetrofit
         val reportService = retrofit.create(ReportService::class.java)
