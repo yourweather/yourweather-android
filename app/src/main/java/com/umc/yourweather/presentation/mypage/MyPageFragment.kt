@@ -1,5 +1,6 @@
 package com.umc.yourweather.presentation.mypage
 
+import android.content.Context
 import android.content.Intent
 import android.os.Bundle
 import android.util.Log
@@ -32,6 +33,15 @@ class MyPageFragment : Fragment() {
         super.onViewCreated(view, savedInstanceState)
         binding.flMyPageL1.setOnClickListener {
             val mIntent = Intent(activity, MyPageMyInfo::class.java)
+            val sharedPreferences = requireActivity().getSharedPreferences("MyPrefs", Context.MODE_PRIVATE)
+            val nickname = sharedPreferences.getString("nickname", "")
+            val email = sharedPreferences.getString("email", "")
+            val platform = sharedPreferences.getString("platform", "")
+
+            mIntent.putExtra("nickname", nickname)
+            mIntent.putExtra("email", email)
+            mIntent.putExtra("platform", platform)
+
             startActivity(mIntent)
         }
 //        binding.tvMyPageAlarm.setOnClickListener {
@@ -68,6 +78,14 @@ class MyPageFragment : Fragment() {
                                 else -> R.drawable.img_yourweatherlogo
                             }
                             binding.ivMyPagePlatform.setImageResource(platformImageResId)
+
+                            // SH 저장
+                            val sharedPreferences = requireActivity().getSharedPreferences("MyPrefs", Context.MODE_PRIVATE)
+                            val editor = sharedPreferences.edit()
+                            editor.putString("nickname", userResponse.nickname)
+                            editor.putString("email", userResponse.email)
+                            editor.putString("platform", userResponse.platform)
+                            editor.apply()
                         }
                     } else {
                         Log.e("Error (null)", "Response body 비었음")
