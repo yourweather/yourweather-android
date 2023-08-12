@@ -34,10 +34,10 @@ class MyPageFragment : Fragment() {
             val mIntent = Intent(activity, MyPageMyInfo::class.java)
             startActivity(mIntent)
         }
-        binding.tvMyPageAlarm.setOnClickListener {
-            val mIntent = Intent(activity, MyPageAlarm::class.java)
-            startActivity(mIntent)
-        }
+//        binding.tvMyPageAlarm.setOnClickListener {
+//            val mIntent = Intent(activity, MyPageAlarm::class.java)
+//            startActivity(mIntent)
+//        }
         userInfoAPI()
     }
 
