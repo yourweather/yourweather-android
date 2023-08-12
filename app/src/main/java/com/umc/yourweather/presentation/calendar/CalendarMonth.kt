@@ -78,7 +78,7 @@ class CalendarMonth @JvmOverloads constructor(
         list.forEach { localdata ->
 
             val calendarDateView = weatherData?.let {
-                var thisDate : MonthWeatherResponse? = it.filter { LocalDate.parse(it.date, formatter) == localdata }[0]
+                var thisDate: MonthWeatherResponse? = it.filter { LocalDate.parse(it.date, formatter) == localdata }[0]
 
                 CalendarDate(
                     context = context,

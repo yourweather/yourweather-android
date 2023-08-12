@@ -15,7 +15,7 @@ import androidx.core.content.ContextCompat
 import androidx.core.content.res.ResourcesCompat
 import androidx.core.content.withStyledAttributes
 import com.umc.yourweather.R
-import com.umc.yourweather.data.remote.response.MonthResponse
+import com.umc.yourweather.data.enums.Status
 import com.umc.yourweather.data.remote.response.MonthWeatherResponse
 import com.umc.yourweather.util.CalendarUtils.Companion.checkTextSize
 import com.umc.yourweather.util.CalendarUtils.Companion.dpToPx
@@ -86,7 +86,7 @@ class CalendarDate @JvmOverloads constructor(
                             textAlign = Paint.Align.CENTER
                             typeface = tempFont
                         }
-                        //customDrawable = setDrawable(dataList!!)
+                        customDrawable = setDrawable(dataList.lastStatus)
                     }
                     setOnClickListener {
                         // 클릭 이벤트가 발생했을 때 콜백으로 해당 날짜 전달
@@ -97,18 +97,18 @@ class CalendarDate @JvmOverloads constructor(
         }
     }
 
-    fun setDrawable(weather: String): Drawable? {
+    fun setDrawable(weather: Status): Drawable? {
         when (weather) {
-            "sunny" -> {
+            Status.SUNNY -> {
                 return ContextCompat.getDrawable(context, R.drawable.ic_sun)
             }
-            "cloudy" -> {
+            Status.CLOUDY -> {
                 return ContextCompat.getDrawable(context, R.drawable.ic_cloud)
             }
-            "lightning" -> {
+            Status.LIGHTNING -> {
                 return ContextCompat.getDrawable(context, R.drawable.ic_thunder)
             }
-            else -> {
+            Status.RAINY -> {
                 return ContextCompat.getDrawable(context, R.drawable.ic_rain)
             }
         }
