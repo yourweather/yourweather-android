@@ -25,8 +25,8 @@ interface WeatherService {
     // 월별 데이터 조회
     @GET("/api/v1/weather/monthly/{year}/{month}")
     fun getMonthData(
-        @Query("year") year: Int,
-        @Query("month") month: Int,
+        @Path("year") year: Int,
+        @Path("month") month: Int,
     ): Call<BaseResponse<MonthResponse>>
 
     // 월별 조회

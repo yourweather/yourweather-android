@@ -232,7 +232,7 @@ class SignIn : AppCompatActivity() {
             } else if (user != null) {
                 userEmail = user.kakaoAccount?.email
                 userPw = user.id?.toString()
-                socialSignInApi(userEmail!!, userPw!!, "kakao")
+                socialSignInApi(userEmail!!, userPw!!, "KAKAO")
                 // Toast.makeText(this@SignIn, "email : $userEmail pw : $userPw", Toast.LENGTH_LONG).show()
             }
         }
@@ -249,7 +249,7 @@ class SignIn : AppCompatActivity() {
                         userEmail = result.profile?.email.toString()
                         userPw = result.profile?.id
                         // Toast.makeText(this@SignIn, "email : $userEmail pw : $userPw", Toast.LENGTH_LONG).show()
-                        socialSignInApi(userEmail!!, userPw!!, "naver")
+                        socialSignInApi(userEmail!!, userPw!!, "NAVER")
                     }
                     override fun onError(errorCode: Int, message: String) {
                         //
@@ -289,7 +289,7 @@ class SignIn : AppCompatActivity() {
             userEmail = account?.email.toString()
             userPw = account?.id.toString()
             // Toast.makeText(this@SignIn, "email : $userEmail pw : $userPw", Toast.LENGTH_LONG).show()
-            socialSignInApi(userEmail!!, userPw!!, "google")
+            socialSignInApi(userEmail!!, userPw!!, "GOOGLE")
         } catch (e: ApiException) {
             Log.w("failed", "signInResult:failed code=" + e.statusCode)
         }

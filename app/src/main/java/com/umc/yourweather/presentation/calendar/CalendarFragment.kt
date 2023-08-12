@@ -8,13 +8,21 @@ import android.view.View
 import android.view.ViewGroup
 import androidx.annotation.RequiresApi
 import androidx.fragment.app.Fragment
+import com.umc.yourweather.data.remote.response.BaseResponse
+import com.umc.yourweather.data.remote.response.MonthResponse
+import com.umc.yourweather.data.remote.response.MonthWeatherResponse
+import com.umc.yourweather.data.service.WeatherService
 import com.umc.yourweather.databinding.FragmentCalendarBinding
+import com.umc.yourweather.di.RetrofitImpl
+import retrofit2.Call
+import retrofit2.Callback
+import retrofit2.Response
 import java.time.LocalDate
 
 class CalendarFragment : Fragment() {
     lateinit var binding: FragmentCalendarBinding
     var dateList: MutableList<LocalDate> = mutableListOf()
-
+    lateinit var weatherData: List<MonthWeatherResponse>
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
     }
@@ -29,8 +37,8 @@ class CalendarFragment : Fragment() {
 
         getDate(year!!, month!!)
         Log.d("날짜확인확인", "$year $month")
-
-        binding.ctCalendarCustom.initCalendar(year!!, month!!, dateList)
+        monthWeatherApi(year, month)
+        //binding.ctCalendarCustom.initCalendar(year!!, month!!, dateList)
 
         return binding.root
     }
@@ -52,5 +60,39 @@ class CalendarFragment : Fragment() {
             dateList.add(startDate)
             startDate = startDate.plusDays(1)
         }
+    }
+
+    fun monthWeatherApi(year: Int, month: Int) {
+        val service = RetrofitImpl.authenticatedRetrofit.create(WeatherService::class.java)
+
+        Log.d("Calendar", "요청시작")
+        service.getMonthData(year = year, month = month)
+            .enqueue(object : Callback<BaseResponse<MonthResponse>> {
+                @RequiresApi(Build.VERSION_CODES.O)
+                override fun onResponse(
+                    call: Call<BaseResponse<MonthResponse>>,
+                    response: Response<BaseResponse<MonthResponse>>,
+                ) {
+                    val weatherResponse = response.body()
+                    val code = response.body()?.code
+                    if (response.isSuccessful) {
+                        if (code == 200) {
+                            weatherData = weatherResponse?.result?.weatherList ?: emptyList()
+                            binding.ctCalendarCustom.initCalendar(year!!, month!!, dateList, weatherData)
+
+                            Log.d("Calendar ", "$weatherData")
+                        }
+                    } else {
+                        Log.d(
+                            "Calendar",
+                            "onResponse 오류: ${response?.toString()}",
+                        )
+                    }
+                }
+
+                override fun onFailure(call: Call<BaseResponse<MonthResponse>>, t: Throwable) {
+                    Log.d("Calendar", "onFailure 에러: " + t.message.toString())
+                }
+            })
     }
 }

@@ -8,19 +8,11 @@ import android.util.Log
 import android.view.ViewGroup
 import androidx.annotation.RequiresApi
 import androidx.core.view.children
-import com.umc.yourweather.data.enums.Status
-import com.umc.yourweather.data.remote.response.BaseResponse
-import com.umc.yourweather.data.remote.response.MonthResponse
 import com.umc.yourweather.data.remote.response.MonthWeatherResponse
-import com.umc.yourweather.data.service.WeatherService
-import com.umc.yourweather.di.RetrofitImpl
 import com.umc.yourweather.presentation.calendardetailview.CalendarDetailView1
 import com.umc.yourweather.util.CalendarUtils.Companion.DAYS_PER_WEEK
 import com.umc.yourweather.util.CalendarUtils.Companion.WEEKS_PER_MONTH
 import com.umc.yourweather.util.CalendarUtils.Companion.dpToPx
-import retrofit2.Call
-import retrofit2.Callback
-import retrofit2.Response
 import java.time.LocalDate
 import java.time.format.DateTimeFormatter
 
@@ -31,7 +23,7 @@ class CalendarMonth @JvmOverloads constructor(
 ) :
     ViewGroup(context, attrs, defStyleAttr) {
 
-    var weatherData: List<MonthWeatherResponse>? = null
+//    lateinit var weatherData: List<MonthWeatherResponse>
 
     private val onDateClickListener = object : CalendarDate.OnDateClickListener {
         @RequiresApi(Build.VERSION_CODES.O)
@@ -68,62 +60,27 @@ class CalendarMonth @JvmOverloads constructor(
     }
 
     @RequiresApi(Build.VERSION_CODES.O)
-    fun initCalendar(year: Int, month: Int, list: MutableList<LocalDate>) {
+    fun initCalendar(year: Int, month: Int, list: MutableList<LocalDate>, weatherData: List<MonthWeatherResponse>) {
         // demo
         // var dataList = testCalendarData().weatherDatas
 
         val formatter = DateTimeFormatter.ofPattern("yyyy-MM-dd")
 
-        monthWeatherApi(year, month)
-
         list.forEach { localdata ->
+            var thisDate = weatherData.filter { LocalDate.parse(it.date, formatter) == localdata }.firstOrNull()
 
-            val calendarDateView = weatherData?.let {
-                var thisDate: MonthWeatherResponse? = it.filter { LocalDate.parse(it.date, formatter) == localdata }[0]
-                Log.d("캘린더에 날짜 넣음 ", "$thisDate")
+            Log.d("캘린더에 날짜 넣음 ", "$thisDate")
+            val calendarDateView =
                 CalendarDate(
                     context = context,
                     thisDate = localdata,
                     thisMonth = month,
                     dataList = thisDate,
                 )
-            }
-            // 클릭 이벤트 리스너를 설정하여 콜백 등록
-            if (calendarDateView != null) {
-                calendarDateView.setOnDateClickListener(onDateClickListener)
-            }
+
+            calendarDateView.setOnDateClickListener(onDateClickListener)
             addView(calendarDateView)
         }
         Log.d("캘린더 순서", "initCalendar")
-    }
-
-    fun monthWeatherApi(year: Int, month: Int) {
-        val service = RetrofitImpl.authenticatedRetrofit.create(WeatherService::class.java)
-
-        service.getMonthData(year = year, month = month)
-            .enqueue(object : Callback<BaseResponse<MonthResponse>> {
-                override fun onResponse(
-                    call: Call<BaseResponse<MonthResponse>>,
-                    response: Response<BaseResponse<MonthResponse>>,
-                ) {
-                    val weatherResponse = response.body()
-                    val code = response.body()?.code
-                    if (response.isSuccessful) {
-                        if (code == 200) {
-                            weatherData = weatherResponse?.result?.weatherList ?: emptyList()
-                            Log.d("월 데이터 확인 ", "$weatherData")
-                        }
-                    } else {
-                        Log.d(
-                            "SignInDebug",
-                            "onResponse 오류: ${response?.toString()}",
-                        )
-                    }
-                }
-
-                override fun onFailure(call: Call<BaseResponse<MonthResponse>>, t: Throwable) {
-                    Log.d("SignInDebug", "onFailure 에러: " + t.message.toString())
-                }
-            })
     }
 }
