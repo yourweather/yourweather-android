@@ -60,7 +60,7 @@
 
             <TextView
                 android:id="@+id/tv_written_detail_list_month_num"
-                android:layout_width="wrap_content"
+                android:layout_width="45dp"
                 android:layout_height="wrap_content"
                 android:layout_gravity="left"
                 android:layout_marginTop="9dp"
@@ -70,6 +70,7 @@
                 android:paddingTop="4dp"
                 android:paddingRight="14dp"
                 android:paddingBottom="4dp"
+                android:gravity="center"
                 android:textSize="10dp" />
 
         </LinearLayout>
