@@ -38,44 +38,14 @@ class IconStaticsWeeklyFragment : Fragment() {
 
         // 초기화 때 이번 달의 통계를 가져오기 위해 ago 값을 설정
         val initialAgo = 0
-        barStatisticsThisWeekApi(initialAgo)
+        StatisticsWeekApi(initialAgo)
         Log.d("${initialAgo}전으로", "$initialAgo")
 
         setupOnClickListeners()
     }
 
     private fun setupOnClickListeners() {
-        // sun 상세 리스트 넘어가기
-        binding.llSunWeekly.setOnClickListener {
-            replaceFragment(WrittenDetailListFragmentSunWeekly())
-        }
-        binding.btnStaticsRightDetail1Weekly.setOnClickListener {
-            replaceFragment(WrittenDetailListFragmentSunWeekly())
-        }
 
-        // cloud 상세 리스트 넘어가기
-        binding.llCloudWeekly.setOnClickListener {
-            replaceFragment(WrittenDetailListFragmentCloudWeekly())
-        }
-        binding.btnStaticsRightDetail2Weekly.setOnClickListener {
-            replaceFragment(WrittenDetailListFragmentSunWeekly())
-        }
-
-        // rain 상세 리스트 넘어가기
-        binding.llRainWeekly.setOnClickListener {
-            replaceFragment(WrittenDetailListFragmentRainWeekly())
-        }
-        binding.btnStaticsRightDetail3Weekly.setOnClickListener {
-            replaceFragment(WrittenDetailListFragmentSunWeekly())
-        }
-
-        // thunder 상세 리스트 넘어가기
-        binding.llThunderWeekly.setOnClickListener {
-            replaceFragment(WrittenDetailListFragmentThunderWeekly())
-        }
-        binding.btnStaticsRightDetail4Weekly.setOnClickListener {
-            replaceFragment(WrittenDetailListFragmentSunWeekly())
-        }
         // 현재 주
         binding.tvUnwrittenTitleWeekly.text = "이번 주"
 
@@ -88,6 +58,7 @@ class IconStaticsWeeklyFragment : Fragment() {
             if (updateWeek < 4) {
                 updateWeek++
                 updateTitleAndFetchStatistics(updateWeek)
+                binding.btnStaticsRightDateWeekly.alpha = 1f
             }
             if (updateWeek == 4) {
                 binding.btnStaticsLeftDateWeekly.alpha = 0.5f
@@ -106,8 +77,94 @@ class IconStaticsWeeklyFragment : Fragment() {
                 binding.btnStaticsLeftDateWeekly.alpha = 1f
             }
         }
+        // sun 상세 리스트 넘어가기
+        binding.llSunWeekly.setOnClickListener {
+            val fragment = WrittenDetailListFragmentSunWeekly()
+
+            // ago 값을 인자로 전달
+            val args = Bundle()
+            args.putInt("updateWeek", updateWeek)
+            fragment.arguments = args
+
+            replaceFragment(fragment)
+        }
+        binding.btnStaticsRightDetail1Weekly.setOnClickListener {
+            val fragment = WrittenDetailListFragmentSunWeekly()
+
+            // ago 값을 인자로 전달
+            val args = Bundle()
+            args.putInt("updateWeek", updateWeek)
+            fragment.arguments = args
+
+            replaceFragment(fragment)        }
+
+        // cloud 상세 리스트 넘어가기
+        binding.llCloudWeekly.setOnClickListener {
+            val fragment = WrittenDetailListFragmentCloudWeekly()
+
+            // ago 값을 인자로 전달
+            val args = Bundle()
+            args.putInt("updateWeek", updateWeek)
+            fragment.arguments = args
+
+            replaceFragment(fragment)
+        }
+        binding.btnStaticsRightDetail2Weekly.setOnClickListener {
+            val fragment = WrittenDetailListFragmentCloudWeekly()
+
+            // ago 값을 인자로 전달
+            val args = Bundle()
+            args.putInt("updateWeek", updateWeek)
+            fragment.arguments = args
+
+            replaceFragment(fragment)
+        }
+
+        // rain 상세 리스트 넘어가기
+        binding.llRainWeekly.setOnClickListener {
+            val fragment = WrittenDetailListFragmentRainWeekly()
+
+            // ago 값을 인자로 전달
+            val args = Bundle()
+            args.putInt("updateWeek", updateWeek)
+            fragment.arguments = args
+
+            replaceFragment(fragment)
+        }
+        binding.btnStaticsRightDetail3Weekly.setOnClickListener {
+            val fragment = WrittenDetailListFragmentRainWeekly()
+
+            // ago 값을 인자로 전달
+            val args = Bundle()
+            args.putInt("updateWeek", updateWeek)
+            fragment.arguments = args
+
+            replaceFragment(fragment)
+        }
+
+        // thunder 상세 리스트 넘어가기
+        binding.llThunderWeekly.setOnClickListener {
+            val fragment = WrittenDetailListFragmentThunderWeekly()
+
+            // ago 값을 인자로 전달
+            val args = Bundle()
+            args.putInt("updateWeek", updateWeek)
+            fragment.arguments = args
+
+            replaceFragment(fragment)
+        }
+        binding.btnStaticsRightDetail4Weekly.setOnClickListener {
+            val fragment = WrittenDetailListFragmentThunderWeekly()
+
+            // ago 값을 인자로 전달
+            val args = Bundle()
+            args.putInt("updateWeek", updateWeek)
+            fragment.arguments = args
+
+            replaceFragment(fragment)
+        }
     }
-    private fun barStatisticsThisWeekApi(ago: Int) {
+    private fun StatisticsWeekApi(ago: Int) {
         val service = RetrofitImpl.authenticatedRetrofit.create(ReportService::class.java)
         val call = service.weeklyStatistic(ago = ago) // 이번 달
 
@@ -141,7 +198,7 @@ class IconStaticsWeeklyFragment : Fragment() {
     private fun updateTitleAndFetchStatistics(weekAgo: Int) {
         val ago = weekAgo
         binding.tvUnwrittenTitleWeekly.text = "${ago}주 전"
-        barStatisticsThisWeekApi(ago)
+        StatisticsWeekApi(ago)
 
         if (ago == 0) {
             binding.tvUnwrittenTitleWeekly.text = "이번 주"
