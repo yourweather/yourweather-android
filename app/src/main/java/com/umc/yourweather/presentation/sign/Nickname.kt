@@ -1,5 +1,6 @@
 package com.umc.yourweather.presentation.sign
 
+import android.content.Intent
 import android.os.Bundle
 import android.text.Editable
 import android.text.TextWatcher
@@ -94,6 +95,10 @@ class Nickname : AppCompatActivity() {
                     if (code == 200) {
                         // 회원 가입 성공
                         Log.d("SignupDebug", "회원 가입 성공")
+
+                        // 회원 가입 성공 후 로그인화면으로 이동
+                        val intent = Intent(this@Nickname, SignIn::class.java)
+                        startActivity(intent)
                     } else {
                         // 회원 가입 실패
                         Log.d("SignupDebug", "회원 가입 실패: code = $code")
