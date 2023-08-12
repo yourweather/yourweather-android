@@ -21,15 +21,16 @@
 
     <TextView
         android:id="@+id/tv_unwritten_title_weekly"
-        android:layout_width="45dp"
+        android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_gravity="center"
         android:layout_marginTop="19dp"
-        android:layout_marginStart="44dp"
+        android:layout_marginEnd="6dp"
         android:textColor="@color/black"
         android:textSize="15dp"
         android:fontFamily="@font/pretendardbold"
-        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintStart_toStartOf="@+id/btn_statics_left_date_weekly"
+        app:layout_constraintEnd_toEndOf="@+id/btn_statics_right_date_weekly"
         app:layout_constraintTop_toTopOf="parent"/>
 
     <ImageButton
@@ -88,7 +89,6 @@
                 android:layout_marginBottom="14dp"
                 android:fontFamily="@font/pretendardmedium"
                 android:gravity="center"
-                android:text="28%"
                 android:textColor="@color/black"
                 android:textSize="15dp" />
 
@@ -143,7 +143,6 @@
                 android:layout_width="45dp"
                 android:layout_height="wrap_content"
                 android:layout_gravity="center"
-                android:text="30%"
                 android:textColor="@color/black"
                 android:layout_marginLeft="220dp"
                 android:layout_marginTop="16dp"
@@ -207,7 +206,6 @@
                 android:layout_width="45dp"
                 android:layout_height="wrap_content"
                 android:layout_gravity="center"
-                android:text="36%"
                 android:textColor="@color/black"
                 android:layout_marginLeft="220dp"
                 android:layout_marginTop="16dp"
@@ -272,7 +270,6 @@
                 android:layout_width="45dp"
                 android:layout_height="wrap_content"
                 android:layout_gravity="center"
-                android:text="6%"
                 android:textColor="@color/black"
                 android:layout_marginLeft="220dp"
                 android:layout_marginTop="16dp"

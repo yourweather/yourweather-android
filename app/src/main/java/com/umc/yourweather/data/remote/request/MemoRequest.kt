@@ -1,21 +1,10 @@
 package com.umc.yourweather.data.remote.request
 
-import com.google.gson.annotations.SerializedName
+import com.umc.yourweather.data.enums.Status
 
 data class MemoRequest(
-    @SerializedName("memo_status")
     val status: Status,
-    @SerializedName("memo_content")
-    val content: String,
-    @SerializedName("memo_localDateTime")
+    val content: String?,
     val localDateTime: String?,
-    @SerializedName("memo_temperature")
     val temperature: Int?,
-) {
-    enum class Status {
-        SUNNY,
-        CLOUDY,
-        RAINY,
-        LIGHTNING,
-    }
-}
+)

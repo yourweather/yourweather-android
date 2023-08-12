@@ -40,7 +40,7 @@ class IconStaticsMonthlyFragment : Fragment() {
 
         // 초기화 때 이번 달의 통계를 가져오기 위해 ago 값을 설정
         val initialAgo = 0
-        barStatisticsThisMonthApi(initialAgo)
+        iconStatisticsMonthApi(initialAgo)
         Log.d("${initialAgo}전으로", "$initialAgo")
 
         // 버튼 클릭 시 화면 전환 함수
@@ -48,7 +48,7 @@ class IconStaticsMonthlyFragment : Fragment() {
     }
 
     // 이번 달 통계
-    private fun barStatisticsThisMonthApi(ago: Int) {
+    private fun iconStatisticsMonthApi(ago: Int) {
         val service = RetrofitImpl.authenticatedRetrofit.create(ReportService::class.java)
         val call = service.monthlyStatistic(ago = ago) // 이번 달
 
@@ -84,38 +84,6 @@ class IconStaticsMonthlyFragment : Fragment() {
     }
 
     private fun setupOnClickListeners() {
-        // sun 상세 리스트 넘어가기
-        binding.llSunMonthly.setOnClickListener {
-            replaceFragment(WrittenDetailListFragmentSun())
-        }
-        binding.btnStaticsRightDetail1Monthly.setOnClickListener {
-            replaceFragment(WrittenDetailListFragmentSun())
-        }
-
-        // cloud 상세 리스트 넘어가기
-        binding.llCloudMonthly.setOnClickListener {
-            replaceFragment(WrittenDetailListFragmentCloud())
-        }
-        binding.btnStaticsRightDetail2Monthly.setOnClickListener {
-            replaceFragment(WrittenDetailListFragmentSun())
-        }
-
-        // rain 상세 리스트 넘어가기
-        binding.llRainMonthly.setOnClickListener {
-            replaceFragment(WrittenDetailListFragmentRain())
-        }
-        binding.btnStaticsRightDetail3Monthly.setOnClickListener {
-            replaceFragment(WrittenDetailListFragmentSun())
-        }
-
-        // thunder 상세 리스트 넘어가기
-        binding.llThunderMonthly.setOnClickListener {
-            replaceFragment(WrittenDetailListFragmentThunder())
-        }
-        binding.btnStaticsRightDetail4Monthly.setOnClickListener {
-            replaceFragment(WrittenDetailListFragmentSun())
-        }
-
         // 현재 달
         binding.tvUnwrittenTitleMonthly.text = currentMonth.toString() + "월"
 
@@ -131,7 +99,7 @@ class IconStaticsMonthlyFragment : Fragment() {
                 binding.btnStaticsRightDateMonthly.alpha = 1f
                 // api로 보낼 값지정
                 val ago = currentMonth - updateMonth
-                barStatisticsThisMonthApi(ago)
+                iconStatisticsMonthApi(ago)
             }
             if (updateMonth == 1) {
                 binding.btnStaticsLeftDateMonthly.alpha = 0.5f
@@ -147,12 +115,99 @@ class IconStaticsMonthlyFragment : Fragment() {
                 binding.btnStaticsRightDateMonthly.alpha = 1f
                 // api로 보낼 값지정
                 val ago = currentMonth - updateMonth
-                barStatisticsThisMonthApi(ago)
+                iconStatisticsMonthApi(ago)
             }
             if (updateMonth == currentMonth) {
                 binding.btnStaticsRightDateMonthly.alpha = 0.5f
                 binding.btnStaticsLeftDateMonthly.alpha = 1f
             }
+        }
+
+        // sun 상세 리스트 넘어가기
+        binding.llSunMonthly.setOnClickListener {
+            val fragment = WrittenDetailListFragmentSun()
+
+            // ago 값을 인자로 전달
+            val args = Bundle()
+            args.putInt("ago", currentMonth - updateMonth)
+            fragment.arguments = args
+
+            replaceFragment(fragment)
+        }
+        binding.btnStaticsRightDetail1Monthly.setOnClickListener {
+            val fragment = WrittenDetailListFragmentSun()
+
+            // ago 값을 인자로 전달
+            val args = Bundle()
+            args.putInt("ago", currentMonth - updateMonth)
+            fragment.arguments = args
+
+            replaceFragment(fragment)
+        }
+
+        // cloud 상세 리스트 넘어가기
+        binding.llCloudMonthly.setOnClickListener {
+            val fragment = WrittenDetailListFragmentCloud()
+
+            // ago 값을 인자로 전달
+            val args = Bundle()
+            args.putInt("ago", currentMonth - updateMonth)
+            fragment.arguments = args
+
+            replaceFragment(fragment)
+        }
+        binding.btnStaticsRightDetail2Monthly.setOnClickListener {
+            val fragment = WrittenDetailListFragmentCloud()
+
+            // ago 값을 인자로 전달
+            val args = Bundle()
+            args.putInt("ago", currentMonth - updateMonth)
+            fragment.arguments = args
+
+            replaceFragment(fragment)
+        }
+        // rain 상세 리스트 넘어가기
+        binding.llRainMonthly.setOnClickListener {
+            val fragment = WrittenDetailListFragmentRain()
+
+            // ago 값을 인자로 전달
+            val args = Bundle()
+            args.putInt("ago", currentMonth - updateMonth)
+            fragment.arguments = args
+
+            replaceFragment(fragment)
+        }
+        binding.btnStaticsRightDetail3Monthly.setOnClickListener {
+            val fragment = WrittenDetailListFragmentRain()
+
+            // ago 값을 인자로 전달
+            val args = Bundle()
+            args.putInt("ago", currentMonth - updateMonth)
+            fragment.arguments = args
+
+            replaceFragment(fragment)
+        }
+
+        // thunder 상세 리스트 넘어가기
+        binding.llThunderMonthly.setOnClickListener {
+            val fragment = WrittenDetailListFragmentThunder()
+
+            // ago 값을 인자로 전달
+            val args = Bundle()
+            args.putInt("ago", currentMonth - updateMonth)
+            fragment.arguments = args
+
+            replaceFragment(fragment)
+        }
+        binding.btnStaticsRightDetail4Monthly.setOnClickListener {
+            val fragment = WrittenDetailListFragmentThunder()
+
+            // ago 값을 인자로 전달
+            val args = Bundle()
+            args.putInt("ago", currentMonth - updateMonth)
+            fragment.arguments = args
+
+            replaceFragment(fragment)
         }
     }
 
