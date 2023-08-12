@@ -7,11 +7,30 @@ import android.util.AttributeSet
 import android.util.Log
 import android.view.ViewGroup
 import androidx.annotation.RequiresApi
+import androidx.core.content.ContextCompat.startActivity
 import androidx.core.view.children
+import com.umc.yourweather.data.remote.request.LoginRequest
+import com.umc.yourweather.data.remote.request.SpecificMemoRequest
+import com.umc.yourweather.data.remote.response.BaseResponse
+import com.umc.yourweather.data.remote.response.SpecificMemoResponse
+import com.umc.yourweather.data.remote.response.TokenResponse
+import com.umc.yourweather.data.service.LoginService
+import com.umc.yourweather.data.service.ReportService
+import com.umc.yourweather.data.service.WeatherService
+import com.umc.yourweather.di.App
+import com.umc.yourweather.di.MySharedPreferences
+import com.umc.yourweather.di.RetrofitImpl
+import com.umc.yourweather.presentation.BottomNavi
 import com.umc.yourweather.presentation.calendardetailview.CalendarDetailView1
 import com.umc.yourweather.util.CalendarUtils.Companion.DAYS_PER_WEEK
 import com.umc.yourweather.util.CalendarUtils.Companion.WEEKS_PER_MONTH
 import com.umc.yourweather.util.CalendarUtils.Companion.dpToPx
+import com.umc.yourweather.util.SignUtils
+import retrofit2.Call
+import retrofit2.Callback
+import retrofit2.Response
+import retrofit2.http.GET
+import retrofit2.http.Query
 import java.time.LocalDate
 
 class CalendarMonth @JvmOverloads constructor(
@@ -72,5 +91,43 @@ class CalendarMonth @JvmOverloads constructor(
             addView(calendarDateView)
         }
         Log.d("캘린더 순서", "initCalendar")
+    }
+
+
+//    @GET("api/v1/report/list")
+//    fun getMonthlyReport(
+//        @Query("month") month: Int,
+//        @Query("weather") weather: String,
+//    ): Call<BaseResponse<SpecificMemoResponse>>
+
+    fun monthWeatherApi(month : Int, requestWeather : String){
+        val service = RetrofitImpl.authenticatedRetrofit.create(ReportService::class.java)
+
+        val weatherInfo = SpecificMemoRequest(month, requestWeather)
+
+        service.getMonthlyReport(month = month, weather = requestWeather).enqueue(object : Callback<BaseResponse<SpecificMemoResponse>> {
+
+            override fun onResponse(
+                call: Call<BaseResponse<SpecificMemoResponse>>,
+                response: Response<BaseResponse<SpecificMemoResponse>>,
+            ) {
+                val code = response.body()?.code
+
+                if (response.isSuccessful) {
+                   if (code == 200){
+
+                    }
+                } else {
+                    Log.d(
+                        "SignInDebug",
+                        "onResponse 오류: ${response?.toString()}",
+                    )
+                }
+            }
+            override fun onFailure(call: Call<BaseResponse<SpecificMemoResponse>>, t: Throwable) {
+                Log.d("SignInDebug", "onFailure 에러: " + t.message.toString())
+            }
+        })
+
     }
 }
