@@ -6,6 +6,7 @@ import android.util.Log
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import android.widget.Toast
 import androidx.annotation.RequiresApi
 import androidx.fragment.app.Fragment
 import com.umc.yourweather.data.remote.response.BaseResponse
@@ -38,7 +39,6 @@ class CalendarFragment : Fragment() {
         getDate(year!!, month!!)
         Log.d("날짜확인확인", "$year $month")
         monthWeatherApi(year, month)
-        //binding.ctCalendarCustom.initCalendar(year!!, month!!, dateList)
 
         return binding.root
     }
@@ -83,6 +83,8 @@ class CalendarFragment : Fragment() {
                             Log.d("Calendar ", "$weatherData")
                         }
                     } else {
+                        weatherData = emptyList()
+                        binding.ctCalendarCustom.initCalendar(year!!, month!!, dateList, weatherData)
                         Log.d(
                             "Calendar",
                             "onResponse 오류: ${response?.toString()}",
@@ -90,7 +92,11 @@ class CalendarFragment : Fragment() {
                     }
                 }
 
+                @RequiresApi(Build.VERSION_CODES.O)
                 override fun onFailure(call: Call<BaseResponse<MonthResponse>>, t: Throwable) {
+                    Toast.makeText(requireContext(), "네트워크 오류입니다. 인터넷 연결을 확인해주세요!", Toast.LENGTH_LONG).show()
+                    weatherData = emptyList()
+                    binding.ctCalendarCustom.initCalendar(year!!, month!!, dateList, weatherData)
                     Log.d("Calendar", "onFailure 에러: " + t.message.toString())
                 }
             })
