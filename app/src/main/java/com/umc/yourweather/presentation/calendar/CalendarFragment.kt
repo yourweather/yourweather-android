@@ -48,7 +48,7 @@ class CalendarFragment : Fragment() {
 
         var startDate = firstDay.minusDays(n.toLong())
         for (i in 1..42) {
-            Log.d("날짜확인확인", "${startDate.year} ${startDate.monthValue}, ${startDate.dayOfMonth}")
+            // Log.d("날짜확인확인", "${startDate.year} ${startDate.monthValue}, ${startDate.dayOfMonth}")
             dateList.add(startDate)
             startDate = startDate.plusDays(1)
         }

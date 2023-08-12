@@ -8,6 +8,7 @@ import android.util.Log
 import android.view.ViewGroup
 import androidx.annotation.RequiresApi
 import androidx.core.view.children
+import com.umc.yourweather.data.enums.Status
 import com.umc.yourweather.data.remote.response.BaseResponse
 import com.umc.yourweather.data.remote.response.MonthResponse
 import com.umc.yourweather.data.remote.response.MonthWeatherResponse
@@ -79,7 +80,7 @@ class CalendarMonth @JvmOverloads constructor(
 
             val calendarDateView = weatherData?.let {
                 var thisDate: MonthWeatherResponse? = it.filter { LocalDate.parse(it.date, formatter) == localdata }[0]
-
+                Log.d("캘린더에 날짜 넣음 ", "$thisDate")
                 CalendarDate(
                     context = context,
                     thisDate = localdata,
