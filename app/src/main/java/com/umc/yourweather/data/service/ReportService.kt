@@ -1,5 +1,6 @@
 package com.umc.yourweather.data.service
 
+import com.umc.yourweather.data.enums.Status
 import com.umc.yourweather.data.remote.request.MemoRequest
 import com.umc.yourweather.data.remote.response.BaseResponse
 import com.umc.yourweather.data.remote.response.MissedInputResponse
@@ -31,7 +32,7 @@ interface ReportService {
     @GET("api/v1/report/list")
     fun getMonthlyReport(
         @Query("month") month: Int,
-        @Query("weather") weather: MemoRequest.Status,
+        @Query("weather") weather: Status,
     ): Call<BaseResponse<SpecificMemoResponse>>
 
     // 미입력 내역 조회
