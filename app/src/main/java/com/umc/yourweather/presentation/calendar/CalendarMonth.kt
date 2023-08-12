@@ -31,10 +31,6 @@ class CalendarMonth @JvmOverloads constructor(
             Log.d("캘린더 클릭", "Clicked date: $date, 여기는 CalendarMonth")
             val mIntent = Intent(context, CalendarDetailView1::class.java)
 
-            mIntent.putExtra("year", date.year.toString())
-            mIntent.putExtra("month", date.monthValue.toString())
-            mIntent.putExtra("date", date.dayOfMonth.toString())
-
             mIntent.putExtra("weatherId", weatherId)
 
             context.startActivity(mIntent)
