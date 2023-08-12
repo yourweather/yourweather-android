@@ -117,10 +117,10 @@ class HomeFragment : Fragment(), HomeFragmentInteractionListener {
 
     private fun updateBackgroundImage(status: Status) {
         val backgroundImageResource = when (status) {
-            Status.SUNNY -> R.drawable.bg_home1_sun
-            Status.CLOUDY -> R.drawable.bg_home1_cloud
-            Status.RAINY -> R.drawable.bg_home1_rain
-            Status.LIGHTNING -> R.drawable.bg_home1_thunder
+            Status.SUNNY -> R.drawable.bg_home1_sunny
+            Status.CLOUDY -> R.drawable.bg_home1_cloudy
+            Status.RAINY -> R.drawable.bg_home1_rainy
+            Status.LIGHTNING -> R.drawable.bg_home1_lightning
         }
         binding.bgHomeWeather.setImageResource(backgroundImageResource)
     }
@@ -149,7 +149,7 @@ class HomeFragment : Fragment(), HomeFragmentInteractionListener {
         homeToast.setGravity(
             android.view.Gravity.BOTTOM or android.view.Gravity.CENTER,
             0,
-            resources.getDimensionPixelSize(R.dimen.home_toast_margin_bottom)
+            resources.getDimensionPixelSize(R.dimen.home_toast_margin_bottom),
         )
 
         homeToast.show()

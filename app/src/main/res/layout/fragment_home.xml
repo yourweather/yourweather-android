@@ -25,7 +25,7 @@
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintHorizontal_bias="1.0"
                 app:layout_constraintStart_toStartOf="parent"
-                app:srcCompat="@drawable/bg_home1_sun"
+                app:srcCompat="@drawable/bg_home1_sunny"
                 tools:layout_editor_absoluteY="62dp" />
 
 
