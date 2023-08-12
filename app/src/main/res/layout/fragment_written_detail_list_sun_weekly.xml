@@ -49,7 +49,6 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_gravity="left"
-                android:text="이번 주(7.31~8.6) 맑음"
                 android:textColor="@color/sorange"
                 android:textSize="20dp"
                 android:fontFamily="@font/pretendardbold"
