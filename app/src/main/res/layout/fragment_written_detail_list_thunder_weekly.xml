@@ -43,7 +43,6 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_gravity="left"
-                android:text="3주 전(7.3~7.9) 번개"
                 android:textColor="@color/sorange"
                 android:textSize="18dp"
                 android:fontFamily="@font/pretendardbold"
@@ -71,7 +70,6 @@
                 android:paddingTop="4dp"
                 android:paddingRight="14dp"
                 android:paddingBottom="4dp"
-                android:text="총 8회"
                 android:textSize="10dp" />
 
         </LinearLayout>

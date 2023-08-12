@@ -43,7 +43,6 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_gravity="left"
-                android:text="이번 주(7.31~8.6) 다소 흐림"
                 android:textColor="@color/sorange"
                 android:textSize="18dp"
                 android:fontFamily="@font/pretendardbold"
@@ -55,7 +54,6 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_gravity="left"
-                android:text="이다은 님의 이번 주 중 30%가 흐린 날씨였어요"
                 android:textColor="#2B2B2B"
                 android:textSize="14dp"/>
 
@@ -72,7 +70,6 @@
                 android:paddingTop="4dp"
                 android:paddingRight="14dp"
                 android:paddingBottom="4dp"
-                android:text="총 3회"
                 android:textSize="10dp" />
 
         </LinearLayout>
