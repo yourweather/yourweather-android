@@ -7,31 +7,21 @@ import android.util.AttributeSet
 import android.util.Log
 import android.view.ViewGroup
 import androidx.annotation.RequiresApi
-import androidx.core.content.ContextCompat.startActivity
 import androidx.core.view.children
-import com.umc.yourweather.data.remote.request.LoginRequest
-import com.umc.yourweather.data.remote.request.SpecificMemoRequest
 import com.umc.yourweather.data.remote.response.BaseResponse
-import com.umc.yourweather.data.remote.response.SpecificMemoResponse
-import com.umc.yourweather.data.remote.response.TokenResponse
-import com.umc.yourweather.data.service.LoginService
-import com.umc.yourweather.data.service.ReportService
+import com.umc.yourweather.data.remote.response.MonthResponse
+import com.umc.yourweather.data.remote.response.MonthWeatherResponse
 import com.umc.yourweather.data.service.WeatherService
-import com.umc.yourweather.di.App
-import com.umc.yourweather.di.MySharedPreferences
 import com.umc.yourweather.di.RetrofitImpl
-import com.umc.yourweather.presentation.BottomNavi
 import com.umc.yourweather.presentation.calendardetailview.CalendarDetailView1
 import com.umc.yourweather.util.CalendarUtils.Companion.DAYS_PER_WEEK
 import com.umc.yourweather.util.CalendarUtils.Companion.WEEKS_PER_MONTH
 import com.umc.yourweather.util.CalendarUtils.Companion.dpToPx
-import com.umc.yourweather.util.SignUtils
 import retrofit2.Call
 import retrofit2.Callback
 import retrofit2.Response
-import retrofit2.http.GET
-import retrofit2.http.Query
 import java.time.LocalDate
+import java.time.format.DateTimeFormatter
 
 class CalendarMonth @JvmOverloads constructor(
     context: Context,
@@ -39,6 +29,8 @@ class CalendarMonth @JvmOverloads constructor(
     val defStyleAttr: Int = 0,
 ) :
     ViewGroup(context, attrs, defStyleAttr) {
+
+    var weatherData: List<MonthWeatherResponse>? = null
 
     private val onDateClickListener = object : CalendarDate.OnDateClickListener {
         @RequiresApi(Build.VERSION_CODES.O)
@@ -75,59 +67,62 @@ class CalendarMonth @JvmOverloads constructor(
     }
 
     @RequiresApi(Build.VERSION_CODES.O)
-    fun initCalendar(month: Int, list: MutableList<LocalDate>) {
+    fun initCalendar(year: Int, month: Int, list: MutableList<LocalDate>) {
         // demo
-        var dataList = testCalendarData().weatherDatas
+        // var dataList = testCalendarData().weatherDatas
+
+        val formatter = DateTimeFormatter.ofPattern("yyyy-MM-dd")
+
+        monthWeatherApi(year, month)
 
         list.forEach { localdata ->
-            val calendarDateView = CalendarDate(
-                context = context,
-                thisDate = localdata,
-                thisMonth = month,
-                dataList = dataList.filter { it.date == localdata },
-            )
+
+            val calendarDateView = weatherData?.let {
+                var thisDate : MonthWeatherResponse? = it.filter { LocalDate.parse(it.date, formatter) == localdata }[0]
+
+                CalendarDate(
+                    context = context,
+                    thisDate = localdata,
+                    thisMonth = month,
+                    dataList = thisDate,
+                )
+            }
             // 클릭 이벤트 리스너를 설정하여 콜백 등록
-            calendarDateView.setOnDateClickListener(onDateClickListener)
+            if (calendarDateView != null) {
+                calendarDateView.setOnDateClickListener(onDateClickListener)
+            }
             addView(calendarDateView)
         }
         Log.d("캘린더 순서", "initCalendar")
     }
 
+    fun monthWeatherApi(year: Int, month: Int) {
+        val service = RetrofitImpl.authenticatedRetrofit.create(WeatherService::class.java)
 
-//    @GET("api/v1/report/list")
-//    fun getMonthlyReport(
-//        @Query("month") month: Int,
-//        @Query("weather") weather: String,
-//    ): Call<BaseResponse<SpecificMemoResponse>>
-
-    fun monthWeatherApi(month : Int, requestWeather : String){
-        val service = RetrofitImpl.authenticatedRetrofit.create(ReportService::class.java)
-
-        val weatherInfo = SpecificMemoRequest(month, requestWeather)
-
-        service.getMonthlyReport(month = month, weather = requestWeather).enqueue(object : Callback<BaseResponse<SpecificMemoResponse>> {
-
-            override fun onResponse(
-                call: Call<BaseResponse<SpecificMemoResponse>>,
-                response: Response<BaseResponse<SpecificMemoResponse>>,
-            ) {
-                val code = response.body()?.code
-
-                if (response.isSuccessful) {
-                   if (code == 200){
-
+        service.getMonthData(year = year, month = month)
+            .enqueue(object : Callback<BaseResponse<MonthResponse>> {
+                override fun onResponse(
+                    call: Call<BaseResponse<MonthResponse>>,
+                    response: Response<BaseResponse<MonthResponse>>,
+                ) {
+                    val weatherResponse = response.body()
+                    val code = response.body()?.code
+                    if (response.isSuccessful) {
+                        if (code == 200) {
+                            weatherData = weatherResponse?.result?.weatherList ?: emptyList()
+                            Log.d("월 데이터 확인 ", "$weatherData")
+                        }
+                    } else {
+                        Log.d(
+                            "SignInDebug",
+                            "onResponse 오류: ${response?.toString()}",
+                        )
                     }
-                } else {
-                    Log.d(
-                        "SignInDebug",
-                        "onResponse 오류: ${response?.toString()}",
-                    )
                 }
-            }
-            override fun onFailure(call: Call<BaseResponse<SpecificMemoResponse>>, t: Throwable) {
-                Log.d("SignInDebug", "onFailure 에러: " + t.message.toString())
-            }
-        })
 
+                override fun onFailure(call: Call<BaseResponse<MonthResponse>>, t: Throwable) {
+                    Log.d("SignInDebug", "onFailure 에러: " + t.message.toString())
+                }
+            })
     }
 }

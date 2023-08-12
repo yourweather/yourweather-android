@@ -15,6 +15,8 @@ import androidx.core.content.ContextCompat
 import androidx.core.content.res.ResourcesCompat
 import androidx.core.content.withStyledAttributes
 import com.umc.yourweather.R
+import com.umc.yourweather.data.remote.response.MonthResponse
+import com.umc.yourweather.data.remote.response.MonthWeatherResponse
 import com.umc.yourweather.util.CalendarUtils.Companion.checkTextSize
 import com.umc.yourweather.util.CalendarUtils.Companion.dpToPx
 import java.time.LocalDate
@@ -26,12 +28,12 @@ class CalendarDate @JvmOverloads constructor(
     defStyleAttr: Int = 0,
     val thisMonth: Int,
     val thisDate: LocalDate,
-    val dataList: List<Info>,
+    val dataList: MonthWeatherResponse?,
 ) : View(context, attrs, defStyleAttr) {
-    val count = 1 // 데이터 개수
+
     lateinit var datePaint: Paint
     lateinit var temPaint: Paint
-    var thisInfo: Info? = dataList.maxByOrNull { it.temper }
+
     var customDrawable: Drawable? = null
 
 //    //**삭제예정!!!!!
@@ -76,7 +78,7 @@ class CalendarDate @JvmOverloads constructor(
                     datePaint.color = Color.parseColor("#D1CAC6")
                 } else {
                     datePaint.color = Color.parseColor("#2B2B2B")
-                    if (thisInfo != null) {
+                    if (dataList != null) {
                         temPaint = TextPaint().apply {
                             textSize = dpToPx(context, 12).toFloat()
                             color = Color.parseColor("#2B2B2B")
@@ -84,7 +86,7 @@ class CalendarDate @JvmOverloads constructor(
                             textAlign = Paint.Align.CENTER
                             typeface = tempFont
                         }
-                        customDrawable = setDrawable(thisInfo!!.weather)
+                        //customDrawable = setDrawable(dataList!!)
                     }
                     setOnClickListener {
                         // 클릭 이벤트가 발생했을 때 콜백으로 해당 날짜 전달
@@ -118,7 +120,7 @@ class CalendarDate @JvmOverloads constructor(
         // canvas?.drawRect(0f, 0f, width.toFloat(), height.toFloat(), borderPaint)
         if (thisMonth == thisDate.monthValue) {
             val dateText = thisDate.dayOfMonth.toString()
-            val temp = "${thisInfo?.temper}°"
+            val temp = "${dataList?.lastTemperature}°"
 
             if (LocalDate.now() == thisDate) {
                 circlePaint(dateText, canvas)
@@ -131,7 +133,7 @@ class CalendarDate @JvmOverloads constructor(
                 dpToPx(context, 16).toFloat(),
                 datePaint,
             )
-            if (thisInfo != null && !isLaterDay()) {
+            if (dataList != null && !isLaterDay()) {
                 val drawableleft = (width / 2) - dpToPx(context, 24)
                 val drawableright = drawableleft + dpToPx(context, 48)
                 val drawableTop = dpToPx(context, 18).toInt()

@@ -30,7 +30,7 @@ class CalendarFragment : Fragment() {
         getDate(year!!, month!!)
         Log.d("날짜확인확인", "$year $month")
 
-        binding.ctCalendarCustom.initCalendar(month!!, dateList)
+        binding.ctCalendarCustom.initCalendar(year!!, month!!, dateList)
 
         return binding.root
     }
