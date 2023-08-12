@@ -25,5 +25,11 @@ class MyPageMyInfo : AppCompatActivity() {
             val mIntent = Intent(this, MyPageNicknameChange::class.java)
             startActivity(mIntent)
         }
+
+        val nickname = intent.getStringExtra("nickname")
+        val email = intent.getStringExtra("email")
+
+        binding.tvMyinfoNickname.text = nickname
+        binding.tvMyinfoEmail.text = email
     }
 }
