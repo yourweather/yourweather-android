@@ -50,6 +50,14 @@ class SignIn : AppCompatActivity() {
         binding = ActivitySignInBinding.inflate(layoutInflater)
         setContentView(binding.root)
 
+        // 자동로그인입니다....
+
+        if (App.token_prefs.accessToken != null) {
+            val mIntent = Intent(this@SignIn, BottomNavi::class.java)
+            startActivity(mIntent)
+            finish()
+        }
+
         // 비밀번호 찾기로 이동
         binding.tvSigninBtnfindpw.setOnClickListener {
             val mIntent = Intent(this, FindPw::class.java)
