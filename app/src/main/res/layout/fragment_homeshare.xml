@@ -1,0 +1,189 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    tools:context=".presentation.weatherinput.HomeshareFragment">
+
+    <FrameLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent">
+
+        <LinearLayout
+            android:id="@+id/linearLayout8"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="45dp"
+            android:layout_marginTop="200dp"
+            android:layout_marginEnd="45dp"
+            android:layout_marginBottom="267dp"
+            android:background="@drawable/bg_appshare"
+            android:orientation="vertical"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent">
+
+            <TextView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="31dp"
+                android:layout_marginTop="33dp"
+                android:fontFamily="@font/pretendardregular"
+                android:text="앱 접근 권한 동의"
+                android:textColor="#5E412F"
+                android:textFontWeight="500"
+                android:textSize="15sp" />
+
+            <TextView
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:layout_marginStart="31dp"
+                android:layout_marginTop="13dp"
+                android:fontFamily="@font/pretendardregular"
+                android:text="아래의 권한을 필요로 하는 기능입니다.\n접근권한 허용 후, 이용 가능합니다."
+                android:textColor="#5E412F"
+                android:textFontWeight="500"
+                android:textSize="12sp" />
+
+            <TextView
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:layout_marginStart="31dp"
+                android:layout_marginTop="23dp"
+                android:fontFamily="@font/pretendardregular"
+                android:text="선택적 접근 권한"
+                android:textColor="#5E412F"
+                android:textFontWeight="500"
+                android:textSize="12sp" />
+
+            <TextView
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:layout_marginStart="31dp"
+                android:layout_marginTop="8dp"
+                android:fontFamily="@font/pretendardregular"
+                android:text="동의와 상관없이 유어웨더 APP의 기본 서비스 이용이\n가능하며, 미동의 시 아래 권한을 요구하는 기능 이용이\n제한 됩니다."
+                android:textColor="#A4A4A4"
+                android:textFontWeight="500"
+                android:textSize="10sp" />
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="18dp"
+                android:orientation="horizontal">
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginStart="31dp"
+                    android:fontFamily="@font/pretendardregular"
+                    android:text="[선택]"
+                    android:textColor="#FC8F52"
+                    android:textFontWeight="500"
+                    android:textSize="12sp" />
+
+                <TextView
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:layout_marginStart="5dp"
+                    android:fontFamily="@font/pretendardregular"
+                    android:text="카메라 권한"
+                    android:textColor="#5E412F"
+                    android:textFontWeight="500"
+                    android:textSize="12sp" />
+
+            </LinearLayout>
+
+            <TextView
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:layout_marginStart="31dp"
+                android:layout_marginTop="5dp"
+                android:fontFamily="@font/pretendardregular"
+                android:text="스토리 공유하기, 홈화면 이미지로 저장하기"
+                android:textColor="#A4A4A4"
+                android:textFontWeight="500"
+                android:textSize="10sp" />
+
+            <TextView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="31dp"
+                android:layout_marginTop="26dp"
+                android:fontFamily="@font/pretendardregular"
+                android:text="*접근권한 변경 방법\n기기 설정>유어웨더 에서 각 접근권한 별 설정 가능"
+                android:textColor="#5E412F"
+                android:textFontWeight="500"
+                android:textSize="10sp" />
+
+            <ImageView
+                android:id="@+id/imageView4"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="26dp"
+                app:srcCompat="@drawable/ic_homeshare_line1" />
+
+            <LinearLayout
+                android:layout_width="wrap_content"
+                android:layout_height="match_parent"
+                android:orientation="horizontal">
+
+                <Button
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginStart="36dp"
+                    android:layout_marginTop="5dp"
+                    android:background="#00ff0000"
+                    android:fontFamily="@font/pretendardregular"
+                    android:text="취소"
+                    android:textColor="#999999"
+                    android:textFontWeight="400"
+                    android:textSize="14sp" />
+
+                <Button
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginStart="65dp"
+                    android:layout_marginTop="5dp"
+                    android:background="#00ff0000"
+                    android:fontFamily="@font/pretendardregular"
+                    android:text="설정이동"
+                    android:textColor="#FC8F52"
+                    android:textFontWeight="400"
+                    android:textSize="14sp" />
+
+            </LinearLayout>
+        </LinearLayout>
+
+        <ImageView
+            android:id="@+id/imageView5"
+            android:layout_width="wrap_content"
+            android:layout_height="58dp"
+            android:layout_marginTop="514dp"
+            app:layout_constraintBottom_toBottomOf="@+id/linearLayout8"
+            app:srcCompat="@drawable/ic_homeshare_line2" />
+
+        <ImageButton
+            android:id="@+id/imageButton4"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="356dp"
+            android:layout_marginTop="0dp"
+            android:layout_marginEnd="20dp"
+            android:layout_marginBottom="472dp"
+            android:background="#00ff0000"
+            app:layout_constraintBottom_toTopOf="@+id/imageView5"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent"
+            app:srcCompat="@drawable/btn_home_appshare_share" />
+
+    </FrameLayout>
+    <include layout="@layout/activity_bnv" />
+</androidx.constraintlayout.widget.ConstraintLayout>
