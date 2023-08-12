@@ -114,7 +114,7 @@ class WrittenDetailListFragmentSun : Fragment() {
                     val memoListSize = memoList?.size ?: 0 // 리스트 개수
                     binding.tvWrittenDetailListMonthNum.text = "총 ${memoListSize}회"
                     val dataList = fetchDataFromAPI(memoList)
-                    Log.d("Sunny dataList", "Rainy dataList: $dataList")
+                    Log.d("Sunny dataList", "Sunny dataList: $dataList")
 
                     // 어댑터 초기화 및 데이터 설정
                     val adapter = WrittenRVAdapter(dataList, requireContext())

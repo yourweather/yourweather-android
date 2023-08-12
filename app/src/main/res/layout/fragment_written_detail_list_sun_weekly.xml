@@ -69,7 +69,9 @@
                 android:paddingTop="4dp"
                 android:paddingRight="14dp"
                 android:paddingBottom="4dp"
-                android:textSize="10dp" />
+                android:textSize="10dp"
+                android:gravity="center"
+                />
 
         </LinearLayout>
 
