@@ -8,11 +8,13 @@ import android.util.Log
 import android.view.ViewGroup
 import androidx.annotation.RequiresApi
 import androidx.core.view.children
+import com.umc.yourweather.data.remote.response.MonthWeatherResponse
 import com.umc.yourweather.presentation.calendardetailview.CalendarDetailView1
 import com.umc.yourweather.util.CalendarUtils.Companion.DAYS_PER_WEEK
 import com.umc.yourweather.util.CalendarUtils.Companion.WEEKS_PER_MONTH
 import com.umc.yourweather.util.CalendarUtils.Companion.dpToPx
 import java.time.LocalDate
+import java.time.format.DateTimeFormatter
 
 class CalendarMonth @JvmOverloads constructor(
     context: Context,
@@ -20,6 +22,8 @@ class CalendarMonth @JvmOverloads constructor(
     val defStyleAttr: Int = 0,
 ) :
     ViewGroup(context, attrs, defStyleAttr) {
+
+//    lateinit var weatherData: List<MonthWeatherResponse>
 
     private val onDateClickListener = object : CalendarDate.OnDateClickListener {
         @RequiresApi(Build.VERSION_CODES.O)
@@ -56,18 +60,24 @@ class CalendarMonth @JvmOverloads constructor(
     }
 
     @RequiresApi(Build.VERSION_CODES.O)
-    fun initCalendar(month: Int, list: MutableList<LocalDate>) {
+    fun initCalendar(year: Int, month: Int, list: MutableList<LocalDate>, weatherData: List<MonthWeatherResponse>) {
         // demo
-        var dataList = testCalendarData().weatherDatas
+        // var dataList = testCalendarData().weatherDatas
+
+        val formatter = DateTimeFormatter.ofPattern("yyyy-MM-dd")
 
         list.forEach { localdata ->
-            val calendarDateView = CalendarDate(
-                context = context,
-                thisDate = localdata,
-                thisMonth = month,
-                dataList = dataList.filter { it.date == localdata },
-            )
-            // 클릭 이벤트 리스너를 설정하여 콜백 등록
+            var thisDate = weatherData.filter { LocalDate.parse(it.date, formatter) == localdata }.firstOrNull()
+
+            Log.d("캘린더에 날짜 넣음 ", "$thisDate")
+            val calendarDateView =
+                CalendarDate(
+                    context = context,
+                    thisDate = localdata,
+                    thisMonth = month,
+                    dataList = thisDate,
+                )
+
             calendarDateView.setOnDateClickListener(onDateClickListener)
             addView(calendarDateView)
         }
