@@ -41,7 +41,6 @@ class WrittenDetailListFragmentSunWeekly : Fragment() {
 
         val dataList = fetchDataFromAPI()
 
-        binding.recyclerViewDetailWeeklySun.layoutManager = LinearLayoutManager(requireContext())
         val adapter = WrittenRVAdapter(dataList, requireContext())
         binding.recyclerViewDetailWeeklySun.adapter = adapter
 
@@ -59,24 +58,16 @@ class WrittenDetailListFragmentSunWeekly : Fragment() {
 
         // 인자(bundle)로부터 ago 값을 가져오기
         val updateWeek = arguments?.getInt("updateWeek", 0) ?: 0
-        // 정확한 주 숫자
-        val getWeekText = getWeekText(updateWeek)
-        // updateWeek에 따른 주차 텍스트 분기문
-        val weekTitle = when (updateWeek) {
-            0 -> "이번 주"
-            1 -> "1주 전"
-            2 -> "2주 전"
-            3 -> "3주 전"
-            else -> "$updateWeek 주 전" // 4주 이상 전의 경우
-        }
-        binding.tvWrittenDetailListMonthSun.text = "$weekTitle ($getWeekText)의 맑음 통계"
+
         iconStatisticsWeekApi(updateWeek)
+
+        binding.recyclerViewDetailWeeklySun.layoutManager = LinearLayoutManager(requireContext())
     }
 
-    // 이번 달 통계
-    private fun iconStatisticsWeekApi(ago: Int) {
+    // 이번 주 통계 updateWeek == ago
+    private fun iconStatisticsWeekApi(updateWeek: Int) {
         val service = RetrofitImpl.authenticatedRetrofit.create(ReportService::class.java)
-        val call = service.weeklyStatistic(ago = ago)
+        val call = service.weeklyStatistic(ago = updateWeek)
 
         call.enqueue(object : Callback<BaseResponse<StatisticResponse>> {
             override fun onResponse(
@@ -86,27 +77,36 @@ class WrittenDetailListFragmentSunWeekly : Fragment() {
                 if (response.isSuccessful) {
                     val statisticResponse = response.body()?.result
                     if (statisticResponse != null) {
-                        Log.d("${ago}주 전 Success", "${ago}주 전 디테일 Sunny: ${statisticResponse.sunny}")
-                        if (ago == 0) {
-                            binding.tvWrittenDetailListMonthContent.text = "맑음이 이번 주 날씨의 ${statisticResponse.sunny.toInt()}%를 차지했어요"
-                        } else {
-                            binding.tvWrittenDetailListMonthContent.text = "맑음이 ${ago}주 전 날씨의 ${statisticResponse.sunny.toInt()}%를 차지했어요"
+                        Log.d("${updateWeek}주 전 Success", "${updateWeek}주 전 디테일 Sunny: ${statisticResponse.sunny}")
+                        // 정확한 주 숫자
+                        val getWeekText = getWeekText(updateWeek)
+                        // updateWeek에 따른 주차 텍스트 분기문
+                        val weekTitle = when (updateWeek) {
+                            0 -> "이번 주"
+                            1 -> "1주 전"
+                            2 -> "2주 전"
+                            3 -> "3주 전"
+                            else -> "$updateWeek 주 전" // 4주 이상 전의 경우
                         }
+
+                        binding.tvWrittenDetailListMonthSun.text = "$weekTitle ($getWeekText)의 맑음 통계"
+                        binding.tvWrittenDetailListMonthContent.text = "맑음이 $weekTitle 날씨의 ${statisticResponse.sunny.toInt()}%를 차지했어요"
                     } else {
-                        Log.e("${ago}개월 전 디테일 API Error", "Response body 비었음")
+                        Log.e("${updateWeek}개월 전 디테일 API Error", "Response body 비었음")
                     }
                 } else {
                     val errorBody = response.errorBody()?.string()
-                    Log.e("${ago}개월 전 디테일 API Error", "Response Code: ${response.code()}, Error Body: $errorBody")
+                    Log.e("${updateWeek}개월 전 디테일 API Error", "Response Code: ${response.code()}, Error Body: $errorBody")
                 }
             }
 
             override fun onFailure(call: Call<BaseResponse<StatisticResponse>>, t: Throwable) {
-                Log.e("${ago}개월 전 디테일 bar API Failure", "Error: ${t.message}", t)
+                Log.e("${updateWeek}개월 전 디테일 bar API Failure", "Error: ${t.message}", t)
             }
         })
     }
 
+    // 정확한 주 숫자
     private fun getWeekText(updateWeek: Int): String {
         val calendar = Calendar.getInstance()
         calendar.add(Calendar.WEEK_OF_YEAR, -updateWeek)
