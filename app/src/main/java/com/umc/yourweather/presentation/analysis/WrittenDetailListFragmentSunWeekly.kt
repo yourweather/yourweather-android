@@ -59,13 +59,21 @@ class WrittenDetailListFragmentSunWeekly : Fragment() {
 
         // 인자(bundle)로부터 ago 값을 가져오기
         val updateWeek = arguments?.getInt("updateWeek", 0) ?: 0
-        iconStatisticsWeekApi(updateWeek)
-
-
+        // 정확한 주 숫자
+        val getWeekText = getWeekText(updateWeek)
+        // updateWeek에 따른 주차 텍스트 분기문
+        val weekTitle = when (updateWeek) {
+            0 -> "이번 주"
+            1 -> "1주 전"
+            2 -> "2주 전"
+            3 -> "3주 전"
+            else -> "$updateWeek 주 전" // 4주 이상 전의 경우
+        }
+        binding.tvWrittenDetailListMonthSun.text = "$weekTitle ($getWeekText)의 맑음 통계"
         iconStatisticsWeekApi(updateWeek)
     }
 
-    // 이번 주 통계
+    // 이번 달 통계
     private fun iconStatisticsWeekApi(ago: Int) {
         val service = RetrofitImpl.authenticatedRetrofit.create(ReportService::class.java)
         val call = service.weeklyStatistic(ago = ago)
@@ -80,17 +88,6 @@ class WrittenDetailListFragmentSunWeekly : Fragment() {
                     if (statisticResponse != null) {
                         Log.d("${ago}주 전 Success", "${ago}주 전 디테일 Sunny: ${statisticResponse.sunny}")
                         if (ago == 0) {
-                            // 정확한 주 숫자
-                            val getWeekText = getWeekText(ago)
-                            // updateWeek에 따른 주차 텍스트 분기문
-                            val weekTitle = when (ago) {
-                                0 -> "이번 주"
-                                1 -> "1주 전"
-                                2 -> "2주 전"
-                                3 -> "3주 전"
-                                else -> "$ago 주 전" // 4주 이상 전의 경우
-                            }
-                            binding.tvWrittenDetailListMonthSun.text = "$weekTitle ($getWeekText)의 맑음 통계"
                             binding.tvWrittenDetailListMonthContent.text = "맑음이 이번 주 날씨의 ${statisticResponse.sunny.toInt()}%를 차지했어요"
                         } else {
                             binding.tvWrittenDetailListMonthContent.text = "맑음이 ${ago}주 전 날씨의 ${statisticResponse.sunny.toInt()}%를 차지했어요"
