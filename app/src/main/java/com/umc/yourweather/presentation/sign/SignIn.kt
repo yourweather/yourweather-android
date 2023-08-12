@@ -29,6 +29,7 @@ import com.umc.yourweather.data.remote.response.TokenResponse
 import com.umc.yourweather.data.service.LoginService
 import com.umc.yourweather.databinding.ActivitySignInBinding
 import com.umc.yourweather.di.App
+import com.umc.yourweather.di.MySharedPreferences
 import com.umc.yourweather.di.RetrofitImpl
 import com.umc.yourweather.presentation.BottomNavi
 import com.umc.yourweather.util.SignUtils.Companion.KAKAOTAG
@@ -50,13 +51,11 @@ class SignIn : AppCompatActivity() {
         binding = ActivitySignInBinding.inflate(layoutInflater)
         setContentView(binding.root)
 
-        // 자동로그인입니다....
-
-//        if (App.token_prefs.accessToken != null) {
-//            val mIntent = Intent(this@SignIn, BottomNavi::class.java)
-//            startActivity(mIntent)
-//            finish()
-//        }
+        if (App.token_prefs.accessToken != null) {
+            val mIntent = Intent(this@SignIn, BottomNavi::class.java)
+            startActivity(mIntent)
+            finish()
+        }
 
         // 비밀번호 찾기로 이동
         binding.tvSigninBtnfindpw.setOnClickListener {
@@ -120,8 +119,7 @@ class SignIn : AppCompatActivity() {
                     if (code == 200) {
                         val mIntent = Intent(this@SignIn, BottomNavi::class.java)
                         Log.d("SignInDebug", "로그인 성공~ : " + response.headers().toString())
-//                        MySharedPreferences.setUserId(this@SignIn, userEmail)
-//                        MySharedPreferences.setUserPw(this@SignIn, userPw) // 자동로그인
+                        MySharedPreferences.setUserPwToStar(this@SignIn, userPw) // 자동로그인
                         App.token_prefs.accessToken = response.body()!!.result?.accessToken
                         App.token_prefs.refreshToken = response.body()!!.result?.refreshToken
                         startActivity(mIntent)
@@ -234,7 +232,7 @@ class SignIn : AppCompatActivity() {
             } else if (user != null) {
                 userEmail = user.kakaoAccount?.email
                 userPw = user.id?.toString()
-                socialSignInApi(userEmail!!, userPw!!, "kakao")
+                socialSignInApi(userEmail!!, userPw!!, "KAKAO")
                 // Toast.makeText(this@SignIn, "email : $userEmail pw : $userPw", Toast.LENGTH_LONG).show()
             }
         }
@@ -251,7 +249,7 @@ class SignIn : AppCompatActivity() {
                         userEmail = result.profile?.email.toString()
                         userPw = result.profile?.id
                         // Toast.makeText(this@SignIn, "email : $userEmail pw : $userPw", Toast.LENGTH_LONG).show()
-                        socialSignInApi(userEmail!!, userPw!!, "naver")
+                        socialSignInApi(userEmail!!, userPw!!, "NAVER")
                     }
                     override fun onError(errorCode: Int, message: String) {
                         //
@@ -291,7 +289,7 @@ class SignIn : AppCompatActivity() {
             userEmail = account?.email.toString()
             userPw = account?.id.toString()
             // Toast.makeText(this@SignIn, "email : $userEmail pw : $userPw", Toast.LENGTH_LONG).show()
-            socialSignInApi(userEmail!!, userPw!!, "google")
+            socialSignInApi(userEmail!!, userPw!!, "GOOGLE")
         } catch (e: ApiException) {
             Log.w("failed", "signInResult:failed code=" + e.statusCode)
         }

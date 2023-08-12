@@ -12,12 +12,14 @@ import androidx.fragment.app.Fragment
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
 import androidx.viewpager2.widget.ViewPager2
+import com.navercorp.nid.oauth.NidOAuthPreferencesManager.code
 import com.umc.yourweather.R
 import com.umc.yourweather.data.entity.CalendarDateInfo
 import com.umc.yourweather.data.remote.response.BaseResponse
 import com.umc.yourweather.data.remote.response.MissedInputResponse
 import com.umc.yourweather.data.service.WeatherService
 import com.umc.yourweather.databinding.FragmentCalendarTotalViewBinding
+import com.umc.yourweather.di.App
 import com.umc.yourweather.di.RetrofitImpl
 import com.umc.yourweather.presentation.adapter.CalendarMonthAdapter
 import com.umc.yourweather.presentation.adapter.CalendarSelectAdapter
@@ -47,8 +49,9 @@ class CalendarTotalViewFragment : Fragment() {
     @RequiresApi(Build.VERSION_CODES.O)
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
-        TestApi()
-
+//        TestApi()
+        Log.d("캘린더.. 저장했던 리프래스 확인", "${App.token_prefs.refreshToken}")
+        Log.d("캘린더... 저장했던 액세스확인", "${App.token_prefs.accessToken}")
         monthrAdapter = CalendarMonthAdapter(requireActivity())
 
         binding.vp2Calendar.adapter = monthrAdapter
@@ -157,36 +160,36 @@ class CalendarTotalViewFragment : Fragment() {
     }
 
     // TestApi
-    private fun TestApi() {
-        val service = RetrofitImpl.authenticatedRetrofit.create(WeatherService::class.java)
-
-        service.getMissedInput().enqueue(object : Callback<BaseResponse<MissedInputResponse>> {
-            override fun onResponse(
-                call: Call<BaseResponse<MissedInputResponse>>,
-                response: Response<BaseResponse<MissedInputResponse>>,
-            ) {
-                val code = response.body()?.code
-
-                if (response.isSuccessful) {
-                    if (code == 200) {
-                        Log.d("토큰 유효한지", "$response")
-                    } else {
-                        Log.d(
-                            "SignInDebug",
-                            "아이디 비번 틀림",
-                        )
-                    }
-                } else {
-                    Log.d(
-
-                        "SignInDebug",
-                        "onResponse 오류: $response",
-                    )
-                }
-            }
-            override fun onFailure(call: Call<BaseResponse<MissedInputResponse>>, t: Throwable) {
-                Log.d("SignInDebug", "onFailure 에러: " + t.message.toString())
-            }
-        })
-    }
+//    private fun TestApi() {
+//        val service = RetrofitImpl.authenticatedRetrofit.create(WeatherService::class.java)
+//
+//        service.getMissedInput().enqueue(object : Callback<BaseResponse<MissedInputResponse>> {
+//            override fun onResponse(
+//                call: Call<BaseResponse<MissedInputResponse>>,
+//                response: Response<BaseResponse<MissedInputResponse>>,
+//            ) {
+//                val code = response.body()?.code
+//
+//                if (response.isSuccessful) {
+//                    if (code == 200) {
+//                        Log.d("토큰 유효한지", "${response.body()}")
+//                    } else {
+//                        Log.d(
+//                            "SignInDebug",
+//                            "아이디 비번 틀림",
+//                        )
+//                    }
+//                } else {
+//                    Log.d(
+//
+//                        "SignInDebug",
+//                        "onResponse 오류: ${response.body()}",
+//                    )
+//                }
+//            }
+//            override fun onFailure(call: Call<BaseResponse<MissedInputResponse>>, t: Throwable) {
+//                Log.d("SignInDebug", "onFailure 에러: " + t.message.toString())
+//            }
+//        })
+//    }
 }

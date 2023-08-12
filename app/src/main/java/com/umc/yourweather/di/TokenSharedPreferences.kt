@@ -12,10 +12,10 @@ class TokenSharedPreferences(context: Context) {
     private val prefs: SharedPreferences = context.getSharedPreferences(prefsFilename, 0)
 
     var accessToken: String?
-        get() = prefs.getString(key_accessToken, "")
+        get() = prefs.getString(key_accessToken, null)
         set(value) = prefs.edit().putString(key_accessToken, value).apply()
 
     var refreshToken: String?
-        get() = prefs.getString(key_refreshToken, "")
+        get() = prefs.getString(key_refreshToken, null)
         set(value) = prefs.edit().putString(key_refreshToken, value).apply()
 }
