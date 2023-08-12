@@ -10,6 +10,7 @@ import androidx.fragment.app.Fragment
 import androidx.recyclerview.widget.LinearLayoutManager
 import com.umc.yourweather.R
 import com.umc.yourweather.data.entity.ItemWritten
+import com.umc.yourweather.data.enums.Status
 import com.umc.yourweather.data.remote.request.MemoRequest
 import com.umc.yourweather.data.remote.response.BaseResponse
 import com.umc.yourweather.data.remote.response.SpecificMemoResponse
@@ -80,7 +81,7 @@ class WrittenDetailListFragmentRain : Fragment() {
                     if (statisticResponse != null) {
                         Log.d("${ago}개월 전 ${viewMonth}월 Success", "${viewMonth}월 디테일 rainy: ${statisticResponse.rainy}")
                         binding.tvWrittenDetailListMonthContent.text = "비가 ${viewMonth}월 전체 날씨의 ${statisticResponse.rainy.toInt()}%를 차지했어요"
-                        fetchSpecificMemoListByWeather(viewMonth, MemoRequest.Status.RAINY)
+                        fetchSpecificMemoListByWeather(viewMonth, Status.RAINY)
                     } else {
                         Log.e("${ago}개월 전 디테일 API Error", "Response body 비었음")
                     }
@@ -97,7 +98,7 @@ class WrittenDetailListFragmentRain : Fragment() {
     }
 
     // 특정 달 cloudy 리스트
-    fun fetchSpecificMemoListByWeather(month: Int, weather: MemoRequest.Status) {
+    fun fetchSpecificMemoListByWeather(month: Int, weather: Status) {
         val retrofit = RetrofitImpl.authenticatedRetrofit
         val reportService = retrofit.create(ReportService::class.java)
 
