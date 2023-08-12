@@ -27,13 +27,11 @@ class CalendarMonth @JvmOverloads constructor(
 
     private val onDateClickListener = object : CalendarDate.OnDateClickListener {
         @RequiresApi(Build.VERSION_CODES.O)
-        override fun onDateClick(date: LocalDate) {
+        override fun onDateClick(date: LocalDate, weatherId: Int?) {
             Log.d("캘린더 클릭", "Clicked date: $date, 여기는 CalendarMonth")
             val mIntent = Intent(context, CalendarDetailView1::class.java)
 
-            mIntent.putExtra("year", date.year.toString())
-            mIntent.putExtra("month", date.monthValue.toString())
-            mIntent.putExtra("date", date.dayOfMonth.toString())
+            mIntent.putExtra("weatherId", weatherId)
 
             context.startActivity(mIntent)
         }
@@ -69,15 +67,16 @@ class CalendarMonth @JvmOverloads constructor(
         list.forEach { localdata ->
             var thisDate = weatherData.filter { LocalDate.parse(it.date, formatter) == localdata }.firstOrNull()
 
-            Log.d("캘린더에 날짜 넣음 ", "$thisDate")
+            Log.d("캘린더에 날짜 넣음 ", "$thisDate ${thisDate?.weatherId}")
             val calendarDateView =
                 CalendarDate(
                     context = context,
                     thisDate = localdata,
                     thisMonth = month,
                     dataList = thisDate,
+                    weatherId = thisDate?.weatherId,
                 )
-
+            // thisDate.weatherId
             calendarDateView.setOnDateClickListener(onDateClickListener)
             addView(calendarDateView)
         }

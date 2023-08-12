@@ -29,6 +29,7 @@ class CalendarDate @JvmOverloads constructor(
     val thisMonth: Int,
     val thisDate: LocalDate,
     val dataList: MonthWeatherResponse?,
+    val weatherId: Int?,
 ) : View(context, attrs, defStyleAttr) {
 
     lateinit var datePaint: Paint
@@ -44,7 +45,7 @@ class CalendarDate @JvmOverloads constructor(
 //    }
 
     interface OnDateClickListener {
-        fun onDateClick(date: LocalDate)
+        fun onDateClick(date: LocalDate, weatherId: Int?)
     }
 
     private var onDateClickListener: OnDateClickListener? = null
@@ -90,7 +91,7 @@ class CalendarDate @JvmOverloads constructor(
                     }
                     setOnClickListener {
                         // 클릭 이벤트가 발생했을 때 콜백으로 해당 날짜 전달
-                        onDateClickListener?.onDateClick(thisDate)
+                        onDateClickListener?.onDateClick(thisDate, weatherId)
                     }
                 }
             }
