@@ -51,7 +51,7 @@
                 android:layout_gravity="left"
                 android:text="3주 전(7.3~7.9) 비"
                 android:textColor="@color/sorange"
-                android:textSize="20dp"
+                android:textSize="18dp"
                 android:fontFamily="@font/pretendardbold"
                 android:layout_marginBottom="6dp"
                 />
@@ -61,8 +61,9 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_gravity="left"
-                android:text="이다은 님의 3주 전 중 40%가 비 날씨였어요"
-                android:textColor="#2B2B2B" />
+                android:textColor="#2B2B2B"
+                android:textSize="14dp"
+                />
 
 
             <TextView

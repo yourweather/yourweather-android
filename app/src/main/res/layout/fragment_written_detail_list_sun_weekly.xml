@@ -50,7 +50,7 @@
                 android:layout_height="wrap_content"
                 android:layout_gravity="left"
                 android:textColor="@color/sorange"
-                android:textSize="20dp"
+                android:textSize="18dp"
                 android:fontFamily="@font/pretendardbold"
                 android:layout_marginBottom="6dp"
                 />
@@ -60,7 +60,7 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_gravity="left"
-                android:text="이다은 님의 이번 주 중 28%가 맑은 날씨였어요"
+                android:textSize="14dp"
                 android:textColor="#2B2B2B" />
 
 

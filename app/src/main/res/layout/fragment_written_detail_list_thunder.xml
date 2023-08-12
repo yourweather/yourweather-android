@@ -51,7 +51,7 @@
                 android:layout_gravity="left"
                 android:text="6월 번개"
                 android:textColor="@color/sorange"
-                android:textSize="20dp"
+                android:textSize="18dp"
                 android:fontFamily="@font/pretendardbold"
                 android:layout_marginBottom="6dp"
                 />
@@ -61,7 +61,9 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_gravity="left"
-                android:textColor="#2B2B2B" />
+                android:textColor="#2B2B2B"
+                android:textSize="14dp"
+                />
 
 
             <TextView
