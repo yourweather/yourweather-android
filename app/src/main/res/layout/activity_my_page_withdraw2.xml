@@ -43,7 +43,6 @@
             <RadioGroup
                 android:layout_width="match_parent"
                 android:layout_height="match_parent"
-                android:theme="@style/CustomRadioTheme"
                 android:id="@+id/radio_grp">
 
                 <RadioButton
@@ -77,6 +76,7 @@
                     android:text="디자인이 마음에 안 들어요"
                     android:textColor="#2B2B2B"
                     android:textFontWeight="400"
+                    android:theme="@style/CustomRadioTheme"
                     android:textSize="13sp" />
 
                 <RadioButton
@@ -87,6 +87,7 @@
                     android:text="유어웨더 앱 사용도가 낮아요"
                     android:textColor="#2B2B2B"
                     android:textFontWeight="400"
+                    android:theme="@style/CustomRadioTheme"
                     android:textSize="13sp" />
 
                 <RadioButton
@@ -98,6 +99,7 @@
                     android:textColor="#2B2B2B"
                     android:textFontWeight="400"
                     android:textSize="13sp"
+                    android:theme="@style/CustomRadioTheme"
                     android:layout_marginBottom="340dp"/>
 
             </RadioGroup>

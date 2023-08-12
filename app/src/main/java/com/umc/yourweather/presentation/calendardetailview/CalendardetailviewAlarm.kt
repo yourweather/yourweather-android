@@ -16,8 +16,8 @@ class CalendardetailviewAlarm : AppCompatActivity() {
 
         val alertDialogBuilder = AlertDialog.Builder(this)
         val inflater = layoutInflater
-        val dialogView = inflater.inflate(R.layout.dialog_time_picker, null)
-        val timePicker = dialogView.findViewById<TimePicker>(R.id.timePicker)
+        val dialogView = inflater.inflate(R.layout.activity_calendardetailview_alarm, null)
+        val timePicker = dialogView.findViewById<TimePicker>(R.id.alarm_timePicker)
 
         // 시간 선택 모드를 12시간 형식으로 설정
         timePicker.setIs24HourView(false)
