@@ -1,6 +1,8 @@
 package com.umc.yourweather.presentation.sign
 
 import android.os.Bundle
+import android.text.Editable
+import android.text.TextWatcher
 import android.util.Log
 import androidx.appcompat.app.AppCompatActivity
 import com.umc.yourweather.data.remote.request.SignupRequest
@@ -17,6 +19,7 @@ import retrofit2.Response
 class Nickname : AppCompatActivity() {
 
     lateinit var binding: ActivityNicknameBinding
+
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         binding = ActivityNicknameBinding.inflate(layoutInflater)
@@ -25,16 +28,34 @@ class Nickname : AppCompatActivity() {
         val editText = binding.etNicknameNickname
         val button = binding.btnNicknameRefresh
 
-        // btn 클릭할 때마다 랜덤 닉네임 추천
+        // 버튼을 클릭할 때마다 랜덤 닉네임 추천
         button.setOnClickListener {
             editText.setText("")
             editText.hint = getRandomHintText()
         }
 
+        // 8글자 이상 입력을 제한
+        editText.addTextChangedListener(object : TextWatcher {
+
+            override fun beforeTextChanged(s: CharSequence?, start: Int, count: Int, after: Int) {
+
+            }
+
+            override fun onTextChanged(s: CharSequence?, start: Int, before: Int, count: Int) {
+
+            }
+
+            override fun afterTextChanged(s: Editable?) {
+                if (s?.length ?: 0 > 8) {
+                    s?.delete(8, s.length)
+                }
+            }
+        })
+
         binding.btnNicknameNext.setOnClickListener {
             val enteredNickname = editText.text.toString() // 사용자가 입력한 닉네임
 
-            // 사용자가 아무런 글자를 입력하지 않았다면, hint 값을 닉네임으로 사용
+            // 사용자가 아무런 글자를 입력하지 않았다면, 힌트 값을 닉네임으로 사용
             val fixedNickname = if (enteredNickname.isBlank()) {
                 editText.hint.toString()
             } else {
