@@ -84,11 +84,11 @@ class WrittenDetailListFragmentThunderWeekly : Fragment() {
                 if (response.isSuccessful) {
                     val statisticResponse = response.body()?.result
                     if (statisticResponse != null) {
-                        Log.d("${ago}주 전 Success", "${ago}주 전 디테일 Sunny: ${statisticResponse.sunny}")
+                        Log.d("${ago}주 전 Success", "${ago}주 전 디테일 lightning: ${statisticResponse.lightning}")
                         if (ago == 0) {
-                            binding.tvWrittenDetailListMonthContent.text = "맑음이 이번 주 날씨의 ${statisticResponse.sunny.toInt()}%를 차지했어요"
+                            binding.tvWrittenDetailListMonthContent.text = "번개가 이번 주 날씨의 ${statisticResponse.lightning.toInt()}%를 차지했어요"
                         } else {
-                            binding.tvWrittenDetailListMonthContent.text = "맑음이 ${ago}주 전 날씨의 ${statisticResponse.sunny.toInt()}%를 차지했어요"
+                            binding.tvWrittenDetailListMonthContent.text = "번개가 ${ago}주 전 날씨의 ${statisticResponse.lightning.toInt()}%를 차지했어요"
                         }
                     } else {
                         Log.e("${ago}개월 전 디테일 API Error", "Response body 비었음")
