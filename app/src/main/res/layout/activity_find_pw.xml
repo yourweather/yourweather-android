@@ -55,7 +55,7 @@
         android:layout_marginEnd="36dp"
         android:fontFamily="@font/pretendardmedium"
         android:gravity="left"
-        android:text="가입 시 사용한 이메일을 입력해 주세요"
+        android:text="가입 시 사용한 이메일을 입력해 주세요 (소셜로그인 제외)"
         android:textColor="#ACACAC"
         android:textSize="13dp"
         android:textStyle="bold"
@@ -86,7 +86,7 @@
     <com.google.android.material.textfield.TextInputLayout
         android:id="@+id/textinput_findpw_email"
         android:layout_width="match_parent"
-        android:layout_height="wrap_content"
+        android:layout_height="0dp"
         android:layout_marginStart="16dp"
         android:layout_marginEnd="16dp"
         app:layout_constraintEnd_toEndOf="parent"
@@ -97,7 +97,7 @@
         <com.google.android.material.textfield.TextInputEditText
             android:id="@+id/et_findpw_email"
             android:layout_width="match_parent"
-            android:layout_height="48dp"
+            android:layout_height="wrap_content"
             android:background="@drawable/bg_gray_ff_fill_rect"
             android:fontFamily="@font/pretendardregular"
             android:textColor="#2B2B2B"
