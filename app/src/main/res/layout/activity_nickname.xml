@@ -83,7 +83,7 @@
         android:background="@drawable/bg_click_btn"
         android:fontFamily="@font/pretendardsemibold"
         android:gravity="center"
-        android:text="다음"
+        android:text="회원가입 완료"
         android:textColor="#FFFFFF"
         android:textSize="16dp"
         android:textStyle="bold"

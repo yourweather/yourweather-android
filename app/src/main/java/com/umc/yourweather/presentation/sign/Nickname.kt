@@ -2,6 +2,8 @@ package com.umc.yourweather.presentation.sign
 
 import android.content.Intent
 import android.os.Bundle
+import android.text.Editable
+import android.text.TextWatcher
 import android.util.Log
 import androidx.appcompat.app.AppCompatActivity
 import com.umc.yourweather.data.remote.request.SignupRequest
@@ -28,16 +30,32 @@ class Nickname : AppCompatActivity() {
         val editText = binding.etNicknameNickname
         val button = binding.btnNicknameRefresh
 
-        // btn 클릭할 때마다 랜덤 닉네임 추천
+        // 버튼을 클릭할 때마다 랜덤 닉네임 추천
         button.setOnClickListener {
             editText.setText("")
             editText.hint = getRandomHintText()
         }
 
+        // 8글자 이상 입력을 제한
+        editText.addTextChangedListener(object : TextWatcher {
+
+            override fun beforeTextChanged(s: CharSequence?, start: Int, count: Int, after: Int) {
+            }
+
+            override fun onTextChanged(s: CharSequence?, start: Int, before: Int, count: Int) {
+            }
+
+            override fun afterTextChanged(s: Editable?) {
+                if (s?.length ?: 0 > 8) {
+                    s?.delete(8, s.length)
+                }
+            }
+        })
+
         binding.btnNicknameNext.setOnClickListener {
             val enteredNickname = editText.text.toString() // 사용자가 입력한 닉네임
 
-            // 사용자가 아무런 글자를 입력하지 않았다면, hint 값을 닉네임으로 사용
+            // 사용자가 아무런 글자를 입력하지 않았다면, 힌트 값을 닉네임으로 사용
             val fixedNickname = if (enteredNickname.isBlank()) {
                 editText.hint.toString()
             } else {
@@ -80,13 +98,10 @@ class Nickname : AppCompatActivity() {
                         // 회원 가입 성공
                         Log.d("SignupDebug", "회원 가입 성공")
 
-                        // 회원 가입 성공 시 SignIn로 이동
+                        // 회원 가입 성공 후 로그인화면으로 이동
                         val intent = Intent(this@Nickname, SignIn::class.java)
                         intent.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP)
                         startActivity(intent)
-
-                        // 현재 액티비티 (Nickname)를 종료하여 뒤로 가기를 방지
-                        finish()
                     } else {
                         // 회원 가입 실패
                         Log.d("SignupDebug", "회원 가입 실패: code = $code")

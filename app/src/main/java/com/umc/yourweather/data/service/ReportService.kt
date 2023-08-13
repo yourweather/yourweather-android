@@ -29,9 +29,16 @@ interface ReportService {
     fun monthlyComparison(@Query("ago") ago: Int): Call<BaseResponse<StatisticResponse>>
 
     // 월 중 특정 날씨 리스트 요청
-    @GET("api/v1/report/list")
+    @GET("api/v1/report/monthly-specific-weather")
     fun getMonthlyReport(
         @Query("month") month: Int,
+        @Query("weather") weather: Status,
+    ): Call<BaseResponse<SpecificMemoResponse>>
+
+    // 주 중 특정 날씨 리스트 요청
+    @GET("api/v1/report/weekly-specific-weather")
+    fun getWeeklyReport(
+        @Query("week") month: Int,
         @Query("weather") weather: Status,
     ): Call<BaseResponse<SpecificMemoResponse>>
 

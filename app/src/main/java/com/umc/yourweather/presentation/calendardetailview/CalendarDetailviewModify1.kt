@@ -26,6 +26,7 @@ import com.umc.yourweather.databinding.ActivityCalendarDetailviewModify1Binding
 import com.umc.yourweather.databinding.ActivityCalendarDetailviewModify2Binding
 import com.umc.yourweather.presentation.weatherinput.HomeFragment
 
+
 class CalendarDetailviewModify1 : AppCompatActivity() {
     private lateinit var binding: ActivityCalendarDetailviewModify1Binding
     private lateinit var cardView: CardView
