@@ -2,6 +2,8 @@ package com.umc.yourweather.presentation.mypage
 
 import android.content.DialogInterface
 import android.content.Intent
+import android.graphics.Color
+import android.graphics.drawable.ColorDrawable
 import android.os.Bundle
 import android.util.Log
 import androidx.appcompat.app.AppCompatActivity
@@ -9,7 +11,9 @@ import com.umc.yourweather.data.remote.response.BaseResponse
 import com.umc.yourweather.data.remote.response.UserResponse
 import com.umc.yourweather.data.service.UserService
 import com.umc.yourweather.databinding.ActivityMyPageWithdraw2Binding
+import com.umc.yourweather.di.App
 import com.umc.yourweather.di.RetrofitImpl
+import com.umc.yourweather.di.UserSharedPreferences
 import com.umc.yourweather.util.AlertDialogTwoBtn
 import retrofit2.Call
 import retrofit2.Callback
@@ -23,13 +27,18 @@ class MyPageWithdraw2 : AppCompatActivity() {
         binding = ActivityMyPageWithdraw2Binding.inflate(layoutInflater)
         setContentView(binding.root)
 
+        binding.tvWithdraw2Guide2.text =
+            "소중한 의견을 들려주세요." +
+            "\n${UserSharedPreferences.getUserNickname(this@MyPageWithdraw2)} 님이 유어웨더로 다시 돌아올 수 있도록 더 발전해볼게요."
         binding.btnWithdraw2Withdraw.setOnClickListener {
             AlertDialogTwoBtn(this).run {
+                setTitle("정말 유어웨더 회원을 탈퇴하시겠습니까?")
+
                 setNegativeButton(
                     "취소",
                     object : DialogInterface.OnClickListener {
                         override fun onClick(p0: DialogInterface?, p1: Int) {
-                            finish()
+                            dismiss()
                         }
                     },
                 )
@@ -41,6 +50,7 @@ class MyPageWithdraw2 : AppCompatActivity() {
                         }
                     },
                 )
+                window?.setBackgroundDrawable(ColorDrawable(Color.TRANSPARENT))
                 show()
             }
         }
@@ -59,9 +69,13 @@ class MyPageWithdraw2 : AppCompatActivity() {
             ) {
                 if (response.isSuccessful) {
                     val responseBody = response.body()
-
                     val code = responseBody?.code
                     if (code == 200) {
+                        // 토큰 없앰
+                        App.token_prefs.clearTokens()
+                        // SH의 모든 정보 없앰..
+                        UserSharedPreferences.clearUser(this@MyPageWithdraw2)
+
                         Log.d("WithDrawDebug", "회원탈퇴 성공")
                         val intent = Intent(this@MyPageWithdraw2, MyPageWithdarw3::class.java)
                         startActivity(intent)
