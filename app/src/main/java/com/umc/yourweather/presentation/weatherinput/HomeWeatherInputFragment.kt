@@ -38,7 +38,7 @@ class HomeWeatherInputFragment : Fragment() {
     override fun onCreateView(
         inflater: LayoutInflater,
         container: ViewGroup?,
-        savedInstanceState: Bundle?,
+        savedInstanceState: Bundle?
     ): View? {
         binding = FragmentHomeWeatherInputBinding.inflate(inflater, container, false)
         setupUI()
@@ -171,7 +171,7 @@ class HomeWeatherInputFragment : Fragment() {
             status = status,
             content = content,
             localDateTime = formattedDateTime,
-            temperature = temperature,
+            temperature = temperature
         )
 
         callMemoWriteApi(memoRequest)
@@ -184,7 +184,7 @@ class HomeWeatherInputFragment : Fragment() {
         call.enqueue(object : retrofit2.Callback<BaseResponse<MemoResponse>> {
             override fun onResponse(
                 call: Call<BaseResponse<MemoResponse>>,
-                response: retrofit2.Response<BaseResponse<MemoResponse>>,
+                response: retrofit2.Response<BaseResponse<MemoResponse>>
             ) {
                 if (response.isSuccessful) {
                     // API 호출 성공 시 처리
