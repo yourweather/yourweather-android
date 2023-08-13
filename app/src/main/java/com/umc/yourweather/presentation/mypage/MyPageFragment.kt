@@ -66,7 +66,7 @@ class MyPageFragment : Fragment() {
                         val userResponse = baseResponse.result
                         // 받아온 userResponse 객체를 활용하여 뷰에 데이터를 설정하고 아이콘을 표시
                         if (userResponse != null) {
-                            binding.tvMyPageUsername.text = userResponse.nickname
+                            binding.tvMyPageUsername.text = "${userResponse.nickname} 님"
                             binding.tvMyPageEmail.text = userResponse.email
                             val platformType = PlatformType.valueOf(userResponse.platform)
                             // 플랫폼 종류에 따라 이미지 설정
