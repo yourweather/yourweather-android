@@ -39,7 +39,6 @@ class MyPageMyInfo : AppCompatActivity() {
 
         // 로그아웃
         binding.tvMyinfoLogout.setOnClickListener {
-
             // alertdialog_mypage_logout 프래그먼트로 이동
             val fragment = MyPageLogoutFragment()
             val fragmentManager = supportFragmentManager
@@ -72,6 +71,12 @@ class MyPageMyInfo : AppCompatActivity() {
             if (platform == "NAVER") {
                 binding.ivMyinfoSocialIc.setImageResource(R.drawable.ic_signin_naver)
             }
+        }
+
+        // 회원탈퇴
+        binding.tvMyinfoBtnWithdraw.setOnClickListener {
+            val mIntent = Intent(this, MyPageWithdraw2::class.java)
+            startActivity(mIntent)
         }
     }
 }
