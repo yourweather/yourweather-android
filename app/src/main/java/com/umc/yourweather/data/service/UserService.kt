@@ -6,12 +6,14 @@ import com.umc.yourweather.data.remote.request.SignupRequest
 import com.umc.yourweather.data.remote.response.BaseResponse
 import com.umc.yourweather.data.remote.response.TokenResponse
 import com.umc.yourweather.data.remote.response.UserResponse
+import com.umc.yourweather.data.remote.response.VerifyEmailResponse
 import retrofit2.Call
 import retrofit2.http.Body
 import retrofit2.http.GET
 import retrofit2.http.PATCH
 import retrofit2.http.POST
 import retrofit2.http.PUT
+import retrofit2.http.Query
 
 interface UserService {
 
@@ -34,4 +36,8 @@ interface UserService {
     // 마이페이지
     @GET("/api/v1/users/mypage")
     fun getMyPage(): Call<BaseResponse<UserResponse>>
+
+    // 비번찾기 이메일 인증
+    @GET("/api/v1/users/verify-user-email")
+    fun verifyEmail(@Query("email") requset: String): Call<BaseResponse<VerifyEmailResponse>>
 }
