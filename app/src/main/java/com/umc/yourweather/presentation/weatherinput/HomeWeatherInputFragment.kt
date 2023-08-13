@@ -19,6 +19,7 @@ import com.umc.yourweather.data.remote.response.MemoResponse
 import com.umc.yourweather.data.service.MemoService
 import com.umc.yourweather.databinding.FragmentHomeWeatherInputBinding
 import com.umc.yourweather.di.RetrofitImpl
+import com.umc.yourweather.di.UserSharedPreferences
 import retrofit2.Call
 import java.time.LocalDateTime
 import java.time.format.DateTimeFormatter
@@ -38,7 +39,7 @@ class HomeWeatherInputFragment : Fragment() {
     override fun onCreateView(
         inflater: LayoutInflater,
         container: ViewGroup?,
-        savedInstanceState: Bundle?
+        savedInstanceState: Bundle?,
     ): View? {
         binding = FragmentHomeWeatherInputBinding.inflate(inflater, container, false)
         setupUI()
@@ -47,6 +48,10 @@ class HomeWeatherInputFragment : Fragment() {
 
     @RequiresApi(Build.VERSION_CODES.O)
     private fun setupUI() {
+        val userNickname = UserSharedPreferences.getUserNickname(requireContext())
+        binding.tvHomeWeatherUsername2.text = userNickname
+        binding.tvHomeWeatherUsername3.text = userNickname
+
         val buttonAnimation: Animation =
             AnimationUtils.loadAnimation(requireContext(), R.anim.btn_weather_scale)
 
@@ -106,6 +111,7 @@ class HomeWeatherInputFragment : Fragment() {
                 updateUserInputsAndCallApi()
             }
         }
+        val seekbarValueTextView = binding.tvSeekbarValue
 
         binding.seekbarHomeTemp.setOnSeekBarChangeListener(object :
             SeekBar.OnSeekBarChangeListener {
@@ -115,11 +121,13 @@ class HomeWeatherInputFragment : Fragment() {
             }
 
             override fun onStartTrackingTouch(seekBar: SeekBar?) {
-                // 필요한 경우 구현
+                seekbarValueTextView.visibility = View.INVISIBLE
             }
 
             override fun onStopTrackingTouch(seekBar: SeekBar?) {
-                // 필요한 경우 구현
+                val progress = seekBar?.progress ?: 0
+                seekbarValueTextView.visibility = View.VISIBLE
+                seekbarValueTextView.text = "$progress°"
             }
         })
     }
@@ -171,7 +179,7 @@ class HomeWeatherInputFragment : Fragment() {
             status = status,
             content = content,
             localDateTime = formattedDateTime,
-            temperature = temperature
+            temperature = temperature,
         )
 
         callMemoWriteApi(memoRequest)
@@ -184,7 +192,7 @@ class HomeWeatherInputFragment : Fragment() {
         call.enqueue(object : retrofit2.Callback<BaseResponse<MemoResponse>> {
             override fun onResponse(
                 call: Call<BaseResponse<MemoResponse>>,
-                response: retrofit2.Response<BaseResponse<MemoResponse>>
+                response: retrofit2.Response<BaseResponse<MemoResponse>>,
             ) {
                 if (response.isSuccessful) {
                     // API 호출 성공 시 처리

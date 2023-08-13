@@ -80,13 +80,13 @@
             android:id="@+id/tv_home_weather_username2"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_marginStart="80dp"
             android:layout_marginTop="47dp"
+            android:layout_marginEnd="5dp"
             android:fontFamily="@font/pretendardmedium"
-            android:text="이다은"
+            android:text="aaaaaaaa"
             android:textColor="#2B2B2B"
             android:textSize="16dp"
-            app:layout_constraintStart_toStartOf="@+id/iv_home_weather"
+            app:layout_constraintEnd_toStartOf="@+id/tv_home_weather_guide2"
             app:layout_constraintTop_toTopOf="@+id/iv_home_weather" />
 
         <TextView
@@ -100,7 +100,7 @@
             android:textColor="#2B2B2B"
             android:textSize="16dp"
             app:layout_constraintEnd_toEndOf="@+id/iv_home_weather"
-            app:layout_constraintStart_toEndOf="@+id/tv_home_weather_username2"
+
             app:layout_constraintTop_toTopOf="@+id/iv_home_weather" />
 
         <androidx.appcompat.widget.AppCompatButton
@@ -166,15 +166,13 @@
             android:id="@+id/tv_home_weather_username3"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_marginStart="80dp"
             android:layout_marginTop="91dp"
+            android:layout_marginEnd="5dp"
             android:fontFamily="@font/pretendardmedium"
-            android:text="이다은"
+            android:text="aaaaaaaa"
             android:textColor="#2B2B2B"
             android:textSize="16dp"
-
-
-            app:layout_constraintStart_toStartOf="@+id/iv_home_weather"
+            app:layout_constraintEnd_toStartOf="@+id/tv_home_weather_guide4"
             app:layout_constraintTop_toBottomOf="@+id/tv_home_weather_username2" />
 
         <TextView
@@ -188,7 +186,7 @@
             android:textColor="#2B2B2B"
             android:textSize="16dp"
             app:layout_constraintEnd_toEndOf="@+id/iv_home_weather"
-            app:layout_constraintStart_toEndOf="@+id/tv_home_weather_username3"
+
             app:layout_constraintTop_toBottomOf="@+id/tv_home_weather_guide2" />
 
         <SeekBar
@@ -209,6 +207,22 @@
             app:layout_constraintStart_toStartOf="@+id/iv_home_weather"
             app:layout_constraintTop_toBottomOf="@+id/tv_home_weather_guide4"
             app:layout_constraintVertical_bias="1.0" />
+
+        <TextView
+            android:id="@+id/tv_seekbar_value"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:background="@drawable/bg_seekbar_value"
+            android:fontFamily="@font/pretendardsemibold"
+            android:text="0°"
+            android:textAlignment="center"
+            android:textColor="#2B2B2B"
+            android:textSize="13dp"
+            android:visibility="invisible"
+            app:layout_constraintBottom_toTopOf="@+id/et_home_memo"
+            app:layout_constraintEnd_toStartOf="@+id/iv_home_maxtemp"
+            app:layout_constraintStart_toEndOf="@+id/iv_home_mintemp"
+            app:layout_constraintTop_toBottomOf="@+id/seekbar_home_temp" />
 
         <TextView
             android:id="@+id/iv_home_mintemp"
