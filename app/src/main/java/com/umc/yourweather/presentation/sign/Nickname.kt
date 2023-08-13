@@ -13,6 +13,7 @@ import com.umc.yourweather.data.service.UserService
 import com.umc.yourweather.databinding.ActivityNicknameBinding
 import com.umc.yourweather.di.App
 import com.umc.yourweather.di.RetrofitImpl
+import com.umc.yourweather.di.UserSharedPreferences
 import com.umc.yourweather.util.NicknameUtils.Companion.getRandomHintText
 import retrofit2.Call
 import retrofit2.Callback
@@ -98,6 +99,9 @@ class Nickname : AppCompatActivity() {
                         // 회원 가입 성공
                         Log.d("SignupDebug", "회원 가입 성공")
 
+                        UserSharedPreferences.setUserPwToStar(this@Nickname, pw)
+                        UserSharedPreferences.setUserPlatform(this@Nickname, platform)
+                        UserSharedPreferences.setUserNickname(this@Nickname, fixedNickname)
                         // 회원 가입 성공 후 로그인화면으로 이동
                         val intent = Intent(this@Nickname, SignIn::class.java)
                         intent.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP)
