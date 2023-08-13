@@ -3,6 +3,7 @@ package com.umc.yourweather.data.service
 import com.umc.yourweather.data.remote.request.ChangePasswordRequest
 import com.umc.yourweather.data.remote.request.SignupRequest
 import com.umc.yourweather.data.remote.response.BaseResponse
+import com.umc.yourweather.data.remote.response.TokenResponse
 import com.umc.yourweather.data.remote.response.UserResponse
 import retrofit2.Call
 import retrofit2.http.Body
@@ -18,7 +19,7 @@ interface UserService {
 
     // 회원 가입
     @POST("/api/v1/users/signup")
-    fun signUp(@Body request: SignupRequest): Call<BaseResponse<String>>
+    fun signUp(@Body request: SignupRequest): Call<BaseResponse<TokenResponse>>
 
     // 비밀번호 변경
     @POST("/api/v1/users/password")

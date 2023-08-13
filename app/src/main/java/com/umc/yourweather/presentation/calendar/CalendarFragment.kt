@@ -81,6 +81,7 @@ class CalendarFragment : Fragment() {
                             binding.ctCalendarCustom.initCalendar(year!!, month!!, dateList, weatherData)
 
                             Log.d("Calendar ", "$weatherData")
+                            Log.d("Calendar ", "$weatherResponse")
                         }
                     } else {
                         weatherData = emptyList()
