@@ -311,7 +311,7 @@
         android:background="@drawable/btn_selector_signup"
         android:enabled="false"
         android:fontFamily="@font/pretendardsemibold"
-        android:text="다음"
+        android:text="변경 완료"
         android:textColor="#FFFFFF"
         android:textSize="16dp"
         android:textStyle="bold"
