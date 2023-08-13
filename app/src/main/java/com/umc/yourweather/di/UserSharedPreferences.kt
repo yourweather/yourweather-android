@@ -6,34 +6,51 @@ import android.content.SharedPreferences
 // 자동 로그인을 위한 SharedPreferences
 object UserSharedPreferences {
     private val MY_ACCOUNT: String = "account"
+    const val USER_PW_TO_STAR = "USER_PW_TO_STAR"
+    const val USER_NICKNAME = "USER_NICKNAME"
+    const val USER_PLATFORM = "USER_PLATFORM"
 
     fun setUserPwToStar(context: Context, input: String) {
         val prefs: SharedPreferences =
             context.getSharedPreferences(MY_ACCOUNT, Context.MODE_PRIVATE)
         val editor: SharedPreferences.Editor = prefs.edit()
 
-        editor.putString("MY_PW", input.replace(".", "*"))
+        editor.putString(USER_PW_TO_STAR, input.replace(".", "*"))
         editor.commit()
     }
 
-    fun getUserPw(context: Context): String {
+    fun getUserPwToStar(context: Context): String {
         val prefs: SharedPreferences =
             context.getSharedPreferences(MY_ACCOUNT, Context.MODE_PRIVATE)
-        return prefs.getString("MY_PW", "").toString()
+        return prefs.getString(USER_PW_TO_STAR, "").toString()
     }
 
-    fun setUserName(context: Context, input: String) {
+    fun setUserNickname(context: Context, input: String) {
         val prefs: SharedPreferences =
             context.getSharedPreferences(MY_ACCOUNT, Context.MODE_PRIVATE)
         val editor: SharedPreferences.Editor = prefs.edit()
-        editor.putString("MY_NAME", input)
+        editor.putString(USER_NICKNAME, input)
         editor.commit()
     }
 
-    fun getUserName(context: Context): String {
+    fun getUserNickname(context: Context): String {
         val prefs: SharedPreferences =
             context.getSharedPreferences(MY_ACCOUNT, Context.MODE_PRIVATE)
-        return prefs.getString("MY_NAME", "").toString()
+        return prefs.getString(USER_NICKNAME, "").toString()
+    }
+
+    fun setUserPlatform(context: Context, input: String) {
+        val prefs: SharedPreferences =
+            context.getSharedPreferences(MY_ACCOUNT, Context.MODE_PRIVATE)
+        val editor: SharedPreferences.Editor = prefs.edit()
+        editor.putString(USER_PLATFORM, input)
+        editor.commit()
+    }
+
+    fun getUserPlatform(context: Context): String {
+        val prefs: SharedPreferences =
+            context.getSharedPreferences(MY_ACCOUNT, Context.MODE_PRIVATE)
+        return prefs.getString(USER_PLATFORM, "").toString()
     }
 
     fun clearUser(context: Context) {
