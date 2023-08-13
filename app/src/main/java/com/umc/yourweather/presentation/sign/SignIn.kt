@@ -34,7 +34,7 @@ import com.umc.yourweather.di.RetrofitImpl
 import com.umc.yourweather.presentation.BottomNavi
 import com.umc.yourweather.util.SignUtils.Companion.KAKAOTAG
 import com.umc.yourweather.util.SignUtils.Companion.NAVERTAG
-import com.umc.yourweather.util.SignUtils.Companion.alertTextSignIn
+import com.umc.yourweather.util.SignUtils.Companion.ALERT_TEXT_SIGN_IN
 import com.umc.yourweather.util.SignUtils.Companion.customSingInPopupWindow
 import retrofit2.Call
 import retrofit2.Callback
@@ -128,14 +128,14 @@ class SignIn : AppCompatActivity() {
                             "SignInDebug",
                             "아이디 비번 틀림",
                         )
-                        customSingInPopupWindow(this@SignIn, alertTextSignIn, binding.root, binding.btnSigninSignin)
+                        customSingInPopupWindow(this@SignIn, ALERT_TEXT_SIGN_IN, binding.root, binding.btnSigninSignin)
                     }
                 } else {
                     Log.d(
                         "SignInDebug",
                         "onResponse 오류: ${response?.toString()}",
                     )
-                    customSingInPopupWindow(this@SignIn, alertTextSignIn, binding.root, binding.btnSigninSignin)
+                    customSingInPopupWindow(this@SignIn, ALERT_TEXT_SIGN_IN, binding.root, binding.btnSigninSignin)
                 }
             }
             override fun onFailure(call: Call<BaseResponse<TokenResponse>>, t: Throwable) {
@@ -172,7 +172,7 @@ class SignIn : AppCompatActivity() {
                         )
                         customSingInPopupWindow(
                             this@SignIn,
-                            alertTextSignIn,
+                            ALERT_TEXT_SIGN_IN,
                             binding.root,
                             binding.btnSigninSignin,
                         )
