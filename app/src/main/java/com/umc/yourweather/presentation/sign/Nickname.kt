@@ -68,6 +68,7 @@ class Nickname : AppCompatActivity() {
         val signupRequest = SignupRequest(email, pw, fixedNickname, platform)
         val signupService = RetrofitImpl.nonRetrofit.create(UserService::class.java)
 
+
         signupService.signUp(signupRequest).enqueue(object : Callback<BaseResponse<TokenResponse>> {
             override fun onResponse(
                 call: Call<BaseResponse<TokenResponse>>,
