@@ -4,10 +4,12 @@ import android.graphics.Color
 import android.os.Bundle
 import android.text.Editable
 import android.text.TextWatcher
+import android.util.Log
 import android.view.View
 import androidx.appcompat.app.AppCompatActivity
 import com.umc.yourweather.R
 import com.umc.yourweather.databinding.ActivityMyPagePwChangeBinding
+import com.umc.yourweather.di.MySharedPreferences
 import com.umc.yourweather.util.SignUtils
 
 class MyPagePwChange : AppCompatActivity() {
@@ -50,14 +52,19 @@ class MyPagePwChange : AppCompatActivity() {
     }
 
     private fun checkMyPw() {
-        val myPw = "a1234567"
+        val userPw = MySharedPreferences.getUserPw(this)
+
         var inputMyPW = binding.etMypagePwMypw.text.toString()
-        if (inputMyPW.equals(myPw)) {
+        if (inputMyPW.equals(userPw)) {
+            Log.d("기존 비밀번호 : ", "$userPw")
+
             binding.etMypagePwMypw.background = resources.getDrawable(R.drawable.bg_gray_ed_fill_6_rect)
             binding.tvMypagePwMypwCheck.visibility = View.INVISIBLE
             binding.ivMypagePwPwCheck0.visibility = View.VISIBLE
             flag = 1
         } else {
+            Log.d("기존 비밀번호 : ", "$userPw")
+
             binding.etMypagePwMypw.background = resources.getDrawable(R.drawable.bg_gray_ed_fill_6_rect_border_red)
             binding.tvMypagePwMypwCheck.visibility = View.VISIBLE
             binding.ivMypagePwPwCheck0.visibility = View.INVISIBLE
