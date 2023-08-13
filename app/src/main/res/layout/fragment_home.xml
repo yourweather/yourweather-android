@@ -122,11 +122,11 @@
                 android:id="@+id/ll_home_title"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:layout_marginTop="33dp"
+                android:layout_marginTop="129dp"
                 android:orientation="horizontal"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toBottomOf="@+id/tv_home_ad">
+                app:layout_constraintTop_toTopOf="@+id/bg_home_weather">
 
                 <androidx.constraintlayout.widget.ConstraintLayout
                     android:layout_width="match_parent"
@@ -150,7 +150,7 @@
                         android:id="@+id/tv_home_guide"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
-                        android:layout_marginEnd="100dp"
+                        android:layout_marginEnd="90dp"
                         android:fontFamily="@font/bmhanna"
                         android:gravity="center"
                         android:text="님의 감정날씨"
@@ -167,18 +167,17 @@
                 android:id="@+id/motion_home_weather"
                 android:layout_width="match_parent"
                 android:layout_height="240dp"
-                android:layout_marginTop="20dp"
+                android:layout_marginBottom="150dp"
                 android:scaleType="centerCrop"
-                app:layout_constraintTop_toBottomOf="@+id/tv_home_weather"
-                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintBottom_toTopOf="@+id/bnv_main"
                 app:layout_constraintEnd_toEndOf="parent"
-                tools:layout_editor_absoluteX="5dp" />
+                app:layout_constraintStart_toStartOf="parent" />
 
             <TextView
                 android:id="@+id/tv_home_weather"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:layout_marginTop="41dp"
+                android:layout_marginTop="35dp"
                 android:fontFamily="@font/bmhanna"
                 android:text="맑음"
                 android:textColor="@color/brown"
