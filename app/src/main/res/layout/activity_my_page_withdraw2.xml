@@ -78,8 +78,7 @@
         android:layout_marginStart="16dp"
         android:layout_marginTop="6dp"
         android:fontFamily="@font/pretendardmedium"
-        android:text="소중한 의견을 들려주세요.\n
-이다은 님이 유어웨더로 다시 돌아올 수 있도록 더 발전해볼게요."
+        android:text="text"
         android:textColor="#ACACAC"
         android:textFontWeight="500"
         android:textSize="13dp"
