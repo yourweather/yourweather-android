@@ -6,5 +6,7 @@ data class UserResponse(
     @SerializedName("nickname")
     val nickname: String,
     @SerializedName("email")
-    val email: String
+    val email: String,
+    @SerializedName("platform")
+    val platform: String
 )
