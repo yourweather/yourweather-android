@@ -75,8 +75,11 @@
                 android:id="@+id/fl_home_ad_exit"
                 android:layout_width="25dp"
                 android:layout_height="30dp"
-                tools:layout_editor_absoluteX="345dp"
-                tools:layout_editor_absoluteY="61dp">
+                android:layout_marginStart="3dp"
+                app:layout_constraintBottom_toBottomOf="@+id/tv_home_ad"
+                app:layout_constraintEnd_toEndOf="@+id/tv_home_ad"
+                app:layout_constraintStart_toEndOf="@+id/btn_home_ad_move"
+                app:layout_constraintTop_toTopOf="@+id/tv_home_ad">
 
                 <androidx.constraintlayout.widget.ConstraintLayout
                     android:layout_width="match_parent"
