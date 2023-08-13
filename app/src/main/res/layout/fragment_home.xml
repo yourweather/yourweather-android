@@ -40,9 +40,8 @@
                 android:background="@drawable/bg_home_ad"
                 android:fontFamily="@font/pretendardsemibold"
                 android:gravity="center"
-                android:text="마시는 '스트레스 케어 쉼'을 만나보세요"
+                android:text="광고 텍스트가 들어갈 자리입니다."
                 android:textSize="12dp"
-                app:layout_constraintBottom_toTopOf="@+id/tv_home_guide"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintHorizontal_bias="0.493"
                 app:layout_constraintStart_toStartOf="parent"
@@ -119,39 +118,50 @@
                 app:layout_constraintVertical_bias="0.0"
                 app:srcCompat="@drawable/ic_home_share" />
 
-            <TextView
-                android:id="@+id/tv_home_username"
-                android:layout_width="wrap_content"
+            <LinearLayout
+                android:id="@+id/ll_home_title"
+                android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:layout_marginStart="100dp"
-                android:layout_marginTop="129dp"
-                android:layout_marginEnd="5dp"
-                android:fontFamily="@font/bmhanna"
-                android:gravity="center"
-                android:text="이다은"
-                android:textColor="@color/brown"
-                android:textSize="24dp"
-                app:layout_constraintBottom_toBottomOf="parent"
-                app:layout_constraintEnd_toStartOf="@+id/tv_home_guide"
-                app:layout_constraintHorizontal_bias="0.34"
-                app:layout_constraintTop_toTopOf="parent"
-                app:layout_constraintVertical_bias="0.0" />
-
-            <TextView
-                android:id="@+id/tv_home_guide"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_marginTop="129dp"
-                android:layout_marginEnd="100dp"
-                android:fontFamily="@font/bmhanna"
-                android:gravity="center"
-                android:text="님의 감정날씨"
-                android:textColor="@color/brown"
-                android:textSize="24dp"
-                app:layout_constraintBottom_toBottomOf="parent"
+                android:layout_marginTop="33dp"
+                android:orientation="horizontal"
                 app:layout_constraintEnd_toEndOf="parent"
-                app:layout_constraintTop_toTopOf="parent"
-                app:layout_constraintVertical_bias="0.0" />
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@+id/tv_home_ad">
+
+                <androidx.constraintlayout.widget.ConstraintLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent">
+
+                    <TextView
+                        android:id="@+id/tv_home_username"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_marginEnd="5dp"
+                        android:fontFamily="@font/bmhanna"
+                        android:gravity="center"
+                        android:text="이다은"
+                        android:textColor="@color/brown"
+                        android:textSize="24dp"
+                        app:layout_constraintBottom_toBottomOf="parent"
+                        app:layout_constraintEnd_toStartOf="@+id/tv_home_guide"
+                        app:layout_constraintTop_toTopOf="parent" />
+
+                    <TextView
+                        android:id="@+id/tv_home_guide"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_marginEnd="100dp"
+                        android:fontFamily="@font/bmhanna"
+                        android:gravity="center"
+                        android:text="님의 감정날씨"
+                        android:textColor="@color/brown"
+                        android:textSize="24dp"
+                        app:layout_constraintBottom_toBottomOf="parent"
+                        app:layout_constraintEnd_toEndOf="parent"
+                        app:layout_constraintTop_toTopOf="parent" />
+                </androidx.constraintlayout.widget.ConstraintLayout>
+
+            </LinearLayout>
 
             <ImageView
                 android:id="@+id/motion_home_weather"
@@ -177,7 +187,7 @@
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintHorizontal_bias="0.498"
                 app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toBottomOf="@+id/tv_home_guide"
+                app:layout_constraintTop_toBottomOf="@+id/ll_home_title"
                 app:layout_constraintVertical_bias="0" />
 
             <TextView
