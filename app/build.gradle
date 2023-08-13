@@ -72,7 +72,7 @@ dependencies {
     //shard preference
     implementation 'androidx.security:security-crypto-ktx:1.1.0-alpha06'
     //카카오 로그인 의존성
-    implementation 'com.kakao.sdk:v2-user:2.11.1'
+    implementation 'com.kakao.sdk:v2-user:2.11.2'
     //네이버 로그인 의존성
     implementation 'com.navercorp.nid:oauth-jdk8:5.7.0' // jdk 8
     implementation "org.jetbrains.kotlinx:kotlinx-coroutines-android:1.6.0"
