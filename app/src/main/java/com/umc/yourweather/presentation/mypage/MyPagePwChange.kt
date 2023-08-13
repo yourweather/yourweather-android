@@ -8,9 +8,18 @@ import android.util.Log
 import android.view.View
 import androidx.appcompat.app.AppCompatActivity
 import com.umc.yourweather.R
+import com.umc.yourweather.data.remote.request.ChangeNicknameRequest
+import com.umc.yourweather.data.remote.request.ChangePasswordRequest
+import com.umc.yourweather.data.remote.response.BaseResponse
+import com.umc.yourweather.data.remote.response.UserResponse
+import com.umc.yourweather.data.service.UserService
 import com.umc.yourweather.databinding.ActivityMyPagePwChangeBinding
 import com.umc.yourweather.di.MySharedPreferences
+import com.umc.yourweather.di.RetrofitImpl
 import com.umc.yourweather.util.SignUtils
+import retrofit2.Call
+import retrofit2.Callback
+import retrofit2.Response
 
 class MyPagePwChange : AppCompatActivity() {
     lateinit var binding: ActivityMyPagePwChangeBinding
@@ -72,8 +81,8 @@ class MyPagePwChange : AppCompatActivity() {
         }
     }
     private fun checkPwFormat() {
-        var pw = binding.etMypagePwPw.text.toString()
-        if (SignUtils.isValidPassword(pw) == true) {
+        var newPw = binding.etMypagePwPw.text.toString()
+        if (SignUtils.isValidPassword(newPw) == true) {
             binding.etMypagePwPw.background = resources.getDrawable(R.drawable.bg_gray_ed_fill_6_rect)
             binding.tvMypagePwCheck1.setTextColor(Color.parseColor("#99808080"))
         } else {
@@ -82,10 +91,10 @@ class MyPagePwChange : AppCompatActivity() {
         }
     }
     private fun checkRePw() {
-        var pw0 = binding.etMypagePwPw.text.toString()
-        var pw1 = binding.etMypagePwRepw.text.toString()
+        var newPw = binding.etMypagePwPw.text.toString()
+        var reNewPw = binding.etMypagePwRepw.text.toString()
 
-        if (pw0.equals(pw1)) {
+        if (newPw.equals(reNewPw)) {
             binding.etMypagePwRepw.background = resources.getDrawable(R.drawable.bg_gray_ed_fill_6_rect)
 
             binding.tvMypagePwCheck2.visibility = View.INVISIBLE
@@ -93,6 +102,9 @@ class MyPagePwChange : AppCompatActivity() {
             binding.ivMypagePwCheck2.visibility = View.VISIBLE
 
             binding.btnMypagePwNext.isEnabled = flag == 1
+
+            // API 호출
+            changePwAPI(newPw)
         } else {
             binding.etMypagePwRepw.background = resources.getDrawable(R.drawable.bg_gray_ed_fill_6_rect_border_red)
 
@@ -102,5 +114,60 @@ class MyPagePwChange : AppCompatActivity() {
 
             binding.btnMypagePwNext.isEnabled = false
         }
+    }
+
+    private fun changePwAPI(newPw: String) {
+        if (newPw.isNotEmpty()) {
+            performNicknameChange(newPw)
+        } else {
+            // 닉네임이 비어있는 경우 처리
+        }
+    }
+
+    private fun performNicknameChange(newPw: String) {
+        val userService = RetrofitImpl.authenticatedRetrofit.create(UserService::class.java)
+        userService.changePw(ChangePasswordRequest(newPw))
+            .enqueue(object : Callback<BaseResponse<UserResponse>> {
+                override fun onResponse(
+                    call: Call<BaseResponse<UserResponse>>,
+                    response: Response<BaseResponse<UserResponse>>,
+                ) {
+                    if (response.isSuccessful) {
+                        Log.d("비밀번호 변경", "비밀번호 변경 성공")
+                        handlePwChangeResponse(response)
+                    } else {
+                        Log.d("비밀번호 변경 실패", "API 호출 실패: ${response.code()}")
+                        handlePwChangeResponse(response)
+                    }
+                }
+
+                override fun onFailure(call: Call<BaseResponse<UserResponse>>, t: Throwable) {
+                    Log.d("비밀번호 변경 실패", "API 호출 실패: ${t.message}")
+                    handlePwChangeFailure(t)
+                }
+            })
+    }
+
+
+    private fun handlePwChangeResponse(response: Response<BaseResponse<UserResponse>>) {
+        if (response.isSuccessful) {
+            val baseResponse = response.body()
+            if (baseResponse != null && baseResponse.success) {
+                val userResponse = baseResponse.result
+                Log.d("비밀번호 변경", "비밀번호 변경 성공: ${userResponse?.nickname}")
+                // 비밀번호 변경 성공 처리 또는 다음 화면으로 이동 처리
+            } else {
+                Log.d("비밀번호 변경", "비밀번호 변경 실패")
+                // 비밀번호 변경 실패 처리
+            }
+        } else {
+            Log.d("비밀번호 변경 API 호출 실패", "API 호출 실패: ${response.code()}")
+            // API 호출 실패 처리
+        }
+    }
+
+    private fun handlePwChangeFailure(t: Throwable) {
+        Log.d("API 호출 실패", "API 호출 실패: ${t.message}")
+        // API 호출 실패 처리
     }
 }
