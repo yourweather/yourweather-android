@@ -39,5 +39,5 @@ interface UserService {
 
     // 비번찾기 이메일 인증
     @GET("/api/v1/users/verify-user-email")
-    fun verifyEmail(@Query("email") requset: String): Call<BaseResponse<VerifyEmailResponse>>
+    fun verifyEmail(@Query("email") request: String): Call<BaseResponse<VerifyEmailResponse>>
 }
