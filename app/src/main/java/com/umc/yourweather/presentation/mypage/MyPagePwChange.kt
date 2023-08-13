@@ -14,7 +14,7 @@ import com.umc.yourweather.data.remote.response.BaseResponse
 import com.umc.yourweather.data.remote.response.UserResponse
 import com.umc.yourweather.data.service.UserService
 import com.umc.yourweather.databinding.ActivityMyPagePwChangeBinding
-import com.umc.yourweather.di.MySharedPreferences
+import com.umc.yourweather.di.UserSharedPreferences
 import com.umc.yourweather.di.RetrofitImpl
 import com.umc.yourweather.util.SignUtils
 import retrofit2.Call
@@ -56,7 +56,7 @@ class MyPagePwChange : AppCompatActivity() {
     }
 
     private fun checkMyPw() {
-        val userPw = MySharedPreferences.getUserPw(this)
+        val userPw = UserSharedPreferences.getUserPw(this)
 
         var inputMyPW = binding.etMypagePwMypw.text.toString()
         if (inputMyPW.equals(userPw)) {

@@ -7,7 +7,7 @@ import android.view.View
 import android.view.ViewGroup
 import androidx.fragment.app.Fragment
 import com.umc.yourweather.databinding.FragmentAlertdialogMypageLogoutBinding
-import com.umc.yourweather.di.MySharedPreferences
+import com.umc.yourweather.di.UserSharedPreferences
 import com.umc.yourweather.di.TokenSharedPreferences
 import com.umc.yourweather.presentation.sign.SignIn
 
@@ -33,7 +33,7 @@ class MyPageLogoutFragment : Fragment() {
 
         binding.logoutBtn.setOnClickListener {
             // 기기에 저장된 비밀번호와 이메일 정보 삭제
-            MySharedPreferences.clearUser(requireContext())
+            UserSharedPreferences.clearUser(requireContext())
             val tokenPrefs = TokenSharedPreferences(requireContext())
             tokenPrefs.clearTokens()
 
