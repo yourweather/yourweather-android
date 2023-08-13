@@ -29,11 +29,6 @@ class MyPagePwChange : AppCompatActivity() {
         binding = ActivityMyPagePwChangeBinding.inflate(layoutInflater)
         setContentView(binding.root)
 
-        binding.btnMypagePwNext.setOnClickListener {
-//            val mIntent = Intent(this, Nickname::class.java)
-//            startActivity(mIntent)
-        }
-
         binding.flMypagePwBackbtn.setOnClickListener {
             finish()
         }
@@ -105,6 +100,7 @@ class MyPagePwChange : AppCompatActivity() {
 
             // API 호출
             changePwAPI(newPw)
+
         } else {
             binding.etMypagePwRepw.background = resources.getDrawable(R.drawable.bg_gray_ed_fill_6_rect_border_red)
 
@@ -135,6 +131,9 @@ class MyPagePwChange : AppCompatActivity() {
                     if (response.isSuccessful) {
                         Log.d("비밀번호 변경", "비밀번호 변경 성공")
                         handlePwChangeResponse(response)
+                        binding.btnMypagePwNext.setOnClickListener {
+                            finish()
+                        }
                     } else {
                         Log.d("비밀번호 변경 실패", "API 호출 실패: ${response.code()}")
                         handlePwChangeResponse(response)
