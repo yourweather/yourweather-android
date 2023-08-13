@@ -10,6 +10,7 @@ import android.widget.Toast
 import androidx.fragment.app.Fragment
 import com.umc.yourweather.R
 import com.umc.yourweather.databinding.FragmentInitialNoWeatherBinding
+import com.umc.yourweather.di.UserSharedPreferences
 
 class InitialNoWeatherFragment : Fragment() {
     private lateinit var binding: FragmentInitialNoWeatherBinding
@@ -35,6 +36,8 @@ class InitialNoWeatherFragment : Fragment() {
             transaction.addToBackStack(null)
             transaction.commit()
         }
+        val userNickname = UserSharedPreferences.getUserNickname(requireContext())
+        binding.tvInitialUsername.text = userNickname
     }
 
     private fun showInitialToast() {
