@@ -6,9 +6,6 @@ import android.view.View
 import androidx.appcompat.app.AppCompatActivity
 import com.umc.yourweather.R
 import com.umc.yourweather.databinding.ActivityMyInfoBinding
-import com.umc.yourweather.di.MySharedPreferences
-import com.umc.yourweather.di.TokenSharedPreferences
-import com.umc.yourweather.presentation.sign.SignIn
 
 class MyPageMyInfo : AppCompatActivity() {
     lateinit var binding: ActivityMyInfoBinding
@@ -44,7 +41,7 @@ class MyPageMyInfo : AppCompatActivity() {
         binding.tvMyinfoLogout.setOnClickListener {
 
             // alertdialog_mypage_logout 프래그먼트로 이동
-            val fragment = alertdialog_mypage_logout()
+            val fragment = MyPageLogoutFragment()
             val fragmentManager = supportFragmentManager
             val transaction = fragmentManager.beginTransaction()
             transaction.replace(R.id.total_View, fragment)
