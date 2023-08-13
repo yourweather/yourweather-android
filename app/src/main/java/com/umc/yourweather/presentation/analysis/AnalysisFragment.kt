@@ -118,6 +118,7 @@ class AnalysisFragment : Fragment() {
         transaction.commit()
     }
 
+    // 미입력 내역 호출 API
     private fun unWrittenApi() {
         val service = RetrofitImpl.authenticatedRetrofit.create(ReportService::class.java)
         val call = service.noInput()
