@@ -18,4 +18,8 @@ class TokenSharedPreferences(context: Context) {
     var refreshToken: String?
         get() = prefs.getString(key_refreshToken, null)
         set(value) = prefs.edit().putString(key_refreshToken, value).apply()
+
+    fun clearTokens() {
+        prefs.edit().remove(key_accessToken).remove(key_refreshToken).apply()
+    }
 }
