@@ -4,7 +4,7 @@ import android.content.Context
 import android.content.SharedPreferences
 
 // 자동 로그인을 위한 SharedPreferences
-object MySharedPreferences {
+object UserSharedPreferences {
     private val MY_ACCOUNT: String = "account"
 
     fun setUserPwToStar(context: Context, input: String) {

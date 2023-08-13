@@ -29,7 +29,7 @@ import com.umc.yourweather.data.remote.response.TokenResponse
 import com.umc.yourweather.data.service.LoginService
 import com.umc.yourweather.databinding.ActivitySignInBinding
 import com.umc.yourweather.di.App
-import com.umc.yourweather.di.MySharedPreferences
+import com.umc.yourweather.di.UserSharedPreferences
 import com.umc.yourweather.di.RetrofitImpl
 import com.umc.yourweather.presentation.BottomNavi
 import com.umc.yourweather.util.SignUtils.Companion.KAKAOTAG
@@ -119,7 +119,7 @@ class SignIn : AppCompatActivity() {
                     if (code == 200) {
                         val mIntent = Intent(this@SignIn, BottomNavi::class.java)
                         Log.d("SignInDebug", "로그인 성공~ : " + response.headers().toString())
-                        MySharedPreferences.setUserPwToStar(this@SignIn, userPw) // 자동로그인
+                        UserSharedPreferences.setUserPwToStar(this@SignIn, userPw) // 자동로그인
                         App.token_prefs.accessToken = response.body()!!.result?.accessToken
                         App.token_prefs.refreshToken = response.body()!!.result?.refreshToken
                         startActivity(mIntent)
