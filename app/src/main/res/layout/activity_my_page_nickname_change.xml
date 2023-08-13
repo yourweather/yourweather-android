@@ -64,7 +64,7 @@
         android:fontFamily="@font/pretendardmedium"
         android:gravity="left"
         android:text="유어웨더에서 사용할 닉네임을 입력해주세요"
-        android:textColor="#5E412F"
+        android:textColor="#424242"
         android:textSize="15dp"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
