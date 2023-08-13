@@ -39,16 +39,27 @@ class MyPageMyInfo : AppCompatActivity() {
 
             startActivity(mIntent)
         }
-        binding.tvMyinfoLogout.setOnClickListener {
-            // 기기에 저장된 비밀번호와 이메일 정보 삭제
-            MySharedPreferences.clearUser(this)
-            val tokenPrefs = TokenSharedPreferences(this)
-            tokenPrefs.clearTokens()
 
-            // 로그인 창으로 이동
-            val intent = Intent(this, SignIn::class.java)
-            startActivity(intent)
-            finish()
+        // 로그아웃
+        binding.tvMyinfoLogout.setOnClickListener {
+
+            // alertdialog_mypage_logout 프래그먼트로 이동
+            val fragment = alertdialog_mypage_logout()
+            val fragmentManager = supportFragmentManager
+            val transaction = fragmentManager.beginTransaction()
+            transaction.replace(R.id.total_View, fragment)
+            transaction.addToBackStack(null)
+            transaction.commit()
+
+//            // 기기에 저장된 비밀번호와 이메일 정보 삭제
+//            MySharedPreferences.clearUser(this)
+//            val tokenPrefs = TokenSharedPreferences(this)
+//            tokenPrefs.clearTokens()
+//
+//            // 로그인 창으로 이동
+//            val intent = Intent(this, SignIn::class.java)
+//            startActivity(intent)
+//            finish()
         }
 
         if (platform != "YOURWEATHER") {

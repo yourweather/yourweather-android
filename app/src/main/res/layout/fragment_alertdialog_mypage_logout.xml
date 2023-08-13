@@ -3,39 +3,45 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     xmlns:app="http://schemas.android.com/apk/res-auto"
-    android:background="@color/black"
-    android:alpha="0.7">
+    >
+
+
+    <TextView
+        android:id="@+id/background"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:alpha="0.7"
+        android:background="@color/black"
+        />
 
     <LinearLayout
         android:id="@+id/linearLayout6"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_marginTop="306dp"
         android:background="@drawable/bg_calendardetailview_backdialog"
         android:orientation="vertical"
         android:padding="0dp"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.49"
-        app:layout_constraintStart_toStartOf="parent"
-        >
+        app:layout_constraintStart_toStartOf="parent">
 
         <TextView
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_gravity="center"
+            android:layout_marginTop="20dp"
             android:fontFamily="@font/pretendardsemibold"
             android:text="로그아웃 하시겠습니까?"
             android:textColor="#5E412F"
-            android:textStyle="bold"
             android:textSize="15sp"
-            android:layout_marginTop="25dp"/>
+            android:textStyle="bold" />
 
 
         <LinearLayout
             android:layout_width="match_parent"
             android:layout_height="match_parent"
-            android:layout_marginTop="20dp">
+            android:layout_marginTop="18dp">
 
             <Button
                 android:id="@+id/logout_Btn_cancel"
@@ -46,8 +52,8 @@
                 android:fontFamily="@font/pretendardbold"
                 android:text="취소"
                 android:textColor="#715747"
-                android:textStyle="bold"
-                android:textSize="15sp" />
+                android:textSize="15sp"
+                android:textStyle="bold" />
 
             <Button
                 android:id="@+id/logout_Btn"
@@ -58,8 +64,9 @@
                 android:fontFamily="@font/pretendardbold"
                 android:text="로그아웃"
                 android:textColor="#F07818"
+                android:textSize="15sp"
                 android:textStyle="bold"
-                android:textSize="15sp" />
+                android:layout_marginEnd="5dp"/>
         </LinearLayout>
 
     </LinearLayout>
@@ -68,8 +75,8 @@
         android:id="@+id/ic_calendardetailview_alertdialog_line1"
         android:layout_width="0dp"
         android:layout_height="wrap_content"
-        android:layout_marginTop="62dp"
-        android:layout_marginBottom="54dp"
+        android:layout_marginTop="50dp"
+        android:layout_marginBottom="50dp"
         app:layout_constraintBottom_toBottomOf="@+id/linearLayout6"
         app:layout_constraintEnd_toEndOf="@+id/linearLayout6"
         app:layout_constraintStart_toStartOf="@+id/linearLayout6"
@@ -79,9 +86,9 @@
     <ImageView
         android:id="@+id/ic_calendardetailview_alertdialog_line2"
         android:layout_width="1dp"
-        android:layout_height="55dp"
+        android:layout_height="50dp"
         android:layout_marginStart="163dp"
-        android:layout_marginTop="63dp"
+        android:layout_marginTop="60dp"
         android:layout_marginEnd="165dp"
         app:layout_constraintBottom_toBottomOf="@+id/linearLayout6"
         app:layout_constraintEnd_toEndOf="@+id/linearLayout6"
