@@ -35,4 +35,5 @@
     <string name="tv_reset_pw_email_title">비밀번호 재설정</string>
     <string name="hello_blank_fragment">Hello blank fragment</string>
     <string name="tv_withdraw_withdraw">회원 탈퇴</string>
+    <string name="tv_ok">확인</string>
 </resources>
