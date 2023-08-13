@@ -38,6 +38,7 @@ class MyPageNicknameChange : AppCompatActivity() {
 
         binding.btnMypageNicknameNext.setOnClickListener {
             changeNickname()
+            finish()
         }
     }
 
