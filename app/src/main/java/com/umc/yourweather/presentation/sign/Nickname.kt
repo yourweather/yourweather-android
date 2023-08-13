@@ -8,6 +8,7 @@ import android.util.Log
 import androidx.appcompat.app.AppCompatActivity
 import com.umc.yourweather.data.remote.request.SignupRequest
 import com.umc.yourweather.data.remote.response.BaseResponse
+import com.umc.yourweather.data.remote.response.TokenResponse
 import com.umc.yourweather.data.service.UserService
 import com.umc.yourweather.databinding.ActivityNicknameBinding
 import com.umc.yourweather.di.App
@@ -85,10 +86,11 @@ class Nickname : AppCompatActivity() {
         val signupRequest = SignupRequest(email, pw, fixedNickname, platform)
         val signupService = RetrofitImpl.nonRetrofit.create(UserService::class.java)
 
-        signupService.signUp(signupRequest).enqueue(object : Callback<BaseResponse<String>> {
+
+        signupService.signUp(signupRequest).enqueue(object : Callback<BaseResponse<TokenResponse>> {
             override fun onResponse(
-                call: Call<BaseResponse<String>>,
-                response: Response<BaseResponse<String>>,
+                call: Call<BaseResponse<TokenResponse>>,
+                response: Response<BaseResponse<TokenResponse>>,
             ) {
                 if (response.isSuccessful) {
                     val code = response.body()?.code
@@ -98,6 +100,7 @@ class Nickname : AppCompatActivity() {
 
                         // 회원 가입 성공 후 로그인화면으로 이동
                         val intent = Intent(this@Nickname, SignIn::class.java)
+                        intent.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP)
                         startActivity(intent)
                     } else {
                         // 회원 가입 실패
@@ -109,7 +112,7 @@ class Nickname : AppCompatActivity() {
                 }
             }
 
-            override fun onFailure(call: Call<BaseResponse<String>>, t: Throwable) {
+            override fun onFailure(call: Call<BaseResponse<TokenResponse>>, t: Throwable) {
                 // 네트워크 에러 처리
                 Log.d("SignupDebug", "네트워크 오류: " + t.message.toString())
             }
