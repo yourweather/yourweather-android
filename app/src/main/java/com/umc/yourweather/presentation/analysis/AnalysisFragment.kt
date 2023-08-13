@@ -8,6 +8,7 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import androidx.fragment.app.Fragment
+import com.kakao.sdk.common.util.Utility
 import com.umc.yourweather.R
 import com.umc.yourweather.R.drawable
 import com.umc.yourweather.data.remote.response.BaseResponse

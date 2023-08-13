@@ -3,12 +3,12 @@ package com.umc.yourweather.data.remote.response
 import com.google.gson.annotations.SerializedName
 
 data class StatisticResponse(
-    @SerializedName("statistic_sunny")
+    @SerializedName("sunny")
     val sunny: Float,
-    @SerializedName("statistic_cloudy")
+    @SerializedName("cloudy")
     val cloudy: Float,
-    @SerializedName("statistic_rainy")
+    @SerializedName("rainy")
     val rainy: Float,
-    @SerializedName("statistic_lightning")
+    @SerializedName("lightning")
     val lightning: Float
 )

@@ -20,6 +20,9 @@ import com.umc.yourweather.data.remote.response.StatisticResponse
 import com.umc.yourweather.data.service.ReportService
 import com.umc.yourweather.databinding.FragmentBarStaticsMonthlyBinding
 import com.umc.yourweather.di.RetrofitImpl
+import kotlinx.coroutines.CoroutineScope
+import kotlinx.coroutines.Dispatchers
+import kotlinx.coroutines.launch
 import retrofit2.Call
 import retrofit2.Callback
 import retrofit2.Response
@@ -81,15 +84,17 @@ class BarStaticsMonthlyFragment : Fragment() {
 //        bindWeatherData(dataList, binding.llAnalysisBarLastMonth, ::showBallViewLastMonth)
 //        bindWeatherData(dataList2, binding.llAnalysisBarThisMonth, ::showBallViewThisMonth)
 
-        // 지난 달, 이번 달 정확한 달 숫자
-        val previousMonth = getPreviousMonth()
-        val currentMonth = getCurrentMonth()
-        binding.tvAnalysisMonthNum.text = previousMonth
-        binding.tvAnalysisMonthThisNum.text = currentMonth
+        CoroutineScope(Dispatchers.Main).launch {
+            // 지난 달, 이번 달 정확한 달 숫자
+            val previousMonth = getPreviousMonth()
+            val currentMonth = getCurrentMonth()
+            binding.tvAnalysisMonthNum.text = previousMonth
+            binding.tvAnalysisMonthThisNum.text = currentMonth
 
-        barStatisticsThisMonthApi()
-        barStatisticsLastMonthApi()
-        weeklyComparisonApi()
+            barStatisticsThisMonthApi()
+            barStatisticsLastMonthApi()
+            weeklyComparisonApi()
+        }
     }
 
     // 지난 달 숫자
@@ -281,7 +286,7 @@ class BarStaticsMonthlyFragment : Fragment() {
                 response: Response<BaseResponse<StatisticResponse>>,
             ) {
                 if (response.isSuccessful) {
-                    val statisticResponse = response.body()?.result // 'data'가 실제 응답 데이터를 담고 있는 필드일 경우
+                    val statisticResponse = response.body()?.result //
                     if (statisticResponse != null) {
                         Log.d("이번 달 bar API Success", "이번 달 Sunny: ${statisticResponse.sunny}, Cloudy: ${statisticResponse.cloudy}, Rainy: ${statisticResponse.rainy}, Lightning: ${statisticResponse.lightning}")
 
@@ -310,7 +315,7 @@ class BarStaticsMonthlyFragment : Fragment() {
         })
     }
 
-    // 지난 주 통계
+    // 지난 달 통계
     private fun barStatisticsLastMonthApi() {
         val service = RetrofitImpl.authenticatedRetrofit.create(ReportService::class.java)
         val call = service.monthlyStatistic(ago = 1) // 지난 달

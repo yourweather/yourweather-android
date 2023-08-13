@@ -111,6 +111,7 @@ class WrittenDetailListFragmentCloud : Fragment() {
                 if (response.isSuccessful) {
                     val memoList = response.body()?.result?.memoList
                     val memoListSize = memoList?.size ?: 0 // 리스트 개수
+                    Log.d("cloudy 상세 리스트 개수", "총 $memoListSize 회")
                     binding.tvWrittenDetailListMonthNum.text = "총 ${memoListSize}회"
                     val dataList = fetchDataFromAPI(memoList)
 
