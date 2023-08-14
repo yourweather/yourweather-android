@@ -14,6 +14,7 @@ import com.umc.yourweather.databinding.ActivityNicknameBinding
 import com.umc.yourweather.di.App
 import com.umc.yourweather.di.RetrofitImpl
 import com.umc.yourweather.di.UserSharedPreferences
+import com.umc.yourweather.presentation.BottomNavi
 import com.umc.yourweather.util.NicknameUtils.Companion.getRandomHintText
 import retrofit2.Call
 import retrofit2.Callback
@@ -87,7 +88,6 @@ class Nickname : AppCompatActivity() {
         val signupRequest = SignupRequest(email, pw, fixedNickname, platform)
         val signupService = RetrofitImpl.nonRetrofit.create(UserService::class.java)
 
-
         signupService.signUp(signupRequest).enqueue(object : Callback<BaseResponse<TokenResponse>> {
             override fun onResponse(
                 call: Call<BaseResponse<TokenResponse>>,
@@ -99,13 +99,18 @@ class Nickname : AppCompatActivity() {
                         // 회원 가입 성공
                         Log.d("SignupDebug", "회원 가입 성공")
 
+                        // 토큰저장
+                        App.token_prefs.accessToken = response.body()!!.result?.accessToken
+                        App.token_prefs.refreshToken = response.body()!!.result?.refreshToken
+
                         UserSharedPreferences.setUserPwToStar(this@Nickname, pw)
                         UserSharedPreferences.setUserPlatform(this@Nickname, platform)
                         UserSharedPreferences.setUserNickname(this@Nickname, fixedNickname)
-                        // 회원 가입 성공 후 로그인화면으로 이동
-                        val intent = Intent(this@Nickname, SignIn::class.java)
-                        intent.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP)
+
+                        // 회원 가입 성공 후 홈화면으로 이동
+                        val intent = Intent(this@Nickname, BottomNavi::class.java)
                         startActivity(intent)
+                        finish()
                     } else {
                         // 회원 가입 실패
                         Log.d("SignupDebug", "회원 가입 실패: code = $code")
