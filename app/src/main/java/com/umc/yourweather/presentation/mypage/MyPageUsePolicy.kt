@@ -41,16 +41,16 @@ class MyPageUsePolicy : AppCompatActivity() {
                         val content = baseResponse.result
                         binding.tvUsePolicyContent.text = content
                     } else {
-                        Log.e("MyPafeUsePolicy", "응답 content가 null입니다.")
+                        Log.e("MyPageUsePolicy", "응답 content가 null입니다.")
                     }
                 } else {
                     val errorBody = response.errorBody()?.string()
-                    Log.e("MyPafeUsePolicy", "응답 실패")
+                    Log.e("MyPageUsePolicy", "응답 실패")
                 }
             }
 
             override fun onFailure(call: Call<BaseResponse<String>>, t: Throwable) {
-                Log.e("MyPafeUsePolicy", "API호출 실패")
+                Log.e("MyPageUsePolicy", "API호출 실패")
             }
         })
     }
