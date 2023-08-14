@@ -2,11 +2,13 @@ package com.umc.yourweather.presentation.sign
 
 import android.app.Activity
 import android.content.Intent
+import android.os.Build
 import android.os.Bundle
 import android.util.Log
 import android.widget.Toast
 import androidx.activity.result.ActivityResultLauncher
 import androidx.activity.result.contract.ActivityResultContracts
+import androidx.annotation.RequiresApi
 import androidx.appcompat.app.AppCompatActivity
 import com.google.android.gms.auth.api.signin.GoogleSignIn
 import com.google.android.gms.auth.api.signin.GoogleSignInAccount
@@ -19,26 +21,31 @@ import com.kakao.sdk.common.model.ClientErrorCause
 import com.kakao.sdk.user.UserApiClient
 import com.navercorp.nid.NaverIdLoginSDK
 import com.navercorp.nid.oauth.NidOAuthLogin
+import com.navercorp.nid.oauth.NidOAuthPreferencesManager.code
 import com.navercorp.nid.oauth.OAuthLoginCallback
 import com.navercorp.nid.profile.NidProfileCallback
 import com.navercorp.nid.profile.data.NidProfileResponse
 import com.umc.yourweather.BuildConfig
 import com.umc.yourweather.data.remote.request.LoginRequest
 import com.umc.yourweather.data.remote.response.BaseResponse
+import com.umc.yourweather.data.remote.response.MissedInputResponse
 import com.umc.yourweather.data.remote.response.TokenResponse
 import com.umc.yourweather.data.service.LoginService
+import com.umc.yourweather.data.service.WeatherService
 import com.umc.yourweather.databinding.ActivitySignInBinding
 import com.umc.yourweather.di.App
-import com.umc.yourweather.di.UserSharedPreferences
 import com.umc.yourweather.di.RetrofitImpl
+import com.umc.yourweather.di.UserSharedPreferences
 import com.umc.yourweather.presentation.BottomNavi
+import com.umc.yourweather.util.SignUtils.Companion.ALERT_TEXT_SIGN_IN
 import com.umc.yourweather.util.SignUtils.Companion.KAKAOTAG
 import com.umc.yourweather.util.SignUtils.Companion.NAVERTAG
-import com.umc.yourweather.util.SignUtils.Companion.ALERT_TEXT_SIGN_IN
 import com.umc.yourweather.util.SignUtils.Companion.customSingInPopupWindow
 import retrofit2.Call
 import retrofit2.Callback
 import retrofit2.Response
+import java.time.LocalDate
+import java.time.format.DateTimeFormatter
 
 class SignIn : AppCompatActivity() {
     lateinit var binding: ActivitySignInBinding
@@ -109,6 +116,7 @@ class SignIn : AppCompatActivity() {
 
         service.logIn(LoginInfo).enqueue(object : Callback<BaseResponse<TokenResponse>> {
 
+            @RequiresApi(Build.VERSION_CODES.O)
             override fun onResponse(
                 call: Call<BaseResponse<TokenResponse>>,
                 response: Response<BaseResponse<TokenResponse>>,
@@ -117,12 +125,13 @@ class SignIn : AppCompatActivity() {
 
                 if (response.isSuccessful) {
                     if (code == 200) {
-                        val mIntent = Intent(this@SignIn, BottomNavi::class.java)
+                        // val mIntent = Intent(this@SignIn, BottomNavi::class.java)
                         Log.d("SignInDebug", "로그인 성공~ : " + response.headers().toString())
-                        UserSharedPreferences.setUserPwToStar(this@SignIn, userPw) // 자동로그인
+                        UserSharedPreferences.setUserPwToStar(this@SignIn, userPw)
                         App.token_prefs.accessToken = response.body()!!.result?.accessToken
                         App.token_prefs.refreshToken = response.body()!!.result?.refreshToken
-                        startActivity(mIntent)
+                        // startActivity(mIntent)
+                        getMissedInput()
                     } else {
                         Log.d(
                             "SignInDebug",
@@ -150,6 +159,7 @@ class SignIn : AppCompatActivity() {
         val LoginInfo = LoginRequest(userEmail, userPw)
         service.oauthLogIn(LoginInfo).enqueue(object : Callback<BaseResponse<TokenResponse>> {
 
+            @RequiresApi(Build.VERSION_CODES.O)
             override fun onResponse(
                 call: Call<BaseResponse<TokenResponse>>,
                 response: Response<BaseResponse<TokenResponse>>,
@@ -158,13 +168,13 @@ class SignIn : AppCompatActivity() {
 
                 if (response.isSuccessful) {
                     if (code == 200) {
-                        val mIntent = Intent(this@SignIn, BottomNavi::class.java)
+                        // val mIntent = Intent(this@SignIn, BottomNavi::class.java)
                         Log.d("SignInDebug", "소셜 로그인 성공~ : " + response.headers().toString())
-//                        MySharedPreferences.setUserId(this@SignIn, userEmail)
-//                        MySharedPreferences.setUserPw(this@SignIn, userPw) // 자동로그인
                         App.token_prefs.accessToken = response.body()!!.result?.accessToken
                         App.token_prefs.refreshToken = response.body()!!.result?.refreshToken
-                        startActivity(mIntent)
+
+                        getMissedInput()
+                        // startActivity(mIntent)
                     } else {
                         Log.d(
                             "SignInDebug",
@@ -293,5 +303,56 @@ class SignIn : AppCompatActivity() {
         } catch (e: ApiException) {
             Log.w("failed", "signInResult:failed code=" + e.statusCode)
         }
+    }
+
+    // 미입력 조회, 분기에 따라 홈화면/이니셜뷰로 가야함..
+    // 화면 전환 시에만 호출해야함.
+//    @GET("/api/v1/weather/no-inputs")
+//    fun getMissedInput(): Call<BaseResponse<MissedInputResponse>>
+
+    @RequiresApi(Build.VERSION_CODES.O)
+    fun getMissedInput() {
+        val service = RetrofitImpl.authenticatedRetrofit.create(WeatherService::class.java)
+        var missedDateList: List<String>? = emptyList()
+        val todayDate = LocalDate.now()
+        val formatter = DateTimeFormatter.ofPattern("yyyy-MM-dd")
+        val formattedDate = todayDate.format(formatter)
+
+        service.getMissedInput().enqueue(object : Callback<BaseResponse<MissedInputResponse>> {
+            override fun onResponse(
+                call: Call<BaseResponse<MissedInputResponse>>,
+                response: Response<BaseResponse<MissedInputResponse>>,
+            ) {
+                if (response.isSuccessful) {
+                    val responseBody = response.body()
+                    val code = responseBody?.code
+                    if (code == 200) {
+                        missedDateList = responseBody.result?.localDates
+                        if (missedDateList?.contains(formattedDate) == true) { // 미입력이 있다.
+                            val mIntent = Intent(this@SignIn, BottomNavi::class.java)
+                            mIntent.putExtra("isExistMissedInput", true)
+                            startActivity(mIntent)
+                        } else {
+                            val mIntent = Intent(this@SignIn, BottomNavi::class.java)
+                            startActivity(mIntent)
+                        }
+
+                        Log.d("MissInputDebug", "미입력 조회 성공")
+                    } else {
+                        // 실패하면 그냥 이동.
+                        Log.d("MissInputDebug", "미입력 조회 실패")
+                        val mIntent = Intent(this@SignIn, BottomNavi::class.java)
+                        startActivity(mIntent)
+                    }
+                }
+            }
+
+            override fun onFailure(call: Call<BaseResponse<MissedInputResponse>>, t: Throwable) {
+                // 네트워크 에러 처리
+                Log.d("MissInputDebug", "네트워크 오류: " + t.message.toString())
+                val mIntent = Intent(this@SignIn, BottomNavi::class.java)
+                startActivity(mIntent)
+            }
+        })
     }
 }
