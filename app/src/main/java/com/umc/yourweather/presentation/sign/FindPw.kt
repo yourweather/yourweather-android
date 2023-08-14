@@ -4,8 +4,10 @@ import android.content.Intent
 import android.os.Bundle
 import android.util.Log
 import androidx.appcompat.app.AppCompatActivity
+import com.kakao.sdk.user.model.User
 import com.umc.yourweather.data.remote.response.BaseResponse
 import com.umc.yourweather.data.remote.response.VerifyEmailResponse
+import com.umc.yourweather.data.service.EmailService
 import com.umc.yourweather.data.service.UserService
 import com.umc.yourweather.databinding.ActivityFindPwBinding
 import com.umc.yourweather.di.RetrofitImpl
@@ -19,7 +21,7 @@ class FindPw : AppCompatActivity() {
     lateinit var binding: ActivityFindPwBinding
     private val retrofitWithoutToken = RetrofitImpl.nonRetrofit
     private lateinit var verifyEmailService: UserService
-
+    private lateinit var emailService : EmailService
     // 이메일 인증 여부를 나타내는 변수
     private var isEmailCertified = false
 
@@ -29,14 +31,14 @@ class FindPw : AppCompatActivity() {
         setContentView(binding.root)
 
         binding.btnFindpwNext.setOnClickListener {
-            sendEmail(binding.etFindpwEmail.text.toString())
+            verifyEmail(binding.etFindpwEmail.text.toString())
         }
         binding.btnFindpwBack.setOnClickListener {
             finish()
         }
     }
 
-    private fun sendEmail(email: String) {
+    private fun verifyEmail(email: String) {
         verifyEmailService = retrofitWithoutToken.create(UserService::class.java)
         verifyEmailService.verifyEmail(email).enqueue(object : Callback<BaseResponse<VerifyEmailResponse>> {
             override fun onResponse(
@@ -49,6 +51,7 @@ class FindPw : AppCompatActivity() {
                     if (code == 200) {
                         // 성공한 경우
                         Log.d("VerifyEmailDebug", "이메일 전송 성공")
+                        sendEmail(email)
                         val mIntent = Intent(this@FindPw, FindPwEmail::class.java)
                         mIntent.putExtra("email", email)
                         startActivity(mIntent)
@@ -66,6 +69,33 @@ class FindPw : AppCompatActivity() {
             override fun onFailure(call: Call<BaseResponse<VerifyEmailResponse>>, t: Throwable) {
                 // 네트워크 에러 처리
                 Log.d("VerifyEmailDebug", "네트워크 오류: " + t.message.toString())
+            }
+        })
+    }
+
+    private fun sendEmail(email: String) {
+        emailService = retrofitWithoutToken.create(EmailService::class.java)
+
+        emailService.sendEmail(email).enqueue(object : Callback<BaseResponse<Unit>> {
+            override fun onResponse(
+                call: Call<BaseResponse<Unit>>,
+                response: Response<BaseResponse<Unit>>,
+            ) {
+                if (response.isSuccessful) {
+                    val code = response.body()?.code
+                    if (code == 200) {
+                        // 성공한 경우
+                        Log.d("SendEmailDebug", "이메일 전송 성공")
+                    } else {
+                        // 실패한 경우
+                        Log.d("SendEmailDebug", "이메일 전송 실패: code = $code")
+                    }
+                }
+            }
+
+            override fun onFailure(call: Call<BaseResponse<Unit>>, t: Throwable) {
+                // 네트워크 에러 처리
+                Log.d("SendEmailDebug", "네트워크 오류: " + t.message.toString())
             }
         })
     }
