@@ -1,6 +1,8 @@
 package com.umc.yourweather.presentation.analysis
 
 import android.graphics.Color
+import android.graphics.drawable.Drawable
+import android.graphics.drawable.GradientDrawable
 import android.os.Bundle
 import android.os.Handler
 import android.text.Spannable
@@ -11,7 +13,6 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import android.widget.LinearLayout
-import androidx.core.content.ContextCompat
 import androidx.fragment.app.Fragment
 import com.umc.yourweather.R
 import com.umc.yourweather.data.entity.BarData
@@ -20,6 +21,9 @@ import com.umc.yourweather.data.remote.response.StatisticResponse
 import com.umc.yourweather.data.service.ReportService
 import com.umc.yourweather.databinding.FragmentBarStaticsMonthlyBinding
 import com.umc.yourweather.di.RetrofitImpl
+import kotlinx.coroutines.CoroutineScope
+import kotlinx.coroutines.Dispatchers
+import kotlinx.coroutines.launch
 import retrofit2.Call
 import retrofit2.Callback
 import retrofit2.Response
@@ -49,47 +53,17 @@ class BarStaticsMonthlyFragment : Fragment() {
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
 
-//        val increases = mapOf(
-//            "맑음" to 10,
-//            "구름 약간" to 40,
-//            "비" to 0,
-//            "번개" to 0,
-//        )
-//        val decreases = mapOf(
-//            "맑음" to 0,
-//            "구름 약간" to 0,
-//            "비" to 15,
-//            "번개" to 20,
-//        )
-//
-//        applyWeatherTextFormatting(increases, decreases)
+        CoroutineScope(Dispatchers.Main).launch {
+            // 지난 달, 이번 달 정확한 달 숫자
+            val previousMonth = getPreviousMonth()
+            val currentMonth = getCurrentMonth()
+            binding.tvAnalysisMonthNum.text = previousMonth
+            binding.tvAnalysisMonthThisNum.text = currentMonth
 
-//        val dataList = listOf(
-//            BarData("맑음", 44),
-//            BarData("흐림", 29),
-//            BarData("비", 24),
-//            BarData("번개", 59),
-//        )
-//
-//        val dataList2 = listOf(
-//            BarData("맑음", 48),
-//            BarData("흐림", 42),
-//            BarData("비", 20),
-//            BarData("번개", 37),
-//        )
-//
-//        bindWeatherData(dataList, binding.llAnalysisBarLastMonth, ::showBallViewLastMonth)
-//        bindWeatherData(dataList2, binding.llAnalysisBarThisMonth, ::showBallViewThisMonth)
-
-        // 지난 달, 이번 달 정확한 달 숫자
-        val previousMonth = getPreviousMonth()
-        val currentMonth = getCurrentMonth()
-        binding.tvAnalysisMonthNum.text = previousMonth
-        binding.tvAnalysisMonthThisNum.text = currentMonth
-
-        barStatisticsThisMonthApi()
-        barStatisticsLastMonthApi()
-        weeklyComparisonApi()
+            barStatisticsThisMonthApi()
+            barStatisticsLastMonthApi()
+            weeklyComparisonApi()
+        }
     }
 
     // 지난 달 숫자
@@ -109,6 +83,7 @@ class BarStaticsMonthlyFragment : Fragment() {
         return dateFormat.format(calendar.time)
     }
 
+    // 날씨 통계 색상 변환 함수
     private fun applyWeatherTextFormatting(increases: Map<String, Int>, decreases: Map<String, Int>) {
         val increaseColor = "#70AD47" // Increase color
         val decreaseColor = "#F7931E" // Decrease color
@@ -124,39 +99,31 @@ class BarStaticsMonthlyFragment : Fragment() {
             val (textView, imageView) = viewPair
             val increaseValue = increases[weather] ?: 0
             val decreaseValue = decreases[weather] ?: 0
+            val color = if (increaseValue > 0) increaseColor else decreaseColor
 
-            // Update text view
-            val formattedText = if (increaseValue == 0 && decreaseValue == 0) {
-                "$weather 비율이 동일합니다."
+            if (increaseValue == 0 && decreaseValue == 0) {
+                textView.text = "$weather 비율이 동일합니다."
             } else {
-                val actionText = if (increaseValue > 0) "증가" else if (decreaseValue > 0) "감소" else "변화가 없습니다"
+                val actionText =
+                    if (increaseValue > 0) "증가" else if (decreaseValue > 0) "감소" else "변화가 없습니다"
                 val changeValue = if (increaseValue > 0) increaseValue else decreaseValue
 
-                val color = if (increaseValue > 0) increaseColor else decreaseColor
+                val arrowText =
+                    SpannableStringBuilder("$weather 비율이 $changeValue% ${actionText}했습니다.")
 
-                val spannableText = SpannableStringBuilder()
-                    .append("$weather 비율이 ")
-                    .apply {
-                        append("$changeValue%")
-                        setSpan(
-                            ForegroundColorSpan(Color.parseColor(color)),
-                            length - changeValue.toString().length - 1,
-                            length - 1,
-                            Spannable.SPAN_EXCLUSIVE_INCLUSIVE,
-                        )
-                    }
-                    .append(" $actionText")
-                    .apply {
-                        if (actionText != "변화가 없습니다.") {
-                            append("했습니다.")
-                        }
-                    }
-                spannableText
+                val changeValueStart = arrowText.indexOf("$changeValue%")
+                val changeValueEnd = changeValueStart + "$changeValue%".length
+                arrowText.apply {
+                    setSpan(
+                        ForegroundColorSpan(Color.parseColor(color)),
+                        changeValueStart,
+                        changeValueEnd,
+                        Spannable.SPAN_EXCLUSIVE_EXCLUSIVE,
+                    )
+                }
+                textView.text = arrowText
             }
 
-            textView.text = formattedText
-
-            // Update image view
             val arrowDrawableId = when {
                 increaseValue > 0 -> R.drawable.ic_uparrow
                 decreaseValue > 0 -> R.drawable.ic_downarrow
@@ -167,47 +134,99 @@ class BarStaticsMonthlyFragment : Fragment() {
     }
 
     private fun bindWeatherData(dataList: List<BarData>, layout: LinearLayout, clickListener: (String) -> Unit) {
-        // 각 데이터 값에 해당하는 너비 계산
         val sum = dataList.sumOf { it.value }
 
-        for (data in dataList) {
+        for ((index, data) in dataList.withIndex()) {
             val value = data.value
-            val ratio = if (sum != 0) value / sum else 0.0
+            val ratio = if (sum != 0) value.toDouble() / sum else 0.0
             val width: Float = (ratio.toFloat() * 100)
 
-            // 새로운 View 생성
             val view = View(requireContext())
 
-            // View의 레이아웃 파라미터 설정
-            view.layoutParams = LinearLayout.LayoutParams(
-                0,
+            val roundedCornerDrawable = getRoundedCornerDrawableForWeather(data.label, index, dataList.size)
+            view.background = roundedCornerDrawable
+
+            val layoutParams = LinearLayout.LayoutParams(
+                width.toInt(),
                 ViewGroup.LayoutParams.MATCH_PARENT,
                 width,
             )
 
-            // 배경 파일 적용
-            val drawableRes = getDrawableResForWeather(data.label)
-            view.background = ContextCompat.getDrawable(requireContext(), drawableRes)
+            view.layoutParams = layoutParams
 
-            // 레이아웃에 View 추가
             layout.addView(view)
 
-            // 클릭 리스너 설정
             view.setOnClickListener {
                 clickListener(data.label)
+            }
+
+            // Add a gray divider if the value is not 0 and there's a next item with non-zero value
+            if (value != 0 && (index < dataList.size - 1 && dataList[index + 1].value != 0)) {
+                val dividerView = View(requireContext())
+                val dividerLayoutParams = LinearLayout.LayoutParams(
+                    resources.getDimensionPixelSize(R.dimen.divider_width),
+                    ViewGroup.LayoutParams.MATCH_PARENT,
+                )
+                dividerView.layoutParams = dividerLayoutParams
+                dividerView.setBackgroundColor(Color.parseColor("#F1F1F1")) // 회색 색상
+                layout.addView(dividerView)
             }
         }
     }
 
-    private fun getDrawableResForWeather(weatherLabel: String): Int {
+    private fun getRoundedCornerDrawableForWeather(weatherLabel: String, index: Int, dataSize: Int): Drawable {
+        val color = getColorForWeather(weatherLabel)
+        val cornerRadius = when (index) {
+            0 -> {
+                // First item, round left corner
+                floatArrayOf(
+                    resources.getDimension(R.dimen.rounded_corner_radius),
+                    resources.getDimension(R.dimen.rounded_corner_radius),
+                    0f,
+                    0f,
+                    0f,
+                    0f,
+                    resources.getDimension(R.dimen.rounded_corner_radius),
+                    resources.getDimension(R.dimen.rounded_corner_radius),
+                )
+            }
+            dataSize - 1 -> {
+                // Last item, round right corner
+                floatArrayOf(
+                    0f,
+                    0f,
+                    resources.getDimension(R.dimen.rounded_corner_radius),
+                    resources.getDimension(R.dimen.rounded_corner_radius),
+                    resources.getDimension(R.dimen.rounded_corner_radius),
+                    resources.getDimension(R.dimen.rounded_corner_radius),
+                    0f,
+                    0f,
+                )
+            }
+            else -> {
+                // Middle items, no corners
+                null
+            }
+        }
+
+        val shapeDrawable = GradientDrawable()
+        shapeDrawable.setColor(color)
+        shapeDrawable.cornerRadii = cornerRadius
+        shapeDrawable.shape = GradientDrawable.RECTANGLE
+
+        return shapeDrawable
+    }
+
+    private fun getColorForWeather(weatherLabel: String): Int {
         return when (weatherLabel) {
-            "맑음" -> R.drawable.bg_yellow_rec_round_sun
-            "흐림" -> R.drawable.bg_gray_rec_cloud
-            "비" -> R.drawable.bg_blue_rec_rain
-            "번개" -> R.drawable.bg_darkblue_rec_round_thunder
-            else -> R.drawable.bg_darkblue_rec_round_thunder
+            "맑음" -> Color.parseColor("#FCC112")
+            "구름 약간" -> Color.parseColor("#C7C7C7")
+            "비" -> Color.parseColor("#8299BB")
+            "번개" -> Color.parseColor("#1A1D34")
+            else -> Color.parseColor("#A0A0A0")
         }
     }
+
     private fun showBallViewLastMonth(weatherLabel: String) {
         // 모든 텍스트뷰 숨기기
         binding.tvBalloonSun.visibility = View.GONE
@@ -221,7 +240,7 @@ class BarStaticsMonthlyFragment : Fragment() {
                 binding.tvBalloonSun.visibility = View.VISIBLE
                 hideBallViewAfterDelay(binding.tvBalloonSun)
             }
-            "흐림" -> {
+            "구름 약간" -> {
                 binding.tvBalloonCloud.visibility = View.VISIBLE
                 hideBallViewAfterDelay(binding.tvBalloonCloud)
             }
@@ -249,7 +268,7 @@ class BarStaticsMonthlyFragment : Fragment() {
                 binding.tvBalloonSunThis.visibility = View.VISIBLE
                 hideBallViewAfterDelay(binding.tvBalloonSunThis)
             }
-            "흐림" -> {
+            "구름 약간" -> {
                 binding.tvBalloonCloudThis.visibility = View.VISIBLE
                 hideBallViewAfterDelay(binding.tvBalloonCloudThis)
             }
@@ -281,7 +300,7 @@ class BarStaticsMonthlyFragment : Fragment() {
                 response: Response<BaseResponse<StatisticResponse>>,
             ) {
                 if (response.isSuccessful) {
-                    val statisticResponse = response.body()?.result // 'data'가 실제 응답 데이터를 담고 있는 필드일 경우
+                    val statisticResponse = response.body()?.result //
                     if (statisticResponse != null) {
                         Log.d("이번 달 bar API Success", "이번 달 Sunny: ${statisticResponse.sunny}, Cloudy: ${statisticResponse.cloudy}, Rainy: ${statisticResponse.rainy}, Lightning: ${statisticResponse.lightning}")
 
@@ -310,7 +329,7 @@ class BarStaticsMonthlyFragment : Fragment() {
         })
     }
 
-    // 지난 주 통계
+    // 지난 달 통계
     private fun barStatisticsLastMonthApi() {
         val service = RetrofitImpl.authenticatedRetrofit.create(ReportService::class.java)
         val call = service.monthlyStatistic(ago = 1) // 지난 달

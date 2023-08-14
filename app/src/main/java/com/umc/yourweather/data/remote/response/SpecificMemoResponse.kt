@@ -3,9 +3,9 @@ package com.umc.yourweather.data.remote.response
 import com.google.gson.annotations.SerializedName
 
 data class SpecificMemoResponse(
-    @SerializedName("specific_memolist")
+    @SerializedName("memoList")
     val memoList: List<MemoReportResponse>,
-    @SerializedName("specific_proportion")
+    @SerializedName("proportion")
     val proportion: Float,
 ) {
     data class MemoReportResponse(

@@ -119,21 +119,31 @@ class WrittenDetailListFragmentRainWeekly : Fragment() {
                 response: Response<BaseResponse<SpecificMemoResponse>>,
             ) {
                 if (response.isSuccessful) {
-                    val memoList = response.body()?.result?.memoList
-                    val memoListSize = memoList?.size ?: 0 // 리스트 개수
-                    binding.tvWrittenDetailListMonthNum.text = "총 ${memoListSize}회"
-                    val dataList = fetchDataFromAPI(memoList)
-                    Log.d("RAINY dataList", "RAINY dataList: $dataList")
+                    val baseResponse = response.body()
+                    val specificMemoResponse = baseResponse?.result
 
-                    // 어댑터 초기화 및 데이터 설정
-                    val adapter = WrittenRVAdapter(dataList, requireContext())
+                    val memoList = specificMemoResponse?.memoList ?: emptyList()
+                    val proportion = specificMemoResponse?.proportion
+
+                    val memoIds = memoList.map { it.memoId }
+                    val memoDateTime = memoList.map { it.dateTime }
+
+                    Log.d("$weather 메모 리스트", "$memoList")
+                    Log.d("$weather 비율", "$proportion")
+                    Log.d("$weather 메모 아이디", "$memoIds")
+                    Log.d("$weather 메모 작성시간", "$memoDateTime")
+
+                    val formattedMemoList = memoList.map { memoReportResponse ->
+                        val formattedDateTime = formatDate(memoReportResponse.dateTime)
+                        ItemWritten(memoReportResponse.memoId, memoReportResponse.dateTime, formattedDateTime)
+                    }
+
+                    // 어댑터에 변환된 데이터를 전달하여 연결
+                    binding.recyclerViewDetailWeeklyRain.layoutManager = LinearLayoutManager(requireContext())
+                    val adapter = context?.let { WrittenRVAdapter(formattedMemoList, it) }
                     binding.recyclerViewDetailWeeklyRain.adapter = adapter
 
-                    memoList?.forEach { memoReportResponse ->
-                        val memoId = memoReportResponse.memoId
-                        val dateTime = memoReportResponse.dateTime
-                        Log.d("SUNNY API", "Memo ID: $memoId, Date Time: $dateTime")
-                    }
+                    binding.tvWrittenDetailListMonthNum.text = "총 ${memoIds.size}회"
                 } else {
                     Log.d("API call failed", "${response.code()} - ${response.message()}")
                 }
@@ -143,6 +153,13 @@ class WrittenDetailListFragmentRainWeekly : Fragment() {
                 Log.d("API call failed", "${t.message}")
             }
         })
+    }
+    private fun formatDate(dateTime: String): String {
+        val inputFormat = SimpleDateFormat("yyyy-MM-dd'T'HH:mm:ss", Locale.getDefault())
+        val outputFormat = SimpleDateFormat("M월 d일 E요일 a h:mm", Locale.getDefault())
+
+        val date = inputFormat.parse(dateTime)
+        return outputFormat.format(date)
     }
 
     // 정확한 주 숫자
@@ -173,30 +190,30 @@ class WrittenDetailListFragmentRainWeekly : Fragment() {
             .commit()
     }
 
-    // MemoReportResponse를 ItemWritten으로 변환하는 함수
-    private fun fetchDataFromAPI(memoList: List<SpecificMemoResponse.MemoReportResponse>?): List<ItemWritten> {
-        val dataList = mutableListOf<ItemWritten>()
-
-        memoList?.forEach { memoReportResponse ->
-            val dateTime = memoReportResponse.dateTime
-            val date = SimpleDateFormat("yyyy-MM-dd'T'HH:mm:ss.SSS'Z'", Locale.getDefault()).parse(dateTime)
-            Log.d("리스트 날짜", "$date")
-            val calendar = Calendar.getInstance()
-            calendar.time = date
-
-            val itemWritten = ItemWritten(
-                calendar.get(Calendar.MONTH) + 1,
-                calendar.get(Calendar.DAY_OF_MONTH),
-                getDayOfWeek(calendar.get(Calendar.DAY_OF_WEEK)),
-                if (calendar.get(Calendar.AM_PM) == Calendar.AM) "오전" else "오후",
-                calendar.get(Calendar.HOUR),
-                calendar.get(Calendar.MINUTE),
-            )
-            dataList.add(itemWritten)
-        }
-
-        return dataList
-    }
+//    // MemoReportResponse를 ItemWritten으로 변환하는 함수
+//    private fun fetchDataFromAPI(memoList: List<SpecificMemoResponse.MemoReportResponse>?): List<ItemWritten> {
+//        val dataList = mutableListOf<ItemWritten>()
+//
+//        memoList?.forEach { memoReportResponse ->
+//            val dateTime = memoReportResponse.dateTime
+//            val date = SimpleDateFormat("yyyy-MM-dd'T'HH:mm:ss.SSS'Z'", Locale.getDefault()).parse(dateTime)
+//            Log.d("리스트 날짜", "$date")
+//            val calendar = Calendar.getInstance()
+//            calendar.time = date
+//
+//            val itemWritten = ItemWritten(
+//                calendar.get(Calendar.MONTH) + 1,
+//                calendar.get(Calendar.DAY_OF_MONTH),
+//                getDayOfWeek(calendar.get(Calendar.DAY_OF_WEEK)),
+//                if (calendar.get(Calendar.AM_PM) == Calendar.AM) "오전" else "오후",
+//                calendar.get(Calendar.HOUR),
+//                calendar.get(Calendar.MINUTE),
+//            )
+//            dataList.add(itemWritten)
+//        }
+//
+//        return dataList
+//    }
 
     // Calendar.DAY_OF_WEEK 값을 요일 문자열로 변환하는 함수
     private fun getDayOfWeek(dayOfWeek: Int): String {
