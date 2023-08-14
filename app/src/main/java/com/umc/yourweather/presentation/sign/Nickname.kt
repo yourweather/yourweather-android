@@ -108,9 +108,9 @@ class Nickname : AppCompatActivity() {
                         UserSharedPreferences.setUserNickname(this@Nickname, fixedNickname)
 
                         // 회원 가입 성공 후 홈화면으로 이동
-                        val intent = Intent(this@Nickname, BottomNavi::class.java)
+                        val mIntent = Intent(this@Nickname, BottomNavi::class.java)
+                        mIntent.flags = Intent.FLAG_ACTIVITY_NEW_TASK or Intent.FLAG_ACTIVITY_CLEAR_TASK
                         startActivity(intent)
-                        finish()
                     } else {
                         // 회원 가입 실패
                         Log.d("SignupDebug", "회원 가입 실패: code = $code")
