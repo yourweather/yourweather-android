@@ -29,7 +29,7 @@
         <FrameLayout
             android:id="@+id/fl_weather_input_exit"
             android:layout_width="90dp"
-            android:layout_height="50dp"
+            android:layout_height="45dp"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toTopOf="@+id/iv_home_weather">
 
@@ -102,6 +102,17 @@
             app:layout_constraintEnd_toEndOf="@+id/iv_home_weather"
 
             app:layout_constraintTop_toTopOf="@+id/iv_home_weather" />
+
+        <ImageButton
+            android:id="@+id/btn_weatherinput_guide1"
+            android:layout_width="20dp"
+            android:layout_height="20dp"
+            android:background="@android:color/transparent"
+            android:src="@drawable/btn_weatherinput_guide"
+            app:layout_constraintEnd_toEndOf="@+id/iv_home_weather"
+            app:layout_constraintHorizontal_bias="0.0"
+            app:layout_constraintStart_toEndOf="@+id/tv_home_weather_guide2"
+            app:layout_constraintTop_toBottomOf="@+id/fl_weather_input_save" />
 
         <androidx.appcompat.widget.AppCompatButton
             android:id="@+id/btn_home_sun"
@@ -188,6 +199,17 @@
             app:layout_constraintEnd_toEndOf="@+id/iv_home_weather"
 
             app:layout_constraintTop_toBottomOf="@+id/tv_home_weather_guide2" />
+
+        <ImageButton
+            android:id="@+id/btn_weatherinput_guide2"
+            android:layout_width="20dp"
+            android:layout_height="20dp"
+            android:background="@android:color/transparent"
+            android:src="@drawable/btn_weatherinput_guide"
+            app:layout_constraintEnd_toEndOf="@+id/iv_home_weather"
+            app:layout_constraintHorizontal_bias="0.0"
+            app:layout_constraintStart_toEndOf="@+id/tv_home_weather_guide4"
+            tools:layout_editor_absoluteY="407dp" />
 
         <SeekBar
             android:id="@+id/seekbar_home_temp"
