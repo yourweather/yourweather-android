@@ -52,23 +52,23 @@ class BarStaticsWeeklyFragment : Fragment() {
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
 
-/*
-        // 날씨 통계 색상 변환 함수 데이터
-        val increases = mapOf(
-            "맑음" to 10,
-            "구름 약간" to 40,
-            "비" to 0,
-            "번개" to 0,
-        )
-        val decreases = mapOf(
-            "맑음" to 0,
-            "구름 약간" to 0,
-            "비" to 15,
-            "번개" to 20,
-        )
+        /*
+                // 날씨 통계 색상 변환 함수 데이터
+                val increases = mapOf(
+                    "맑음" to 10,
+                    "구름 약간" to 40,
+                    "비" to 0,
+                    "번개" to 0,
+                )
+                val decreases = mapOf(
+                    "맑음" to 0,
+                    "구름 약간" to 0,
+                    "비" to 15,
+                    "번개" to 20,
+                )
 
-        applyWeatherTextFormatting(increases, decreases)
-*/
+                applyWeatherTextFormatting(increases, decreases)
+        */
 //        // 지난 주 데이터 리스트 생성
 //        val dataList = listOf(
 //            BarData("맑음", 44),
@@ -212,6 +212,9 @@ class BarStaticsWeeklyFragment : Fragment() {
     private fun bindWeatherData(dataList: List<BarData>, layout: LinearLayout, clickListener: (String) -> Unit) {
         val sum = dataList.sumOf { it.value }
 
+        // Check if only one non-zero weather exists
+        val isOnlyOneNonZeroWeather = dataList.count { it.value != 0 } == 1
+
         for ((index, data) in dataList.withIndex()) {
             val value = data.value
             val ratio = if (sum != 0) value.toDouble() / sum else 0.0
@@ -219,7 +222,11 @@ class BarStaticsWeeklyFragment : Fragment() {
 
             val view = View(requireContext())
 
-            val roundedCornerDrawable = getRoundedCornerDrawableForWeather(data.label, index, dataList.size)
+            val roundedCornerDrawable = if (isOnlyOneNonZeroWeather) {
+                getRoundedCornerDrawableForAllCorners(data.label, dataList.size)
+            } else {
+                getRoundedCornerDrawableForWeather(data.label, index, dataList.size)
+            }
             view.background = roundedCornerDrawable
 
             val layoutParams = LinearLayout.LayoutParams(
@@ -244,11 +251,33 @@ class BarStaticsWeeklyFragment : Fragment() {
                     ViewGroup.LayoutParams.MATCH_PARENT,
                 )
                 dividerView.layoutParams = dividerLayoutParams
-                dividerView.setBackgroundColor(Color.parseColor("#F1F1F1")) // 회색 색상
+                dividerView.setBackgroundColor(Color.parseColor("#F1F1F1")) // Gray color
                 layout.addView(dividerView)
             }
         }
     }
+
+    private fun getRoundedCornerDrawableForAllCorners(weatherLabel: String, dataSize: Int): Drawable {
+        val color = getColorForWeather(weatherLabel)
+        val cornerRadius = floatArrayOf(
+            resources.getDimension(R.dimen.rounded_corner_radius),
+            resources.getDimension(R.dimen.rounded_corner_radius),
+            resources.getDimension(R.dimen.rounded_corner_radius),
+            resources.getDimension(R.dimen.rounded_corner_radius),
+            resources.getDimension(R.dimen.rounded_corner_radius),
+            resources.getDimension(R.dimen.rounded_corner_radius),
+            resources.getDimension(R.dimen.rounded_corner_radius),
+            resources.getDimension(R.dimen.rounded_corner_radius),
+        )
+
+        val shapeDrawable = GradientDrawable()
+        shapeDrawable.setColor(color)
+        shapeDrawable.cornerRadii = cornerRadius
+        shapeDrawable.shape = GradientDrawable.RECTANGLE
+
+        return shapeDrawable
+    }
+
 
     private fun getRoundedCornerDrawableForWeather(weatherLabel: String, index: Int, dataSize: Int): Drawable {
         val color = getColorForWeather(weatherLabel)

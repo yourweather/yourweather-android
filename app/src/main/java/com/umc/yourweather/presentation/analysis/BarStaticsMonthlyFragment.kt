@@ -190,6 +190,9 @@ class BarStaticsMonthlyFragment : Fragment() {
     private fun bindWeatherData(dataList: List<BarData>, layout: LinearLayout, clickListener: (String) -> Unit) {
         val sum = dataList.sumOf { it.value }
 
+        // Check if only one non-zero weather exists
+        val isOnlyOneNonZeroWeather = dataList.count { it.value != 0 } == 1
+
         for ((index, data) in dataList.withIndex()) {
             val value = data.value
             val ratio = if (sum != 0) value.toDouble() / sum else 0.0
@@ -197,7 +200,11 @@ class BarStaticsMonthlyFragment : Fragment() {
 
             val view = View(requireContext())
 
-            val roundedCornerDrawable = getRoundedCornerDrawableForWeather(data.label, index, dataList.size)
+            val roundedCornerDrawable = if (isOnlyOneNonZeroWeather && value != 0) {
+                getRoundedCornerDrawableForAllCorners(data.label, dataList.size)
+            } else {
+                getRoundedCornerDrawableForWeather(data.label, index, dataList.size)
+            }
             view.background = roundedCornerDrawable
 
             val layoutParams = LinearLayout.LayoutParams(
@@ -222,17 +229,40 @@ class BarStaticsMonthlyFragment : Fragment() {
                     ViewGroup.LayoutParams.MATCH_PARENT,
                 )
                 dividerView.layoutParams = dividerLayoutParams
-                dividerView.setBackgroundColor(Color.parseColor("#F1F1F1")) // 회색 색상
+                dividerView.setBackgroundColor(Color.parseColor("#F1F1F1")) // Gray color
                 layout.addView(dividerView)
             }
         }
     }
 
+
+    private fun getRoundedCornerDrawableForAllCorners(weatherLabel: String, dataSize: Int): Drawable {
+        val color = getColorForWeather(weatherLabel)
+        val cornerRadius = floatArrayOf(
+            resources.getDimension(R.dimen.rounded_corner_radius),
+            resources.getDimension(R.dimen.rounded_corner_radius),
+            resources.getDimension(R.dimen.rounded_corner_radius),
+            resources.getDimension(R.dimen.rounded_corner_radius),
+            resources.getDimension(R.dimen.rounded_corner_radius),
+            resources.getDimension(R.dimen.rounded_corner_radius),
+            resources.getDimension(R.dimen.rounded_corner_radius),
+            resources.getDimension(R.dimen.rounded_corner_radius),
+        )
+
+        val shapeDrawable = GradientDrawable()
+        shapeDrawable.setColor(color)
+        shapeDrawable.cornerRadii = cornerRadius
+        shapeDrawable.shape = GradientDrawable.RECTANGLE
+
+        return shapeDrawable
+    }
+
+
     private fun getRoundedCornerDrawableForWeather(weatherLabel: String, index: Int, dataSize: Int): Drawable {
         val color = getColorForWeather(weatherLabel)
-        val cornerRadius = when (index) {
-            0 -> {
-                // First item, round left corner
+        val cornerRadius = when {
+            index == 0 && dataSize > 1 -> {
+                // First item with non-zero value, round left corner
                 floatArrayOf(
                     resources.getDimension(R.dimen.rounded_corner_radius),
                     resources.getDimension(R.dimen.rounded_corner_radius),
@@ -240,25 +270,25 @@ class BarStaticsMonthlyFragment : Fragment() {
                     0f,
                     0f,
                     0f,
-                    resources.getDimension(R.dimen.rounded_corner_radius),
-                    resources.getDimension(R.dimen.rounded_corner_radius),
+                    0f,
+                    0f,
                 )
             }
-            dataSize - 1 -> {
-                // Last item, round right corner
+            index == dataSize - 1 && dataSize > 1 -> {
+                // Last item with non-zero value, round right corner
                 floatArrayOf(
                     0f,
                     0f,
-                    resources.getDimension(R.dimen.rounded_corner_radius),
-                    resources.getDimension(R.dimen.rounded_corner_radius),
-                    resources.getDimension(R.dimen.rounded_corner_radius),
-                    resources.getDimension(R.dimen.rounded_corner_radius),
                     0f,
                     0f,
+                    0f,
+                    0f,
+                    resources.getDimension(R.dimen.rounded_corner_radius),
+                    resources.getDimension(R.dimen.rounded_corner_radius),
                 )
             }
             else -> {
-                // Middle items, no corners
+                // Middle items or items with value 0, no corners
                 null
             }
         }
