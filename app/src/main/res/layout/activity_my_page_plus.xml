@@ -1,0 +1,466 @@
+<?xml version="1.0" encoding="utf-8"?>
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context=".presentation.mypage.MyPagePlus">
+
+
+    <ImageButton
+        android:id="@+id/btn_my_page_plus_back"
+        android:layout_width="wrap_content"
+        android:layout_height="24dp"
+        android:layout_marginTop="20dp"
+        android:layout_marginEnd="355dp"
+        android:layout_marginBottom="26dp"
+        android:adjustViewBounds="true"
+        android:background="#00ff0000"
+        android:scaleType="centerInside"
+        app:layout_constraintBottom_toTopOf="@+id/tv_my_page_plus_1"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:srcCompat="@drawable/ic_calendardetailview_back"
+        tools:ignore="SpeakableTextPresentCheck" />
+
+    <Button
+        android:id="@+id/btn_my_page_plus_save"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="331dp"
+        android:layout_marginBottom="80dp"
+        android:background="#00ff0000"
+        android:fontFamily="@font/pretendardregular"
+        android:padding="0dp"
+        android:text="저장"
+        android:textColor="#BCBCBC"
+        android:textFontWeight="600"
+        android:textSize="20sp"
+        app:layout_constraintBottom_toTopOf="@+id/view_my_page_plus_divide"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"></Button>
+
+    <TextView
+        android:id="@+id/tv_my_page_plus_1"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="35dp"
+        android:layout_marginTop="69dp"
+        android:layout_marginEnd="195dp"
+        android:layout_marginBottom="37dp"
+        android:fontFamily="@font/pretendardbold"
+        android:text="이벤트 기록 설정"
+        android:textColor="#2B2B2B"
+        android:textSize="20sp"
+        app:layout_constraintBottom_toTopOf="@+id/view_my_page_plus_divide"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"></TextView>
+
+    <TextView
+        android:id="@+id/tv_my_page_plus_2"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="75dp"
+        android:layout_marginTop="98dp"
+        android:layout_marginEnd="175dp"
+        android:layout_marginBottom="14dp"
+        android:fontFamily="@font/pretendardregular"
+        android:text="미래의 나에게 보내는 감정 기록이에요 "
+        android:textColor="#2B2B2B"
+        android:textSize="13sp"
+        app:layout_constraintBottom_toTopOf="@+id/view_my_page_plus_divide"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"></TextView>
+
+    <View
+        android:id="@+id/view_my_page_plus_divide"
+        android:layout_width="match_parent"
+        android:layout_height="7dp"
+        android:layout_marginTop="138dp"
+        android:layout_marginBottom="743dp"
+        android:background="#D9D9D9"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.0"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
+
+
+    <LinearLayout
+        android:id="@+id/ll_my_page_plus_1"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="125dp"
+        android:layout_marginBottom="60dp"
+        android:orientation="vertical"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent">
+
+        <LinearLayout
+            android:id="@+id/ll_my_page_plus_2"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="vertical">
+
+            <TextView
+                android:id="@+id/tv_my_page_plus_3"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="16dp"
+                android:layout_marginTop="23dp"
+                android:layout_marginEnd="0dp"
+                android:fontFamily="@font/pretendardregular"
+                android:text="이다은 님의 감정 상태"
+                android:textColor="#2B2B2B"
+                android:textFontWeight="600"
+                android:textSize="14sp"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@+id/divider" />
+            <TextView
+                android:id="@+id/tv_my_page_plus_4"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="16dp"
+                android:layout_marginTop="6dp"
+                android:layout_marginEnd="0dp"
+                android:fontFamily="@font/pretendardregular"
+                android:text="기록 열람을 위한 알림 시간을 설정해주세요.\n캘린더에는 설정하신 날짜로 이벤트가 기록됩니다."
+                android:textColor="#BDBDBD"
+                android:textFontWeight="600"
+                android:textSize="14sp"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@+id/divider" />
+
+            <LinearLayout
+                android:id="@+id/ll_my_page_plus_3"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="horizontal">
+
+                <Button
+                    android:id="@+id/btn_my_page_plus_alarm"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginStart="51dp"
+                    android:layout_marginTop="18dp"
+                    android:layout_marginEnd="0dp"
+                    android:fontFamily="@font/pretendardregular"
+                    android:text="2023년 7월 30일 오후 12:00"
+                    android:background="#00ff0000"
+                    android:textColor="#424242"
+                    android:textFontWeight="500"
+                    android:textSize="20sp"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toBottomOf="@+id/tv_calendar_detailview_modify2_8" />
+
+
+            </LinearLayout>
+        </LinearLayout>
+
+        <LinearLayout
+            android:id="@+id/ll_my_page_plus_4"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="vertical">
+
+            <TextView
+                android:id="@+id/tv_my_page_plus_5"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="16dp"
+                android:layout_marginTop="23dp"
+                android:layout_marginEnd="0dp"
+                android:fontFamily="@font/pretendardregular"
+                android:text="미래 이다은님의 감정 상태"
+                android:textColor="#2B2B2B"
+                android:textFontWeight="600"
+                android:textSize="14sp"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintHorizontal_bias="0.135"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@+id/divider" />
+
+            <LinearLayout
+                android:id="@+id/ll_my_page_plus_5"
+                android:layout_width="match_parent"
+                android:layout_height="95dp"
+                android:orientation="horizontal">
+
+                <androidx.appcompat.widget.AppCompatButton
+                    android:id="@+id/btn_my_page_plus_sun"
+                    android:layout_width="83dp"
+                    android:layout_height="85dp"
+                    android:layout_marginStart="33dp"
+                    android:layout_marginTop="8dp"
+                    android:layout_marginEnd="5dp"
+                    android:layout_marginBottom="603dp"
+                    android:background="@drawable/ic_sun"
+                    app:layout_constraintBottom_toBottomOf="parent"
+                    app:layout_constraintEnd_toStartOf="@+id/btn_home_cloud"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toBottomOf="@+id/divider" />
+
+                <androidx.appcompat.widget.AppCompatButton
+                    android:id="@+id/btn_my_page_plus_cloud"
+                    android:layout_width="83dp"
+                    android:layout_height="85dp"
+                    android:layout_marginStart="5dp"
+                    android:layout_marginTop="8dp"
+                    android:layout_marginBottom="603dp"
+                    android:background="@drawable/ic_cloud"
+                    app:layout_constraintBottom_toBottomOf="parent"
+                    app:layout_constraintStart_toEndOf="@+id/btn_home_sun"
+                    app:layout_constraintTop_toBottomOf="@+id/divider" />
+
+                <androidx.appcompat.widget.AppCompatButton
+                    android:id="@+id/btn_my_page_plus_rain"
+                    android:layout_width="83dp"
+                    android:layout_height="85dp"
+                    android:layout_marginStart="5dp"
+                    android:layout_marginTop="8dp"
+                    android:layout_marginBottom="603dp"
+                    android:background="@drawable/ic_rain"
+                    app:layout_constraintBottom_toBottomOf="parent"
+                    app:layout_constraintStart_toEndOf="@+id/btn_home_cloud"
+                    app:layout_constraintTop_toBottomOf="@+id/divider" />
+
+                <androidx.appcompat.widget.AppCompatButton
+                    android:id="@+id/btn_my_page_plus_thunder"
+                    android:layout_width="83dp"
+                    android:layout_height="85dp"
+                    android:layout_marginStart="5dp"
+                    android:layout_marginTop="8dp"
+                    android:layout_marginEnd="42dp"
+                    android:layout_marginBottom="603dp"
+                    android:background="@drawable/ic_thunder"
+                    app:layout_constraintBottom_toBottomOf="parent"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintHorizontal_bias="0.0"
+                    app:layout_constraintStart_toEndOf="@+id/btn_home_rain"
+                    app:layout_constraintTop_toBottomOf="@+id/divider" />
+            </LinearLayout>
+
+            <TextView
+                android:id="@+id/tv_my_page_plus_6"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:fontFamily="@font/pretendardregular"
+                android:gravity="center"
+                android:text="클릭하여 선택해주세요"
+                android:textColor="#ACACAC"
+                android:textFontWeight="600"
+                android:textSize="10sp"
+                app:layout_constraintBottom_toBottomOf="parent"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@+id/divider" />
+        </LinearLayout>
+
+        <LinearLayout
+            android:id="@+id/ll_my_page_plus_6"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="vertical">
+
+            <TextView
+                android:id="@+id/tv_my_page_plus_7"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="20dp"
+                android:layout_marginTop="15dp"
+                android:layout_marginEnd="106dp"
+                android:layout_marginBottom="4dp"
+                android:fontFamily="@font/pretendardregular"
+                android:text="미래 이다은 님의 감정 온도"
+                android:textColor="#2B2B2B"
+                android:textFontWeight="600"
+                android:textSize="14sp"
+                app:layout_constraintBottom_toBottomOf="parent"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@+id/divider"
+                app:layout_constraintVertical_bias="0.472" />
+
+            <SeekBar
+                android:id="@+id/seekbar_my_page_plus_temp"
+                android:layout_width="320dp"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="41dp"
+                android:layout_marginTop="20dp"
+                android:layout_marginEnd="34dp"
+                android:layout_marginBottom="0dp"
+                android:max="100"
+                android:progress="0"
+                android:progressDrawable="@drawable/bg_home_seekbar"
+                android:thumb="@drawable/ic_home_seekbarbtn"
+                app:layout_constraintBottom_toBottomOf="parent"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintHorizontal_bias="0.493"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@+id/divider" />
+
+            <LinearLayout
+                android:id="@+id/ll_my_page_plus_7"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:orientation="horizontal">
+
+                <TextView
+                    android:id="@+id/tv_my_page_plus_8"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginStart="53dp"
+                    android:layout_marginTop="10dp"
+                    android:layout_marginEnd="0dp"
+                    android:layout_marginBottom="0dp"
+                    android:fontFamily="@font/pretendardregular"
+                    android:text="0°"
+                    android:textSize="13sp"
+                    app:layout_constraintBottom_toBottomOf="parent"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toBottomOf="@+id/divider" />
+
+                <TextView
+                    android:id="@+id/tv_my_page_plus_9"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginStart="265dp"
+                    android:layout_marginTop="10dp"
+                    android:layout_marginEnd="0dp"
+                    android:layout_marginBottom="0dp"
+                    android:fontFamily="@font/pretendardregular"
+                    android:text="100°"
+                    android:textSize="13sp"
+                    app:layout_constraintBottom_toBottomOf="parent"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toBottomOf="@+id/divider" />
+            </LinearLayout>
+
+
+        </LinearLayout>
+
+
+        <LinearLayout
+            android:id="@+id/ll_my_page_plus_8"
+            android:layout_width="match_parent"
+            android:layout_height="236dp"
+            android:orientation="vertical">
+
+            <TextView
+                android:id="@+id/tv_my_page_plus_10"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="20dp"
+                android:layout_marginTop="10dp"
+                android:layout_marginBottom="15dp"
+                android:fontFamily="@font/pretendardregular"
+                android:text="미래 이다은 님에게 보내는 일기"
+                android:textColor="#2B2B2B"
+                android:textFontWeight="600"
+                android:textSize="14sp"
+                app:layout_constraintBottom_toBottomOf="parent"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintHorizontal_bias="0.135"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@+id/divider"
+                />
+
+            <androidx.cardview.widget.CardView
+                android:id="@+id/cv_my_page_plus_diary"
+                android:layout_width="344dp"
+                android:layout_height="173dp"
+                android:layout_gravity="center"
+                android:layout_margin="0dp"
+                android:layout_marginStart="16dp"
+                android:layout_marginTop="456dp"
+                android:layout_marginEnd="26dp"
+                app:cardBackgroundColor="#f5f5f5"
+                app:cardCornerRadius="12dp"
+                app:cardElevation="3dp"
+                app:contentPadding="0dp"
+                app:layout_constraintBottom_toBottomOf="parent"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@+id/tv_calendar_detailview_modify1_2">
+
+                <RelativeLayout
+                    android:id="@+id/rl_my_page_plus_1"
+                    android:layout_width="match_parent"
+                    android:layout_height="170dp"
+                    android:padding="16dp">
+
+                    <EditText
+                        android:id="@+id/et_my_page_plus_diary"
+                        android:layout_width="match_parent"
+                        android:layout_height="match_parent"
+                        android:background="@null"
+                        android:inputType="text"
+                        android:maxLength="500" />
+
+                </RelativeLayout>
+
+            </androidx.cardview.widget.CardView>
+
+        </LinearLayout>
+
+
+    </LinearLayout>
+
+    <FrameLayout
+        android:id="@+id/fl_my_page_plus_1"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="800dp"
+        android:layout_marginBottom="7dp"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent">
+
+        <ImageButton
+            android:id="@+id/btn_my_page_plus_delete"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:layout_marginTop="0dp"
+            android:layout_marginBottom="20dp"
+            android:background="#00ff0000"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent"
+            app:srcCompat="@drawable/btn_calendarview_delete" />
+
+        <TextView
+            android:id="@+id/tv_my_page_plus_11"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="195dp"
+            android:layout_marginTop="12dp"
+            android:layout_marginEnd="120dp"
+            android:layout_marginBottom="7dp"
+            android:fontFamily="@font/pretendardregular"
+            android:text="삭제"
+            android:textColor="#FFFFFF"
+            android:textFontWeight="600"
+            android:textSize="14sp"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/divider" />
+
+    </FrameLayout>
+
+</androidx.constraintlayout.widget.ConstraintLayout>
