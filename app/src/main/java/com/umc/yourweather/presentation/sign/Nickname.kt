@@ -5,7 +5,10 @@ import android.os.Bundle
 import android.text.Editable
 import android.text.TextWatcher
 import android.util.Log
+import android.view.Gravity
+import android.widget.Toast
 import androidx.appcompat.app.AppCompatActivity
+import com.umc.yourweather.R
 import com.umc.yourweather.data.remote.request.SignupRequest
 import com.umc.yourweather.data.remote.response.BaseResponse
 import com.umc.yourweather.data.remote.response.TokenResponse
@@ -15,6 +18,7 @@ import com.umc.yourweather.di.App
 import com.umc.yourweather.di.RetrofitImpl
 import com.umc.yourweather.di.UserSharedPreferences
 import com.umc.yourweather.presentation.BottomNavi
+import com.umc.yourweather.presentation.weatherinput.InitialNoWeatherFragment
 import com.umc.yourweather.util.NicknameUtils.Companion.getRandomHintText
 import retrofit2.Call
 import retrofit2.Callback
@@ -106,10 +110,16 @@ class Nickname : AppCompatActivity() {
                         UserSharedPreferences.setUserPwToStar(this@Nickname, pw)
                         UserSharedPreferences.setUserPlatform(this@Nickname, platform)
                         UserSharedPreferences.setUserNickname(this@Nickname, fixedNickname)
-
                         // 회원 가입 성공 후 홈화면으로 이동
                         val mIntent = Intent(this@Nickname, BottomNavi::class.java)
                         mIntent.flags = Intent.FLAG_ACTIVITY_NEW_TASK or Intent.FLAG_ACTIVITY_CLEAR_TASK
+
+                        // 이니셜뷰에서 토스트 띄울지 정해주는 번들
+                        val fragment = InitialNoWeatherFragment()
+                        val bundle = Bundle()
+                        bundle.putBoolean("isSignUpUser", true) // 데이터 추가
+                        fragment.arguments = bundle
+
                         startActivity(intent)
                     } else {
                         // 회원 가입 실패
@@ -126,5 +136,12 @@ class Nickname : AppCompatActivity() {
                 Log.d("SignupDebug", "네트워크 오류: " + t.message.toString())
             }
         })
+    }
+    private fun showInitialToast() {
+        val toastView = layoutInflater.inflate(R.layout.toast_initial, binding.root, false)
+        val toast = Toast.makeText(this, "", Toast.LENGTH_SHORT)
+        toast.view = toastView
+        toast.setGravity(Gravity.BOTTOM or Gravity.CENTER, 0, resources.getDimensionPixelSize(R.dimen.initial_toast_margin_bottom))
+        toast.show()
     }
 }

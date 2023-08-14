@@ -27,7 +27,10 @@ class InitialNoWeatherFragment : Fragment() {
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
 
-        showInitialToast()
+        // 첫회원이면 토스트메시지 띄움 NickName에서 번들 저장해서 넘겨줌
+        if (arguments?.getBoolean("isSignUpUser") == true) {
+            showInitialToast()
+        }
 
         binding.btnInitialWeather.setOnClickListener {
             val newFragment = HomeWeatherInputFragment()
