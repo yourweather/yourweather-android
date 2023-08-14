@@ -18,6 +18,12 @@
         tools:targetApi="31">
 
         <activity
+            android:name=".presentation.mypage.MyPageUsePolicy"
+            android:exported="false" />
+        <activity
+            android:name=".presentation.mypage.MyPagePrivacyPolicy"
+            android:exported="false" />
+        <activity
             android:name=".presentation.mypage.MyPageWithdarw3"
             android:exported="false" />
         <activity

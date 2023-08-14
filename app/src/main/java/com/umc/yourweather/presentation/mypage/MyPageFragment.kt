@@ -48,6 +48,17 @@ class MyPageFragment : Fragment() {
 //            val mIntent = Intent(activity, MyPageAlarm::class.java)
 //            startActivity(mIntent)
 //        }
+        // 이용약관 페이지 이동
+        binding.tvUsePolicy.setOnClickListener {
+            val mIntent = Intent(activity, MyPageUsePolicy::class.java)
+            startActivity(mIntent)
+        }
+        // 개인정보 처리방침 페이지 이동
+        binding.tvPrivacyPolicy.setOnClickListener {
+            val mIntent = Intent(activity, MyPagePrivacyPolicy::class.java)
+            startActivity(mIntent)
+        }
+
         userInfoAPI()
     }
 

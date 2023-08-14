@@ -242,7 +242,7 @@
             android:textSize="12dp" />
 
         <TextView
-            android:id="@+id/tv_my_page_terms"
+            android:id="@+id/tv_use_policy"
             android:layout_width="match_parent"
             android:layout_height="match_parent"
             android:fontFamily="@font/pretendardsemibold"
@@ -252,7 +252,7 @@
             android:textSize="15dp" />
 
         <TextView
-            android:id="@+id/tv_my_page_policy"
+            android:id="@+id/tv_privacy_policy"
             android:layout_width="match_parent"
             android:layout_height="match_parent"
             android:fontFamily="@font/pretendardsemibold"
