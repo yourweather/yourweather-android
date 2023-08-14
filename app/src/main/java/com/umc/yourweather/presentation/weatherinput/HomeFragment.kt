@@ -42,7 +42,10 @@ class HomeFragment : Fragment(), HomeFragmentInteractionListener {
         super.onViewCreated(view, savedInstanceState)
 
         binding.btnHomeAdMove.setOnClickListener {
-            goToAd("http://yourweather.shop:8080/api/v1/ad/get-advertisement")
+            val url = "http://yourweather.shop:8080/api/v1/ad/get-advertisement"
+
+            val intent = Intent(Intent.ACTION_VIEW, Uri.parse(url))
+            startActivity(intent)
         }
         
         binding.btnHomeAdExit.setOnClickListener {
@@ -58,14 +61,6 @@ class HomeFragment : Fragment(), HomeFragmentInteractionListener {
         }
         fetchHomeDataAndHandleResponse()
     }
-    
-    private fun goToAd(url: String) {
-        val intent = Intent(Intent.ACTION_VIEW)
-        intent.data = Uri.parse(url)
-        startActivity(intent)
-        Log.d("HomeFragment", "광고 url 이동 성공")
-    }
-
 
     private fun hideAdViews() {
         binding.tvHomeAd.visibility = View.GONE
