@@ -52,6 +52,20 @@ class HomeWeatherInputFragment : Fragment() {
         binding.tvHomeWeatherUsername2.text = userNickname
         binding.tvHomeWeatherUsername3.text = userNickname
 
+//        binding.btnWeatherinputGuide1.setOnClickListener {
+//            val imageView = binding.imgWeatherGuide
+//
+//            imageView.visibility = View.VISIBLE
+//
+//            // 이미지를 보여주는 시간
+//            val delayDurationMillis = 2000L
+//
+//            // 일정 시간 후에 이미지뷰를 숨기는 작업
+//            imageView.postDelayed({
+//                imageView.visibility = View.GONE
+//            }, delayDurationMillis)
+//        }
+
         val buttonAnimation: Animation =
             AnimationUtils.loadAnimation(requireContext(), R.anim.btn_weather_scale)
 
@@ -171,7 +185,7 @@ class HomeWeatherInputFragment : Fragment() {
         val formatter = DateTimeFormatter.ofPattern("yyyy-MM-dd'T'HH:mm:ss")
         val formattedDateTime = currentDateTime.format(formatter)
 
-        val temperature = binding.seekbarHomeTemp.progress // SeekBar 등에서 입력 받음
+        val temperature = binding.seekbarHomeTemp.progress
 
         val content = binding.etHomeMemo.text.toString().takeIf { it.isNotBlank() } ?: "" // 메모가 비어있다면 빈 문자열로 처리
 
