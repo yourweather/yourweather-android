@@ -172,32 +172,31 @@ class BarStaticsMonthlyFragment : Fragment() {
     }
 
     private fun bindWeatherData(dataList: List<BarData>, layout: LinearLayout, clickListener: (String) -> Unit) {
-        // 각 데이터 값에 해당하는 너비 계산
+//        val dummyDataList = listOf(
+//            BarData("맑음", 30),
+//            BarData("흐림", 20),
+//            BarData("비", 15),
+//            BarData("번개", 35),
+//        )
         val sum = dataList.sumOf { it.value }
 
         for (data in dataList) {
             val value = data.value
-            val ratio = if (sum != 0) value / sum else 0.0
+            val ratio = if (sum != 0) value.toDouble() / sum else 0.0
             val width: Float = (ratio.toFloat() * 100)
 
-            // 새로운 View 생성
             val view = View(requireContext())
-
-            // View의 레이아웃 파라미터 설정
             view.layoutParams = LinearLayout.LayoutParams(
-                0,
+                width.toInt(),
                 ViewGroup.LayoutParams.MATCH_PARENT,
                 width,
             )
 
-            // 배경 파일 적용
             val drawableRes = getDrawableResForWeather(data.label)
             view.background = ContextCompat.getDrawable(requireContext(), drawableRes)
 
-            // 레이아웃에 View 추가
             layout.addView(view)
 
-            // 클릭 리스너 설정
             view.setOnClickListener {
                 clickListener(data.label)
             }
@@ -207,10 +206,10 @@ class BarStaticsMonthlyFragment : Fragment() {
     private fun getDrawableResForWeather(weatherLabel: String): Int {
         return when (weatherLabel) {
             "맑음" -> R.drawable.bg_yellow_rec_round_sun
-            "흐림" -> R.drawable.bg_gray_rec_cloud
+            "구름 약간" -> R.drawable.bg_gray_rec_cloud
             "비" -> R.drawable.bg_blue_rec_rain
             "번개" -> R.drawable.bg_darkblue_rec_round_thunder
-            else -> R.drawable.bg_darkblue_rec_round_thunder
+            else -> R.drawable.bg_gray__f2_fill_10_rect_signalert
         }
     }
     private fun showBallViewLastMonth(weatherLabel: String) {
@@ -226,7 +225,7 @@ class BarStaticsMonthlyFragment : Fragment() {
                 binding.tvBalloonSun.visibility = View.VISIBLE
                 hideBallViewAfterDelay(binding.tvBalloonSun)
             }
-            "흐림" -> {
+            "구름 약간" -> {
                 binding.tvBalloonCloud.visibility = View.VISIBLE
                 hideBallViewAfterDelay(binding.tvBalloonCloud)
             }
@@ -254,7 +253,7 @@ class BarStaticsMonthlyFragment : Fragment() {
                 binding.tvBalloonSunThis.visibility = View.VISIBLE
                 hideBallViewAfterDelay(binding.tvBalloonSunThis)
             }
-            "흐림" -> {
+            "구름 약간" -> {
                 binding.tvBalloonCloudThis.visibility = View.VISIBLE
                 hideBallViewAfterDelay(binding.tvBalloonCloudThis)
             }
