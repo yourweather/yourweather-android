@@ -123,19 +123,30 @@ class HomeFragment : Fragment(), HomeFragmentInteractionListener {
             Log.d("HomeFragment", "홈 온도 변경 성공: $homeResponse")
             updateMotionWeather(homeResponse.status)
             Log.d("HomeFragment", "홈 모션 변경 성공: $homeResponse")
-            updateBackgroundImage(homeResponse.status)
+            updateBackgroundImage(homeResponse.imageName)
             Log.d("HomeFragment", "홈 배경 변경 성공: $homeResponse")
             showHomeToast()
             Log.d("HomeFragment", "홈 토스트 출력 성공: $homeResponse")
         }
     }
 
-    private fun updateBackgroundImage(status: Status) {
-        val backgroundImageResource = when (status) {
-            Status.SUNNY -> R.drawable.bg_home1_sunny
-            Status.CLOUDY -> R.drawable.bg_home1_cloudy
-            Status.RAINY -> R.drawable.bg_home1_rainy
-            Status.LIGHTNING -> R.drawable.bg_home1_lightning
+    private fun updateBackgroundImage(imageName: String) {
+        val backgroundImageResource = when (imageName) {
+            "bg_home1_sunny.jpg" -> R.drawable.bg_home1_sunny
+            "bg_home1_cloudy.jpg" -> R.drawable.bg_home1_cloudy
+            "bg_home1_rainy.jpg" -> R.drawable.bg_home1_rainy
+            "bg_home1_lightning.jpg" -> R.drawable.bg_home1_lightning
+            "bg_home2_sunnycloudy.jpg" -> R.drawable.bg_home2_sunnycloudy
+            "bg_home2_sunnyrainy.jpg" -> R.drawable.bg_home2_sunnyrainy
+            "bg_home2_sunnylightning.jpg" -> R.drawable.bg_home2_sunnylightning
+            "bg_home2_rainycloudy.jpg" -> R.drawable.bg_home2_rainycloudy
+            "bg_home2_rainylightning.jpg" -> R.drawable.bg_home2_rainylightning
+            "bg_home2_lightningcloudy.jpg" -> R.drawable.bg_home2_lightningcloudy
+            "bg_home3_sunnycloudyrainy.jpg" -> R.drawable.bg_home3_sunnycloudyrainy
+            "bg_home3_sunnycloudylightning.jpg" -> R.drawable.bg_home3_sunnycloudylightning
+            "bg_home3_sunnyrainylightning.jpg" -> R.drawable.bg_home3_sunnyrainylightning
+            "bg_home3_cloudyrainylightning.jpg" -> R.drawable.bg_home3_cloudyrainylightning
+            else -> R.drawable.bg_home4_max
         }
         binding.bgHomeWeather.setImageResource(backgroundImageResource)
     }
