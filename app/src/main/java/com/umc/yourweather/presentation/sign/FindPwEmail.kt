@@ -11,6 +11,7 @@ import android.view.View
 import android.view.Window
 import android.widget.Button
 import android.widget.TextView
+import android.widget.Toast
 import androidx.appcompat.app.AlertDialog
 import androidx.appcompat.app.AppCompatActivity
 import com.navercorp.nid.oauth.NidOAuthPreferencesManager.code
@@ -21,6 +22,7 @@ import com.umc.yourweather.databinding.ActivityFindPwEmailBinding
 import com.umc.yourweather.di.RetrofitImpl
 import com.umc.yourweather.util.SignUtils
 import com.umc.yourweather.util.SignUtils.Companion.ALERT_TEXT_FIND_PW_EMAIL
+import com.umc.yourweather.util.SignUtils.Companion.createTextWatcher
 import retrofit2.Call
 import retrofit2.Callback
 import retrofit2.Response
@@ -29,7 +31,7 @@ class FindPwEmail : AppCompatActivity() {
     lateinit var binding: ActivityFindPwEmailBinding
     private val retrofitWithoutToken = RetrofitImpl.nonRetrofit
     private val emailService = retrofitWithoutToken.create(EmailService::class.java)
-    private lateinit var countDownTimer: CountDownTimer
+    private var countDownTimer: CountDownTimer? = null
 
     // 이메일 인증 여부를 나타내는 변수
     private var isEmailCertified = false
@@ -51,18 +53,22 @@ class FindPwEmail : AppCompatActivity() {
         }
 
         binding.btnFindPwEmailCheckauth.setOnClickListener {
+            Toast.makeText(this, "이멜 : $email", Toast.LENGTH_LONG).show()
+            Toast.makeText(this, "인증 코드 : ${binding.etFindPwEmailAuth.text}", Toast.LENGTH_LONG).show()
             certifyEmail(email, binding.etFindPwEmailAuth.text.toString())
         }
 
         binding.tvFindPwEmailBtnresend.setOnClickListener {
-            resendEmail(email)
             countDownTimer?.cancel()
-            startTimer()
+            showCustomAlertDialog("인증코드가 재전송되었습니다.", 0, true)
+            resendEmail(email)
         }
 
         binding.btnFindPwEmailLeftArrow.setOnClickListener {
             finish()
         }
+
+        binding.etFindPwEmailAuth.addTextChangedListener(createTextWatcher(::checkAuth))
     }
 
     // 이메일 인증 API 호출
@@ -114,7 +120,6 @@ class FindPwEmail : AppCompatActivity() {
                     if (code == 200) {
                         // 성공한 경우
                         Log.d("ResendEmailDebug", "이메일 재전송 성공")
-                        showCustomAlertDialog("인증코드가 전송되었습니다.", 0, true)
                     } else {
                         // 실패한 경우
                         Log.d("ResendEmailDebug", "이메일 재전송 실패: code = $code")
@@ -146,6 +151,13 @@ class FindPwEmail : AppCompatActivity() {
         }.start()
     }
 
+    private fun checkAuth() {
+        val authCode = binding.etFindPwEmailAuth.text.toString()
+        binding.btnFindPwEmailCheckauth.isEnabled = (authCode.length == 6)
+    }
+
+    // 0 : 인증코드 전송 관련
+    // 1 : 인증 성공 여부
     fun showCustomAlertDialog(text: String, flag: Int, isSuccess: Boolean) {
         val layoutInflater = LayoutInflater.from(this@FindPwEmail)
         val customLayout = layoutInflater.inflate(R.layout.alertdialog_signview, null)
@@ -171,6 +183,7 @@ class FindPwEmail : AppCompatActivity() {
             when (flag) {
                 0 -> {
                     if (isSuccess) {
+                        countDownTimer?.cancel()
                         // 타이머를 시작하는 동작
                         startTimer()
                     } else {
@@ -181,7 +194,10 @@ class FindPwEmail : AppCompatActivity() {
                 1 -> {
                     if (isSuccess) {
                         // 인증 성공에 대한 처리
+                        binding.btnFindPwEmailNext.isEnabled = true
                         countDownTimer?.cancel()
+                    } else {
+                        // 인증 실패에 대한 처리
                     }
                 }
             }
