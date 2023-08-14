@@ -218,6 +218,7 @@
             android:textAlignment="center"
             android:textColor="#2B2B2B"
             android:textSize="13dp"
+            android:paddingTop="10dp"
             android:visibility="invisible"
             app:layout_constraintBottom_toTopOf="@+id/et_home_memo"
             app:layout_constraintEnd_toStartOf="@+id/iv_home_maxtemp"

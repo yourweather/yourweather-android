@@ -6,4 +6,5 @@ data class HomeResponse(
     val nickname: String,
     val status: Status,
     val temperature: Int,
+    val imageName: String,
 )
