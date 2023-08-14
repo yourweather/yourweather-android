@@ -152,37 +152,51 @@ class BarStaticsWeeklyFragment : Fragment() {
             val (textView, imageView) = viewPair
             val increaseValue = increases[weather] ?: 0
             val decreaseValue = decreases[weather] ?: 0
+            val color = if (increaseValue > 0) increaseColor else decreaseColor
 
-            // Update text view
-            val formattedText = if (increaseValue == 0 && decreaseValue == 0) {
-                "$weather 비율이 동일합니다."
+            if (increaseValue == 0 && decreaseValue == 0) {
+                textView.text = "$weather 비율이 동일합니다."
             } else {
-                val actionText = if (increaseValue > 0) "증가" else if (decreaseValue > 0) "감소" else "변화가 없습니다"
+                val actionText =
+                    if (increaseValue > 0) "증가" else if (decreaseValue > 0) "감소" else "변화가 없습니다"
                 val changeValue = if (increaseValue > 0) increaseValue else decreaseValue
 
-                val color = if (increaseValue > 0) increaseColor else decreaseColor
+                val arrowText =
+                    SpannableStringBuilder("$weather 비율이 $changeValue% ${actionText}했습니다.")
 
-                val spannableText = SpannableStringBuilder()
-                    .append("$weather 비율이 ")
-                    .apply {
-                        append("$changeValue%")
-                        setSpan(
-                            ForegroundColorSpan(Color.parseColor(color)),
-                            length - changeValue.toString().length - 1,
-                            length - 1,
-                            Spannable.SPAN_EXCLUSIVE_INCLUSIVE,
-                        )
-                    }
-                    .append(" $actionText")
-                    .apply {
-                        if (actionText != "변화가 없습니다.") {
-                            append("했습니다.")
-                        }
-                    }
-                spannableText
+                val changeValueStart = arrowText.indexOf("$changeValue%")
+                val changeValueEnd = changeValueStart + "$changeValue%".length
+                arrowText.apply {
+                    setSpan(
+                        ForegroundColorSpan(Color.parseColor(color)),
+                        changeValueStart,
+                        changeValueEnd,
+                        Spannable.SPAN_EXCLUSIVE_EXCLUSIVE,
+                    )
+                }
+                textView.text = arrowText
             }
 
-            textView.text = formattedText
+//                val spannableText = SpannableStringBuilder()
+//                    .append("$weather 비율이 ")
+//                    .apply {
+//                        append("$changeValue%")
+//                        setSpan(
+//                            ForegroundColorSpan(Color.parseColor(color)),
+//                            length - changeValue.toString().length - 1,
+//                            length - 1,
+//                            Spannable.SPAN_EXCLUSIVE_INCLUSIVE,
+//                        )
+//                    }
+//                    .append(" $actionText")
+//                    .apply {
+//                        if (actionText != "변화가 없습니다.") {
+//                            append("했습니다.")
+//                        }
+//                    }
+//                spannableText
+
+            // textView.text = formattedText
 
             // Update image view
             val arrowDrawableId = when {
