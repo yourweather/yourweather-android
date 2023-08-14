@@ -22,6 +22,7 @@ import com.umc.yourweather.presentation.adapter.WrittenRVAdapter
 import retrofit2.Call
 import retrofit2.Callback
 import retrofit2.Response
+import java.text.ParseException
 import java.text.SimpleDateFormat
 import java.util.Calendar
 import java.util.Locale
@@ -109,20 +110,20 @@ class WrittenDetailListFragmentRain : Fragment() {
                 response: Response<BaseResponse<SpecificMemoResponse>>,
             ) {
                 if (response.isSuccessful) {
-                    val memoList = response.body()?.result?.memoList
-                    val memoListSize = memoList?.size ?: 0 // 리스트 개수
-                    binding.tvWrittenDetailListMonthNum.text = "총 ${memoListSize}회"
-                    val dataList = fetchDataFromAPI(memoList)
-                    Log.d("Rainy dataList", "Rainy dataList: $dataList")
-                    // 어댑터 초기화 및 데이터 설정
-                    val adapter = WrittenRVAdapter(dataList, requireContext())
-                    binding.recyclerViewDetailRain.adapter = adapter
+                    val baseResponse = response.body()
+                    val specificMemoResponse = baseResponse?.result
 
-                    memoList?.forEach { memoReportResponse ->
-                        val memoId = memoReportResponse.memoId
-                        val dateTime = memoReportResponse.dateTime
-                        Log.d("CLOUDY API", "Memo ID: $memoId, Date Time: $dateTime")
-                    }
+                    val memoList = specificMemoResponse?.memoList ?: emptyList()
+                    val proportion = specificMemoResponse?.proportion
+
+                    val memoIds = memoList.map { it.memoId }
+                    val memoDateTime = memoList.map { it.dateTime }
+
+                    Log.d("비 메모 리스트","$memoList")
+                    Log.d("비 비율","$proportion")
+                    Log.d("비 메모 아이디","$memoIds")
+                    Log.d("비 메모 작성시간","$memoDateTime")
+
                 } else {
                     Log.d("API call failed", "${response.code()} - ${response.message()}")
                 }
@@ -155,25 +156,30 @@ class WrittenDetailListFragmentRain : Fragment() {
         val dataList = mutableListOf<ItemWritten>()
 
         memoList?.forEach { memoReportResponse ->
-            val dateTime = memoReportResponse.dateTime
-            val date = SimpleDateFormat("yyyy-MM-dd'T'HH:mm:ss.SSS'Z'", Locale.getDefault()).parse(dateTime)
-            Log.d("리스트 날짜", "$date")
-            val calendar = Calendar.getInstance()
-            calendar.time = date
+            try {
+                val dateTime = memoReportResponse.dateTime
+                val date = SimpleDateFormat("yyyy-MM-dd'T'HH:mm:ss.SSS'Z'", Locale.getDefault()).parse(dateTime)
+                Log.d("리스트 날짜", "$date")
+                val calendar = Calendar.getInstance()
+                calendar.time = date
 
-            val itemWritten = ItemWritten(
-                calendar.get(Calendar.MONTH) + 1,
-                calendar.get(Calendar.DAY_OF_MONTH),
-                getDayOfWeek(calendar.get(Calendar.DAY_OF_WEEK)),
-                if (calendar.get(Calendar.AM_PM) == Calendar.AM) "오전" else "오후",
-                calendar.get(Calendar.HOUR),
-                calendar.get(Calendar.MINUTE),
-            )
-            dataList.add(itemWritten)
+                val itemWritten = ItemWritten(
+                    calendar.get(Calendar.MONTH) + 1,
+                    calendar.get(Calendar.DAY_OF_MONTH),
+                    getDayOfWeek(calendar.get(Calendar.DAY_OF_WEEK)),
+                    if (calendar.get(Calendar.AM_PM) == Calendar.AM) "오전" else "오후",
+                    calendar.get(Calendar.HOUR),
+                    calendar.get(Calendar.MINUTE),
+                )
+                dataList.add(itemWritten)
+            } catch (e: ParseException) {
+                Log.e("Date Parsing Error", "Error parsing date: ${memoReportResponse.dateTime}")
+            }
         }
 
         return dataList
     }
+
 
     // Calendar.DAY_OF_WEEK 값을 요일 문자열로 변환하는 함수
     private fun getDayOfWeek(dayOfWeek: Int): String {
