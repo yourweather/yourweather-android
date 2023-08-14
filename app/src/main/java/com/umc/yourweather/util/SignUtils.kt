@@ -2,6 +2,8 @@ package com.umc.yourweather.util
 
 import android.content.Context
 import android.os.Handler
+import android.text.Editable
+import android.text.TextWatcher
 import android.view.LayoutInflater
 import android.view.View
 import android.widget.PopupWindow
@@ -53,6 +55,23 @@ class SignUtils {
             handler.postDelayed({
                 popupWindow.dismiss() // 지정된 시간 후에 팝업 윈도우를 닫음
             }, durationInMillis.toLong())
+        }
+
+        fun createTextWatcher(checkError: () -> Unit): TextWatcher {
+            return object : TextWatcher {
+                override fun afterTextChanged(p0: Editable?) {
+                    checkError()
+                }
+
+                override fun beforeTextChanged(p0: CharSequence?, p1: Int, p2: Int, p3: Int) {
+                    // 입력하기 전
+                }
+
+                override fun onTextChanged(p0: CharSequence?, p1: Int, p2: Int, p3: Int) {
+                    // 텍스트 변화가 있을 시
+                    checkError()
+                }
+            }
         }
     }
 }
