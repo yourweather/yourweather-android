@@ -101,22 +101,22 @@
                 </androidx.constraintlayout.widget.ConstraintLayout>
             </FrameLayout>
 
-            <ImageButton
-                android:id="@+id/btn_home_share"
-                android:layout_width="35dp"
-                android:layout_height="35dp"
-                android:layout_marginStart="317dp"
-                android:layout_marginTop="16dp"
-                android:layout_marginEnd="13dp"
-                android:layout_marginBottom="684dp"
-                android:background="@android:color/transparent"
-                app:layout_constraintBottom_toBottomOf="parent"
-                app:layout_constraintEnd_toEndOf="parent"
-                app:layout_constraintHorizontal_bias="1.0"
-                app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toTopOf="parent"
-                app:layout_constraintVertical_bias="0.0"
-                app:srcCompat="@drawable/ic_home_share" />
+<!--            <ImageButton-->
+<!--                android:id="@+id/btn_home_share"-->
+<!--                android:layout_width="35dp"-->
+<!--                android:layout_height="35dp"-->
+<!--                android:layout_marginStart="317dp"-->
+<!--                android:layout_marginTop="16dp"-->
+<!--                android:layout_marginEnd="13dp"-->
+<!--                android:layout_marginBottom="684dp"-->
+<!--                android:background="@android:color/transparent"-->
+<!--                app:layout_constraintBottom_toBottomOf="parent"-->
+<!--                app:layout_constraintEnd_toEndOf="parent"-->
+<!--                app:layout_constraintHorizontal_bias="1.0"-->
+<!--                app:layout_constraintStart_toStartOf="parent"-->
+<!--                app:layout_constraintTop_toTopOf="parent"-->
+<!--                app:layout_constraintVertical_bias="0.0"-->
+<!--                app:srcCompat="@drawable/ic_home_share" />-->
 
             <LinearLayout
                 android:id="@+id/ll_home_title"
