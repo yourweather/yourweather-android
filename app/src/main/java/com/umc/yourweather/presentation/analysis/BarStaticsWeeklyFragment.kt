@@ -20,6 +20,9 @@ import com.umc.yourweather.data.remote.response.StatisticResponse
 import com.umc.yourweather.data.service.ReportService
 import com.umc.yourweather.databinding.FragmentBarStaticsWeeklyBinding
 import com.umc.yourweather.di.RetrofitImpl
+import kotlinx.coroutines.CoroutineScope
+import kotlinx.coroutines.Dispatchers
+import kotlinx.coroutines.launch
 import retrofit2.Call
 import retrofit2.Callback
 import retrofit2.Response
@@ -47,6 +50,7 @@ class BarStaticsWeeklyFragment : Fragment() {
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
+
 /*
         // 날씨 통계 색상 변환 함수 데이터
         val increases = mapOf(
@@ -82,15 +86,17 @@ class BarStaticsWeeklyFragment : Fragment() {
 //        bindWeatherData(dataList, binding.llAnalysisBarLastWeek, ::showBallViewLastWeek)
 //        bindWeatherData(dataList2, binding.llAnalysisBarThisWeek, ::showBallViewThisWeek)
 
-        // 지난 주, 이번 주 정확한 달 숫자
-        val previousWeekText = getPreviousWeekText()
-        val currentWeekText = getCurrentWeekText()
-        binding.tvAnalysisMonthNum.text = previousWeekText
-        binding.tvAnalysisMonthThisNum.text = currentWeekText
+        CoroutineScope(Dispatchers.Main).launch {
+            // 지난 주, 이번 주 정확한 달 숫자
+            val previousWeekText = getPreviousWeekText()
+            val currentWeekText = getCurrentWeekText()
+            binding.tvAnalysisMonthNum.text = previousWeekText
+            binding.tvAnalysisMonthThisNum.text = currentWeekText
 
-        barStatisticsThisWeekApi()
-        barStatisticsLastWeekApi()
-        weeklyComparisonApi()
+            barStatisticsThisWeekApi()
+            barStatisticsLastWeekApi()
+            weeklyComparisonApi()
+        }
     }
 
     private fun getPreviousWeekText(): String {
@@ -194,7 +200,7 @@ class BarStaticsWeeklyFragment : Fragment() {
 
         for (data in dataList) {
             val value = data.value
-            val ratio = if (sum != 0) value / sum else 0.0
+            val ratio = if (sum != 0) value.toDouble() / sum else 0.0
             val width: Float = (ratio.toFloat() * 100)
 
             // 새로운 View 생성
@@ -202,7 +208,7 @@ class BarStaticsWeeklyFragment : Fragment() {
 
             // View의 레이아웃 파라미터 설정
             view.layoutParams = LinearLayout.LayoutParams(
-                0,
+                width.toInt(),
                 ViewGroup.LayoutParams.MATCH_PARENT,
                 width,
             )
@@ -225,10 +231,10 @@ class BarStaticsWeeklyFragment : Fragment() {
     private fun getDrawableResForWeather(weatherLabel: String): Int {
         return when (weatherLabel) {
             "맑음" -> R.drawable.bg_yellow_rec_round_sun
-            "흐림" -> R.drawable.bg_gray_rec_cloud
+            "구름 약간" -> R.drawable.bg_gray_rec_cloud
             "비" -> R.drawable.bg_blue_rec_rain
             "번개" -> R.drawable.bg_darkblue_rec_round_thunder
-            else -> R.drawable.bg_darkblue_rec_round_thunder
+            else -> R.drawable.bg_gray__f2_fill_10_rect_signalert
         }
     }
 
@@ -246,7 +252,7 @@ class BarStaticsWeeklyFragment : Fragment() {
                 binding.tvBalloonSunLastWeek.visibility = View.VISIBLE
                 hideBallViewAfterDelay(binding.tvBalloonSunLastWeek)
             }
-            "흐림" -> {
+            "구름 약간" -> {
                 binding.tvBalloonCloudLastWeek.visibility = View.VISIBLE
                 hideBallViewAfterDelay(binding.tvBalloonCloudLastWeek)
             }
@@ -275,7 +281,7 @@ class BarStaticsWeeklyFragment : Fragment() {
                 binding.tvBalloonSunThisWeek.visibility = View.VISIBLE
                 hideBallViewAfterDelay(binding.tvBalloonSunThisWeek)
             }
-            "흐림" -> {
+            "구름 약간" -> {
                 binding.tvBalloonCloudThisWeek.visibility = View.VISIBLE
                 hideBallViewAfterDelay(binding.tvBalloonCloudThisWeek)
             }
@@ -301,7 +307,7 @@ class BarStaticsWeeklyFragment : Fragment() {
     // 이번 주 bar 통계
     private fun barStatisticsThisWeekApi() {
         val service = RetrofitImpl.authenticatedRetrofit.create(ReportService::class.java)
-        val call = service.weeklyStatistic(ago = 0) // 'ago'에 적절한 값을 설정해주세요
+        val call = service.weeklyStatistic(ago = 0) // 이번 주
 
         call.enqueue(object : Callback<BaseResponse<StatisticResponse>> {
             override fun onResponse(
@@ -309,7 +315,7 @@ class BarStaticsWeeklyFragment : Fragment() {
                 response: Response<BaseResponse<StatisticResponse>>,
             ) {
                 if (response.isSuccessful) {
-                    val statisticResponse = response.body()?.result // 'data'가 실제 응답 데이터를 담고 있는 필드일 경우
+                    val statisticResponse = response.body()?.result
                     if (statisticResponse != null) {
                         Log.d("이번 주 bar API Success", "Sunny: ${statisticResponse.sunny}, Cloudy: ${statisticResponse.cloudy}, Rainy: ${statisticResponse.rainy}, Lightning: ${statisticResponse.lightning}")
 
