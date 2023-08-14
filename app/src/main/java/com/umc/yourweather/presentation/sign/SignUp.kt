@@ -5,8 +5,6 @@ import android.graphics.Color
 import android.graphics.drawable.ColorDrawable
 import android.os.Bundle
 import android.os.CountDownTimer
-import android.text.Editable
-import android.text.TextWatcher
 import android.util.Log
 import android.util.Patterns
 import android.view.LayoutInflater
@@ -21,17 +19,19 @@ import com.umc.yourweather.data.remote.response.BaseResponse
 import com.umc.yourweather.data.service.EmailService
 import com.umc.yourweather.databinding.ActivitySignUpBinding
 import com.umc.yourweather.di.RetrofitImpl
+import com.umc.yourweather.util.SignUtils.Companion.createTextWatcher
 import retrofit2.Call
 import retrofit2.Callback
 import retrofit2.Response
 
 class SignUp : AppCompatActivity() {
     lateinit var binding: ActivitySignUpBinding
-    private lateinit var countDownTimer: CountDownTimer
+    private var countDownTimer: CountDownTimer? = null
 
     // Retrofit을 이용한 이메일 전송 서비스 생성
     private val retrofitWithoutToken = RetrofitImpl.nonRetrofit
     private val emailService = retrofitWithoutToken.create(EmailService::class.java)
+
     // 이메일 인증 여부를 나타내는 변수
     private var isEmailCertified = false
 
@@ -85,22 +85,6 @@ class SignUp : AppCompatActivity() {
     }
 
     // TextWatcher를 생성하는 함수
-    private fun createTextWatcher(checkError: () -> Unit): TextWatcher {
-        return object : TextWatcher {
-            override fun afterTextChanged(p0: Editable?) {
-                checkError()
-            }
-
-            override fun beforeTextChanged(p0: CharSequence?, p1: Int, p2: Int, p3: Int) {
-                // 입력하기 전
-            }
-
-            override fun onTextChanged(p0: CharSequence?, p1: Int, p2: Int, p3: Int) {
-                // 텍스트 변화가 있을 시
-                checkError()
-            }
-        }
-    }
 
     // 이메일 유효성 검사
     private fun checkEmailError() {
@@ -176,6 +160,7 @@ class SignUp : AppCompatActivity() {
             when (flag) {
                 0 -> {
                     if (isSuccess) {
+                        countDownTimer?.cancel()
                         // 타이머를 시작하는 동작
                         startTimer()
                     } else {
@@ -212,7 +197,7 @@ class SignUp : AppCompatActivity() {
                     if (code == 200) {
                         // 성공한 경우
                         Log.d("SendEmailDebug", "이메일 전송 성공")
-                        showCustomAlertDialog("인증코드가 전송되었습니다.", 0,true)
+                        showCustomAlertDialog("인증코드가 전송되었습니다.", 0, true)
                     } else {
                         // 실패한 경우
                         Log.d("SendEmailDebug", "이메일 전송 실패: code = $code")

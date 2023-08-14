@@ -47,6 +47,7 @@ class MyPageWithdraw2 : AppCompatActivity() {
                     object : DialogInterface.OnClickListener {
                         override fun onClick(p0: DialogInterface?, p1: Int) {
                             withdrawApi()
+                            dismiss()
                         }
                     },
                 )
