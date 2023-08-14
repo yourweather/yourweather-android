@@ -37,7 +37,7 @@ class ResetPw : AppCompatActivity() {
 
         binding.btnResetPwNext.setOnClickListener {
             // 확인버튼
-            resetPw(binding.etResetPwRepw.text.toString())
+            resetPwApi(binding.etResetPwRepw.text.toString())
         }
 
         binding.btnResetPwLeftArrow.setOnClickListener {
@@ -99,8 +99,8 @@ class ResetPw : AppCompatActivity() {
             binding.btnResetPwNext.isEnabled = false
         }
     }
-    private fun resetPw(password: String) {
-        val service = RetrofitImpl.nonRetrofit.create(UserService::class.java)
+    private fun resetPwApi(password: String) {
+        val service = RetrofitImpl.authenticatedRetrofit.create(UserService::class.java)
 
         service.changePw(ChangePasswordRequest(password)).enqueue(
             (
