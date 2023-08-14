@@ -1,6 +1,8 @@
 package com.umc.yourweather.presentation.analysis
 
 import android.graphics.Color
+import android.graphics.drawable.Drawable
+import android.graphics.drawable.GradientDrawable
 import android.os.Bundle
 import android.os.Handler
 import android.text.Spannable
@@ -11,7 +13,6 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import android.widget.LinearLayout
-import androidx.core.content.ContextCompat
 import androidx.fragment.app.Fragment
 import com.umc.yourweather.R
 import com.umc.yourweather.data.entity.BarData
@@ -209,46 +210,96 @@ class BarStaticsWeeklyFragment : Fragment() {
     }
 
     private fun bindWeatherData(dataList: List<BarData>, layout: LinearLayout, clickListener: (String) -> Unit) {
-        // 각 데이터 값에 해당하는 너비 계산
         val sum = dataList.sumOf { it.value }
 
-        for (data in dataList) {
+        for ((index, data) in dataList.withIndex()) {
             val value = data.value
             val ratio = if (sum != 0) value.toDouble() / sum else 0.0
             val width: Float = (ratio.toFloat() * 100)
 
-            // 새로운 View 생성
             val view = View(requireContext())
 
-            // View의 레이아웃 파라미터 설정
-            view.layoutParams = LinearLayout.LayoutParams(
+            val roundedCornerDrawable = getRoundedCornerDrawableForWeather(data.label, index, dataList.size)
+            view.background = roundedCornerDrawable
+
+            val layoutParams = LinearLayout.LayoutParams(
                 width.toInt(),
                 ViewGroup.LayoutParams.MATCH_PARENT,
                 width,
             )
 
-            // 배경 파일 적용
-            val drawableRes = getDrawableResForWeather(data.label)
-            view.background = ContextCompat.getDrawable(requireContext(), drawableRes)
+            view.layoutParams = layoutParams
 
-            // 레이아웃에 View 추가
             layout.addView(view)
 
-            // 클릭 리스너 설정
             view.setOnClickListener {
                 clickListener(data.label)
+            }
+
+            // Add a gray divider if the value is not 0 and there's a next item with non-zero value
+            if (value != 0 && (index < dataList.size - 1 && dataList[index + 1].value != 0)) {
+                val dividerView = View(requireContext())
+                val dividerLayoutParams = LinearLayout.LayoutParams(
+                    resources.getDimensionPixelSize(R.dimen.divider_width),
+                    ViewGroup.LayoutParams.MATCH_PARENT,
+                )
+                dividerView.layoutParams = dividerLayoutParams
+                dividerView.setBackgroundColor(Color.parseColor("#F1F1F1")) // 회색 색상
+                layout.addView(dividerView)
             }
         }
     }
 
-    // 각 날씨별 배경 파일 지정
-    private fun getDrawableResForWeather(weatherLabel: String): Int {
+    private fun getRoundedCornerDrawableForWeather(weatherLabel: String, index: Int, dataSize: Int): Drawable {
+        val color = getColorForWeather(weatherLabel)
+        val cornerRadius = when (index) {
+            0 -> {
+                // First item, round left corner
+                floatArrayOf(
+                    resources.getDimension(R.dimen.rounded_corner_radius),
+                    resources.getDimension(R.dimen.rounded_corner_radius),
+                    0f,
+                    0f,
+                    0f,
+                    0f,
+                    resources.getDimension(R.dimen.rounded_corner_radius),
+                    resources.getDimension(R.dimen.rounded_corner_radius),
+                )
+            }
+            dataSize - 1 -> {
+                // Last item, round right corner
+                floatArrayOf(
+                    0f,
+                    0f,
+                    resources.getDimension(R.dimen.rounded_corner_radius),
+                    resources.getDimension(R.dimen.rounded_corner_radius),
+                    resources.getDimension(R.dimen.rounded_corner_radius),
+                    resources.getDimension(R.dimen.rounded_corner_radius),
+                    0f,
+                    0f,
+                )
+            }
+            else -> {
+                // Middle items, no corners
+                null
+            }
+        }
+
+        val shapeDrawable = GradientDrawable()
+        shapeDrawable.setColor(color)
+        shapeDrawable.cornerRadii = cornerRadius
+        shapeDrawable.shape = GradientDrawable.RECTANGLE
+
+        return shapeDrawable
+    }
+
+    private fun getColorForWeather(weatherLabel: String): Int {
         return when (weatherLabel) {
-            "맑음" -> R.drawable.bg_yellow_rec_round_sun
-            "구름 약간" -> R.drawable.bg_gray_rec_cloud
-            "비" -> R.drawable.bg_blue_rec_rain
-            "번개" -> R.drawable.bg_darkblue_rec_round_thunder
-            else -> R.drawable.bg_gray__f2_fill_10_rect_signalert
+            "맑음" -> Color.parseColor("#FCC112")
+            "구름 약간" -> Color.parseColor("#C7C7C7")
+            "비" -> Color.parseColor("#8299BB")
+            "번개" -> Color.parseColor("#1A1D34")
+            else -> Color.parseColor("#A0A0A0")
         }
     }
 
