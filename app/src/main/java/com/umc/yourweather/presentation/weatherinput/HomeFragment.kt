@@ -1,5 +1,7 @@
 package com.umc.yourweather.presentation.weatherinput
 
+import android.content.Intent
+import android.net.Uri
 import android.os.Bundle
 import android.util.Log
 import android.view.LayoutInflater
@@ -39,6 +41,10 @@ class HomeFragment : Fragment(), HomeFragmentInteractionListener {
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
 
+        binding.btnHomeAdMove.setOnClickListener {
+            goToAd("http://yourweather.shop:8080/api/v1/ad/get-advertisement")
+        }
+        
         binding.btnHomeAdExit.setOnClickListener {
             hideAdViews()
         }
@@ -52,6 +58,14 @@ class HomeFragment : Fragment(), HomeFragmentInteractionListener {
         }
         fetchHomeDataAndHandleResponse()
     }
+    
+    private fun goToAd(url: String) {
+        val intent = Intent(Intent.ACTION_VIEW)
+        intent.data = Uri.parse(url)
+        startActivity(intent)
+        Log.d("HomeFragment", "광고 url 이동 성공")
+    }
+
 
     private fun hideAdViews() {
         binding.tvHomeAd.visibility = View.GONE
