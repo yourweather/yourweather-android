@@ -26,7 +26,7 @@ import retrofit2.Response
 
 class SignUp : AppCompatActivity() {
     lateinit var binding: ActivitySignUpBinding
-    private lateinit var countDownTimer: CountDownTimer
+    private var countDownTimer: CountDownTimer? = null
 
     // Retrofit을 이용한 이메일 전송 서비스 생성
     private val retrofitWithoutToken = RetrofitImpl.nonRetrofit
@@ -160,6 +160,7 @@ class SignUp : AppCompatActivity() {
             when (flag) {
                 0 -> {
                     if (isSuccess) {
+                        countDownTimer?.cancel()
                         // 타이머를 시작하는 동작
                         startTimer()
                     } else {

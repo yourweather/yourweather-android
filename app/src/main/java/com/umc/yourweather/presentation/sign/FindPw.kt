@@ -4,7 +4,7 @@ import android.content.Intent
 import android.os.Bundle
 import android.util.Log
 import androidx.appcompat.app.AppCompatActivity
-import com.kakao.sdk.user.model.User
+import com.navercorp.nid.oauth.NidOAuthPreferencesManager.code
 import com.umc.yourweather.data.remote.response.BaseResponse
 import com.umc.yourweather.data.remote.response.VerifyEmailResponse
 import com.umc.yourweather.data.service.EmailService
@@ -20,8 +20,7 @@ import retrofit2.Response
 class FindPw : AppCompatActivity() {
     lateinit var binding: ActivityFindPwBinding
     private val retrofitWithoutToken = RetrofitImpl.nonRetrofit
-    private lateinit var verifyEmailService: UserService
-    private lateinit var emailService : EmailService
+
     // 이메일 인증 여부를 나타내는 변수
     private var isEmailCertified = false
 
@@ -39,15 +38,15 @@ class FindPw : AppCompatActivity() {
     }
 
     private fun verifyEmail(email: String) {
-        verifyEmailService = retrofitWithoutToken.create(UserService::class.java)
+        var verifyEmailService = retrofitWithoutToken.create(UserService::class.java)
         verifyEmailService.verifyEmail(email).enqueue(object : Callback<BaseResponse<VerifyEmailResponse>> {
             override fun onResponse(
                 call: Call<BaseResponse<VerifyEmailResponse>>,
                 response: Response<BaseResponse<VerifyEmailResponse>>,
             ) {
                 val responseBody = response.body()
+                val code = responseBody?.code
                 if (response.isSuccessful) {
-                    val code = responseBody?.code
                     if (code == 200) {
                         // 성공한 경우
                         Log.d("VerifyEmailDebug", "이메일 전송 성공")
@@ -55,14 +54,14 @@ class FindPw : AppCompatActivity() {
                         val mIntent = Intent(this@FindPw, FindPwEmail::class.java)
                         mIntent.putExtra("email", email)
                         startActivity(mIntent)
+                    } else if (responseBody?.result == null) {
+                        SignUtils.customSingInPopupWindow(
+                            this@FindPw,
+                            ALERT_TEXT_FIND_PW,
+                            binding.root,
+                            binding.btnFindpwNext,
+                        )
                     }
-                } else if (responseBody?.result == null) {
-                    SignUtils.customSingInPopupWindow(
-                        this@FindPw,
-                        ALERT_TEXT_FIND_PW,
-                        binding.root,
-                        binding.btnFindpwNext,
-                    )
                 }
             }
 
@@ -74,7 +73,7 @@ class FindPw : AppCompatActivity() {
     }
 
     private fun sendEmail(email: String) {
-        emailService = retrofitWithoutToken.create(EmailService::class.java)
+        var emailService = retrofitWithoutToken.create(EmailService::class.java)
 
         emailService.sendEmail(email).enqueue(object : Callback<BaseResponse<Unit>> {
             override fun onResponse(

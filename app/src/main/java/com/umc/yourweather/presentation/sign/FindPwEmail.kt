@@ -53,8 +53,6 @@ class FindPwEmail : AppCompatActivity() {
         }
 
         binding.btnFindPwEmailCheckauth.setOnClickListener {
-            Toast.makeText(this, "이멜 : $email", Toast.LENGTH_LONG).show()
-            Toast.makeText(this, "인증 코드 : ${binding.etFindPwEmailAuth.text}", Toast.LENGTH_LONG).show()
             certifyEmail(email, binding.etFindPwEmailAuth.text.toString())
         }
 
