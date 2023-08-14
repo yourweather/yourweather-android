@@ -52,41 +52,6 @@ class BarStaticsWeeklyFragment : Fragment() {
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
 
-        /*
-                // 날씨 통계 색상 변환 함수 데이터
-                val increases = mapOf(
-                    "맑음" to 10,
-                    "구름 약간" to 40,
-                    "비" to 0,
-                    "번개" to 0,
-                )
-                val decreases = mapOf(
-                    "맑음" to 0,
-                    "구름 약간" to 0,
-                    "비" to 15,
-                    "번개" to 20,
-                )
-
-                applyWeatherTextFormatting(increases, decreases)
-        */
-//        // 지난 주 데이터 리스트 생성
-//        val dataList = listOf(
-//            BarData("맑음", 44),
-//            BarData("흐림", 60),
-//            BarData("비", 40),
-//            BarData("번개", 100),
-//        )
-//        // 이번 주 데이터 리스트 생성
-//        val dataList2 = listOf(
-//            BarData("맑음", 52),
-//            BarData("흐림", 66),
-//            BarData("비", 38),
-//            BarData("번개", 90),
-//        )
-//
-//        bindWeatherData(dataList, binding.llAnalysisBarLastWeek, ::showBallViewLastWeek)
-//        bindWeatherData(dataList2, binding.llAnalysisBarThisWeek, ::showBallViewThisWeek)
-
         CoroutineScope(Dispatchers.Main).launch {
             // 지난 주, 이번 주 정확한 달 숫자
             val previousWeekText = getPreviousWeekText()
@@ -177,28 +142,6 @@ class BarStaticsWeeklyFragment : Fragment() {
                 }
                 textView.text = arrowText
             }
-
-//                val spannableText = SpannableStringBuilder()
-//                    .append("$weather 비율이 ")
-//                    .apply {
-//                        append("$changeValue%")
-//                        setSpan(
-//                            ForegroundColorSpan(Color.parseColor(color)),
-//                            length - changeValue.toString().length - 1,
-//                            length - 1,
-//                            Spannable.SPAN_EXCLUSIVE_INCLUSIVE,
-//                        )
-//                    }
-//                    .append(" $actionText")
-//                    .apply {
-//                        if (actionText != "변화가 없습니다.") {
-//                            append("했습니다.")
-//                        }
-//                    }
-//                spannableText
-
-            // textView.text = formattedText
-
             // Update image view
             val arrowDrawableId = when {
                 increaseValue > 0 -> R.drawable.ic_uparrow
