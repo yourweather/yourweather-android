@@ -11,14 +11,12 @@ import androidx.recyclerview.widget.LinearLayoutManager
 import com.umc.yourweather.R
 import com.umc.yourweather.data.entity.ItemWritten
 import com.umc.yourweather.data.enums.Status
-import com.umc.yourweather.data.remote.request.MemoRequest
 import com.umc.yourweather.data.remote.response.BaseResponse
 import com.umc.yourweather.data.remote.response.SpecificMemoResponse
 import com.umc.yourweather.data.remote.response.StatisticResponse
 import com.umc.yourweather.data.service.ReportService
 import com.umc.yourweather.databinding.FragmentWrittenDetailListRainBinding
 import com.umc.yourweather.di.RetrofitImpl
-import com.umc.yourweather.presentation.adapter.WrittenRVAdapter
 import retrofit2.Call
 import retrofit2.Callback
 import retrofit2.Response
@@ -119,11 +117,12 @@ class WrittenDetailListFragmentRain : Fragment() {
                     val memoIds = memoList.map { it.memoId }
                     val memoDateTime = memoList.map { it.dateTime }
 
-                    Log.d("비 메모 리스트","$memoList")
-                    Log.d("비 비율","$proportion")
-                    Log.d("비 메모 아이디","$memoIds")
-                    Log.d("비 메모 작성시간","$memoDateTime")
+                    Log.d("비 메모 리스트", "$memoList")
+                    Log.d("비 비율", "$proportion")
+                    Log.d("비 메모 아이디", "$memoIds")
+                    Log.d("비 메모 작성시간", "$memoDateTime")
 
+                    binding.tvWrittenDetailListMonthNum.text = "총 ${memoIds.size}회"
                 } else {
                     Log.d("API call failed", "${response.code()} - ${response.message()}")
                 }
@@ -179,7 +178,6 @@ class WrittenDetailListFragmentRain : Fragment() {
 
         return dataList
     }
-
 
     // Calendar.DAY_OF_WEEK 값을 요일 문자열로 변환하는 함수
     private fun getDayOfWeek(dayOfWeek: Int): String {
