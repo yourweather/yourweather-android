@@ -6,69 +6,45 @@
     android:layout_height="match_parent"
     tools:context=".presentation.mypage.MyPageWithdarw3">
 
-    <LinearLayout
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:layout_marginTop="266dp"
-        android:layout_marginBottom="325dp"
-        android:orientation="vertical"
-        app:layout_constraintBottom_toBottomOf="parent"
+    <ImageView
+        android:id="@+id/ic_logo"
+        android:layout_width="39dp"
+        android:layout_height="53dp"
+        android:layout_marginTop="242dp"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent">
+        app:layout_constraintTop_toTopOf="parent"
+        app:srcCompat="@drawable/img_yourweatherlogo" />
 
-        <ImageView
-            android:id="@+id/ic_logo"
-            android:layout_width="35dp"
-            android:layout_height="47dp"
-            android:layout_marginStart="180dp"
-            android:layout_marginEnd="162dp"
-            app:layout_constraintBottom_toBottomOf="parent"
-            app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toTopOf="parent"
-            app:srcCompat="@drawable/img_yourweatherlogo" />
+    <TextView
+        android:id="@+id/textView3"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="27dp"
+        android:fontFamily="@font/pretendardsemibold"
+        android:text="유어웨더 회원 탈퇴가 완료되었습니다.\n더 나은 유어웨더로 다시 찾아뵙겠습니다."
+        android:textAlignment="center"
+        android:textColor="#5E412F"
+        android:textFontWeight="600"
+        android:textSize="15dp"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/ic_logo" />
 
-        <TextView
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:textAlignment="center"
-            android:layout_marginBottom="21dp"
-            android:layout_marginTop="27dp"
-            android:fontFamily="@font/pretendardsemibold"
-            android:text="유어웨더 회원 탈퇴가 완료되었습니다.\n더 나은 유어웨더로 다시 찾아뵙겠습니다."
-            android:textColor="#5E412F"
-            android:textFontWeight="600"
-            android:textSize="15sp" />
+    <androidx.appcompat.widget.AppCompatButton
+        android:id="@+id/btn_withdraw3_ok"
+        android:layout_width="0dp"
+        android:layout_height="34dp"
+        android:layout_marginTop="21dp"
+        android:background="@drawable/btn_mypage_ok"
+        android:fontFamily="@font/pretendardmedium"
+        android:text="@string/tv_ok"
+        android:textColor="#FFFFFF"
+        android:textSize="14dp"
+        app:layout_constraintDimensionRatio="10:1"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.497"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/textView3" />
 
-        <FrameLayout
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content">
-
-            <ImageView
-                android:id="@+id/btn_orange"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                app:layout_constraintBottom_toBottomOf="parent"
-                app:layout_constraintEnd_toEndOf="parent"
-                app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toTopOf="parent"
-                app:srcCompat="@drawable/btn_mypage_ok" />
-
-            <Button
-                android:id="@+id/btn_okay"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:layout_gravity="center"
-                android:layout_marginBottom="17dp"
-                android:background="#00ff0000"
-                android:fontFamily="@font/pretendardregular"
-                android:text="확인"
-                android:textColor="#F6F6F6"
-                android:textFontWeight="600"
-                android:textSize="15sp" />
-        </FrameLayout>
-
-
-    </LinearLayout>
 </androidx.constraintlayout.widget.ConstraintLayout>
