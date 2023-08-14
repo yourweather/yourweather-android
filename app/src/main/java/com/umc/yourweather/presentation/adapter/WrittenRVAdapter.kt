@@ -8,7 +8,6 @@ import androidx.recyclerview.widget.RecyclerView
 import com.umc.yourweather.data.entity.ItemWritten
 import com.umc.yourweather.databinding.ItemWrittenDetailSunBinding
 import com.umc.yourweather.presentation.calendar.CalendarTotalViewFragment
-
 class WrittenRVAdapter(private val dataList: List<ItemWritten>, private val context: Context) :
     RecyclerView.Adapter<WrittenRVAdapter.MyViewHolder>() {
 
@@ -34,16 +33,12 @@ class WrittenRVAdapter(private val dataList: List<ItemWritten>, private val cont
         RecyclerView.ViewHolder(binding.root) {
 
         fun bind(data: ItemWritten) {
-            if (data.minute < 10) {
-                binding.tvStaticIconDetailSunny.text =
-                    "${data.month}월 ${data.day}일 ${data.date}요일 ${data.mer} ${data.hour}:0${data.minute}"
-            } else {
-                binding.tvStaticIconDetailSunny.text =
-                    "${data.month}월 ${data.day}일 ${data.date}요일 ${data.mer} ${data.hour}:${data.minute}"
-            }
+            binding.tvStaticIconDetailSunny.text =
+                "${data.formattedDateTime}"
 
             binding.btnStaticsRightDetail1.setOnClickListener {
                 val intent = Intent(context, CalendarTotalViewFragment::class.java)
+                intent.putExtra("dateTime", data.dateTime) // 전달할 데이터 추가
                 context.startActivity(intent)
             }
         }
