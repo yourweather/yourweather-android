@@ -7,6 +7,8 @@ import android.graphics.drawable.ColorDrawable
 import android.os.Bundle
 import android.util.Log
 import androidx.appcompat.app.AppCompatActivity
+import androidx.core.content.ContextCompat
+import com.umc.yourweather.R
 import com.umc.yourweather.data.remote.response.BaseResponse
 import com.umc.yourweather.data.remote.response.UserResponse
 import com.umc.yourweather.data.service.UserService
@@ -54,6 +56,15 @@ class MyPageWithdraw2 : AppCompatActivity() {
                 window?.setBackgroundDrawable(ColorDrawable(Color.TRANSPARENT))
                 show()
             }
+        }
+
+        binding.radioWithdraw2Grp.setOnCheckedChangeListener { group, checkedId ->
+            // 선택한 라디오 버튼이 하나라도 있을 때 저장 버튼 활성화
+            val isAnyRadioButtonSelected = checkedId != -1
+            binding.btnWithdraw2Withdraw.isEnabled = isAnyRadioButtonSelected
+
+            val textColorRes = if (isAnyRadioButtonSelected) R.color.sorange else R.color.white
+            binding.btnWithdraw2Withdraw.setTextColor(ContextCompat.getColor(this, textColorRes))
         }
 
         binding.btnWithdraw2Cancel.setOnClickListener {
