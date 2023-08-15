@@ -14,8 +14,10 @@ import com.mmk.timeintervalpicker.TimeIntervalPicker
 import com.umc.yourweather.R
 import com.umc.yourweather.data.enums.Status
 import com.umc.yourweather.data.remote.request.MemoRequest
+import com.umc.yourweather.data.remote.request.MemoUpdateRequest
 import com.umc.yourweather.data.remote.response.BaseResponse
 import com.umc.yourweather.data.remote.response.MemoResponse
+import com.umc.yourweather.data.remote.response.MemoUpdateResponse
 import com.umc.yourweather.data.service.MemoService
 import com.umc.yourweather.databinding.ActivityCalendarDetailviewModify2Binding
 import com.umc.yourweather.di.RetrofitImpl
@@ -96,7 +98,6 @@ class CalendarDetailviewModify2 : AppCompatActivity() {
                 }
             }
         }
-
     }
     private fun formatLocalDateTime(localDateTime: String?): String {
         val inputFormat = SimpleDateFormat("yyyy-MM-dd a hh:mm", Locale.getDefault())
