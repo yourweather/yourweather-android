@@ -63,12 +63,14 @@ class CalendarDetailviewModify2 : AppCompatActivity() {
             selectedStatus?.let { it1 -> writeMemo(it1, content, localDateTime, temperature) }
         }
         binding.flCalendarDetailviewBack.setOnClickListener {
-            val intent = Intent(this, CalendarDetailView3::class.java)
-            startActivity(intent)
-            finish() // 현재 액티비티 종료
+            activityFinish()
         }
     }
 
+    // 뒤로 가기 누른 경우
+    override fun onBackPressed() {
+        activityFinish()
+    }
     private fun getCurrentDateTime(): String {
         val dateFormat = SimpleDateFormat("yyyy-MM-dd'T'HH:mm:ss", Locale.getDefault())
         val now = Calendar.getInstance().time
@@ -156,6 +158,7 @@ class CalendarDetailviewModify2 : AppCompatActivity() {
                     if (response.isSuccessful) {
                         val memoResponse = response.body()?.result
                         Log.d("메모 작성", "메모 작성, 전달 성공 ${response.body()?.result}")
+                        activityFinish()
                     } else {
                         Log.d("메모 작성 실패", "메모 작성, 전달 성공 실패: ${response.code()}")
                     }
@@ -167,9 +170,10 @@ class CalendarDetailviewModify2 : AppCompatActivity() {
             })
     }
 
-    private fun showKeyboardAndFocusEditText() {
-        val imm = getSystemService(Context.INPUT_METHOD_SERVICE) as InputMethodManager
-        imm.showSoftInput(editText, InputMethodManager.SHOW_IMPLICIT)
-        editText.requestFocus()
+    // CalendarDetailView3 로 가는 함수
+    private fun activityFinish() {
+        val intent = Intent(this, CalendarDetailView3::class.java)
+        startActivity(intent)
+        finish() // 현재 액티비티 종료
     }
 }
