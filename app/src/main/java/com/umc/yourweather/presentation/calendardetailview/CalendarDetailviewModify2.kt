@@ -1,6 +1,7 @@
 package com.umc.yourweather.presentation.calendardetailview
 
 import android.content.Context
+import android.content.Intent
 import android.os.Bundle
 import android.util.Log
 import android.view.animation.Animation
@@ -61,6 +62,11 @@ class CalendarDetailviewModify2 : AppCompatActivity() {
 
             // writeMemo 함수 호출
             selectedStatus?.let { it1 -> writeMemo(it1, content, localDateTime, temperature) }
+        }
+        binding.flCalendarDetailviewBack.setOnClickListener {
+            val intent = Intent(this, CalendarDetailView3::class.java)
+            startActivity(intent)
+            finish() // 현재 액티비티 종료
         }
     }
 
