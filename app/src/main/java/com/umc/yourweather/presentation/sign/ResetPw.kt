@@ -18,6 +18,7 @@ import com.umc.yourweather.R
 import com.umc.yourweather.data.remote.request.ChangePasswordRequest
 import com.umc.yourweather.data.remote.request.ResetPasswordRequest
 import com.umc.yourweather.data.remote.response.BaseResponse
+import com.umc.yourweather.data.remote.response.ResetPwResponse
 import com.umc.yourweather.data.remote.response.UserResponse
 import com.umc.yourweather.data.service.UserService
 import com.umc.yourweather.databinding.ActivityPwResetBinding
@@ -106,11 +107,11 @@ class ResetPw : AppCompatActivity() {
         service.changePw(ResetPasswordRequest(password)).enqueue(
             (
                 object :
-                    Callback<BaseResponse<UserResponse>> {
+                    Callback<BaseResponse<ResetPwResponse>> {
 
                     override fun onResponse(
-                        call: Call<BaseResponse<UserResponse>>,
-                        response: Response<BaseResponse<UserResponse>>,
+                        call: Call<BaseResponse<ResetPwResponse>>,
+                        response: Response<BaseResponse<ResetPwResponse>>,
                     ) {
                         val responseBody = response.body()
                         val code = responseBody?.code
@@ -129,7 +130,7 @@ class ResetPw : AppCompatActivity() {
                             )
                         }
                     }
-                    override fun onFailure(call: Call<BaseResponse<UserResponse>>, t: Throwable) {
+                    override fun onFailure(call: Call<BaseResponse<ResetPwResponse>>, t: Throwable) {
                         Log.d("ResetPw", "onFailure 에러: " + t.message.toString())
                     }
                 }
