@@ -12,7 +12,6 @@ import android.widget.SeekBar
 import androidx.appcompat.app.AppCompatActivity
 import androidx.appcompat.widget.AppCompatEditText
 import androidx.core.content.ContextCompat
-import androidx.fragment.app.Fragment
 import com.umc.yourweather.R
 import com.umc.yourweather.data.enums.Status
 import com.umc.yourweather.data.remote.request.MemoRequest
@@ -32,7 +31,7 @@ class CalendarDetailviewModify2 : AppCompatActivity() {
     private lateinit var binding: ActivityCalendarDetailviewModify2Binding
     private lateinit var editText: AppCompatEditText
     private var isSeekBarAdjusted = false // 변수 선언
-    private var selectedStatus: Status? = null// 기본값으로 SUNNY 설정
+    private var selectedStatus: Status? = null // 기본값으로 SUNNY 설정
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -77,8 +76,6 @@ class CalendarDetailviewModify2 : AppCompatActivity() {
     }
 
     private fun setupWeatherButtons() {
-        val buttonAnimation: Animation = AnimationUtils.loadAnimation(this, R.anim.btn_weather_scale)
-
         binding.btnHomeSun.setOnClickListener {
             selectedStatus = Status.SUNNY
             animateAndHandleButtonClick(binding.btnHomeSun)
@@ -135,7 +132,6 @@ class CalendarDetailviewModify2 : AppCompatActivity() {
     }
 
     private fun updateSaveButtonState() {
-
         if (selectedStatus != null) {
             val isActive = isSeekBarAdjusted
 
@@ -143,8 +139,8 @@ class CalendarDetailviewModify2 : AppCompatActivity() {
             binding.btnCalendardetailviewSave.setTextColor(
                 ContextCompat.getColor(
                     this,
-                    if (isActive) R.color.sorange else R.color.gray
-                )
+                    if (isActive) R.color.sorange else R.color.gray,
+                ),
             )
         }
     }
@@ -155,7 +151,7 @@ class CalendarDetailviewModify2 : AppCompatActivity() {
             .enqueue(object : Callback<BaseResponse<MemoResponse>> {
                 override fun onResponse(
                     call: Call<BaseResponse<MemoResponse>>,
-                    response: Response<BaseResponse<MemoResponse>>
+                    response: Response<BaseResponse<MemoResponse>>,
                 ) {
                     if (response.isSuccessful) {
                         val memoResponse = response.body()?.result
