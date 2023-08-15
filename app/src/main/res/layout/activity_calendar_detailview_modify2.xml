@@ -191,22 +191,16 @@
                                 android:layout_marginEnd="5dp"
                                 android:layout_marginBottom="603dp"
                                 android:background="@drawable/ic_sun"
-                                app:layout_constraintBottom_toBottomOf="parent"
-                                app:layout_constraintEnd_toStartOf="@+id/btn_home_cloud"
-                                app:layout_constraintStart_toStartOf="parent"
-                                app:layout_constraintTop_toBottomOf="@+id/divider" />
+                                 />
 
                             <androidx.appcompat.widget.AppCompatButton
                                 android:id="@+id/btn_home_cloud"
                                 android:layout_width="83dp"
                                 android:layout_height="85dp"
-                                android:layout_marginStart="5dp"
                                 android:layout_marginTop="8dp"
                                 android:layout_marginBottom="603dp"
                                 android:background="@drawable/ic_cloud"
-                                app:layout_constraintBottom_toBottomOf="parent"
-                                app:layout_constraintStart_toEndOf="@+id/btn_home_sun"
-                                app:layout_constraintTop_toBottomOf="@+id/divider" />
+                                />
 
                             <androidx.appcompat.widget.AppCompatButton
                                 android:id="@+id/btn_home_rain"
@@ -216,9 +210,7 @@
                                 android:layout_marginTop="8dp"
                                 android:layout_marginBottom="603dp"
                                 android:background="@drawable/ic_rain"
-                                app:layout_constraintBottom_toBottomOf="parent"
-                                app:layout_constraintStart_toEndOf="@+id/btn_home_cloud"
-                                app:layout_constraintTop_toBottomOf="@+id/divider" />
+                                 />
 
                             <androidx.appcompat.widget.AppCompatButton
                                 android:id="@+id/btn_home_thunder"
@@ -228,12 +220,7 @@
                                 android:layout_marginTop="8dp"
                                 android:layout_marginEnd="42dp"
                                 android:layout_marginBottom="603dp"
-                                android:background="@drawable/ic_thunder"
-                                app:layout_constraintBottom_toBottomOf="parent"
-                                app:layout_constraintEnd_toEndOf="parent"
-                                app:layout_constraintHorizontal_bias="0.0"
-                                app:layout_constraintStart_toEndOf="@+id/btn_home_rain"
-                                app:layout_constraintTop_toBottomOf="@+id/divider" />
+                                android:background="@drawable/ic_thunder" />
                         </LinearLayout>
 
                         <TextView

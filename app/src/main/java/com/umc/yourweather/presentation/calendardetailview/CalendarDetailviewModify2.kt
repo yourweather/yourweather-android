@@ -23,6 +23,7 @@ import com.umc.yourweather.data.remote.response.MemoResponse
 import com.umc.yourweather.data.service.MemoService
 import com.umc.yourweather.databinding.ActivityCalendarDetailviewModify2Binding
 import com.umc.yourweather.di.RetrofitImpl
+import com.umc.yourweather.di.UserSharedPreferences
 import retrofit2.Call
 import retrofit2.Callback
 import retrofit2.Response
@@ -60,7 +61,7 @@ class CalendarDetailviewModify2 : AppCompatActivity() {
         // 날씨 아이콘 보여주기
         setupWeatherButtons()
         // 시간 선택 창
-       // setupTimePicker()
+        // setupTimePicker()
 
         // 미입력에서 넘어오는 날짜
         val unWrittenDate = intent.getStringExtra("unWrittenDate")
@@ -138,7 +139,14 @@ class CalendarDetailviewModify2 : AppCompatActivity() {
             }
 
             override fun onStopTrackingTouch(seekBar: SeekBar?) {
-                // 필요한 경우 구현
+                val isActive = isSeekBarAdjusted
+
+                binding.btnCalendardetailviewSave.setTextColor(ContextCompat.getColor(this@CalendarDetailviewModify2, R.color.sorange))
+                if (isActive) {
+                    binding.btnCalendardetailviewSave.setTextColor(ContextCompat.getColor(this@CalendarDetailviewModify2, R.color.sorange))
+                } else {
+                    binding.btnCalendardetailviewSave.setTextColor(ContextCompat.getColor(this@CalendarDetailviewModify2, R.color.gray))
+                }
             }
         })
     }
@@ -146,11 +154,10 @@ class CalendarDetailviewModify2 : AppCompatActivity() {
     private var selectedStatus: Status = Status.SUNNY // 기본값으로 SUNNY 설정
 
     private fun setupWeatherButtons() {
-        val buttonAnimation: Animation = AnimationUtils.loadAnimation(this, R.anim.btn_weather_scale)
 
         binding.btnHomeSun.setOnClickListener {
             selectedStatus = Status.SUNNY
-            animateAndHandleButtonClick(binding.btnHomeCloud)
+            animateAndHandleButtonClick(binding.btnHomeSun)
         }
 
         binding.btnHomeCloud.setOnClickListener {
@@ -161,13 +168,13 @@ class CalendarDetailviewModify2 : AppCompatActivity() {
 
         binding.btnHomeThunder.setOnClickListener {
             selectedStatus = Status.LIGHTNING
-            animateAndHandleButtonClick(binding.btnHomeCloud)
+            animateAndHandleButtonClick(binding.btnHomeThunder)
             updateButtonInFragmentColor(R.color.sorange)
         }
 
         binding.btnHomeRain.setOnClickListener {
             selectedStatus = Status.RAINY
-            animateAndHandleButtonClick(binding.btnHomeCloud)
+            animateAndHandleButtonClick(binding.btnHomeRain)
             updateButtonInFragmentColor(R.color.sorange)
         }
     }
