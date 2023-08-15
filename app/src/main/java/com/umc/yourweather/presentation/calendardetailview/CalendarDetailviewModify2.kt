@@ -56,7 +56,7 @@ class CalendarDetailviewModify2 : AppCompatActivity() {
 
         binding.btnCalendardetailviewSave.setOnClickListener {
             val content: String? = editText.text?.toString()
-            val localDateTime: String? = getCurrentDateTime()
+            val localDateTime: String? = unWrittenDate // 시간도 추가해야함
             val temperature: Int? = binding.seekbarCalendarDetailviewTemp2.progress
 
             // writeMemo 함수 호출
@@ -69,7 +69,7 @@ class CalendarDetailviewModify2 : AppCompatActivity() {
 
     // 뒤로 가기 누른 경우
     override fun onBackPressed() {
-        activityFinish()
+        finish()
     }
     private fun getCurrentDateTime(): String {
         val dateFormat = SimpleDateFormat("yyyy-MM-dd'T'HH:mm:ss", Locale.getDefault())
