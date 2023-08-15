@@ -3,6 +3,7 @@ package com.umc.yourweather.presentation.calendar
 import android.os.Build
 import android.os.Bundle
 import android.util.Log
+import android.view.Gravity
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
@@ -63,6 +64,10 @@ class CalendarTotalViewFragment : Fragment() {
             }
         })
 
+        binding.llCalendarYear.setOnClickListener {
+            showPopupWindow(it)
+        }
+
         binding.btnCalendarYear.setOnClickListener {
             val anchorView = binding.llCalendarYear
             showPopupWindow(anchorView)
@@ -90,13 +95,25 @@ class CalendarTotalViewFragment : Fragment() {
         rcView.adapter = adapter
         rcView.layoutManager = LinearLayoutManager(requireContext())
 
-        val width = dpToPx(requireContext(), 190)
-        val height = dpToPx(requireContext(), 462)
+        val popupWidth = dpToPx(requireContext(), 190)
+        val popupHeight = dpToPx(requireContext(), 462)
 
-        popupWindow = PopupWindow(popupView, width, height, true)
+        popupWindow = PopupWindow(popupView, popupWidth, popupHeight, true)
 
         popupWindow.isOutsideTouchable = true
-        popupWindow.showAsDropDown(anchorView)
+
+        val anchorLocation = IntArray(2)
+        anchorView.getLocationOnScreen(anchorLocation)
+        val anchorX = anchorLocation[0] + anchorView.width / 2
+        val anchorY = anchorLocation[1] + anchorView.height
+
+        // 팝업 윈도우를 anchorView의 가운데로 이동시킴
+        val offsetX = -popupWidth / 2
+        val offsetY = 0
+        // val offsetY = -popupHeight / 2
+        popupWindow.showAtLocation(anchorView, Gravity.NO_GRAVITY, anchorX + offsetX, anchorY + offsetY)
+
+        // popupWindow.showAsDropDown(anchorView)
         binding.viewBackgroundView.visibility = View.VISIBLE
 
         popupWindow.setOnDismissListener {
