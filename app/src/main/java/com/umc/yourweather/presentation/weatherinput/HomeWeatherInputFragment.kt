@@ -1,5 +1,7 @@
 package com.umc.yourweather.presentation.weatherinput
 
+import android.graphics.Color
+import android.graphics.drawable.ColorDrawable
 import android.os.Build
 import android.os.Bundle
 import android.util.Log
@@ -20,6 +22,7 @@ import com.umc.yourweather.data.service.MemoService
 import com.umc.yourweather.databinding.FragmentHomeWeatherInputBinding
 import com.umc.yourweather.di.RetrofitImpl
 import com.umc.yourweather.di.UserSharedPreferences
+import com.umc.yourweather.util.AlertDialogTwoBtn
 import retrofit2.Call
 import java.time.LocalDateTime
 import java.time.format.DateTimeFormatter
@@ -45,6 +48,27 @@ class HomeWeatherInputFragment : Fragment() {
         setupUI()
         return binding.root
     }
+    private fun showMemoCancleDialog() {
+        val alertDialog = AlertDialogTwoBtn(requireContext())
+
+        alertDialog.setTitle("감정날씨 입력을 취소하시겠어요?")
+
+        alertDialog.setNegativeButton("아니요") { dialogInterface, _ ->
+            dialogInterface.dismiss()
+
+            parentFragmentManager.popBackStackImmediate("HomeWeatherInputFragment", 0)
+        }
+
+        alertDialog.setPositiveButton("네") { dialogInterface, _ ->
+            dialogInterface.dismiss()
+
+            parentFragmentManager.popBackStack()
+        }
+
+        alertDialog.window?.setBackgroundDrawable(ColorDrawable(Color.TRANSPARENT))
+        alertDialog.show()
+    }
+
 
     @RequiresApi(Build.VERSION_CODES.O)
     private fun setupUI() {
@@ -103,11 +127,11 @@ class HomeWeatherInputFragment : Fragment() {
 
         // exit 버튼 직접 클릭한 경우
         binding.btnHomeWeatherExit.setOnClickListener {
-            parentFragmentManager.popBackStack()
+            showMemoCancleDialog()
         }
         // exit 버튼이 담긴 영역 클릭한 경우
         binding.flWeatherInputExit.setOnClickListener {
-            parentFragmentManager.popBackStack()
+            showMemoCancleDialog()
         }
 
         // save 버튼 직접 클릭한 경우
