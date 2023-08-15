@@ -7,7 +7,7 @@
     tools:context=".presentation.calendardetailview.CalendarDetailviewModify1">
 
     <FrameLayout
-        android:id="@+id/fragment_container"
+        android:id="@+id/fl_calendar_detilview_modify1"
         android:layout_width="0dp"
         android:layout_height="match_parent"
         app:layout_constraintBottom_toBottomOf="parent"
@@ -16,308 +16,310 @@
         app:layout_constraintTop_toTopOf="parent">
 
 
+        <LinearLayout
+            android:id="@+id/ll_calendar_detilview_modify1_1"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:layout_marginTop="120dp"
+            android:layout_marginBottom="100dp"
+            android:orientation="vertical"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent">
+
             <LinearLayout
-                android:layout_width="match_parent"
-                android:layout_height="match_parent"
-                android:layout_marginTop="120dp"
-                android:layout_marginBottom="100dp"
-                android:orientation="vertical"
-                app:layout_constraintBottom_toBottomOf="parent"
-                app:layout_constraintEnd_toEndOf="parent"
-                app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toTopOf="parent">
-
-                <LinearLayout
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:orientation="vertical">
-
-                    <TextView
-                        android:id="@+id/tv_calendar_detailview_modify1_2"
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:layout_marginStart="16dp"
-                        android:layout_marginTop="23dp"
-                        android:layout_marginEnd="266dp"
-                        android:fontFamily="@font/pretendardregular"
-                        android:text="이다은님의 감정 상태"
-                        android:textColor="#2B2B2B"
-                        android:textFontWeight="600"
-                        android:textSize="14sp"
-                        app:layout_constraintEnd_toEndOf="parent"
-                        app:layout_constraintHorizontal_bias="0.135"
-                        app:layout_constraintStart_toStartOf="parent"
-                        app:layout_constraintTop_toBottomOf="@+id/divider" />
-
-                    <LinearLayout
-                        android:layout_width="match_parent"
-                        android:layout_height="95dp"
-                        android:orientation="horizontal">
-
-                        <ImageButton
-                            android:id="@+id/btn_home_sun"
-                            android:layout_width="83dp"
-                            android:layout_height="85dp"
-                            android:layout_marginStart="33dp"
-                            android:layout_marginTop="8dp"
-                            android:layout_marginEnd="5dp"
-                            android:layout_marginBottom="603dp"
-                            android:background="@drawable/ic_sun"
-                            app:layout_constraintBottom_toBottomOf="parent"
-                            app:layout_constraintEnd_toStartOf="@+id/btn_home_cloud"
-                            app:layout_constraintStart_toStartOf="parent"
-                            app:layout_constraintTop_toBottomOf="@+id/divider" />
-
-                        <ImageButton
-                            android:id="@+id/btn_home_cloud"
-                            android:layout_width="83dp"
-                            android:layout_height="85dp"
-                            android:layout_marginStart="5dp"
-                            android:layout_marginTop="8dp"
-                            android:layout_marginBottom="603dp"
-                            android:background="@drawable/ic_cloud"
-                            app:layout_constraintBottom_toBottomOf="parent"
-                            app:layout_constraintStart_toEndOf="@+id/btn_home_sun"
-                            app:layout_constraintTop_toBottomOf="@+id/divider" />
-
-                        <ImageButton
-                            android:id="@+id/btn_home_rain"
-                            android:layout_width="83dp"
-                            android:layout_height="85dp"
-                            android:layout_marginStart="5dp"
-                            android:layout_marginTop="8dp"
-                            android:layout_marginBottom="603dp"
-                            android:background="@drawable/ic_rain"
-                            app:layout_constraintBottom_toBottomOf="parent"
-                            app:layout_constraintStart_toEndOf="@+id/btn_home_cloud"
-                            app:layout_constraintTop_toBottomOf="@+id/divider" />
-
-                        <ImageButton
-                            android:id="@+id/btn_home_thunder"
-                            android:layout_width="83dp"
-                            android:layout_height="85dp"
-                            android:layout_marginStart="5dp"
-                            android:layout_marginTop="8dp"
-                            android:layout_marginEnd="42dp"
-                            android:layout_marginBottom="603dp"
-                            android:background="@drawable/ic_thunder"
-                            app:layout_constraintBottom_toBottomOf="parent"
-                            app:layout_constraintEnd_toEndOf="parent"
-                            app:layout_constraintHorizontal_bias="0.0"
-                            app:layout_constraintStart_toEndOf="@+id/btn_home_rain"
-                            app:layout_constraintTop_toBottomOf="@+id/divider" />
-                    </LinearLayout>
-
-                    <TextView
-                        android:id="@+id/tv_calendar_detailview_modify1_5"
-                        android:layout_width="match_parent"
-                        android:layout_height="wrap_content"
-                        android:fontFamily="@font/pretendardregular"
-                        android:gravity="center"
-                        android:text="클릭하여 선택해주세요"
-                        android:textColor="#ACACAC"
-                        android:textFontWeight="600"
-                        android:textSize="10sp"
-                        app:layout_constraintBottom_toBottomOf="parent"
-                        app:layout_constraintEnd_toEndOf="parent"
-                        app:layout_constraintStart_toStartOf="parent"
-                        app:layout_constraintTop_toBottomOf="@+id/divider" />
-                </LinearLayout>
-
-                <LinearLayout
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:orientation="vertical">
-
-                    <TextView
-                        android:id="@+id/tv_calendar_detailview_modify1_3"
-                        android:layout_width="match_parent"
-                        android:layout_height="wrap_content"
-                        android:layout_marginStart="20dp"
-                        android:layout_marginTop="18dp"
-                        android:layout_marginEnd="106dp"
-                        android:layout_marginBottom="4dp"
-                        android:fontFamily="@font/pretendardregular"
-                        android:text="이다은 님의 감정 온도"
-                        android:textColor="#2B2B2B"
-                        android:textFontWeight="600"
-                        android:textSize="14sp"
-                        app:layout_constraintBottom_toBottomOf="parent"
-                        app:layout_constraintEnd_toEndOf="parent"
-                        app:layout_constraintStart_toStartOf="parent"
-                        app:layout_constraintTop_toBottomOf="@+id/divider"
-                        app:layout_constraintVertical_bias="0.472" />
-
-                    <SeekBar
-                        android:id="@+id/seekbar_calendar_detailview_temp"
-                        android:layout_width="320dp"
-                        android:layout_height="wrap_content"
-                        android:layout_marginStart="41dp"
-                        android:layout_marginTop="20dp"
-                        android:layout_marginEnd="34dp"
-                        android:layout_marginBottom="0dp"
-                        android:max="100"
-                        android:progress="0"
-                        android:progressDrawable="@drawable/bg_home_seekbar"
-                        android:thumb="@drawable/ic_home_seekbarbtn"
-                        app:layout_constraintBottom_toBottomOf="parent"
-                        app:layout_constraintEnd_toEndOf="parent"
-                        app:layout_constraintHorizontal_bias="0.493"
-                        app:layout_constraintStart_toStartOf="parent"
-                        app:layout_constraintTop_toBottomOf="@+id/divider" />
-
-                    <LinearLayout
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:orientation="horizontal">
-
-                        <TextView
-                            android:id="@+id/iv_calendar_detailview_modify1_1"
-                            android:layout_width="wrap_content"
-                            android:layout_height="wrap_content"
-                            android:layout_marginStart="53dp"
-                            android:layout_marginTop="10dp"
-                            android:layout_marginEnd="0dp"
-                            android:layout_marginBottom="0dp"
-                            android:fontFamily="@font/pretendardregular"
-                            android:text="0°"
-                            android:textSize="13sp"
-                            app:layout_constraintBottom_toBottomOf="parent"
-                            app:layout_constraintEnd_toEndOf="parent"
-                            app:layout_constraintStart_toStartOf="parent"
-                            app:layout_constraintTop_toBottomOf="@+id/divider" />
-
-                        <TextView
-                            android:id="@+id/iv_calendar_detailview_modify1_6"
-                            android:layout_width="wrap_content"
-                            android:layout_height="wrap_content"
-                            android:layout_marginStart="265dp"
-                            android:layout_marginTop="10dp"
-                            android:layout_marginEnd="0dp"
-                            android:layout_marginBottom="0dp"
-                            android:fontFamily="@font/pretendardregular"
-                            android:text="100°"
-                            android:textSize="13sp"
-                            app:layout_constraintBottom_toBottomOf="parent"
-                            app:layout_constraintEnd_toEndOf="parent"
-                            app:layout_constraintStart_toStartOf="parent"
-                            app:layout_constraintTop_toBottomOf="@+id/divider" />
-                    </LinearLayout>
-
-
-                </LinearLayout>
-
-
-                <LinearLayout
-                    android:layout_width="match_parent"
-                    android:layout_height="236dp"
-                    android:orientation="vertical">
-
-                    <TextView
-                        android:id="@+id/tv_calendar_detailview_modify2_7"
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:layout_marginStart="16dp"
-                        android:layout_marginTop="10dp"
-                        android:layout_marginEnd="266dp"
-                        android:layout_marginBottom="15dp"
-                        android:fontFamily="@font/pretendardregular"
-                        android:text="이다은 님의 일기"
-                        android:textColor="#2B2B2B"
-                        android:textFontWeight="600"
-                        android:textSize="14sp"
-                        app:layout_constraintBottom_toBottomOf="parent"
-                        app:layout_constraintEnd_toEndOf="parent"
-                        app:layout_constraintHorizontal_bias="0.135"
-                        app:layout_constraintStart_toStartOf="parent"
-                        app:layout_constraintTop_toBottomOf="@+id/divider"
-                        app:layout_constraintVertical_bias="0.4" />
-
-                    <androidx.cardview.widget.CardView
-                        android:id="@+id/cv_calendardetailview_modify1"
-                        android:layout_width="344dp"
-                        android:layout_height="173dp"
-                        android:layout_gravity="center"
-                        android:layout_margin="0dp"
-                        android:layout_marginStart="16dp"
-                        android:layout_marginTop="456dp"
-                        android:layout_marginEnd="26dp"
-                        app:cardBackgroundColor="#f5f5f5"
-                        app:cardCornerRadius="12dp"
-                        app:cardElevation="3dp"
-                        app:contentPadding="0dp"
-                        app:layout_constraintBottom_toBottomOf="parent"
-                        app:layout_constraintEnd_toEndOf="parent"
-                        app:layout_constraintStart_toStartOf="parent"
-                        app:layout_constraintTop_toBottomOf="@+id/tv_calendar_detailview_modify1_2">
-
-                        <RelativeLayout
-                            android:layout_width="match_parent"
-                            android:layout_height="wrap_content"
-                            android:padding="16dp">
-
-                            <EditText
-                                android:id="@+id/editText_modify1"
-                                android:layout_width="match_parent"
-                                android:layout_height="wrap_content"
-                                android:inputType="textMultiLine"
-                                android:background="@null"
-                                android:ellipsize="none"
-                                android:scrollbars="vertical"
-                                android:imeOptions="actionDone"
-                                android:maxLength="500" />
-
-                        </RelativeLayout>
-
-                    </androidx.cardview.widget.CardView>
-
-                </LinearLayout>
-
-            </LinearLayout>
-
-
-            <FrameLayout
+                android:id="@+id/ll_calendar_detilview_modify1_2"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:layout_marginTop="800dp"
-                android:layout_marginBottom="7dp"
-                app:layout_constraintBottom_toBottomOf="parent"
-                app:layout_constraintEnd_toEndOf="parent"
-                app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toTopOf="parent">
+                android:orientation="vertical">
 
-                <ImageButton
-                    android:id="@+id/imageButton5"
+                <TextView
+                    android:id="@+id/tv_calendar_detailview_modify1_2"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginStart="16dp"
+                    android:layout_marginTop="23dp"
+                    android:layout_marginEnd="266dp"
+                    android:fontFamily="@font/pretendardregular"
+                    android:text="이다은님의 감정 상태"
+                    android:textColor="#2B2B2B"
+                    android:textFontWeight="600"
+                    android:textSize="14sp"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintHorizontal_bias="0.135"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toBottomOf="@+id/divider" />
+
+                <LinearLayout
                     android:layout_width="match_parent"
-                    android:layout_height="match_parent"
-                    android:layout_marginTop="0dp"
-                    android:layout_marginBottom="10dp"
-                    android:background="#00ff0000"
+                    android:layout_height="95dp"
+                    android:orientation="horizontal">
+
+                    <ImageButton
+                        android:id="@+id/btn_calendar_detailview_modify1_sun"
+                        android:layout_width="83dp"
+                        android:layout_height="85dp"
+                        android:layout_marginStart="33dp"
+                        android:layout_marginTop="8dp"
+                        android:layout_marginEnd="5dp"
+                        android:layout_marginBottom="603dp"
+                        android:background="@drawable/ic_sun"
+                        app:layout_constraintBottom_toBottomOf="parent"
+                        app:layout_constraintEnd_toStartOf="@+id/btn_home_cloud"
+                        app:layout_constraintStart_toStartOf="parent"
+                        app:layout_constraintTop_toBottomOf="@+id/divider" />
+
+                    <ImageButton
+                        android:id="@+id/btn_calendar_detailview_modify1_cloud"
+                        android:layout_width="83dp"
+                        android:layout_height="85dp"
+                        android:layout_marginStart="5dp"
+                        android:layout_marginTop="8dp"
+                        android:layout_marginBottom="603dp"
+                        android:background="@drawable/ic_cloud"
+                        app:layout_constraintBottom_toBottomOf="parent"
+                        app:layout_constraintStart_toEndOf="@+id/btn_home_sun"
+                        app:layout_constraintTop_toBottomOf="@+id/divider" />
+
+                    <ImageButton
+                        android:id="@+id/btn_calendar_detailview_modify1_rain"
+                        android:layout_width="83dp"
+                        android:layout_height="85dp"
+                        android:layout_marginStart="5dp"
+                        android:layout_marginTop="8dp"
+                        android:layout_marginBottom="603dp"
+                        android:background="@drawable/ic_rain"
+                        app:layout_constraintBottom_toBottomOf="parent"
+                        app:layout_constraintStart_toEndOf="@+id/btn_home_cloud"
+                        app:layout_constraintTop_toBottomOf="@+id/divider" />
+
+                    <ImageButton
+                        android:id="@+id/btn_calendar_detailview_modify1_thunder"
+                        android:layout_width="83dp"
+                        android:layout_height="85dp"
+                        android:layout_marginStart="5dp"
+                        android:layout_marginTop="8dp"
+                        android:layout_marginEnd="42dp"
+                        android:layout_marginBottom="603dp"
+                        android:background="@drawable/ic_thunder"
+                        app:layout_constraintBottom_toBottomOf="parent"
+                        app:layout_constraintEnd_toEndOf="parent"
+                        app:layout_constraintHorizontal_bias="0.0"
+                        app:layout_constraintStart_toEndOf="@+id/btn_home_rain"
+                        app:layout_constraintTop_toBottomOf="@+id/divider" />
+                </LinearLayout>
+
+                <TextView
+                    android:id="@+id/tv_calendar_detailview_modify1_5"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:fontFamily="@font/pretendardregular"
+                    android:gravity="center"
+                    android:text="클릭하여 선택해주세요"
+                    android:textColor="#ACACAC"
+                    android:textFontWeight="600"
+                    android:textSize="10sp"
                     app:layout_constraintBottom_toBottomOf="parent"
                     app:layout_constraintEnd_toEndOf="parent"
                     app:layout_constraintStart_toStartOf="parent"
-                    app:layout_constraintTop_toTopOf="parent"
-                    app:srcCompat="@drawable/btn_calendarview_delete" />
+                    app:layout_constraintTop_toBottomOf="@+id/divider" />
+            </LinearLayout>
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="vertical">
 
                 <TextView
-                    android:id="@+id/tv_calendar_detailview_modify1_4"
-                    android:layout_width="wrap_content"
+                    android:id="@+id/tv_calendar_detailview_modify1_3"
+                    android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:layout_marginStart="195dp"
-                    android:layout_marginTop="8dp"
-                    android:layout_marginEnd="120dp"
-                    android:layout_marginBottom="7dp"
+                    android:layout_marginStart="20dp"
+                    android:layout_marginTop="18dp"
+                    android:layout_marginEnd="106dp"
+                    android:layout_marginBottom="4dp"
                     android:fontFamily="@font/pretendardregular"
-                    android:text="삭제"
-                    android:textColor="#FFFFFF"
+                    android:text="이다은 님의 감정 온도"
+                    android:textColor="#2B2B2B"
                     android:textFontWeight="600"
                     android:textSize="14sp"
                     app:layout_constraintBottom_toBottomOf="parent"
                     app:layout_constraintEnd_toEndOf="parent"
                     app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toBottomOf="@+id/divider"
+                    app:layout_constraintVertical_bias="0.472" />
+
+                <SeekBar
+                    android:id="@+id/seekbar_calendar_detailview_temp"
+                    android:layout_width="320dp"
+                    android:layout_height="wrap_content"
+                    android:layout_marginStart="41dp"
+                    android:layout_marginTop="20dp"
+                    android:layout_marginEnd="34dp"
+                    android:layout_marginBottom="0dp"
+                    android:max="100"
+                    android:progress="0"
+                    android:progressDrawable="@drawable/bg_home_seekbar"
+                    android:thumb="@drawable/ic_home_seekbarbtn"
+                    app:layout_constraintBottom_toBottomOf="parent"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintHorizontal_bias="0.493"
+                    app:layout_constraintStart_toStartOf="parent"
                     app:layout_constraintTop_toBottomOf="@+id/divider" />
 
-            </FrameLayout>
+                <LinearLayout
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:orientation="horizontal">
+
+                    <TextView
+                        android:id="@+id/iv_calendar_detailview_modify1_1"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_marginStart="53dp"
+                        android:layout_marginTop="10dp"
+                        android:layout_marginEnd="0dp"
+                        android:layout_marginBottom="0dp"
+                        android:fontFamily="@font/pretendardregular"
+                        android:text="0°"
+                        android:textSize="13sp"
+                        app:layout_constraintBottom_toBottomOf="parent"
+                        app:layout_constraintEnd_toEndOf="parent"
+                        app:layout_constraintStart_toStartOf="parent"
+                        app:layout_constraintTop_toBottomOf="@+id/divider" />
+
+                    <TextView
+                        android:id="@+id/iv_calendar_detailview_modify1_6"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_marginStart="265dp"
+                        android:layout_marginTop="10dp"
+                        android:layout_marginEnd="0dp"
+                        android:layout_marginBottom="0dp"
+                        android:fontFamily="@font/pretendardregular"
+                        android:text="100°"
+                        android:textSize="13sp"
+                        app:layout_constraintBottom_toBottomOf="parent"
+                        app:layout_constraintEnd_toEndOf="parent"
+                        app:layout_constraintStart_toStartOf="parent"
+                        app:layout_constraintTop_toBottomOf="@+id/divider" />
+                </LinearLayout>
+
+
+            </LinearLayout>
+
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="236dp"
+                android:orientation="vertical">
+
+                <TextView
+                    android:id="@+id/tv_calendar_detailview_modify2_7"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginStart="16dp"
+                    android:layout_marginTop="10dp"
+                    android:layout_marginEnd="266dp"
+                    android:layout_marginBottom="15dp"
+                    android:fontFamily="@font/pretendardregular"
+                    android:text="이다은 님의 일기"
+                    android:textColor="#2B2B2B"
+                    android:textFontWeight="600"
+                    android:textSize="14sp"
+                    app:layout_constraintBottom_toBottomOf="parent"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintHorizontal_bias="0.135"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toBottomOf="@+id/divider"
+                    app:layout_constraintVertical_bias="0.4" />
+
+                <androidx.cardview.widget.CardView
+                    android:id="@+id/cv_calendar_detailview_modify1"
+                    android:layout_width="344dp"
+                    android:layout_height="173dp"
+                    android:layout_gravity="center"
+                    android:layout_margin="0dp"
+                    android:layout_marginStart="16dp"
+                    android:layout_marginTop="456dp"
+                    android:layout_marginEnd="26dp"
+                    app:cardBackgroundColor="#f5f5f5"
+                    app:cardCornerRadius="12dp"
+                    app:cardElevation="3dp"
+                    app:contentPadding="0dp"
+                    app:layout_constraintBottom_toBottomOf="parent"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toBottomOf="@+id/tv_calendar_detailview_modify1_2">
+
+                    <RelativeLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:padding="16dp">
+
+                        <EditText
+                            android:id="@+id/et_calendar_detailview_modify1"
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:inputType="textMultiLine"
+                            android:background="@null"
+                            android:ellipsize="none"
+                            android:scrollbars="vertical"
+                            android:imeOptions="actionDone"
+                            android:maxLength="500" />
+
+                    </RelativeLayout>
+
+                </androidx.cardview.widget.CardView>
+
+            </LinearLayout>
+
+        </LinearLayout>
+
+
+        <FrameLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="800dp"
+            android:layout_marginBottom="7dp"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent">
+
+            <ImageButton
+                android:id="@+id/imageButton5"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:layout_marginTop="0dp"
+                android:layout_marginBottom="10dp"
+                android:background="#00ff0000"
+                app:layout_constraintBottom_toBottomOf="parent"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toTopOf="parent"
+                app:srcCompat="@drawable/btn_calendarview_delete" />
+
+            <TextView
+                android:id="@+id/tv_calendar_detailview_modify1_4"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="195dp"
+                android:layout_marginTop="8dp"
+                android:layout_marginEnd="120dp"
+                android:layout_marginBottom="7dp"
+                android:fontFamily="@font/pretendardregular"
+                android:text="삭제"
+                android:textColor="#FFFFFF"
+                android:textFontWeight="600"
+                android:textSize="14sp"
+                app:layout_constraintBottom_toBottomOf="parent"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@+id/divider" />
+
+        </FrameLayout>
 
     </FrameLayout>
 

@@ -2,17 +2,29 @@ package com.umc.yourweather.presentation.calendardetailview
 
 import android.content.Intent
 import android.os.Bundle
+import android.util.Log
 import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import android.widget.Button
+import android.widget.ImageButton
 import androidx.appcompat.widget.AppCompatImageButton
 import com.umc.yourweather.R
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
 import com.google.android.material.textview.MaterialTextView
+import com.umc.yourweather.data.remote.response.BaseResponse
+import com.umc.yourweather.data.remote.response.MemoDailyResponse
+import com.umc.yourweather.data.service.MemoService
+import com.umc.yourweather.databinding.FragmentScrollview2Binding
+import com.umc.yourweather.di.RetrofitImpl
 import com.umc.yourweather.presentation.adapter.CalendarDetailviewDiaryAdapter
+import retrofit2.Call
+import retrofit2.Response
+import java.text.SimpleDateFormat
+import java.util.Calendar
+import java.util.Locale
 
 
 // TODO: Rename parameter arguments, choose names that match
@@ -30,6 +42,13 @@ class ScrollviewFragment2 : Fragment() {
     private var param1: String? = null
     private var param2: String? = null
 
+    private lateinit var recyclerView: RecyclerView
+    private lateinit var viewAdapter: RecyclerView.Adapter<*>
+    private lateinit var viewManager: RecyclerView.LayoutManager
+    private lateinit var binding: FragmentScrollview2Binding
+
+    private lateinit var adapter: CalendarDetailviewDiaryAdapter
+    private var weatherId: Int = -1 // 기본값 설정
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         arguments?.let {
@@ -41,45 +60,114 @@ class ScrollviewFragment2 : Fragment() {
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
 
-        val button = view.findViewById<AppCompatImageButton>(R.id.btn_calendardetailview2_plus)
 
-        button.setOnClickListener {
-            val intent = Intent(activity, CalendarDetailviewModify1::class.java)
-            startActivity(intent)
-        }
     }
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
         savedInstanceState: Bundle?
     ): View? {
+        binding = FragmentScrollview2Binding.inflate(inflater, container, false)
 
-        // Inflate the layout for this fragment
-        val rootView = inflater.inflate(R.layout.fragment_scrollview2, container, false)
+        val plusButton: ImageButton = binding.btnCalendardetailview2Plus
 
-        // 프래그먼트에서의 findViewById 대신 데이터 바인딩을 사용하거나 rootView를 통해 뷰 요소를 찾습니다.
-        val textView2: MaterialTextView = rootView.findViewById(R.id.tv_calendar_detailview2_1)
-
-
-        val year = arguments?.getString("year")
-        val month = arguments?.getString("month")
-        val date = arguments?.getString("date")
-
-        textView2.text = "${month}월 ${date}일의 일기"
-
-        // 1
-        val viewManager = LinearLayoutManager(requireContext(), LinearLayoutManager.HORIZONTAL, true)
-        // 2
-        val viewAdapter = CalendarDetailviewDiaryAdapter()
-
-        // 3
-        val recyclerView = rootView.findViewById<RecyclerView>(R.id.recyclerview_calendar_detailview2).apply {
-            setHasFixedSize(true)
-            layoutManager = viewManager
-            adapter = viewAdapter
+        plusButton.setOnClickListener {
+            val intent = Intent(activity, CalendarDetailviewModify1::class.java)
+            startActivity(intent)
         }
+        val selectedDate = arguments?.getString("selectedDate")
+        binding.tvScrollviewFragment21.text = selectedDate
 
-        return rootView
 
+        binding.btnCalendardetailview2Plus.setOnClickListener{
+            val intent = Intent(requireContext(), CalendarDetailviewModify1::class.java)
+            startActivity(intent)
+        }
+        return binding.root
+
+        ScrollviewFragment2Api(weatherId)
+
+
+    }
+    private fun ScrollviewFragment2Api(weatherId: Int){
+        val memoService = RetrofitImpl.authenticatedRetrofit.create(MemoService::class.java)
+        val call = memoService.memoReturn(weatherId = weatherId)
+
+        call.enqueue(object : retrofit2.Callback<BaseResponse<BaseResponse<MemoDailyResponse>>> {
+            override fun onResponse (
+                call: Call<BaseResponse<BaseResponse<MemoDailyResponse>>>,
+                response: Response<BaseResponse<BaseResponse<MemoDailyResponse>>>
+            ){
+                if (response.isSuccessful) {
+                    val outerResponse = response.body()?.result
+                    val memoDailyResponse = outerResponse?.result
+
+                    if (memoDailyResponse != null) {
+                        val memoContentList = memoDailyResponse.memoContentList
+
+                        // 여기에서 사용자 정보 활용하여 작업 수행
+                        if (memoContentList.isNotEmpty()) {
+                            val firstMemoContent = memoContentList[0] // Use the first memo content item
+                            val memoId = firstMemoContent.memoId
+                            val creationDatetime = firstMemoContent.dateTime
+                            val content = firstMemoContent.status
+                            // 여기에서 memoItem의 필드 값을 활용하여 작업 수행
+                            viewAdapter = CalendarDetailviewDiaryAdapter(memoContentList)
+                            recyclerView = binding.rvScrollviewFragment21
+                            viewManager = LinearLayoutManager(context, LinearLayoutManager.HORIZONTAL, true)
+
+
+                            // Configure the RecyclerView
+                            recyclerView.apply {
+                                // Improve performance if the layout size of the RecyclerView doesn't change
+                                setHasFixedSize(true)
+                                // Use a linear layout manager
+                                layoutManager = viewManager
+                                // Specify an adapter
+                                adapter = viewAdapter
+                            }
+
+                            val dateString = firstMemoContent.dateTime
+                            val dateFormat = SimpleDateFormat("yyyy-MM-dd'T'HH:mm:ss.SSS'Z'", Locale.US)
+                            val date1 = dateFormat.parse(dateString.toString())
+                            val date2 = dateFormat.parse(creationDatetime)
+                            val calendar = Calendar.getInstance()
+                            calendar.time = date1
+
+
+                            val month = calendar.get(Calendar.MONTH) + 1 // 월은 0부터 시작하므로 +1을 해줌
+                            val day = calendar.get(Calendar.DAY_OF_MONTH)
+
+                            binding.tvScrollviewFragment21.text=("${month}월 ${day}일의 일기" )
+
+                            // Apply the desired time format
+                            val outputFormat = SimpleDateFormat("a h시", Locale.US)
+                            val formattedTime = outputFormat.format(date2)
+
+                            binding.tvScrollviewFragment2Time.text=formattedTime
+                        }
+
+                        else {
+                            // 서버 응답은 성공했지만 데이터가 없는 경우 처리
+                            Log.e("API Response", "No memo data for the requested date")
+                        }
+                    } else {
+                        // 서버 응답이 실패한 경우 처리
+                        Log.e("API Response", "Failed to retrieve memo data")
+                    }
+                }
+            }
+            override fun onFailure(
+                call: Call<BaseResponse<BaseResponse<MemoDailyResponse>>>,
+                t: Throwable
+            ) {
+                // 네트워크 요청 실패 처리
+                Log.e("API Failure", "Error: ${t.message}", t)
+                // 사용자에게 오류 메시지 표시
+                val errorMessage = "네트워크 요청이 실패했습니다."
+            }
+
+
+        })
     }
 
     companion object {

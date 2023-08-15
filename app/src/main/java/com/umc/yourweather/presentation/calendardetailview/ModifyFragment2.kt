@@ -15,7 +15,9 @@ import androidx.appcompat.app.AlertDialog
 import androidx.core.content.ContextCompat
 import com.umc.yourweather.R
 import com.umc.yourweather.databinding.FragmentModify2Binding
-
+import java.text.SimpleDateFormat
+import java.util.Calendar
+import java.util.Locale
 
 
 // TODO: Rename parameter arguments, choose names that match
@@ -61,7 +63,7 @@ class ModifyFragment2 : Fragment() {
         button = view.findViewById(R.id.btn_calendardetailview_save)
 
         // 액티비티 레이아웃의 요소 참조
-        editText = requireActivity().findViewById(R.id.editText_modify1)
+        editText = requireActivity().findViewById(R.id.editText)
         button = view.findViewById(R.id.btn_calendardetailview_save)
 
 
@@ -85,23 +87,29 @@ class ModifyFragment2 : Fragment() {
         // 버튼 클릭 이벤트 설정
         button.setOnClickListener {
             // 버튼 클릭 시 EditText 내용 변경
-            editText.setText("Button Clicked")
+
         }
 
         // 초기 버튼 상태 설정
         updateButtonState()
 
-        val year = requireActivity().intent.getStringExtra("year")
-        val month = requireActivity().intent.getStringExtra("month")
-        val date = requireActivity().intent.getStringExtra("date")
-        val time = requireActivity().intent.getStringExtra("time")
+        val dateTimeString = arguments?.getString("dateTime")
+        if (dateTimeString != null) {
+            val dateFormat = SimpleDateFormat("yyyy-MM-dd'T'HH:mm:ss.SSS'Z'", Locale.US)
+            val date = dateFormat.parse(dateTimeString)
+            val calendar = Calendar.getInstance()
+            calendar.time = date
 
-        val textView: TextView = binding.tvCalendarDetailviewModify21
-        textView.text = "${month}월 ${date}일의 기록"
+            val month = calendar.get(Calendar.MONTH) + 1
+            val day = calendar.get(Calendar.DAY_OF_MONTH)
+            val hour = calendar.get(Calendar.HOUR_OF_DAY)
+            val minute = calendar.get(Calendar.MINUTE)
 
-        // back 이미지 버튼 클릭 시 AlertDialog 표시
-        binding.btnCalendarDetailviewBack.setOnClickListener {
-            showLeaveAlertDialog()
+            val amPm = if (hour >= 12) "오후" else "오전"
+            val displayHour = if (hour > 12) hour - 12 else hour
+
+            val textView = view.findViewById<TextView>(R.id.tv_calendar_detailview_modify1_time)
+            textView.text = "${month}월 ${day}일의 기록"
         }
     }
 
@@ -129,8 +137,8 @@ class ModifyFragment2 : Fragment() {
         val alertDialog = alertDialogBuilder.create()
 
         // AlertDialog 내부 뷰 요소 설정
-        val cancelButton = dialogView.findViewById<Button>(R.id.noBtn)
-        val confirmButton = dialogView.findViewById<Button>(R.id.yesBtn)
+        val cancelButton = dialogView.findViewById<Button>(R.id.btn_alertdailog_calendar_detailview_modify_no)
+        val confirmButton = dialogView.findViewById<Button>(R.id.btn_alertdailog_calendar_detailview_modify_yes)
 
         // Cancel 버튼 클릭 시 AlertDialog 닫기
         cancelButton.setOnClickListener {

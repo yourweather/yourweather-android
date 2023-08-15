@@ -8,7 +8,7 @@
     tools:context=".presentation.calendardetailview.ScrollviewFragment2">
 
     <TextView
-        android:id="@+id/tv_calendar_detailview2_1"
+        android:id="@+id/tv_scrollview_fragment2_1"
         android:layout_width="0dp"
         android:layout_height="wrap_content"
         android:fontFamily="@font/pretendardregular"
@@ -41,15 +41,16 @@
             android:orientation="vertical">
 
             <TextView
+                android:id="@+id/tv_scrollview_fragment2_time"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:fontFamily="@font/pretendardregular"
-                android:text="오후 1시"
+                android:text=""
                 android:textColor="#2B2B2B"
                 android:textFontWeight="500" />
 
             <androidx.recyclerview.widget.RecyclerView
-                android:id="@+id/recyclerview_calendar_detailview2"
+                android:id="@+id/rv_scrollview_fragment2_1"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 app:layoutManager="androidx.recyclerview.widget.LinearLayoutManager"></androidx.recyclerview.widget.RecyclerView>

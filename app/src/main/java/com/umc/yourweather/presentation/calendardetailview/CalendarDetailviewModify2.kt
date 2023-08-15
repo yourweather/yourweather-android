@@ -1,14 +1,19 @@
 package com.umc.yourweather.presentation.calendardetailview
 
 import android.content.Context
+import android.os.Build
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
+import android.view.LayoutInflater
+import android.view.View
 import android.view.animation.Animation
 import android.view.animation.AnimationUtils
 import android.view.inputmethod.InputMethodManager
 import android.widget.Button
 import android.widget.SeekBar
 import android.widget.TextView
+import android.widget.TimePicker
+import androidx.appcompat.app.AlertDialog
 import androidx.appcompat.widget.AppCompatEditText
 import androidx.cardview.widget.CardView
 import androidx.core.content.ContextCompat
@@ -130,10 +135,47 @@ class CalendarDetailviewModify2 : AppCompatActivity() {
 
         }
 
+        // 클릭 리스너 설정
+        binding.llCalendarDetailviewClickToSelectTime.setOnClickListener {
+            // LayoutInflater를 사용하여 레이아웃 XML 파일을 가져옴
+            val inflater = LayoutInflater.from(this)
+            val dialogView: View = inflater.inflate(R.layout.alert_dialog_alarm, null)
 
+            // AlertDialog 빌더 생성
+            val builder = AlertDialog.Builder(this)
+            builder.setView(dialogView) // 빌더에 뷰 설정
 
+            // AlertDialog 생성 및 보여주기
+            val alertDialog: AlertDialog = builder.create()
+            alertDialog.show()
+        }
+        // 액티비티에서 TimePicker를 찾아온 후
+        val timePicker: TimePicker = findViewById(R.id.tp_calendardetailview)
 
+        // 선택한 시간 가져오기
+        val selectedHour: Int = if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.M) {
+            timePicker.hour // API 23 이상에서는 getHour() 대신 hour 속성 사용
+        } else {
+            timePicker.currentHour // API 23 미만에서는 getHour() 사용
+        }
+
+        // 선택한 분 가져오기
+        val selectedMinute: Int = if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.M) {
+            timePicker.minute // API 23 이상에서는 getMinute() 대신 minute 속성 사용
+        } else {
+            timePicker.currentMinute // API 23 미만에서는 getMinute() 사용
+        }
+        // 선택한 오전/오후 값 가져오기
+        val selectedAmPm: String = if (selectedHour >= 12) {
+            "오후"
+        } else {
+            "오전"
+        }
+
+        val tvTime: TextView = findViewById(R.id.tv_calendar_detailview_modify2_time)
+        tvTime.text=("${selectedAmPm} ${selectedHour}:${selectedMinute}시")
     }
+
 
     private fun updateSaveButtonState() {
         val fragment1: Fragment? = supportFragmentManager.findFragmentById(R.id.fragment_container)

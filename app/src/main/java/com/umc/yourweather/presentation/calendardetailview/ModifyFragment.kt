@@ -17,6 +17,9 @@ import androidx.core.content.ContextCompat
 import androidx.fragment.app.Fragment
 import com.umc.yourweather.R
 import com.umc.yourweather.databinding.FragmentModifyBinding
+import java.text.SimpleDateFormat
+import java.util.Calendar
+import java.util.Locale
 
 // TODO: Rename parameter arguments, choose names that match
 // the fragment initialization parameters, e.g. ARG_ITEM_NUMBER
@@ -30,13 +33,14 @@ private const val ARG_PARAM2 = "param2"
  */
 class ModifyFragment : Fragment() {
     // TODO: Rename and change types of parameters
-
     private lateinit var editText: EditText
     private lateinit var button: Button
     private var param1: String? = null
     private var param2: String? = null
     private var _binding: FragmentModifyBinding? = null
     private val binding get() = _binding!!
+    private var weatherId: Int? = null
+
 
     interface UpdateButtonStateListener {
         fun onUpdateButtonState(isAdjusted: Boolean)
@@ -58,6 +62,8 @@ class ModifyFragment : Fragment() {
     ): View? {
         // Inflate the layout for this fragment
         _binding = FragmentModifyBinding.inflate(inflater, container, false)
+
+        val dateTime = arguments?.getString("dateTime")
         return binding.root
 
     }
@@ -66,13 +72,11 @@ class ModifyFragment : Fragment() {
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
 
-        // 프래그먼트 레이아웃의 버튼 참조
-        button = view.findViewById(R.id.btn_calendardetailview_save)
-
-
+        // weatherId 가져오기
+        weatherId = arguments?.getInt("weatherId")
 
         // 액티비티 레이아웃의 요소 참조
-        editText = requireActivity().findViewById(R.id.editText_modify1)
+        editText = requireActivity().findViewById(R.id.et_calendar_detailview_modify1)
         button = view.findViewById(R.id.btn_calendardetailview_save)
 
 
@@ -104,17 +108,28 @@ class ModifyFragment : Fragment() {
         // 초기 버튼 상태 설정
         updateButtonState()
 
-        val year = requireActivity().intent.getStringExtra("year")
-        val month = requireActivity().intent.getStringExtra("month")
-        val date = requireActivity().intent.getStringExtra("date")
-        val time = requireActivity().intent.getStringExtra("time")
-
-        val textView: TextView = binding.tvCalendarDetailviewModify11
-        textView.text = "${month}월 ${date}일 ${time}"
-
         // back 이미지 버튼 클릭 시 AlertDialog 표시
         binding.btnCalendarDetailviewBack.setOnClickListener {
             showLeaveAlertDialog()
+        }
+
+        val dateTimeString = arguments?.getString("dateTime")
+        if (dateTimeString != null) {
+            val dateFormat = SimpleDateFormat("yyyy-MM-dd'T'HH:mm:ss.SSS'Z'", Locale.US)
+            val date = dateFormat.parse(dateTimeString)
+            val calendar = Calendar.getInstance()
+            calendar.time = date
+
+            val month = calendar.get(Calendar.MONTH) + 1
+            val day = calendar.get(Calendar.DAY_OF_MONTH)
+            val hour = calendar.get(Calendar.HOUR_OF_DAY)
+            val minute = calendar.get(Calendar.MINUTE)
+
+            val amPm = if (hour >= 12) "오후" else "오전"
+            val displayHour = if (hour > 12) hour - 12 else hour
+
+            val textView = view.findViewById<TextView>(R.id.tv_calendar_detailview_modify1_time)
+            textView.text = "${month}월 ${day}일 $amPm $displayHour:$minute"
         }
     }
 
@@ -138,8 +153,8 @@ class ModifyFragment : Fragment() {
             .inflate(R.layout.alertdialog_calendar_detailview_modify, null)
 
         // AlertDialog 내부 뷰 요소 설정
-        val cancelButton = dialogView.findViewById<Button>(R.id.noBtn)
-        val confirmButton = dialogView.findViewById<Button>(R.id.yesBtn)
+        val cancelButton = dialogView.findViewById<Button>(R.id.btn_alertdailog_calendar_detailview_modify_no)
+        val confirmButton = dialogView.findViewById<Button>(R.id.btn_alertdailog_calendar_detailview_modify_yes)
 
         val alertDialogBuilder = AlertDialog.Builder(requireContext())
             .setView(dialogView)
