@@ -3,12 +3,16 @@ package com.umc.yourweather.util
 import android.content.Context
 import android.os.Handler
 import android.text.Editable
+import android.text.Spannable
+import android.text.SpannableString
 import android.text.TextWatcher
+import android.text.style.ForegroundColorSpan
 import android.view.LayoutInflater
 import android.view.View
 import android.widget.PopupWindow
 import android.widget.TextView
 import androidx.appcompat.widget.AppCompatButton
+import com.google.android.material.color.MaterialColors.getColor
 import com.umc.yourweather.R
 import com.umc.yourweather.util.CalendarUtils.Companion.dpToPx
 
@@ -72,6 +76,20 @@ class SignUtils {
                     checkError()
                 }
             }
+        }
+
+        fun setAlertText(context: Context, view: View, id: Int) {
+            var textView = view.findViewById<TextView>(id)
+
+            val color = context.getColor(R.color.sorange) // 변경하려는 색상
+            val str1 = "로그인을 함으로써\n" +
+                "유어웨더의 "
+            val str2 = "개인정보처리방침, 서비스 이용약관"
+            val str3 = "에 동의하시게 됩니다."
+
+            val spannable = SpannableString("$str1$str2$str3")
+            spannable.setSpan(ForegroundColorSpan(color), str1.length, str1.length + str2.length, Spannable.SPAN_EXCLUSIVE_EXCLUSIVE)
+            textView.setText(spannable, TextView.BufferType.SPANNABLE)
         }
     }
 }
