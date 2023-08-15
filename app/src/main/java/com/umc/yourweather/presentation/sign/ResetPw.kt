@@ -15,16 +15,15 @@ import android.widget.TextView
 import androidx.appcompat.app.AlertDialog
 import androidx.appcompat.app.AppCompatActivity
 import com.umc.yourweather.R
-import com.umc.yourweather.data.remote.request.ChangePasswordRequest
 import com.umc.yourweather.data.remote.request.ResetPasswordRequest
 import com.umc.yourweather.data.remote.response.BaseResponse
 import com.umc.yourweather.data.remote.response.ResetPwResponse
-import com.umc.yourweather.data.remote.response.UserResponse
 import com.umc.yourweather.data.service.UserService
 import com.umc.yourweather.databinding.ActivityPwResetBinding
 import com.umc.yourweather.di.RetrofitImpl
 import com.umc.yourweather.util.SignUtils
 import com.umc.yourweather.util.SignUtils.Companion.ALERT_TEXT_CHANGE_PW
+import com.umc.yourweather.util.SignUtils.Companion.ALERT_TEXT_CHANGE_PW_ERROR
 import retrofit2.Call
 import retrofit2.Callback
 import retrofit2.Response
@@ -104,6 +103,7 @@ class ResetPw : AppCompatActivity() {
             binding.btnResetPwNext.isEnabled = false
         }
     }
+
     private fun resetPwApi(password: String) {
         val service = RetrofitImpl.authenticatedRetrofit.create(UserService::class.java)
 
@@ -127,6 +127,7 @@ class ResetPw : AppCompatActivity() {
                                 Log.d("ResetPw", "실패..")
                             }
                         } else {
+                            showCustomAlertDialog(ALERT_TEXT_CHANGE_PW_ERROR, 0, true)
                             Log.d(
                                 "ResetPw",
                                 "onResponse 오류: ${response?.toString()}",
