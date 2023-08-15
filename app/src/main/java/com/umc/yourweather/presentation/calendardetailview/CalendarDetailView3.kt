@@ -64,7 +64,7 @@ class CalendarDetailView3 : AppCompatActivity() {
 
 
         val btnBack2: ImageButton = findViewById(com.umc.yourweather.R.id.btn_calendardetailview3_back)
-
+        val btnPlus: ImageButton=findViewById(com.umc.yourweather.R.id.btn_calendardetailview3_plus)
         val weatherId = intent.getIntExtra("weatherId", -1) // -1은 기본값, 원하는 값으로 설정해주세요
 
         // weatherId를 활용하여 API 요청 보내기
@@ -76,7 +76,10 @@ class CalendarDetailView3 : AppCompatActivity() {
             val intent = Intent(this@CalendarDetailView3, CalendarDetailView1::class.java)
             finish()
         }
-
+        btnPlus.setOnClickListener {
+            val intent = Intent(this@CalendarDetailView3, CalendarDetailviewModify2::class.java)
+            startActivity(intent)
+        }
 
     }
 
@@ -110,8 +113,79 @@ class CalendarDetailView3 : AppCompatActivity() {
                         val userNickname =
                             UserSharedPreferences.getUserNickname(this@CalendarDetailView3)
 
-                        // inding.tvCalendarDetailview11.text =
-                        // ("${month}월 ${day}일 ${userNickname}님의 날씨")
+                       // inding.tvCalendarDetailview11.text =
+                       //  ("${month}월 ${day}일 ${userNickname}님의 날씨")
+
+                        //                        if (memoList.isNotEmpty()) {
+//                            val firstMemoItem = memoList[0]
+//                            val memoId = firstMemoItem.memoId
+//
+//                            binding.icHorizontalScrollWeather.setImageResource(
+//                                getWeatherIconResource(firstMemoItem.status)
+//                            )
+//                            val temperature = firstMemoItem.temperature
+//
+//                            // 여기에서 memoItem의 필드 값을 활용하여 작업 수행
+// // creationDatetime을 AM/PM 형식으로 표시하기 위해 포맷 변경
+//                            val creationDatetime = formatDateToAmPm(firstMemoItem.dateTime)
+//                            binding.tvHorizontalScrollTime.text = creationDatetime
+//                            binding.icHorizontalScrollWeather.setImageResource(
+//                                getWeatherIconResource(firstMemoItem.status)
+//                            )
+//
+//                            // Create entries from the x and y values received from the server
+//                            val entries: ArrayList<Entry> = ArrayList()
+//
+//                            for (i in firstMemoItem.dateTime.indices) {
+//                                val xValue = i.toFloat() // Use index as x value
+//                                val yValue =
+//                                    firstMemoItem.temperature.toFloat() // Use firstMemoItem.temperature as y value
+//                                entries.add(Entry(xValue, yValue))
+//                            }
+//
+//                            // Create a LineDataSet from the entries
+//                            val lineDataSet = LineDataSet(entries, "Temperature Data")
+//
+//                            // Customize the appearance of the LineDataSet
+//                            lineDataSet.setCircleColor(Color.parseColor("#525252"))
+//                            lineDataSet.setCircleHoleColor(Color.WHITE)
+//                            lineDataSet.color = Color.parseColor("#F0A830")
+//                            lineDataSet.setDrawHorizontalHighlightIndicator(false)
+//                            lineDataSet.setDrawHighlightIndicators(false)
+//                            lineDataSet.setDrawValues(false)
+//
+//                            // Add the LineDataSet to a List of ILineDataSet
+//                            val dataSets: ArrayList<ILineDataSet> = ArrayList()
+//                            dataSets.add(lineDataSet)
+//
+//                            // Create a LineData from the List of ILineDataSet
+//                            val lineData = LineData(dataSets)
+//
+//                            // Get the LineChart view from the layout
+//                            val lineChart: LineChart =
+//                                binding.chartHorizontalScrollTempGraph // Make sure to update the ID
+//
+//                            // Set the LineData to the LineChart
+//                            lineChart.data = lineData
+//
+//                            // Customize the appearance of the LineChart
+//                            lineChart.setDrawBorders(false) // Hide chart borders
+//                            lineChart.description.isEnabled = false // Hide chart description
+//                            lineChart.legend.isEnabled = false // Hide chart legend
+//                            lineChart.xAxis.isEnabled = false // Hide x-axis
+//                            lineChart.axisLeft.isEnabled = false // Hide left y-axis
+//                            lineChart.axisRight.isEnabled = false // Hide right y-axis
+//                            lineChart.axisLeft.setDrawGridLines(false) // Hide horizontal grid lines
+//                            lineChart.axisRight.setDrawGridLines(false) // Hide horizontal grid lines
+//                            lineChart.xAxis.setDrawGridLines(false) // Hide vertical grid lines
+//                            lineChart.setTouchEnabled(false) // Disable chart touch
+//
+//                            // Hide chart borders (graph frame)
+//                            lineChart.setDrawBorders(false)
+//
+//                            // Refresh the LineChart to update the view
+//                            lineChart.invalidate()
+//
                     } else {
                         // 서버 응답은 성공했지만 데이터가 없는 경우 처리
                         Log.e("API Response", "No memo data for the requested date")
