@@ -1,12 +1,10 @@
 package com.umc.yourweather.presentation.calendardetailview
 
-import android.content.Context
 import android.content.Intent
 import android.os.Bundle
 import android.util.Log
 import android.view.animation.Animation
 import android.view.animation.AnimationUtils
-import android.view.inputmethod.InputMethodManager
 import android.widget.Button
 import android.widget.SeekBar
 import androidx.appcompat.app.AppCompatActivity
@@ -67,7 +65,7 @@ class CalendarDetailviewModify2 : AppCompatActivity() {
         binding.flCalendarDetailviewBack.setOnClickListener {
             activityFinish()
         }
-
+        val userNickname = UserSharedPreferences.getUserNickname(this@CalendarDetailviewModify2)
 
     }
 
