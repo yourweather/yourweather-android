@@ -154,9 +154,11 @@ class BottomNavi : AppCompatActivity() {
                                 "Calendar",
                                 "onResponse 에러: " + weatherResponse?.message.toString(),
                             )
+                            continuation.resume(false, null)
                         }
                     } else {
                         Log.d("Calendar", "onFailure 에러: " + weatherResponse?.message.toString())
+                        continuation.resume(false, null)
                     }
                 }
 
