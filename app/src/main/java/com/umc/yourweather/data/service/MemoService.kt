@@ -37,5 +37,5 @@ interface MemoService {
     @GET("/api/v1/memo/daily/{weatherId}")
     fun memoReturn(
         @Path("weatherId") weatherId: Int,
-    ): Call<BaseResponse<BaseResponse<MemoDailyResponse>>>
+    ): Call<BaseResponse<MemoDailyResponse>>
 }

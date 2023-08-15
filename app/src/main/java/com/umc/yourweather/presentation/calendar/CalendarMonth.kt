@@ -31,7 +31,7 @@ class CalendarMonth @JvmOverloads constructor(
         @RequiresApi(Build.VERSION_CODES.O)
         override fun onDateClick(date: LocalDate, weatherId: Int?) {
             Log.d("캘린더 클릭", "Clicked date: $date, 여기는 CalendarMonth")
-
+            Log.d("calendar weatherId total view", "weather Id : $weatherId")
             if (weatherId == null) {
                 val mIntent = Intent(context, CalendarDetailViewEmpty::class.java)
                 context.startActivity(mIntent)
