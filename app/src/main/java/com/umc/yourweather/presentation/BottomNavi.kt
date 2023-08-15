@@ -43,6 +43,7 @@ class BottomNavi : AppCompatActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_bnv)
+        var isClickInProgress = false // 클릭 진행 중 여부를 저장하는 변수
 
         // false 반환시 입력값 없음 -> 오류났을 때 무조건 false반환하게
         // true 반환시 입렧값 있음
@@ -68,28 +69,40 @@ class BottomNavi : AppCompatActivity() {
         }
 
         bn.setOnItemSelectedListener {
-            when (it.itemId) {
-                R.id.bnv_home -> {
-                    CoroutineScope(Dispatchers.Main).launch {
-                        val result = isTodayRecordExist()
-                        Log.d("코루틴 반환값 확인", "$result")
-                        Log.d("코루틴 시작 메인함수 ", "결과옴")
-                        Log.d("코루틴 시작 메인함수", "프래그먼트 시작")
-                        if (result) {
-                            replaceFragment(HomeFragment()) // isExistMissedInput가 true일 때 띄울 프래그먼트를 넣으세요.
-                        } else {
+            if (!isClickInProgress) { // 클릭 진행 중이 아닐 때만 실행, 광클 시 앱 종료 방지
+                isClickInProgress = true // 클릭 시작
+                when (it.itemId) {
+                    R.id.bnv_home -> {
+                        CoroutineScope(Dispatchers.Main).launch {
+                            val result = isTodayRecordExist()
+                            Log.d("코루틴 반환값 확인", "$result")
                             Log.d("코루틴 시작 메인함수 ", "결과옴")
-                            Log.d("코루틴 시작 메인함수", "프래그먼트")
-                            replaceFragment(InitialNoWeatherFragment())
+                            Log.d("코루틴 시작 메인함수", "프래그먼트 시작")
+                            if (result) {
+                                replaceFragment(HomeFragment()) // isExistMissedInput가 true일 때 띄울 프래그먼트를 넣으세요.
+                            } else {
+                                Log.d("코루틴 시작 메인함수 ", "결과옴")
+                                Log.d("코루틴 시작 메인함수", "프래그먼트")
+                                replaceFragment(InitialNoWeatherFragment())
+                            }
                         }
+                        isClickInProgress = false
+                    }
+
+                    R.id.bnv_calender -> {
+                        replaceFragment(CalendarTotalViewFragment())
+                        isClickInProgress = false
+                    }
+                    R.id.bnv_report -> {
+                        replaceFragment(AnalysisFragment())
+                        isClickInProgress = false
+                    }
+                    else -> {
+                        replaceFragment(MyPageFragment())
+                        isClickInProgress = false
                     }
                 }
-
-                R.id.bnv_calender -> replaceFragment(CalendarTotalViewFragment())
-                R.id.bnv_report -> replaceFragment(AnalysisFragment())
-                else -> replaceFragment(MyPageFragment())
             }
-
             true
         }
     }
