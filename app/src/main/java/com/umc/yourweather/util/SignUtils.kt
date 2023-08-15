@@ -3,12 +3,16 @@ package com.umc.yourweather.util
 import android.content.Context
 import android.os.Handler
 import android.text.Editable
+import android.text.Spannable
+import android.text.SpannableString
 import android.text.TextWatcher
+import android.text.style.ForegroundColorSpan
 import android.view.LayoutInflater
 import android.view.View
 import android.widget.PopupWindow
 import android.widget.TextView
 import androidx.appcompat.widget.AppCompatButton
+import com.google.android.material.color.MaterialColors.getColor
 import com.umc.yourweather.R
 import com.umc.yourweather.util.CalendarUtils.Companion.dpToPx
 
@@ -72,6 +76,30 @@ class SignUtils {
                     checkError()
                 }
             }
+        }
+
+        fun setAlertText(context: Context, view: View, id: Int) {
+            var textView = view.findViewById<TextView>(id)
+
+            val color = context.getColor(R.color.sorange) // 변경하려는 색상
+            val str1 = "로그인을 함으로써\n" +
+                "유어웨더의 "
+            val str2 = "개인정보처리방침"
+            val str3 = ", "
+            val str4 = "서비스 이용약관"
+            val str5 = "에 동의하시게 됩니다."
+            val spannable = SpannableString("$str1$str2$str3$str4$str5")
+
+            val startStr2 = str1.length
+            val endStr2 = startStr2 + str2.length
+            spannable.setSpan(ForegroundColorSpan(color), startStr2, endStr2, Spannable.SPAN_EXCLUSIVE_EXCLUSIVE)
+
+            // str4 부분에만 색상을 다르게 설정
+            val startStr4 = endStr2 + str3.length // 이전 텍스트 길이 + 쉼표 길이
+            val endStr4 = startStr4 + str4.length
+            spannable.setSpan(ForegroundColorSpan(color), startStr4, endStr4, Spannable.SPAN_EXCLUSIVE_EXCLUSIVE)
+
+            textView.setText(spannable, TextView.BufferType.SPANNABLE)
         }
     }
 }
