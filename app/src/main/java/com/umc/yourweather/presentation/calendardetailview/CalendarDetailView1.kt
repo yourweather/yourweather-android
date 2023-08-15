@@ -23,8 +23,6 @@ import com.umc.yourweather.di.UserSharedPreferences
 import retrofit2.Call
 import retrofit2.Callback
 import retrofit2.Response
-import java.time.LocalDateTime
-import java.time.format.DateTimeFormatter
 import java.util.*
 
 class CalendarDetailView1 : AppCompatActivity() {
@@ -100,18 +98,28 @@ class CalendarDetailView1 : AppCompatActivity() {
                     val responseBody = response.body()
 
                     if (response.code() == 200) { // 요청성공
+
+                        // 서버에서 받아온 데이터
                         val memoList = responseBody?.result?.memoList
                         val memoContentList = responseBody?.result?.memoContentList
 
+                        Log.d("캘린더 디테일 뷰 데이터 memoList", "$memoList")
+                        Log.d("캘린더 디테일 뷰 데이터 memoContentLis", "$memoContentList")
+                        Log.e("API Response", "Failed to retrieve memo data")
+
+                        /* memoList의 첫번째 데이터의 시간을 가져오는 예시
+                        "2023-08-16T01:09:58"라 T 기준으로 나눔
                         val dateString = memoList?.firstOrNull()?.dateTime
-                        val formatter =
-                            DateTimeFormatter.ofPattern("yyyy-MM-dd'T'HH:mm:ss.SSS'Z'", Locale.US)
-                        val date = LocalDateTime.parse(dateString, formatter)
 
-                        val month = date.monthValue
-                        val year = date.year
+                        val date = dateString?.split("T")?.get(0)
+                        val hour = dateString?.split("T")?.get(1)
 
+                        Log.d("캘린더 날짜", "$date")
+                        Log.d("캘린더 시간 ", "$hour")
                         // 사용자 닉네임 가져오기
+
+                        */
+
                         val userNickname =
                             UserSharedPreferences.getUserNickname(this@CalendarDetailView1)
 

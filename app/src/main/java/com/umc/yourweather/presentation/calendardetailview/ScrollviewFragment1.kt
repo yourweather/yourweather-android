@@ -2,13 +2,11 @@ package com.umc.yourweather.presentation.calendardetailview
 
 import android.os.Bundle
 import android.util.Log
-import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
-import androidx.recyclerview.widget.LinearLayoutManager
+import androidx.fragment.app.Fragment
 import androidx.recyclerview.widget.RecyclerView
-import com.google.android.material.textview.MaterialTextView
 import com.umc.yourweather.R
 import com.umc.yourweather.data.remote.response.BaseResponse
 import com.umc.yourweather.data.remote.response.MemoDailyResponse
@@ -18,9 +16,6 @@ import com.umc.yourweather.di.RetrofitImpl
 import com.umc.yourweather.presentation.adapter.CalendarDetailviewDiaryAdapter
 import retrofit2.Call
 import retrofit2.Response
-import java.text.SimpleDateFormat
-import java.util.Calendar
-import java.util.Locale
 
 // TODO: Rename parameter arguments, choose names that match
 // the fragment initialization parameters, e.g. ARG_ITEM_NUMBER
@@ -52,21 +47,18 @@ class ScrollviewFragment1 : Fragment() {
     }
 
     override fun onCreateView(
-        inflater: LayoutInflater, container: ViewGroup?,
-        savedInstanceState: Bundle?
+        inflater: LayoutInflater,
+        container: ViewGroup?,
+        savedInstanceState: Bundle?,
     ): View? {
-
         // Inflate the layout for this fragment
         val rootView = inflater.inflate(R.layout.fragment_scrollview1, container, false)
         binding = FragmentScrollview1Binding.bind(rootView)
 
-
         val selectedDate = arguments?.getString("selectedDate")
         binding.tvScrollviewFragment11.text = selectedDate
 
-
         return rootView
-
     }
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
@@ -80,91 +72,87 @@ class ScrollviewFragment1 : Fragment() {
             ScrollviewFragment1Api(weatherId)
         }
         // 그 외의 UI 초기화나 설정 등을 진행할 수 있습니다.
-
-
     }
-    private fun ScrollviewFragment1Api(weatherId: Int){
+    private fun ScrollviewFragment1Api(weatherId: Int) {
         val memoService = RetrofitImpl.authenticatedRetrofit.create(MemoService::class.java)
         val call = memoService.memoReturn(weatherId = weatherId)
 
-        call.enqueue(object : retrofit2.Callback<BaseResponse<BaseResponse<MemoDailyResponse>>> {
-            override fun onResponse (
-                call: Call<BaseResponse<BaseResponse<MemoDailyResponse>>>,
-                response: Response<BaseResponse<BaseResponse<MemoDailyResponse>>>
-            ){
-                if (response.isSuccessful) {
-                    val outerResponse = response.body()?.result
-                    val memoDailyResponse = outerResponse?.result
-
-                    if (memoDailyResponse != null) {
-                        val memoContentList = memoDailyResponse.memoContentList
-
-                        // 여기에서 사용자 정보 활용하여 작업 수행
-                        if (memoContentList.isNotEmpty()) {
-                            val firstMemoContent = memoContentList[0] // Use the first memo content item
-                            val memoId = firstMemoContent.memoId
-                            val creationDatetime = firstMemoContent.dateTime
-                            val content = firstMemoContent.status
-                            // 여기에서 memoItem의 필드 값을 활용하여 작업 수행
-                            viewAdapter = CalendarDetailviewDiaryAdapter(memoContentList)
-
-                            // Initialize the RecyclerView and its components
-                            recyclerView = rootView.findViewById<RecyclerView>(R.id.rv_scrollview_fragment1_1)
-                            viewManager = LinearLayoutManager(context, LinearLayoutManager.HORIZONTAL, true)
-
-
-                            // Configure the RecyclerView
-                            recyclerView.apply {
-                                // Improve performance if the layout size of the RecyclerView doesn't change
-                                setHasFixedSize(true)
-                                // Use a linear layout manager
-                                layoutManager = viewManager
-                                // Specify an adapter
-                                adapter = viewAdapter
-                            }
-
-                            val dateString = firstMemoContent.dateTime
-                            val dateFormat = SimpleDateFormat("yyyy-MM-dd'T'HH:mm:ss.SSS'Z'", Locale.US)
-                            val date1 = dateFormat.parse(dateString.toString())
-                            val date2 = dateFormat.parse(creationDatetime)
-                            val calendar = Calendar.getInstance()
-                            calendar.time = date1
-
-
-                            val month = calendar.get(Calendar.MONTH) + 1 // 월은 0부터 시작하므로 +1을 해줌
-                            val day = calendar.get(Calendar.DAY_OF_MONTH)
-
-                            binding.tvScrollviewFragment11.text=("${month}월 ${day}일의 일기" )
-
-                            // Apply the desired time format
-                            val outputFormat = SimpleDateFormat("a h시", Locale.US)
-                            val formattedTime = outputFormat.format(date2)
-
-                            binding.tvScrollviewFragmentTime.text=formattedTime
-
-                        }
-
-                        else {
-                            // 서버 응답은 성공했지만 데이터가 없는 경우 처리
-                            Log.e("API Response", "No memo data for the requested date")
-                        }
-                    } else {
-                        // 서버 응답이 실패한 경우 처리
-                        Log.e("API Response", "Failed to retrieve memo data")
-                    }
-                }
+        call.enqueue(object : retrofit2.Callback<BaseResponse<MemoDailyResponse>> {
+            override fun onResponse(
+                call: Call<BaseResponse<MemoDailyResponse>>,
+                response: Response<BaseResponse<MemoDailyResponse>>,
+            ) {
+//                if (response.isSuccessful) {
+//                    val outerResponse = response.body()?.result
+//                    val memoDailyResponse = outerResponse?.result
+//
+//                    if (memoDailyResponse != null) {
+//                        val memoContentList = memoDailyResponse.memoContentList
+//
+//                        // 여기에서 사용자 정보 활용하여 작업 수행
+//                        if (memoContentList.isNotEmpty()) {
+//                            val firstMemoContent = memoContentList[0] // Use the first memo content item
+//                            val memoId = firstMemoContent.memoId
+//                            val creationDatetime = firstMemoContent.dateTime
+//                            val content = firstMemoContent.status
+//                            // 여기에서 memoItem의 필드 값을 활용하여 작업 수행
+//                            viewAdapter = CalendarDetailviewDiaryAdapter(memoContentList)
+//
+//                            // Initialize the RecyclerView and its components
+//                            recyclerView = rootView.findViewById<RecyclerView>(R.id.rv_scrollview_fragment1_1)
+//                            viewManager = LinearLayoutManager(context, LinearLayoutManager.HORIZONTAL, true)
+//
+//
+//                            // Configure the RecyclerView
+//                            recyclerView.apply {
+//                                // Improve performance if the layout size of the RecyclerView doesn't change
+//                                setHasFixedSize(true)
+//                                // Use a linear layout manager
+//                                layoutManager = viewManager
+//                                // Specify an adapter
+//                                adapter = viewAdapter
+//                            }
+//
+//                            val dateString = firstMemoContent.dateTime
+//                            val dateFormat = SimpleDateFormat("yyyy-MM-dd'T'HH:mm:ss.SSS'Z'", Locale.US)
+//                            val date1 = dateFormat.parse(dateString.toString())
+//                            val date2 = dateFormat.parse(creationDatetime)
+//                            val calendar = Calendar.getInstance()
+//                            calendar.time = date1
+//
+//
+//                            val month = calendar.get(Calendar.MONTH) + 1 // 월은 0부터 시작하므로 +1을 해줌
+//                            val day = calendar.get(Calendar.DAY_OF_MONTH)
+//
+//                            binding.tvScrollviewFragment11.text=("${month}월 ${day}일의 일기" )
+//
+//                            // Apply the desired time format
+//                            val outputFormat = SimpleDateFormat("a h시", Locale.US)
+//                            val formattedTime = outputFormat.format(date2)
+//
+//                            binding.tvScrollviewFragmentTime.text=formattedTime
+//
+//                        }
+//
+//                        else {
+//                            // 서버 응답은 성공했지만 데이터가 없는 경우 처리
+//                            Log.e("API Response", "No memo data for the requested date")
+//                        }
+//                    } else {
+//                        // 서버 응답이 실패한 경우 처리
+//                        Log.e("API Response", "Failed to retrieve memo data")
+//                    }
+//                }
             }
             override fun onFailure(
-                call: Call<BaseResponse<BaseResponse<MemoDailyResponse>>>,
-                t: Throwable
+                call: Call<BaseResponse<MemoDailyResponse>>,
+                t: Throwable,
             ) {
                 // 네트워크 요청 실패 처리
                 Log.e("API Failure", "Error: ${t.message}", t)
                 // 사용자에게 오류 메시지 표시
                 val errorMessage = "네트워크 요청이 실패했습니다."
             }
-
-
         })
     }
 
