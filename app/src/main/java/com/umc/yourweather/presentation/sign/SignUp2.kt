@@ -10,6 +10,7 @@ import android.view.View
 import androidx.appcompat.app.AppCompatActivity
 import com.umc.yourweather.R
 import com.umc.yourweather.databinding.ActivitySignUp2Binding
+import com.umc.yourweather.util.SignUtils
 import com.umc.yourweather.util.SignUtils.Companion.isValidPassword
 
 class SignUp2 : AppCompatActivity() {
@@ -19,6 +20,9 @@ class SignUp2 : AppCompatActivity() {
         super.onCreate(savedInstanceState)
         binding = ActivitySignUp2Binding.inflate(layoutInflater)
         setContentView(binding.root)
+
+        // 아래 동의 문구 글자 색깔 지정해주는 코드
+        SignUtils.setAlertText(this@SignUp2, binding.root, R.id.tv_signup2_alertText2)
 
         binding.btnSignup2Next.setOnClickListener {
             getPw()
