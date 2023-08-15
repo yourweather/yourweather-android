@@ -20,6 +20,7 @@ import com.umc.yourweather.data.service.EmailService
 import com.umc.yourweather.databinding.ActivitySignUpBinding
 import com.umc.yourweather.di.RetrofitImpl
 import com.umc.yourweather.util.SignUtils.Companion.createTextWatcher
+import com.umc.yourweather.util.SignUtils.Companion.setAlertText
 import retrofit2.Call
 import retrofit2.Callback
 import retrofit2.Response
@@ -39,6 +40,9 @@ class SignUp : AppCompatActivity() {
         super.onCreate(savedInstanceState)
         binding = ActivitySignUpBinding.inflate(layoutInflater)
         setContentView(binding.root)
+
+        // 아래 동의 문구 글자 색깔 지정해주는 코드
+        setAlertText(this@SignUp, binding.root, R.id.tv_signup_alertText)
 
         // "뒤로 가기" 버튼 클릭 시 이벤트 처리
         binding.btnSingupBack.setOnClickListener {

@@ -84,11 +84,21 @@ class SignUtils {
             val color = context.getColor(R.color.sorange) // 변경하려는 색상
             val str1 = "로그인을 함으로써\n" +
                 "유어웨더의 "
-            val str2 = "개인정보처리방침, 서비스 이용약관"
-            val str3 = "에 동의하시게 됩니다."
+            val str2 = "개인정보처리방침"
+            val str3 = ", "
+            val str4 = "서비스 이용약관"
+            val str5 = "에 동의하시게 됩니다."
+            val spannable = SpannableString("$str1$str2$str3$str4$str5")
 
-            val spannable = SpannableString("$str1$str2$str3")
-            spannable.setSpan(ForegroundColorSpan(color), str1.length, str1.length + str2.length, Spannable.SPAN_EXCLUSIVE_EXCLUSIVE)
+            val startStr2 = str1.length
+            val endStr2 = startStr2 + str2.length
+            spannable.setSpan(ForegroundColorSpan(color), startStr2, endStr2, Spannable.SPAN_EXCLUSIVE_EXCLUSIVE)
+
+            // str4 부분에만 색상을 다르게 설정
+            val startStr4 = endStr2 + str3.length // 이전 텍스트 길이 + 쉼표 길이
+            val endStr4 = startStr4 + str4.length
+            spannable.setSpan(ForegroundColorSpan(color), startStr4, endStr4, Spannable.SPAN_EXCLUSIVE_EXCLUSIVE)
+
             textView.setText(spannable, TextView.BufferType.SPANNABLE)
         }
     }
