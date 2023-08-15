@@ -220,9 +220,9 @@ class BarStaticsMonthlyFragment : Fragment() {
     private fun getColorForWeather(weatherLabel: String): Int {
         return when (weatherLabel) {
             "맑음" -> Color.parseColor("#FCC112")
-            "구름 약간" -> Color.parseColor("#C7C7C7")
-            "비" -> Color.parseColor("#8299BB")
-            "번개" -> Color.parseColor("#1A1D34")
+            "구름 약간" -> Color.parseColor("#F6EBDB")
+            "비" -> Color.parseColor("#2F9BFF")
+            "번개" -> Color.parseColor("#010738")
             else -> Color.parseColor("#A0A0A0")
         }
     }
