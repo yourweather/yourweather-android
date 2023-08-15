@@ -119,7 +119,7 @@ class UnwrittenDetailListFragment : Fragment() {
                                 val dataList = fetchDataFromAPI(localDates)
 
                                 binding.recyclerViewUnwrittenDetail.layoutManager = LinearLayoutManager(requireContext())
-                                val adapter = UnwrittenRVAdapter(dataList, requireContext())
+                                val adapter = UnwrittenRVAdapter(dataList, localDates, requireContext())
                                 binding.recyclerViewUnwrittenDetail.adapter = adapter
                             } else {
                                 Log.e("Error (null)", "Response body 비었음")
