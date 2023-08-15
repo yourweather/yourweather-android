@@ -81,6 +81,7 @@ class HomeFragment : Fragment(), HomeFragmentInteractionListener {
     override fun goToNewHome() {
         fetchHomeDataAndHandleResponse()
         parentFragmentManager.popBackStackImmediate()
+        showHomeToast()
     }
 
     private fun fetchHomeDataAndHandleResponse() {
@@ -172,7 +173,6 @@ class HomeFragment : Fragment(), HomeFragmentInteractionListener {
             .load(motionResource)
             .into(binding.motionHomeWeather)
     }
-
     private fun showHomeToast() {
         val customToastView = LayoutInflater.from(requireContext()).inflate(R.layout.toast_home, null)
 
@@ -186,7 +186,6 @@ class HomeFragment : Fragment(), HomeFragmentInteractionListener {
             0,
             resources.getDimensionPixelSize(R.dimen.home_toast_margin_bottom),
         )
-
-        homeToast.show()
     }
+
 }
