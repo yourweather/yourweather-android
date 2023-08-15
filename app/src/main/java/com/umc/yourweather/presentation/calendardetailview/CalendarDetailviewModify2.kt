@@ -11,6 +11,7 @@ import android.widget.Button
 import android.widget.SeekBar
 import androidx.appcompat.app.AppCompatActivity
 import androidx.appcompat.widget.AppCompatEditText
+import androidx.core.content.ContentProviderCompat.requireContext
 import androidx.core.content.ContextCompat
 import com.umc.yourweather.R
 import com.umc.yourweather.data.enums.Status
@@ -20,6 +21,7 @@ import com.umc.yourweather.data.remote.response.MemoResponse
 import com.umc.yourweather.data.service.MemoService
 import com.umc.yourweather.databinding.ActivityCalendarDetailviewModify2Binding
 import com.umc.yourweather.di.RetrofitImpl
+import com.umc.yourweather.di.UserSharedPreferences
 import retrofit2.Call
 import retrofit2.Callback
 import retrofit2.Response
@@ -65,6 +67,8 @@ class CalendarDetailviewModify2 : AppCompatActivity() {
         binding.flCalendarDetailviewBack.setOnClickListener {
             activityFinish()
         }
+
+
     }
 
     // 뒤로 가기 누른 경우
