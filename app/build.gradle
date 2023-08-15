@@ -112,4 +112,8 @@ dependencies {
     //OkHttp: 통신 로그 확인하기 위함
     implementation 'com.squareup.okhttp3:okhttp:4.9.3'
     implementation 'com.squareup.okhttp3:logging-interceptor:4.9.3'
+
+    implementation 'com.google.android.material:material:1.9.0'
+    implementation 'com.github.mirzemehdi:timeintervalpicker:1.0.0'
+
 }

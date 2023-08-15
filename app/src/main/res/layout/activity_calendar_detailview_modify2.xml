@@ -123,7 +123,7 @@
                             android:layout_marginTop="23dp"
                             android:layout_marginEnd="0dp"
                             android:fontFamily="@font/pretendardregular"
-                            android:text="몇시의 감정을 기록하시겠어요?"
+                            android:text="몇 시의 감정을 기록하시겠어요?"
                             android:textColor="#2B2B2B"
                             android:textFontWeight="600"
                             android:textSize="14sp"
@@ -138,7 +138,7 @@
 
 
                             <TextView
-                                android:id="@+id/tv_calendar_detailview_modify2_10"
+                                android:id="@+id/tv_detailview_modify2_time"
                                 android:layout_width="wrap_content"
                                 android:layout_height="wrap_content"
                                 android:layout_marginTop="18dp"
@@ -151,6 +151,7 @@
                                 android:textSize="20sp"
                                 app:layout_constraintEnd_toEndOf="parent"
                                 app:layout_constraintTop_toBottomOf="@+id/tv_calendar_detailview_modify2_8" />
+
 
                         </LinearLayout>
                     </LinearLayout>

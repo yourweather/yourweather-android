@@ -9,8 +9,8 @@ import android.widget.Button
 import android.widget.SeekBar
 import androidx.appcompat.app.AppCompatActivity
 import androidx.appcompat.widget.AppCompatEditText
-import androidx.core.content.ContentProviderCompat.requireContext
 import androidx.core.content.ContextCompat
+import com.mmk.timeintervalpicker.TimeIntervalPicker
 import com.umc.yourweather.R
 import com.umc.yourweather.data.enums.Status
 import com.umc.yourweather.data.remote.request.MemoRequest
@@ -33,6 +33,7 @@ class CalendarDetailviewModify2 : AppCompatActivity() {
     private var isSeekBarAdjusted = false // 변수 선언
     private var selectedStatus: Status? = null // 기본값으로 SUNNY 설정
 
+    private var selectedTime: String? = "오후 12:00"
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         binding = ActivityCalendarDetailviewModify2Binding.inflate(layoutInflater)
@@ -67,21 +68,81 @@ class CalendarDetailviewModify2 : AppCompatActivity() {
         }
         val userNickname = UserSharedPreferences.getUserNickname(this@CalendarDetailviewModify2)
 
-        binding.tvDetailviewModify2Title1.text = "${userNickname} 님의 감정 상태"
-        binding.tvDetailviewModify2Title2.text = "${userNickname} 님의 감정 온도"
-        binding.tvDetailviewModify2Title3.text = "${userNickname} 님의 일기"
+        binding.tvDetailviewModify2Title1.text = "$userNickname 님의 감정 상태"
+        binding.tvDetailviewModify2Title2.text = "$userNickname 님의 감정 온도"
+        binding.tvDetailviewModify2Title3.text = "$userNickname 님의 일기"
 
+        // 시간 선택 다이얼로그 설정
+
+        val timeIntervalPicker = TimeIntervalPicker.Builder()
+            .setTitleText("알림 시간 설정")
+            .setIntervalBetweenHours(1)
+            .setIntervalBetweenMinutes(5)
+            .setHour(12)
+            .setMinute(0)
+            .setHourListCircular(true)
+            .setMinuteListCircular(true)
+            .build()
+
+        timeIntervalPicker.addOnPositiveButtonClickListener {
+            val formattedTime = formatTimeWithAmPm(timeIntervalPicker.hour, timeIntervalPicker.minute)
+            binding.tvDetailviewModify2Time.text = formattedTime
+        }
+        binding.tvDetailviewModify2Time.setOnClickListener {
+// Show dialog
+            timeIntervalPicker.show(supportFragmentManager, "TimeIntervalPicker")
+        }
+    }
+
+    // Function to format time with AM/PM
+    private fun formatTimeWithAmPm(hour: Int, minute: Int): String {
+        val calendar = Calendar.getInstance()
+        calendar.set(Calendar.HOUR_OF_DAY, hour)
+        calendar.set(Calendar.MINUTE, minute)
+
+        val simpleDateFormat = SimpleDateFormat("a hh:mm", Locale.getDefault())
+        return simpleDateFormat.format(calendar.time)
+    }
+    /*
+    private fun ShowTimePickerDialog() {
+        val builder = MaterialTimePicker.Builder()
+            .setTitleText("시간 선택")
+            .setTimeFormat(TimeFormat.CLOCK_12H) // 12-hour format with AM/PM
+            .build()
+
+        builder.addOnPositiveButtonClickListener {
+            val selectedHour = builder.hour
+            val selectedMinute = builder.minute
+            val selectedAmPm = if (builder.hour < 12) "AM" else "PM"
+
+            selectedTime = String.format(Locale.getDefault(), "%02d:%02d %s", selectedHour, selectedMinute, selectedAmPm)
+            binding.tvDetailviewModify2Time.text = selectedTime
+        }
+
+        builder.show(supportFragmentManager, builder.toString())
+    }
+
+     */
+
+    // 시간을 형식화하여 문자열로 반환
+    private fun formatTime(hour: Int, minute: Int): String {
+        val calendar = Calendar.getInstance()
+        calendar.set(Calendar.HOUR_OF_DAY, hour)
+        calendar.set(Calendar.MINUTE, minute)
+
+        val dateFormat = SimpleDateFormat("a hh:mm", Locale.getDefault())
+        return dateFormat.format(calendar.time)
     }
 
     // 뒤로 가기 누른 경우
     override fun onBackPressed() {
         finish()
     }
-    private fun getCurrentDateTime(): String {
-        val dateFormat = SimpleDateFormat("yyyy-MM-dd'T'HH:mm:ss", Locale.getDefault())
-        val now = Calendar.getInstance().time
-        return dateFormat.format(now)
-    }
+//    private fun getCurrentDateTime(): String {
+//        val dateFormat = SimpleDateFormat("yyyy-MM-dd'T'HH:mm:ss", Locale.getDefault())
+//        val now = Calendar.getInstance().time
+//        return dateFormat.format(now)
+//    }
 
     private fun setupWeatherButtons() {
         binding.btnHomeSun.setOnClickListener {
