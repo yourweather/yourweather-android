@@ -36,7 +36,6 @@ class CalendarDetailviewModify2 : AppCompatActivity() {
     private var isSeekBarAdjusted = false // 변수 선언
     private var selectedStatus: Status? = null // 기본값으로 SUNNY 설정
 
-    private var selectedTime: String? = "오후 12:00"
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         binding = ActivityCalendarDetailviewModify2Binding.inflate(layoutInflater)
