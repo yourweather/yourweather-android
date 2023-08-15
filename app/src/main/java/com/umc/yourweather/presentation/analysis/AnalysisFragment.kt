@@ -8,7 +8,6 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import androidx.fragment.app.Fragment
-import com.kakao.sdk.common.util.Utility
 import com.umc.yourweather.R
 import com.umc.yourweather.R.drawable
 import com.umc.yourweather.data.remote.response.BaseResponse
@@ -16,6 +15,10 @@ import com.umc.yourweather.data.remote.response.MissedInputResponse
 import com.umc.yourweather.data.service.ReportService
 import com.umc.yourweather.databinding.FragmentAnalysisBinding
 import com.umc.yourweather.di.RetrofitImpl
+import kotlinx.coroutines.CoroutineScope
+import kotlinx.coroutines.Dispatchers
+import kotlinx.coroutines.launch
+import kotlinx.coroutines.suspendCancellableCoroutine
 import retrofit2.Call
 import retrofit2.Callback
 import retrofit2.Response
@@ -44,8 +47,21 @@ class AnalysisFragment : Fragment() {
         val normalBackground: Drawable = resources.getDrawable(drawable.btn_brown_rec)
         val pressedBackground: Drawable = resources.getDrawable(drawable.btn_transp_rec)
 
-        viewMonthly()
+        CoroutineScope(Dispatchers.Main).launch {
+            val result = unWrittenApi()
+            if (result) { // 결과확인용
 
+                Log.d("코루틴 반환값 확인", "$result")
+                Log.d("코루틴 시작 메인함수 ", "결과옴")
+                Log.d("코루틴 시작 메인함수", "프래그먼트 시작")
+                viewMonthly()
+            } else {
+                Log.d("코루틴 반환값 확인", "$result")
+                Log.d("코루틴 시작 메인함수 ", "결과옴")
+                Log.d("코루틴 시작 메인함수", "프래그먼트")
+                viewMonthly()
+            }
+        }
         binding.btnAnalysisMonthly.setOnClickListener {
             if (isMonthlySelected) {
                 return@setOnClickListener // Already selected, do nothing
@@ -99,8 +115,6 @@ class AnalysisFragment : Fragment() {
          .commit()
          }
          * */
-
-        unWrittenApi()
     }
 
     private fun viewMonthly() {
@@ -120,66 +134,71 @@ class AnalysisFragment : Fragment() {
     }
 
     // 미입력 내역 호출 API
-    private fun unWrittenApi() {
+    private suspend fun unWrittenApi(): Boolean {
         val service = RetrofitImpl.authenticatedRetrofit.create(ReportService::class.java)
-        val call = service.noInput()
+        val call = service
+        return suspendCancellableCoroutine { continuation ->
+            val call = service.noInput()
+            call.enqueue(object : Callback<BaseResponse<MissedInputResponse>> {
+                override fun onResponse(
+                    call: Call<BaseResponse<MissedInputResponse>>,
+                    response: Response<BaseResponse<MissedInputResponse>>,
+                ) {
+                    if (response.isSuccessful) {
+                        val baseResponse = response.body() // BaseResponse 객체 가져오기
+                        Log.d("baseResponse", "baseResponse: $baseResponse")
 
-        call.enqueue(object : Callback<BaseResponse<MissedInputResponse>> {
-            override fun onResponse(
-                call: Call<BaseResponse<MissedInputResponse>>,
-                response: Response<BaseResponse<MissedInputResponse>>,
-            ) {
-                if (response.isSuccessful) {
-                    val baseResponse = response.body() // BaseResponse 객체 가져오기
-                    Log.d("baseResponse", "baseResponse: $baseResponse")
+                        if (baseResponse != null) {
+                            if (baseResponse.success) {
+                                val missedInputResponse = baseResponse.result
+                                if (missedInputResponse != null) {
+                                    val localDates = missedInputResponse.localDates
+                                    Log.d("미입력 내역 Success", "localDates: $localDates")
+                                    Log.d("코루틴 시작 요청함수 ", "요청시작")
+                                    Log.d("코루틴 시작 요청함수", "결과옴")
 
-                    if (baseResponse != null) {
-                        if (baseResponse.success) {
-                            val missedInputResponse = baseResponse.result
-                            if (missedInputResponse != null) {
-                                val localDates = missedInputResponse.localDates
-                                Log.d("미입력 내역 Success", "localDates: $localDates")
-
-                                if (localDates.isNullOrEmpty()) {
-                                    binding.btnBell.setOnClickListener {
-                                        val mFragment = AllWrittenFragment()
-                                        requireActivity().supportFragmentManager.beginTransaction()
-                                            .replace(R.id.fl_content, mFragment)
-                                            .addToBackStack(null)
-                                            .commit()
+                                    if (localDates.isNullOrEmpty()) {
+                                        binding.btnBell.setOnClickListener {
+                                            val mFragment = AllWrittenFragment()
+                                            requireActivity().supportFragmentManager.beginTransaction()
+                                                .replace(R.id.fl_content, mFragment)
+                                                .addToBackStack(null)
+                                                .commit()
+                                        }
+                                    } else {
+                                        binding.imgBellEvent.visibility = View.VISIBLE
+                                        binding.btnBell.setOnClickListener {
+                                            val mFragment = UnwrittenDetailListFragment()
+                                            requireActivity().supportFragmentManager.beginTransaction()
+                                                .replace(R.id.fl_content, mFragment)
+                                                .addToBackStack(null)
+                                                .commit()
+                                        }
                                     }
+                                    return continuation.resume(true, null)
                                 } else {
-                                    binding.imgBellEvent.visibility = View.VISIBLE
-                                    binding.btnBell.setOnClickListener {
-                                        val mFragment = UnwrittenDetailListFragment()
-                                        requireActivity().supportFragmentManager.beginTransaction()
-                                            .replace(R.id.fl_content, mFragment)
-                                            .addToBackStack(null)
-                                            .commit()
-                                    }
+                                    Log.e("Error (null)", "Response body 비었음")
                                 }
                             } else {
-                                Log.e("Error (null)", "Response body 비었음")
+                                Log.e("API Error", "API 호출 성공, 하지만 success 값이 false입니다.")
                             }
                         } else {
-                            Log.e("API Error", "API 호출 성공, 하지만 success 값이 false입니다.")
+                            Log.e("Error (null)", "Response body 비었음")
                         }
                     } else {
-                        Log.e("Error (null)", "Response body 비었음")
+                        val errorBody = response.errorBody()?.string()
+                        Log.e("API Error", "Response Code: ${response.code()}, Error Body: $errorBody")
                     }
-                } else {
-                    val errorBody = response.errorBody()?.string()
-                    Log.e("API Error", "Response Code: ${response.code()}, Error Body: $errorBody")
+                    continuation.resume(false, null)
                 }
-            }
 
-            override fun onFailure(call: Call<BaseResponse<MissedInputResponse>>, t: Throwable) {
-                Log.e("API Failure", "Error: ${t.message}", t)
-            }
-        })
+                override fun onFailure(call: Call<BaseResponse<MissedInputResponse>>, t: Throwable) {
+                    continuation.resume(false, null)
+                    Log.e("API Failure", "Error: ${t.message}", t)
+                }
+            })
+        }
     }
-
-
 
     override fun onDestroyView() {
         super.onDestroyView()
