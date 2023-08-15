@@ -17,7 +17,7 @@
             android:layout_marginTop="82dp"
             android:layout_marginEnd="88dp"
             android:fontFamily="@font/bmhanna"
-            android:text="7월 1일 이다은 님의 날씨"
+            android:text=""
             android:textColor="#2B2B2B"
             android:textFontWeight="600"
             android:textSize="20sp"
@@ -28,10 +28,10 @@
 
         <ImageButton
             android:id="@+id/btn_calendardetailview1_back"
-            android:layout_width="wrap_content"
-            android:layout_height="29dp"
+            android:layout_width="20sp"
+            android:layout_height="20sp"
+            android:layout_marginTop="20sp"
             android:layout_marginStart="17dp"
-            android:layout_marginTop="20dp"
             android:layout_marginEnd="335dp"
             android:layout_marginBottom="26dp"
             android:adjustViewBounds="true"

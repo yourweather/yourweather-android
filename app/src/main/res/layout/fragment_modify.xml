@@ -10,8 +10,8 @@
 
         <ImageButton
             android:id="@+id/btnCalendarDetailviewBack"
-            android:layout_width="match_parent"
-            android:layout_height="16dp"
+            android:layout_width="20sp"
+            android:layout_height="20sp"
             android:layout_marginTop="20dp"
             android:layout_marginEnd="375dp"
             android:layout_marginBottom="92dp"
@@ -48,7 +48,7 @@
             app:layout_constraintTop_toTopOf="parent"></Button>
 
         <TextView
-            android:id="@+id/tv_calendar_detailview_modify1_1"
+            android:id="@+id/tv_calendar_detailview_modify1_time"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_marginStart="35dp"

@@ -10,14 +10,14 @@
         android:layout_width="match_parent"
         android:layout_height="match_parent" >
         <TextView
-            android:id="@+id/textView"
+            android:id="@+id/tv_calendar_detailview3_1"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_marginStart="87dp"
             android:layout_marginTop="82dp"
             android:layout_marginEnd="88dp"
             android:fontFamily="@font/bmhanna"
-            android:text="7월 4일 이다은 님의 날씨"
+            android:text=""
             android:textColor="#2B2B2B"
             android:textFontWeight="600"
             android:textSize="20sp"
@@ -27,9 +27,9 @@
 
 
         <ImageButton
-            android:id="@+id/imageButton"
-            android:layout_width="wrap_content"
-            android:layout_height="29dp"
+            android:id="@+id/btn_calendardetailview3_back"
+            android:layout_width="20sp"
+            android:layout_height="20sp"
             android:layout_marginStart="17dp"
             android:layout_marginTop="20dp"
             android:layout_marginEnd="335dp"
@@ -68,7 +68,7 @@
 
 
         <TextView
-            android:id="@+id/textView12"
+            android:id="@+id/tv_calendar_detailview3_2"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_marginStart="16dp"
