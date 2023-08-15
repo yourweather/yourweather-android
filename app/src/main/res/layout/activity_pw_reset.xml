@@ -18,7 +18,7 @@
         app:layout_constraintTop_toTopOf="parent">
 
         <ImageButton
-            android:id="@+id/btn_singup_back"
+            android:id="@+id/btnResetPwLeftArrow"
             style="?android:attr/borderlessButtonStyle"
             android:layout_width="10dp"
             android:layout_height="18dp"

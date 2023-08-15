@@ -45,6 +45,9 @@ class ResetPw : AppCompatActivity() {
         binding.btnResetPwLeftArrow.setOnClickListener {
             finish()
         }
+        binding.flMypageNicknameBackbtn.setOnClickListener {
+            finish()
+        }
 
         binding.etResetPw.addTextChangedListener(createTextWatcher(::checkPwFormat))
         binding.etResetPwRepw.addTextChangedListener(createTextWatcher(::checkRePw))
