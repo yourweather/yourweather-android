@@ -161,7 +161,7 @@
                         android:orientation="vertical">
 
                         <TextView
-                            android:id="@+id/tv_calendar_detailview_modify2_2"
+                            android:id="@+id/tv_detailview_modify2_title1"
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
                             android:layout_marginStart="16dp"
@@ -245,7 +245,7 @@
                         android:orientation="vertical">
 
                         <TextView
-                            android:id="@+id/tv_calendar_detailview_modify2_4"
+                            android:id="@+id/tv_detailview_modify2_title2"
                             android:layout_width="match_parent"
                             android:layout_height="wrap_content"
                             android:layout_marginStart="20dp"
@@ -329,7 +329,7 @@
                         android:orientation="vertical">
 
                         <TextView
-                            android:id="@+id/tv_calendar_detailview_modify2_7"
+                            android:id="@+id/tv_detailview_modify2_title3"
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
                             android:layout_marginStart="16dp"

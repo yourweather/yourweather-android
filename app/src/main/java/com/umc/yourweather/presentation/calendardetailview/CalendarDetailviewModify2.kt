@@ -67,6 +67,10 @@ class CalendarDetailviewModify2 : AppCompatActivity() {
         }
         val userNickname = UserSharedPreferences.getUserNickname(this@CalendarDetailviewModify2)
 
+        binding.tvDetailviewModify2Title1.text = "${userNickname} 님의 감정 상태"
+        binding.tvDetailviewModify2Title2.text = "${userNickname} 님의 감정 온도"
+        binding.tvDetailviewModify2Title3.text = "${userNickname} 님의 일기"
+
     }
 
     // 뒤로 가기 누른 경우
