@@ -260,5 +260,6 @@ class SignIn : AppCompatActivity() {
     private fun moveToHome() {
         val mIntent = Intent(this@SignIn, BottomNavi::class.java)
         startActivity(mIntent)
+        finish()
     }
 }
