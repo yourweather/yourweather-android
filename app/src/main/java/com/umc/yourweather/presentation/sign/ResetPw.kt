@@ -16,6 +16,7 @@ import androidx.appcompat.app.AlertDialog
 import androidx.appcompat.app.AppCompatActivity
 import com.umc.yourweather.R
 import com.umc.yourweather.data.remote.request.ChangePasswordRequest
+import com.umc.yourweather.data.remote.request.ResetPasswordRequest
 import com.umc.yourweather.data.remote.response.BaseResponse
 import com.umc.yourweather.data.remote.response.UserResponse
 import com.umc.yourweather.data.service.UserService
@@ -102,7 +103,7 @@ class ResetPw : AppCompatActivity() {
     private fun resetPwApi(password: String) {
         val service = RetrofitImpl.authenticatedRetrofit.create(UserService::class.java)
 
-        service.changePw(ChangePasswordRequest(password)).enqueue(
+        service.changePw(ResetPasswordRequest(password)).enqueue(
             (
                 object :
                     Callback<BaseResponse<UserResponse>> {

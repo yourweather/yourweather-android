@@ -11,6 +11,7 @@ import com.umc.yourweather.R
 import com.umc.yourweather.data.remote.request.ChangeNicknameRequest
 import com.umc.yourweather.data.remote.request.ChangePasswordRequest
 import com.umc.yourweather.data.remote.response.BaseResponse
+import com.umc.yourweather.data.remote.response.ChangePasswordRespond
 import com.umc.yourweather.data.remote.response.UserResponse
 import com.umc.yourweather.data.service.UserService
 import com.umc.yourweather.databinding.ActivityMyPagePwChangeBinding
@@ -56,7 +57,7 @@ class MyPagePwChange : AppCompatActivity() {
     }
 
     private fun checkMyPw() {
-        val userPw = UserSharedPreferences.getUserPw(this)
+        val userPw = UserSharedPreferences.getUserPwToStar(this)
 
         var inputMyPW = binding.etMypagePwMypw.text.toString()
         if (inputMyPW.equals(userPw)) {
@@ -86,6 +87,7 @@ class MyPagePwChange : AppCompatActivity() {
         }
     }
     private fun checkRePw() {
+        val Pw = binding.etMypagePwMypw.text.toString()
         var newPw = binding.etMypagePwPw.text.toString()
         var reNewPw = binding.etMypagePwRepw.text.toString()
 
@@ -99,7 +101,7 @@ class MyPagePwChange : AppCompatActivity() {
             binding.btnMypagePwNext.isEnabled = flag == 1
 
             // API 호출
-            changePwAPI(newPw)
+            changePwAPI(Pw, newPw)
 
         } else {
             binding.etMypagePwRepw.background = resources.getDrawable(R.drawable.bg_gray_ed_fill_6_rect_border_red)
@@ -112,27 +114,33 @@ class MyPagePwChange : AppCompatActivity() {
         }
     }
 
-    private fun changePwAPI(newPw: String) {
+    private fun changePwAPI(Pw: String, newPw: String) {
         if (newPw.isNotEmpty()) {
-            performNicknameChange(newPw)
+            performNicknameChange(Pw, newPw)
         } else {
             // 닉네임이 비어있는 경우 처리
         }
     }
 
-    private fun performNicknameChange(newPw: String) {
+    private fun performNicknameChange(Pw: String, newPw: String) {
         val userService = RetrofitImpl.authenticatedRetrofit.create(UserService::class.java)
-        userService.changePw(ChangePasswordRequest(newPw))
-            .enqueue(object : Callback<BaseResponse<UserResponse>> {
+        userService.changePw(ChangePasswordRequest(Pw, newPw))
+            .enqueue(object : Callback<BaseResponse<ChangePasswordRespond>> {
                 override fun onResponse(
-                    call: Call<BaseResponse<UserResponse>>,
-                    response: Response<BaseResponse<UserResponse>>,
+                    call: Call<BaseResponse<ChangePasswordRespond>>,
+                    response: Response<BaseResponse<ChangePasswordRespond>>,
                 ) {
                     if (response.isSuccessful) {
-                        Log.d("비밀번호 변경", "비밀번호 변경 성공")
-                        handlePwChangeResponse(response)
-                        binding.btnMypagePwNext.setOnClickListener {
-                            finish()
+                        val changePasswordRespond = response.body()?.result // Assuming 'data' is the property that holds the response body
+                        if (changePasswordRespond != null && changePasswordRespond.success) {
+                            Log.d("비밀번호 변경", "비밀번호 변경 성공")
+                            handlePwChangeResponse(response)
+                            binding.btnMypagePwNext.setOnClickListener {
+                                finish()
+                            }
+                        } else {
+                            Log.d("비밀번호 변경 실패", "API 호출 실패: ${response.code()}")
+                            handlePwChangeResponse(response)
                         }
                     } else {
                         Log.d("비밀번호 변경 실패", "API 호출 실패: ${response.code()}")
@@ -140,7 +148,7 @@ class MyPagePwChange : AppCompatActivity() {
                     }
                 }
 
-                override fun onFailure(call: Call<BaseResponse<UserResponse>>, t: Throwable) {
+                override fun onFailure(call: Call<BaseResponse<ChangePasswordRespond>>, t: Throwable) {
                     Log.d("비밀번호 변경 실패", "API 호출 실패: ${t.message}")
                     handlePwChangeFailure(t)
                 }
@@ -148,12 +156,13 @@ class MyPagePwChange : AppCompatActivity() {
     }
 
 
-    private fun handlePwChangeResponse(response: Response<BaseResponse<UserResponse>>) {
+
+    private fun handlePwChangeResponse(response: Response<BaseResponse<ChangePasswordRespond>>) {
         if (response.isSuccessful) {
             val baseResponse = response.body()
             if (baseResponse != null && baseResponse.success) {
-                val userResponse = baseResponse.result
-                Log.d("비밀번호 변경", "비밀번호 변경 성공: ${userResponse?.nickname}")
+                val ChangePasswordRespond = baseResponse.result
+                Log.d("비밀번호 변경", "비밀번호 변경 성공: ${ChangePasswordRespond?.success}")
                 // 비밀번호 변경 성공 처리 또는 다음 화면으로 이동 처리
             } else {
                 Log.d("비밀번호 변경", "비밀번호 변경 실패")

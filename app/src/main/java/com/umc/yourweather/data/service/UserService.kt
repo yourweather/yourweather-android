@@ -2,6 +2,7 @@ package com.umc.yourweather.data.service
 
 import com.umc.yourweather.data.remote.request.ChangeNicknameRequest
 import com.umc.yourweather.data.remote.request.ChangePasswordRequest
+import com.umc.yourweather.data.remote.request.ResetPasswordRequest
 import com.umc.yourweather.data.remote.request.SignupRequest
 import com.umc.yourweather.data.remote.response.BaseResponse
 import com.umc.yourweather.data.remote.response.ChangePasswordRespond
@@ -27,8 +28,12 @@ interface UserService {
     fun signUp(@Body request: SignupRequest): Call<BaseResponse<TokenResponse>>
 
     // 비밀번호 변경
-    @POST("/api/v1/users/password")
+    @PATCH("/api/v1/users/password")
     fun changePw(@Body request: ChangePasswordRequest): Call<BaseResponse<ChangePasswordRespond>>
+
+    // 비밀번호 재설정
+    @POST("/api/v1/users/password")
+    fun changePw(@Body request: ResetPasswordRequest): Call<BaseResponse<UserResponse>>
 
     // 닉네임 변경
     @PATCH("/api/v1/users/nickname")
