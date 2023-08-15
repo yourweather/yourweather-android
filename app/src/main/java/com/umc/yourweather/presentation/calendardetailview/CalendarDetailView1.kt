@@ -1,35 +1,22 @@
 package com.umc.yourweather.presentation.calendardetailview
 
 import android.content.Intent
-import android.graphics.Color
 import android.os.Bundle
 import android.util.Log
 import android.widget.Button
 import android.widget.ImageButton
-import android.widget.TextView
 import androidx.appcompat.app.AppCompatActivity
 import androidx.fragment.app.Fragment
-import androidx.recyclerview.widget.LinearLayoutManager
-import androidx.recyclerview.widget.LinearLayoutManager.HORIZONTAL
-import androidx.recyclerview.widget.RecyclerView
-import com.umc.yourweather.R
 import androidx.fragment.app.FragmentManager
 import androidx.fragment.app.FragmentTransaction
-import com.umc.yourweather.data.remote.request.LoginRequest
+import androidx.recyclerview.widget.RecyclerView
+import com.umc.yourweather.R
 import com.umc.yourweather.data.remote.response.BaseResponse
-import com.umc.yourweather.data.remote.response.TokenResponse
-import com.umc.yourweather.data.remote.response.WeatherResponse
-import com.umc.yourweather.data.service.LoginService
+import com.umc.yourweather.data.remote.response.MemoDailyResponse
 import com.umc.yourweather.data.service.MemoService
-import com.umc.yourweather.data.service.WeatherService
 import com.umc.yourweather.databinding.ActivityCalendarDetailView1Binding
-import com.umc.yourweather.databinding.ActivityCalendarDetailviewModify1Binding
-import com.umc.yourweather.di.App
 import com.umc.yourweather.di.RetrofitImpl
 import com.umc.yourweather.di.UserSharedPreferences
-import com.umc.yourweather.presentation.BottomNavi
-import com.umc.yourweather.presentation.adapter.CalendarDetailviewDiaryAdapter
-import com.umc.yourweather.util.SignUtils
 import retrofit2.Call
 import retrofit2.Callback
 import retrofit2.Response
@@ -38,7 +25,7 @@ import java.util.*
 
 
 class CalendarDetailView1 : AppCompatActivity() {
-    //일기 변수 선언
+    // 일기 변수 선언
     private lateinit var recyclerView: RecyclerView
     private lateinit var viewAdapter: RecyclerView.Adapter<*>
     private lateinit var viewManager: RecyclerView.LayoutManager
@@ -93,10 +80,7 @@ class CalendarDetailView1 : AppCompatActivity() {
         btnModify.setOnClickListener {
             val intent = Intent(this@CalendarDetailView1, CalendarDetailView3::class.java)
             startActivity(intent)
-
-
         }
-
     }
 
     private fun CalendarDetailView1Api(weatherId: Int) {
@@ -109,7 +93,7 @@ class CalendarDetailView1 : AppCompatActivity() {
 
             override fun onResponse(
                 call: Call<BaseResponse<BaseResponse<MemoDailyResponse>>>,
-                response: Response<BaseResponse<BaseResponse<MemoDailyResponse>>>
+                response: Response<BaseResponse<BaseResponse<MemoDailyResponse>>>,
             ) {
                 if (response.isSuccessful) {
                     val outerResponse = response.body()?.result
@@ -117,7 +101,7 @@ class CalendarDetailView1 : AppCompatActivity() {
 
                     if (memoDailyResponse != null) {
                         val memoList = memoDailyResponse.memoList
-                        val dateTime=memoDailyResponse.memoList
+                        val dateTime = memoDailyResponse.memoList
                         val memoContentList = memoDailyResponse.memoContentList
                         // 여기에서 사용자 정보 활용하여 작업 수행
 
@@ -134,9 +118,8 @@ class CalendarDetailView1 : AppCompatActivity() {
                         val userNickname =
                             UserSharedPreferences.getUserNickname(this@CalendarDetailView1)
 
-                        binding.tvCalendarDetailview11.text=("${month}월 ${day}일 ${userNickname}님의 날씨" )
-                    }
-                    else {
+                        binding.tvCalendarDetailview11.text = ("${month}월 ${day}일 ${userNickname}님의 날씨")
+                    } else {
                         // 서버 응답은 성공했지만 데이터가 없는 경우 처리
                         Log.e("API Response", "No memo data for the requested date")
                     }
@@ -144,12 +127,11 @@ class CalendarDetailView1 : AppCompatActivity() {
                     // 서버 응답이 실패한 경우 처리
                     Log.e("API Response", "Failed to retrieve memo data")
                 }
-
             }
 
             override fun onFailure(
                 call: Call<BaseResponse<BaseResponse<MemoDailyResponse>>>,
-                t: Throwable
+                t: Throwable,
             ) {
                 // 네트워크 요청 실패 처리
                 Log.e("API Failure", "Error: ${t.message}", t)
@@ -157,6 +139,5 @@ class CalendarDetailView1 : AppCompatActivity() {
                 val errorMessage = "네트워크 요청이 실패했습니다."
             }
         })
-
     }
 }
