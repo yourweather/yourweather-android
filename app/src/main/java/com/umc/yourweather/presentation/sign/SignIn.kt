@@ -1,20 +1,13 @@
 package com.umc.yourweather.presentation.sign
 
-import android.app.Activity
 import android.content.Intent
 import android.os.Build
 import android.os.Bundle
 import android.util.Log
 import android.widget.Toast
 import androidx.activity.result.ActivityResultLauncher
-import androidx.activity.result.contract.ActivityResultContracts
 import androidx.annotation.RequiresApi
 import androidx.appcompat.app.AppCompatActivity
-import com.google.android.gms.auth.api.signin.GoogleSignIn
-import com.google.android.gms.auth.api.signin.GoogleSignInAccount
-import com.google.android.gms.auth.api.signin.GoogleSignInOptions
-import com.google.android.gms.common.api.ApiException
-import com.google.android.gms.tasks.Task
 import com.kakao.sdk.auth.model.OAuthToken
 import com.kakao.sdk.common.model.ClientError
 import com.kakao.sdk.common.model.ClientErrorCause
@@ -89,20 +82,6 @@ class SignIn : AppCompatActivity() {
         binding.btnSigninNaver.setOnClickListener {
             naverSignIn()
         }
-
-        binding.btnSigninGoogle.setOnClickListener {
-            googleSignIn()
-        }
-
-        resultLauncherGoogle =
-            registerForActivityResult(ActivityResultContracts.StartActivityForResult()) { result ->
-                if (result.resultCode == Activity.RESULT_OK) {
-                    val data: Intent? = result.data
-                    val task: Task<GoogleSignInAccount> =
-                        GoogleSignIn.getSignedInAccountFromIntent(data)
-                    handleSignInResult(task)
-                }
-            }
     }
     private fun SignInApi(userEmail: String, userPw: String) {
         val service = RetrofitImpl.nonRetrofit.create(LoginService::class.java)
@@ -278,27 +257,6 @@ class SignIn : AppCompatActivity() {
         NaverIdLoginSDK.authenticate(this@SignIn, oauthLoginCallback)
     }
 
-    private fun googleSignIn() {
-        val gso = GoogleSignInOptions.Builder(GoogleSignInOptions.DEFAULT_SIGN_IN)
-            .requestEmail()
-            .build()
-        val mGoogleSignInClient = GoogleSignIn.getClient(this, gso)
-
-        val signInIntent = mGoogleSignInClient.signInIntent
-        resultLauncherGoogle.launch(signInIntent)
-    }
-
-    private fun handleSignInResult(completedTask: Task<GoogleSignInAccount>) {
-        try {
-            val account = completedTask.getResult(ApiException::class.java)
-            userEmail = account?.email.toString()
-            userPw = account?.id.toString()
-            // Toast.makeText(this@SignIn, "email : $userEmail pw : $userPw", Toast.LENGTH_LONG).show()
-            socialSignInApi(userEmail!!, userPw!!, "GOOGLE")
-        } catch (e: ApiException) {
-            Log.w("failed", "signInResult:failed code=" + e.statusCode)
-        }
-    }
     private fun moveToHome() {
         val mIntent = Intent(this@SignIn, BottomNavi::class.java)
         startActivity(mIntent)
