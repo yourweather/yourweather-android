@@ -1,47 +1,169 @@
 package com.umc.yourweather.presentation.calendardetailview
 
-import android.content.Context
-import android.os.Build
-import androidx.appcompat.app.AppCompatActivity
+import android.content.Intent
 import android.os.Bundle
-import android.view.LayoutInflater
-import android.view.View
+import android.util.Log
 import android.view.animation.Animation
 import android.view.animation.AnimationUtils
-import android.view.inputmethod.InputMethodManager
 import android.widget.Button
 import android.widget.SeekBar
-import android.widget.TextView
-import android.widget.TimePicker
-import androidx.appcompat.app.AlertDialog
+import androidx.appcompat.app.AppCompatActivity
 import androidx.appcompat.widget.AppCompatEditText
-import androidx.cardview.widget.CardView
 import androidx.core.content.ContextCompat
-import androidx.fragment.app.Fragment
-import androidx.fragment.app.FragmentManager
-import androidx.fragment.app.FragmentTransaction
+import com.mmk.timeintervalpicker.TimeIntervalPicker
 import com.umc.yourweather.R
-import com.umc.yourweather.databinding.ActivityCalendarDetailviewModify1Binding
+import com.umc.yourweather.data.enums.Status
+import com.umc.yourweather.data.remote.request.MemoRequest
+import com.umc.yourweather.data.remote.request.MemoUpdateRequest
+import com.umc.yourweather.data.remote.response.BaseResponse
+import com.umc.yourweather.data.remote.response.MemoResponse
+import com.umc.yourweather.data.remote.response.MemoUpdateResponse
+import com.umc.yourweather.data.service.MemoService
 import com.umc.yourweather.databinding.ActivityCalendarDetailviewModify2Binding
+import com.umc.yourweather.di.RetrofitImpl
+import com.umc.yourweather.di.UserSharedPreferences
+import kotlinx.coroutines.Dispatchers
+import kotlinx.coroutines.GlobalScope
+import kotlinx.coroutines.launch
+import retrofit2.Call
+import retrofit2.Callback
+import retrofit2.Response
+import java.text.SimpleDateFormat
+import java.util.Calendar
+import java.util.Locale
 
 class CalendarDetailviewModify2 : AppCompatActivity() {
     private lateinit var binding: ActivityCalendarDetailviewModify2Binding
-    private lateinit var cardView: CardView
     private lateinit var editText: AppCompatEditText
     private var isSeekBarAdjusted = false // 변수 선언
-
-    interface CalendarDetailviewModify2Listener {
-        fun onWeatherButtonClicked(weatherType: String)
-    }
-
-    private var listener: CalendarDetailviewModify2Listener?=null
+    private var selectedStatus: Status? = null // 기본값으로 SUNNY 설정
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         binding = ActivityCalendarDetailviewModify2Binding.inflate(layoutInflater)
-        val view = binding.root
-        setContentView(view)
+        setContentView(binding.root)
 
+        editText = binding.editText as AppCompatEditText
+
+        setupWeatherButtons()
+        setupSeekBarListener()
+
+        val unWrittenDate = intent.getStringExtra("unWrittenDate")
+        if (unWrittenDate != null) {
+            val dateParts = unWrittenDate.split("-")
+            if (dateParts.size == 3) {
+                val month = dateParts[1].toInt()
+                val day = dateParts[2].toInt()
+                binding.tvDetailviewModify2Date.text = "${month}월 ${day}의 기록"
+            }
+        }
+
+        binding.flCalendarDetailviewBack.setOnClickListener {
+            activityFinish()
+        }
+        val userNickname = UserSharedPreferences.getUserNickname(this@CalendarDetailviewModify2)
+
+        binding.tvDetailviewModify2Title1.text = "$userNickname 님의 감정 상태"
+        binding.tvDetailviewModify2Title2.text = "$userNickname 님의 감정 온도"
+        binding.tvDetailviewModify2Title3.text = "$userNickname 님의 일기"
+
+        val timeIntervalPicker = TimeIntervalPicker.Builder()
+            .setTitleText("알림 시간 설정")
+            .setIntervalBetweenHours(1)
+            .setIntervalBetweenMinutes(5)
+            .setHour(12)
+            .setMinute(0)
+            .setHourListCircular(true)
+            .setMinuteListCircular(true)
+            .build()
+
+        timeIntervalPicker.addOnPositiveButtonClickListener {
+            val formattedTime = formatTimeWithAmPm(timeIntervalPicker.hour, timeIntervalPicker.minute)
+            binding.tvDetailviewModify2Time.text = formattedTime
+        }
+        binding.tvDetailviewModify2Time.setOnClickListener {
+            timeIntervalPicker.show(supportFragmentManager, "TimeIntervalPicker")
+        }
+        binding.btnCalendardetailviewSave.setOnClickListener {
+            val content: String? = editText.text?.toString()
+            val localDateTime: String? = unWrittenDate?.let {
+                combineDateAndTime(it, binding.tvDetailviewModify2Time.text.toString())
+            }
+            val temperature: Int? = binding.seekbarCalendarDetailviewTemp2.progress
+
+            selectedStatus?.let { status ->
+                GlobalScope.launch(Dispatchers.IO) {
+                    val formattedLocalDateTime = formatLocalDateTime(localDateTime)
+                    writeMemo(status, content, formattedLocalDateTime, temperature)
+                }
+            }
+        }
+    }
+    private fun formatLocalDateTime(localDateTime: String?): String {
+        val inputFormat = SimpleDateFormat("yyyy-MM-dd a hh:mm", Locale.getDefault())
+        val date = inputFormat.parse(localDateTime)
+        val outputFormat = SimpleDateFormat("yyyy-MM-dd'T'HH:mm:ss", Locale.getDefault())
+        return outputFormat.format(date)
+    }
+
+    private fun formatTimeWithAmPm(hour: Int, minute: Int): String {
+        val calendar = Calendar.getInstance()
+        calendar.set(Calendar.HOUR_OF_DAY, hour)
+        calendar.set(Calendar.MINUTE, minute)
+
+        val simpleDateFormat = SimpleDateFormat("a hh:mm", Locale.getDefault())
+        return simpleDateFormat.format(calendar.time)
+    }
+
+    private fun combineDateAndTime(date: String, time: String): String {
+        val combinedDateTime = "$date $time"
+        val desiredFormat = SimpleDateFormat("yyyy-MM-dd a hh:mm", Locale.getDefault())
+        return desiredFormat.format(desiredFormat.parse(combinedDateTime))
+    }
+
+    // 뒤로 가기 누른 경우
+    override fun onBackPressed() {
+        finish()
+    }
+
+    private fun setupWeatherButtons() {
+        binding.btnHomeSun.setOnClickListener {
+            selectedStatus = Status.SUNNY
+            animateAndHandleButtonClick(binding.btnHomeSun)
+            updateSaveButtonState()
+        }
+
+        binding.btnHomeCloud.setOnClickListener {
+            selectedStatus = Status.CLOUDY
+            animateAndHandleButtonClick(binding.btnHomeCloud)
+            updateSaveButtonState()
+        }
+
+        binding.btnHomeThunder.setOnClickListener {
+            selectedStatus = Status.LIGHTNING
+            animateAndHandleButtonClick(binding.btnHomeThunder)
+            updateSaveButtonState()
+        }
+
+        binding.btnHomeRain.setOnClickListener {
+            selectedStatus = Status.RAINY
+            animateAndHandleButtonClick(binding.btnHomeRain)
+            updateSaveButtonState()
+        }
+    }
+
+    private fun animateAndHandleButtonClick(button: Button) {
+        val buttonAnimation: Animation = AnimationUtils.loadAnimation(this, R.anim.btn_weather_scale)
+
+        binding.btnHomeSun.clearAnimation()
+        binding.btnHomeCloud.clearAnimation()
+        binding.btnHomeThunder.clearAnimation()
+        binding.btnHomeRain.clearAnimation()
+
+        button.startAnimation(buttonAnimation)
+    }
+
+    private fun setupSeekBarListener() {
         val seekBar = binding.seekbarCalendarDetailviewTemp2
 
         seekBar.setOnSeekBarChangeListener(object : SeekBar.OnSeekBarChangeListener {
@@ -55,149 +177,51 @@ class CalendarDetailviewModify2 : AppCompatActivity() {
             }
 
             override fun onStopTrackingTouch(seekBar: SeekBar?) {
-                // 필요한 경우 구현
+                updateSaveButtonState()
             }
         })
-
-        cardView = binding.cvCalendardetailviewModify2
-        editText = binding.editText as AppCompatEditText
-
-        cardView.setOnClickListener {
-            showKeyboardAndFocusEditText()
-        }
-
-        // 프래그먼트를 추가하고 초기화
-        val fragmentManager: FragmentManager = supportFragmentManager
-        val fragmentTransaction: FragmentTransaction = fragmentManager.beginTransaction()
-
-        // 프래그먼트 객체 생성
-        val fragment1: Fragment = ModifyFragment2()
-
-        // 프래그먼트를 레이아웃 컨테이너에 추가
-        fragmentTransaction.add(R.id.fragment_container, fragment1)
-
-        // 프래그먼트 트랜잭션 완료
-        fragmentTransaction.commit()
-
-        // 애니메이션 리소스 가져오기
-        val buttonAnimation: Animation = AnimationUtils.loadAnimation(this, R.anim.btn_weather_scale)
-
-
-        // 각 버튼과 애니메이션 연결
-        binding.btnHomeSun.setOnClickListener {
-            binding.btnHomeCloud.clearAnimation()
-            binding.btnHomeThunder.clearAnimation()
-            binding.btnHomeRain.clearAnimation()
-
-            it.startAnimation(buttonAnimation)
-            // 향후 클릭 시 추가할 동작 설정
-        }
-
-        binding.btnHomeCloud.setOnClickListener {
-            binding.btnHomeSun.clearAnimation()
-            binding.btnHomeThunder.clearAnimation()
-            binding.btnHomeRain.clearAnimation()
-
-            it.startAnimation(buttonAnimation)
-
-            // 프래그먼트의 버튼 참조
-            val buttonInFragment = fragment1.view?.findViewById<Button>(R.id.btn_calendardetailview_save)
-            // 버튼의 텍스트 색상 변경
-            buttonInFragment?.setTextColor(ContextCompat.getColor(this, R.color.sorange))
-
-        }
-
-        binding.btnHomeThunder.setOnClickListener {
-            binding.btnHomeSun.clearAnimation()
-            binding.btnHomeCloud.clearAnimation()
-            binding.btnHomeRain.clearAnimation()
-
-            it.startAnimation(buttonAnimation)
-
-            // 프래그먼트의 버튼 참조
-            val buttonInFragment = fragment1.view?.findViewById<Button>(R.id.btn_calendardetailview_save)
-            // 버튼의 텍스트 색상 변경
-            buttonInFragment?.setTextColor(ContextCompat.getColor(this, R.color.sorange))
-
-        }
-
-        binding.btnHomeRain.setOnClickListener {
-            binding.btnHomeSun.clearAnimation()
-            binding.btnHomeCloud.clearAnimation()
-            binding.btnHomeThunder.clearAnimation()
-
-            it.startAnimation(buttonAnimation)
-
-            // 프래그먼트의 버튼 참조
-            val buttonInFragment = fragment1.view?.findViewById<Button>(R.id.btn_calendardetailview_save)
-            // 버튼의 텍스트 색상 변경
-            buttonInFragment?.setTextColor(ContextCompat.getColor(this, R.color.sorange))
-
-        }
-
-        // 클릭 리스너 설정
-        binding.llCalendarDetailviewClickToSelectTime.setOnClickListener {
-            // LayoutInflater를 사용하여 레이아웃 XML 파일을 가져옴
-            val inflater = LayoutInflater.from(this)
-            val dialogView: View = inflater.inflate(R.layout.alert_dialog_alarm, null)
-
-            // AlertDialog 빌더 생성
-            val builder = AlertDialog.Builder(this)
-            builder.setView(dialogView) // 빌더에 뷰 설정
-
-            // AlertDialog 생성 및 보여주기
-            val alertDialog: AlertDialog = builder.create()
-            alertDialog.show()
-        }
-        // 액티비티에서 TimePicker를 찾아온 후
-        val timePicker: TimePicker = findViewById(R.id.tp_calendardetailview)
-
-        // 선택한 시간 가져오기
-        val selectedHour: Int = if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.M) {
-            timePicker.hour // API 23 이상에서는 getHour() 대신 hour 속성 사용
-        } else {
-            timePicker.currentHour // API 23 미만에서는 getHour() 사용
-        }
-
-        // 선택한 분 가져오기
-        val selectedMinute: Int = if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.M) {
-            timePicker.minute // API 23 이상에서는 getMinute() 대신 minute 속성 사용
-        } else {
-            timePicker.currentMinute // API 23 미만에서는 getMinute() 사용
-        }
-        // 선택한 오전/오후 값 가져오기
-        val selectedAmPm: String = if (selectedHour >= 12) {
-            "오후"
-        } else {
-            "오전"
-        }
-
-        val tvTime: TextView = findViewById(R.id.tv_calendar_detailview_modify2_time)
-        tvTime.text=("${selectedAmPm} ${selectedHour}:${selectedMinute}시")
     }
-
 
     private fun updateSaveButtonState() {
-        val fragment1: Fragment? = supportFragmentManager.findFragmentById(R.id.fragment_container)
-        val buttonInFragment = fragment1?.view?.findViewById<Button>(R.id.btn_calendardetailview_save)
+        if (selectedStatus != null) {
+            val isActive = isSeekBarAdjusted
 
-
-        val isActive = isSeekBarAdjusted
-
-        buttonInFragment?.isEnabled = isActive
-        if (isActive) {
-            buttonInFragment?.setTextColor(ContextCompat.getColor(this, R.color.sorange))
-        } else {
-            buttonInFragment?.setTextColor(ContextCompat.getColor(this, R.color.gray))
+            binding.btnCalendardetailviewSave.isEnabled = isActive
+            binding.btnCalendardetailviewSave.setTextColor(
+                ContextCompat.getColor(
+                    this,
+                    if (isActive) R.color.sorange else R.color.gray,
+                ),
+            )
         }
     }
-    private fun showKeyboardAndFocusEditText() {
-        // 키보드 보여주기
-        val imm = getSystemService(Context.INPUT_METHOD_SERVICE) as InputMethodManager
-        imm.showSoftInput(editText, InputMethodManager.SHOW_IMPLICIT)
 
-        // EditText에 포커스 주기
-        editText.requestFocus()
+    private fun writeMemo(status: Status, content: String?, localDateTime: String?, temperature: Int?) {
+        val memoService = RetrofitImpl.authenticatedRetrofit.create(MemoService::class.java)
+        memoService.memoWrite(MemoRequest(status, content, localDateTime, temperature))
+            .enqueue(object : Callback<BaseResponse<MemoResponse>> {
+                override fun onResponse(
+                    call: Call<BaseResponse<MemoResponse>>,
+                    response: Response<BaseResponse<MemoResponse>>,
+                ) {
+                    if (response.isSuccessful) {
+                        val memoResponse = response.body()?.result
+                        Log.d("메모 작성", "메모 작성, 전달 성공 ${response.body()?.result}")
+                        activityFinish()
+                    } else {
+                        Log.d("메모 작성 실패", "메모 작성, 전달 성공 실패: ${response.code()}")
+                    }
+                }
+
+                override fun onFailure(call: Call<BaseResponse<MemoResponse>>, t: Throwable) {
+                    Log.d("메모 작성 요청", "메모 작성 요청 실패: ${t.message}")
+                }
+            })
     }
 
+    private fun activityFinish() {
+        val intent = Intent(this, CalendarDetailView3::class.java)
+        startActivity(intent)
+        finish()
+    }
 }
