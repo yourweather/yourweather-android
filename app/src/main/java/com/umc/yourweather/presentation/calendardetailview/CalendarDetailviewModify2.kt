@@ -125,11 +125,6 @@ class CalendarDetailviewModify2 : AppCompatActivity() {
     override fun onBackPressed() {
         finish()
     }
-//    private fun getCurrentDateTime(): String {
-//        val dateFormat = SimpleDateFormat("yyyy-MM-dd'T'HH:mm:ss", Locale.getDefault())
-//        val now = Calendar.getInstance().time
-//        return dateFormat.format(now)
-//    }
 
     private fun setupWeatherButtons() {
         binding.btnHomeSun.setOnClickListener {
