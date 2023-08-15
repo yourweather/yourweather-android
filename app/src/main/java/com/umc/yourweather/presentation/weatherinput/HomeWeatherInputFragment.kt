@@ -11,6 +11,7 @@ import android.view.ViewGroup
 import android.view.animation.Animation
 import android.view.animation.AnimationUtils
 import android.widget.SeekBar
+import android.widget.Toast
 import androidx.annotation.RequiresApi
 import androidx.fragment.app.Fragment
 import com.umc.yourweather.R
@@ -258,5 +259,23 @@ class HomeWeatherInputFragment : Fragment() {
             .replace(R.id.fl_home_l1, homeFragment)
             .addToBackStack(null)
             .commit()
+
+        showHomeToast()
+    }
+
+    private fun showHomeToast() {
+        val customToastView = LayoutInflater.from(requireContext()).inflate(R.layout.toast_home, null)
+
+        val homeToast = Toast(requireContext())
+        homeToast.view = customToastView
+
+        homeToast.duration = Toast.LENGTH_SHORT
+
+        homeToast.setGravity(
+            android.view.Gravity.BOTTOM or android.view.Gravity.CENTER,
+            0,
+            resources.getDimensionPixelSize(R.dimen.home_toast_margin_bottom),
+        )
+        homeToast.show()
     }
 }
