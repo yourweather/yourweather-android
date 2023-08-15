@@ -28,11 +28,11 @@ interface UserService {
     fun signUp(@Body request: SignupRequest): Call<BaseResponse<TokenResponse>>
 
     // 비밀번호 변경
-    @PATCH("/api/v1/users/password")
+    @PATCH("/api/v1/users/password-change")
     fun changePw(@Body request: ChangePasswordRequest): Call<BaseResponse<ChangePasswordRespond>>
 
     // 비밀번호 재설정
-    @POST("/api/v1/users/password")
+    @POST("/api/v1/users/password-reset")
     fun changePw(@Body request: ResetPasswordRequest): Call<BaseResponse<UserResponse>>
 
     // 닉네임 변경
