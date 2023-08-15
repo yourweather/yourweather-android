@@ -377,7 +377,9 @@
                                     android:layout_height="match_parent"
                                     android:background="@null"
                                     android:inputType="text"
-                                    android:maxLength="500" />
+                                    android:maxLength="500"
+                                    android:fontFamily="@font/pretendardregular"
+                                    android:textSize="14dp"/>
 
                             </RelativeLayout>
 
