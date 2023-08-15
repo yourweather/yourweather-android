@@ -2,11 +2,13 @@ package com.umc.yourweather.presentation.sign
 
 import android.app.Activity
 import android.content.Intent
+import android.os.Build
 import android.os.Bundle
 import android.util.Log
 import android.widget.Toast
 import androidx.activity.result.ActivityResultLauncher
 import androidx.activity.result.contract.ActivityResultContracts
+import androidx.annotation.RequiresApi
 import androidx.appcompat.app.AppCompatActivity
 import com.google.android.gms.auth.api.signin.GoogleSignIn
 import com.google.android.gms.auth.api.signin.GoogleSignInAccount
@@ -19,6 +21,7 @@ import com.kakao.sdk.common.model.ClientErrorCause
 import com.kakao.sdk.user.UserApiClient
 import com.navercorp.nid.NaverIdLoginSDK
 import com.navercorp.nid.oauth.NidOAuthLogin
+import com.navercorp.nid.oauth.NidOAuthPreferencesManager.code
 import com.navercorp.nid.oauth.OAuthLoginCallback
 import com.navercorp.nid.profile.NidProfileCallback
 import com.navercorp.nid.profile.data.NidProfileResponse
@@ -29,12 +32,12 @@ import com.umc.yourweather.data.remote.response.TokenResponse
 import com.umc.yourweather.data.service.LoginService
 import com.umc.yourweather.databinding.ActivitySignInBinding
 import com.umc.yourweather.di.App
-import com.umc.yourweather.di.UserSharedPreferences
 import com.umc.yourweather.di.RetrofitImpl
+import com.umc.yourweather.di.UserSharedPreferences
 import com.umc.yourweather.presentation.BottomNavi
+import com.umc.yourweather.util.SignUtils.Companion.ALERT_TEXT_SIGN_IN
 import com.umc.yourweather.util.SignUtils.Companion.KAKAOTAG
 import com.umc.yourweather.util.SignUtils.Companion.NAVERTAG
-import com.umc.yourweather.util.SignUtils.Companion.ALERT_TEXT_SIGN_IN
 import com.umc.yourweather.util.SignUtils.Companion.customSingInPopupWindow
 import retrofit2.Call
 import retrofit2.Callback
@@ -45,7 +48,6 @@ class SignIn : AppCompatActivity() {
     lateinit var resultLauncherGoogle: ActivityResultLauncher<Intent>
     var userEmail: String? = null
     var userPw: String? = null
-
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         binding = ActivitySignInBinding.inflate(layoutInflater)
@@ -109,6 +111,7 @@ class SignIn : AppCompatActivity() {
 
         service.logIn(LoginInfo).enqueue(object : Callback<BaseResponse<TokenResponse>> {
 
+            @RequiresApi(Build.VERSION_CODES.O)
             override fun onResponse(
                 call: Call<BaseResponse<TokenResponse>>,
                 response: Response<BaseResponse<TokenResponse>>,
@@ -117,12 +120,13 @@ class SignIn : AppCompatActivity() {
 
                 if (response.isSuccessful) {
                     if (code == 200) {
-                        val mIntent = Intent(this@SignIn, BottomNavi::class.java)
+                        // val mIntent = Intent(this@SignIn, BottomNavi::class.java)
                         Log.d("SignInDebug", "로그인 성공~ : " + response.headers().toString())
-                        UserSharedPreferences.setUserPwToStar(this@SignIn, userPw) // 자동로그인
+                        UserSharedPreferences.setUserPwToStar(this@SignIn, userPw)
                         App.token_prefs.accessToken = response.body()!!.result?.accessToken
                         App.token_prefs.refreshToken = response.body()!!.result?.refreshToken
-                        startActivity(mIntent)
+                        // startActivity(mIntent)
+                        moveToHome()
                     } else {
                         Log.d(
                             "SignInDebug",
@@ -150,6 +154,7 @@ class SignIn : AppCompatActivity() {
         val LoginInfo = LoginRequest(userEmail, userPw)
         service.oauthLogIn(LoginInfo).enqueue(object : Callback<BaseResponse<TokenResponse>> {
 
+            @RequiresApi(Build.VERSION_CODES.O)
             override fun onResponse(
                 call: Call<BaseResponse<TokenResponse>>,
                 response: Response<BaseResponse<TokenResponse>>,
@@ -158,13 +163,13 @@ class SignIn : AppCompatActivity() {
 
                 if (response.isSuccessful) {
                     if (code == 200) {
-                        val mIntent = Intent(this@SignIn, BottomNavi::class.java)
+                        // val mIntent = Intent(this@SignIn, BottomNavi::class.java)
                         Log.d("SignInDebug", "소셜 로그인 성공~ : " + response.headers().toString())
-//                        MySharedPreferences.setUserId(this@SignIn, userEmail)
-//                        MySharedPreferences.setUserPw(this@SignIn, userPw) // 자동로그인
                         App.token_prefs.accessToken = response.body()!!.result?.accessToken
                         App.token_prefs.refreshToken = response.body()!!.result?.refreshToken
-                        startActivity(mIntent)
+
+                        moveToHome()
+                        // startActivity(mIntent)
                     } else {
                         Log.d(
                             "SignInDebug",
@@ -293,5 +298,9 @@ class SignIn : AppCompatActivity() {
         } catch (e: ApiException) {
             Log.w("failed", "signInResult:failed code=" + e.statusCode)
         }
+    }
+    private fun moveToHome() {
+        val mIntent = Intent(this@SignIn, BottomNavi::class.java)
+        startActivity(mIntent)
     }
 }
