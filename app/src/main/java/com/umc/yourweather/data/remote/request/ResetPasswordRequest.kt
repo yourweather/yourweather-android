@@ -2,9 +2,7 @@ package com.umc.yourweather.data.remote.request
 
 import com.google.gson.annotations.SerializedName
 
-data class ChangePasswordRequest(
+data class ResetPasswordRequest(
     @SerializedName("password")
-    val password: String,
-    @SerializedName("newPassword")
-    val newPassword: String
+    val password: String
 )

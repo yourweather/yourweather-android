@@ -38,11 +38,11 @@ object UserSharedPreferences {
             context.getSharedPreferences(MY_ACCOUNT, Context.MODE_PRIVATE)
         return prefs.getString(USER_NICKNAME, "").toString()
     }
-    fun getUserPw(context: Context): String {
-        val prefs: SharedPreferences =
-            context.getSharedPreferences(MY_ACCOUNT, Context.MODE_PRIVATE)
-        return prefs.getString("MY_PW", "").toString()
-    }
+//    fun getUserPw(context: Context): String {
+//        val prefs: SharedPreferences =
+//            context.getSharedPreferences(MY_ACCOUNT, Context.MODE_PRIVATE)
+//        return prefs.getString("MY_PW", "").toString()
+//    }
     fun setUserPlatform(context: Context, input: String) {
         val prefs: SharedPreferences =
             context.getSharedPreferences(MY_ACCOUNT, Context.MODE_PRIVATE)
