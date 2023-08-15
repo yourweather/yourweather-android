@@ -8,14 +8,11 @@ import android.util.Log
 import android.view.View
 import androidx.appcompat.app.AppCompatActivity
 import com.umc.yourweather.R
-import com.umc.yourweather.data.remote.request.ChangeNicknameRequest
 import com.umc.yourweather.data.remote.request.ChangePasswordRequest
 import com.umc.yourweather.data.remote.response.BaseResponse
 import com.umc.yourweather.data.remote.response.ChangePasswordRespond
-import com.umc.yourweather.data.remote.response.UserResponse
 import com.umc.yourweather.data.service.UserService
 import com.umc.yourweather.databinding.ActivityMyPagePwChangeBinding
-import com.umc.yourweather.di.UserSharedPreferences
 import com.umc.yourweather.di.RetrofitImpl
 import com.umc.yourweather.util.SignUtils
 import retrofit2.Call
@@ -36,7 +33,7 @@ class MyPagePwChange : AppCompatActivity() {
 
         binding.etMypagePwPw.addTextChangedListener(createTextWatcher(::checkPwFormat))
         binding.etMypagePwRepw.addTextChangedListener(createTextWatcher(::checkRePw))
-        //binding.etMypagePwMypw.addTextChangedListener(createTextWatcher(::checkMyPw))
+        // binding.etMypagePwMypw.addTextChangedListener(createTextWatcher(::checkMyPw))
     }
 
     private fun createTextWatcher(checkError: () -> Unit): TextWatcher {
@@ -103,7 +100,6 @@ class MyPagePwChange : AppCompatActivity() {
 
             // API 호출
             changePwAPI(Pw, newPw)
-
         } else {
             binding.etMypagePwRepw.background = resources.getDrawable(R.drawable.bg_gray_ed_fill_6_rect_border_red)
 
@@ -117,7 +113,9 @@ class MyPagePwChange : AppCompatActivity() {
 
     private fun changePwAPI(Pw: String, newPw: String) {
         if (newPw.isNotEmpty()) {
-            performPwChange(Pw, newPw)
+            binding.btnMypagePwNext.setOnClickListener {
+                performPwChange(Pw, newPw)
+            }
         } else {
             // 닉네임이 비어있는 경우 처리
         }
@@ -136,9 +134,7 @@ class MyPagePwChange : AppCompatActivity() {
                         if (changePasswordRespond != null && changePasswordRespond.success) {
                             Log.d("비밀번호 변경", "비밀번호 변경 성공")
                             handlePwChangeResponse(response)
-                            binding.btnMypagePwNext.setOnClickListener {
-                                finish()
-                            }
+                            finish()
                         } else {
                             Log.d("비밀번호 변경 실패", "API 호출 실패: ${response.code()}")
                             handlePwChangeResponse(response)
@@ -155,8 +151,6 @@ class MyPagePwChange : AppCompatActivity() {
                 }
             })
     }
-
-
 
     private fun handlePwChangeResponse(response: Response<BaseResponse<ChangePasswordRespond>>) {
         if (response.isSuccessful) {
