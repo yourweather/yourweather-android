@@ -157,24 +157,17 @@
 
         <ImageView
             android:id="@+id/btn_signin_naver"
-            android:layout_width="38dp"
-            android:layout_height="38dp"
+            android:layout_width="43dp"
+            android:layout_height="43dp"
             android:scaleType="centerInside"
             app:srcCompat="@drawable/ic_signin_naver" />
 
         <ImageView
             android:id="@+id/btn_signin_kakao"
-            android:layout_width="38dp"
-            android:layout_height="38dp"
+            android:layout_width="43dp"
+            android:layout_height="43dp"
             android:layout_marginLeft="17dp"
-            android:layout_marginRight="17dp"
             app:srcCompat="@drawable/ic_signin_kakao" />
-
-        <ImageView
-            android:id="@+id/btn_signin_google"
-            android:layout_width="38dp"
-            android:layout_height="38dp"
-            app:srcCompat="@drawable/ic_signin_google" />
 
     </LinearLayout>
 
