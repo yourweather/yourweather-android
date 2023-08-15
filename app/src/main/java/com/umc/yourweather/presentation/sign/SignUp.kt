@@ -138,6 +138,8 @@ class SignUp : AppCompatActivity() {
         }.start()
     }
 
+    // 0 : 인증코드 전송 관련
+    // 1 : 인증 성공 여부
     // 커스텀 다이얼로그 표시
     fun showCustomAlertDialog(text: String, flag: Int, isSuccess: Boolean) {
         val layoutInflater = LayoutInflater.from(this@SignUp)
