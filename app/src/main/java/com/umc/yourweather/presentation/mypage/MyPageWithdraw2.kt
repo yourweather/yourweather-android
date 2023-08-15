@@ -55,7 +55,10 @@ class MyPageWithdraw2 : AppCompatActivity() {
                 show()
             }
         }
-        binding.btnWithdraw2Withdraw
+
+        binding.btnWithdraw2Cancel.setOnClickListener {
+            finish()
+        }
     }
 
 //    @PUT("/api/v1/users/withdraw")
