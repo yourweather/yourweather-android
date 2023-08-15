@@ -2,7 +2,6 @@ package com.umc.yourweather.presentation.calendardetailview
 
 import android.content.Context
 import android.os.Build
-import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.View
@@ -14,6 +13,7 @@ import android.widget.SeekBar
 import android.widget.TextView
 import android.widget.TimePicker
 import androidx.appcompat.app.AlertDialog
+import androidx.appcompat.app.AppCompatActivity
 import androidx.appcompat.widget.AppCompatEditText
 import androidx.cardview.widget.CardView
 import androidx.core.content.ContextCompat
@@ -21,7 +21,6 @@ import androidx.fragment.app.Fragment
 import androidx.fragment.app.FragmentManager
 import androidx.fragment.app.FragmentTransaction
 import com.umc.yourweather.R
-import com.umc.yourweather.databinding.ActivityCalendarDetailviewModify1Binding
 import com.umc.yourweather.databinding.ActivityCalendarDetailviewModify2Binding
 
 class CalendarDetailviewModify2 : AppCompatActivity() {
@@ -34,7 +33,7 @@ class CalendarDetailviewModify2 : AppCompatActivity() {
         fun onWeatherButtonClicked(weatherType: String)
     }
 
-    private var listener: CalendarDetailviewModify2Listener?=null
+    private var listener: CalendarDetailviewModify2Listener? = null
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -82,7 +81,6 @@ class CalendarDetailviewModify2 : AppCompatActivity() {
         // 애니메이션 리소스 가져오기
         val buttonAnimation: Animation = AnimationUtils.loadAnimation(this, R.anim.btn_weather_scale)
 
-
         // 각 버튼과 애니메이션 연결
         binding.btnHomeSun.setOnClickListener {
             binding.btnHomeCloud.clearAnimation()
@@ -104,7 +102,6 @@ class CalendarDetailviewModify2 : AppCompatActivity() {
             val buttonInFragment = fragment1.view?.findViewById<Button>(R.id.btn_calendardetailview_save)
             // 버튼의 텍스트 색상 변경
             buttonInFragment?.setTextColor(ContextCompat.getColor(this, R.color.sorange))
-
         }
 
         binding.btnHomeThunder.setOnClickListener {
@@ -118,7 +115,6 @@ class CalendarDetailviewModify2 : AppCompatActivity() {
             val buttonInFragment = fragment1.view?.findViewById<Button>(R.id.btn_calendardetailview_save)
             // 버튼의 텍스트 색상 변경
             buttonInFragment?.setTextColor(ContextCompat.getColor(this, R.color.sorange))
-
         }
 
         binding.btnHomeRain.setOnClickListener {
@@ -132,7 +128,6 @@ class CalendarDetailviewModify2 : AppCompatActivity() {
             val buttonInFragment = fragment1.view?.findViewById<Button>(R.id.btn_calendardetailview_save)
             // 버튼의 텍스트 색상 변경
             buttonInFragment?.setTextColor(ContextCompat.getColor(this, R.color.sorange))
-
         }
 
         // 클릭 리스너 설정
@@ -173,14 +168,12 @@ class CalendarDetailviewModify2 : AppCompatActivity() {
         }
 
         val tvTime: TextView = findViewById(R.id.tv_calendar_detailview_modify2_time)
-        tvTime.text=("${selectedAmPm} ${selectedHour}:${selectedMinute}시")
+        tvTime.text = ("$selectedAmPm $selectedHour:${selectedMinute}시")
     }
-
 
     private fun updateSaveButtonState() {
         val fragment1: Fragment? = supportFragmentManager.findFragmentById(R.id.fragment_container)
         val buttonInFragment = fragment1?.view?.findViewById<Button>(R.id.btn_calendardetailview_save)
-
 
         val isActive = isSeekBarAdjusted
 
@@ -199,5 +192,4 @@ class CalendarDetailviewModify2 : AppCompatActivity() {
         // EditText에 포커스 주기
         editText.requestFocus()
     }
-
 }
