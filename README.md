@@ -54,6 +54,6 @@
 📁 util
 
 ## ⛄ Android Developers
-| 리유/강유리 | 진/박서진 | 카야/송예린 | 코이/한혜진 |
-|:---------:|:----------:|:----------:|:----------:|
-| [kangyuri1114](https://github.com/kangyuri1114) | [ParkSeojin1101](https://github.com/ParkSeojin1101) | [yeriinnn](https://github.com/yeriinnn) | [hyemyu](https://github.com/hyemyu) |
+| 리유/강유리 |                         진/박서진                         | 카야/송예린 | 코이/한혜진 |
+|:---------:|:-----------------------------------------------------:|:----------:|:----------:|
+| [kangyuri1114](https://github.com/kangyuri1114) | [PicturePark1101](https://github.com/PicturePark1101) | [yeriinnn](https://github.com/yeriinnn) | [hyemyu](https://github.com/hyemyu) |
