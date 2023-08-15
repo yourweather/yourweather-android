@@ -22,7 +22,6 @@ import androidx.fragment.app.FragmentManager
 import androidx.fragment.app.FragmentTransaction
 import com.umc.yourweather.R
 import com.umc.yourweather.databinding.ActivityCalendarDetailviewModify2Binding
-
 class CalendarDetailviewModify2 : AppCompatActivity() {
     private lateinit var binding: ActivityCalendarDetailviewModify2Binding
     private lateinit var cardView: CardView
@@ -41,6 +40,20 @@ class CalendarDetailviewModify2 : AppCompatActivity() {
         val view = binding.root
         setContentView(view)
 
+        // 초기에 보여지는 화면
+        cardView = binding.cvCalendardetailviewModify2
+        editText = binding.editText as AppCompatEditText
+        // seekBar 보여죽기
+        setupSeekBarListener()
+        // 카드뷰 보여주기
+        setupCardViewClickListener()
+        // 날씨 아이콘 보여주기
+        setupWeatherButtons()
+        // 시간 선택 창
+        setupTimePicker()
+    }
+
+    private fun setupSeekBarListener() {
         val seekBar = binding.seekbarCalendarDetailviewTemp2
 
         seekBar.setOnSeekBarChangeListener(object : SeekBar.OnSeekBarChangeListener {
@@ -57,110 +70,69 @@ class CalendarDetailviewModify2 : AppCompatActivity() {
                 // 필요한 경우 구현
             }
         })
+    }
 
-        cardView = binding.cvCalendardetailviewModify2
-        editText = binding.editText as AppCompatEditText
-
+    private fun setupCardViewClickListener() {
         cardView.setOnClickListener {
             showKeyboardAndFocusEditText()
         }
+    }
 
-        // 프래그먼트를 추가하고 초기화
-        val fragmentManager: FragmentManager = supportFragmentManager
-        val fragmentTransaction: FragmentTransaction = fragmentManager.beginTransaction()
-
-        // 프래그먼트 객체 생성
-        val fragment1: Fragment = ModifyFragment2()
-
-        // 프래그먼트를 레이아웃 컨테이너에 추가
-        fragmentTransaction.add(R.id.fragment_container, fragment1)
-
-        // 프래그먼트 트랜잭션 완료
-        fragmentTransaction.commit()
-
-        // 애니메이션 리소스 가져오기
+    private fun setupWeatherButtons() {
         val buttonAnimation: Animation = AnimationUtils.loadAnimation(this, R.anim.btn_weather_scale)
 
-        // 각 버튼과 애니메이션 연결
         binding.btnHomeSun.setOnClickListener {
-            binding.btnHomeCloud.clearAnimation()
-            binding.btnHomeThunder.clearAnimation()
-            binding.btnHomeRain.clearAnimation()
-
-            it.startAnimation(buttonAnimation)
-            // 향후 클릭 시 추가할 동작 설정
+            animateAndHandleButtonClick(binding.btnHomeCloud)
         }
 
         binding.btnHomeCloud.setOnClickListener {
-            binding.btnHomeSun.clearAnimation()
-            binding.btnHomeThunder.clearAnimation()
-            binding.btnHomeRain.clearAnimation()
-
-            it.startAnimation(buttonAnimation)
-
-            // 프래그먼트의 버튼 참조
-            val buttonInFragment = fragment1.view?.findViewById<Button>(R.id.btn_calendardetailview_save)
-            // 버튼의 텍스트 색상 변경
-            buttonInFragment?.setTextColor(ContextCompat.getColor(this, R.color.sorange))
+            animateAndHandleButtonClick(binding.btnHomeCloud)
+            updateButtonInFragmentColor(R.color.sorange)
         }
 
         binding.btnHomeThunder.setOnClickListener {
-            binding.btnHomeSun.clearAnimation()
-            binding.btnHomeCloud.clearAnimation()
-            binding.btnHomeRain.clearAnimation()
-
-            it.startAnimation(buttonAnimation)
-
-            // 프래그먼트의 버튼 참조
-            val buttonInFragment = fragment1.view?.findViewById<Button>(R.id.btn_calendardetailview_save)
-            // 버튼의 텍스트 색상 변경
-            buttonInFragment?.setTextColor(ContextCompat.getColor(this, R.color.sorange))
+            animateAndHandleButtonClick(binding.btnHomeCloud)
+            updateButtonInFragmentColor(R.color.sorange)
         }
 
         binding.btnHomeRain.setOnClickListener {
-            binding.btnHomeSun.clearAnimation()
-            binding.btnHomeCloud.clearAnimation()
-            binding.btnHomeThunder.clearAnimation()
-
-            it.startAnimation(buttonAnimation)
-
-            // 프래그먼트의 버튼 참조
-            val buttonInFragment = fragment1.view?.findViewById<Button>(R.id.btn_calendardetailview_save)
-            // 버튼의 텍스트 색상 변경
-            buttonInFragment?.setTextColor(ContextCompat.getColor(this, R.color.sorange))
+            animateAndHandleButtonClick(binding.btnHomeCloud)
+            updateButtonInFragmentColor(R.color.sorange)
         }
+    }
 
-        // 클릭 리스너 설정
-        binding.llCalendarDetailviewClickToSelectTime.setOnClickListener {
-            // LayoutInflater를 사용하여 레이아웃 XML 파일을 가져옴
-            val inflater = LayoutInflater.from(this)
-            val dialogView: View = inflater.inflate(R.layout.alert_dialog_alarm, null)
+    private fun animateAndHandleButtonClick(button: Button) {
+        val buttonAnimation: Animation = AnimationUtils.loadAnimation(this, R.anim.btn_weather_scale)
 
-            // AlertDialog 빌더 생성
-            val builder = AlertDialog.Builder(this)
-            builder.setView(dialogView) // 빌더에 뷰 설정
+        binding.btnHomeSun.clearAnimation()
+        binding.btnHomeCloud.clearAnimation()
+        binding.btnHomeThunder.clearAnimation()
+        binding.btnHomeRain.clearAnimation()
 
-            // AlertDialog 생성 및 보여주기
-            val alertDialog: AlertDialog = builder.create()
-            alertDialog.show()
-        }
-        // 액티비티에서 TimePicker를 찾아온 후
+        button.startAnimation(buttonAnimation)
+    }
+
+    private fun updateButtonInFragmentColor(colorId: Int) {
+        val fragment1: Fragment = ModifyFragment2()
+        val buttonInFragment = fragment1.view?.findViewById<Button>(R.id.btn_calendardetailview_save)
+        buttonInFragment?.setTextColor(ContextCompat.getColor(this, colorId))
+    }
+
+    private fun setupTimePicker() {
         val timePicker: TimePicker = findViewById(R.id.tp_calendardetailview)
 
-        // 선택한 시간 가져오기
         val selectedHour: Int = if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.M) {
-            timePicker.hour // API 23 이상에서는 getHour() 대신 hour 속성 사용
+            timePicker.hour
         } else {
-            timePicker.currentHour // API 23 미만에서는 getHour() 사용
+            timePicker.currentHour
         }
 
-        // 선택한 분 가져오기
         val selectedMinute: Int = if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.M) {
-            timePicker.minute // API 23 이상에서는 getMinute() 대신 minute 속성 사용
+            timePicker.minute
         } else {
-            timePicker.currentMinute // API 23 미만에서는 getMinute() 사용
+            timePicker.currentMinute
         }
-        // 선택한 오전/오후 값 가져오기
+
         val selectedAmPm: String = if (selectedHour >= 12) {
             "오후"
         } else {
@@ -169,6 +141,14 @@ class CalendarDetailviewModify2 : AppCompatActivity() {
 
         val tvTime: TextView = findViewById(R.id.tv_calendar_detailview_modify2_time)
         tvTime.text = ("$selectedAmPm $selectedHour:${selectedMinute}시")
+    }
+
+    // 미입력 내역에서 넘어오는 date 값 처리하는 로직 추가
+    private fun handleUnwrittenDate() {
+        val unWrittenDate = intent.getStringExtra("unWrittenDate")
+        if (unWrittenDate != null) {
+            // receivedDate를 활용하여 처리하는 로직을 작성하세요
+        }
     }
 
     private fun updateSaveButtonState() {
