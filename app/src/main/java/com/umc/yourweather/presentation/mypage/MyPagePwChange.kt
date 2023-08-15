@@ -36,7 +36,7 @@ class MyPagePwChange : AppCompatActivity() {
 
         binding.etMypagePwPw.addTextChangedListener(createTextWatcher(::checkPwFormat))
         binding.etMypagePwRepw.addTextChangedListener(createTextWatcher(::checkRePw))
-        binding.etMypagePwMypw.addTextChangedListener(createTextWatcher(::checkMyPw))
+        //binding.etMypagePwMypw.addTextChangedListener(createTextWatcher(::checkMyPw))
     }
 
     private fun createTextWatcher(checkError: () -> Unit): TextWatcher {
@@ -56,26 +56,26 @@ class MyPagePwChange : AppCompatActivity() {
         }
     }
 
-    private fun checkMyPw() {
-        val userPw = UserSharedPreferences.getUserPwToStar(this)
-
-        var inputMyPW = binding.etMypagePwMypw.text.toString()
-        if (inputMyPW.equals(userPw)) {
-            Log.d("기존 비밀번호 : ", "$userPw")
-
-            binding.etMypagePwMypw.background = resources.getDrawable(R.drawable.bg_gray_ed_fill_6_rect)
-            binding.tvMypagePwMypwCheck.visibility = View.INVISIBLE
-            binding.ivMypagePwPwCheck0.visibility = View.VISIBLE
-            flag = 1
-        } else {
-            Log.d("기존 비밀번호 : ", "$userPw")
-
-            binding.etMypagePwMypw.background = resources.getDrawable(R.drawable.bg_gray_ed_fill_6_rect_border_red)
-            binding.tvMypagePwMypwCheck.visibility = View.VISIBLE
-            binding.ivMypagePwPwCheck0.visibility = View.INVISIBLE
-            flag = 0
-        }
-    }
+//    private fun checkMyPw() {
+//        val userPw = UserSharedPreferences.getUserPwToStar(this)
+//
+//        var inputMyPW = binding.etMypagePwMypw.text.toString()
+//        if (inputMyPW.equals(userPw)) {
+//            Log.d("기존 비밀번호 : ", "$userPw")
+//
+//            binding.etMypagePwMypw.background = resources.getDrawable(R.drawable.bg_gray_ed_fill_6_rect)
+//            binding.tvMypagePwMypwCheck.visibility = View.INVISIBLE
+//            binding.ivMypagePwPwCheck0.visibility = View.VISIBLE
+//            flag = 1
+//        } else {
+//            Log.d("기존 비밀번호 : ", "$userPw")
+//
+//            binding.etMypagePwMypw.background = resources.getDrawable(R.drawable.bg_gray_ed_fill_6_rect_border_red)
+//            binding.tvMypagePwMypwCheck.visibility = View.VISIBLE
+//            binding.ivMypagePwPwCheck0.visibility = View.INVISIBLE
+//            flag = 0
+//        }
+//    }
     private fun checkPwFormat() {
         var newPw = binding.etMypagePwPw.text.toString()
         if (SignUtils.isValidPassword(newPw) == true) {
@@ -99,6 +99,7 @@ class MyPagePwChange : AppCompatActivity() {
             binding.ivMypagePwCheck2.visibility = View.VISIBLE
 
             binding.btnMypagePwNext.isEnabled = flag == 1
+            binding.btnMypagePwNext.isEnabled = flag == 0
 
             // API 호출
             changePwAPI(Pw, newPw)
@@ -116,13 +117,13 @@ class MyPagePwChange : AppCompatActivity() {
 
     private fun changePwAPI(Pw: String, newPw: String) {
         if (newPw.isNotEmpty()) {
-            performNicknameChange(Pw, newPw)
+            performPwChange(Pw, newPw)
         } else {
             // 닉네임이 비어있는 경우 처리
         }
     }
 
-    private fun performNicknameChange(Pw: String, newPw: String) {
+    private fun performPwChange(Pw: String, newPw: String) {
         val userService = RetrofitImpl.authenticatedRetrofit.create(UserService::class.java)
         userService.changePw(ChangePasswordRequest(Pw, newPw))
             .enqueue(object : Callback<BaseResponse<ChangePasswordRespond>> {

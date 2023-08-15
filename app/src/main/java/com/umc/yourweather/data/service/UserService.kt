@@ -28,7 +28,7 @@ interface UserService {
     fun signUp(@Body request: SignupRequest): Call<BaseResponse<TokenResponse>>
 
     // 비밀번호 변경
-    @PATCH("/api/v1/users/password-change")
+    @PATCH("/api/v1/users/password")
     fun changePw(@Body request: ChangePasswordRequest): Call<BaseResponse<ChangePasswordRespond>>
 
     // 비밀번호 재설정
