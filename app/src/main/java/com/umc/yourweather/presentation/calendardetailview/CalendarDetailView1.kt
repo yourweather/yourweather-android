@@ -20,31 +20,38 @@ import com.umc.yourweather.data.remote.response.BaseResponse
 import com.umc.yourweather.data.remote.response.TokenResponse
 import com.umc.yourweather.data.remote.response.WeatherResponse
 import com.umc.yourweather.data.service.LoginService
+import com.umc.yourweather.data.service.MemoService
 import com.umc.yourweather.data.service.WeatherService
 import com.umc.yourweather.databinding.ActivityCalendarDetailView1Binding
 import com.umc.yourweather.databinding.ActivityCalendarDetailviewModify1Binding
 import com.umc.yourweather.di.App
 import com.umc.yourweather.di.RetrofitImpl
+import com.umc.yourweather.di.UserSharedPreferences
 import com.umc.yourweather.presentation.BottomNavi
 import com.umc.yourweather.presentation.adapter.CalendarDetailviewDiaryAdapter
 import com.umc.yourweather.util.SignUtils
 import retrofit2.Call
 import retrofit2.Callback
 import retrofit2.Response
+import java.text.SimpleDateFormat
 import java.util.*
 
 
 class CalendarDetailView1 : AppCompatActivity() {
-//일기 변수 선언
+    //일기 변수 선언
     private lateinit var recyclerView: RecyclerView
     private lateinit var viewAdapter: RecyclerView.Adapter<*>
     private lateinit var viewManager: RecyclerView.LayoutManager
 
     private lateinit var binding: ActivityCalendarDetailView1Binding
 
+
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_calendar_detail_view1)
+
+        binding = ActivityCalendarDetailView1Binding.inflate(layoutInflater)
+        setContentView(binding.root)
 
         // 프래그먼트를 추가하고 초기화
         val fragmentManager: FragmentManager = supportFragmentManager
@@ -54,18 +61,26 @@ class CalendarDetailView1 : AppCompatActivity() {
         val fragment1: Fragment = HorizontalScrollFragment()
         val fragment2: Fragment = ScrollviewFragment1()
 
+
         // 프래그먼트를 레이아웃 컨테이너에 추가
-        fragmentTransaction.add(R.id.fragment_container, fragment1)
-        fragmentTransaction.add(R.id.fragment_container, fragment2)
+        fragmentTransaction.replace(R.id.fragment_container, fragment1)
+        fragmentTransaction.replace(R.id.fragment_container, fragment2)
 
         // 프래그먼트 트랜잭션 완료
         fragmentTransaction.commit()
 
-        val textView1: TextView = findViewById(R.id.tv_calendar_detailview1_1)
+        val weatherId = intent.getIntExtra("weatherId", -1) // -1은 기본값, 원하는 값으로 설정해주세요
 
-        val year = intent.getStringExtra("year")
-        val month = intent.getStringExtra("month")
-        val date = intent.getStringExtra("date")
+
+        // weatherId를 활용하여 API 요청 보내기
+        if (weatherId != -1) {
+            CalendarDetailView1Api(weatherId)
+        }
+
+
+        supportFragmentManager.beginTransaction()
+            .replace(R.id.fragment_container, fragment2)
+            .commit()
 
         val btnBack: ImageButton = findViewById(R.id.btn_calendardetailview1_back)
 
@@ -78,42 +93,70 @@ class CalendarDetailView1 : AppCompatActivity() {
         btnModify.setOnClickListener {
             val intent = Intent(this@CalendarDetailView1, CalendarDetailView3::class.java)
             startActivity(intent)
+
+
         }
 
     }
-    private fun CalendarDetailView1Api(year: Int, month: Int, day: Int) {
-        val service = RetrofitImpl.authenticatedRetrofit.create(WeatherService::class.java)
 
-        val authToken = "calendardetailview1_auth_token" }}
-       /* val call = service.getWeather(authToken, year ?: "", month ?: "", day ?: "")
+    private fun CalendarDetailView1Api(weatherId: Int) {
+        val memoService = RetrofitImpl.authenticatedRetrofit.create(MemoService::class.java)
 
-        call.enqueue(object : Callback<BaseResponse<WeatherResponse>> {
+
+        val call = memoService.memoReturn(weatherId = weatherId)
+
+        call.enqueue(object : Callback<BaseResponse<BaseResponse<MemoDailyResponse>>> {
+
             override fun onResponse(
-                call: Call<BaseResponse<WeatherResponse>>,
-                response: Response<BaseResponse<WeatherResponse>>
+                call: Call<BaseResponse<BaseResponse<MemoDailyResponse>>>,
+                response: Response<BaseResponse<BaseResponse<MemoDailyResponse>>>
             ) {
                 if (response.isSuccessful) {
-                    val weatherResponse = response.body()?.result
-                    // 처리할 작업 수행
-                    if (weatherResponse != null) {
-                        val user = weatherResponse.user
-                        binding.tvCalendarDetailview11.text = "${month}월 ${day}일 ${user}님의 날씨"
-                    } else {
-                        // 서버 응답은 성공했지만 데이터가 없는 경우 (예: 날씨 데이터 없음)
-                        Log.e("WeatherActivity", "날씨 데이터가 없음")
+                    val outerResponse = response.body()?.result
+                    val memoDailyResponse = outerResponse?.result
+
+                    if (memoDailyResponse != null) {
+                        val memoList = memoDailyResponse.memoList
+                        val dateTime=memoDailyResponse.memoList
+                        val memoContentList = memoDailyResponse.memoContentList
+                        // 여기에서 사용자 정보 활용하여 작업 수행
+
+                        val dateString = dateTime
+                        val dateFormat = SimpleDateFormat("yyyy-MM-dd'T'HH:mm:ss.SSS'Z'", Locale.US)
+                        val date = dateFormat.parse(dateString.toString())
+
+                        val calendar = Calendar.getInstance()
+                        calendar.time = date
+
+                        val month = calendar.get(Calendar.MONTH) + 1 // 월은 0부터 시작하므로 +1을 해줌
+                        val day = calendar.get(Calendar.DAY_OF_MONTH)
+                        // 사용자 닉네임 가져오기
+                        val userNickname =
+                            UserSharedPreferences.getUserNickname(this@CalendarDetailView1)
+
+                        binding.tvCalendarDetailview11.text=("${month}월 ${day}일 ${userNickname}님의 날씨" )
+                    }
+                    else {
+                        // 서버 응답은 성공했지만 데이터가 없는 경우 처리
+                        Log.e("API Response", "No memo data for the requested date")
                     }
                 } else {
-                    // 서버 응답이 실패한 경우
-                    Log.e("WeatherActivity", "날씨 데이터 가져오기 실패")
+                    // 서버 응답이 실패한 경우 처리
+                    Log.e("API Response", "Failed to retrieve memo data")
                 }
+
             }
 
-            override fun onFailure(call: Call<BaseResponse<WeatherResponse>>, t: Throwable) {
-                // 실패 처리
+            override fun onFailure(
+                call: Call<BaseResponse<BaseResponse<MemoDailyResponse>>>,
+                t: Throwable
+            ) {
+                // 네트워크 요청 실패 처리
                 Log.e("API Failure", "Error: ${t.message}", t)
+                // 사용자에게 오류 메시지 표시
+                val errorMessage = "네트워크 요청이 실패했습니다."
             }
         })
 
     }
-
-} */
+}
