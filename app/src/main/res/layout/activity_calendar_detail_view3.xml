@@ -82,7 +82,190 @@
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toTopOf="parent" />
+        <HorizontalScrollView
+            android:id="@+id/horizontalScrollView"
+            android:layout_width="match_parent"
+            android:layout_height="225dp"
+            android:layout_marginStart="9dp"
+            android:layout_marginTop="150dp"
+            android:layout_marginEnd="8dp"
+            android:layout_marginBottom="430dp"
+            android:background="@drawable/bg_gray_ed_fill_6_rect"
+            android:foregroundGravity="center"
+            android:orientation="vertical"
+            android:padding="0dp"
+            android:scrollbars="none"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent"
+            tools:ignore="SpeakableTextPresentCheck">
 
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_gravity="center"
+                android:orientation="vertical"
+                android:padding="0dp">
+
+                <LinearLayout
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_gravity="center"
+                    android:orientation="horizontal">
+
+                    <TextView
+                        android:id="@+id/tv_horizontal_scroll2_time"
+                        android:layout_width="64dp"
+                        android:layout_height="27dp"
+                        android:layout_marginStart="9dp"
+                        android:layout_marginTop="6dp"
+                        android:layout_marginEnd="21dp"
+                        android:fontFamily="@font/pretendardregular"
+                        android:text="오후 1:00"
+                        android:textAlignment="center"
+                        android:textColor="#2B2B2B"
+                        android:textFontWeight="600"
+                        android:textSize="14sp" />
+
+
+                </LinearLayout>
+
+                <LinearLayout
+                    android:id="@+id/ll_horizontal_scroll2_weather"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_gravity="center"
+                    android:orientation="horizontal">
+
+                    <FrameLayout
+                        android:layout_width="53dp"
+                        android:layout_height="54dp"
+                        android:layout_gravity="center"
+                        android:layout_marginStart="10dp"
+                        android:layout_marginEnd="15dp">
+
+                        <ImageView
+                            android:id="@+id/ic_horizontal_scroll2_weather_circle"
+                            android:layout_width="53dp"
+                            android:layout_height="52dp"
+                            android:layout_marginBottom="600dp"
+                            app:srcCompat="@drawable/bg_whitecircle" />
+
+                        <ImageView
+                            android:id="@+id/ic_horizontal_scroll2_weather"
+                            android:layout_width="73dp"
+                            android:layout_height="72dp"
+                            android:layout_gravity="center"
+                            app:srcCompat="@drawable/ic_sun" />
+                    </FrameLayout>
+
+                </LinearLayout>
+
+                <LinearLayout
+                    android:id="@+id/ll_horizontal_scroll2_temp"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:orientation="horizontal">
+
+                    <TextView
+                        android:id="@+id/tv_horizontal_scroll2_temp"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_marginStart="61dp"
+                        android:layout_marginTop="10dp"
+                        android:layout_marginEnd="67dp"
+                        android:fontFamily="@font/pretendardregular"
+                        android:text="10°"
+                        android:textAlignment="center"
+                        android:textColor="#2B2B2B"
+                        android:textFontWeight="600"
+                        android:textSize="14sp" />
+
+
+                </LinearLayout>
+
+                <LinearLayout
+                    android:id="@+id/ll_horizontal_scroll2_temp_graph"
+                    android:layout_width="match_parent"
+                    android:layout_height="108dp">
+
+                    <com.github.mikephil.charting.charts.LineChart
+                        android:id="@+id/chart_horizontal_scroll2_temp_graph"
+                        android:layout_width="match_parent"
+                        android:layout_height="match_parent"
+                        android:layout_gravity="center" />
+                </LinearLayout>
+
+            </LinearLayout>
+
+
+        </HorizontalScrollView>
+        <TextView
+            android:id="@+id/tv_scrollview_fragment3_date"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:fontFamily="@font/pretendardregular"
+            android:text="7월 4일의 일기"
+            android:textAlignment="center"
+            android:textColor="#2B2B2B"
+            android:textFontWeight="600"
+            android:textSize="15sp"
+            android:layout_marginTop="450dp"
+            app:layout_constraintBottom_toTopOf="@+id/scrollView4"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent" />
+
+        <ScrollView
+            android:id="@+id/scrollView4"
+            android:layout_width="382dp"
+            android:layout_height="364dp"
+            android:layout_marginStart="17dp"
+            android:layout_marginTop="490dp"
+            android:layout_marginEnd="19dp"
+            android:layout_marginBottom="72dp"
+            android:scrollbars="none"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent">
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="vertical">
+
+                <TextView
+                    android:id="@+id/tv_scrollview_fragment2_time"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:fontFamily="@font/pretendardregular"
+                    android:text=""
+                    android:textColor="#2B2B2B"
+                    android:textFontWeight="500" />
+
+                <androidx.recyclerview.widget.RecyclerView
+                    android:id="@+id/rv_scrollview_fragment2_1"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    app:layoutManager="androidx.recyclerview.widget.LinearLayoutManager"></androidx.recyclerview.widget.RecyclerView>
+
+            </LinearLayout>
+
+
+        </ScrollView>
+
+        <ImageButton
+            android:id="@+id/btn_calendardetailview3_plus"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="370dp"
+            android:layout_marginTop="856dp"
+            android:background="#00ff0000"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintTop_toBottomOf="@id/scrollView4"
+            app:srcCompat="@drawable/btn_calendardetailview_plus" />
     </FrameLayout>
 
 
