@@ -57,7 +57,6 @@ class FindPwEmail : AppCompatActivity() {
 
         binding.tvFindPwEmailBtnresend.setOnClickListener {
             countDownTimer?.cancel()
-            showCustomAlertDialog("인증코드가 재전송되었습니다.", 0, true)
             resendEmail(email)
         }
 
@@ -116,6 +115,7 @@ class FindPwEmail : AppCompatActivity() {
                     val code = response.body()?.code
                     if (code == 200) {
                         // 성공한 경우
+                        showCustomAlertDialog("인증코드가 재전송되었습니다.", 0, true)
                         Log.d("ResendEmailDebug", "이메일 재전송 성공")
                     } else {
                         // 실패한 경우
