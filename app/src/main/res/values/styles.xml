@@ -7,5 +7,4 @@
     <style name="CustomRadioTheme" parent="Theme.AppCompat.Light.DarkActionBar">
     <item name="colorAccent">@color/sorange</item>
     </style>
-
 </resources>

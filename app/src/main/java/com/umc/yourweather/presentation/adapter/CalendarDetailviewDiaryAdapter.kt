@@ -1,7 +1,5 @@
 package com.umc.yourweather.presentation.adapter
 
-import androidx.appcompat.app.AppCompatActivity
-import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
@@ -33,7 +31,7 @@ class CalendarDetailviewDiaryAdapter(private val memoContentList: List<MemoDaily
         // - get element from your dataset at this position
         // - replace the contents of the view with that element
         val memoContent = memoContentList[position] // Get the MemoContentResponse at the current position
-        holder.itemdetail.text = memoContent.status
+        holder.itemdetail.text = memoContent.content
     }
 
     // 3. Return the size of your dataset (invoked by the layout manager)
