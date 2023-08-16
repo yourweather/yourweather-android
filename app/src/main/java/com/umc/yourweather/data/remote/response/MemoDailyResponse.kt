@@ -12,7 +12,7 @@ data class MemoDailyResponse(
         @SerializedName("memoId")
         val memoId: Int,
         @SerializedName("creationDatetime")
-        val dateTime: String,
+        val creationDatetime: String,
         @SerializedName("status")
         val status: com.umc.yourweather.data.enums.Status,
         @SerializedName("temperature")
@@ -23,8 +23,8 @@ data class MemoDailyResponse(
         @SerializedName("memoId")
         val memoId: Int,
         @SerializedName("creationDatetime")
-        val dateTime: String,
+        val creationDatetime: String,
         @SerializedName("content")
-        val status: String,
+        val content: String,
     )
 }
