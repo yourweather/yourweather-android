@@ -1,0 +1,179 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    xmlns:app="http://schemas.android.com/apk/res-auto">
+
+    <FrameLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent">
+
+        <androidx.constraintlayout.widget.ConstraintLayout
+            android:layout_width="match_parent"
+            android:layout_height="match_parent">
+
+            <ImageView
+                android:id="@+id/iv_carmera_permission"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                app:layout_constraintBottom_toBottomOf="parent"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toTopOf="parent"
+                app:srcCompat="@drawable/bg_carmera_permission" />
+
+            <LinearLayout
+                android:id="@+id/ll_carmera_permission_content"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="vertical"
+                tools:layout_editor_absoluteX="1dp"
+                tools:layout_editor_absoluteY="186dp">
+
+
+                <TextView
+                    android:id="@+id/tv_carmera_permmision_1"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginStart="100dp"
+                    android:layout_marginTop="30dp"
+                    android:fontFamily="@font/pretendardmedium"
+                    android:text="앱 접근 권한 동의"
+                    android:textColor="@color/brown"
+                    android:textSize="15dp" />
+
+                <TextView
+                    android:id="@+id/tv_carmera_permmision_2"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginStart="100dp"
+                    android:layout_marginTop="10dp"
+                    android:fontFamily="@font/pretendardmedium"
+                    android:text="아래의 권한을 필요로 하는 기능입니다.\n접근권한 허용 후, 이용 가능합니다."
+                    android:textColor="@color/brown"
+                    android:textSize="13dp" />
+
+                <TextView
+                    android:id="@+id/tv_carmera_permmision_3"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginStart="100dp"
+                    android:layout_marginTop="15dp"
+                    android:fontFamily="@font/pretendardmedium"
+                    android:text="선택적 접근 권한"
+                    android:textColor="@color/brown"
+                    android:textSize="15dp" />
+
+                <TextView
+                    android:id="@+id/tv_carmera_permmision_4"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginStart="100dp"
+                    android:layout_marginTop="8dp"
+                    android:fontFamily="@font/pretendardmedium"
+                    android:text="동의와 상관없이 유어웨더 APP의 기본 서비스 이용이\n가능하며, 미동의 시 아래 권한을 요구하는 기능 이용이\n제한 됩니다."
+                    android:textColor="@color/gray"
+                    android:textSize="10dp" />
+
+                <LinearLayout
+                    android:id="@+id/ll_carmera_permission_content2"
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:orientation="horizontal"
+                    android:layout_marginTop="10dp">
+
+                    <TextView
+                        android:id="@+id/tv_carmera_permmision_5"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_marginStart="100dp"
+                        android:fontFamily="@font/pretendardmedium"
+                        android:text="[선택]"
+                        android:textColor="@color/orange"
+                        android:textSize="15dp" />
+
+                    <TextView
+                        android:id="@+id/tv_carmera_permmision_6"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:fontFamily="@font/pretendardmedium"
+                        android:text="카메라 권한"
+                        android:textColor="@color/brown"
+                        android:textSize="15dp" />
+                </LinearLayout>
+
+                <TextView
+                    android:id="@+id/tv_carmera_permmision_7"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginStart="100dp"
+                    android:fontFamily="@font/pretendardmedium"
+                    android:text="스토리 공유하기, 홈화면 이미지로 저장하기"
+                    android:textColor="@color/gray"
+                    android:textSize="10dp" />
+
+                <TextView
+                    android:id="@+id/tv_carmera_permmision_8"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginStart="100dp"
+                    android:layout_marginTop="15dp"
+                    android:fontFamily="@font/pretendardmedium"
+                    android:text="*접근권한 변경 방법"
+                    android:textColor="@color/brown"
+                    android:textSize="13dp" />
+
+                <TextView
+                    android:id="@+id/tv_carmera_permmision_9"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginStart="100dp"
+                    android:fontFamily="@font/pretendardmedium"
+                    android:text="기기 설정>유어웨더 에서 각 접근권한 별 설정 가능"
+                    android:textColor="@color/brown"
+                    android:textSize="10dp" />
+
+                <LinearLayout
+                    android:layout_width="wrap_content"
+                    android:layout_height="match_parent"
+                    android:layout_marginStart="82dp"
+                    android:layout_marginTop="20dp"
+                    android:orientation="horizontal">
+
+                    <Button
+                        android:id="@+id/btn_carmera_permission_no"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_marginStart="15dp"
+                        android:layout_marginTop="5dp"
+                        android:background="#00ff0000"
+                        android:fontFamily="@font/pretendardmedium"
+                        android:text="취소"
+                        android:textColor="@color/gray"
+                        android:textSize="14dp" />
+
+                    <Button
+                        android:id="@+id/btn_carmera_permission_yes"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_marginStart="35dp"
+                        android:layout_marginTop="5dp"
+                        android:background="#00ff0000"
+                        android:fontFamily="@font/pretendardmedium"
+                        android:text="설정이동"
+                        android:textColor="@color/orange"
+                        android:textSize="14dp" />
+
+                </LinearLayout>
+
+
+            </LinearLayout>
+
+
+        </androidx.constraintlayout.widget.ConstraintLayout>
+
+    </FrameLayout>
+
+
+</androidx.constraintlayout.widget.ConstraintLayout>
