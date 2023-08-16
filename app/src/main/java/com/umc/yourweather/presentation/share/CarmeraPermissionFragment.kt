@@ -29,12 +29,12 @@ class CarmeraPermissionFragment : Fragment() {
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
 
-        //권한설정 창에서 취소 버튼 클릭
+        // 권한설정 창에서 취소 버튼 클릭
         binding.tvCarmeraPermissionNo.setOnClickListener {
             // 해당 프래그먼트를 종료하고 이전 화면으로 돌아가기
             parentFragmentManager.popBackStack()
         }
-        //권한설정 창에서 설정이동 버튼 클릭
+        // 권한설정 창에서 설정이동 버튼 클릭
         binding.tvCarmeraPermissionYes.setOnClickListener {
             val cameraPermission = Manifest.permission.CAMERA
 
