@@ -220,8 +220,8 @@ class CalendarDetailviewModify2 : AppCompatActivity() {
     }
 
     private fun activityFinish() {
-        val intent = Intent(this, CalendarDetailView3::class.java)
-        startActivity(intent)
-        finish()
+//        val intent = Intent(this, CalendarDetailView3::class.java)
+//        startActivity(intent)
+//        finish()
     }
 }

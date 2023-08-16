@@ -16,7 +16,9 @@
         android:supportsRtl="true"
         android:theme="@style/Theme.Yourweather"
         tools:targetApi="31">
-
+        <activity
+            android:name=".presentation.calendar.CalendarDetail"
+            android:exported="false" />
         <activity
             android:name=".presentation.mypage.MyPageUsePolicy"
             android:exported="false" />
