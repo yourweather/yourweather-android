@@ -11,14 +11,13 @@ import android.util.AttributeSet
 import android.util.Log
 import android.view.View
 import androidx.annotation.RequiresApi
-import androidx.core.content.ContextCompat
 import androidx.core.content.res.ResourcesCompat
 import androidx.core.content.withStyledAttributes
 import com.umc.yourweather.R
-import com.umc.yourweather.data.enums.Status
 import com.umc.yourweather.data.remote.response.MonthWeatherResponse
 import com.umc.yourweather.util.CalendarUtils.Companion.checkTextSize
 import com.umc.yourweather.util.CalendarUtils.Companion.dpToPx
+import com.umc.yourweather.util.ResourceUtils.Companion.setWeatherIc
 import java.time.LocalDate
 
 @RequiresApi(Build.VERSION_CODES.O)
@@ -87,7 +86,7 @@ class CalendarDate @JvmOverloads constructor(
                             textAlign = Paint.Align.CENTER
                             typeface = tempFont
                         }
-                        customDrawable = setDrawable(dataList.lastStatus)
+                        customDrawable = setWeatherIc(context, dataList.lastStatus)
                     }
                     setOnClickListener {
                         // 클릭 이벤트가 발생했을 때 콜백으로 해당 날짜 전달
@@ -98,22 +97,22 @@ class CalendarDate @JvmOverloads constructor(
         }
     }
 
-    fun setDrawable(weather: Status): Drawable? {
-        when (weather) {
-            Status.SUNNY -> {
-                return ContextCompat.getDrawable(context, R.drawable.ic_sun)
-            }
-            Status.CLOUDY -> {
-                return ContextCompat.getDrawable(context, R.drawable.ic_cloud)
-            }
-            Status.LIGHTNING -> {
-                return ContextCompat.getDrawable(context, R.drawable.ic_thunder)
-            }
-            Status.RAINY -> {
-                return ContextCompat.getDrawable(context, R.drawable.ic_rain)
-            }
-        }
-    }
+//    fun setDrawable(context: Context, weather: Status): Drawable? {
+//        when (weather) {
+//            Status.SUNNY -> {
+//                return ContextCompat.getDrawable(context, R.drawable.ic_sun)
+//            }
+//            Status.CLOUDY -> {
+//                return ContextCompat.getDrawable(context, R.drawable.ic_cloud)
+//            }
+//            Status.LIGHTNING -> {
+//                return ContextCompat.getDrawable(context, R.drawable.ic_thunder)
+//            }
+//            Status.RAINY -> {
+//                return ContextCompat.getDrawable(context, R.drawable.ic_rain)
+//            }
+//        }
+//    }
 
     @RequiresApi(Build.VERSION_CODES.O)
     override fun onDraw(canvas: Canvas?) {

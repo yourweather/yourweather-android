@@ -1,25 +1,15 @@
 package com.umc.yourweather.presentation.calendardetailview
 
 import android.content.Intent
-import android.graphics.Color
-import android.graphics.Paint
 import android.os.Build
 import android.os.Bundle
 import android.util.Log
 import android.widget.ImageButton
-import android.widget.TextView
 import androidx.annotation.RequiresApi
 import androidx.appcompat.app.AppCompatActivity
 import androidx.fragment.app.Fragment
 import androidx.fragment.app.FragmentManager
 import androidx.fragment.app.FragmentTransaction
-import androidx.recyclerview.widget.LinearLayoutManager
-import androidx.recyclerview.widget.RecyclerView
-import com.github.mikephil.charting.charts.LineChart
-import com.github.mikephil.charting.data.Entry
-import com.github.mikephil.charting.data.LineData
-import com.github.mikephil.charting.data.LineDataSet
-import com.github.mikephil.charting.interfaces.datasets.ILineDataSet
 import com.umc.yourweather.R
 import com.umc.yourweather.data.remote.response.BaseResponse
 import com.umc.yourweather.data.remote.response.MemoDailyResponse
@@ -27,14 +17,10 @@ import com.umc.yourweather.data.service.MemoService
 import com.umc.yourweather.databinding.ActivityCalendarDetailView3Binding
 import com.umc.yourweather.di.RetrofitImpl
 import com.umc.yourweather.di.UserSharedPreferences
-import com.umc.yourweather.presentation.adapter.CalendarDetailviewDiaryAdapter
 import retrofit2.Call
 import retrofit2.Response
-import java.text.SimpleDateFormat
 import java.time.LocalDateTime
 import java.time.format.DateTimeFormatter
-import java.util.ArrayList
-import java.util.Calendar
 import java.util.Locale
 
 class CalendarDetailView3 : AppCompatActivity() {
@@ -101,7 +87,7 @@ class CalendarDetailView3 : AppCompatActivity() {
                         val memoList = responseBody?.result?.memoList
                         val memoContentList = responseBody?.result?.memoContentList
 
-                        val dateString = memoList?.firstOrNull()?.dateTime
+                        val dateString = memoList?.firstOrNull()?.creationDatetime
                         val formatter =
                             DateTimeFormatter.ofPattern("yyyy-MM-dd'T'HH:mm:ss.SSS'Z'", Locale.US)
                         val date = LocalDateTime.parse(dateString, formatter)
