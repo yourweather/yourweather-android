@@ -1,5 +1,6 @@
 package com.umc.yourweather.presentation.weatherinput
 
+import CarmeraPermissionFragment
 import android.content.Intent
 import android.net.Uri
 import android.os.Bundle
@@ -41,6 +42,15 @@ class HomeFragment : Fragment(), HomeFragmentInteractionListener {
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
 
+        binding.btnHomeShare.setOnClickListener {
+            // 카메라권한설정프래그먼트띄우기
+            val fragment = CarmeraPermissionFragment()
+            parentFragmentManager.commit {
+                replace(R.id.fl_home_l1, fragment)
+                addToBackStack(null)
+            }
+        }
+
         // 광고 뷰 이동버튼 클릭
         binding.btnHomeAdMove.setOnClickListener {
             val url = "https://yourweather.shop:8080/api/v1/ad/get-advertisement"
@@ -61,7 +71,8 @@ class HomeFragment : Fragment(), HomeFragmentInteractionListener {
             openHomeWeatherInputFragment()
         }
         fetchHomeDataAndHandleResponse()
-    }
+    } 
+    
 
     // 광고 뷰 숨기기
     private fun hideAdViews() {
