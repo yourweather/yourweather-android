@@ -41,6 +41,7 @@ class HomeFragment : Fragment(), HomeFragmentInteractionListener {
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
 
+        // 광고 뷰 이동버튼 클릭
         binding.btnHomeAdMove.setOnClickListener {
             val url = "https://yourweather.shop:8080/api/v1/ad/get-advertisement"
 
@@ -62,6 +63,7 @@ class HomeFragment : Fragment(), HomeFragmentInteractionListener {
         fetchHomeDataAndHandleResponse()
     }
 
+    // 광고 뷰 숨기기
     private fun hideAdViews() {
         binding.tvHomeAd.visibility = View.GONE
         binding.btnHomeAdMove.visibility = View.GONE
@@ -139,7 +141,8 @@ class HomeFragment : Fragment(), HomeFragmentInteractionListener {
             Log.d("HomeFragment", "홈 토스트 출력 성공: $homeResponse")
         }
     }
-
+    
+    // 백그라운드 이미지변경
     private fun updateBackgroundImage(imageName: String) {
         val backgroundImageResource = when (imageName) {
             "bg_home1_sunny.jpg" -> R.drawable.bg_home1_sunny
@@ -160,7 +163,8 @@ class HomeFragment : Fragment(), HomeFragmentInteractionListener {
         }
         binding.bgHomeWeather.setImageResource(backgroundImageResource)
     }
-
+    
+    // 모션영상 변경
     private fun updateMotionWeather(status: Status) {
         val motionResource = when (status) {
             Status.SUNNY -> R.raw.motion_home_sun
@@ -187,5 +191,4 @@ class HomeFragment : Fragment(), HomeFragmentInteractionListener {
             resources.getDimensionPixelSize(R.dimen.home_toast_margin_bottom),
         )
     }
-
 }
