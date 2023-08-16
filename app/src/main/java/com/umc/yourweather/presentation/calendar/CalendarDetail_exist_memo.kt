@@ -35,7 +35,7 @@ class CalendarDetail_exist_memo : Fragment() {
         savedInstanceState: Bundle?
     ): View? {
         // Inflate the layout for this fragment
-        return inflater.inflate(R.layout.fragment_calendar_detail_exist_memo, container, false)
+        return inflater.inflate(R.layout.fragment_calendar_detail, container, false)
     }
 
     companion object {
