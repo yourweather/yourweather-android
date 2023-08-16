@@ -42,7 +42,7 @@ class HomeFragment : Fragment(), HomeFragmentInteractionListener {
         super.onViewCreated(view, savedInstanceState)
 
         binding.btnHomeAdMove.setOnClickListener {
-            val url = "http://yourweather.shop:8080/api/v1/ad/get-advertisement"
+            val url = "https://yourweather.shop:8080/api/v1/ad/get-advertisement"
 
             val intent = Intent(Intent.ACTION_VIEW, Uri.parse(url))
             startActivity(intent)
