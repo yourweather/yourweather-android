@@ -10,16 +10,22 @@
         android:id="@+id/ll_save_home1"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
+        android:layout_marginBottom="56dp"
         android:background="@drawable/bg_share"
         android:orientation="vertical"
-        app:layout_constraintBottom_toBottomOf="parent">
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.0"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintVertical_bias="1.0">
 
         <LinearLayout
-            android:id="@+id/ll_save_home2"
+            android:id="@+id/ll_save_home_instagram"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:layout_marginTop="24dp"
             android:layout_marginStart="16dp"
+            android:layout_marginTop="24dp"
             android:orientation="horizontal">
 
             <ImageView
@@ -32,9 +38,9 @@
                 android:id="@+id/tv_save_home_instagram"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:fontFamily="@font/pretendardregular"
-                android:layout_marginTop="10dp"
                 android:layout_marginStart="10dp"
+                android:layout_marginTop="10dp"
+                android:fontFamily="@font/pretendardregular"
                 android:text="인스타그램 스토리에 공유"
                 android:textColor="@color/brown"
                 android:textFontWeight="500"
@@ -42,11 +48,11 @@
         </LinearLayout>
 
         <LinearLayout
-            android:id="@+id/ll_save_home3"
+            android:id="@+id/ll_save_home_download"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:layout_marginTop="15dp"
             android:layout_marginStart="16dp"
+            android:layout_marginTop="15dp"
             android:orientation="horizontal">
 
             <ImageView
@@ -59,9 +65,9 @@
                 android:id="@+id/tv_save_home_download"
                 android:layout_width="wrap_content"
                 android:layout_height="match_parent"
-                android:fontFamily="@font/pretendardregular"
-                android:layout_marginTop="8dp"
                 android:layout_marginStart="10dp"
+                android:layout_marginTop="8dp"
+                android:fontFamily="@font/pretendardregular"
                 android:text="현재 홈 화면 이미지로 저장"
                 android:textColor="@color/brown"
                 android:textFontWeight="500"

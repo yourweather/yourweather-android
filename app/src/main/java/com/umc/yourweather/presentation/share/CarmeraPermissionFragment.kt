@@ -8,7 +8,10 @@ import android.view.ViewGroup
 import android.widget.Toast
 import androidx.core.content.ContextCompat
 import androidx.fragment.app.Fragment
+import androidx.fragment.app.commit
+import com.umc.yourweather.R
 import com.umc.yourweather.databinding.FragmentCarmeraPermissionBinding
+import com.umc.yourweather.presentation.share.SaveHomeImgFragment
 
 class CarmeraPermissionFragment : Fragment() {
     private lateinit var binding: FragmentCarmeraPermissionBinding
@@ -41,6 +44,11 @@ class CarmeraPermissionFragment : Fragment() {
             if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.M) {
                 if (ContextCompat.checkSelfPermission(requireContext(), cameraPermission) == PackageManager.PERMISSION_GRANTED) {
                     Toast.makeText(requireContext(), "카메라 권한이 이미 허용되어 있습니다.", Toast.LENGTH_SHORT).show()
+                    parentFragmentManager.commit {
+                        remove(this@CarmeraPermissionFragment)
+                        add(R.id.fl_home_l1, SaveHomeImgFragment())
+                        addToBackStack(null)
+                    }
                 } else {
                     requestPermissions(arrayOf(cameraPermission), REQUEST_PERMISSION_CAMERA)
                 }
@@ -60,6 +68,11 @@ class CarmeraPermissionFragment : Fragment() {
         if (requestCode == REQUEST_PERMISSION_CAMERA) {
             if (grantResults.isNotEmpty() && grantResults[0] == PackageManager.PERMISSION_GRANTED) {
                 Toast.makeText(requireContext(), "카메라 권한이 허용되었습니다.", Toast.LENGTH_SHORT).show()
+                parentFragmentManager.commit {
+                    remove(this@CarmeraPermissionFragment)
+                    add(R.id.fl_home_l1, SaveHomeImgFragment())
+                    addToBackStack(null)
+                }
             } else {
                 Toast.makeText(requireContext(), "카메라 권한이 거절되었습니다.", Toast.LENGTH_SHORT).show()
             }
