@@ -16,7 +16,7 @@ class CalendarDetailMemoListAdapter(private val memoList: List<MemoDailyResponse
         fun onItemClick(view: View, position: Int, memoId: Int)
     }
 
-    lateinit var listener: OnItemClickListener
+    var listener: OnItemClickListener? = null
 
     fun setOnItemClickListener(listener: OnItemClickListener) {
         this.listener = listener
@@ -49,13 +49,13 @@ class CalendarDetailMemoListAdapter(private val memoList: List<MemoDailyResponse
 
     class CalendarDetailMemoListViewHolder(
         var binding: ItemCalendarDetailMemolistBinding,
-        listener: OnItemClickListener,
+        listener: OnItemClickListener?,
         memoList: List<MemoDailyResponse.MemoItemResponse>,
     ) : RecyclerView.ViewHolder(binding.root) {
 
         init {
             binding.root.setOnClickListener {
-                listener.onItemClick(it, bindingAdapterPosition, memoList[bindingAdapterPosition].memoId)
+                listener?.onItemClick(it, bindingAdapterPosition, memoList[bindingAdapterPosition].memoId)
             }
         }
     }
