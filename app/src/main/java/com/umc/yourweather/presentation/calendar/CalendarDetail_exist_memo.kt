@@ -1,13 +1,10 @@
-package com.umc.yourweather.presentation.calendardetailview
+package com.umc.yourweather.presentation.calendar
 
-import android.content.Intent
-import android.graphics.Paint
 import android.os.Bundle
 import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
-import com.google.android.material.textview.MaterialTextView
 import com.umc.yourweather.R
 
 // TODO: Rename parameter arguments, choose names that match
@@ -17,10 +14,10 @@ private const val ARG_PARAM2 = "param2"
 
 /**
  * A simple [Fragment] subclass.
- * Use the [WritingNowFragment.newInstance] factory method to
+ * Use the [CalendarDetail_exist_memo.newInstance] factory method to
  * create an instance of this fragment.
  */
-class WritingNowFragment : Fragment() {
+class CalendarDetail_exist_memo : Fragment() {
     // TODO: Rename and change types of parameters
     private var param1: String? = null
     private var param2: String? = null
@@ -38,17 +35,7 @@ class WritingNowFragment : Fragment() {
         savedInstanceState: Bundle?
     ): View? {
         // Inflate the layout for this fragment
-        val rootView = inflater.inflate(R.layout.fragment_writing_now, container, false)
-
-        val textViewButton: MaterialTextView = rootView.findViewById(R.id.tv_calendardetailview_write)
-
-        textViewButton.paintFlags = textViewButton.paintFlags or Paint.UNDERLINE_TEXT_FLAG
-        textViewButton.setOnClickListener {
-            // 버튼 동작 처리
-            val intent = Intent(requireContext(), CalendarDetailviewModify1::class.java)
-            startActivity(intent)
-        }
-        return rootView
+        return inflater.inflate(R.layout.fragment_calendar_detail_exist_memo, container, false)
     }
 
     companion object {
@@ -58,12 +45,12 @@ class WritingNowFragment : Fragment() {
          *
          * @param param1 Parameter 1.
          * @param param2 Parameter 2.
-         * @return A new instance of fragment writingNow.
+         * @return A new instance of fragment CalendarDetail_exist_memo.
          */
         // TODO: Rename and change types and number of parameters
         @JvmStatic
         fun newInstance(param1: String, param2: String) =
-            WritingNowFragment().apply {
+            CalendarDetail_exist_memo().apply {
                 arguments = Bundle().apply {
                     putString(ARG_PARAM1, param1)
                     putString(ARG_PARAM2, param2)
