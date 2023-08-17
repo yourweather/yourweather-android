@@ -1,66 +1,96 @@
 <?xml version="1.0" encoding="utf-8"?>
+
 <androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
-    android:id="@+id/cl_calendar_detail_memolist"
     android:layout_width="wrap_content"
     android:layout_height="match_parent"
-    android:paddingLeft="11dp"
-    android:paddingRight="11dp">
+    android:layout_marginBottom="12dp">
 
-    <LinearLayout
-        android:id="@+id/ll_item_calendar_detail_memolist_l0"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:orientation="vertical"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent"
 
-        >
-
-        <TextView
-            android:id="@+id/tv_item_calendar_detail_memolist_time"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:fontFamily="@font/pretendardsemibold"
-            android:gravity="center"
-            android:text="TextView"
-            android:textColor="#CC2B2B2B" />
-
-        <View
-            android:id="@+id/divider4"
-            android:layout_width="match_parent"
-            android:layout_height="1dp"
-            android:background="#CC2B2B2B" />
-    </LinearLayout>
-
-    <LinearLayout
-        android:id="@+id/linearLayout9"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:layout_marginTop="7dp"
-        android:background="@drawable/bg_white_full_circle"
-        android:orientation="vertical"
-        app:layout_constraintTop_toBottomOf="@+id/ll_item_calendar_detail_memolist_l0">
-
-        <ImageView
-            android:id="@+id/iv_item_calendar_detail_memolist_ic"
-            android:layout_width="73dp"
-            android:layout_height="72dp"
-            android:layout_gravity="center"
-            app:srcCompat="@drawable/ic_sun" />
-    </LinearLayout>
-
-    <TextView
-        android:id="@+id/tv_item_calendar_detail_memolist_temper"
+    <androidx.constraintlayout.widget.ConstraintLayout
+        android:id="@+id/cl_calendar_detail_memolist"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginTop="6dp"
-        android:fontFamily="@font/pretendardmedium"
-        android:text="TextView"
-        android:textSize="14dp"
+        android:layout_marginStart="11dp"
+        android:layout_marginEnd="11dp"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/linearLayout9" />
+        app:layout_constraintTop_toTopOf="parent">
+
+        <LinearLayout
+            android:id="@+id/ll_item_calendar_detail_memolist_l0"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="vertical"
+            app:layout_constraintEnd_toEndOf="parent"
+
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent">
+
+            <TextView
+                android:id="@+id/tv_item_calendar_detail_memolist_time"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:fontFamily="@font/pretendardsemibold"
+                android:gravity="center"
+                android:text="TextView"
+                android:textColor="#CC2B2B2B" />
+
+            <View
+                android:id="@+id/divider4"
+                android:layout_width="match_parent"
+                android:layout_height="1dp"
+                android:background="#CC2B2B2B" />
+        </LinearLayout>
+
+        <LinearLayout
+            android:id="@+id/linearLayout9"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="7dp"
+            android:background="@drawable/bg_white_full_circle"
+            android:orientation="vertical"
+            app:layout_constraintTop_toBottomOf="@+id/ll_item_calendar_detail_memolist_l0">
+
+            <ImageView
+                android:id="@+id/iv_item_calendar_detail_memolist_ic"
+                android:layout_width="73dp"
+                android:layout_height="72dp"
+                android:layout_gravity="center"
+                app:srcCompat="@drawable/ic_sun" />
+        </LinearLayout>
+
+        <TextView
+            android:id="@+id/tv_item_calendar_detail_memolist_temper"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="6dp"
+            android:fontFamily="@font/pretendardmedium"
+            android:text="TextView"
+            android:textSize="14dp"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/linearLayout9" />
+
+    </androidx.constraintlayout.widget.ConstraintLayout>
+
+    <androidx.constraintlayout.widget.ConstraintLayout
+        android:id="@+id/cl_calendar_detail_graph"
+        android:layout_width="0dp"
+        android:layout_height="90dp"
+        android:layout_marginTop="3dp"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/cl_calendar_detail_memolist">
+
+        <ImageView
+            android:id="@+id/iv_calendar_detail_graph"
+            android:layout_width="8dp"
+            android:layout_height="8dp"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:srcCompat="@drawable/ic_calendardetailview_temp" />
+    </androidx.constraintlayout.widget.ConstraintLayout>
 </androidx.constraintlayout.widget.ConstraintLayout>
