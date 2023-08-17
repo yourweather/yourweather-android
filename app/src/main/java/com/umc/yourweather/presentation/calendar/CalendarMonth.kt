@@ -9,10 +9,10 @@ import android.view.ViewGroup
 import androidx.annotation.RequiresApi
 import androidx.core.view.children
 import com.umc.yourweather.data.remote.response.MonthWeatherResponse
-import com.umc.yourweather.presentation.calendardetailview.CalendarDetailViewEmpty
 import com.umc.yourweather.util.CalendarUtils.Companion.DAYS_PER_WEEK
 import com.umc.yourweather.util.CalendarUtils.Companion.WEEKS_PER_MONTH
 import com.umc.yourweather.util.CalendarUtils.Companion.dpToPx
+import kotlinx.coroutines.NonCancellable.children
 import java.time.LocalDate
 import java.time.format.DateTimeFormatter
 
@@ -30,14 +30,11 @@ class CalendarMonth @JvmOverloads constructor(
         override fun onDateClick(date: LocalDate, weatherId: Int?) {
             Log.d("캘린더 클릭", "Clicked date: $date, 여기는 CalendarMonth")
             Log.d("calendar weatherId total view", "weather Id : $weatherId")
-            if (weatherId == null) {
-//                //val mIntent = Intent(context, CalendarDetailViewEmpty::class.java)
-//                context.startActivity(mIntent)
-            } else {
-//                //val mIntent = Intent(context, CalendarDetailView1::class.java)
-//                mIntent.putExtra("weatherId", weatherId)
-//                context.startActivity(mIntent)
-            }
+
+            val mIntent = Intent(context, CalendarDetail::class.java)
+            mIntent.putExtra("weatherId", weatherId)
+            mIntent.putExtra("date", date.toString())
+            context.startActivity(mIntent)
         }
     }
 

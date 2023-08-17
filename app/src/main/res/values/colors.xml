@@ -10,4 +10,7 @@
     <color name="ivory">#FFFCF3</color>
     <color name="bnv_icon">#B5B5B5</color>
     <color name="gray">#b4b4b4</color>
+    <color name="char_line">#F0A830</color>
+
+
 </resources>
