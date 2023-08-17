@@ -2,6 +2,7 @@ package com.umc.yourweather.presentation.adapter
 
 import android.content.Context
 import android.content.Intent
+import android.util.Log
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
@@ -88,6 +89,7 @@ class CalendarDetailMemoListAdapter(private val memoList: List<MemoDailyResponse
             val intent = Intent(context, CalendarDetailviewModify1::class.java)
             intent.putExtra("memoId", memoList[position].memoId)
             context.startActivity(intent)
+            Log.d("상세보기 날씨 메모 아이디", "$memoList[position].memoId")
         }
     }
 
