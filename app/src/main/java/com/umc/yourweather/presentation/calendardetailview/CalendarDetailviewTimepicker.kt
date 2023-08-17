@@ -55,16 +55,11 @@ class CalendarDetailviewTimepicker : Fragment() {
             val selectedHour = timePicker.hour
             val selectedMinute = timePicker.minute
             val displayHour: Int
-            var timeText="$selectedHour : $selectedMinute "
-            if (selectedHour > 12) {
-                displayHour = if (selectedHour > 12) selectedHour - 12 else selectedHour
-                timeText = "오후 $displayHour : $selectedMinute "
 
-            } else {
-                displayHour = if (selectedHour == 0) 12 else selectedHour
-                timeText = "오전 $displayHour : $selectedMinute "
 
-            }
+            val formattedTime = formatTime(selectedHour, selectedMinute)
+            val timeText = formattedTime
+
 
             (activity as? CalendarDetailviewModify2)?.updateTimeText(timeText)
 
@@ -72,7 +67,14 @@ class CalendarDetailviewTimepicker : Fragment() {
         }
 
     }
+    private fun formatTime(selectedHour: Int, selectedMinute: Int): String {
+        val calendar = Calendar.getInstance()
+        calendar.set(Calendar.HOUR_OF_DAY, selectedHour)
+        calendar.set(Calendar.MINUTE, selectedMinute)
 
+        val sdf = SimpleDateFormat("a hh : mm", Locale.KOREA)
+        return sdf.format(calendar.time)
+    }
 
     companion object {
         /**
