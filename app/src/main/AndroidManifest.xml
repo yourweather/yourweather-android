@@ -133,7 +133,7 @@
             android:windowSoftInputMode="adjustPan" />
         <activity
             android:name=".presentation.calendardetailview.CalendarDetailviewModify2"
-            android:exported="false"
+            android:exported="true"
             android:windowSoftInputMode="adjustPan" />
         <activity
             android:name=".presentation.calendardetailview.CalendardetailviewAlarm"
