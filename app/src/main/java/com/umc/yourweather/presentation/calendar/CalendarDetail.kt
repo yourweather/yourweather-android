@@ -7,7 +7,6 @@ import android.util.Log
 import android.view.Menu
 import android.view.MenuItem
 import android.view.View
-import android.widget.Toast
 import androidx.annotation.RequiresApi
 import androidx.appcompat.app.AppCompatActivity
 import androidx.appcompat.widget.Toolbar
@@ -26,7 +25,6 @@ import retrofit2.Response
 import java.time.LocalDate
 import java.time.LocalDateTime
 import java.time.format.DateTimeFormatter
-
 
 class CalendarDetail : AppCompatActivity() {
     private lateinit var binding: ActivityCalendarDetailBinding
@@ -179,23 +177,6 @@ class CalendarDetail : AppCompatActivity() {
         binding.rvCalendarDetailMemolist.adapter = memoListAdapter
         binding.rvCalendarDetailMemolist.layoutManager = layoutManager
         binding.tvCalendarDetailTitle.text = "${month}월 ${date}일 ${UserSharedPreferences.getUserNickname(this)}님의 날씨"
-
-        //        val calendarChart = CalendarChartGraph(
-//            context = this,
-//            temper = memoList.map { it.temperature },
-//            memoListWidth = 95,
-//        )
-
-//        layoutParams.width = dpToPx(this@CalendarDetail, 95) // 가로 크기를 픽셀 단위로 설정
-//         // 세로 크기를 픽셀 단위로 설정
-//        val layoutParams = LinearLayout.LayoutParams(
-//            LinearLayout.LayoutParams.WRAP_CONTENT, // 가로 크기를 WRAP_CONTENT로 설정
-//            dpToPx(this@CalendarDetail, 95) // 세로 크기를 픽셀 단위로 설정
-//        )
-//
-//        calendarChart.layoutParams = layoutParams
-//
-//        binding.llCalendarDetailMemolistChart.addView(calendarChart)
     }
 
     fun memoContentView(memoContent: List<MemoDailyResponse.MemoContentResponse>) {
@@ -223,7 +204,7 @@ class CalendarDetail : AppCompatActivity() {
 
         binding.tvCalendarDetailTitle.visibility = View.INVISIBLE
         binding.tvCalendarDetailMemoTitle.visibility = View.INVISIBLE
-        binding.nestedScrollViewCalendarDetail.visibility = View.INVISIBLE
+        binding.llCalendarDetailRcy.visibility = View.INVISIBLE
         binding.dividerCalendarDetailMemo.visibility = View.INVISIBLE
         binding.tvCalendarDetailMemoTitle.visibility = View.INVISIBLE
         binding.rvCalendarDetailMemocontent.visibility = View.INVISIBLE

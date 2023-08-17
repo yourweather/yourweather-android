@@ -1,0 +1,11 @@
+<?xml version="1.0" encoding="utf-8"?>
+<layer-list xmlns:android="http://schemas.android.com/apk/res/android">
+    <item>
+        <shape android:shape="line">
+            <stroke
+                android:width="2dp"
+                android:color="#F0A830" />
+            <size android:height="2dp" /> <!-- Set the line thickness -->
+        </shape>
+    </item>
+</layer-list>
