@@ -87,9 +87,10 @@ class CalendarDetailMemoListAdapter(private val memoList: List<MemoDailyResponse
         // 클릭 시 메모 아이디를 가지고 modify1으로 이동
         holder.binding.root.setOnClickListener {
             val intent = Intent(context, CalendarDetailviewModify1::class.java)
-            intent.putExtra("memoId", memoList[position].memoId)
+            val detailId =  memoList[position].memoId
+            intent.putExtra("memoId", detailId)
             context.startActivity(intent)
-            Log.d("상세보기 날씨 메모 아이디", "$memoList[position].memoId")
+            Log.d("상세보기 날씨 메모 아이디", "$detailId")
         }
     }
 

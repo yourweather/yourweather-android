@@ -1,25 +1,17 @@
 package com.umc.yourweather.presentation.calendardetailview
 
-import android.os.Build
 import android.os.Bundle
 import android.util.Log
 import android.view.animation.Animation
 import android.view.animation.AnimationUtils
-import android.widget.Button
-import android.widget.SeekBar
-import androidx.annotation.RequiresApi
 import androidx.appcompat.app.AppCompatActivity
-import androidx.appcompat.widget.AppCompatEditText
-import androidx.cardview.widget.CardView
 import com.umc.yourweather.R
 import com.umc.yourweather.data.enums.Status
 import com.umc.yourweather.data.remote.request.MemoUpdateRequest
 import com.umc.yourweather.data.remote.response.BaseResponse
 import com.umc.yourweather.data.remote.response.MemoResponse
 import com.umc.yourweather.data.remote.response.MemoUpdateResponse
-import com.umc.yourweather.data.remote.response.StatisticResponse
 import com.umc.yourweather.data.service.MemoService
-import com.umc.yourweather.data.service.ReportService
 import com.umc.yourweather.databinding.ActivityCalendarDetailviewModify1Binding
 import com.umc.yourweather.di.RetrofitImpl
 import retrofit2.Call
@@ -37,7 +29,7 @@ class CalendarDetailviewModify1 : AppCompatActivity() {
         setContentView(binding.root)
 
         // Intent에서 memoId 추출
-        val memoId = intent.getIntExtra("memoId", -1)
+        val memoId = intent.getStringExtra("memoId")!!.toInt()
         detailMemoReturnApi(memoId)
         Log.d("메모 아이디", "$memoId")
     }
@@ -53,13 +45,13 @@ class CalendarDetailviewModify1 : AppCompatActivity() {
                 response: Response<BaseResponse<MemoResponse>>,
             ) {
                 if (response.isSuccessful) {
-                    val statisticResponse = response.body()?.result // 'data'가 실제 응답 데이터를 담고 있는 필드일 경우
-                    if (statisticResponse != null) {
-                        val status = statisticResponse.status
-                        val temperature = statisticResponse.temperature
-                        val content = statisticResponse.content
-                        val weatherId = statisticResponse.weatherId
-                        val dateTime = statisticResponse.localDateTime
+                    val MemoResponse = response.body()?.result // 'data'가 실제 응답 데이터를 담고 있는 필드일 경우
+                    if (MemoResponse != null) {
+                        val status = MemoResponse.status
+                        val temperature = MemoResponse.temperature
+                        val content = MemoResponse.content
+                        val weatherId = MemoResponse.weatherId
+                        val dateTime = MemoResponse.localDateTime
 
                         // 메모 내용
                         binding.editText.text = content
@@ -73,8 +65,6 @@ class CalendarDetailviewModify1 : AppCompatActivity() {
                         if (dateTime != null) {
                             formatDateTime(dateTime)
                         }
-
-
                     } else {
                         Log.e("특정 메모 반환 API Error", "Response body 비었음")
                     }
@@ -118,7 +108,6 @@ class CalendarDetailviewModify1 : AppCompatActivity() {
             com.umc.yourweather.data.enums.Status.CLOUDY -> binding.btnHomeCloud.startAnimation(buttonAnimation)
             com.umc.yourweather.data.enums.Status.RAINY -> binding.btnHomeThunder.startAnimation(buttonAnimation)
             com.umc.yourweather.data.enums.Status.LIGHTNING -> binding.btnHomeSun.startAnimation(buttonAnimation)
-
         }
     }
 
