@@ -52,7 +52,7 @@ class CalendarDetailviewModify1 : AppCompatActivity() {
                 response: Response<BaseResponse<MemoResponse>>,
             ) {
                 if (response.isSuccessful) {
-                    val MemoResponse = response.body()?.result // 'data'가 실제 응답 데이터를 담고 있는 필드일 경우
+                    val MemoResponse = response.body()?.result
                     if (MemoResponse != null) {
                         val status = MemoResponse.status
                         val temperature = MemoResponse.temperature
