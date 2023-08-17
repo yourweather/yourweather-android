@@ -1,6 +1,6 @@
 package com.umc.yourweather.presentation.weatherinput
 
-import CarmeraPermissionFragment
+
 import android.content.Intent
 import android.net.Uri
 import android.os.Bundle
@@ -20,6 +20,7 @@ import com.umc.yourweather.data.remote.response.HomeResponse
 import com.umc.yourweather.data.service.WeatherService
 import com.umc.yourweather.databinding.FragmentHomeBinding
 import com.umc.yourweather.di.RetrofitImpl
+import com.umc.yourweather.presentation.share.CarmeraPermissionFragment
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.launch
 import kotlinx.coroutines.withContext
@@ -202,4 +203,23 @@ class HomeFragment : Fragment(), HomeFragmentInteractionListener {
             resources.getDimensionPixelSize(R.dimen.home_toast_margin_bottom),
         )
     }
+
+    // 캡쳐하기 전 뷰 숨기기
+    fun hideViews() {
+        binding.tvHomeAd.visibility = View.GONE
+        binding.btnHomeAdMove.visibility = View.GONE
+        binding.flHomeAdExit.visibility = View.GONE
+        binding.btnHomeAdExit.visibility = View.GONE
+        binding.bnvMain.visibility = View.GONE
+    }
+    // 캡쳐 후 뷰 다시 보이기
+    fun showViews() {
+        binding.tvHomeAd.visibility = View.VISIBLE
+        binding.btnHomeAdMove.visibility = View.VISIBLE
+        binding.flHomeAdExit.visibility = View.VISIBLE
+        binding.btnHomeAdExit.visibility = View.VISIBLE
+        binding.bnvMain.visibility = View.VISIBLE
+    }
+
+
 }

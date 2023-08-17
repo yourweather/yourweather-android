@@ -1,3 +1,5 @@
+package com.umc.yourweather.presentation.share
+
 import android.Manifest
 import android.content.pm.PackageManager
 import android.os.Build
@@ -11,7 +13,6 @@ import androidx.fragment.app.Fragment
 import androidx.fragment.app.commit
 import com.umc.yourweather.R
 import com.umc.yourweather.databinding.FragmentCarmeraPermissionBinding
-import com.umc.yourweather.presentation.share.SaveHomeImgFragment
 
 class CarmeraPermissionFragment : Fragment() {
     private lateinit var binding: FragmentCarmeraPermissionBinding
