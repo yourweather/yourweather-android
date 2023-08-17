@@ -7,6 +7,7 @@ import android.view.animation.Animation
 import android.view.animation.AnimationUtils
 import android.widget.Button
 import android.widget.SeekBar
+import android.widget.TextView
 import androidx.appcompat.app.AppCompatActivity
 import androidx.appcompat.widget.AppCompatEditText
 import androidx.core.content.ContextCompat
@@ -67,28 +68,21 @@ class CalendarDetailviewModify2 : AppCompatActivity() {
         binding.tvDetailviewModify2Title2.text = "$userNickname 님의 감정 온도"
         binding.tvDetailviewModify2Title3.text = "$userNickname 님의 일기"
 
-        val timeIntervalPicker = TimeIntervalPicker.Builder()
-            .setTitleText("알림 시간 설정")
-            .setIntervalBetweenHours(1)
-            .setIntervalBetweenMinutes(5)
-            .setHour(12)
-            .setMinute(0)
-            .setHourListCircular(true)
-            .setMinuteListCircular(true)
-            .build()
 
-        timeIntervalPicker.addOnPositiveButtonClickListener {
-            val formattedTime = formatTimeWithAmPm(timeIntervalPicker.hour, timeIntervalPicker.minute)
-            binding.tvDetailviewModify2Time.text = formattedTime
-        }
         binding.tvDetailviewModify2Time.setOnClickListener {
-            timeIntervalPicker.show(supportFragmentManager, "TimeIntervalPicker")
+            val fragmentManager = supportFragmentManager
+            val timePicker = CalendarDetailviewTimepicker()
+            val transaction = fragmentManager.beginTransaction()
+            transaction.addToBackStack(null) // 프래그먼트를 백 스택에 추가
+            transaction.replace(R.id.fragment_container, timePicker)
+            transaction.commit()
         }
         binding.btnCalendardetailviewSave.setOnClickListener {
             val content: String? = editText.text?.toString()
             val localDateTime: String? = unWrittenDate?.let {
                 combineDateAndTime(it, binding.tvDetailviewModify2Time.text.toString())
             }
+
             val temperature: Int? = binding.seekbarCalendarDetailviewTemp2.progress
 
             selectedStatus?.let { status ->
@@ -114,6 +108,11 @@ class CalendarDetailviewModify2 : AppCompatActivity() {
         val simpleDateFormat = SimpleDateFormat("a hh:mm", Locale.getDefault())
         return simpleDateFormat.format(calendar.time)
     }
+    fun updateTimeText(text: String) {
+        binding.tvDetailviewModify2Time.text = text
+    }
+
+
 
     private fun combineDateAndTime(date: String, time: String): String {
         val combinedDateTime = "$date $time"
