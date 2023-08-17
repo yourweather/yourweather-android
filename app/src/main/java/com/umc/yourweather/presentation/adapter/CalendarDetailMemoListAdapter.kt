@@ -1,6 +1,8 @@
 package com.umc.yourweather.presentation.adapter
 
 import android.content.Context
+import android.content.Intent
+import android.util.Log
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
@@ -8,6 +10,7 @@ import androidx.constraintlayout.widget.ConstraintLayout
 import androidx.recyclerview.widget.RecyclerView
 import com.umc.yourweather.data.remote.response.MemoDailyResponse
 import com.umc.yourweather.databinding.ItemCalendarDetailMemolistBinding
+import com.umc.yourweather.presentation.calendardetailview.CalendarDetailviewModify1
 import com.umc.yourweather.util.CalendarUtils.Companion.dpToPx
 import com.umc.yourweather.util.ResourceUtils.Companion.setWeatherIc
 
@@ -80,6 +83,15 @@ class CalendarDetailMemoListAdapter(private val memoList: List<MemoDailyResponse
         // 두번째 선
 
         // holder.binding.ivCalendarDetailGraph.setImageResource(R)
+
+        // 클릭 시 메모 아이디를 가지고 modify1으로 이동
+        holder.binding.root.setOnClickListener {
+            val intent = Intent(context, CalendarDetailviewModify1::class.java)
+            val detailId = memoList[position].memoId
+            intent.putExtra("memoId", detailId)
+            context.startActivity(intent)
+            Log.d("상세보기 날씨 메모 아이디", "$detailId")
+        }
     }
 
     class CalendarDetailMemoListViewHolder(
