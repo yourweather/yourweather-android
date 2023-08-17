@@ -29,10 +29,24 @@ class CalendarDetailviewModify1 : AppCompatActivity() {
         binding = ActivityCalendarDetailviewModify1Binding.inflate(layoutInflater)
         setContentView(binding.root)
 
-        // Intent에서 memoId 추출
+        // Intent에서 캘린더에서 접근 시 memoId 추출
         val memoId = intent.getIntExtra("memoId", -1) // 기본값 -1로 설정하거나 원하는 값으로 설정
-        detailMemoReturnApi(memoId)
-        Log.d("메모 아이디", "$memoId")
+        if (memoId != -1) {
+            detailMemoReturnApi(memoId)
+            Log.d("캘린더에서 접근 메모 아이디", "$memoId")
+        } else {
+            finish()
+        }
+
+//        // Intent에서 상세보기에서 접근 시 memoId 추출
+//        val memoIdW = intent.getIntExtra("memoIdW", -1) // 기본값 -1로 설정하거나 원하는 값으로 설정
+//        if (memoId != -1) {
+//            detailMemoReturnApi(memoIdW)
+//            Log.d("캘린더에서 접근 메모 아이디", "$memoId")
+//        } else {
+//            finish()
+//        }
+//        Log.d("메모 아이디", "$memoIdW")
 
         // 닉네임
         val userNickname = UserSharedPreferences.getUserNickname(this)
