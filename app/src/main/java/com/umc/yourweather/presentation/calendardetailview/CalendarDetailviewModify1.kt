@@ -14,6 +14,7 @@ import com.umc.yourweather.data.remote.response.MemoUpdateResponse
 import com.umc.yourweather.data.service.MemoService
 import com.umc.yourweather.databinding.ActivityCalendarDetailviewModify1Binding
 import com.umc.yourweather.di.RetrofitImpl
+import com.umc.yourweather.di.UserSharedPreferences
 import retrofit2.Call
 import retrofit2.Callback
 import retrofit2.Response
@@ -32,6 +33,12 @@ class CalendarDetailviewModify1 : AppCompatActivity() {
         val memoId = intent.getIntExtra("memoId", -1) // 기본값 -1로 설정하거나 원하는 값으로 설정
         detailMemoReturnApi(memoId)
         Log.d("메모 아이디", "$memoId")
+
+        // 닉네임
+        val userNickname = UserSharedPreferences.getUserNickname(this)
+        binding.tvDetailviewModify2Title1.text = "$userNickname 님의 감정 상태"
+        binding.tvDetailviewModify2Title2.text = "$userNickname 님의 감정 온도"
+        binding.tvDetailviewModify2Title3.text = "$userNickname 님의 일기"
     }
 
     // 특정 메모 반환
