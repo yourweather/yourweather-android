@@ -37,6 +37,7 @@ class CalendarDetail : AppCompatActivity() {
     var month: Int = 0
     var date: Int = 0
 
+// 와이라노..
     @RequiresApi(Build.VERSION_CODES.O)
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -167,8 +168,8 @@ class CalendarDetail : AppCompatActivity() {
         binding.rvCalendarDetailMemolist.layoutManager = layoutManager
         binding.tvCalendarDetailTitle.text = "${month}월 ${date}일 ${UserSharedPreferences.getUserNickname(this)}님의 날씨"
 
-        //클릭하면 수정페이지로 넘어감
-        memoListAdapter.setOnItemClickListener(object : CalendarDetailMemoListAdapter.OnItemClickListener{
+        // 클릭하면 수정페이지로 넘어감
+        memoListAdapter.setOnItemClickListener(object : CalendarDetailMemoListAdapter.OnItemClickListener {
             override fun onItemClick(view: View, position: Int, memoId: Int) {
                 val mIntent = Intent(this@CalendarDetail, CalendarDetailviewModify1::class.java)
                 mIntent.putExtra("memoId", memoId)
