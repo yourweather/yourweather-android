@@ -29,7 +29,7 @@ class CalendarDetailviewModify1 : AppCompatActivity() {
         setContentView(binding.root)
 
         // Intent에서 memoId 추출
-        val memoId = intent.getStringExtra("memoId")!!.toInt()
+        val memoId = intent.getIntExtra("memoId", -1) // 기본값 -1로 설정하거나 원하는 값으로 설정
         detailMemoReturnApi(memoId)
         Log.d("메모 아이디", "$memoId")
     }
