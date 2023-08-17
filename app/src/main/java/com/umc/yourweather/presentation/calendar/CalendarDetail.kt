@@ -1,6 +1,7 @@
 package com.umc.yourweather.presentation.calendar
 
 import android.R
+import android.content.Intent
 import android.os.Build
 import android.os.Bundle
 import android.util.Log
@@ -19,6 +20,7 @@ import com.umc.yourweather.di.RetrofitImpl
 import com.umc.yourweather.di.UserSharedPreferences
 import com.umc.yourweather.presentation.adapter.CalendarDetailMemoContentAdapter
 import com.umc.yourweather.presentation.adapter.CalendarDetailMemoListAdapter
+import com.umc.yourweather.presentation.calendardetailview.CalendarDetailviewModify1
 import retrofit2.Call
 import retrofit2.Callback
 import retrofit2.Response
@@ -155,6 +157,9 @@ class CalendarDetail : AppCompatActivity() {
 
             binding.llCalendarDetailNoMemo.setOnClickListener {
                 // 지금 입력하기 누름
+                // 입력창 이동
+                val intent = Intent(this, CalendarDetailviewModify1::class.java)
+                startActivity(intent)
             }
 
             memoListView(memoList)
@@ -200,6 +205,8 @@ class CalendarDetail : AppCompatActivity() {
 
         binding.llCalendarDetailNoTotalData.setOnClickListener {
             // 입력창 이동
+                val intent = Intent(this, CalendarDetailviewModify1::class.java)
+                startActivity(intent)
         }
 
         binding.tvCalendarDetailTitle.visibility = View.INVISIBLE
