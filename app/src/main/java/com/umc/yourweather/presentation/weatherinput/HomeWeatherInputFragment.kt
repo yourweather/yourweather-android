@@ -256,7 +256,7 @@ class HomeWeatherInputFragment : Fragment() {
     private fun goToNewHome() {
         val homeFragment = HomeFragment()
         parentFragmentManager.beginTransaction()
-            .replace(R.id.fl_home_l1, homeFragment)
+            .replace(R.id.fl_initial_l1, homeFragment)
             .addToBackStack(null)
             .commit()
 
