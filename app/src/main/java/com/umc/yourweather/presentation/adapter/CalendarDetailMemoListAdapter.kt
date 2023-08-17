@@ -53,10 +53,26 @@ class CalendarDetailMemoListAdapter(private val memoList: List<MemoDailyResponse
         memoList: List<MemoDailyResponse.MemoItemResponse>,
     ) : RecyclerView.ViewHolder(binding.root) {
 
+        var width = 0
+        var height = 0
         init {
             binding.root.setOnClickListener {
                 listener?.onItemClick(it, bindingAdapterPosition, memoList[bindingAdapterPosition].memoId)
             }
+            width = binding.root.width
+            height = binding.root.height
         }
+
+        fun getItemWidth(): Int {
+            // 여기에서 해당 아이템의 가로 길이를 얻어옵니다.
+            return itemView.width
+        }
+        fun getItemHeight(): Int {
+            // 여기에서 해당 아이템의 가로 길이를 얻어옵니다.
+            return itemView.height
+        }
+    }
+    override fun getItemViewType(position: Int): Int {
+        return position
     }
 }

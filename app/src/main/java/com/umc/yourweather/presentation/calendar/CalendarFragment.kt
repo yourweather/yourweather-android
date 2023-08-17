@@ -70,11 +70,11 @@ class CalendarFragment : Fragment() {
             .enqueue(object : Callback<BaseResponse<MonthResponse>> {
                 @RequiresApi(Build.VERSION_CODES.O)
                 override fun onResponse(
-                        call: Call<BaseResponse<MonthResponse>>,
-                        response: Response<BaseResponse<MonthResponse>>,
-                    ) {
-                        val weatherResponse = response.body()
-                        val code = response.body()?.code
+                    call: Call<BaseResponse<MonthResponse>>,
+                    response: Response<BaseResponse<MonthResponse>>,
+                ) {
+                    val weatherResponse = response.body()
+                    val code = response.body()?.code
                     if (response.isSuccessful) {
                         if (code == 200) {
                             weatherData = weatherResponse?.result?.weatherList ?: emptyList()
