@@ -1,5 +1,6 @@
 package com.umc.yourweather.presentation.calendar
 
+import android.content.Intent
 import android.graphics.Color
 import android.os.Build
 import android.os.Bundle
@@ -22,6 +23,7 @@ import com.umc.yourweather.di.RetrofitImpl
 import com.umc.yourweather.di.UserSharedPreferences
 import com.umc.yourweather.presentation.adapter.CalendarDetailMemoContentAdapter
 import com.umc.yourweather.presentation.adapter.CalendarDetailMemoListAdapter
+import com.umc.yourweather.presentation.calendardetailview.CalendarDetailviewModify1
 import retrofit2.Call
 import retrofit2.Callback
 import retrofit2.Response
@@ -164,6 +166,15 @@ class CalendarDetail : AppCompatActivity() {
         binding.rvCalendarDetailMemolist.adapter = memoListAdapter
         binding.rvCalendarDetailMemolist.layoutManager = layoutManager
         binding.tvCalendarDetailTitle.text = "${month}월 ${date}일 ${UserSharedPreferences.getUserNickname(this)}님의 날씨"
+
+        //클릭하면 수정페이지로 넘어감
+        memoListAdapter.setOnItemClickListener(object : CalendarDetailMemoListAdapter.OnItemClickListener{
+            override fun onItemClick(view: View, position: Int, memoId: Int) {
+                val mIntent = Intent(this@CalendarDetail, CalendarDetailviewModify1::class.java)
+                mIntent.putExtra("memoId", memoId)
+                startActivity(mIntent)
+            }
+        })
     }
 
     fun memoContentView(memoContent: List<MemoDailyResponse.MemoContentResponse>) {
