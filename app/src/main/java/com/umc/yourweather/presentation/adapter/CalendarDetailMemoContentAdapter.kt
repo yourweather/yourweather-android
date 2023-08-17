@@ -24,7 +24,11 @@ class CalendarDetailMemoContentAdapter(private val memoContentList: List<MemoDai
         position: Int,
     ) {
         holder.binding.tvItemCalendarDetailMemocontentContent.text = memoContentList[position].content
-        holder.binding.tvItemCalendarDetailMemocontentDate.text = memoContentList[position].creationDatetime
+        holder.binding.tvItemCalendarDetailMemocontentDate.text = memoContentList[position].creationDatetime +"시"
+    }
+
+    override fun getItemViewType(position: Int): Int {
+        return position
     }
 
     class CalendarDetailMemoContentViewHolder(var binding: ItemCalendarDetailMemocontentBinding) : RecyclerView.ViewHolder(binding.root)
