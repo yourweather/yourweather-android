@@ -28,10 +28,18 @@ class InitialNoWeatherFragment : Fragment() {
         binding.btnInitialWeather.setOnClickListener {
             val newFragment = HomeWeatherInputFragment()
             val transaction = parentFragmentManager.beginTransaction()
-            transaction.replace(R.id.fl_initial_l1, newFragment)
+
+            // 기존 프래그먼트를 백스택에서 제거
+            parentFragmentManager.popBackStack()
+
+            // 새로운 프래그먼트를 컨테이너에 추가
+            transaction.add(R.id.fl_initial_l1, newFragment)
+
             transaction.addToBackStack(null)
             transaction.commit()
         }
+
+
         val userNickname = UserSharedPreferences.getUserNickname(requireContext())
         binding.tvInitialUsername.text = userNickname
     }
