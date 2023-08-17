@@ -13,6 +13,7 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import android.widget.LinearLayout
+import androidx.core.content.ContextCompat
 import androidx.fragment.app.Fragment
 import com.umc.yourweather.R
 import com.umc.yourweather.data.entity.BarData
@@ -143,15 +144,14 @@ class BarStaticsMonthlyFragment : Fragment() {
 
             val view = View(requireContext())
 
-            val roundedCornerDrawable = getRoundedCornerDrawableForWeather(data.label, index, dataList.size)
-            view.background = roundedCornerDrawable
-
             val layoutParams = LinearLayout.LayoutParams(
                 width.toInt(),
                 ViewGroup.LayoutParams.MATCH_PARENT,
                 width,
             )
 
+            val drawableRes = getDrawableResForWeather(data.label)
+            view.background = ContextCompat.getDrawable(requireContext(), drawableRes)
             view.layoutParams = layoutParams
 
             layout.addView(view)
@@ -174,56 +174,13 @@ class BarStaticsMonthlyFragment : Fragment() {
         }
     }
 
-    private fun getRoundedCornerDrawableForWeather(weatherLabel: String, index: Int, dataSize: Int): Drawable {
-        val color = getColorForWeather(weatherLabel)
-        val cornerRadius = when (index) {
-            0 -> {
-                // First item, round left corner
-                floatArrayOf(
-                    resources.getDimension(R.dimen.rounded_corner_radius),
-                    resources.getDimension(R.dimen.rounded_corner_radius),
-                    0f,
-                    0f,
-                    0f,
-                    0f,
-                    resources.getDimension(R.dimen.rounded_corner_radius),
-                    resources.getDimension(R.dimen.rounded_corner_radius),
-                )
-            }
-            dataSize - 1 -> {
-                // Last item, round right corner
-                floatArrayOf(
-                    0f,
-                    0f,
-                    resources.getDimension(R.dimen.rounded_corner_radius),
-                    resources.getDimension(R.dimen.rounded_corner_radius),
-                    resources.getDimension(R.dimen.rounded_corner_radius),
-                    resources.getDimension(R.dimen.rounded_corner_radius),
-                    0f,
-                    0f,
-                )
-            }
-            else -> {
-                // Middle items, no corners
-                null
-            }
-        }
-
-        val shapeDrawable = GradientDrawable()
-        shapeDrawable.setColor(color)
-        shapeDrawable.cornerRadii = cornerRadius
-        shapeDrawable.shape = GradientDrawable.RECTANGLE
-
-        return shapeDrawable
-    }
-
-    private fun getColorForWeather(weatherLabel: String): Int {
+    private fun getDrawableResForWeather(weatherLabel: String): Int {
         return when (weatherLabel) {
-            "맑음" -> Color.parseColor("#FCC112")
-            "구름 약간" -> Color.parseColor("#F6EBDB")
-            "비" -> Color.parseColor("#2F9BFF")
-            "번개" -> Color.parseColor("#010738")
-            else -> Color.parseColor("#A0A0A0")
+            "맑음" -> R.drawable.bg_yellow_rec_sun
+            "구름 약간" -> R.drawable.bg_gray_rec_cloud
+            "비" -> R.drawable.bg_blue_rec_rain
+            "번개" -> R.drawable.bg_darkblue_rec_thunder
+            else -> R.drawable.bg_gray__f2_fill_10_rect_signalert
         }
     }
 
