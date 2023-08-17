@@ -1,0 +1,48 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout
+    android:id="@+id/cl_calendar_detail_timepicker"
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context=".presentation.calendardetailview.CalendarDetailviewTimepicker">
+    <FrameLayout
+        android:id="@+id/fl_calendar_detail_timepicker"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent">
+
+        <!-- TODO: Update blank fragment layout -->
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:orientation="vertical"
+            android:background="#99000000"/>
+        <LinearLayout
+            android:id="@+id/ll_calendar_detail_timepicker"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:background="#FFFFFFFF"
+            android:layout_gravity="center"
+            android:orientation="vertical">
+
+            <TimePicker
+                android:id="@+id/tp_calendardetailview"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:timePickerMode="spinner" />
+
+            <Button
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_gravity="center"
+                android:background="#00ff0000"
+                android:textColor="@color/brown"
+                android:fontFamily="@font/pretendardregular"
+                android:textSize="16dp"
+                android:text="선택"
+                android:id="@+id/btn_calendardetailview_timepicker_select"/>
+        </LinearLayout>
+
+
+    </FrameLayout>
+</androidx.constraintlayout.widget.ConstraintLayout>

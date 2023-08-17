@@ -1,24 +1,24 @@
 package com.umc.yourweather.presentation.share
 
-
-import android.content.Intent
-import android.content.pm.PackageManager
+import android.content.ContentValues
 import android.graphics.Bitmap
 import android.net.Uri
 import android.os.Bundle
-import android.os.Environment
+import android.provider.MediaStore
 import android.util.Log
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import android.widget.Toast
-import androidx.core.app.ActivityCompat
-import androidx.core.content.ContextCompat
 import androidx.fragment.app.Fragment
 import androidx.lifecycle.ViewModelProvider
+import androidx.lifecycle.lifecycleScope
 import com.umc.yourweather.R
-import com.umc.yourweather.presentation.weatherinput.HomeFragment
+import kotlinx.coroutines.Dispatchers
+import kotlinx.coroutines.launch
+import kotlinx.coroutines.withContext
 import java.io.File
+import java.io.FileInputStream
 import java.io.FileOutputStream
 import java.io.IOException
 
@@ -49,7 +49,7 @@ class SaveHomeImgFragment : Fragment() {
     }
 
     private fun saveScreenshot() {
-        verifyStoragePermission()
+        val rootView = requireActivity().window.decorView.findViewById<View>(android.R.id.content)
 
         // 해당 뷰들을 숨김 처리
         view?.findViewById<View>(R.id.ll_save_home1)?.visibility = View.GONE
@@ -63,25 +63,22 @@ class SaveHomeImgFragment : Fragment() {
         sharedViewModel.hideViews() // HomeFragment에서 해당 함수를 실행
         Log.d("SaveHomeImgFragment","캡쳐 전 뷰 숨기기 성공")
 
-        val rootView = requireActivity().window.decorView.findViewById<View>(android.R.id.content)
-        val screenShot = takeScreenshot(rootView)
-        if (screenShot != null) {
-            val imageUri = Uri.fromFile(screenShot)
-            requireContext().sendBroadcast(Intent(Intent.ACTION_MEDIA_SCANNER_SCAN_FILE, imageUri))
-            Toast.makeText(requireContext(), "갤러리에 저장 성공", Toast.LENGTH_SHORT).show()
+        lifecycleScope.launch {
+            val screenShot = takeScreenshot(rootView)
+            screenShot?.let {
+                val imageUri = saveScreenshotToMediaStore(it)
+                imageUri?.let {
+                }
+            }
         }
-        sharedViewModel.showViews() // HomeFragment에서 해당 함수를 실행
-        Log.d("SaveHomeImgFragment","캡쳐 후 뷰 나타내기 성공")
+        showSaveSuccessMessage()
     }
 
-
-    private fun takeScreenshot(view: View?): File? {
+    private suspend fun takeScreenshot(view: View?): File? {
         view?.isDrawingCacheEnabled = true
         val screenBitmap = view?.drawingCache
         val filename = "screenshot${System.currentTimeMillis()}.png"
-        val file = File(
-            Environment.getExternalStorageDirectory().toString() + "/Pictures", filename
-        )
+        val file = File(requireContext().getExternalFilesDir(null), filename)
         var os: FileOutputStream? = null
         try {
             os = FileOutputStream(file)
@@ -95,24 +92,34 @@ class SaveHomeImgFragment : Fragment() {
         }
         return file
     }
-    private fun verifyStoragePermission() {
-        val permission = ContextCompat.checkSelfPermission(
-            requireContext(),
-            android.Manifest.permission.WRITE_EXTERNAL_STORAGE
-        )
-        if (permission != PackageManager.PERMISSION_GRANTED) {
-            ActivityCompat.requestPermissions(
-                requireActivity(),
-                arrayOf(
-                    android.Manifest.permission.WRITE_EXTERNAL_STORAGE,
-                    android.Manifest.permission.READ_EXTERNAL_STORAGE
-                ),
-                REQUEST_EXTERNAL_STORAGE
-            )
+
+    private suspend fun saveScreenshotToMediaStore(file: File): Uri? = withContext(Dispatchers.IO) {
+        val values = ContentValues().apply {
+            put(MediaStore.Images.Media.DISPLAY_NAME, file.name)
+            put(MediaStore.Images.Media.MIME_TYPE, "image/png")
+            put(MediaStore.Images.Media.RELATIVE_PATH, "Pictures")
         }
+
+        val resolver = requireContext().contentResolver
+        val imageUri = resolver.insert(MediaStore.Images.Media.EXTERNAL_CONTENT_URI, values)
+        imageUri?.let { uri ->
+            resolver.openOutputStream(uri)?.use { outputStream ->
+                FileInputStream(file).use { inputStream ->
+                    inputStream.copyTo(outputStream)
+                }
+            }
+        }
+
+        file.delete()
+
+        return@withContext imageUri
     }
 
-    companion object {
-        private const val REQUEST_EXTERNAL_STORAGE = 1
+    private fun showSaveSuccessMessage() {
+        Log.d("SaveHomeImgFragment", "showSaveSuccessMessage() 호출됨") // 추가된 로그
+        sharedViewModel.showViews() // HomeFragment에서 해당 함수를 실행
+        Log.d("SaveHomeImgFragment","캡쳐 후 뷰 나타내기 성공")
+        Toast.makeText(requireContext(), "갤러리에 저장 성공", Toast.LENGTH_SHORT).show()
     }
+
 }
