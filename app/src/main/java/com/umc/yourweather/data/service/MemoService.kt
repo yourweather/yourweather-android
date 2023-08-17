@@ -38,4 +38,10 @@ interface MemoService {
     fun memoReturn(
         @Path("weatherId") weatherId: Int,
     ): Call<BaseResponse<MemoDailyResponse>>
+
+    // 메모 메모 반환
+    @GET("/api/v1/memo/{memoId}}")
+    fun detailMemoReturn(
+        @Path("memoId") memoId: Int,
+    ): Call<BaseResponse<MemoResponse>>
 }

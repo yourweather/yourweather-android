@@ -3,6 +3,10 @@ package com.umc.yourweather.presentation.calendardetailview
 import android.os.Build
 import android.os.Bundle
 import android.util.Log
+import android.view.animation.Animation
+import android.view.animation.AnimationUtils
+import android.widget.Button
+import android.widget.SeekBar
 import androidx.annotation.RequiresApi
 import androidx.appcompat.app.AppCompatActivity
 import androidx.appcompat.widget.AppCompatEditText
@@ -11,13 +15,18 @@ import com.umc.yourweather.R
 import com.umc.yourweather.data.enums.Status
 import com.umc.yourweather.data.remote.request.MemoUpdateRequest
 import com.umc.yourweather.data.remote.response.BaseResponse
+import com.umc.yourweather.data.remote.response.MemoResponse
 import com.umc.yourweather.data.remote.response.MemoUpdateResponse
+import com.umc.yourweather.data.remote.response.StatisticResponse
 import com.umc.yourweather.data.service.MemoService
+import com.umc.yourweather.data.service.ReportService
 import com.umc.yourweather.databinding.ActivityCalendarDetailviewModify1Binding
 import com.umc.yourweather.di.RetrofitImpl
 import retrofit2.Call
 import retrofit2.Callback
 import retrofit2.Response
+import java.text.SimpleDateFormat
+import java.util.Locale
 
 class CalendarDetailviewModify1 : AppCompatActivity() {
     private lateinit var binding: ActivityCalendarDetailviewModify1Binding
@@ -27,7 +36,90 @@ class CalendarDetailviewModify1 : AppCompatActivity() {
         binding = ActivityCalendarDetailviewModify1Binding.inflate(layoutInflater)
         setContentView(binding.root)
 
+        // Intent에서 memoId 추출
+        val memoId = intent.getIntExtra("memoId", -1)
+        detailMemoReturnApi(memoId)
+        Log.d("메모 아이디", "$memoId")
+    }
 
+    // 특정 메모 반환
+    private fun detailMemoReturnApi(memoId: Int) {
+        val service = RetrofitImpl.authenticatedRetrofit.create(MemoService::class.java)
+        val call = service.detailMemoReturn(memoId = memoId)
+
+        call.enqueue(object : Callback<BaseResponse<MemoResponse>> {
+            override fun onResponse(
+                call: Call<BaseResponse<MemoResponse>>,
+                response: Response<BaseResponse<MemoResponse>>,
+            ) {
+                if (response.isSuccessful) {
+                    val statisticResponse = response.body()?.result // 'data'가 실제 응답 데이터를 담고 있는 필드일 경우
+                    if (statisticResponse != null) {
+                        val status = statisticResponse.status
+                        val temperature = statisticResponse.temperature
+                        val content = statisticResponse.content
+                        val weatherId = statisticResponse.weatherId
+                        val dateTime = statisticResponse.localDateTime
+
+                        // 메모 내용
+                        binding.editText.text = content
+                        // 메모 온도에 따른 seekBar
+                        if (temperature != null) {
+                            setupSeekBarListener(temperature)
+                        }
+                        // 날씨 애니메이션 적용
+                        animateAndHandleButtonClick(status)
+                        // 날짜 시간
+                        if (dateTime != null) {
+                            formatDateTime(dateTime)
+                        }
+
+
+                    } else {
+                        Log.e("특정 메모 반환 API Error", "Response body 비었음")
+                    }
+                } else {
+                    val errorBody = response.errorBody()?.string()
+                    Log.e("특정 메모 반환 API Failure", "Response Code: ${response.code()}, Error Body: $errorBody")
+                }
+            }
+
+            override fun onFailure(call: Call<BaseResponse<MemoResponse>>, t: Throwable) {
+                Log.e("특정 메모 반환 API Failure", "Error: ${t.message}", t)
+            }
+        })
+    }
+
+    // 특정 메모 시간 포맷
+    fun formatDateTime(inputDateTime: String) {
+        val inputFormat = SimpleDateFormat("yyyy-MM-dd'T'HH:mm", Locale.getDefault())
+        val outputFormat = SimpleDateFormat("M월 d일 a h:mm", Locale.getDefault())
+
+        val date = inputFormat.parse(inputDateTime)
+        binding.tvDetailviewModify2Date.text = outputFormat.format(date)
+    }
+
+    // seekBar 업데이트
+    private fun setupSeekBarListener(temperature: Int) {
+        val seekBar = binding.seekbarCalendarDetailviewTemp2
+
+        // 설정한 온도값에 맞춰 SeekBar의 상태를 변경
+        seekBar.progress = temperature
+
+        // 터치 이벤트 비활성화
+        seekBar.setOnTouchListener { _, _ -> true }
+    }
+
+    // 날씨 상태 애니메이션
+    private fun animateAndHandleButtonClick(Status: Status) {
+        val buttonAnimation: Animation = AnimationUtils.loadAnimation(this, R.anim.btn_weather_scale)
+        when (Status) {
+            com.umc.yourweather.data.enums.Status.SUNNY -> binding.btnHomeSun.startAnimation(buttonAnimation)
+            com.umc.yourweather.data.enums.Status.CLOUDY -> binding.btnHomeCloud.startAnimation(buttonAnimation)
+            com.umc.yourweather.data.enums.Status.RAINY -> binding.btnHomeThunder.startAnimation(buttonAnimation)
+            com.umc.yourweather.data.enums.Status.LIGHTNING -> binding.btnHomeSun.startAnimation(buttonAnimation)
+
+        }
     }
 
     // 메모 삭제 API

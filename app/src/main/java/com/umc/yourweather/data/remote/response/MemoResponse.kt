@@ -12,4 +12,6 @@ data class MemoResponse(
     val localDateTime: String?,
     @SerializedName("temperature")
     val temperature: Int?,
+    @SerializedName("weatherId")
+    val weatherId: Int?
 )

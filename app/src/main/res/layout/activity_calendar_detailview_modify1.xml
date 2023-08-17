@@ -316,13 +316,12 @@
                                 android:layout_height="170dp"
                                 android:padding="16dp">
 
-                                <EditText
+                                <TextView
                                     android:id="@+id/editText"
                                     android:layout_width="match_parent"
                                     android:layout_height="match_parent"
                                     android:background="@null"
                                     android:maxLength="500"
-                                    android:inputType="textMultiLine"
                                     android:fontFamily="@font/pretendardregular"
                                     android:textSize="14dp"/>
 
