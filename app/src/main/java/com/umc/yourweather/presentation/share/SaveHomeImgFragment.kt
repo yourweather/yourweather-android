@@ -15,6 +15,7 @@ import android.widget.Toast
 import androidx.core.app.ActivityCompat
 import androidx.core.content.ContextCompat
 import androidx.fragment.app.Fragment
+import androidx.lifecycle.ViewModelProvider
 import com.umc.yourweather.R
 import com.umc.yourweather.presentation.weatherinput.HomeFragment
 import java.io.File
@@ -22,8 +23,7 @@ import java.io.FileOutputStream
 import java.io.IOException
 
 class SaveHomeImgFragment : Fragment() {
-
-    private var homeFragment: HomeFragment? = null
+    private lateinit var sharedViewModel: SharedViewModel
 
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
@@ -34,6 +34,8 @@ class SaveHomeImgFragment : Fragment() {
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
+
+        sharedViewModel = ViewModelProvider(requireActivity()).get(SharedViewModel::class.java)
 
         view.findViewById<View>(R.id.ll_save_home_download)?.setOnClickListener {
             parentFragmentManager.popBackStack()
@@ -58,7 +60,7 @@ class SaveHomeImgFragment : Fragment() {
         view?.findViewById<View>(R.id.ic_download)?.visibility = View.GONE
         view?.findViewById<View>(R.id.tv_save_home_download)?.visibility = View.GONE
 
-        homeFragment?.hideViews() // HomeFragment에서 해당 함수를 실행
+        sharedViewModel.hideViews() // HomeFragment에서 해당 함수를 실행
         Log.d("SaveHomeImgFragment","캡쳐 전 뷰 숨기기 성공")
 
         val rootView = requireActivity().window.decorView.findViewById<View>(android.R.id.content)
@@ -68,7 +70,7 @@ class SaveHomeImgFragment : Fragment() {
             requireContext().sendBroadcast(Intent(Intent.ACTION_MEDIA_SCANNER_SCAN_FILE, imageUri))
             Toast.makeText(requireContext(), "갤러리에 저장 성공", Toast.LENGTH_SHORT).show()
         }
-        homeFragment?.showViews() // HomeFragment에서 해당 함수를 실행
+        sharedViewModel.showViews() // HomeFragment에서 해당 함수를 실행
         Log.d("SaveHomeImgFragment","캡쳐 후 뷰 나타내기 성공")
     }
 
