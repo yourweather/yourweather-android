@@ -175,6 +175,7 @@ class CalendarDetail : AppCompatActivity() {
                 val mIntent = Intent(this@CalendarDetail, CalendarDetailviewModify1::class.java)
                 mIntent.putExtra("memoId", memoId)
                 startActivity(mIntent)
+                finish()
             }
         })
     }
@@ -202,6 +203,7 @@ class CalendarDetail : AppCompatActivity() {
             val mIntent = Intent(this@CalendarDetail, CalendarDetailviewModify2::class.java)
             mIntent.putExtra("date", thisDate)
             startActivity(mIntent)
+            finish()
         }
 
         //binding.nsCalendarDetail.visibility = View.INVISIBLE
