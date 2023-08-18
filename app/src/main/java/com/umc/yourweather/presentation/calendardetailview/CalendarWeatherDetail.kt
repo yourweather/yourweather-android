@@ -12,7 +12,7 @@ import com.umc.yourweather.data.remote.response.BaseResponse
 import com.umc.yourweather.data.remote.response.MemoResponse
 import com.umc.yourweather.data.remote.response.MemoUpdateResponse
 import com.umc.yourweather.data.service.MemoService
-import com.umc.yourweather.databinding.ActivityCalendarDetailviewModify1Binding
+import com.umc.yourweather.databinding.ActivityCalendarWeatherDetailBinding
 import com.umc.yourweather.di.RetrofitImpl
 import com.umc.yourweather.di.UserSharedPreferences
 import retrofit2.Call
@@ -21,18 +21,29 @@ import retrofit2.Response
 import java.text.SimpleDateFormat
 import java.util.Locale
 
-class CalendarDetailviewModify1 : AppCompatActivity() {
-    private lateinit var binding: ActivityCalendarDetailviewModify1Binding
+class CalendarWeatherDetail : AppCompatActivity() {
+    private lateinit var binding: ActivityCalendarWeatherDetailBinding
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
-        binding = ActivityCalendarDetailviewModify1Binding.inflate(layoutInflater)
+        binding = ActivityCalendarWeatherDetailBinding.inflate(layoutInflater)
         setContentView(binding.root)
 
-        // Intent에서 memoId 추출
-        val memoId = intent.getIntExtra("memoId", -1) // 기본값 -1로 설정하거나 원하는 값으로 설정
-        detailMemoReturnApi(memoId)
-        Log.d("메모 아이디", "$memoId")
+        // Intent에서 캘린더에서 접근 시 memoId 추ㅛㅕㅕ갸출
+        val memoId = intent.getIntExtra("memoId", -1)
+        // Intent에서 상세보기에서 접근 시 memoId 추출
+        val memoIdW = intent.getIntExtra("memoIdW", -1)
+
+        if (memoId != -1) {
+            Log.d("캘린더에서 접근 메모 아이디", "$memoId")
+            detailMemoReturnApi(memoId)
+        } else if (memoIdW != -1) {
+            Log.d("상세보기에서 접근 메모 아이디", "$memoIdW")
+            detailMemoReturnApi(memoIdW)
+        } else {
+            Log.d("메모 아이디", "Invalid memoId and memoIdW values. Finishing activity.")
+            finish()
+        }
 
         // 닉네임
         val userNickname = UserSharedPreferences.getUserNickname(this)
@@ -107,7 +118,6 @@ class CalendarDetailviewModify1 : AppCompatActivity() {
         seekBar.setOnTouchListener { _, _ -> true }
     }
 
-    // 날씨 상태 애니메이션
     // 날씨 상태 애니메이션
     private fun animateAndHandleButtonClick(Status: Status) {
         val buttonAnimation: Animation = AnimationUtils.loadAnimation(this, R.anim.btn_weather_scale)

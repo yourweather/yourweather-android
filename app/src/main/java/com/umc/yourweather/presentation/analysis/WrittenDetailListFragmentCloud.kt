@@ -60,6 +60,7 @@ class WrittenDetailListFragmentCloud : Fragment() {
         iconStatisticsMonthApi(ago)
 
         binding.recyclerViewDetailMonthlyCloud.layoutManager = LinearLayoutManager(requireContext())
+
     }
 
     // 이번 달 통계
@@ -115,7 +116,7 @@ class WrittenDetailListFragmentCloud : Fragment() {
                     val memoList = specificMemoResponse?.memoList ?: emptyList()
                     val proportion = specificMemoResponse?.proportion
 
-                    val memoIds = memoList.map { it.memoId }
+                    val memoIds = memoList.map { it.memoId.toInt() }
                     val memoDateTime = memoList.map { it.dateTime }
 
                     Log.d("$weather 메모 리스트", "$memoList")
@@ -130,7 +131,7 @@ class WrittenDetailListFragmentCloud : Fragment() {
 
                     // 어댑터에 변환된 데이터를 전달하여 연결
                     binding.recyclerViewDetailMonthlyCloud.layoutManager = LinearLayoutManager(requireContext())
-                    val adapter = context?.let { WrittenRVAdapter(formattedMemoList, it) }
+                    val adapter = context?.let { WrittenRVAdapter(formattedMemoList, it, memoIds) }
                     binding.recyclerViewDetailMonthlyCloud.adapter = adapter
 
                     binding.tvWrittenDetailListMonthNum.text = "총 ${memoIds.size}회"

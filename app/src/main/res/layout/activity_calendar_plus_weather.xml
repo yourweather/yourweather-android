@@ -4,7 +4,15 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context=".presentation.calendardetailview.CalendarDetailviewModify2">
+    tools:context=".presentation.calendardetailview.CalendarPlusWeather">
+    <FrameLayout
+        android:id="@+id/fragment_container"
+        android:layout_width="0dp"
+        android:layout_height="match_parent"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent">
 
         <TextView
             android:id="@+id/tv_detailview_modify2_date"
@@ -12,12 +20,11 @@
             android:layout_height="wrap_content"
             android:layout_marginStart="35dp"
             android:layout_marginTop="78dp"
-            android:layout_marginEnd="195dp"
             android:layout_marginBottom="28dp"
             android:fontFamily="@font/pretendardbold"
-            android:text="7월 4일 오후 1:00"
+            android:text="7월 4일의 기록"
             android:textColor="#2B2B2B"
-            android:textSize="20sp"
+            android:textSize="20dp"
             app:layout_constraintBottom_toTopOf="@+id/divider"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
@@ -33,9 +40,9 @@
 
             <ImageButton
                 android:id="@+id/btnCalendarDetailviewBack"
-                android:layout_width="16dp"
-                android:layout_height="16dp"
-                android:layout_marginTop="20dp"
+                android:layout_width="11dp"
+                android:layout_height="19dp"
+                android:layout_marginTop="16dp"
                 android:layout_marginEnd="375dp"
                 android:layout_marginBottom="92dp"
                 android:adjustViewBounds="true"
@@ -53,10 +60,10 @@
 
         <Button
             android:id="@+id/btn_calendardetailview_save"
-            android:layout_width="wrap_content"
+            android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_marginStart="331dp"
-            android:layout_marginTop="16dp"
+            android:layout_marginTop="10dp"
             android:layout_marginBottom="88dp"
             android:background="#00ff0000"
             android:fontFamily="@font/pretendardregular"
@@ -64,7 +71,7 @@
             android:text="저장"
             android:textColor="#BCBCBC"
             android:textFontWeight="600"
-            android:textSize="20sp"
+            android:textSize="20dp"
             app:layout_constraintBottom_toTopOf="@+id/divider"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintHorizontal_bias="0"
@@ -75,7 +82,7 @@
             android:id="@+id/divider"
             android:layout_width="match_parent"
             android:layout_height="7dp"
-            android:layout_marginTop="110dp"
+            android:layout_marginTop="128dp"
             android:layout_marginBottom="603dp"
             android:background="#D9D9D9"
             app:layout_constraintBottom_toBottomOf="parent"
@@ -87,7 +94,7 @@
         <LinearLayout
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:layout_marginTop="105dp"
+            android:layout_marginTop="127dp"
             android:layout_marginBottom="60dp"
             android:orientation="vertical"
             app:layout_constraintBottom_toBottomOf="parent"
@@ -97,8 +104,56 @@
 
             <ScrollView
                 android:layout_width="match_parent"
-                android:layout_height="match_parent"/>
+                android:layout_height="match_parent">
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:orientation="vertical">
+                    <LinearLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:orientation="vertical">
 
+                        <TextView
+                            android:id="@+id/tv_calendar_detailview_modify2_8"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_marginStart="16dp"
+                            android:layout_marginTop="26dp"
+                            android:layout_marginEnd="0dp"
+                            android:fontFamily="@font/pretendardsemibold"
+                            android:text="몇 시의 감정을 기록하시겠어요?"
+                            android:textColor="#2B2B2B"
+                            android:textFontWeight="600"
+                            android:textSize="14dp"
+                            app:layout_constraintEnd_toEndOf="parent"
+                            app:layout_constraintStart_toStartOf="parent"
+                            app:layout_constraintTop_toBottomOf="@+id/divider" />
+
+                        <LinearLayout
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:orientation="horizontal">
+
+
+                            <TextView
+                                android:id="@+id/tv_detailview_modify2_time"
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:layout_marginTop="19dp"
+                                android:layout_marginEnd="0dp"
+                                android:layout_marginStart="51dp"
+                                android:fontFamily="@font/pretendardsemibold"
+                                android:text="오후 12:00"
+                                android:textColor="#424242"
+                                android:textFontWeight="500"
+                                android:textSize="20dp"
+                                app:layout_constraintEnd_toEndOf="parent"
+                                app:layout_constraintTop_toBottomOf="@+id/tv_calendar_detailview_modify2_8" />
+
+
+                        </LinearLayout>
+                    </LinearLayout>
 
                     <LinearLayout
                         android:layout_width="match_parent"
@@ -110,13 +165,13 @@
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
                             android:layout_marginStart="16dp"
-                            android:layout_marginTop="23dp"
+                            android:layout_marginTop="40dp"
                             android:layout_marginEnd="0dp"
-                            android:fontFamily="@font/pretendardregular"
+                            android:fontFamily="@font/pretendardsemibold"
                             android:text="이다은님의 감정 상태"
                             android:textColor="#2B2B2B"
                             android:textFontWeight="600"
-                            android:textSize="14sp"
+                            android:textSize="14dp"
                             app:layout_constraintEnd_toEndOf="parent"
                             app:layout_constraintHorizontal_bias="0.135"
                             app:layout_constraintStart_toStartOf="parent"
@@ -177,7 +232,7 @@
                             android:text="클릭하여 선택해주세요"
                             android:textColor="#ACACAC"
                             android:textFontWeight="600"
-                            android:textSize="10sp"
+                            android:textSize="10dp"
                             app:layout_constraintBottom_toBottomOf="parent"
                             app:layout_constraintEnd_toEndOf="parent"
                             app:layout_constraintStart_toStartOf="parent"
@@ -193,15 +248,15 @@
                             android:id="@+id/tv_detailview_modify2_title2"
                             android:layout_width="match_parent"
                             android:layout_height="wrap_content"
-                            android:layout_marginStart="20dp"
-                            android:layout_marginTop="15dp"
+                            android:layout_marginStart="16dp"
+                            android:layout_marginTop="17dp"
                             android:layout_marginEnd="106dp"
                             android:layout_marginBottom="4dp"
-                            android:fontFamily="@font/pretendardregular"
+                            android:fontFamily="@font/pretendardsemibold"
                             android:text="이다은 님의 감정 온도"
                             android:textColor="#2B2B2B"
                             android:textFontWeight="600"
-                            android:textSize="14sp"
+                            android:textSize="14dp"
                             app:layout_constraintBottom_toBottomOf="parent"
                             app:layout_constraintEnd_toEndOf="parent"
                             app:layout_constraintStart_toStartOf="parent"
@@ -241,7 +296,7 @@
                                 android:layout_marginBottom="0dp"
                                 android:fontFamily="@font/pretendardregular"
                                 android:text="0°"
-                                android:textSize="13sp"
+                                android:textSize="13dp"
                                 app:layout_constraintBottom_toBottomOf="parent"
                                 app:layout_constraintEnd_toEndOf="parent"
                                 app:layout_constraintStart_toStartOf="parent"
@@ -257,7 +312,7 @@
                                 android:layout_marginBottom="0dp"
                                 android:fontFamily="@font/pretendardregular"
                                 android:text="100°"
-                                android:textSize="13sp"
+                                android:textSize="13dp"
                                 app:layout_constraintBottom_toBottomOf="parent"
                                 app:layout_constraintEnd_toEndOf="parent"
                                 app:layout_constraintStart_toStartOf="parent"
@@ -285,7 +340,7 @@
                             android:text="이다은 님의 일기"
                             android:textColor="#2B2B2B"
                             android:textFontWeight="600"
-                            android:textSize="14sp"
+                            android:textSize="14dp"
                             app:layout_constraintBottom_toBottomOf="parent"
                             app:layout_constraintEnd_toEndOf="parent"
                             app:layout_constraintHorizontal_bias="0.135"
@@ -316,12 +371,13 @@
                                 android:layout_height="170dp"
                                 android:padding="16dp">
 
-                                <TextView
+                                <EditText
                                     android:id="@+id/editText"
                                     android:layout_width="match_parent"
                                     android:layout_height="match_parent"
                                     android:background="@null"
                                     android:maxLength="500"
+                                    android:inputType="textMultiLine"
                                     android:fontFamily="@font/pretendardregular"
                                     android:textSize="14dp"/>
 
@@ -332,47 +388,12 @@
                     </LinearLayout>
                 </LinearLayout>
 
-    <FrameLayout
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:layout_marginTop="800dp"
-        android:layout_marginBottom="7dp"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent">
 
-        <ImageButton
-            android:id="@+id/imageButton5"
-            android:layout_width="match_parent"
-            android:layout_height="match_parent"
-            android:layout_marginTop="0dp"
-            android:layout_marginBottom="10dp"
-            android:background="#00ff0000"
-            app:layout_constraintBottom_toBottomOf="parent"
-            app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toTopOf="parent"
-            app:srcCompat="@drawable/btn_calendarview_delete" />
+            </ScrollView>
 
-        <TextView
-            android:id="@+id/tv_calendar_detailview_modify1_4"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_marginStart="195dp"
-            android:layout_marginTop="8dp"
-            android:layout_marginEnd="120dp"
-            android:layout_marginBottom="7dp"
-            android:fontFamily="@font/pretendardregular"
-            android:text="삭제"
-            android:textColor="#FFFFFF"
-            android:textFontWeight="600"
-            android:textSize="14sp"
-            app:layout_constraintBottom_toBottomOf="parent"
-            app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/divider" />
+
+        </LinearLayout>
+
 
     </FrameLayout>
 </androidx.constraintlayout.widget.ConstraintLayout>
-

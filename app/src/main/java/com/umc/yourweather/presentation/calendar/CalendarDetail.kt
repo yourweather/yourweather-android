@@ -1,7 +1,6 @@
 package com.umc.yourweather.presentation.calendar
 
 import android.content.Intent
-import android.graphics.Color
 import android.os.Build
 import android.os.Bundle
 import android.util.Log
@@ -9,12 +8,6 @@ import android.view.View
 import androidx.annotation.RequiresApi
 import androidx.appcompat.app.AppCompatActivity
 import androidx.recyclerview.widget.LinearLayoutManager
-import com.github.mikephil.charting.components.XAxis
-import com.github.mikephil.charting.data.Entry
-import com.github.mikephil.charting.data.LineData
-import com.github.mikephil.charting.data.LineDataSet
-import com.github.mikephil.charting.formatter.DefaultValueFormatter
-import com.umc.yourweather.R
 import com.umc.yourweather.data.remote.response.BaseResponse
 import com.umc.yourweather.data.remote.response.MemoDailyResponse
 import com.umc.yourweather.data.service.MemoService
@@ -25,6 +18,7 @@ import com.umc.yourweather.presentation.adapter.CalendarDetailMemoContentAdapter
 import com.umc.yourweather.presentation.adapter.CalendarDetailMemoListAdapter
 import com.umc.yourweather.presentation.calendardetailview.CalendarDetailviewModify1
 import com.umc.yourweather.presentation.calendardetailview.CalendarDetailviewModify2
+import com.umc.yourweather.presentation.calendardetailview.CalendarWeatherDetail
 import retrofit2.Call
 import retrofit2.Callback
 import retrofit2.Response
@@ -172,7 +166,7 @@ class CalendarDetail : AppCompatActivity() {
         // 클릭하면 수정페이지로 넘어감
         memoListAdapter.setOnItemClickListener(object : CalendarDetailMemoListAdapter.OnItemClickListener {
             override fun onItemClick(view: View, position: Int, memoId: Int) {
-                val mIntent = Intent(this@CalendarDetail, CalendarDetailviewModify1::class.java)
+                val mIntent = Intent(this@CalendarDetail, CalendarWeatherDetail::class.java)
                 mIntent.putExtra("memoId", memoId)
                 startActivity(mIntent)
                 finish()
