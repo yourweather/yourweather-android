@@ -133,17 +133,17 @@ class CalendarDetail : AppCompatActivity() {
             // 아무것도..없다
             emptyView(thisDate)
         } else if (memoList?.size!! > 0 && memoContent?.size == 0) {
-            // 메모가 아예 없다
+            // 메모가 없다
             binding.rvCalendarDetailMemocontent.visibility = View.INVISIBLE
-            binding.llCalendarDetailNoMemo.visibility = View.VISIBLE
+            // binding.llCalendarDetailNoMemo.visibility = View.VISIBLE
             binding.tvCalendarDetailMemoTitle.text = "${month}월 ${date}일의 일기"
 
-            binding.llCalendarDetailNoMemo.setOnClickListener {
-                // 지금 입력하기 누름
-            }
+//            binding.llCalendarDetailNoMemo.setOnClickListener {
+//                // 지금 입력하기 누름
+//            }
 
             // 차트
-            chart(memoList)
+            // chart(memoList)
 
             memoListView(memoList)
         } else if (memoList?.size!! > 0 && memoContent?.size!! > 0) {
@@ -151,7 +151,7 @@ class CalendarDetail : AppCompatActivity() {
             Log.d("calendarDetail memoContent 확인...", "$memoContent")
             memoListView(memoList)
 
-            chart(memoList)
+            // chart(memoList)
 
             if (memoContent != null) {
                 memoContentView(memoContent)
@@ -199,6 +199,9 @@ class CalendarDetail : AppCompatActivity() {
 
         binding.llCalendarDetailNoTotalData.setOnClickListener {
             // 입력창 이동
+
+
+
         }
 
         binding.nsCalendarDetail.visibility = View.INVISIBLE
@@ -210,69 +213,69 @@ class CalendarDetail : AppCompatActivity() {
         binding.rvCalendarDetailMemocontent.visibility = View.INVISIBLE
     }
 
-    private fun chart(memoList: List<MemoDailyResponse.MemoItemResponse>) {
-        var temprList: MutableList<TemprData> = mutableListOf()
-        val linechart = binding.chartCalendarDetail
-
-        // val linechart = findViewById<LineChart>(R.id.line_chart)
-
-        val xAxis = linechart.xAxis
-        for (i in 0 until memoList.size) {
-            temprList.add(TemprData(memoList[i].creationDatetime, memoList[i].temperature))
-        }
-
-        val entries: MutableList<Entry> = mutableListOf()
-
-        for (i in temprList.indices) {
-            entries.add(Entry(i.toFloat(), temprList[i].tempr.toFloat()))
-        }
-
-        val lineDataSet = LineDataSet(entries, "entries")
-
-        lineDataSet.apply {
-            color = resources.getColor(R.color.black, null)
-            circleRadius = 5f
-            lineWidth = 3f
-            setCircleColor(resources.getColor(R.color.gray, null))
-            circleHoleColor = resources.getColor(R.color.white, null)
-            setDrawHighlightIndicators(false)
-            // setDrawValues(true) // 숫자표시
-            // #F0A830
-            color = Color.parseColor("#F0A830")
-            valueTextColor = resources.getColor(R.color.black, null)
-            valueFormatter = DefaultValueFormatter(0) // 소숫점 자릿수 설정
-            valueTextSize = 10f
-        }
-
-        // 나머지 설정
-        linechart.apply {
-            axisRight.isEnabled = false // y축 사용여부
-            axisLeft.isEnabled = false
-            legend.isEnabled = false // legend 사용여부
-            description.isEnabled = false // 주석
-            //  isDragXEnabled = true   // x 축 드래그 여부
-            isScaleYEnabled = false // y축 줌 사용여부
-            isScaleXEnabled = false // x축 줌 사용여부
-        }
-
-        xAxis.apply {
-            isEnabled = false
-            setLabelCount(10, false)
-            setDrawGridLines(false)
-            setDrawAxisLine(true)
-            setDrawLabels(false)
-            position = XAxis.XAxisPosition.BOTTOM
-            textColor = resources.getColor(R.color.black, null)
-            textSize = 10f
-            labelRotationAngle = 0f
-            setLabelCount(10, true)
-            granularity = 95f
-        }
-        linechart.apply {
-            data = LineData(lineDataSet)
-            notifyDataSetChanged() // 데이터 갱신
-            invalidate() // view갱신
-        }
-    }
-    data class TemprData(val date: String, val tempr: Int)
+//    private fun chart(memoList: List<MemoDailyResponse.MemoItemResponse>) {
+//        var temprList: MutableList<TemprData> = mutableListOf()
+//        val linechart = binding.chartCalendarDetail
+//
+//        // val linechart = findViewById<LineChart>(R.id.line_chart)
+//
+//        val xAxis = linechart.xAxis
+//        for (i in 0 until memoList.size) {
+//            temprList.add(TemprData(memoList[i].creationDatetime, memoList[i].temperature))
+//        }
+//
+//        val entries: MutableList<Entry> = mutableListOf()
+//
+//        for (i in temprList.indices) {
+//            entries.add(Entry(i.toFloat(), temprList[i].tempr.toFloat()))
+//        }
+//
+//        val lineDataSet = LineDataSet(entries, "entries")
+//
+//        lineDataSet.apply {
+//            color = resources.getColor(R.color.black, null)
+//            circleRadius = 5f
+//            lineWidth = 3f
+//            setCircleColor(resources.getColor(R.color.gray, null))
+//            circleHoleColor = resources.getColor(R.color.white, null)
+//            setDrawHighlightIndicators(false)
+//            // setDrawValues(true) // 숫자표시
+//            // #F0A830
+//            color = Color.parseColor("#F0A830")
+//            valueTextColor = resources.getColor(R.color.black, null)
+//            valueFormatter = DefaultValueFormatter(0) // 소숫점 자릿수 설정
+//            valueTextSize = 10f
+//        }
+//
+//        // 나머지 설정
+//        linechart.apply {
+//            axisRight.isEnabled = false // y축 사용여부
+//            axisLeft.isEnabled = false
+//            legend.isEnabled = false // legend 사용여부
+//            description.isEnabled = false // 주석
+//            //  isDragXEnabled = true   // x 축 드래그 여부
+//            isScaleYEnabled = false // y축 줌 사용여부
+//            isScaleXEnabled = false // x축 줌 사용여부
+//        }
+//
+//        xAxis.apply {
+//            isEnabled = false
+//            setLabelCount(10, false)
+//            setDrawGridLines(false)
+//            setDrawAxisLine(true)
+//            setDrawLabels(false)
+//            position = XAxis.XAxisPosition.BOTTOM
+//            textColor = resources.getColor(R.color.black, null)
+//            textSize = 10f
+//            labelRotationAngle = 0f
+//            setLabelCount(10, true)
+//            granularity = 95f
+//        }
+//        linechart.apply {
+//            data = LineData(lineDataSet)
+//            notifyDataSetChanged() // 데이터 갱신
+//            invalidate() // view갱신
+//        }
+//    }
+//    data class TemprData(val date: String, val tempr: Int)
 }
