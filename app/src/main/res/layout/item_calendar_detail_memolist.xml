@@ -35,11 +35,11 @@
                 android:text="TextView"
                 android:textColor="#CC2B2B2B" />
 
-            <View
-                android:id="@+id/divider4"
-                android:layout_width="match_parent"
-                android:layout_height="1dp"
-                android:background="#CC2B2B2B" />
+<!--            <View-->
+<!--                android:id="@+id/divider4"-->
+<!--                android:layout_width="match_parent"-->
+<!--                android:layout_height="1dp"-->
+<!--                android:background="#CC2B2B2B" />-->
         </LinearLayout>
 
         <LinearLayout

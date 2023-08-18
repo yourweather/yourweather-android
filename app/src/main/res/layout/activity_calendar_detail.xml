@@ -51,11 +51,11 @@
             <!--                android:layout_width="match_parent"-->
             <!--                android:layout_height="wrap_content"-->
             <!--                android:orientation="vertical" />-->
-            <com.github.mikephil.charting.charts.LineChart
-                android:id="@+id/chart_calendar_detail"
-                android:layout_width="1000dp"
-                android:layout_height="90dp"
-                android:background="@drawable/bg_gray_ed_fill_6_rect" />
+<!--            <com.github.mikephil.charting.charts.LineChart-->
+<!--                android:id="@+id/chart_calendar_detail"-->
+<!--                android:layout_width="1000dp"-->
+<!--                android:layout_height="90dp"-->
+<!--                android:background="@drawable/bg_gray_ed_fill_6_rect" />-->
 
         </LinearLayout>
 
@@ -141,33 +141,4 @@
 
     </LinearLayout>
 
-    <LinearLayout
-        android:id="@+id/ll_calendar_detail_no_memo"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginTop="50dp"
-        android:gravity="center"
-        android:orientation="vertical"
-        android:visibility="invisible"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/tv_calendar_detail_memo_title">
-
-        <TextView
-            android:id="@+id/textView16"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:fontFamily="@font/pretendardsemibold"
-            android:gravity="center"
-            android:text="지금 입력하기"
-            android:textColor="@color/sorange"
-            android:textSize="11dp" />
-
-        <View
-            android:id="@+id/divider3"
-            android:layout_width="match_parent"
-            android:layout_height="1dp"
-            android:background="@color/sorange" />
-
-    </LinearLayout>
 </androidx.constraintlayout.widget.ConstraintLayout>
