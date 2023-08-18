@@ -1,6 +1,5 @@
 package com.umc.yourweather.presentation.calendardetailview
 
-import android.content.Intent
 import android.os.Bundle
 import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
@@ -17,7 +16,7 @@ import java.util.Locale
 // the fragment initialization parameters, e.g. ARG_ITEM_NUMBER
 private const val ARG_PARAM1 = "param1"
 private const val ARG_PARAM2 = "param2"
-private var timePickerCallback: TimePickerCallback? = null
+
 /**
  * A simple [Fragment] subclass.
  * Use the [CalendarDetailviewTimepicker.newInstance] factory method to
@@ -49,24 +48,24 @@ class CalendarDetailviewTimepicker : Fragment() {
         super.onViewCreated(view, savedInstanceState)
 
         val timePicker=binding.tpCalendardetailview
-
+       
         binding.btnCalendardetailviewTimepickerSelect.setOnClickListener {
             // 오전 / 오후를 확인하기 위한 if 문
             val selectedHour = timePicker.hour
             val selectedMinute = timePicker.minute
-            val isAM=selectedHour<12
             val displayHour: Int
+
 
             val formattedTime = formatTime(selectedHour, selectedMinute)
             val timeText = formattedTime
 
-            (activity as? CalendarDetailviewModify2)?.updateTimeText(timeText)
-            timePickerCallback?.onTimeSelected(isAM, selectedHour, selectedMinute)
+
+            (activity as? CalendarPlusWeather)?.updateTimeText(timeText)
+
             parentFragmentManager.popBackStack()
         }
 
     }
-
     private fun formatTime(selectedHour: Int, selectedMinute: Int): String {
         val calendar = Calendar.getInstance()
         calendar.set(Calendar.HOUR_OF_DAY, selectedHour)
@@ -75,6 +74,7 @@ class CalendarDetailviewTimepicker : Fragment() {
         val sdf = SimpleDateFormat("a hh : mm", Locale.KOREA)
         return sdf.format(calendar.time)
     }
+
     companion object {
         /**
          * Use this factory method to create a new instance of

@@ -128,11 +128,11 @@
             android:name=".presentation.calendardetailview.CalendarDetailViewEmpty"
             android:exported="false" />
         <activity
-            android:name=".presentation.calendardetailview.CalendarDetailviewModify1"
+            android:name=".presentation.calendardetailview.CalendarWeatherDetail"
             android:exported="true"
             android:windowSoftInputMode="adjustPan" />
         <activity
-            android:name=".presentation.calendardetailview.CalendarDetailviewModify2"
+            android:name=".presentation.calendardetailview.CalendarPlusWeather"
             android:exported="true"
             android:windowSoftInputMode="adjustPan" />
         <activity
