@@ -41,8 +41,6 @@ class UnwrittenRVAdapter(private val dataList: List<ItemUnwritten>, private val 
             val localDate = localDates[position] // 해당 아이템의 localDate 가져오기
 
             binding.linearLayout3.setOnClickListener {
-                val intent = Intent(context, CalendarPlusWeather::class.java)
-                context.startActivity(intent)
                 val dIntent = Intent(context, CalendarPlusWeather::class.java)
                 dIntent.putExtra("unWrittenDate", localDate)
                 context.startActivity(dIntent)
