@@ -21,6 +21,9 @@ import com.umc.yourweather.di.UserSharedPreferences
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.GlobalScope
 import kotlinx.coroutines.launch
+import okhttp3.MediaType.Companion.toMediaTypeOrNull
+import okhttp3.RequestBody
+import org.json.JSONObject
 import retrofit2.Call
 import retrofit2.Callback
 import retrofit2.Response
@@ -102,6 +105,14 @@ class CalendarPlusWeather : AppCompatActivity() {
 
         val simpleDateFormat = SimpleDateFormat("a hh:mm", Locale.getDefault())
         return simpleDateFormat.format(calendar.time)
+    }
+
+    private fun createApiRequestBody(localDateTime: String): RequestBody {
+        val jsonObject = JSONObject()
+        jsonObject.put("localDateTime", localDateTime)
+
+        val mediaType = "application/json".toMediaTypeOrNull()
+        return RequestBody.create(mediaType, jsonObject.toString())
     }
     fun updateTimeText(text: String) {
         binding.tvDetailviewModify2Time.text = text

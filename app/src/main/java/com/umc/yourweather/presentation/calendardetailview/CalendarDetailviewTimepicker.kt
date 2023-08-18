@@ -1,5 +1,6 @@
 package com.umc.yourweather.presentation.calendardetailview
 
+import android.content.Intent
 import android.os.Bundle
 import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
@@ -48,17 +49,17 @@ class CalendarDetailviewTimepicker : Fragment() {
         super.onViewCreated(view, savedInstanceState)
 
         val timePicker=binding.tpCalendardetailview
-       
+
         binding.btnCalendardetailviewTimepickerSelect.setOnClickListener {
             // 오전 / 오후를 확인하기 위한 if 문
             val selectedHour = timePicker.hour
             val selectedMinute = timePicker.minute
             val displayHour: Int
 
-
             val formattedTime = formatTime(selectedHour, selectedMinute)
-            val timeText = formattedTime
+            val localDateTime = formatLocalDateTime(selectedHour, selectedMinute)
 
+            val timeText = formattedTime
 
             (activity as? CalendarPlusWeather)?.updateTimeText(timeText)
 
@@ -66,6 +67,16 @@ class CalendarDetailviewTimepicker : Fragment() {
         }
 
     }
+
+    private fun formatLocalDateTime(selectedHour: Int, selectedMinute: Int): String {
+        val calendar = Calendar.getInstance()
+        calendar.set(Calendar.HOUR_OF_DAY, selectedHour)
+        calendar.set(Calendar.MINUTE, selectedMinute)
+
+        val sdf = SimpleDateFormat("yyyy-MM-dd'T'HH:mm", Locale.getDefault())
+        return sdf.format(calendar.time)
+    }
+
     private fun formatTime(selectedHour: Int, selectedMinute: Int): String {
         val calendar = Calendar.getInstance()
         calendar.set(Calendar.HOUR_OF_DAY, selectedHour)
@@ -74,7 +85,6 @@ class CalendarDetailviewTimepicker : Fragment() {
         val sdf = SimpleDateFormat("a hh : mm", Locale.KOREA)
         return sdf.format(calendar.time)
     }
-
     companion object {
         /**
          * Use this factory method to create a new instance of
