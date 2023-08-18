@@ -24,6 +24,7 @@ import com.umc.yourweather.di.UserSharedPreferences
 import com.umc.yourweather.presentation.adapter.CalendarDetailMemoContentAdapter
 import com.umc.yourweather.presentation.adapter.CalendarDetailMemoListAdapter
 import com.umc.yourweather.presentation.calendardetailview.CalendarDetailviewModify1
+import com.umc.yourweather.presentation.calendardetailview.CalendarDetailviewModify2
 import retrofit2.Call
 import retrofit2.Callback
 import retrofit2.Response
@@ -198,10 +199,9 @@ class CalendarDetail : AppCompatActivity() {
         binding.tvCalendarDetailNoTotalData.setText("${month}월 ${date}일 날씨와 기록이 없어요.")
 
         binding.llCalendarDetailNoTotalData.setOnClickListener {
-            // '지금 입력하기 버튼 클릭
-
-
-
+            val mIntent = Intent(this@CalendarDetail, CalendarDetailviewModify2::class.java)
+            mIntent.putExtra("date", thisDate)
+            startActivity(mIntent)
         }
 
         //binding.nsCalendarDetail.visibility = View.INVISIBLE
