@@ -116,6 +116,10 @@ class CalendarDetailviewModify2 : AppCompatActivity() {
         return simpleDateFormat.format(calendar.time)
     }
 
+    fun onTimeSelected(localDateTime: String) {
+        val apiRequestBody = createApiRequestBody(localDateTime)
+    }
+
     private fun createApiRequestBody(localDateTime: String): RequestBody {
         val jsonObject = JSONObject()
         jsonObject.put("localDateTime", localDateTime)
