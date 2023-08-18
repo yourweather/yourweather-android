@@ -6,15 +6,6 @@
     android:layout_height="match_parent"
     tools:context=".presentation.calendar.CalendarDetail">
 
-    <androidx.appcompat.widget.Toolbar
-        android:id="@+id/toolbar"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:background="?attr/colorPrimary"
-        android:minHeight="?attr/actionBarSize"
-        android:theme="?attr/actionBarTheme"
-        tools:ignore="MissingConstraints" />
-
     <TextView
         android:id="@+id/tv_calendar_detail_title"
         android:layout_width="wrap_content"
@@ -29,20 +20,24 @@
         app:layout_constraintTop_toTopOf="parent" />
 
 
+    <androidx.core.widget.NestedScrollView
+        android:id="@+id/ns_calendar_detail"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="9dp"
+        android:layout_marginTop="46dp"
+        android:layout_marginEnd="9dp"
+        android:background="@drawable/bg_gray_ed_fill_6_rect"
+        android:fillViewport="true"
+        android:scrollbars="horizontal"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/tv_calendar_detail_title">
+
         <LinearLayout
-            android:id="@+id/ll_calendar_detail_rcy"
-            android:gravity="center"
-            android:orientation="vertical"
-            android:layout_width="0dp"
+            android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_marginStart="9dp"
-            android:layout_marginTop="46dp"
-            android:layout_marginEnd="9dp"
-            android:background="@drawable/bg_gray_ed_fill_6_rect"
-            app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/tv_calendar_detail_title"
-            >
+            android:orientation="vertical">
 
 
             <androidx.recyclerview.widget.RecyclerView
@@ -50,15 +45,21 @@
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_marginTop="6dp"
-                android:layout_weight="1.5"
-                android:nestedScrollingEnabled="false">
+                android:nestedScrollingEnabled="false" />
 
-
-            </androidx.recyclerview.widget.RecyclerView>
+            <!--            <LinearLayout-->
+            <!--                android:layout_width="match_parent"-->
+            <!--                android:layout_height="wrap_content"-->
+            <!--                android:orientation="vertical" />-->
+<!--            <com.github.mikephil.charting.charts.LineChart-->
+<!--                android:id="@+id/chart_calendar_detail"-->
+<!--                android:layout_width="1000dp"-->
+<!--                android:layout_height="90dp"-->
+<!--                android:background="@drawable/bg_gray_ed_fill_6_rect" />-->
 
         </LinearLayout>
 
-
+    </androidx.core.widget.NestedScrollView>
 
     <View
         android:id="@+id/divider_calendar_detail_memo"
@@ -69,7 +70,8 @@
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.0"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/ll_calendar_detail_rcy" />
+        app:layout_constraintTop_toBottomOf="@+id/ns_calendar_detail" />
+
 
     <TextView
         android:id="@+id/tv_calendar_detail_memo_title"
@@ -121,15 +123,15 @@
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/tv_calendar_detail_no_total_data">
 
-        <TextView
-            android:id="@+id/tv_calendar_detail_inputnow"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:fontFamily="@font/pretendardsemibold"
-            android:gravity="center"
-            android:text="지금 입력하기"
-            android:textColor="@color/sorange"
-            android:textSize="11dp" />
+<!--        <TextView-->
+<!--            android:id="@+id/tv_calendar_detail_inputnow"-->
+<!--            android:layout_width="wrap_content"-->
+<!--            android:layout_height="wrap_content"-->
+<!--            android:fontFamily="@font/pretendardsemibold"-->
+<!--            android:gravity="center"-->
+<!--            android:text="지금 입력하기"-->
+<!--            android:textColor="@color/sorange"-->
+<!--            android:textSize="11dp" />-->
 
         <View
             android:id="@+id/divider_calendar_detail_01"
@@ -139,33 +141,4 @@
 
     </LinearLayout>
 
-    <LinearLayout
-        android:id="@+id/ll_calendar_detail_no_memo"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginTop="50dp"
-        android:gravity="center"
-        android:orientation="vertical"
-        android:visibility="invisible"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/tv_calendar_detail_memo_title">
-
-        <TextView
-            android:id="@+id/textView16"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:fontFamily="@font/pretendardsemibold"
-            android:gravity="center"
-            android:text="지금 입력하기"
-            android:textColor="@color/sorange"
-            android:textSize="11dp" />
-
-        <View
-            android:id="@+id/divider3"
-            android:layout_width="match_parent"
-            android:layout_height="1dp"
-            android:background="@color/sorange" />
-
-    </LinearLayout>
 </androidx.constraintlayout.widget.ConstraintLayout>

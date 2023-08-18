@@ -8,9 +8,8 @@ import android.view.ViewGroup
 import androidx.recyclerview.widget.RecyclerView
 import com.umc.yourweather.data.entity.ItemWritten
 import com.umc.yourweather.databinding.ItemWrittenDetailSunBinding
-import com.umc.yourweather.presentation.calendardetailview.CalendarDetailviewModify1
-
-class WrittenRVAdapter(private val dataList: List<ItemWritten>, private val context: Context) :
+import com.umc.yourweather.presentation.calendardetailview.CalendarWeatherDetail
+class WrittenRVAdapter(private val dataList: List<ItemWritten>, private val context: Context, private val memoIds: List<Int>) :
     RecyclerView.Adapter<WrittenRVAdapter.MyViewHolder>() {
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): MyViewHolder {
@@ -24,7 +23,8 @@ class WrittenRVAdapter(private val dataList: List<ItemWritten>, private val cont
 
     override fun onBindViewHolder(holder: MyViewHolder, position: Int) {
         val data = dataList[position]
-        holder.bind(data)
+        val memoId = memoIds[position] // 가져온 메모 아이디 리스트에서 현재 아이템 위치에 해당하는 아이디를 가져옴
+        holder.bind(data, memoId)
     }
 
     override fun getItemCount(): Int {
@@ -34,18 +34,19 @@ class WrittenRVAdapter(private val dataList: List<ItemWritten>, private val cont
     inner class MyViewHolder(val binding: ItemWrittenDetailSunBinding) :
         RecyclerView.ViewHolder(binding.root) {
 
-        fun bind(data: ItemWritten) {
+        fun bind(data: ItemWritten, memoId: Int) {
             binding.tvStaticIconDetailSunny.text = "${data.formattedDateTime}"
 
             binding.linearLayout3.setOnClickListener {
-                val intent = Intent(context, CalendarDetailviewModify1::class.java)
+                val intent = Intent(context, CalendarWeatherDetail::class.java)
                 intent.putExtra("dateTime", data.dateTime) // 전달할 데이터 추가
-                intent.putExtra("memoId", data.memoId) // 전달할 메모 아이디 추가
+                intent.putExtra("memoIdW", memoId) // 수정된 코드: 메모 아이디 대신 memoId 전달
                 context.startActivity(intent)
 
                 // 로그로 확인
-                Log.d("WrittenRVAdapter", "Clicked Item - DateTime: ${data.dateTime}, MemoId: ${data.memoId}")
+                Log.d("WrittenRVAdapter", "Clicked Item - DateTime: ${data.dateTime}, MemoId: $memoId")
             }
         }
     }
 }
+

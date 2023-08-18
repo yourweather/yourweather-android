@@ -17,6 +17,7 @@ import java.util.Locale
 // the fragment initialization parameters, e.g. ARG_ITEM_NUMBER
 private const val ARG_PARAM1 = "param1"
 private const val ARG_PARAM2 = "param2"
+
 /**
  * A simple [Fragment] subclass.
  * Use the [CalendarDetailviewTimepicker.newInstance] factory method to
@@ -60,7 +61,7 @@ class CalendarDetailviewTimepicker : Fragment() {
 
             val timeText = formattedTime
 
-            (activity as? CalendarDetailviewModify2)?.updateTimeText(timeText)
+            (activity as? CalendarPlusWeather)?.updateTimeText(timeText)
 
             parentFragmentManager.popBackStack()
         }
