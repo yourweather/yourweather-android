@@ -198,16 +198,16 @@ class CalendarDetail : AppCompatActivity() {
         binding.tvCalendarDetailNoTotalData.setText("${month}월 ${date}일 날씨와 기록이 없어요.")
 
         binding.llCalendarDetailNoTotalData.setOnClickListener {
-            // 입력창 이동
+            // '지금 입력하기 버튼 클릭
 
 
 
         }
 
-        binding.nsCalendarDetail.visibility = View.INVISIBLE
+        //binding.nsCalendarDetail.visibility = View.INVISIBLE
         binding.tvCalendarDetailTitle.visibility = View.INVISIBLE
         binding.tvCalendarDetailMemoTitle.visibility = View.INVISIBLE
-//        binding.llCalendarDetailRcy.visibility = View.INVISIBLE
+        binding.llCalendarDetailRcy.visibility = View.INVISIBLE
         binding.dividerCalendarDetailMemo.visibility = View.INVISIBLE
         binding.tvCalendarDetailMemoTitle.visibility = View.INVISIBLE
         binding.rvCalendarDetailMemocontent.visibility = View.INVISIBLE
