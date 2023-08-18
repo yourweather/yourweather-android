@@ -17,7 +17,6 @@ import java.util.Locale
 // the fragment initialization parameters, e.g. ARG_ITEM_NUMBER
 private const val ARG_PARAM1 = "param1"
 private const val ARG_PARAM2 = "param2"
-private var timePickerCallback: TimePickerCallback? = null
 /**
  * A simple [Fragment] subclass.
  * Use the [CalendarDetailviewTimepicker.newInstance] factory method to
@@ -54,17 +53,27 @@ class CalendarDetailviewTimepicker : Fragment() {
             // 오전 / 오후를 확인하기 위한 if 문
             val selectedHour = timePicker.hour
             val selectedMinute = timePicker.minute
-            val isAM=selectedHour<12
             val displayHour: Int
 
             val formattedTime = formatTime(selectedHour, selectedMinute)
+            val localDateTime = formatLocalDateTime(selectedHour, selectedMinute)
+
             val timeText = formattedTime
 
             (activity as? CalendarDetailviewModify2)?.updateTimeText(timeText)
-            timePickerCallback?.onTimeSelected(isAM, selectedHour, selectedMinute)
+
             parentFragmentManager.popBackStack()
         }
 
+    }
+
+    private fun formatLocalDateTime(selectedHour: Int, selectedMinute: Int): String {
+        val calendar = Calendar.getInstance()
+        calendar.set(Calendar.HOUR_OF_DAY, selectedHour)
+        calendar.set(Calendar.MINUTE, selectedMinute)
+
+        val sdf = SimpleDateFormat("yyyy-MM-dd'T'HH:mm", Locale.getDefault())
+        return sdf.format(calendar.time)
     }
 
     private fun formatTime(selectedHour: Int, selectedMinute: Int): String {
