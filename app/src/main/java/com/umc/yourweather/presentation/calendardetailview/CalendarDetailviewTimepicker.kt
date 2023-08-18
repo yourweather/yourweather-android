@@ -1,6 +1,5 @@
 package com.umc.yourweather.presentation.calendardetailview
 
-import android.content.Intent
 import android.os.Bundle
 import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
@@ -61,7 +60,7 @@ class CalendarDetailviewTimepicker : Fragment() {
             val timeText = formattedTime
 
 
-            (activity as? CalendarDetailviewModify2)?.updateTimeText(timeText)
+            (activity as? CalendarPlusWeather)?.updateTimeText(timeText)
 
             parentFragmentManager.popBackStack()
         }

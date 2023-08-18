@@ -1,26 +1,21 @@
 package com.umc.yourweather.presentation.calendardetailview
 
-import android.content.Intent
 import android.os.Bundle
 import android.util.Log
 import android.view.animation.Animation
 import android.view.animation.AnimationUtils
 import android.widget.Button
 import android.widget.SeekBar
-import android.widget.TextView
 import androidx.appcompat.app.AppCompatActivity
 import androidx.appcompat.widget.AppCompatEditText
 import androidx.core.content.ContextCompat
-import com.mmk.timeintervalpicker.TimeIntervalPicker
 import com.umc.yourweather.R
 import com.umc.yourweather.data.enums.Status
 import com.umc.yourweather.data.remote.request.MemoRequest
-import com.umc.yourweather.data.remote.request.MemoUpdateRequest
 import com.umc.yourweather.data.remote.response.BaseResponse
 import com.umc.yourweather.data.remote.response.MemoResponse
-import com.umc.yourweather.data.remote.response.MemoUpdateResponse
 import com.umc.yourweather.data.service.MemoService
-import com.umc.yourweather.databinding.ActivityCalendarDetailviewModify2Binding
+import com.umc.yourweather.databinding.ActivityCalendarPlusWeatherBinding
 import com.umc.yourweather.di.RetrofitImpl
 import com.umc.yourweather.di.UserSharedPreferences
 import kotlinx.coroutines.Dispatchers
@@ -33,15 +28,15 @@ import java.text.SimpleDateFormat
 import java.util.Calendar
 import java.util.Locale
 
-class CalendarDetailviewModify2 : AppCompatActivity() {
-    private lateinit var binding: ActivityCalendarDetailviewModify2Binding
+class CalendarPlusWeather : AppCompatActivity() {
+    private lateinit var binding: ActivityCalendarPlusWeatherBinding
     private lateinit var editText: AppCompatEditText
     private var isSeekBarAdjusted = false // 변수 선언
     private var selectedStatus: Status? = null // 기본값으로 SUNNY 설정
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
-        binding = ActivityCalendarDetailviewModify2Binding.inflate(layoutInflater)
+        binding = ActivityCalendarPlusWeatherBinding.inflate(layoutInflater)
         setContentView(binding.root)
 
         editText = binding.editText as AppCompatEditText
@@ -62,7 +57,7 @@ class CalendarDetailviewModify2 : AppCompatActivity() {
         binding.flCalendarDetailviewBack.setOnClickListener {
             activityFinish()
         }
-        val userNickname = UserSharedPreferences.getUserNickname(this@CalendarDetailviewModify2)
+        val userNickname = UserSharedPreferences.getUserNickname(this@CalendarPlusWeather)
 
         binding.tvDetailviewModify2Title1.text = "$userNickname 님의 감정 상태"
         binding.tvDetailviewModify2Title2.text = "$userNickname 님의 감정 온도"

@@ -4,7 +4,7 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context=".presentation.calendardetailview.CalendarDetailviewModify2">
+    tools:context=".presentation.calendardetailview.CalendarWeatherDetail">
     <FrameLayout
         android:id="@+id/fragment_container"
         android:layout_width="0dp"
@@ -59,7 +59,7 @@
         </FrameLayout>
 
         <Button
-            android:id="@+id/btn_calendardetailview_save"
+            android:id="@+id/btn_calendardetailview_modify"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_marginStart="331dp"

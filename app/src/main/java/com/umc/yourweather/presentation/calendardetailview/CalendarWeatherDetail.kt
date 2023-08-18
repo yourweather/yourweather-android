@@ -12,7 +12,7 @@ import com.umc.yourweather.data.remote.response.BaseResponse
 import com.umc.yourweather.data.remote.response.MemoResponse
 import com.umc.yourweather.data.remote.response.MemoUpdateResponse
 import com.umc.yourweather.data.service.MemoService
-import com.umc.yourweather.databinding.ActivityCalendarDetailviewModify1Binding
+import com.umc.yourweather.databinding.ActivityCalendarWeatherDetailBinding
 import com.umc.yourweather.di.RetrofitImpl
 import com.umc.yourweather.di.UserSharedPreferences
 import retrofit2.Call
@@ -21,12 +21,12 @@ import retrofit2.Response
 import java.text.SimpleDateFormat
 import java.util.Locale
 
-class CalendarDetailviewModify1 : AppCompatActivity() {
-    private lateinit var binding: ActivityCalendarDetailviewModify1Binding
+class CalendarWeatherDetail : AppCompatActivity() {
+    private lateinit var binding: ActivityCalendarWeatherDetailBinding
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
-        binding = ActivityCalendarDetailviewModify1Binding.inflate(layoutInflater)
+        binding = ActivityCalendarWeatherDetailBinding.inflate(layoutInflater)
         setContentView(binding.root)
 
         // Intent에서 캘린더에서 접근 시 memoId 추ㅛㅕㅕ갸출
