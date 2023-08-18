@@ -16,8 +16,7 @@ import com.umc.yourweather.di.RetrofitImpl
 import com.umc.yourweather.di.UserSharedPreferences
 import com.umc.yourweather.presentation.adapter.CalendarDetailMemoContentAdapter
 import com.umc.yourweather.presentation.adapter.CalendarDetailMemoListAdapter
-import com.umc.yourweather.presentation.calendardetailview.CalendarDetailviewModify1
-import com.umc.yourweather.presentation.calendardetailview.CalendarDetailviewModify2
+import com.umc.yourweather.presentation.calendardetailview.CalendarPlusWeather
 import com.umc.yourweather.presentation.calendardetailview.CalendarWeatherDetail
 import retrofit2.Call
 import retrofit2.Callback
@@ -177,9 +176,9 @@ class CalendarDetail : AppCompatActivity() {
         if (memoList.size >= 10) {
             binding.btnCalendarDetailPlus.visibility = View.INVISIBLE
         } else {
-            // 있으면 플러스 클릭했을때 모디파이2로
+            // 있으면 플러스 클릭했을때 상세보기 날씨 추가 입력창으로
             binding.btnCalendarDetailPlus.setOnClickListener {
-                val mIntent = Intent(this@CalendarDetail, CalendarDetailviewModify2::class.java)
+                val mIntent = Intent(this@CalendarDetail, CalendarPlusWeather::class.java)
                 mIntent.putExtra("date", thisDate)
                 startActivity(mIntent)
                 finish()
@@ -210,7 +209,7 @@ class CalendarDetail : AppCompatActivity() {
         binding.tvCalendarDetailNoTotalData.setText("${month}월 ${date}일 날씨와 기록이 없어요.")
 
         binding.llCalendarDetailNoTotalData.setOnClickListener {
-            val mIntent = Intent(this@CalendarDetail, CalendarDetailviewModify2::class.java)
+            val mIntent = Intent(this@CalendarDetail, CalendarPlusWeather::class.java)
             mIntent.putExtra("date", thisDate)
             startActivity(mIntent)
             finish()
