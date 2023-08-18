@@ -20,34 +20,38 @@
         app:layout_constraintTop_toTopOf="parent" />
 
 
-    <androidx.core.widget.NestedScrollView
-        android:id="@+id/ns_calendar_detail"
+    <LinearLayout
+        android:id="@+id/ll_calendar_detail_rcy"
         android:layout_width="0dp"
         android:layout_height="wrap_content"
         android:layout_marginStart="9dp"
         android:layout_marginTop="46dp"
         android:layout_marginEnd="9dp"
         android:background="@drawable/bg_gray_ed_fill_6_rect"
-        android:fillViewport="true"
-        android:scrollbars="horizontal"
+        android:gravity="center"
+        android:orientation="vertical"
+        android:paddingLeft="11dp"
+        android:paddingRight="11dp"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/tv_calendar_detail_title">
 
-        <LinearLayout
-            android:layout_width="wrap_content"
+
+        <androidx.recyclerview.widget.RecyclerView
+            android:id="@+id/rv_calendar_detail_memolist"
+            android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:orientation="vertical">
+            android:layout_marginTop="6dp"
+            android:layout_weight="1.5"
+            android:nestedScrollingEnabled="false">
 
 
-            <androidx.recyclerview.widget.RecyclerView
-                android:id="@+id/rv_calendar_detail_memolist"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:layout_marginTop="6dp"
-                android:nestedScrollingEnabled="false" />
+        </androidx.recyclerview.widget.RecyclerView>
 
-            <!--            <LinearLayout-->
+    </LinearLayout>
+
+
+    <!--            <LinearLayout-->
             <!--                android:layout_width="match_parent"-->
             <!--                android:layout_height="wrap_content"-->
             <!--                android:orientation="vertical" />-->
@@ -56,10 +60,6 @@
 <!--                android:layout_width="1000dp"-->
 <!--                android:layout_height="90dp"-->
 <!--                android:background="@drawable/bg_gray_ed_fill_6_rect" />-->
-
-        </LinearLayout>
-
-    </androidx.core.widget.NestedScrollView>
 
     <View
         android:id="@+id/divider_calendar_detail_memo"
@@ -70,7 +70,7 @@
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.0"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/ns_calendar_detail" />
+        app:layout_constraintTop_toBottomOf="@+id/ll_calendar_detail_rcy" />
 
 
     <TextView

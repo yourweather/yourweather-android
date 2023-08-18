@@ -16,6 +16,8 @@ import com.umc.yourweather.di.RetrofitImpl
 import com.umc.yourweather.di.UserSharedPreferences
 import com.umc.yourweather.presentation.adapter.CalendarDetailMemoContentAdapter
 import com.umc.yourweather.presentation.adapter.CalendarDetailMemoListAdapter
+import com.umc.yourweather.presentation.calendardetailview.CalendarDetailviewModify1
+import com.umc.yourweather.presentation.calendardetailview.CalendarDetailviewModify2
 import com.umc.yourweather.presentation.calendardetailview.CalendarWeatherDetail
 import retrofit2.Call
 import retrofit2.Callback
@@ -167,6 +169,7 @@ class CalendarDetail : AppCompatActivity() {
                 val mIntent = Intent(this@CalendarDetail, CalendarWeatherDetail::class.java)
                 mIntent.putExtra("memoId", memoId)
                 startActivity(mIntent)
+                finish()
             }
         })
     }
@@ -191,16 +194,16 @@ class CalendarDetail : AppCompatActivity() {
         binding.tvCalendarDetailNoTotalData.setText("${month}월 ${date}일 날씨와 기록이 없어요.")
 
         binding.llCalendarDetailNoTotalData.setOnClickListener {
-            // 입력창 이동
-
-
-
+            val mIntent = Intent(this@CalendarDetail, CalendarDetailviewModify2::class.java)
+            mIntent.putExtra("date", thisDate)
+            startActivity(mIntent)
+            finish()
         }
 
-        binding.nsCalendarDetail.visibility = View.INVISIBLE
+        //binding.nsCalendarDetail.visibility = View.INVISIBLE
         binding.tvCalendarDetailTitle.visibility = View.INVISIBLE
         binding.tvCalendarDetailMemoTitle.visibility = View.INVISIBLE
-//        binding.llCalendarDetailRcy.visibility = View.INVISIBLE
+        binding.llCalendarDetailRcy.visibility = View.INVISIBLE
         binding.dividerCalendarDetailMemo.visibility = View.INVISIBLE
         binding.tvCalendarDetailMemoTitle.visibility = View.INVISIBLE
         binding.rvCalendarDetailMemocontent.visibility = View.INVISIBLE
