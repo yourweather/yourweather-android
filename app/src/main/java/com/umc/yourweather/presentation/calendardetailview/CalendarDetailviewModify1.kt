@@ -119,7 +119,6 @@ class CalendarDetailviewModify1 : AppCompatActivity() {
     }
 
     // 날씨 상태 애니메이션
-    // 날씨 상태 애니메이션
     private fun animateAndHandleButtonClick(Status: Status) {
         val buttonAnimation: Animation = AnimationUtils.loadAnimation(this, R.anim.btn_weather_scale)
         when (Status) {
