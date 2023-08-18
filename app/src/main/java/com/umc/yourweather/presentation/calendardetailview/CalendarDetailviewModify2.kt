@@ -33,11 +33,14 @@ import java.text.SimpleDateFormat
 import java.util.Calendar
 import java.util.Locale
 
-class CalendarDetailviewModify2 : AppCompatActivity() {
+class CalendarDetailviewModify2 : AppCompatActivity(), TimePickerCallback {
     private lateinit var binding: ActivityCalendarDetailviewModify2Binding
     private lateinit var editText: AppCompatEditText
     private var isSeekBarAdjusted = false // 변수 선언
     private var selectedStatus: Status? = null // 기본값으로 SUNNY 설정
+    private var selectedIsAM: Boolean = true
+    private var selectedHour: Int = 0
+    private var selectedMinute: Int = 0
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -108,11 +111,16 @@ class CalendarDetailviewModify2 : AppCompatActivity() {
         val simpleDateFormat = SimpleDateFormat("a hh:mm", Locale.getDefault())
         return simpleDateFormat.format(calendar.time)
     }
+
+    override fun onTimeSelected(isAM: Boolean, hour: Int, minute: Int) {
+        // 선택한 시간 값을 이용하여 처리하는 로직 구현
+        val formattedTime = formatTimeWithAmPm(hour, minute)
+
+    }
+
     fun updateTimeText(text: String) {
         binding.tvDetailviewModify2Time.text = text
     }
-
-
 
     private fun combineDateAndTime(date: String, time: String): String {
         val combinedDateTime = "$date $time"
