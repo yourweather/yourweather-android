@@ -29,24 +29,21 @@ class CalendarDetailviewModify1 : AppCompatActivity() {
         binding = ActivityCalendarDetailviewModify1Binding.inflate(layoutInflater)
         setContentView(binding.root)
 
-        // Intent에서 캘린더에서 접근 시 memoId 추출
-        val memoId = intent.getIntExtra("memoId", -1) // 기본값 -1로 설정하거나 원하는 값으로 설정
+        // Intent에서 캘린더에서 접근 시 memoId 추ㅛㅕㅕ갸출
+        val memoId = intent.getIntExtra("memoId", -1)
+        // Intent에서 상세보기에서 접근 시 memoId 추출
+        val memoIdW = intent.getIntExtra("memoIdW", -1)
+
         if (memoId != -1) {
-            detailMemoReturnApi(memoId)
             Log.d("캘린더에서 접근 메모 아이디", "$memoId")
+            detailMemoReturnApi(memoId)
+        } else if (memoIdW != -1) {
+            Log.d("상세보기에서 접근 메모 아이디", "$memoIdW")
+            detailMemoReturnApi(memoIdW)
         } else {
+            Log.d("메모 아이디", "Invalid memoId and memoIdW values. Finishing activity.")
             finish()
         }
-
-//        // Intent에서 상세보기에서 접근 시 memoId 추출
-//        val memoIdW = intent.getIntExtra("memoIdW", -1) // 기본값 -1로 설정하거나 원하는 값으로 설정
-//        if (memoId != -1) {
-//            detailMemoReturnApi(memoIdW)
-//            Log.d("캘린더에서 접근 메모 아이디", "$memoId")
-//        } else {
-//            finish()
-//        }
-//        Log.d("메모 아이디", "$memoIdW")
 
         // 닉네임
         val userNickname = UserSharedPreferences.getUserNickname(this)
@@ -127,8 +124,8 @@ class CalendarDetailviewModify1 : AppCompatActivity() {
         when (Status) {
             com.umc.yourweather.data.enums.Status.SUNNY -> binding.btnHomeSun.startAnimation(buttonAnimation)
             com.umc.yourweather.data.enums.Status.CLOUDY -> binding.btnHomeCloud.startAnimation(buttonAnimation)
-            com.umc.yourweather.data.enums.Status.RAINY -> binding.btnHomeThunder.startAnimation(buttonAnimation)
-            com.umc.yourweather.data.enums.Status.LIGHTNING -> binding.btnHomeSun.startAnimation(buttonAnimation)
+            com.umc.yourweather.data.enums.Status.RAINY -> binding.btnHomeRain.startAnimation(buttonAnimation)
+            com.umc.yourweather.data.enums.Status.LIGHTNING -> binding.btnHomeThunder.startAnimation(buttonAnimation)
         }
     }
 
