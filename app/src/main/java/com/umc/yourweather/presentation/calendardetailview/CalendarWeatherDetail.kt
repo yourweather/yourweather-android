@@ -1,5 +1,6 @@
 package com.umc.yourweather.presentation.calendardetailview
 
+import android.content.Intent
 import android.os.Bundle
 import android.util.Log
 import android.view.animation.Animation
@@ -50,6 +51,15 @@ class CalendarWeatherDetail : AppCompatActivity() {
         binding.tvDetailviewModify2Title1.text = "$userNickname 님의 감정 상태"
         binding.tvDetailviewModify2Title2.text = "$userNickname 님의 감정 온도"
         binding.tvDetailviewModify2Title3.text = "$userNickname 님의 일기"
+
+        // 수정 프래그먼트 파일 띄우기
+        binding.btnCalendardetailviewModify.setOnClickListener {
+            val fragment = CalendarModifyWeatherFragment()
+            val transaction = supportFragmentManager.beginTransaction()
+            transaction.replace(R.id.fragment_container, fragment)
+            transaction.addToBackStack(null)
+            transaction.commit()
+        }
     }
 
     // 특정 메모 반환
