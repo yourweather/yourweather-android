@@ -16,6 +16,8 @@ import com.umc.yourweather.di.RetrofitImpl
 import com.umc.yourweather.di.UserSharedPreferences
 import com.umc.yourweather.presentation.adapter.CalendarDetailMemoContentAdapter
 import com.umc.yourweather.presentation.adapter.CalendarDetailMemoListAdapter
+import com.umc.yourweather.presentation.calendardetailview.CalendarDetailviewModify1
+import com.umc.yourweather.presentation.calendardetailview.CalendarDetailviewModify2
 import com.umc.yourweather.presentation.calendardetailview.CalendarWeatherDetail
 import retrofit2.Call
 import retrofit2.Callback
@@ -138,11 +140,11 @@ class CalendarDetail : AppCompatActivity() {
             // 차트
             // chart(memoList)
 
-            memoListView(memoList)
+            memoListView(memoList, thisDate)
         } else if (memoList?.size!! > 0 && memoContent?.size!! > 0) {
             // 둘 다 있다.
             Log.d("calendarDetail memoContent 확인...", "$memoContent")
-            memoListView(memoList)
+            memoListView(memoList, thisDate)
 
             // chart(memoList)
 
@@ -152,7 +154,7 @@ class CalendarDetail : AppCompatActivity() {
         }
     }
 
-    fun memoListView(memoList: List<MemoDailyResponse.MemoItemResponse>) {
+    fun memoListView(memoList: List<MemoDailyResponse.MemoItemResponse>, thisDate: String?) {
         val memoListAdapter = CalendarDetailMemoListAdapter(memoList, this@CalendarDetail)
         val layoutManager = LinearLayoutManager(this)
         layoutManager.orientation = LinearLayoutManager.HORIZONTAL
@@ -167,8 +169,22 @@ class CalendarDetail : AppCompatActivity() {
                 val mIntent = Intent(this@CalendarDetail, CalendarWeatherDetail::class.java)
                 mIntent.putExtra("memoId", memoId)
                 startActivity(mIntent)
+                finish()
             }
         })
+
+        // 10개면 플러스버튼 없음
+        if (memoList.size >= 10) {
+            binding.btnCalendarDetailPlus.visibility = View.INVISIBLE
+        } else {
+            // 있으면 플러스 클릭했을때 모디파이2로
+            binding.btnCalendarDetailPlus.setOnClickListener {
+                val mIntent = Intent(this@CalendarDetail, CalendarDetailviewModify2::class.java)
+                mIntent.putExtra("date", thisDate)
+                startActivity(mIntent)
+                finish()
+            }
+        }
     }
 
     fun memoContentView(memoContent: List<MemoDailyResponse.MemoContentResponse>) {
@@ -184,6 +200,9 @@ class CalendarDetail : AppCompatActivity() {
 
     @RequiresApi(Build.VERSION_CODES.O)
     private fun emptyView(thisDate: String?) {
+        // 플러스 버튼
+        binding.btnCalendarDetailPlus.visibility = View.INVISIBLE
+
         binding.llCalendarDetailNoTotalData.visibility = View.VISIBLE
         binding.tvCalendarDetailNoTotalData.visibility = View.VISIBLE
 
@@ -191,16 +210,19 @@ class CalendarDetail : AppCompatActivity() {
         binding.tvCalendarDetailNoTotalData.setText("${month}월 ${date}일 날씨와 기록이 없어요.")
 
         binding.llCalendarDetailNoTotalData.setOnClickListener {
-            // 입력창 이동
-
-
-
+            val mIntent = Intent(this@CalendarDetail, CalendarDetailviewModify2::class.java)
+            mIntent.putExtra("date", thisDate)
+            startActivity(mIntent)
+            finish()
         }
 
-        binding.nsCalendarDetail.visibility = View.INVISIBLE
+        // 숨겨야 될 거...
+        binding.tvCalendarDetailGuide.visibility = View.INVISIBLE
+        binding.rvCalendarDetailMemolist.visibility = View.INVISIBLE
+        // binding.nsCalendarDetail.visibility = View.INVISIBLE
         binding.tvCalendarDetailTitle.visibility = View.INVISIBLE
         binding.tvCalendarDetailMemoTitle.visibility = View.INVISIBLE
-//        binding.llCalendarDetailRcy.visibility = View.INVISIBLE
+        // binding.llCalendarDetailRcy.visibility = View.INVISIBLE
         binding.dividerCalendarDetailMemo.visibility = View.INVISIBLE
         binding.tvCalendarDetailMemoTitle.visibility = View.INVISIBLE
         binding.rvCalendarDetailMemocontent.visibility = View.INVISIBLE

@@ -20,34 +20,40 @@
         app:layout_constraintTop_toTopOf="parent" />
 
 
-    <androidx.core.widget.NestedScrollView
-        android:id="@+id/ns_calendar_detail"
+    <TextView
+        android:id="@+id/tv_calendar_detail_guide"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="16dp"
+        android:layout_marginTop="29dp"
+        android:fontFamily="@font/pretendardmedium"
+        android:text="기록 수정하고자 하는 시간대를 선택해주세요"
+        android:textColor="#BDBDBD"
+        android:textSize="12dp"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/tv_calendar_detail_title" />
+
+    <androidx.recyclerview.widget.RecyclerView
+        android:id="@+id/rv_calendar_detail_memolist"
         android:layout_width="0dp"
         android:layout_height="wrap_content"
         android:layout_marginStart="9dp"
-        android:layout_marginTop="46dp"
+        android:layout_marginTop="5dp"
         android:layout_marginEnd="9dp"
-        android:background="@drawable/bg_gray_ed_fill_6_rect"
-        android:fillViewport="true"
-        android:scrollbars="horizontal"
+        android:background="@drawable/bg_gray_ed_fill_5_rect"
+        android:gravity="center"
+        android:orientation="vertical"
+        android:paddingTop="14dp"
+        android:paddingBottom="10dp"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/tv_calendar_detail_title">
-
-        <LinearLayout
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:orientation="vertical">
+        app:layout_constraintTop_toBottomOf="@+id/tv_calendar_detail_guide" />
 
 
-            <androidx.recyclerview.widget.RecyclerView
-                android:id="@+id/rv_calendar_detail_memolist"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:layout_marginTop="6dp"
-                android:nestedScrollingEnabled="false" />
 
-            <!--            <LinearLayout-->
+
+
+    <!--            <LinearLayout-->
             <!--                android:layout_width="match_parent"-->
             <!--                android:layout_height="wrap_content"-->
             <!--                android:orientation="vertical" />-->
@@ -56,10 +62,6 @@
 <!--                android:layout_width="1000dp"-->
 <!--                android:layout_height="90dp"-->
 <!--                android:background="@drawable/bg_gray_ed_fill_6_rect" />-->
-
-        </LinearLayout>
-
-    </androidx.core.widget.NestedScrollView>
 
     <View
         android:id="@+id/divider_calendar_detail_memo"
@@ -70,7 +72,7 @@
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.0"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/ns_calendar_detail" />
+        app:layout_constraintTop_toBottomOf="@+id/rv_calendar_detail_memolist" />
 
 
     <TextView
@@ -141,4 +143,19 @@
 
     </LinearLayout>
 
+    <!--        app:src="@drawable/btn_calendardetailview_plus"-->
+<!--        app:icon="@drawable/btn_calendardetailview_plus"/>-->
+<!--         />-->
+    <androidx.appcompat.widget.AppCompatButton
+        android:id="@+id/btn_calendar_detail_plus"
+        android:layout_width="37dp"
+        android:layout_height="37dp"
+        android:layout_marginEnd="19dp"
+        android:layout_marginBottom="17dp"
+        android:background="@drawable/btn_calendardetailview_plus"
+        android:fontFamily="@font/pretendardsemibold"
+        android:textColor="#FFFFFF"
+        android:textSize="16dp"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent" />
 </androidx.constraintlayout.widget.ConstraintLayout>

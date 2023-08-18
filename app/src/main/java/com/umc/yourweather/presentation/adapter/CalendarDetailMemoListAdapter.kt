@@ -46,16 +46,16 @@ class CalendarDetailMemoListAdapter(private val memoList: List<MemoDailyResponse
             memoList[position].temperature.toString() + "°"
         holder.binding.tvItemCalendarDetailMemolistTime.text = memoList[position].creationDatetime
 
-//        // 그래프그리기....
-//        // 원 위치부터 구하기..
-//        var totalGraphHeight = dpToPx(context, 90)
-//        var temper = memoList[position].temperature
-//        var circleHeight = totalGraphHeight / 100 * temper
-//        // 원 높이는 전체 / 100 * 온도 수치(온도 범위가 0~100이므로.....)
-//        // 그래프 아이콘의 아래 margin
-//        var layoutParams = holder.binding.ivCalendarDetailGraph.layoutParams as ConstraintLayout.LayoutParams
-//        layoutParams.bottomMargin = circleHeight
-//        holder.binding.ivCalendarDetailGraph.layoutParams = layoutParams
+        // 그래프그리기....
+        // 원 위치부터 구하기..
+        var totalGraphHeight = dpToPx(context, 90)
+        var temper = memoList[position].temperature
+        var circleHeight = totalGraphHeight / 100 * temper
+        // 원 높이는 전체 / 100 * 온도 수치(온도 범위가 0~100이므로.....)
+        // 그래프 아이콘의 아래 margin
+        var layoutParams = holder.binding.ivCalendarDetailGraph.layoutParams as ConstraintLayout.LayoutParams
+        layoutParams.bottomMargin = circleHeight
+        holder.binding.ivCalendarDetailGraph.layoutParams = layoutParams
 
         // 근데 사이즈 1이면(데이터 하나면 선은 필요가 없다..)
         // 0번째면 두번째 선만 필요할것같다
