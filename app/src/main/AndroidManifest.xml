@@ -24,36 +24,6 @@
         android:theme="@style/Theme.Yourweather"
         tools:targetApi="31">
         <activity
-            android:name=".presentation.calendar.CalendarDetail"
-            android:exported="false" />
-        <activity
-            android:name=".presentation.mypage.MyPageUsePolicy"
-            android:exported="false" />
-        <activity
-            android:name=".presentation.mypage.MyPagePrivacyPolicy"
-            android:exported="false" />
-        <activity
-            android:name=".presentation.mypage.MyPageWithdarw3"
-            android:exported="false" />
-        <activity
-            android:name=".presentation.mypage.MyPageWithdraw2"
-            android:exported="false" />
-        <activity
-            android:name=".presentation.mypage.MyPageWithdraw"
-            android:exported="true" />
-        <activity
-            android:name=".presentation.sign.ResetPw"
-            android:exported="false" />
-        <activity
-            android:name=".presentation.sign.FindPwEmail"
-            android:exported="false" />
-        <activity
-            android:name=".presentation.mypage.MyPageMyInfo"
-            android:exported="false" />
-        <activity
-            android:name=".presentation.mypage.MyPageAlarm"
-            android:exported="true" />
-        <activity
             android:name="com.kakao.sdk.auth.AuthCodeHandlerActivity"
             android:exported="true">
             <intent-filter>
@@ -67,80 +37,233 @@
                     android:scheme="${KAKAO_API_KEY}" />
             </intent-filter>
         </activity>
+
         <activity
-            android:name=".presentation.sign.SocialSignCheck"
-            android:exported="false" />
+            android:name=".presentation.analysis.AllWrittenFragment"
+            android:exported="false"
+            android:screenOrientation="portrait"/>
         <activity
-            android:name=".presentation.weatherinput.InitialNoWeatherFragment"
-            android:exported="true" />
-        <activity
-            android:name=".presentation.weatherinput.HomeFragment"
-            android:exported="true" />
-        <activity
-            android:name=".presentation.weatherinput.HomeWeatherInputFragment"
-            android:exported="true" />
-        <activity
-            android:name=".presentation.mypage.MyPagePwChange"
-            android:exported="false" />
-        <activity
-            android:name=".presentation.mypage.MyPageNicknameChange"
-            android:exported="false" />
-        <activity
-            android:name=".presentation.analysis.IconStaticsWeeklyFragment"
-            android:exported="false" />
-        <activity
-            android:name=".presentation.analysis.IconStaticsMonthlyFragment"
-            android:exported="false" />
-        <activity
-            android:name=".presentation.analysis.BarStaticsWeeklyFragment"
-            android:exported="false" />
+            android:name=".presentation.analysis.AnalysisFragment"
+            android:exported="false"
+            android:screenOrientation="portrait"/>
         <activity
             android:name=".presentation.analysis.BarStaticsMonthlyFragment"
-            android:exported="false" />
+            android:exported="false"
+            android:screenOrientation="portrait"/>
+        <activity
+            android:name=".presentation.analysis.BarStaticsWeeklyFragment"
+            android:exported="false"
+            android:screenOrientation="portrait"/>
+        <activity
+            android:name=".presentation.analysis.IconStaticsMonthlyFragment"
+            android:exported="false"
+            android:screenOrientation="portrait"/>
+        <activity
+            android:name=".presentation.analysis.IconStaticsWeeklyFragment"
+            android:exported="false"
+            android:screenOrientation="portrait"/>
+        <activity
+            android:name=".presentation.analysis.UnwrittenDetailListFragment"
+            android:exported="false"
+            android:screenOrientation="portrait"/>
+        <activity
+            android:name=".presentation.analysis.WrittenDetailListFragmentCloud"
+            android:exported="false"
+            android:screenOrientation="portrait"/>
+        <activity
+            android:name=".presentation.analysis.WrittenDetailListFragmentCloudWeekly"
+            android:exported="false"
+            android:screenOrientation="portrait"/>
+        <activity
+            android:name=".presentation.analysis.WrittenDetailListFragmentRain"
+            android:exported="false"
+            android:screenOrientation="portrait"/>
+        <activity
+            android:name=".presentation.analysis.WrittenDetailListFragmentRainWeekly"
+            android:exported="false"
+            android:screenOrientation="portrait"/>
+        <activity
+            android:name=".presentation.analysis.WrittenDetailListFragmentSun"
+            android:exported="false"
+            android:screenOrientation="portrait"/>
+        <activity
+            android:name=".presentation.analysis.WrittenDetailListFragmentSunWeekly"
+            android:exported="false"
+            android:screenOrientation="portrait"/>
+        <activity
+            android:name=".presentation.analysis.WrittenDetailListFragmentThunder"
+            android:exported="false"
+            android:screenOrientation="portrait"/>
+        <activity
+            android:name=".presentation.analysis.WrittenDetailListFragmentThunderWeekly"
+            android:exported="false"
+            android:screenOrientation="portrait"/>
+        <activity
+            android:name=".presentation.calendar.CalendarChartGraph"
+            android:exported="false"
+            android:screenOrientation="portrait"/>
+        <activity
+            android:name=".presentation.calendar.CalendarDate"
+            android:exported="false"
+            android:screenOrientation="portrait"/>
+        <activity
+            android:name=".presentation.calendar.CalendarDetail"
+            android:exported="false"
+            android:screenOrientation="portrait"/>
+        <activity
+            android:name=".presentation.calendar.CalendarFragment"
+            android:exported="false"
+            android:screenOrientation="portrait"/>
+        <activity
+            android:name=".presentation.calendar.CalendarMonth"
+            android:exported="false"
+            android:screenOrientation="portrait"/>
         <activity
             android:name=".presentation.calendar.CalendarTotalViewFragment"
-            android:exported="false" />
+            android:exported="false"
+            android:screenOrientation="portrait"/>
         <activity
-            android:name=".presentation.sign.SignUp2"
-            android:exported="false" />
-        <activity
-            android:name=".presentation.sign.Nickname"
-            android:exported="false" />
-        <activity
-            android:name=".presentation.sign.SignUp"
-            android:exported="false" />
-        <activity
-            android:name=".presentation.sign.FindPw"
-            android:exported="false" />
-        <activity
-            android:name=".presentation.calendardetailview.CalendarDetailView1"
-            android:exported="true" />
-        <activity
-            android:name=".presentation.calendardetailview.CalendarDetailView2"
-            android:exported="false" />
-        <activity
-            android:name=".presentation.calendardetailview.CalendarDetailView3"
-            android:exported="false" />
+            android:name=".presentation.calendardetailview.CalendarDetailViewAlarm"
+            android:exported="true"
+            android:screenOrientation="portrait"/>
         <activity
             android:name=".presentation.calendardetailview.CalendarDetailViewEmpty"
-            android:exported="false" />
+            android:exported="false"
+            android:screenOrientation="portrait"/>
         <activity
-            android:name=".presentation.calendardetailview.CalendarWeatherDetail"
-            android:exported="true"
-            android:windowSoftInputMode="adjustPan" />
+            android:name=".presentation.calendardetailview.CalendarDetailViewTimepicker"
+            android:exported="false"
+            android:screenOrientation="portrait"/>
+        <activity
+            android:name=".presentation.calendardetailview.CalendarModifyWeatherFragment"
+            android:exported="false"
+            android:screenOrientation="portrait"/>
         <activity
             android:name=".presentation.calendardetailview.CalendarPlusWeather"
             android:exported="true"
+            android:screenOrientation="portrait"
             android:windowSoftInputMode="adjustPan" />
         <activity
-            android:name=".presentation.calendardetailview.CalendardetailviewAlarm"
-            android:exported="true" />
+            android:name=".presentation.calendardetailview.CalendarWeatherDetail"
+            android:exported="true"
+            android:windowSoftInputMode="adjustPan"
+            android:screenOrientation="portrait"/>
+        <activity
+            android:name=".presentation.calendardetailview.TimePickerFragment"
+            android:exported="true"
+            android:screenOrientation="portrait"/>
+        <activity
+            android:name=".presentation.mypage.MyPageAlarm"
+            android:exported="true"
+            android:screenOrientation="portrait"/>
+        <activity
+            android:name=".presentation.mypage.MyPageFragment"
+            android:exported="true"
+            android:screenOrientation="portrait"/>
+        <activity
+            android:name=".presentation.mypage.MyPageLogoutFragment"
+            android:exported="true"
+            android:screenOrientation="portrait"/>
+        <activity
+            android:name=".presentation.mypage.MyPageMyInfo"
+            android:exported="false"
+            android:screenOrientation="portrait"/>
+        <activity
+            android:name=".presentation.mypage.MyPageNicknameChange"
+            android:exported="false"
+            android:screenOrientation="portrait"/>
+        <activity
+            android:name=".presentation.mypage.MyPagePlus"
+            android:exported="false"
+            android:screenOrientation="portrait"/>
+        <activity
+            android:name=".presentation.mypage.MyPagePlusAlarm"
+            android:exported="false"
+            android:screenOrientation="portrait"/>
+        <activity
+            android:name=".presentation.mypage.MyPageUsePolicy"
+            android:exported="false"
+            android:screenOrientation="portrait"/>
+        <activity
+            android:name=".presentation.mypage.MyPagePrivacyPolicy"
+            android:exported="false"
+            android:screenOrientation="portrait"/>
+        <activity
+            android:name=".presentation.mypage.MyPageWithdarw3"
+            android:exported="false"
+            android:screenOrientation="portrait"/>
+        <activity
+            android:name=".presentation.mypage.MyPageWithdraw2"
+            android:exported="false"
+            android:screenOrientation="portrait"/>
+        <activity
+            android:name=".presentation.mypage.MyPageWithdraw"
+            android:exported="true"
+            android:screenOrientation="portrait"/>
+        <activity
+            android:name=".presentation.mypage.MyPagePwChange"
+            android:exported="false"
+            android:screenOrientation="portrait"/>
+        <activity
+            android:name=".presentation.mypage.WithdrawPageFragment"
+            android:exported="false"
+            android:screenOrientation="portrait"/>
+        <activity
+            android:name=".presentation.share.CarmeraPermissionFragment"
+            android:exported="true"
+            android:screenOrientation="portrait"/>
+        <activity
+            android:name=".presentation.share.SaveHomeImgFragment"
+            android:exported="true"
+            android:screenOrientation="portrait"/>
+        <activity
+            android:name=".presentation.share.SharedViewModel"
+            android:exported="true"
+            android:screenOrientation="portrait"/>
+        <activity
+            android:name=".presentation.weatherinput.HomeFragment"
+            android:exported="true"
+            android:screenOrientation="portrait"/>
+        <activity
+            android:name=".presentation.weatherinput.HomeWeatherInputFragment"
+            android:exported="true"
+            android:screenOrientation="portrait"/>
+        <activity
+            android:name=".presentation.weatherinput.InitialNoWeatherFragment"
+            android:exported="true"
+            android:screenOrientation="portrait"/>
+        <activity
+            android:name=".presentation.sign.FindPwEmail"
+            android:exported="false"
+            android:screenOrientation="portrait"/>
+        <activity
+            android:name=".presentation.sign.FindPw"
+            android:exported="false"
+            android:screenOrientation="portrait"/>
+        <activity
+            android:name=".presentation.sign.ResetPw"
+            android:exported="false"
+            android:screenOrientation="portrait"/>
+        <activity
+            android:name=".presentation.sign.Nickname"
+            android:exported="false"
+            android:screenOrientation="portrait"/>
+        <activity
+            android:name=".presentation.sign.SignUp2"
+            android:exported="false"
+            android:screenOrientation="portrait"/>
+        <activity
+            android:name=".presentation.sign.SignUp"
+            android:exported="false"
+            android:screenOrientation="portrait"/>
         <activity
             android:name=".presentation.BottomNavi"
-            android:exported="false" />
+            android:exported="false"
+            android:screenOrientation="portrait"/>
         <activity
             android:name=".presentation.sign.SignIn"
-            android:exported="true">
+            android:exported="true"
+            android:screenOrientation="portrait">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
 
@@ -150,6 +273,7 @@
         <activity
             android:name=".presentation.Splash"
             android:exported="true"
+            android:screenOrientation="portrait"
             android:theme="@style/Theme.AppCompat.NoActionBar">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
