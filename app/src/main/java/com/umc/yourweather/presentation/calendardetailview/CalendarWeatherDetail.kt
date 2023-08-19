@@ -16,6 +16,7 @@ import com.umc.yourweather.data.service.MemoService
 import com.umc.yourweather.databinding.ActivityCalendarWeatherDetailBinding
 import com.umc.yourweather.di.RetrofitImpl
 import com.umc.yourweather.di.UserSharedPreferences
+import com.umc.yourweather.presentation.calendar.CalendarDetail
 import retrofit2.Call
 import retrofit2.Callback
 import retrofit2.Response
@@ -55,6 +56,11 @@ class CalendarWeatherDetail : AppCompatActivity() {
         // 수정 프래그먼트 파일 띄우기
         binding.btnCalendardetailviewModify.setOnClickListener {
             val intent = Intent(this, CalendarModifyWeatherActivity::class.java)
+            startActivity(intent)
+        }
+
+        binding.flCalendarDetailviewBack.setOnClickListener {
+            val intent = Intent(this, CalendarDetail::class.java)
             startActivity(intent)
         }
     }
