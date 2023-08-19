@@ -11,12 +11,11 @@ import androidx.appcompat.widget.AppCompatEditText
 import androidx.core.content.ContextCompat
 import com.umc.yourweather.R
 import com.umc.yourweather.data.enums.Status
-import com.umc.yourweather.data.remote.request.MemoRequest
+import com.umc.yourweather.data.remote.request.MemoUpdateRequest
 import com.umc.yourweather.data.remote.response.BaseResponse
-import com.umc.yourweather.data.remote.response.MemoResponse
+import com.umc.yourweather.data.remote.response.MemoUpdateResponse
 import com.umc.yourweather.data.service.MemoService
 import com.umc.yourweather.databinding.ActivityCalendarModifyWeatherBinding
-import com.umc.yourweather.databinding.ActivityCalendarPlusWeatherBinding
 import com.umc.yourweather.di.RetrofitImpl
 import com.umc.yourweather.di.UserSharedPreferences
 import kotlinx.coroutines.Dispatchers
@@ -38,7 +37,6 @@ class CalendarModifyWeatherActivity : AppCompatActivity() {
 
         setContentView(binding.root)
 
-
         // 닉네임 적용
         val userNickname = UserSharedPreferences.getUserNickname(this)
 
@@ -46,16 +44,12 @@ class CalendarModifyWeatherActivity : AppCompatActivity() {
         binding.tvDetailviewModify2Title2.text = "$userNickname 님의 감정 온도"
         binding.tvDetailviewModify2Title3.text = "$userNickname 님의 일기"
 
-        // 메모 content 입력창
-        editText = binding.editText as AppCompatEditText
-
-
         // 뒤로 가기 버튼
         binding.flCalendarDetailviewBack.setOnClickListener {
             finish()
         }
-        TODO("디테일뷰에서 값 받아야댐")
-        // 화면에 보여줄 날짜 값
+        // 디테일뷰에서 값 받아야댐
+        // 화면에 보여줄 날짜 값ㅛ
         val modifyWrittenDate = intent.getStringExtra("modifyWrittenDate")
         if (modifyWrittenDate != null) {
             val dateParts = modifyWrittenDate.split("-")
@@ -66,24 +60,40 @@ class CalendarModifyWeatherActivity : AppCompatActivity() {
             }
         }
 
-        binding.btnCalendardetailviewSave.setOnClickListener {
-            val content: String? = editText.text?.toString()
-            TODO("시간 값 받아야댐")
-        }
-        // 온도 값 seekBar에서 받기
-        val temperature: Int? = binding.seekbarCalendarDetailviewTemp2.progress
-
-
-
         setupWeatherButtons()
         setupSeekBarListener()
 
-        // 메모 수정 API 시작, 시작을 위한
-        selectedStatus?.let { status ->
-            GlobalScope.launch(Dispatchers.IO) {
-                // val formattedLocalDateTime = formatLocalDateTime(localDateTime)
-                // writeMemo(status, content, formattedLocalDateTime, temperature)
+        // 메모 Id 받기
+        // Intent에서 캘린더에서 접근 시 memoId 추출
+        val memoId = intent.getIntExtra("memoId", -1)
+        // Intent에서 상세보기에서 접근 시 memoId 추출
+        val memoIdW = intent.getIntExtra("memoIdW", -1)
+
+        // 메모 content 입력창
+        val content: String? = binding.editText.text?.toString()
+
+        // 온도 값 seekBar에서 받기
+        val temperature: Int? = binding.seekbarCalendarDetailviewTemp2.progress
+
+        if (memoId != -1) {
+            Log.d("캘린더에서 접근 메모 아이디", "$memoId")
+            // 메모 수정 API 시작, 시작을 위한
+            selectedStatus?.let { status ->
+                GlobalScope.launch(Dispatchers.IO) {
+                    temperature?.let { modifyMemoAPI(memoId, status, content, it) }
+                }
             }
+        } else if (memoIdW != -1) {
+            Log.d("상세보기에서 접근 메모 아이디", "$memoIdW")
+            // 메모 수정 API 시작, 시작을 위한
+            selectedStatus?.let { status ->
+                GlobalScope.launch(Dispatchers.IO) {
+                    temperature?.let { modifyMemoAPI(memoIdW, status, content, it) }
+                }
+            }
+        } else {
+            Log.d("메모 아이디", "Invalid memoId and memoIdW values. Finishing activity.")
+            finish()
         }
     }
 
@@ -159,27 +169,38 @@ class CalendarModifyWeatherActivity : AppCompatActivity() {
     }
 
     // 메모 수정 API
-    private fun modifyMemoAPI(status: Status, content: String?, localDateTime: String?, temperature: Int?) {
-        val memoService = RetrofitImpl.authenticatedRetrofit.create(MemoService::class.java)
-        memoService.memoWrite(MemoRequest(status, content, localDateTime, temperature))
-            .enqueue(object : Callback<BaseResponse<MemoResponse>> {
-                override fun onResponse(
-                    call: Call<BaseResponse<MemoResponse>>,
-                    response: Response<BaseResponse<MemoResponse>>,
-                ) {
-                    if (response.isSuccessful) {
-                        val memoResponse = response.body()?.result
-                        Log.d("메모 작성", "메모 작성, 전달 성공 ${response.body()?.result}")
-                        finish()
-                    } else {
-                        Log.d("메모 작성 실패", "메모 작성, 전달 성공 실패: ${response.code()}")
-                    }
-                }
+    private fun modifyMemoAPI(memoId: Int, status: Status, content: String?, temperature: Int) {
+        // Create a MemoUpdateRequest instance and populate it with the provided parameters
+        val updatedMemo = content?.let {
+            MemoUpdateRequest(
+                status = status,
+                content = it,
+                temperature = temperature,
+            )
+        }
 
-                override fun onFailure(call: Call<BaseResponse<MemoResponse>>, t: Throwable) {
-                    Log.d("메모 작성 요청", "메모 작성 요청 실패: ${t.message}")
-                }
-            })
+        val memoService = RetrofitImpl.authenticatedRetrofit.create(MemoService::class.java)
+        updatedMemo?.let {
+            memoService.memoUpdate(memoId, it)
+                .enqueue(object : Callback<BaseResponse<MemoUpdateResponse>> {
+                    override fun onResponse(
+                        call: Call<BaseResponse<MemoUpdateResponse>>,
+                        response: Response<BaseResponse<MemoUpdateResponse>>,
+                    ) {
+                        if (response.isSuccessful) {
+                            val memoResponse = response.body()?.result
+                            Log.d("메모 수정", "메모 수정 성공 ${response.body()?.result}")
+                            finish()
+                        } else {
+                            Log.d("메모 수정 실패", "메모 수정 실패: ${response.code()}")
+                        }
+                    }
+
+                    override fun onFailure(call: Call<BaseResponse<MemoUpdateResponse>>, t: Throwable) {
+                        Log.d("메모 수정 요청", "메모 수정 요청 실패: ${t.message}")
+                    }
+                })
+        }
     }
 
     // 뒤로 가기 누른 경우

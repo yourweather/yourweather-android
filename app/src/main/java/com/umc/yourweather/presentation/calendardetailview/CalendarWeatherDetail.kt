@@ -31,7 +31,8 @@ class CalendarWeatherDetail : AppCompatActivity() {
         binding = ActivityCalendarWeatherDetailBinding.inflate(layoutInflater)
         setContentView(binding.root)
 
-        // Intent에서 캘린더에서 접근 시 memoId 추ㅛㅕㅕ갸출
+        Log.d("현재 뷰","CalendarWeatherDetail")
+        // Intent에서 캘린더에서 접근 시 memoId 추출
         val memoId = intent.getIntExtra("memoId", -1)
         // Intent에서 상세보기에서 접근 시 memoId 추출
         val memoIdW = intent.getIntExtra("memoIdW", -1)
@@ -55,9 +56,24 @@ class CalendarWeatherDetail : AppCompatActivity() {
 
         // 수정 프래그먼트 파일 띄우기
         binding.btnCalendardetailviewModify.setOnClickListener {
-            val intent = Intent(this, CalendarModifyWeatherActivity::class.java)
-            startActivity(intent)
+            // Intent에서 캘린더에서 접근 시 memoId 추출
+            val memoId = intent.getIntExtra("memoId", -1)
+            // Intent에서 상세보기에서 접근 시 memoId 추출
+            val memoIdW = intent.getIntExtra("memoIdW", -1)
+
+            if (memoId != -1) {
+                val intent = Intent(this, CalendarModifyWeatherActivity::class.java)
+                intent.putExtra("memoId", memoId)
+                startActivity(intent)
+            } else if (memoIdW != -1) {
+                val intent = Intent(this, CalendarModifyWeatherActivity::class.java)
+                intent.putExtra("memoIdW", memoIdW)
+                startActivity(intent)
+            } else {
+                Log.d("메모 아이디", "Invalid memoId and memoIdW values. Cannot proceed.")
+            }
         }
+
 
         binding.flCalendarDetailviewBack.setOnClickListener {
             val intent = Intent(this, CalendarDetail::class.java)
