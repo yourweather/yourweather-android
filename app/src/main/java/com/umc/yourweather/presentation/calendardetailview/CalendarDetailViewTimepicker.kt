@@ -1,6 +1,5 @@
 package com.umc.yourweather.presentation.calendardetailview
 
-import android.content.Intent
 import android.os.Bundle
 import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
@@ -20,10 +19,10 @@ private const val ARG_PARAM2 = "param2"
 
 /**
  * A simple [Fragment] subclass.
- * Use the [CalendarDetailviewTimepicker.newInstance] factory method to
+ * Use the [CalendarDetailViewTimepicker.newInstance] factory method to
  * create an instance of this fragment.
  */
-class CalendarDetailviewTimepicker : Fragment() {
+class CalendarDetailViewTimepicker : Fragment() {
     // TODO: Rename and change types of parameters
     private var param1: String? = null
     private var param2: String? = null
@@ -97,7 +96,7 @@ class CalendarDetailviewTimepicker : Fragment() {
         // TODO: Rename and change types and number of parameters
         @JvmStatic
         fun newInstance(param1: String, param2: String) =
-            CalendarDetailviewTimepicker().apply {
+            CalendarDetailViewTimepicker().apply {
                 arguments = Bundle().apply {
                     putString(ARG_PARAM1, param1)
                     putString(ARG_PARAM2, param2)
