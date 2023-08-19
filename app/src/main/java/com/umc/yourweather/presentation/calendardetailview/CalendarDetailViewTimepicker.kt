@@ -1,6 +1,8 @@
 package com.umc.yourweather.presentation.calendardetailview
 
+import android.content.Intent
 import android.os.Bundle
+import android.util.Log
 import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
@@ -50,10 +52,11 @@ class CalendarDetailViewTimepicker : Fragment() {
         val timePicker=binding.tpCalendardetailview
 
         binding.btnCalendardetailviewTimepickerSelect.setOnClickListener {
-            // 오전 / 오후를 확인하기 위한 if 문
+            // 선택한 시간 정보 저장
             val selectedHour = timePicker.hour
             val selectedMinute = timePicker.minute
             val displayHour: Int
+            Log.d("타임피커값 확인", "${selectedHour} ${selectedMinute}")
 
             val formattedTime = formatTime(selectedHour, selectedMinute)
             val localDateTime = formatLocalDateTime(selectedHour, selectedMinute)
@@ -63,6 +66,11 @@ class CalendarDetailViewTimepicker : Fragment() {
             (activity as? CalendarPlusWeather)?.updateTimeText(timeText)
 
             parentFragmentManager.popBackStack()
+
+            // 사용자가 선택한 값 CalendarPlusWeather 창으로 넘겨주기
+            val intent = Intent(requireContext(), CalendarPlusWeather::class.java)
+            intent.putExtra("selectedTime", timeText)
+            startActivity(intent)
         }
 
     }
