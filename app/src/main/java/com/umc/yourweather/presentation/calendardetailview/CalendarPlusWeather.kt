@@ -88,9 +88,11 @@ class CalendarPlusWeather : AppCompatActivity() {
         }
 
         // 메모 저장 API 전송
+        // memoDate - CalendarDetail 화면에서 넘어온 경우 해당 날짜
+        // localDateTime - 미입력 화면에서 넘어온 경우
         binding.btnCalendardetailviewSave.setOnClickListener {
             val content: String? = editText.text?.toString()
-            val localDateTime: String? = unWrittenDate?.let {
+            val localDateTime: String? = memoDate?.let {
                 combineDateAndTime(it, binding.tvDetailviewModify2Time.text.toString())
             }
 
