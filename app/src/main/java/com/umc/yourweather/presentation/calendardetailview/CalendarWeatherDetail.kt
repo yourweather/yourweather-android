@@ -5,6 +5,7 @@ import android.os.Bundle
 import android.util.Log
 import android.view.animation.Animation
 import android.view.animation.AnimationUtils
+import android.widget.Toast
 import androidx.appcompat.app.AppCompatActivity
 import com.umc.yourweather.R
 import com.umc.yourweather.data.enums.Status
@@ -31,7 +32,7 @@ class CalendarWeatherDetail : AppCompatActivity() {
         binding = ActivityCalendarWeatherDetailBinding.inflate(layoutInflater)
         setContentView(binding.root)
 
-        Log.d("현재 뷰","CalendarWeatherDetail")
+        Log.d("현재 뷰", "CalendarWeatherDetail")
         // Intent에서 캘린더에서 접근 시 memoId 추출
         val memoId = intent.getIntExtra("memoId", -1)
         // Intent에서 상세보기에서 접근 시 memoId 추출
@@ -74,11 +75,56 @@ class CalendarWeatherDetail : AppCompatActivity() {
             }
         }
 
-
         binding.flCalendarDetailviewBack.setOnClickListener {
             val intent = Intent(this, CalendarDetail::class.java)
             startActivity(intent)
         }
+
+        // 메모 삭제 버튼 -> API 호출
+        binding.btnCalendarWeatherDetailDelete.setOnClickListener {
+            // Intent에서 캘린더에서 접근 시 memoId 추출
+            val memoId = intent.getIntExtra("memoId", -1)
+            // Intent에서 상세보기에서 접근 시 memoId 추출
+            val memoIdW = intent.getIntExtra("memoIdW", -1)
+
+            if (memoId != -1) {
+                deleteMemoAPI(memoId)
+                Log.d("메모 아이디 삭제 요청 - 캘린더 접근 메모", "$memoId")
+            } else if (memoIdW != -1) {
+                deleteMemoAPI(memoIdW)
+                Log.d("메모 아이디 삭제 요청 - 상세보기 접근 메모", "$memoIdW")
+            } else {
+                Log.d("메모 아이디", "Invalid memoId and memoIdW values. Cannot proceed.")
+            }
+        }
+
+    }
+
+    // 메모 삭제 API
+    private fun deleteMemoAPI(memoId: Int) {
+        val service = RetrofitImpl.authenticatedRetrofit.create(MemoService::class.java)
+        val call = service.memoDelete(memoId)
+
+        call.enqueue(object : Callback<BaseResponse<Unit>> {
+            override fun onResponse(
+                call: Call<BaseResponse<Unit>>,
+                response: Response<BaseResponse<Unit>>,
+            ) {
+                if (response.isSuccessful) {
+                    // 메모 삭제 성공 처리
+                    Log.d("메모 삭제 API", "메모가 성공적으로 삭제되었습니다.")
+                    Toast.makeText(this@CalendarWeatherDetail, "메모가 삭제되었습니다.", Toast.LENGTH_SHORT).show()
+
+                } else {
+                    val errorBody = response.errorBody()?.string()
+                    Log.e("메모 삭제 API Failure", "Response Code: ${response.code()}, Error Body: $errorBody")
+                }
+            }
+
+            override fun onFailure(call: Call<BaseResponse<Unit>>, t: Throwable) {
+                Log.e("메모 삭제 API Failure", "Error: ${t.message}", t)
+            }
+        })
     }
 
     // 특정 메모 반환
@@ -158,33 +204,6 @@ class CalendarWeatherDetail : AppCompatActivity() {
         }
     }
 
-    // 메모 삭제 API
-    private fun deleteMemo(memoIdToDelete: Int) {
-        val memoService = RetrofitImpl.authenticatedRetrofit.create(MemoService::class.java)
-        memoService.memoDelete(memoIdToDelete).enqueue(object : Callback<BaseResponse<Unit>> {
-            override fun onResponse(
-                call: Call<BaseResponse<Unit>>,
-                response: Response<BaseResponse<Unit>>,
-            ) {
-                if (response.isSuccessful) {
-                    // Memo deletion was successful
-                    Log.d("메모 삭제", "메모 삭제, 삭제 전달 성공 ${response.body()?.result}")
-
-                    val baseResponse = response.body()
-                    // Handle your success scenario here
-                    Log.d("메모 삭제", "메모 삭제, 삭제 전달 실패 ${response.body()?.result}")
-                } else {
-                    // Memo deletion failed
-                    Log.d("메모 삭제 응답 실패", "메모 삭제, 응답 실패 ${response.body()?.result}")
-                }
-            }
-
-            override fun onFailure(call: Call<BaseResponse<Unit>>, t: Throwable) {
-                // Handle failure (network issue, etc.)
-            }
-        })
-    }
-
     // 메모 수정 API
     private fun updateMemo(memoId: Int, status: Status, temperature: Int, content: String) {
         val memoService = RetrofitImpl.authenticatedRetrofit.create(MemoService::class.java)
@@ -201,10 +220,12 @@ class CalendarWeatherDetail : AppCompatActivity() {
                     // Memo update was successful
                     val baseResponse = response.body()
                     Log.d("메모 수정", "메모 수정, 수정 전달 성공 ${response.body()?.result}")
+                    Toast.makeText(this@CalendarWeatherDetail, "메모가 수정되었습니다.", Toast.LENGTH_SHORT).show()
+
                 } else {
                     Log.d("메모 수정", "메모 수정 전달 실패 ${response.body()?.result}")
                     val errorResponse = response.errorBody()?.string()
-                    // Handle your error scenario here
+                    Toast.makeText(this@CalendarWeatherDetail, "메모가 수정이 되지 않았습니다. 다시 실행해주세요.", Toast.LENGTH_SHORT).show()
                 }
             }
 
