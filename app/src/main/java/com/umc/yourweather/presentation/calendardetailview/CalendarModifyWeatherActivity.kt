@@ -76,7 +76,7 @@ class CalendarModifyWeatherActivity : AppCompatActivity() {
         val temperature: Int? = binding.seekbarCalendarDetailviewTemp2.progress
 
         if (memoId != -1) {
-            Log.d("캘린더에서 접근 메모 아이디", "$memoId")
+            Log.d("캘린더에서 접근 메모 아이디(수정화면)", "$memoId")
             // 메모 수정 API 시작, 시작을 위한
             selectedStatus?.let { status ->
                 GlobalScope.launch(Dispatchers.IO) {
@@ -84,7 +84,7 @@ class CalendarModifyWeatherActivity : AppCompatActivity() {
                 }
             }
         } else if (memoIdW != -1) {
-            Log.d("상세보기에서 접근 메모 아이디", "$memoIdW")
+            Log.d("상세보기에서 접근 메모 아이디(수정화면)", "$memoIdW")
             // 메모 수정 API 시작, 시작을 위한
             selectedStatus?.let { status ->
                 GlobalScope.launch(Dispatchers.IO) {
