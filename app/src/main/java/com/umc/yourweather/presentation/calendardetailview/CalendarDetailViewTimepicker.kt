@@ -73,8 +73,6 @@ class CalendarDetailViewTimepicker : Fragment() {
             val intent = Intent(requireContext(), CalendarPlusWeather::class.java)
             intent.putExtra("selectedTime", localDateTime)
             Log.d("타임피커값 확인 selectedTime", "$localDateTime")
-
-            startActivity(intent)
         }
     }
 
