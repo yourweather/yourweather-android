@@ -3,16 +3,15 @@ package com.umc.yourweather.presentation.calendardetailview
 import android.content.Intent
 import android.os.Bundle
 import android.util.Log
-import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import androidx.fragment.app.Fragment
 import com.umc.yourweather.R
 import com.umc.yourweather.databinding.FragmentCalendarDetailviewTimepickerBinding
 import java.text.SimpleDateFormat
 import java.util.Calendar
 import java.util.Locale
-
 
 // TODO: Rename parameter arguments, choose names that match
 // the fragment initialization parameters, e.g. ARG_ITEM_NUMBER
@@ -38,8 +37,9 @@ class CalendarDetailViewTimepicker : Fragment() {
     }
 
     override fun onCreateView(
-        inflater: LayoutInflater, container: ViewGroup?,
-        savedInstanceState: Bundle?
+        inflater: LayoutInflater,
+        container: ViewGroup?,
+        savedInstanceState: Bundle?,
     ): View? {
         // Inflate the layout for this fragment
         binding = FragmentCalendarDetailviewTimepickerBinding.inflate(inflater, container, false)
@@ -49,16 +49,18 @@ class CalendarDetailViewTimepicker : Fragment() {
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
 
-        val timePicker=binding.tpCalendardetailview
+        val timePicker = binding.tpCalendardetailview
 
         binding.btnCalendardetailviewTimepickerSelect.setOnClickListener {
             // 선택한 시간 정보 저장
             val selectedHour = timePicker.hour
             val selectedMinute = timePicker.minute
             val displayHour: Int
-            Log.d("타임피커값 확인", "${selectedHour} ${selectedMinute}")
+            Log.d("타임피커값 확인", "$selectedHour $selectedMinute")
 
+            // 타임피커에 보여주기 위한 값 오후 05 : 47 꼴
             val formattedTime = formatTime(selectedHour, selectedMinute)
+            // 타임피커에 보여주기 위한 값 2023-08-19T17:48 꼴
             val localDateTime = formatLocalDateTime(selectedHour, selectedMinute)
 
             val timeText = formattedTime
@@ -69,10 +71,11 @@ class CalendarDetailViewTimepicker : Fragment() {
 
             // 사용자가 선택한 값 CalendarPlusWeather 창으로 넘겨주기
             val intent = Intent(requireContext(), CalendarPlusWeather::class.java)
-            intent.putExtra("selectedTime", timeText)
+            intent.putExtra("selectedTime", localDateTime)
+            Log.d("타임피커값 확인 selectedTime", "$localDateTime")
+
             startActivity(intent)
         }
-
     }
 
     private fun formatLocalDateTime(selectedHour: Int, selectedMinute: Int): String {
@@ -91,24 +94,5 @@ class CalendarDetailViewTimepicker : Fragment() {
 
         val sdf = SimpleDateFormat("a hh : mm", Locale.KOREA)
         return sdf.format(calendar.time)
-    }
-    companion object {
-        /**
-         * Use this factory method to create a new instance of
-         * this fragment using the provided parameters.
-         *
-         * @param param1 Parameter 1.
-         * @param param2 Parameter 2.
-         * @return A new instance of fragment CalendarDetailviewTimepicker.
-         */
-        // TODO: Rename and change types and number of parameters
-        @JvmStatic
-        fun newInstance(param1: String, param2: String) =
-            CalendarDetailViewTimepicker().apply {
-                arguments = Bundle().apply {
-                    putString(ARG_PARAM1, param1)
-                    putString(ARG_PARAM2, param2)
-                }
-            }
     }
 }
