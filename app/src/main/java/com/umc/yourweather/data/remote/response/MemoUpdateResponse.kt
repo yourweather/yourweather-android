@@ -4,10 +4,10 @@ import com.google.gson.annotations.SerializedName
 import com.umc.yourweather.data.enums.Status
 
 data class MemoUpdateResponse(
-    @SerializedName("update_status")
+    @SerializedName("status")
     val status: Status,
-    @SerializedName("update_temperature")
+    @SerializedName("temperature")
     val temperature: Int,
-    @SerializedName("update_content")
+    @SerializedName("content")
     val content: String,
 )
