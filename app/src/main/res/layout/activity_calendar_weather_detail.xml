@@ -354,7 +354,7 @@
                 app:srcCompat="@drawable/btn_calendarview_delete" />
 
             <TextView
-                android:id="@+id/tv_calendar_detailview_modify1_4"
+                android:id="@+id/tv_calendar_weather_detail_delete"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_marginStart="195dp"
