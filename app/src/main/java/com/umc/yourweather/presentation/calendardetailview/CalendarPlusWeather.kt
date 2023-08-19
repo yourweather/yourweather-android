@@ -6,6 +6,7 @@ import android.view.animation.Animation
 import android.view.animation.AnimationUtils
 import android.widget.Button
 import android.widget.SeekBar
+import android.widget.Toast
 import androidx.appcompat.app.AppCompatActivity
 import androidx.appcompat.widget.AppCompatEditText
 import androidx.core.content.ContextCompat
@@ -82,7 +83,7 @@ class CalendarPlusWeather : AppCompatActivity() {
             selectedStatus?.let { status ->
                 GlobalScope.launch(Dispatchers.IO) {
                     val formattedLocalDateTime = formatLocalDateTime(localDateTime)
-                    writeMemo(status, content, formattedLocalDateTime, temperature)
+                    writeMemoAPI(status, content, formattedLocalDateTime, temperature)
                 }
             }
         }
@@ -195,7 +196,7 @@ class CalendarPlusWeather : AppCompatActivity() {
         }
     }
 
-    private fun writeMemo(status: Status, content: String?, localDateTime: String?, temperature: Int?) {
+    private fun writeMemoAPI(status: Status, content: String?, localDateTime: String?, temperature: Int?) {
         val memoService = RetrofitImpl.authenticatedRetrofit.create(MemoService::class.java)
         memoService.memoWrite(MemoRequest(status, content, localDateTime, temperature))
             .enqueue(object : Callback<BaseResponse<MemoResponse>> {
@@ -206,9 +207,13 @@ class CalendarPlusWeather : AppCompatActivity() {
                     if (response.isSuccessful) {
                         val memoResponse = response.body()?.result
                         Log.d("메모 작성", "메모 작성, 전달 성공 ${response.body()?.result}")
+                        Toast.makeText(this@CalendarPlusWeather, "메모가 저장되었습니다.", Toast.LENGTH_SHORT).show()
+
                         activityFinish()
                     } else {
                         Log.d("메모 작성 실패", "메모 작성, 전달 성공 실패: ${response.code()}")
+                        Toast.makeText(this@CalendarPlusWeather, "메모가 저장이 되지 않았습니다. 다시 입력해주세요.", Toast.LENGTH_SHORT).show()
+
                     }
                 }
 
