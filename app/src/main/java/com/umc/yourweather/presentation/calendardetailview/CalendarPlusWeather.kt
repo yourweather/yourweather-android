@@ -32,7 +32,7 @@ class CalendarPlusWeather : AppCompatActivity() {
     private lateinit var binding: ActivityCalendarPlusWeatherBinding
     private lateinit var editText: AppCompatEditText
     private var isSeekBarAdjusted = false // 변수 선언
-    private var selectedStatus: Status? = null // 기본값으로 SUNNY 설정
+    private var selectedStatus: Status? = null // 기본값으로 null 설정
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
