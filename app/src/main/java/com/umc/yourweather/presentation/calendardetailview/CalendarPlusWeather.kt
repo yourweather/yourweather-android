@@ -21,9 +21,6 @@ import com.umc.yourweather.di.UserSharedPreferences
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.GlobalScope
 import kotlinx.coroutines.launch
-import okhttp3.MediaType.Companion.toMediaTypeOrNull
-import okhttp3.RequestBody
-import org.json.JSONObject
 import retrofit2.Call
 import retrofit2.Callback
 import retrofit2.Response
@@ -35,7 +32,7 @@ class CalendarPlusWeather : AppCompatActivity() {
     private lateinit var binding: ActivityCalendarPlusWeatherBinding
     private lateinit var editText: AppCompatEditText
     private var isSeekBarAdjusted = false // 변수 선언
-    private var selectedStatus: Status? = null // 기본값으로 SUNNY 설정
+    private var selectedStatus: Status? = null // 기본값으로 null 설정
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -65,7 +62,6 @@ class CalendarPlusWeather : AppCompatActivity() {
         binding.tvDetailviewModify2Title1.text = "$userNickname 님의 감정 상태"
         binding.tvDetailviewModify2Title2.text = "$userNickname 님의 감정 온도"
         binding.tvDetailviewModify2Title3.text = "$userNickname 님의 일기"
-
 
         binding.tvDetailviewModify2Time.setOnClickListener {
             val fragmentManager = supportFragmentManager
@@ -107,18 +103,16 @@ class CalendarPlusWeather : AppCompatActivity() {
         return simpleDateFormat.format(calendar.time)
     }
 
-    private fun createApiRequestBody(localDateTime: String): RequestBody {
-        val jsonObject = JSONObject()
-        jsonObject.put("localDateTime", localDateTime)
-
-        val mediaType = "application/json".toMediaTypeOrNull()
-        return RequestBody.create(mediaType, jsonObject.toString())
-    }
+//    private fun createApiRequestBody(localDateTime: String): RequestBody {
+//        val jsonObject = JSONObject()
+//        jsonObject.put("localDateTime", localDateTime)
+//
+//        val mediaType = "application/json".toMediaTypeOrNull()
+//        return RequestBody.create(mediaType, jsonObject.toString())
+//    }
     fun updateTimeText(text: String) {
         binding.tvDetailviewModify2Time.text = text
     }
-
-
 
     private fun combineDateAndTime(date: String, time: String): String {
         val combinedDateTime = "$date $time"

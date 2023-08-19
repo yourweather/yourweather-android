@@ -135,7 +135,7 @@
             android:exported="false"
             android:screenOrientation="portrait"/>
         <activity
-            android:name=".presentation.calendardetailview.CalendarModifyWeatherFragment"
+            android:name=".presentation.calendardetailview.CalendarModifyWeatherActivity"
             android:exported="false"
             android:screenOrientation="portrait"/>
         <activity

@@ -1,0 +1,206 @@
+package com.umc.yourweather.presentation.calendardetailview
+
+import android.os.Bundle
+import android.util.Log
+import android.view.animation.Animation
+import android.view.animation.AnimationUtils
+import android.widget.Button
+import android.widget.SeekBar
+import androidx.appcompat.app.AppCompatActivity
+import androidx.appcompat.widget.AppCompatEditText
+import androidx.core.content.ContextCompat
+import com.umc.yourweather.R
+import com.umc.yourweather.data.enums.Status
+import com.umc.yourweather.data.remote.request.MemoUpdateRequest
+import com.umc.yourweather.data.remote.response.BaseResponse
+import com.umc.yourweather.data.remote.response.MemoUpdateResponse
+import com.umc.yourweather.data.service.MemoService
+import com.umc.yourweather.databinding.ActivityCalendarModifyWeatherBinding
+import com.umc.yourweather.di.RetrofitImpl
+import com.umc.yourweather.di.UserSharedPreferences
+import kotlinx.coroutines.Dispatchers
+import kotlinx.coroutines.GlobalScope
+import kotlinx.coroutines.launch
+import retrofit2.Call
+import retrofit2.Callback
+import retrofit2.Response
+
+class CalendarModifyWeatherActivity : AppCompatActivity() {
+    private lateinit var binding: ActivityCalendarModifyWeatherBinding
+    private lateinit var editText: AppCompatEditText
+    private var isSeekBarAdjusted = false // 변수 선언
+    private var selectedStatus: Status? = null // 기본값으로 null 설정
+
+    override fun onCreate(savedInstanceState: Bundle?) {
+        super.onCreate(savedInstanceState)
+        binding = ActivityCalendarModifyWeatherBinding.inflate(layoutInflater)
+
+        setContentView(binding.root)
+
+        // 닉네임 적용
+        val userNickname = UserSharedPreferences.getUserNickname(this)
+
+        binding.tvDetailviewModify2Title1.text = "$userNickname 님의 감정 상태"
+        binding.tvDetailviewModify2Title2.text = "$userNickname 님의 감정 온도"
+        binding.tvDetailviewModify2Title3.text = "$userNickname 님의 일기"
+
+        // 뒤로 가기 버튼
+        binding.flCalendarDetailviewBack.setOnClickListener {
+            finish()
+        }
+        // 디테일뷰에서 값 받아야댐
+        // 화면에 보여줄 날짜 값
+        val modifyWrittenDate = intent.getStringExtra("modifyWrittenDate")
+        if (modifyWrittenDate != null) {
+            val dateParts = modifyWrittenDate.split("-")
+            if (dateParts.size == 3) {
+                val month = dateParts[1].toInt()
+                val day = dateParts[2].toInt()
+                binding.tvDetailviewModify2Date.text = "${month}월 ${day}의 기록"
+            }
+        }
+
+        setupWeatherButtons()
+        setupSeekBarListener()
+
+        // 저장버튼 클릭 시
+        binding.btnCalendardetailviewSave.setOnClickListener {
+            val content: String? = binding.editText.text?.toString()
+            val temperature: Int? = binding.seekbarCalendarDetailviewTemp2.progress
+
+            if (selectedStatus != null && content != null && temperature != null) {
+                val memoId = intent.getIntExtra("memoId", -1)
+                val memoIdW = intent.getIntExtra("memoIdW", -1)
+
+                if (memoId != -1) {
+                    Log.d("저장 버튼 클릭(수정화면)", "memoId: $memoId, content: $content, temperature: $temperature")
+                    selectedStatus?.let { status ->
+                        GlobalScope.launch(Dispatchers.IO) {
+                            modifyMemoAPI(memoId, status, content, temperature)
+                        }
+                    }
+                } else if (memoIdW != -1) {
+                    Log.d("저장 버튼 클릭(수정화면)", "memoIdW: $memoIdW, content: $content, temperature: $temperature")
+                    selectedStatus?.let { status ->
+                        GlobalScope.launch(Dispatchers.IO) {
+                            modifyMemoAPI(memoIdW, status, content, temperature)
+                        }
+                    }
+                } else {
+                    Log.d("메모 아이디", "Invalid memoId and memoIdW values. Cannot proceed.")
+                }
+            }
+        }
+    }
+
+    // 날씨 변경
+    private fun setupWeatherButtons() {
+        binding.btnHomeSun.setOnClickListener {
+            selectedStatus = Status.SUNNY
+            animateAndHandleButtonClick(binding.btnHomeSun)
+            updateSaveButtonState()
+        }
+
+        binding.btnHomeCloud.setOnClickListener {
+            selectedStatus = Status.CLOUDY
+            animateAndHandleButtonClick(binding.btnHomeCloud)
+            updateSaveButtonState()
+        }
+
+        binding.btnHomeThunder.setOnClickListener {
+            selectedStatus = Status.LIGHTNING
+            animateAndHandleButtonClick(binding.btnHomeThunder)
+            updateSaveButtonState()
+        }
+
+        binding.btnHomeRain.setOnClickListener {
+            selectedStatus = Status.RAINY
+            animateAndHandleButtonClick(binding.btnHomeRain)
+            updateSaveButtonState()
+        }
+    }
+
+    private fun animateAndHandleButtonClick(button: Button) {
+        val buttonAnimation: Animation = AnimationUtils.loadAnimation(this, R.anim.btn_weather_scale)
+
+        binding.btnHomeSun.clearAnimation()
+        binding.btnHomeCloud.clearAnimation()
+        binding.btnHomeThunder.clearAnimation()
+        binding.btnHomeRain.clearAnimation()
+
+        button.startAnimation(buttonAnimation)
+    }
+    private fun updateSaveButtonState() {
+        if (selectedStatus != null) {
+            val isActive = isSeekBarAdjusted
+
+            binding.btnCalendardetailviewSave.isEnabled = isActive
+            binding.btnCalendardetailviewSave.setTextColor(
+                ContextCompat.getColor(
+                    this,
+                    if (isActive) R.color.sorange else R.color.gray,
+                ),
+            )
+        }
+    }
+
+    // seekBar 리스너
+    private fun setupSeekBarListener() {
+        val seekBar = binding.seekbarCalendarDetailviewTemp2
+
+        seekBar.setOnSeekBarChangeListener(object : SeekBar.OnSeekBarChangeListener {
+            override fun onProgressChanged(seekBar: SeekBar?, progress: Int, fromUser: Boolean) {
+                isSeekBarAdjusted = fromUser
+                updateSaveButtonState()
+            }
+
+            override fun onStartTrackingTouch(seekBar: SeekBar?) {
+                // 필요한 경우 구현
+            }
+
+            override fun onStopTrackingTouch(seekBar: SeekBar?) {
+                updateSaveButtonState()
+            }
+        })
+    }
+
+    // 메모 수정 API
+    private fun modifyMemoAPI(memoId: Int, status: Status, content: String?, temperature: Int) {
+        // Create a MemoUpdateRequest instance and populate it with the provided parameters
+        val updatedMemo = content?.let {
+            MemoUpdateRequest(
+                status = status,
+                content = it,
+                temperature = temperature,
+            )
+        }
+
+        val memoService = RetrofitImpl.authenticatedRetrofit.create(MemoService::class.java)
+        updatedMemo?.let {
+            memoService.memoUpdate(memoId, it)
+                .enqueue(object : Callback<BaseResponse<MemoUpdateResponse>> {
+                    override fun onResponse(
+                        call: Call<BaseResponse<MemoUpdateResponse>>,
+                        response: Response<BaseResponse<MemoUpdateResponse>>,
+                    ) {
+                        if (response.isSuccessful) {
+                            val memoResponse = response.body()?.result
+                            Log.d("메모 수정", "메모 수정 성공 ${response.body()?.result}")
+                            finish() // 수정 성공 시 화면 종료
+                        } else {
+                            Log.d("메모 수정 실패", "메모 수정 실패: ${response.code()}")
+                        }
+                    }
+
+                    override fun onFailure(call: Call<BaseResponse<MemoUpdateResponse>>, t: Throwable) {
+                        Log.d("메모 수정 요청", "메모 수정 요청 실패: ${t.message}")
+                    }
+                })
+        }
+    }
+
+    // 뒤로 가기 누른 경우
+    override fun onBackPressed() {
+        finish()
+    }
+}
