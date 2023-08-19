@@ -112,7 +112,7 @@
         android:layout_marginTop="4dp"
         android:layout_marginEnd="16dp"
         android:fontFamily="@font/pretendardmedium"
-        android:text="*대소문자, 숫자 포함 8자 이상"
+        android:text="*영문자, 숫자 포함 8자 이상"
         android:textColor="#99808080"
         android:textSize="10dp"
         android:visibility="visible"
