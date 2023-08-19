@@ -107,13 +107,13 @@ class CalendarPlusWeather : AppCompatActivity() {
         return simpleDateFormat.format(calendar.time)
     }
 
-    private fun createApiRequestBody(localDateTime: String): RequestBody {
-        val jsonObject = JSONObject()
-        jsonObject.put("localDateTime", localDateTime)
-
-        val mediaType = "application/json".toMediaTypeOrNull()
-        return RequestBody.create(mediaType, jsonObject.toString())
-    }
+//    private fun createApiRequestBody(localDateTime: String): RequestBody {
+//        val jsonObject = JSONObject()
+//        jsonObject.put("localDateTime", localDateTime)
+//
+//        val mediaType = "application/json".toMediaTypeOrNull()
+//        return RequestBody.create(mediaType, jsonObject.toString())
+//    }
     fun updateTimeText(text: String) {
         binding.tvDetailviewModify2Time.text = text
     }

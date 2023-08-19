@@ -24,7 +24,7 @@
         android:theme="@style/Theme.Yourweather"
         tools:targetApi="31">
         <activity
-            android:name=".presentation.calendardetailview.CalendarModifyWeatherActivity2"
+            android:name=".presentation.calendardetailview.CalendarModifyWeatherActivity"
             android:exported="false" />
         <activity
             android:name=".presentation.calendar.CalendarDetail"

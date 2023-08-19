@@ -54,11 +54,8 @@ class CalendarWeatherDetail : AppCompatActivity() {
 
         // 수정 프래그먼트 파일 띄우기
         binding.btnCalendardetailviewModify.setOnClickListener {
-            val fragment = CalendarModifyWeatherFragment()
-            val transaction = supportFragmentManager.beginTransaction()
-            transaction.replace(R.id.fragment_container, fragment)
-            transaction.addToBackStack(null)
-            transaction.commit()
+            val intent = Intent(this, CalendarModifyWeatherActivity::class.java)
+            startActivity(intent)
         }
     }
 
