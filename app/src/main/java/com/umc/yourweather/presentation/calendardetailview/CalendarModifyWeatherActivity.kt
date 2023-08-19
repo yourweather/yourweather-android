@@ -49,7 +49,7 @@ class CalendarModifyWeatherActivity : AppCompatActivity() {
             finish()
         }
         // 디테일뷰에서 값 받아야댐
-        // 화면에 보여줄 날짜 값ㅛ
+        // 화면에 보여줄 날짜 값
         val modifyWrittenDate = intent.getStringExtra("modifyWrittenDate")
         if (modifyWrittenDate != null) {
             val dateParts = modifyWrittenDate.split("-")
@@ -63,37 +63,33 @@ class CalendarModifyWeatherActivity : AppCompatActivity() {
         setupWeatherButtons()
         setupSeekBarListener()
 
-        // 메모 Id 받기
-        // Intent에서 캘린더에서 접근 시 memoId 추출
-        val memoId = intent.getIntExtra("memoId", -1)
-        // Intent에서 상세보기에서 접근 시 memoId 추출
-        val memoIdW = intent.getIntExtra("memoIdW", -1)
+        // 저장버튼 클릭 시
+        binding.btnCalendardetailviewSave.setOnClickListener {
+            val content: String? = binding.editText.text?.toString()
+            val temperature: Int? = binding.seekbarCalendarDetailviewTemp2.progress
 
-        // 메모 content 입력창
-        val content: String? = binding.editText.text?.toString()
+            if (selectedStatus != null && content != null && temperature != null) {
+                val memoId = intent.getIntExtra("memoId", -1)
+                val memoIdW = intent.getIntExtra("memoIdW", -1)
 
-        // 온도 값 seekBar에서 받기
-        val temperature: Int? = binding.seekbarCalendarDetailviewTemp2.progress
-
-        if (memoId != -1) {
-            Log.d("캘린더에서 접근 메모 아이디(수정화면)", "$memoId")
-            // 메모 수정 API 시작, 시작을 위한
-            selectedStatus?.let { status ->
-                GlobalScope.launch(Dispatchers.IO) {
-                    temperature?.let { modifyMemoAPI(memoId, status, content, it) }
+                if (memoId != -1) {
+                    Log.d("저장 버튼 클릭(수정화면)", "memoId: $memoId, content: $content, temperature: $temperature")
+                    selectedStatus?.let { status ->
+                        GlobalScope.launch(Dispatchers.IO) {
+                            modifyMemoAPI(memoId, status, content, temperature)
+                        }
+                    }
+                } else if (memoIdW != -1) {
+                    Log.d("저장 버튼 클릭(수정화면)", "memoIdW: $memoIdW, content: $content, temperature: $temperature")
+                    selectedStatus?.let { status ->
+                        GlobalScope.launch(Dispatchers.IO) {
+                            modifyMemoAPI(memoIdW, status, content, temperature)
+                        }
+                    }
+                } else {
+                    Log.d("메모 아이디", "Invalid memoId and memoIdW values. Cannot proceed.")
                 }
             }
-        } else if (memoIdW != -1) {
-            Log.d("상세보기에서 접근 메모 아이디(수정화면)", "$memoIdW")
-            // 메모 수정 API 시작, 시작을 위한
-            selectedStatus?.let { status ->
-                GlobalScope.launch(Dispatchers.IO) {
-                    temperature?.let { modifyMemoAPI(memoIdW, status, content, it) }
-                }
-            }
-        } else {
-            Log.d("메모 아이디", "Invalid memoId and memoIdW values. Finishing activity.")
-            finish()
         }
     }
 
@@ -190,7 +186,7 @@ class CalendarModifyWeatherActivity : AppCompatActivity() {
                         if (response.isSuccessful) {
                             val memoResponse = response.body()?.result
                             Log.d("메모 수정", "메모 수정 성공 ${response.body()?.result}")
-                            finish()
+                            finish() // 수정 성공 시 화면 종료
                         } else {
                             Log.d("메모 수정 실패", "메모 수정 실패: ${response.code()}")
                         }
