@@ -43,6 +43,15 @@ class CalendarPlusWeather : AppCompatActivity() {
         // CalendarDetail 에서 넘어온 경우
         val memoDate = intent.getStringExtra("date")
         Log.d("CalendarDetail 에서 넘어온 경우 날짜", "$memoDate")
+        if (memoDate != null) {
+            val dateParts = memoDate.split("-")
+            if (dateParts.size == 3) {
+                val month = dateParts[1].toInt()
+                val day = dateParts[2].toInt()
+                binding.tvDetailviewModify2Date.text = "${month}월 ${day}의 기록"
+                Log.d("CalendarDetail 에서 넘어온 경우 날짜 파싱", "${month}월 ${day}의 기록")
+            }
+        }
 
         editText = binding.editText as AppCompatEditText
 
@@ -68,6 +77,7 @@ class CalendarPlusWeather : AppCompatActivity() {
         binding.tvDetailviewModify2Title2.text = "$userNickname 님의 감정 온도"
         binding.tvDetailviewModify2Title3.text = "$userNickname 님의 일기"
 
+        // 타임피커 관련 코드
         binding.tvDetailviewModify2Time.setOnClickListener {
             val fragmentManager = supportFragmentManager
             val timePicker = CalendarDetailViewTimepicker()
@@ -76,6 +86,8 @@ class CalendarPlusWeather : AppCompatActivity() {
             transaction.replace(R.id.fragment_container, timePicker)
             transaction.commit()
         }
+
+        // 메모 저장 API 전송
         binding.btnCalendardetailviewSave.setOnClickListener {
             val content: String? = editText.text?.toString()
             val localDateTime: String? = unWrittenDate?.let {
