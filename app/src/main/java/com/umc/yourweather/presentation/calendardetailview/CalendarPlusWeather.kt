@@ -65,7 +65,7 @@ class CalendarPlusWeather : AppCompatActivity() {
 
         binding.tvDetailviewModify2Time.setOnClickListener {
             val fragmentManager = supportFragmentManager
-            val timePicker = CalendarDetailviewTimepicker()
+            val timePicker = CalendarDetailViewTimepicker()
             val transaction = fragmentManager.beginTransaction()
             transaction.addToBackStack(null) // 프래그먼트를 백 스택에 추가
             transaction.replace(R.id.fragment_container, timePicker)

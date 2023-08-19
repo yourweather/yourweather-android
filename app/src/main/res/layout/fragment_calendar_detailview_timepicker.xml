@@ -5,7 +5,7 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context=".presentation.calendardetailview.CalendarDetailviewTimepicker">
+    tools:context=".presentation.calendardetailview.CalendarDetailViewTimepicker">
     <FrameLayout
         android:id="@+id/fl_calendar_detail_timepicker"
         android:layout_width="match_parent"
