@@ -40,6 +40,10 @@ class CalendarPlusWeather : AppCompatActivity() {
         binding = ActivityCalendarPlusWeatherBinding.inflate(layoutInflater)
         setContentView(binding.root)
 
+        // CalendarDetail 에서 넘어온 경우
+        val memoDate = intent.getStringExtra("date")
+        Log.d("CalendarDetail 에서 넘어온 경우 날짜", "$memoDate")
+
         editText = binding.editText as AppCompatEditText
 
         setupWeatherButtons()
@@ -104,7 +108,7 @@ class CalendarPlusWeather : AppCompatActivity() {
         return simpleDateFormat.format(calendar.time)
     }
 
-//    private fun createApiRequestBody(localDateTime: String): RequestBody {
+    //    private fun createApiRequestBody(localDateTime: String): RequestBody {
 //        val jsonObject = JSONObject()
 //        jsonObject.put("localDateTime", localDateTime)
 //
@@ -213,7 +217,6 @@ class CalendarPlusWeather : AppCompatActivity() {
                     } else {
                         Log.d("메모 작성 실패", "메모 작성, 전달 성공 실패: ${response.code()}")
                         Toast.makeText(this@CalendarPlusWeather, "메모가 저장이 되지 않았습니다. 다시 입력해주세요.", Toast.LENGTH_SHORT).show()
-
                     }
                 }
 
