@@ -79,7 +79,48 @@ class CalendarWeatherDetail : AppCompatActivity() {
             startActivity(intent)
         }
 
-        binding.btn
+        // 메모 삭제 버튼 -> API 호출
+        binding.btnCalendarWeatherDetailDelete.setOnClickListener {
+            // Intent에서 캘린더에서 접근 시 memoId 추출
+            val memoId = intent.getIntExtra("memoId", -1)
+            // Intent에서 상세보기에서 접근 시 memoId 추출
+            val memoIdW = intent.getIntExtra("memoIdW", -1)
+
+            if (memoId != -1) {
+                deleteMemoAPI(memoId)
+                Log.d("메모 아이디 삭제 요청 - 캘린더 접근 메모", "$memoId")
+            } else if (memoIdW != -1) {
+                deleteMemoAPI(memoIdW)
+                Log.d("메모 아이디 삭제 요청 - 상세보기 접근 메모", "$memoIdW")
+            } else {
+                Log.d("메모 아이디", "Invalid memoId and memoIdW values. Cannot proceed.")
+            }
+        }
+    }
+
+    // 메모 삭제 API
+    private fun deleteMemoAPI(memoId: Int) {
+        val service = RetrofitImpl.authenticatedRetrofit.create(MemoService::class.java)
+        val call = service.memoDelete(memoId)
+
+        call.enqueue(object : Callback<BaseResponse<Unit>> {
+            override fun onResponse(
+                call: Call<BaseResponse<Unit>>,
+                response: Response<BaseResponse<Unit>>,
+            ) {
+                if (response.isSuccessful) {
+                    // 메모 삭제 성공 처리
+                    Log.d("메모 삭제 API", "메모가 성공적으로 삭제되었습니다.")
+                } else {
+                    val errorBody = response.errorBody()?.string()
+                    Log.e("메모 삭제 API Failure", "Response Code: ${response.code()}, Error Body: $errorBody")
+                }
+            }
+
+            override fun onFailure(call: Call<BaseResponse<Unit>>, t: Throwable) {
+                Log.e("메모 삭제 API Failure", "Error: ${t.message}", t)
+            }
+        })
     }
 
     // 특정 메모 반환
