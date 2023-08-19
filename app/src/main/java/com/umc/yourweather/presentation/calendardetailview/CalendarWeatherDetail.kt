@@ -31,7 +31,7 @@ class CalendarWeatherDetail : AppCompatActivity() {
         binding = ActivityCalendarWeatherDetailBinding.inflate(layoutInflater)
         setContentView(binding.root)
 
-        Log.d("현재 뷰","CalendarWeatherDetail")
+        Log.d("현재 뷰", "CalendarWeatherDetail")
         // Intent에서 캘린더에서 접근 시 memoId 추출
         val memoId = intent.getIntExtra("memoId", -1)
         // Intent에서 상세보기에서 접근 시 memoId 추출
@@ -74,11 +74,12 @@ class CalendarWeatherDetail : AppCompatActivity() {
             }
         }
 
-
         binding.flCalendarDetailviewBack.setOnClickListener {
             val intent = Intent(this, CalendarDetail::class.java)
             startActivity(intent)
         }
+
+        binding.btn
     }
 
     // 특정 메모 반환
