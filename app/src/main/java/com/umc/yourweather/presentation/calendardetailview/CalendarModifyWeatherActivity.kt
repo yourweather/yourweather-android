@@ -65,6 +65,7 @@ class CalendarModifyWeatherActivity : AppCompatActivity() {
         initialContent = modifyContent
         Log.d("초기값 확인", " $selectedStatus, $initialTemperature, $initialContent")
 
+        animateAndHandleInitial(selectedStatus!!)
         binding.editText.setText(initialContent)
         setupSeekBarListener(initialTemperature)
         setupWeatherButtons()
@@ -149,6 +150,24 @@ class CalendarModifyWeatherActivity : AppCompatActivity() {
 
         button.startAnimation(buttonAnimation)
     }
+
+    private fun animateAndHandleInitial(status: Status) {
+        val buttonAnimation: Animation = AnimationUtils.loadAnimation(this, R.anim.btn_weather_scale)
+
+        binding.btnHomeSun.clearAnimation()
+        binding.btnHomeCloud.clearAnimation()
+        binding.btnHomeThunder.clearAnimation()
+        binding.btnHomeRain.clearAnimation()
+
+        when (status) {
+            Status.SUNNY -> binding.btnHomeSun.startAnimation(buttonAnimation)
+            Status.CLOUDY -> binding.btnHomeCloud.startAnimation(buttonAnimation)
+            Status.LIGHTNING -> binding.btnHomeThunder.startAnimation(buttonAnimation)
+            Status.RAINY -> binding.btnHomeRain.startAnimation(buttonAnimation)
+        }
+    }
+
+
     private fun updateSaveButtonState() {
         if (selectedStatus != null) {
             val isActive = isSeekBarAdjusted
