@@ -52,9 +52,6 @@ class CalendarModifyWeatherActivity : AppCompatActivity() {
         binding.flCalendarDetailviewBack.setOnClickListener {
             finish()
         }
-        // 디테일뷰에서 값 받아야댐
-        // 화면에 보여줄 날짜 값
-        val modifyWrittenDate = intent.getStringExtra("modifyWrittenDate")
 
         val modifyStatus = intent.getSerializableExtra("modifyStatus") as Status
         val modifyTemperature = intent.getIntExtra("modifyTemperature", 0)
@@ -71,9 +68,9 @@ class CalendarModifyWeatherActivity : AppCompatActivity() {
         binding.editText.setText(initialContent)
         setupSeekBarListener(initialTemperature)
         setupWeatherButtons()
-        val viewText = modifyDateTime?.let { formatDateTime(it) }
-
-        binding.tvDetailviewModify2Date.text = viewText.toString()
+        if (modifyDateTime != null) {
+            formatDateTime(modifyDateTime)
+        }
 
         // 저장버튼 클릭 시
         binding.btnCalendardetailviewSave.setOnClickListener {
@@ -112,6 +109,7 @@ class CalendarModifyWeatherActivity : AppCompatActivity() {
 
         val date = inputFormat.parse(inputDateTime)
         binding.tvDetailviewModify2Date.text = outputFormat.format(date)
+        Log.d("포맷함수 확인", "${outputFormat.format(date)}")
     }
 
     // 날씨 변경
