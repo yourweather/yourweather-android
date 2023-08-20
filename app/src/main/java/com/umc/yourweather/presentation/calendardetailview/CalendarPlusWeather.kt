@@ -98,11 +98,16 @@ class CalendarPlusWeather : AppCompatActivity(), CalendarDetailViewTimepicker.Ti
         binding.btnCalendardetailviewSave.setOnClickListener {
             val content: String? = editText.text?.toString()
             val temperature: Int? = binding.seekbarCalendarDetailviewTemp2.progress
-            // 타임피커로 부터 날짜, 시간 전달 받기 2023-08-19T17:48 꼴
-
+            val finalLocalDateTime = if (unWrittenDate != null) {
+                // 미입력에서 넘어온 경우 unWrittenDate와 localDateTime 합치기
+                "$unWrittenDate$localDateTime"
+            } else {
+                // 캘린더에서 넘어온 경우 memoDate와 localDateTime 합치기
+                "$memoDate$localDateTime"
+            }
             selectedStatus?.let { status ->
                 GlobalScope.launch(Dispatchers.IO) {
-                    writeMemoAPI(status, content, localDateTime, temperature)
+                    writeMemoAPI(status, content, finalLocalDateTime, temperature)
                 }
             }
         }
