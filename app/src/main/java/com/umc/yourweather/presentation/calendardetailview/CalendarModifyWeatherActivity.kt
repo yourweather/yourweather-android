@@ -24,6 +24,8 @@ import kotlinx.coroutines.launch
 import retrofit2.Call
 import retrofit2.Callback
 import retrofit2.Response
+import java.text.SimpleDateFormat
+import java.util.Locale
 
 class CalendarModifyWeatherActivity : AppCompatActivity() {
     private lateinit var binding: ActivityCalendarModifyWeatherBinding
@@ -91,6 +93,15 @@ class CalendarModifyWeatherActivity : AppCompatActivity() {
                 }
             }
         }
+    }
+
+    // 특정 메모 시간 포맷
+    fun formatDateTime(inputDateTime: String) {
+        val inputFormat = SimpleDateFormat("yyyy-MM-dd'T'HH:mm", Locale.getDefault())
+        val outputFormat = SimpleDateFormat("M월 d일 a h:mm", Locale.getDefault())
+
+        val date = inputFormat.parse(inputDateTime)
+        binding.tvDetailviewModify2Date.text = outputFormat.format(date)
     }
 
     // 날씨 변경
