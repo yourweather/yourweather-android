@@ -27,6 +27,10 @@ import java.util.Locale
 class CalendarWeatherDetail : AppCompatActivity() {
     private lateinit var binding: ActivityCalendarWeatherDetailBinding
 
+    private lateinit var modifyStatus: Status
+    private var modifyTemperature: Int = 0
+    private lateinit var modifyContent: String
+    private lateinit var modifyDateTime: String
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         binding = ActivityCalendarWeatherDetailBinding.inflate(layoutInflater)
@@ -65,10 +69,22 @@ class CalendarWeatherDetail : AppCompatActivity() {
             if (memoId != -1) {
                 val intent = Intent(this, CalendarModifyWeatherActivity::class.java)
                 intent.putExtra("memoId", memoId)
+                intent.putExtra("modifyStatus", modifyStatus)
+                intent.putExtra("modifyTemperature", modifyTemperature)
+                intent.putExtra("modifyContent", modifyContent)
+                intent.putExtra("modifyDateTime", modifyDateTime)
+
+                Log.d("수정 액티비티로 넘겨주는 값 확인", "$memoId, $modifyStatus, $modifyContent, $modifyDateTime, $modifyTemperature")
                 startActivity(intent)
             } else if (memoIdW != -1) {
                 val intent = Intent(this, CalendarModifyWeatherActivity::class.java)
                 intent.putExtra("memoIdW", memoIdW)
+                intent.putExtra("modifyStatus", modifyStatus)
+                intent.putExtra("modifyTemperature", modifyTemperature)
+                intent.putExtra("modifyContent", modifyContent)
+                intent.putExtra("modifyDateTime", modifyDateTime)
+                Log.d("수정 액티비티로 넘겨주는 값 확인", "$memoIdW, $modifyStatus, $modifyContent, $modifyDateTime, $modifyTemperature")
+
                 startActivity(intent)
             } else {
                 Log.d("메모 아이디", "Invalid memoId and memoIdW values. Cannot proceed.")
@@ -76,8 +92,7 @@ class CalendarWeatherDetail : AppCompatActivity() {
         }
 
         binding.flCalendarDetailviewBack.setOnClickListener {
-            val intent = Intent(this, CalendarDetail::class.java)
-            startActivity(intent)
+            finish()
         }
 
         // 메모 삭제 버튼 -> API 호출
@@ -145,6 +160,15 @@ class CalendarWeatherDetail : AppCompatActivity() {
                         val content = MemoResponse.content
                         val weatherId = MemoResponse.weatherId
                         val dateTime = MemoResponse.localDateTime
+
+                        modifyStatus =status
+                        if (temperature != null) {
+                            modifyTemperature = temperature
+                        }
+                        modifyContent = content
+                        if (dateTime != null) {
+                            modifyDateTime = dateTime
+                        }
 
                         // 메모 내용
                         binding.editText.text = content

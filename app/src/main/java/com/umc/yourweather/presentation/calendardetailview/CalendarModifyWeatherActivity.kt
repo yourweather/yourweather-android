@@ -24,13 +24,18 @@ import kotlinx.coroutines.launch
 import retrofit2.Call
 import retrofit2.Callback
 import retrofit2.Response
+import java.text.SimpleDateFormat
+import java.util.Locale
 
 class CalendarModifyWeatherActivity : AppCompatActivity() {
     private lateinit var binding: ActivityCalendarModifyWeatherBinding
     private lateinit var editText: AppCompatEditText
     private var isSeekBarAdjusted = false // 변수 선언
-    private var selectedStatus: Status? = null // 기본값으로 null 설정
 
+    // 메모 초기값
+    private var selectedStatus: Status? = null
+    private var initialTemperature: Int = 0
+    private var initialContent: String? = null
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         binding = ActivityCalendarModifyWeatherBinding.inflate(layoutInflater)
@@ -48,20 +53,26 @@ class CalendarModifyWeatherActivity : AppCompatActivity() {
         binding.flCalendarDetailviewBack.setOnClickListener {
             finish()
         }
-        // 디테일뷰에서 값 받아야댐
-        // 화면에 보여줄 날짜 값
-        val modifyWrittenDate = intent.getStringExtra("modifyWrittenDate")
-        if (modifyWrittenDate != null) {
-            val dateParts = modifyWrittenDate.split("-")
-            if (dateParts.size == 3) {
-                val month = dateParts[1].toInt()
-                val day = dateParts[2].toInt()
-                binding.tvDetailviewModify2Date.text = "${month}월 ${day}의 기록"
-            }
-        }
 
+        val modifyStatus = intent.getSerializableExtra("modifyStatus") as Status
+        val modifyTemperature = intent.getIntExtra("modifyTemperature", 0)
+        val modifyContent = intent.getStringExtra("modifyContent")
+        val modifyDateTime = intent.getStringExtra("modifyDateTime")
+        Log.d("수정 액티비티로 넘겨받는 값 확인", " $modifyStatus, $modifyContent, $modifyDateTime, $modifyTemperature")
+
+        // 받은 값을 뷰에 보여지도록 변수에 값 할당
+        selectedStatus = modifyStatus
+        initialTemperature = modifyTemperature
+        initialContent = modifyContent
+        Log.d("초기값 확인", " $selectedStatus, $initialTemperature, $initialContent")
+
+        animateAndHandleInitial(selectedStatus!!)
+        binding.editText.setText(initialContent)
+        setupSeekBarListener(initialTemperature)
         setupWeatherButtons()
-        setupSeekBarListener()
+        if (modifyDateTime != null) {
+            formatDateTime(modifyDateTime)
+        }
 
         // 저장버튼 클릭 시
         binding.btnCalendardetailviewSave.setOnClickListener {
@@ -91,6 +102,16 @@ class CalendarModifyWeatherActivity : AppCompatActivity() {
                 }
             }
         }
+    }
+
+    // 특정 메모 시간 포맷
+    fun formatDateTime(inputDateTime: String) {
+        val inputFormat = SimpleDateFormat("yyyy-MM-dd'T'HH:mm", Locale.getDefault())
+        val outputFormat = SimpleDateFormat("M월 d일 a h:mm", Locale.getDefault())
+
+        val date = inputFormat.parse(inputDateTime)
+        binding.tvDetailviewModify2Date.text = outputFormat.format(date)
+        Log.d("포맷함수 확인", "${outputFormat.format(date)}")
     }
 
     // 날씨 변경
@@ -130,23 +151,38 @@ class CalendarModifyWeatherActivity : AppCompatActivity() {
 
         button.startAnimation(buttonAnimation)
     }
+
+    private fun animateAndHandleInitial(status: Status) {
+        val buttonAnimation: Animation = AnimationUtils.loadAnimation(this, R.anim.btn_weather_scale)
+
+        binding.btnHomeSun.clearAnimation()
+        binding.btnHomeCloud.clearAnimation()
+        binding.btnHomeThunder.clearAnimation()
+        binding.btnHomeRain.clearAnimation()
+
+        when (status) {
+            Status.SUNNY -> binding.btnHomeSun.startAnimation(buttonAnimation)
+            Status.CLOUDY -> binding.btnHomeCloud.startAnimation(buttonAnimation)
+            Status.LIGHTNING -> binding.btnHomeThunder.startAnimation(buttonAnimation)
+            Status.RAINY -> binding.btnHomeRain.startAnimation(buttonAnimation)
+        }
+    }
+
     private fun updateSaveButtonState() {
         if (selectedStatus != null) {
-            val isActive = isSeekBarAdjusted
-
-            binding.btnCalendardetailviewSave.isEnabled = isActive
             binding.btnCalendardetailviewSave.setTextColor(
                 ContextCompat.getColor(
                     this,
-                    if (isActive) R.color.sorange else R.color.gray,
+                    R.color.sorange,
                 ),
             )
         }
     }
 
     // seekBar 리스너
-    private fun setupSeekBarListener() {
+    private fun setupSeekBarListener(temperature: Int) {
         val seekBar = binding.seekbarCalendarDetailviewTemp2
+        seekBar.progress = temperature
 
         seekBar.setOnSeekBarChangeListener(object : SeekBar.OnSeekBarChangeListener {
             override fun onProgressChanged(seekBar: SeekBar?, progress: Int, fromUser: Boolean) {
