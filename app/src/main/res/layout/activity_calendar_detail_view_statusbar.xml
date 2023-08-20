@@ -16,37 +16,23 @@
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent">
-        
-        <androidx.constraintlayout.widget.ConstraintLayout
-            android:id="@+id/cl_calendar_detail_back"
+
+        <RelativeLayout
             android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toTopOf="parent">
-
-            <FrameLayout
-                android:id="@+id/fl_calendar_detail_back"
-                android:layout_width="match_parent"
+            android:layout_height="wrap_content">
+            <ImageButton
+                android:id="@+id/imageButton2"
+                android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:layout_marginTop="20dp"
-                android:layout_marginEnd="361dp"
-                android:layout_marginBottom="20dp"
-                android:padding="7dp"
-                android:paddingEnd="17dp"
-                app:layout_constraintBottom_toBottomOf="parent"
-                app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toTopOf="parent">
+                app:layout_constraintTop_toTopOf="parent"
+                android:background="#00ff0000"
+                app:srcCompat="@drawable/btn_calendardetailview_back" />
+        </RelativeLayout>
 
-                <ImageButton
-                    android:layout_width="10dp"
-                    android:layout_height="18dp"
-                    android:background="@drawable/ic_calendardetailview_back" />
-            </FrameLayout>
-
-        </androidx.constraintlayout.widget.ConstraintLayout>
 
     </androidx.appcompat.widget.Toolbar>
+
+
 
 </androidx.constraintlayout.widget.ConstraintLayout>
