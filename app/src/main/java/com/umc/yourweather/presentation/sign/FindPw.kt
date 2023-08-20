@@ -68,6 +68,9 @@ class FindPw : AppCompatActivity() {
             override fun onFailure(call: Call<BaseResponse<VerifyEmailResponse>>, t: Throwable) {
                 // 네트워크 에러 처리
                 Log.d("VerifyEmailDebug", "네트워크 오류: " + t.message.toString())
+                val mIntent = Intent(this@FindPw, SignIn::class.java)
+                startActivity(mIntent)
+                finish()
             }
         })
     }
@@ -95,6 +98,9 @@ class FindPw : AppCompatActivity() {
             override fun onFailure(call: Call<BaseResponse<Unit>>, t: Throwable) {
                 // 네트워크 에러 처리
                 Log.d("SendEmailDebug", "네트워크 오류: " + t.message.toString())
+                val mIntent = Intent(this@FindPw, SignIn::class.java)
+                startActivity(mIntent)
+                finish()
             }
         })
     }

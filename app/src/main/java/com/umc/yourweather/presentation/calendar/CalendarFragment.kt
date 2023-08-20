@@ -1,5 +1,6 @@
 package com.umc.yourweather.presentation.calendar
 
+import android.content.Intent
 import android.os.Build
 import android.os.Bundle
 import android.util.Log
@@ -15,6 +16,7 @@ import com.umc.yourweather.data.remote.response.MonthWeatherResponse
 import com.umc.yourweather.data.service.WeatherService
 import com.umc.yourweather.databinding.FragmentCalendarBinding
 import com.umc.yourweather.di.RetrofitImpl
+import com.umc.yourweather.presentation.sign.SignIn
 import retrofit2.Call
 import retrofit2.Callback
 import retrofit2.Response
@@ -96,9 +98,13 @@ class CalendarFragment : Fragment() {
                 @RequiresApi(Build.VERSION_CODES.O)
                 override fun onFailure(call: Call<BaseResponse<MonthResponse>>, t: Throwable) {
                     Toast.makeText(requireContext(), "네트워크 오류입니다. 인터넷 연결을 확인해주세요!", Toast.LENGTH_LONG).show()
-                    weatherData = emptyList()
-                    binding.ctCalendarCustom.initCalendar(year!!, month!!, dateList, weatherData)
+//                    weatherData = emptyList()
+//                    binding.ctCalendarCustom.initCalendar(year!!, month!!, dateList, weatherData)
                     Log.d("Calendar", "onFailure 에러: " + t.message.toString())
+                    val mIntent = Intent(requireActivity(), SignIn::class.java)
+                    requireActivity().startActivity(mIntent)
+                    // 현재 액티비티 종료
+                    requireActivity().finish()
                 }
             })
     }
