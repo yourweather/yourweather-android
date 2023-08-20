@@ -65,11 +65,14 @@ class CalendarDetailViewTimepicker : Fragment() {
             val timeText = formattedTime
 
             (activity as? CalendarPlusWeather)?.updateTimeText(timeText)
+            (activity as? TimePickerListener)?.onTimeSelected(localDateTime)
 
             parentFragmentManager.popBackStack()
         }
     }
-
+    interface TimePickerListener {
+        fun onTimeSelected(localDateTime: String)
+    }
     private fun formatLocalDateTime(selectedHour: Int, selectedMinute: Int): String {
         val calendar = Calendar.getInstance()
         calendar.set(Calendar.HOUR_OF_DAY, selectedHour)

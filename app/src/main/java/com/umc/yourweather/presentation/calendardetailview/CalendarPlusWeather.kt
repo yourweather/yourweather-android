@@ -26,11 +26,16 @@ import retrofit2.Call
 import retrofit2.Callback
 import retrofit2.Response
 
-class CalendarPlusWeather : AppCompatActivity() {
+class CalendarPlusWeather : AppCompatActivity(), CalendarDetailViewTimepicker.TimePickerListener {
     private lateinit var binding: ActivityCalendarPlusWeatherBinding
     private lateinit var editText: AppCompatEditText
     private var isSeekBarAdjusted = false // 변수 선언
     private var selectedStatus: Status? = null // 기본값으로 null 설정
+    private var localDateTime: String = ""
+    override fun onTimeSelected(localDateTime: String) {
+        this.localDateTime = localDateTime
+        Log.d("TimePickerListener", "받은 localDateTime: $localDateTime")
+    }
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -66,7 +71,7 @@ class CalendarPlusWeather : AppCompatActivity() {
 
         // 미입력에서 넘어온 경우 날짜
         val unWrittenDate = intent.getStringExtra("unWrittenDate")
-        Log.d("CalendarDetail 에서 넘어온 경우 날짜", "$memoDate")
+        Log.d("CalendarDetail 에서 넘어온 경우 날짜", "$unWrittenDate")
 
         if (unWrittenDate != null) {
             val dateParts = unWrittenDate.split("-")
@@ -94,11 +99,10 @@ class CalendarPlusWeather : AppCompatActivity() {
             val content: String? = editText.text?.toString()
             val temperature: Int? = binding.seekbarCalendarDetailviewTemp2.progress
             // 타임피커로 부터 날짜, 시간 전달 받기 2023-08-19T17:48 꼴
-            val selectedTime = intent.getStringExtra("selectedTime")
 
             selectedStatus?.let { status ->
                 GlobalScope.launch(Dispatchers.IO) {
-                    writeMemoAPI(status, content, selectedTime, temperature)
+                    writeMemoAPI(status, content, localDateTime, temperature)
                 }
             }
         }
