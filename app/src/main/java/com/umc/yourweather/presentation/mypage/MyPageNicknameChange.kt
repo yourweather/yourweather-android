@@ -1,5 +1,6 @@
 package com.umc.yourweather.presentation.mypage
 
+import android.content.Context
 import android.os.Bundle
 import android.util.Log
 import androidx.appcompat.app.AppCompatActivity
@@ -9,6 +10,7 @@ import com.umc.yourweather.data.remote.response.UserResponse
 import com.umc.yourweather.data.service.UserService
 import com.umc.yourweather.databinding.ActivityMyPageNicknameChangeBinding
 import com.umc.yourweather.di.RetrofitImpl
+import com.umc.yourweather.di.UserSharedPreferences
 import com.umc.yourweather.util.NicknameUtils
 import retrofit2.Call
 import retrofit2.Callback
@@ -25,8 +27,6 @@ class MyPageNicknameChange : AppCompatActivity() {
 
         val nickname = intent.getStringExtra("nickname")
 
-        // Log.d("닉네임", "$nickname")
-        // btn 클릭할 때마다 랜덤 닉네임 추천
         binding.btnMypageNicknameRefresh.setOnClickListener {
             binding.etMypageNicknameNickname.setText("")
             binding.etMypageNicknameNickname.hint = NicknameUtils.getRandomHintText()
@@ -59,29 +59,30 @@ class MyPageNicknameChange : AppCompatActivity() {
                     call: Call<BaseResponse<UserResponse>>,
                     response: Response<BaseResponse<UserResponse>>,
                 ) {
-                    if (response.isSuccessful) {
-                        Log.d("닉네임 변경", "닉네임 변경 성공")
-                        handleNicknameChangeResponse(response)
-                    } else {
-                        Log.d("닉네임 변경 실패", "API 호출 실패: ${response.code()}")
-                        handleNicknameChangeResponse(response)
-                    }
+                    handleNicknameChangeResponse(response, newNickname)
                 }
 
                 override fun onFailure(call: Call<BaseResponse<UserResponse>>, t: Throwable) {
-                    Log.d("닉네임 변경 실패", "API 호출 실패: ${t.message}")
                     handleNicknameChangeFailure(t)
                 }
             })
     }
 
-
-    private fun handleNicknameChangeResponse(response: Response<BaseResponse<UserResponse>>) {
+    private fun handleNicknameChangeResponse(
+        response: Response<BaseResponse<UserResponse>>,
+        newNickname: String
+    ) {
         if (response.isSuccessful) {
             val baseResponse = response.body()
             if (baseResponse != null && baseResponse.success) {
-                val userResponse = baseResponse.result
-                Log.d("닉네임 변경", "닉네임 변경 성공: ${userResponse?.nickname}")
+                // 기기에 변경된 닉네임 저장
+                UserSharedPreferences.setUserNickname(this, newNickname)
+
+                // SharedPreferences 갱신
+                val prefs = getSharedPreferences("account", Context.MODE_PRIVATE)
+                prefs.edit().putString(UserSharedPreferences.USER_NICKNAME, newNickname).apply()
+
+                Log.d("닉네임 변경", "닉네임 변경 성공: $newNickname")
                 // 닉네임 변경 성공 처리 또는 다음 화면으로 이동 처리
             } else {
                 Log.d("닉네임 변경", "닉네임 변경 실패")
