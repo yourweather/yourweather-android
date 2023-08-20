@@ -18,6 +18,7 @@ import com.umc.yourweather.presentation.adapter.CalendarDetailMemoContentAdapter
 import com.umc.yourweather.presentation.adapter.CalendarDetailMemoListAdapter
 import com.umc.yourweather.presentation.calendardetailview.CalendarPlusWeather
 import com.umc.yourweather.presentation.calendardetailview.CalendarWeatherDetail
+import com.umc.yourweather.presentation.sign.SignIn
 import retrofit2.Call
 import retrofit2.Callback
 import retrofit2.Response
@@ -112,6 +113,9 @@ class CalendarDetail : AppCompatActivity() {
                     "calendarDetail",
                     "onFailure 오류: ${t.message?.toString()}",
                 )
+                val mIntent = Intent(this@CalendarDetail, SignIn::class.java)
+                startActivity(mIntent)
+                finish()
             }
         })
     }
