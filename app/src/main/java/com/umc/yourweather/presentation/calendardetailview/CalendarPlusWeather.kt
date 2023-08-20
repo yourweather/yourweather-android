@@ -25,15 +25,17 @@ import kotlinx.coroutines.launch
 import retrofit2.Call
 import retrofit2.Callback
 import retrofit2.Response
-import java.text.SimpleDateFormat
-import java.util.Calendar
-import java.util.Locale
 
-class CalendarPlusWeather : AppCompatActivity() {
+class CalendarPlusWeather : AppCompatActivity(), CalendarDetailViewTimepicker.TimePickerListener {
     private lateinit var binding: ActivityCalendarPlusWeatherBinding
     private lateinit var editText: AppCompatEditText
     private var isSeekBarAdjusted = false // 변수 선언
     private var selectedStatus: Status? = null // 기본값으로 null 설정
+    private var localDateTime: String = ""
+    override fun onTimeSelected(localDateTime: String) {
+        this.localDateTime = localDateTime
+        Log.d("TimePickerListener", "받은 localDateTime: $localDateTime")
+    }
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -45,16 +47,6 @@ class CalendarPlusWeather : AppCompatActivity() {
         setupWeatherButtons()
         setupSeekBarListener()
 
-        val unWrittenDate = intent.getStringExtra("unWrittenDate")
-        if (unWrittenDate != null) {
-            val dateParts = unWrittenDate.split("-")
-            if (dateParts.size == 3) {
-                val month = dateParts[1].toInt()
-                val day = dateParts[2].toInt()
-                binding.tvDetailviewModify2Date.text = "${month}월 ${day}의 기록"
-            }
-        }
-
         binding.flCalendarDetailviewBack.setOnClickListener {
             activityFinish()
         }
@@ -64,6 +56,33 @@ class CalendarPlusWeather : AppCompatActivity() {
         binding.tvDetailviewModify2Title2.text = "$userNickname 님의 감정 온도"
         binding.tvDetailviewModify2Title3.text = "$userNickname 님의 일기"
 
+        // CalendarDetail 에서 넘어온 경우 날짜
+        val memoDate = intent.getStringExtra("date")
+        Log.d("CalendarDetail 에서 넘어온 경우 날짜", "$memoDate")
+        if (memoDate != null) {
+            val dateParts = memoDate.split("-")
+            if (dateParts.size == 3) {
+                val month = dateParts[1].toInt()
+                val day = dateParts[2].toInt()
+                binding.tvDetailviewModify2Date.text = "${month}월 ${day}의 기록"
+                Log.d("CalendarDetail 에서 넘어온 경우 날짜 파싱", "${month}월 ${day}의 기록")
+            }
+        }
+
+        // 미입력에서 넘어온 경우 날짜
+        val unWrittenDate = intent.getStringExtra("unWrittenDate")
+        Log.d("CalendarDetail 에서 넘어온 경우 날짜", "$unWrittenDate")
+
+        if (unWrittenDate != null) {
+            val dateParts = unWrittenDate.split("-")
+            if (dateParts.size == 3) {
+                val month = dateParts[1].toInt()
+                val day = dateParts[2].toInt()
+                binding.tvDetailviewModify2Date.text = "${month}월 ${day}의 기록"
+            }
+        }
+
+        // 타임피커 시간 관련 코드
         binding.tvDetailviewModify2Time.setOnClickListener {
             val fragmentManager = supportFragmentManager
             val timePicker = CalendarDetailViewTimepicker()
@@ -72,60 +91,34 @@ class CalendarPlusWeather : AppCompatActivity() {
             transaction.replace(R.id.fragment_container, timePicker)
             transaction.commit()
         }
+
+        // 메모 저장 API 전송
+        // memoDate - CalendarDetail 화면에서 넘어온 경우 해당 날짜
+        // localDateTime - 미입력 화면에서 넘어온 경우
         binding.btnCalendardetailviewSave.setOnClickListener {
             val content: String? = editText.text?.toString()
-            val localDateTime: String? = unWrittenDate?.let {
-                combineDateAndTime(it, binding.tvDetailviewModify2Time.text.toString())
-            }
-
             val temperature: Int? = binding.seekbarCalendarDetailviewTemp2.progress
-
+            val finalLocalDateTime = if (unWrittenDate != null) {
+                // 미입력에서 넘어온 경우 unWrittenDate와 localDateTime 합치기
+                "$unWrittenDate$localDateTime"
+            } else {
+                // 캘린더에서 넘어온 경우 memoDate와 localDateTime 합치기
+                "$memoDate$localDateTime"
+            }
             selectedStatus?.let { status ->
                 GlobalScope.launch(Dispatchers.IO) {
-                    val formattedLocalDateTime = formatLocalDateTime(localDateTime)
-                    writeMemoAPI(status, content, formattedLocalDateTime, temperature)
+                    writeMemoAPI(status, content, finalLocalDateTime, temperature)
                 }
             }
         }
     }
-    private fun formatLocalDateTime(localDateTime: String?): String {
-        val inputFormat = SimpleDateFormat("yyyy-MM-dd a hh:mm", Locale.getDefault())
-        val date = inputFormat.parse(localDateTime)
-        val outputFormat = SimpleDateFormat("yyyy-MM-dd'T'HH:mm:ss", Locale.getDefault())
-        return outputFormat.format(date)
-    }
 
-    private fun formatTimeWithAmPm(hour: Int, minute: Int): String {
-        val calendar = Calendar.getInstance()
-        calendar.set(Calendar.HOUR_OF_DAY, hour)
-        calendar.set(Calendar.MINUTE, minute)
-
-        val simpleDateFormat = SimpleDateFormat("a hh:mm", Locale.getDefault())
-        return simpleDateFormat.format(calendar.time)
-    }
-
-//    private fun createApiRequestBody(localDateTime: String): RequestBody {
-//        val jsonObject = JSONObject()
-//        jsonObject.put("localDateTime", localDateTime)
-//
-//        val mediaType = "application/json".toMediaTypeOrNull()
-//        return RequestBody.create(mediaType, jsonObject.toString())
-//    }
+    // 사용자가 입력한 시간 값
     fun updateTimeText(text: String) {
         binding.tvDetailviewModify2Time.text = text
     }
 
-    private fun combineDateAndTime(date: String, time: String): String {
-        val combinedDateTime = "$date $time"
-        val desiredFormat = SimpleDateFormat("yyyy-MM-dd a hh:mm", Locale.getDefault())
-        return desiredFormat.format(desiredFormat.parse(combinedDateTime))
-    }
-
-    // 뒤로 가기 누른 경우
-    override fun onBackPressed() {
-        finish()
-    }
-
+    // 아이콘 클릭 시 해당 값 반환
     private fun setupWeatherButtons() {
         binding.btnHomeSun.setOnClickListener {
             selectedStatus = Status.SUNNY
@@ -152,6 +145,7 @@ class CalendarPlusWeather : AppCompatActivity() {
         }
     }
 
+    // 아이콘 클릭 시 애니메이션
     private fun animateAndHandleButtonClick(button: Button) {
         val buttonAnimation: Animation = AnimationUtils.loadAnimation(this, R.anim.btn_weather_scale)
 
@@ -163,6 +157,7 @@ class CalendarPlusWeather : AppCompatActivity() {
         button.startAnimation(buttonAnimation)
     }
 
+    // SeekBar 리스너
     private fun setupSeekBarListener() {
         val seekBar = binding.seekbarCalendarDetailviewTemp2
 
@@ -182,6 +177,7 @@ class CalendarPlusWeather : AppCompatActivity() {
         })
     }
 
+    // 입력 내용이 있을 경우 저장 버튼 활성화
     private fun updateSaveButtonState() {
         if (selectedStatus != null) {
             val isActive = isSeekBarAdjusted
@@ -196,6 +192,7 @@ class CalendarPlusWeather : AppCompatActivity() {
         }
     }
 
+    // 메모 작성 API
     private fun writeMemoAPI(status: Status, content: String?, localDateTime: String?, temperature: Int?) {
         val memoService = RetrofitImpl.authenticatedRetrofit.create(MemoService::class.java)
         memoService.memoWrite(MemoRequest(status, content, localDateTime, temperature))
@@ -211,9 +208,8 @@ class CalendarPlusWeather : AppCompatActivity() {
 
                         activityFinish()
                     } else {
-                        Log.d("메모 작성 실패", "메모 작성, 전달 성공 실패: ${response.code()}")
+                        Log.d("메모 작성 실패", "메모 작성, 전달 실패: ${response.code()}")
                         Toast.makeText(this@CalendarPlusWeather, "메모가 저장이 되지 않았습니다. 다시 입력해주세요.", Toast.LENGTH_SHORT).show()
-
                     }
                 }
 
@@ -224,6 +220,11 @@ class CalendarPlusWeather : AppCompatActivity() {
     }
 
     private fun activityFinish() {
+        finish()
+    }
+
+    // 뒤로가기 누른 경우
+    override fun onBackPressed() {
         finish()
     }
 }
