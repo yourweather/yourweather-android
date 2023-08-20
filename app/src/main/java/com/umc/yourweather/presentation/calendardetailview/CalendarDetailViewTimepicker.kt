@@ -1,6 +1,5 @@
 package com.umc.yourweather.presentation.calendardetailview
 
-import android.content.Intent
 import android.os.Bundle
 import android.util.Log
 import android.view.LayoutInflater
@@ -68,11 +67,6 @@ class CalendarDetailViewTimepicker : Fragment() {
             (activity as? CalendarPlusWeather)?.updateTimeText(timeText)
 
             parentFragmentManager.popBackStack()
-
-            // 사용자가 선택한 값 CalendarPlusWeather 창으로 넘겨주기
-            val intent = Intent(requireContext(), CalendarPlusWeather::class.java)
-            intent.putExtra("selectedTime", localDateTime)
-            Log.d("타임피커값 확인 selectedTime", "$localDateTime")
         }
     }
 

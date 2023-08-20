@@ -25,9 +25,6 @@ import kotlinx.coroutines.launch
 import retrofit2.Call
 import retrofit2.Callback
 import retrofit2.Response
-import java.text.SimpleDateFormat
-import java.util.Calendar
-import java.util.Locale
 
 class CalendarPlusWeather : AppCompatActivity() {
     private lateinit var binding: ActivityCalendarPlusWeatherBinding
@@ -101,28 +98,11 @@ class CalendarPlusWeather : AppCompatActivity() {
 
             selectedStatus?.let { status ->
                 GlobalScope.launch(Dispatchers.IO) {
-
                     writeMemoAPI(status, content, selectedTime, temperature)
                 }
             }
         }
     }
-
-    //    private fun createApiRequestBody(localDateTime: String): RequestBody {
-//        val jsonObject = JSONObject()
-//        jsonObject.put("localDateTime", localDateTime)
-//
-//        val mediaType = "application/json".toMediaTypeOrNull()
-//        return RequestBody.create(mediaType, jsonObject.toString())
-//    }
-
-
-//    private fun combineDateAndTime(date: String, time: String): String {
-//        val combinedDateTime = "$date $time"
-//        val desiredFormat = SimpleDateFormat("yyyy-MM-dd a hh:mm", Locale.getDefault())
-//        return desiredFormat.format(desiredFormat.parse(combinedDateTime))
-//    }
-
 
     // 사용자가 입력한 시간 값
     fun updateTimeText(text: String) {
