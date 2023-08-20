@@ -17,7 +17,6 @@ import com.umc.yourweather.data.service.MemoService
 import com.umc.yourweather.databinding.ActivityCalendarWeatherDetailBinding
 import com.umc.yourweather.di.RetrofitImpl
 import com.umc.yourweather.di.UserSharedPreferences
-import com.umc.yourweather.presentation.calendar.CalendarDetail
 import retrofit2.Call
 import retrofit2.Callback
 import retrofit2.Response
@@ -31,6 +30,26 @@ class CalendarWeatherDetail : AppCompatActivity() {
     private var modifyTemperature: Int = 0
     private lateinit var modifyContent: String
     private lateinit var modifyDateTime: String
+
+    override fun onResume() {
+        super.onResume()
+
+        // 다시 화면이 보여질 때 메모 정보를 갱신
+        val memoId = intent.getIntExtra("memoId", -1)
+        val memoIdW = intent.getIntExtra("memoIdW", -1)
+
+        if (memoId != -1) {
+            Log.d("캘린더에서 접근 메모 아이디", "$memoId")
+            detailMemoReturnApi(memoId)
+        } else if (memoIdW != -1) {
+            Log.d("상세보기에서 접근 메모 아이디", "$memoIdW")
+            detailMemoReturnApi(memoIdW)
+        } else {
+            Log.d("메모 아이디", "Invalid memoId and memoIdW values. Finishing activity.")
+            finish()
+        }
+    }
+
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         binding = ActivityCalendarWeatherDetailBinding.inflate(layoutInflater)
@@ -112,7 +131,6 @@ class CalendarWeatherDetail : AppCompatActivity() {
                 Log.d("메모 아이디", "Invalid memoId and memoIdW values. Cannot proceed.")
             }
         }
-
     }
 
     // 메모 삭제 API
@@ -129,7 +147,6 @@ class CalendarWeatherDetail : AppCompatActivity() {
                     // 메모 삭제 성공 처리
                     Log.d("메모 삭제 API", "메모가 성공적으로 삭제되었습니다.")
                     Toast.makeText(this@CalendarWeatherDetail, "메모가 삭제되었습니다.", Toast.LENGTH_SHORT).show()
-
                 } else {
                     val errorBody = response.errorBody()?.string()
                     Log.e("메모 삭제 API Failure", "Response Code: ${response.code()}, Error Body: $errorBody")
@@ -161,7 +178,7 @@ class CalendarWeatherDetail : AppCompatActivity() {
                         val weatherId = MemoResponse.weatherId
                         val dateTime = MemoResponse.localDateTime
 
-                        modifyStatus =status
+                        modifyStatus = status
                         if (temperature != null) {
                             modifyTemperature = temperature
                         }
@@ -219,6 +236,12 @@ class CalendarWeatherDetail : AppCompatActivity() {
 
     // 날씨 상태 애니메이션
     private fun animateAndHandleButtonClick(Status: Status) {
+        // 애니메이션 중단
+        binding.btnHomeSun.clearAnimation()
+        binding.btnHomeCloud.clearAnimation()
+        binding.btnHomeRain.clearAnimation()
+        binding.btnHomeThunder.clearAnimation()
+
         val buttonAnimation: Animation = AnimationUtils.loadAnimation(this, R.anim.btn_weather_scale)
         when (Status) {
             com.umc.yourweather.data.enums.Status.SUNNY -> binding.btnHomeSun.startAnimation(buttonAnimation)
@@ -245,7 +268,6 @@ class CalendarWeatherDetail : AppCompatActivity() {
                     val baseResponse = response.body()
                     Log.d("메모 수정", "메모 수정, 수정 전달 성공 ${response.body()?.result}")
                     Toast.makeText(this@CalendarWeatherDetail, "메모가 수정되었습니다.", Toast.LENGTH_SHORT).show()
-
                 } else {
                     Log.d("메모 수정", "메모 수정 전달 실패 ${response.body()?.result}")
                     val errorResponse = response.errorBody()?.string()
