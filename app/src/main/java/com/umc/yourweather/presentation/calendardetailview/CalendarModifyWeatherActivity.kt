@@ -170,13 +170,11 @@ class CalendarModifyWeatherActivity : AppCompatActivity() {
 
     private fun updateSaveButtonState() {
         if (selectedStatus != null) {
-            val isActive = isSeekBarAdjusted
 
-            binding.btnCalendardetailviewSave.isEnabled = isActive
             binding.btnCalendardetailviewSave.setTextColor(
                 ContextCompat.getColor(
                     this,
-                    if (isActive) R.color.sorange else R.color.gray,
+                    R.color.sorange
                 ),
             )
         }
