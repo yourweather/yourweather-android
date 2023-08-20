@@ -38,7 +38,11 @@ class CalendarDetail : AppCompatActivity() {
         super.onCreate(savedInstanceState)
         binding = ActivityCalendarDetailBinding.inflate(layoutInflater)
         setContentView(binding.root)
+    }
 
+    @RequiresApi(Build.VERSION_CODES.O)
+    override fun onResume() {
+        super.onResume()
         val weatherId = intent.getIntExtra("weatherId", -1)
         val thisDate = intent.getStringExtra("date")
 

@@ -57,7 +57,8 @@ class CalendarDate @JvmOverloads constructor(
         // setCustomPadding() 삭제예정
         // 가장 높은 온도
 
-        Log.d("date 클래스 ", "${thisDate.year}, ${thisDate.monthValue}, ${thisDate.dayOfMonth}")
+        Log.d("date 클래스 ", "$thisMonth, ${thisDate.monthValue}")
+        Log.d("date 클래스 ", "$dataList")
         if (thisMonth == thisDate.monthValue) {
             context.withStyledAttributes(
                 attrs,
@@ -75,10 +76,14 @@ class CalendarDate @JvmOverloads constructor(
                 }
 
                 if (isLaterDay()) {
+                    Log.d("isLaterDay", "나중인지?")
                     datePaint.color = Color.parseColor("#D1CAC6")
                 } else {
+                    Log.d("isLaterDay", "나중아님?")
                     datePaint.color = Color.parseColor("#2B2B2B")
+                    // Log.d("isLaterDay if문 바깥", "${dataList}")
                     if (dataList != null) {
+                        // Log.d("isLaterDay dataList널 아님", "${dataList}")
                         temPaint = TextPaint().apply {
                             textSize = dpToPx(context, 12).toFloat()
                             color = Color.parseColor("#2B2B2B")
@@ -118,6 +123,14 @@ class CalendarDate @JvmOverloads constructor(
     override fun onDraw(canvas: Canvas?) {
         super.onDraw(canvas)
         // canvas?.drawRect(0f, 0f, width.toFloat(), height.toFloat(), borderPaint)
+        // Log.d("if문바깥", "${dataList}")
+        if (dataList != null) {
+            Log.d("캘린더 날짜별로 들어가는 thisMonth thisDate", "${thisMonth}월 ${thisDate}일")
+            Log.d("캘린더 날짜별로 들어가는 서버에서 전달받은값", "$dataList")
+            Log.d("캘린더 날짜별로 들어가는 날짜", "${thisDate.dayOfMonth}")
+            Log.d("캘린더 날짜별로 들어가는 온도", "${dataList?.lastTemperature}도")
+        }
+
         if (thisMonth == thisDate.monthValue) {
             val dateText = thisDate.dayOfMonth.toString()
             val temp = "${dataList?.lastTemperature}°"

@@ -40,7 +40,7 @@ class CalendarMonth @JvmOverloads constructor(
 
     override fun onMeasure(widthMeasureSpec: Int, heightMeasureSpec: Int) {
         super.onMeasure(widthMeasureSpec, heightMeasureSpec)
-        Log.d("캘린더 순서", "onMeasure")
+        // Log.d("캘린더 순서", "onMeasure")
     }
 
     override fun onLayout(p0: Boolean, p1: Int, p2: Int, p3: Int, p4: Int) {
@@ -55,17 +55,20 @@ class CalendarMonth @JvmOverloads constructor(
             // if(index)
             view.layout(left, top, left + cWidth, top + cHeight)
         }
-        Log.d("캘린더 순서", "onLayout")
+        // Log.d("캘린더 순서", "onLayout")
     }
 
     @RequiresApi(Build.VERSION_CODES.O)
     fun initCalendar(year: Int, month: Int, list: MutableList<LocalDate>, weatherData: List<MonthWeatherResponse>) {
         val formatter = DateTimeFormatter.ofPattern("yyyy-MM-dd")
+        // Log.d("여기는 init Caelndar", "${weatherData}")
+
+        removeAllViews()
 
         list.forEach { localdata ->
             var thisDate = weatherData.filter { LocalDate.parse(it.date, formatter) == localdata }.firstOrNull()
-
             Log.d("캘린더에 날짜 넣음 ", "$thisDate ${thisDate?.weatherId}")
+
             val calendarDateView =
                 CalendarDate(
                     context = context,
@@ -77,7 +80,8 @@ class CalendarMonth @JvmOverloads constructor(
             // thisDate.weatherId
             calendarDateView.setOnDateClickListener(onDateClickListener)
             addView(calendarDateView)
+            calendarDateView.invalidate()
         }
-        Log.d("캘린더 순서", "initCalendar")
+        // Log.d("캘린더 순서", "initCalendar")
     }
 }
