@@ -72,72 +72,72 @@
     </LinearLayout>
 
 
-    <TextView
-        android:id="@+id/tv_balloon_sun"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginTop="-4dp"
-        android:layout_marginEnd="250dp"
-        android:background="@drawable/bg_gray_balloon"
-        android:gravity="center"
-        android:text="맑음"
-        android:fontFamily="@font/pretendardmedium"
-        android:textColor="@android:color/black"
-        android:textSize="13dp"
-        android:paddingTop="6dp"
-        app:layout_constraintEnd_toEndOf="@+id/ll_analysis_bar_last_month"
-        app:layout_constraintTop_toBottomOf="@+id/ll_analysis_bar_last_month"
-        android:visibility="gone"/>
-    <TextView
-        android:id="@+id/tv_balloon_cloud"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginTop="-4dp"
-        android:layout_marginEnd="180dp"
-        android:background="@drawable/bg_gray_balloon"
-        android:gravity="center"
-        android:text="흐림"
-        android:fontFamily="@font/pretendardmedium"
-        android:textColor="@android:color/black"
-        android:textSize="13dp"
-        android:paddingTop="6dp"
-        app:layout_constraintEnd_toEndOf="@+id/ll_analysis_bar_last_month"
-        app:layout_constraintTop_toBottomOf="@+id/ll_analysis_bar_last_month"
-        android:visibility="gone"/>
-    <TextView
-        android:id="@+id/tv_balloon_rain"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginTop="-4dp"
-        android:layout_marginEnd="120dp"
-        android:background="@drawable/bg_gray_balloon"
-        android:gravity="center"
-        android:text="비"
-        android:fontFamily="@font/pretendardmedium"
-        android:textColor="@android:color/black"
-        android:textSize="13dp"
-        android:paddingTop="6dp"
-        app:layout_constraintEnd_toEndOf="@+id/ll_analysis_bar_last_month"
-        app:layout_constraintTop_toBottomOf="@+id/ll_analysis_bar_last_month"
-        android:visibility="gone"/>
+    <!--    <TextView-->
+    <!--        android:id="@+id/tv_balloon_sun"-->
+    <!--        android:layout_width="wrap_content"-->
+    <!--        android:layout_height="wrap_content"-->
+    <!--        android:layout_marginTop="-4dp"-->
+    <!--        android:layout_marginEnd="250dp"-->
+    <!--        android:background="@drawable/bg_gray_balloon"-->
+    <!--        android:gravity="center"-->
+    <!--        android:text="맑음"-->
+    <!--        android:fontFamily="@font/pretendardmedium"-->
+    <!--        android:textColor="@android:color/black"-->
+    <!--        android:textSize="13dp"-->
+    <!--        android:paddingTop="6dp"-->
+    <!--        app:layout_constraintEnd_toEndOf="@+id/ll_analysis_bar_last_month"-->
+    <!--        app:layout_constraintTop_toBottomOf="@+id/ll_analysis_bar_last_month"-->
+    <!--        android:visibility="gone"/>-->
+    <!--    <TextView-->
+    <!--        android:id="@+id/tv_balloon_cloud"-->
+    <!--        android:layout_width="wrap_content"-->
+    <!--        android:layout_height="wrap_content"-->
+    <!--        android:layout_marginTop="-4dp"-->
+    <!--        android:layout_marginEnd="180dp"-->
+    <!--        android:background="@drawable/bg_gray_balloon"-->
+    <!--        android:gravity="center"-->
+    <!--        android:text="흐림"-->
+    <!--        android:fontFamily="@font/pretendardmedium"-->
+    <!--        android:textColor="@android:color/black"-->
+    <!--        android:textSize="13dp"-->
+    <!--        android:paddingTop="6dp"-->
+    <!--        app:layout_constraintEnd_toEndOf="@+id/ll_analysis_bar_last_month"-->
+    <!--        app:layout_constraintTop_toBottomOf="@+id/ll_analysis_bar_last_month"-->
+    <!--        android:visibility="gone"/>-->
+    <!--    <TextView-->
+    <!--        android:id="@+id/tv_balloon_rain"-->
+    <!--        android:layout_width="wrap_content"-->
+    <!--        android:layout_height="wrap_content"-->
+    <!--        android:layout_marginTop="-4dp"-->
+    <!--        android:layout_marginEnd="120dp"-->
+    <!--        android:background="@drawable/bg_gray_balloon"-->
+    <!--        android:gravity="center"-->
+    <!--        android:text="비"-->
+    <!--        android:fontFamily="@font/pretendardmedium"-->
+    <!--        android:textColor="@android:color/black"-->
+    <!--        android:textSize="13dp"-->
+    <!--        android:paddingTop="6dp"-->
+    <!--        app:layout_constraintEnd_toEndOf="@+id/ll_analysis_bar_last_month"-->
+    <!--        app:layout_constraintTop_toBottomOf="@+id/ll_analysis_bar_last_month"-->
+    <!--        android:visibility="gone"/>-->
 
 
-    <TextView
-        android:id="@+id/tv_balloon_thunder"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginTop="-4dp"
-        android:layout_marginEnd="20dp"
-        android:background="@drawable/bg_gray_balloon"
-        android:fontFamily="@font/pretendardmedium"
-        android:gravity="center"
-        android:paddingTop="6dp"
-        android:text="번개"
-        android:textColor="@android:color/black"
-        android:textSize="13dp"
-        app:layout_constraintEnd_toEndOf="@+id/ll_analysis_bar_last_month"
-        app:layout_constraintTop_toBottomOf="@+id/ll_analysis_bar_last_month"
-        android:visibility="gone"/>
+    <!--    <TextView-->
+    <!--        android:id="@+id/tv_balloon_thunder"-->
+    <!--        android:layout_width="wrap_content"-->
+    <!--        android:layout_height="wrap_content"-->
+    <!--        android:layout_marginTop="-4dp"-->
+    <!--        android:layout_marginEnd="20dp"-->
+    <!--        android:background="@drawable/bg_gray_balloon"-->
+    <!--        android:fontFamily="@font/pretendardmedium"-->
+    <!--        android:gravity="center"-->
+    <!--        android:paddingTop="6dp"-->
+    <!--        android:text="번개"-->
+    <!--        android:textColor="@android:color/black"-->
+    <!--        android:textSize="13dp"-->
+    <!--        app:layout_constraintEnd_toEndOf="@+id/ll_analysis_bar_last_month"-->
+    <!--        app:layout_constraintTop_toBottomOf="@+id/ll_analysis_bar_last_month"-->
+    <!--        android:visibility="gone"/>-->
 
     <LinearLayout
         android:id="@+id/ll_analysis_weather2"
@@ -189,70 +189,70 @@
 
     </LinearLayout>
 
-    <TextView
-        android:id="@+id/tv_balloon_sun_this"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginTop="-4dp"
-        android:layout_marginEnd="260dp"
-        android:background="@drawable/bg_gray_balloon"
-        android:gravity="center"
-        android:text="맑음"
-        android:fontFamily="@font/pretendardmedium"
-        android:textColor="@android:color/black"
-        android:textSize="13dp"
-        android:paddingTop="6dp"
-        app:layout_constraintEnd_toEndOf="@+id/ll_analysis_bar_this_month"
-        app:layout_constraintTop_toBottomOf="@+id/ll_analysis_bar_this_month"
-        android:visibility="gone"/>
-    <TextView
-        android:id="@+id/tv_balloon_cloud_this"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginTop="-4dp"
-        android:layout_marginEnd="150dp"
-        android:background="@drawable/bg_gray_balloon"
-        android:gravity="center"
-        android:text="흐림"
-        android:fontFamily="@font/pretendardmedium"
-        android:textColor="@android:color/black"
-        android:textSize="13dp"
-        android:paddingTop="6dp"
-        app:layout_constraintEnd_toEndOf="@+id/ll_analysis_bar_this_month"
-        app:layout_constraintTop_toBottomOf="@+id/ll_analysis_bar_this_month"
-        android:visibility="gone"/>
-    <TextView
-        android:id="@+id/tv_balloon_rain_this"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginTop="-4dp"
-        android:layout_marginEnd="90dp"
-        android:background="@drawable/bg_gray_balloon"
-        android:gravity="center"
-        android:text="비"
-        android:fontFamily="@font/pretendardmedium"
-        android:textColor="@android:color/black"
-        android:textSize="13dp"
-        android:paddingTop="6dp"
-        app:layout_constraintEnd_toEndOf="@+id/ll_analysis_bar_this_month"
-        app:layout_constraintTop_toBottomOf="@+id/ll_analysis_bar_this_month"
-        android:visibility="gone"/>
-    <TextView
-        android:id="@+id/tv_balloon_thunder_this"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginTop="-4dp"
-        android:layout_marginEnd="10dp"
-        android:background="@drawable/bg_gray_balloon"
-        android:gravity="center"
-        android:text="번개"
-        android:fontFamily="@font/pretendardmedium"
-        android:textColor="@android:color/black"
-        android:textSize="13dp"
-        android:paddingTop="6dp"
-        app:layout_constraintEnd_toEndOf="@+id/ll_analysis_bar_this_month"
-        app:layout_constraintTop_toBottomOf="@+id/ll_analysis_bar_this_month"
-        android:visibility="gone"/>
+    <!--    <TextView-->
+    <!--        android:id="@+id/tv_balloon_sun_this"-->
+    <!--        android:layout_width="wrap_content"-->
+    <!--        android:layout_height="wrap_content"-->
+    <!--        android:layout_marginTop="-4dp"-->
+    <!--        android:layout_marginEnd="260dp"-->
+    <!--        android:background="@drawable/bg_gray_balloon"-->
+    <!--        android:gravity="center"-->
+    <!--        android:text="맑음"-->
+    <!--        android:fontFamily="@font/pretendardmedium"-->
+    <!--        android:textColor="@android:color/black"-->
+    <!--        android:textSize="13dp"-->
+    <!--        android:paddingTop="6dp"-->
+    <!--        app:layout_constraintEnd_toEndOf="@+id/ll_analysis_bar_this_month"-->
+    <!--        app:layout_constraintTop_toBottomOf="@+id/ll_analysis_bar_this_month"-->
+    <!--        android:visibility="gone"/>-->
+    <!--    <TextView-->
+    <!--        android:id="@+id/tv_balloon_cloud_this"-->
+    <!--        android:layout_width="wrap_content"-->
+    <!--        android:layout_height="wrap_content"-->
+    <!--        android:layout_marginTop="-4dp"-->
+    <!--        android:layout_marginEnd="150dp"-->
+    <!--        android:background="@drawable/bg_gray_balloon"-->
+    <!--        android:gravity="center"-->
+    <!--        android:text="흐림"-->
+    <!--        android:fontFamily="@font/pretendardmedium"-->
+    <!--        android:textColor="@android:color/black"-->
+    <!--        android:textSize="13dp"-->
+    <!--        android:paddingTop="6dp"-->
+    <!--        app:layout_constraintEnd_toEndOf="@+id/ll_analysis_bar_this_month"-->
+    <!--        app:layout_constraintTop_toBottomOf="@+id/ll_analysis_bar_this_month"-->
+    <!--        android:visibility="gone"/>-->
+    <!--    <TextView-->
+    <!--        android:id="@+id/tv_balloon_rain_this"-->
+    <!--        android:layout_width="wrap_content"-->
+    <!--        android:layout_height="wrap_content"-->
+    <!--        android:layout_marginTop="-4dp"-->
+    <!--        android:layout_marginEnd="90dp"-->
+    <!--        android:background="@drawable/bg_gray_balloon"-->
+    <!--        android:gravity="center"-->
+    <!--        android:text="비"-->
+    <!--        android:fontFamily="@font/pretendardmedium"-->
+    <!--        android:textColor="@android:color/black"-->
+    <!--        android:textSize="13dp"-->
+    <!--        android:paddingTop="6dp"-->
+    <!--        app:layout_constraintEnd_toEndOf="@+id/ll_analysis_bar_this_month"-->
+    <!--        app:layout_constraintTop_toBottomOf="@+id/ll_analysis_bar_this_month"-->
+    <!--        android:visibility="gone"/>-->
+    <!--    <TextView-->
+    <!--        android:id="@+id/tv_balloon_thunder_this"-->
+    <!--        android:layout_width="wrap_content"-->
+    <!--        android:layout_height="wrap_content"-->
+    <!--        android:layout_marginTop="-4dp"-->
+    <!--        android:layout_marginEnd="10dp"-->
+    <!--        android:background="@drawable/bg_gray_balloon"-->
+    <!--        android:gravity="center"-->
+    <!--        android:text="번개"-->
+    <!--        android:fontFamily="@font/pretendardmedium"-->
+    <!--        android:textColor="@android:color/black"-->
+    <!--        android:textSize="13dp"-->
+    <!--        android:paddingTop="6dp"-->
+    <!--        app:layout_constraintEnd_toEndOf="@+id/ll_analysis_bar_this_month"-->
+    <!--        app:layout_constraintTop_toBottomOf="@+id/ll_analysis_bar_this_month"-->
+    <!--        android:visibility="gone"/>-->
 
 
     <LinearLayout

@@ -134,7 +134,7 @@ class BarStaticsMonthlyFragment : Fragment() {
         }
     }
 
-    private fun bindWeatherData(dataList: List<BarData>, layout: LinearLayout, clickListener: (String) -> Unit) {
+    private fun bindWeatherData(dataList: List<BarData>, layout: LinearLayout) {
         val sum = dataList.sumOf { it.value }
 
         for ((index, data) in dataList.withIndex()) {
@@ -156,9 +156,9 @@ class BarStaticsMonthlyFragment : Fragment() {
 
             layout.addView(view)
 
-            view.setOnClickListener {
-                clickListener(data.label)
-            }
+//            view.setOnClickListener {
+//                clickListener(data.label)
+//            }
 
             // Add a gray divider if the value is not 0 and there's a next item with non-zero value
             if (value != 0 && (index < dataList.size - 1 && dataList[index + 1].value != 0)) {
@@ -184,67 +184,67 @@ class BarStaticsMonthlyFragment : Fragment() {
         }
     }
 
-    private fun showBallViewLastMonth(weatherLabel: String) {
-        // 모든 텍스트뷰 숨기기
-        binding.tvBalloonSun.visibility = View.GONE
-        binding.tvBalloonRain.visibility = View.GONE
-        binding.tvBalloonCloud.visibility = View.GONE
-        binding.tvBalloonThunder.visibility = View.GONE
-
-        // 선택한 날씨에 맞는 TextView를 보이도록 설정
-        when (weatherLabel) {
-            "맑음" -> {
-                binding.tvBalloonSun.visibility = View.VISIBLE
-                hideBallViewAfterDelay(binding.tvBalloonSun)
-            }
-            "구름 약간" -> {
-                binding.tvBalloonCloud.visibility = View.VISIBLE
-                hideBallViewAfterDelay(binding.tvBalloonCloud)
-            }
-            "번개" -> {
-                binding.tvBalloonThunder.visibility = View.VISIBLE
-                hideBallViewAfterDelay(binding.tvBalloonThunder)
-            }
-            "비" -> {
-                binding.tvBalloonRain.visibility = View.VISIBLE
-                hideBallViewAfterDelay(binding.tvBalloonRain)
-            }
-        }
-    }
-
-    private fun showBallViewThisMonth(weatherLabel: String) {
-        // 모든 텍스트뷰 숨기기
-        binding.tvBalloonSunThis.visibility = View.GONE
-        binding.tvBalloonRainThis.visibility = View.GONE
-        binding.tvBalloonCloudThis.visibility = View.GONE
-        binding.tvBalloonThunderThis.visibility = View.GONE
-
-        // 선택한 날씨에 맞는 TextView를 보이도록 설정
-        when (weatherLabel) {
-            "맑음" -> {
-                binding.tvBalloonSunThis.visibility = View.VISIBLE
-                hideBallViewAfterDelay(binding.tvBalloonSunThis)
-            }
-            "구름 약간" -> {
-                binding.tvBalloonCloudThis.visibility = View.VISIBLE
-                hideBallViewAfterDelay(binding.tvBalloonCloudThis)
-            }
-            "번개" -> {
-                binding.tvBalloonThunderThis.visibility = View.VISIBLE
-                hideBallViewAfterDelay(binding.tvBalloonThunderThis)
-            }
-            "비" -> {
-                binding.tvBalloonRainThis.visibility = View.VISIBLE
-                hideBallViewAfterDelay(binding.tvBalloonRainThis)
-            }
-        }
-    }
-    private fun hideBallViewAfterDelay(view: View) {
-        val handler = Handler()
-        handler.postDelayed({
-            view.visibility = View.GONE
-        }, 1500) // 1.5초 후에 말풍선을 숨김
-    }
+//    private fun showBallViewLastMonth(weatherLabel: String) {
+//        // 모든 텍스트뷰 숨기기
+//        binding.tvBalloonSun.visibility = View.GONE
+//        binding.tvBalloonRain.visibility = View.GONE
+//        binding.tvBalloonCloud.visibility = View.GONE
+//        binding.tvBalloonThunder.visibility = View.GONE
+//
+//        // 선택한 날씨에 맞는 TextView를 보이도록 설정
+//        when (weatherLabel) {
+//            "맑음" -> {
+//                binding.tvBalloonSun.visibility = View.VISIBLE
+//                hideBallViewAfterDelay(binding.tvBalloonSun)
+//            }
+//            "구름 약간" -> {
+//                binding.tvBalloonCloud.visibility = View.VISIBLE
+//                hideBallViewAfterDelay(binding.tvBalloonCloud)
+//            }
+//            "번개" -> {
+//                binding.tvBalloonThunder.visibility = View.VISIBLE
+//                hideBallViewAfterDelay(binding.tvBalloonThunder)
+//            }
+//            "비" -> {
+//                binding.tvBalloonRain.visibility = View.VISIBLE
+//                hideBallViewAfterDelay(binding.tvBalloonRain)
+//            }
+//        }
+//    }
+//
+//    private fun showBallViewThisMonth(weatherLabel: String) {
+//        // 모든 텍스트뷰 숨기기
+//        binding.tvBalloonSunThis.visibility = View.GONE
+//        binding.tvBalloonRainThis.visibility = View.GONE
+//        binding.tvBalloonCloudThis.visibility = View.GONE
+//        binding.tvBalloonThunderThis.visibility = View.GONE
+//
+//        // 선택한 날씨에 맞는 TextView를 보이도록 설정
+//        when (weatherLabel) {
+//            "맑음" -> {
+//                binding.tvBalloonSunThis.visibility = View.VISIBLE
+//                hideBallViewAfterDelay(binding.tvBalloonSunThis)
+//            }
+//            "구름 약간" -> {
+//                binding.tvBalloonCloudThis.visibility = View.VISIBLE
+//                hideBallViewAfterDelay(binding.tvBalloonCloudThis)
+//            }
+//            "번개" -> {
+//                binding.tvBalloonThunderThis.visibility = View.VISIBLE
+//                hideBallViewAfterDelay(binding.tvBalloonThunderThis)
+//            }
+//            "비" -> {
+//                binding.tvBalloonRainThis.visibility = View.VISIBLE
+//                hideBallViewAfterDelay(binding.tvBalloonRainThis)
+//            }
+//        }
+//    }
+//    private fun hideBallViewAfterDelay(view: View) {
+//        val handler = Handler()
+//        handler.postDelayed({
+//            view.visibility = View.GONE
+//        }, 1500) // 1.5초 후에 말풍선을 숨김
+//    }
 
     // 이번 달 통계
     private fun barStatisticsThisMonthApi() {
@@ -270,7 +270,7 @@ class BarStaticsMonthlyFragment : Fragment() {
                         )
 
                         // 데이터 표시 함수 호출
-                        bindWeatherData(dataList, binding.llAnalysisBarThisMonth, ::showBallViewThisMonth)
+                        bindWeatherData(dataList, binding.llAnalysisBarThisMonth)
                     } else {
                         Log.e("이번 달 bar API Error", "Response body 비었음")
                     }
@@ -310,7 +310,7 @@ class BarStaticsMonthlyFragment : Fragment() {
                         )
 
                         // 데이터 표시 함수 호출
-                        bindWeatherData(dataList, binding.llAnalysisBarLastMonth, ::showBallViewLastMonth)
+                        bindWeatherData(dataList, binding.llAnalysisBarLastMonth)
                     } else {
                         Log.e("지난 달 bar API Error", "Response body 비었음")
                     }

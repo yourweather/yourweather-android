@@ -151,7 +151,7 @@ class BarStaticsWeeklyFragment : Fragment() {
         }
     }
 
-    private fun bindWeatherData(dataList: List<BarData>, layout: LinearLayout, clickListener: (String) -> Unit) {
+    private fun bindWeatherData(dataList: List<BarData>, layout: LinearLayout) {
         val sum = dataList.sumOf { it.value }
 
         for ((index, data) in dataList.withIndex()) {
@@ -173,9 +173,9 @@ class BarStaticsWeeklyFragment : Fragment() {
 
             layout.addView(view)
 
-            view.setOnClickListener {
-                clickListener(data.label)
-            }
+//            view.setOnClickListener {
+//                clickListener(data.label)
+//            }
 
             // Add a gray divider if the value is not 0 and there's a next item with non-zero value
             if (value != 0 && (index < dataList.size - 1 && dataList[index + 1].value != 0)) {
@@ -201,71 +201,71 @@ class BarStaticsWeeklyFragment : Fragment() {
         }
     }
 
-    // 날씨별 말풍선 - 지난 주
-    private fun showBallViewLastWeek(weatherLabel: String) {
-        // 모든 텍스트뷰 숨기기
-        binding.tvBalloonSunLastWeek.visibility = View.GONE
-        binding.tvBalloonRainLastWeek.visibility = View.GONE
-        binding.tvBalloonCloudLastWeek.visibility = View.GONE
-        binding.tvBalloonThunderLastWeek.visibility = View.GONE
-
-        // 선택한 날씨에 맞는 TextView를 보이도록 설정
-        when (weatherLabel) {
-            "맑음" -> {
-                binding.tvBalloonSunLastWeek.visibility = View.VISIBLE
-                hideBallViewAfterDelay(binding.tvBalloonSunLastWeek)
-            }
-            "구름 약간" -> {
-                binding.tvBalloonCloudLastWeek.visibility = View.VISIBLE
-                hideBallViewAfterDelay(binding.tvBalloonCloudLastWeek)
-            }
-            "번개" -> {
-                binding.tvBalloonThunderLastWeek.visibility = View.VISIBLE
-                hideBallViewAfterDelay(binding.tvBalloonThunderLastWeek)
-            }
-            "비" -> {
-                binding.tvBalloonRainLastWeek.visibility = View.VISIBLE
-                hideBallViewAfterDelay(binding.tvBalloonRainLastWeek)
-            }
-        }
-    }
-
-    // 날씨별 말풍선 - 이번 주
-    private fun showBallViewThisWeek(weatherLabel: String) {
-        // 모든 텍스트뷰 숨기기
-        binding.tvBalloonSunThisWeek.visibility = View.GONE
-        binding.tvBalloonRainThisWeek.visibility = View.GONE
-        binding.tvBalloonCloudThisWeek.visibility = View.GONE
-        binding.tvBalloonThunderThisWeek.visibility = View.GONE
-
-        // 선택한 날씨에 맞는 TextView를 보이도록 설정
-        when (weatherLabel) {
-            "맑음" -> {
-                binding.tvBalloonSunThisWeek.visibility = View.VISIBLE
-                hideBallViewAfterDelay(binding.tvBalloonSunThisWeek)
-            }
-            "구름 약간" -> {
-                binding.tvBalloonCloudThisWeek.visibility = View.VISIBLE
-                hideBallViewAfterDelay(binding.tvBalloonCloudThisWeek)
-            }
-            "번개" -> {
-                binding.tvBalloonThunderThisWeek.visibility = View.VISIBLE
-                hideBallViewAfterDelay(binding.tvBalloonThunderThisWeek)
-            }
-            "비" -> {
-                binding.tvBalloonRainThisWeek.visibility = View.VISIBLE
-                hideBallViewAfterDelay(binding.tvBalloonRainThisWeek)
-            }
-        }
-    }
-
-    // 일정 시간 지난 후 말풍선 숨기기
-    private fun hideBallViewAfterDelay(view: View) {
-        val handler = Handler()
-        handler.postDelayed({
-            view.visibility = View.GONE
-        }, 1500) // 1.5초 후에 말풍선을 숨김
-    }
+//    // 날씨별 말풍선 - 지난 주
+//    private fun showBallViewLastWeek(weatherLabel: String) {
+//        // 모든 텍스트뷰 숨기기
+//        binding.tvBalloonSunLastWeek.visibility = View.GONE
+//        binding.tvBalloonRainLastWeek.visibility = View.GONE
+//        binding.tvBalloonCloudLastWeek.visibility = View.GONE
+//        binding.tvBalloonThunderLastWeek.visibility = View.GONE
+//
+//        // 선택한 날씨에 맞는 TextView를 보이도록 설정
+//        when (weatherLabel) {
+//            "맑음" -> {
+//                binding.tvBalloonSunLastWeek.visibility = View.VISIBLE
+//                hideBallViewAfterDelay(binding.tvBalloonSunLastWeek)
+//            }
+//            "구름 약간" -> {
+//                binding.tvBalloonCloudLastWeek.visibility = View.VISIBLE
+//                hideBallViewAfterDelay(binding.tvBalloonCloudLastWeek)
+//            }
+//            "번개" -> {
+//                binding.tvBalloonThunderLastWeek.visibility = View.VISIBLE
+//                hideBallViewAfterDelay(binding.tvBalloonThunderLastWeek)
+//            }
+//            "비" -> {
+//                binding.tvBalloonRainLastWeek.visibility = View.VISIBLE
+//                hideBallViewAfterDelay(binding.tvBalloonRainLastWeek)
+//            }
+//        }
+//    }
+//
+//    // 날씨별 말풍선 - 이번 주
+//    private fun showBallViewThisWeek(weatherLabel: String) {
+//        // 모든 텍스트뷰 숨기기
+//        binding.tvBalloonSunThisWeek.visibility = View.GONE
+//        binding.tvBalloonRainThisWeek.visibility = View.GONE
+//        binding.tvBalloonCloudThisWeek.visibility = View.GONE
+//        binding.tvBalloonThunderThisWeek.visibility = View.GONE
+//
+//        // 선택한 날씨에 맞는 TextView를 보이도록 설정
+//        when (weatherLabel) {
+//            "맑음" -> {
+//                binding.tvBalloonSunThisWeek.visibility = View.VISIBLE
+//                hideBallViewAfterDelay(binding.tvBalloonSunThisWeek)
+//            }
+//            "구름 약간" -> {
+//                binding.tvBalloonCloudThisWeek.visibility = View.VISIBLE
+//                hideBallViewAfterDelay(binding.tvBalloonCloudThisWeek)
+//            }
+//            "번개" -> {
+//                binding.tvBalloonThunderThisWeek.visibility = View.VISIBLE
+//                hideBallViewAfterDelay(binding.tvBalloonThunderThisWeek)
+//            }
+//            "비" -> {
+//                binding.tvBalloonRainThisWeek.visibility = View.VISIBLE
+//                hideBallViewAfterDelay(binding.tvBalloonRainThisWeek)
+//            }
+//        }
+//    }
+//
+//    // 일정 시간 지난 후 말풍선 숨기기
+//    private fun hideBallViewAfterDelay(view: View) {
+//        val handler = Handler()
+//        handler.postDelayed({
+//            view.visibility = View.GONE
+//        }, 1500) // 1.5초 후에 말풍선을 숨김
+//    }
 
     // 이번 주 bar 통계
     private fun barStatisticsThisWeekApi() {
@@ -291,7 +291,7 @@ class BarStaticsWeeklyFragment : Fragment() {
                         )
 
                         // 데이터 표시 함수 호출
-                        bindWeatherData(dataList, binding.llAnalysisBarThisWeek, ::showBallViewThisWeek)
+                        bindWeatherData(dataList, binding.llAnalysisBarThisWeek)
                     } else {
                         Log.e("이번 주 bar API Error", "Response body 비었음")
                     }
@@ -331,7 +331,7 @@ class BarStaticsWeeklyFragment : Fragment() {
                         )
 
                         // 데이터 표시 함수 호출
-                        bindWeatherData(dataList, binding.llAnalysisBarLastWeek, ::showBallViewLastWeek)
+                        bindWeatherData(dataList, binding.llAnalysisBarLastWeek)
                     } else {
                         Log.e("지난 주 bar API Error", "Response body 비었음")
                     }
