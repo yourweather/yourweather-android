@@ -31,6 +31,7 @@ class CalendarModifyWeatherActivity : AppCompatActivity() {
     private lateinit var binding: ActivityCalendarModifyWeatherBinding
     private lateinit var editText: AppCompatEditText
     private var isSeekBarAdjusted = false // 변수 선언
+
     // 메모 초기값
     private var selectedStatus: Status? = null
     private var initialTemperature: Int = 0
@@ -167,14 +168,12 @@ class CalendarModifyWeatherActivity : AppCompatActivity() {
         }
     }
 
-
     private fun updateSaveButtonState() {
         if (selectedStatus != null) {
-
             binding.btnCalendardetailviewSave.setTextColor(
                 ContextCompat.getColor(
                     this,
-                    R.color.sorange
+                    R.color.sorange,
                 ),
             )
         }
