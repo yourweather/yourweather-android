@@ -92,8 +92,7 @@ class CalendarWeatherDetail : AppCompatActivity() {
         }
 
         binding.flCalendarDetailviewBack.setOnClickListener {
-            val intent = Intent(this, CalendarDetail::class.java)
-            startActivity(intent)
+            finish()
         }
 
         // 메모 삭제 버튼 -> API 호출
