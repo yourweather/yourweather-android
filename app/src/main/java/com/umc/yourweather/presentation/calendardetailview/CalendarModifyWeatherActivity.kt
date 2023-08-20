@@ -31,8 +31,10 @@ class CalendarModifyWeatherActivity : AppCompatActivity() {
     private lateinit var binding: ActivityCalendarModifyWeatherBinding
     private lateinit var editText: AppCompatEditText
     private var isSeekBarAdjusted = false // 변수 선언
-    private var selectedStatus: Status? = null // 기본값으로 null 설정
-
+    // 메모 초기값
+    private var selectedStatus: Status? = null
+    private var initialTemperature: Int = 0
+    private var initialContent: String? = null
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         binding = ActivityCalendarModifyWeatherBinding.inflate(layoutInflater)
@@ -53,17 +55,25 @@ class CalendarModifyWeatherActivity : AppCompatActivity() {
         // 디테일뷰에서 값 받아야댐
         // 화면에 보여줄 날짜 값
         val modifyWrittenDate = intent.getStringExtra("modifyWrittenDate")
-        if (modifyWrittenDate != null) {
-            val dateParts = modifyWrittenDate.split("-")
-            if (dateParts.size == 3) {
-                val month = dateParts[1].toInt()
-                val day = dateParts[2].toInt()
-                binding.tvDetailviewModify2Date.text = "${month}월 ${day}의 기록"
-            }
-        }
 
+        val modifyStatus = intent.getSerializableExtra("modifyStatus") as Status
+        val modifyTemperature = intent.getIntExtra("modifyTemperature", 0)
+        val modifyContent = intent.getStringExtra("modifyContent")
+        val modifyDateTime = intent.getStringExtra("modifyDateTime")
+        Log.d("수정 액티비티로 넘겨받는 값 확인", " $modifyStatus, $modifyContent, $modifyDateTime, $modifyTemperature")
+
+        // 받은 값을 뷰에 보여지도록 변수에 값 할당
+        selectedStatus = modifyStatus
+        initialTemperature = modifyTemperature
+        initialContent = modifyContent
+        Log.d("초기값 확인", " $selectedStatus, $initialTemperature, $initialContent")
+
+        binding.editText.setText(initialContent)
+        setupSeekBarListener(initialTemperature)
         setupWeatherButtons()
-        setupSeekBarListener()
+        val viewText = modifyDateTime?.let { formatDateTime(it) }
+
+        binding.tvDetailviewModify2Date.text = viewText.toString()
 
         // 저장버튼 클릭 시
         binding.btnCalendardetailviewSave.setOnClickListener {
@@ -156,8 +166,9 @@ class CalendarModifyWeatherActivity : AppCompatActivity() {
     }
 
     // seekBar 리스너
-    private fun setupSeekBarListener() {
+    private fun setupSeekBarListener(temperature: Int) {
         val seekBar = binding.seekbarCalendarDetailviewTemp2
+        seekBar.progress = temperature
 
         seekBar.setOnSeekBarChangeListener(object : SeekBar.OnSeekBarChangeListener {
             override fun onProgressChanged(seekBar: SeekBar?, progress: Int, fromUser: Boolean) {

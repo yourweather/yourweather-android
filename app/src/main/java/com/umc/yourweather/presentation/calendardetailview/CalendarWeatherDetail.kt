@@ -79,7 +79,6 @@ class CalendarWeatherDetail : AppCompatActivity() {
             } else if (memoIdW != -1) {
                 val intent = Intent(this, CalendarModifyWeatherActivity::class.java)
                 intent.putExtra("memoIdW", memoIdW)
-                intent.putExtra("memoId", memoId)
                 intent.putExtra("modifyStatus", modifyStatus)
                 intent.putExtra("modifyTemperature", modifyTemperature)
                 intent.putExtra("modifyContent", modifyContent)
