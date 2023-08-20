@@ -33,16 +33,19 @@ class CalendarFragment : Fragment() {
     @RequiresApi(Build.VERSION_CODES.O)
     override fun onCreateView(inflater: LayoutInflater, container: ViewGroup?, savedInstanceState: Bundle?): View? {
         binding = FragmentCalendarBinding.inflate(layoutInflater)
+        return binding.root
+    }
 
+    @RequiresApi(Build.VERSION_CODES.O)
+    override fun onResume() {
+        super.onResume()
         val year = arguments?.getInt("year")
         val month = arguments?.getInt("month")
         val id = arguments?.getString("id")
 
         getDate(year!!, month!!)
-        Log.d("날짜확인확인", "$year $month")
+        // Log.d("날짜확인확인", "$year $month")
         monthWeatherApi(year, month)
-
-        return binding.root
     }
 
     @RequiresApi(Build.VERSION_CODES.O)
