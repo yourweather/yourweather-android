@@ -125,20 +125,20 @@
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/tv_calendar_detail_no_total_data">
 
-<!--        <TextView-->
-<!--            android:id="@+id/tv_calendar_detail_inputnow"-->
-<!--            android:layout_width="wrap_content"-->
-<!--            android:layout_height="wrap_content"-->
-<!--            android:fontFamily="@font/pretendardsemibold"-->
-<!--            android:gravity="center"-->
-<!--            android:text="지금 입력하기"-->
-<!--            android:textColor="@color/sorange"-->
-<!--            android:textSize="11dp" />-->
+        <TextView
+            android:id="@+id/tv_calendar_detail_inputnow"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:fontFamily="@font/pretendardsemibold"
+            android:gravity="center"
+            android:text="지금 입력하기"
+            android:textColor="@color/sorange"
+            android:textSize="11dp" />
 
         <View
             android:id="@+id/divider_calendar_detail_01"
-            android:layout_width="match_parent"
-            android:layout_height="1dp"
+            android:layout_width="60dp"
+            android:layout_height="0.7dp"
             android:background="@color/sorange" />
 
     </LinearLayout>
