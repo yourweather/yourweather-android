@@ -61,11 +61,14 @@ class CalendarMonth @JvmOverloads constructor(
     @RequiresApi(Build.VERSION_CODES.O)
     fun initCalendar(year: Int, month: Int, list: MutableList<LocalDate>, weatherData: List<MonthWeatherResponse>) {
         val formatter = DateTimeFormatter.ofPattern("yyyy-MM-dd")
+        // Log.d("여기는 init Caelndar", "${weatherData}")
+
+        removeAllViews()
 
         list.forEach { localdata ->
             var thisDate = weatherData.filter { LocalDate.parse(it.date, formatter) == localdata }.firstOrNull()
+            Log.d("캘린더에 날짜 넣음 ", "$thisDate ${thisDate?.weatherId}")
 
-            // Log.d("캘린더에 날짜 넣음 ", "$thisDate ${thisDate?.weatherId}")
             val calendarDateView =
                 CalendarDate(
                     context = context,
@@ -77,6 +80,7 @@ class CalendarMonth @JvmOverloads constructor(
             // thisDate.weatherId
             calendarDateView.setOnDateClickListener(onDateClickListener)
             addView(calendarDateView)
+            calendarDateView.invalidate()
         }
         // Log.d("캘린더 순서", "initCalendar")
     }
