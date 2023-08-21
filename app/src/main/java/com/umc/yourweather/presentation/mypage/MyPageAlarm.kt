@@ -18,8 +18,7 @@ class MyPageAlarm : AppCompatActivity() {
     private val PREFS_NAME = "MyPageAlarmPrefs"
     private val PREF_SWITCH_MONTHLY = "switchMonthly"
     private val PREF_SWITCH_WEEKLY = "switchWeekly"
-    // 닉네임 적용
-    // val userNickname = UserSharedPreferences.getUserNickname(this)
+
     companion object {
         const val CHANNEL_ID = "유어웨더"
     }
@@ -107,9 +106,10 @@ class MyPageAlarm : AppCompatActivity() {
     }
 
     private fun setAlarmMonthly() {
+        val userNickname = UserSharedPreferences.getUserNickname(this)
         val builder = NotificationCompat.Builder(this, CHANNEL_ID)
             .setSmallIcon(R.drawable.img_yourweatherlogo)
-            .setContentTitle("이다은 님의 이번 달은 어떠셨나요?")
+            .setContentTitle("$userNickname 님의 이번 달은 어떠셨나요?")
             .setContentText("지금 바로 감정날씨 월간 분석 결과를 확인해보세요.")
             .setPriority(NotificationCompat.PRIORITY_MAX)
 
@@ -118,9 +118,10 @@ class MyPageAlarm : AppCompatActivity() {
     }
 
     private fun setAlarmWeekly() {
+        val userNickname = UserSharedPreferences.getUserNickname(this)
         val builder = NotificationCompat.Builder(this, CHANNEL_ID)
             .setSmallIcon(R.drawable.img_yourweatherlogo)
-            .setContentTitle("이다은 님의 이번 주는 어떠셨나요?")
+            .setContentTitle("$userNickname 님의 이번 주는 어떠셨나요?")
             .setContentText("지금 바로 감정날씨 주간 분석 결과를 확인해보세요.")
             .setPriority(NotificationCompat.PRIORITY_MAX)
 
