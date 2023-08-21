@@ -44,10 +44,10 @@ class MyPageFragment : Fragment() {
 
             startActivity(mIntent)
         }
-//        binding.tvMyPageAlarm.setOnClickListener {
-//            val mIntent = Intent(activity, MyPageAlarm::class.java)
-//            startActivity(mIntent)
-//        }
+        binding.tvMyPageAlarm.setOnClickListener {
+            val mIntent = Intent(activity, MyPageAlarm::class.java)
+            startActivity(mIntent)
+        }
         // 이용약관 페이지 이동
         binding.tvUsePolicy.setOnClickListener {
             val mIntent = Intent(activity, MyPageUsePolicy::class.java)
@@ -89,6 +89,9 @@ class MyPageFragment : Fragment() {
                                 else -> R.drawable.img_yourweatherlogo
                             }
                             binding.ivMyPagePlatform.setImageResource(platformImageResId)
+
+//                            //닉네임 SH 저장
+//                            UserSharedPreferences.setUserNickname(requireContext(), userResponse.nickname)
 
                             // SH 저장
                             val sharedPreferences = requireActivity().getSharedPreferences("MyPrefs", Context.MODE_PRIVATE)
