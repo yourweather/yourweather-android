@@ -53,16 +53,19 @@ class SaveHomeImgFragment : Fragment() {
         view.findViewById<View>(R.id.ll_save_home_instagram)?.setOnClickListener {
             parentFragmentManager.popBackStack()
 
-            // 인스타그램 스토리 공유 함수 호출
+            // 홈 화면 캡쳐 후 갤러리 저장 및 인스타그램 스토리 공유 기능 호출
             lifecycleScope.launch {
                 val rootView = requireActivity().window.decorView.findViewById<View>(android.R.id.content)
                 val screenShot = takeScreenshot(rootView)
                 screenShot?.let {
                     val imageUri = saveScreenshotToMediaStore(it)
 
-                    imageUri?.let {
+                    if (imageUri != null) {
+                        //홈 화면 이미지 저장 및 공유 로직 수행
                         shareToInstagram(imageUri)
-                    }
+                    } else{
+                    Log.e("SaveHomeImgFragment", "ImageUri가 비어있음")
+                }
                 }
 
                 // 이전 화면으로 돌아가기
@@ -72,16 +75,18 @@ class SaveHomeImgFragment : Fragment() {
     }
 
     private suspend fun shareToInstagram(imageUri: Uri) {
+        Log.d("Instagram", "shareToInstagram 실행됨")
         val instagramIntent = Intent("com.instagram.share.ADD_TO_STORY")
         instagramIntent.type = "image/*"
         instagramIntent.putExtra(Intent.EXTRA_STREAM, imageUri)
         instagramIntent.flags = Intent.FLAG_GRANT_READ_URI_PERMISSION
+        Log.d("Instagram", "Instagram Intent 정보: $instagramIntent")
 
         try {
             requireContext().startActivity(instagramIntent)
         } catch (e: Exception) {
+            Log.e("Instagram", "shareToInstagram 예외 발생: ${e.message}")
             goToInstallInstagramDialog() //인스타그램이 설치되지 않은 경우
-            Log.d("Instagram","인스타 미설치 다이얼로그 생성 성공")
         }
     }
     private fun goToInstallInstagramDialog() {
