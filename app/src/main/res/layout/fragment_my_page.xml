@@ -175,38 +175,38 @@
 <!--        app:layout_constraintStart_toStartOf="parent"-->
 <!--        app:layout_constraintTop_toBottomOf="@+id/ll_my_page_bar" />-->
 
-    <LinearLayout
-        android:id="@+id/ll_my_page_l3"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:layout_marginStart="16dp"
-        android:layout_marginTop="19dp"
-        android:layout_marginEnd="16dp"
-        android:orientation="vertical"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/iv_my_page_line_1">
+<!--    <LinearLayout-->
+<!--        android:id="@+id/ll_my_page_l3"-->
+<!--        android:layout_width="match_parent"-->
+<!--        android:layout_height="wrap_content"-->
+<!--        android:layout_marginStart="16dp"-->
+<!--        android:layout_marginTop="19dp"-->
+<!--        android:layout_marginEnd="16dp"-->
+<!--        android:orientation="vertical"-->
+<!--        app:layout_constraintEnd_toEndOf="parent"-->
+<!--        app:layout_constraintStart_toStartOf="parent"-->
+<!--        app:layout_constraintTop_toBottomOf="@+id/iv_my_page_line_1">-->
 
-        <TextView
-            android:id="@+id/tv_my_page_guide2"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:fontFamily="@font/pretendardsemibold"
-            android:text="특별 기능"
-            android:textColor="#C9C9C9"
-            android:textSize="12dp" />
+<!--        <TextView-->
+<!--            android:id="@+id/tv_my_page_guide2"-->
+<!--            android:layout_width="wrap_content"-->
+<!--            android:layout_height="wrap_content"-->
+<!--            android:fontFamily="@font/pretendardsemibold"-->
+<!--            android:text="특별 기능"-->
+<!--            android:textColor="#C9C9C9"-->
+<!--            android:textSize="12dp" />-->
 
-        <TextView
-            android:id="@+id/tv_my_page_event_weather"
-            android:layout_width="match_parent"
-            android:layout_height="match_parent"
-            android:fontFamily="@font/pretendardsemibold"
-            android:paddingTop="13dp"
-            android:text="이벤트 날씨 설정"
-            android:textColor="#424242"
-            android:textSize="15dp" />
+<!--        <TextView-->
+<!--            android:id="@+id/tv_my_page_event_weather"-->
+<!--            android:layout_width="match_parent"-->
+<!--            android:layout_height="match_parent"-->
+<!--            android:fontFamily="@font/pretendardsemibold"-->
+<!--            android:paddingTop="13dp"-->
+<!--            android:text="이벤트 날씨 설정"-->
+<!--            android:textColor="#424242"-->
+<!--            android:textSize="15dp" />-->
 
-    </LinearLayout>
+<!--    </LinearLayout>-->
 
     <View
         android:id="@+id/iv_my_page_line_3"
@@ -218,7 +218,7 @@
         android:background="#ECECEC"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/ll_my_page_l3" />
+        app:layout_constraintTop_toBottomOf="@+id/fl_my_page_l1" />
 
     <LinearLayout
         android:id="@+id/ll_my_page_l4"
