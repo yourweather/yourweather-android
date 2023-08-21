@@ -58,7 +58,11 @@ class MyPageFragment : Fragment() {
             val mIntent = Intent(activity, MyPagePrivacyPolicy::class.java)
             startActivity(mIntent)
         }
-
+        // 알림 설정 페이지 이동
+        binding.tvMyPageAlarm.setOnClickListener {
+            val mIntent = Intent(activity, MyPageAlarm::class.java)
+            startActivity(mIntent)
+        }
         userInfoAPI()
     }
 
