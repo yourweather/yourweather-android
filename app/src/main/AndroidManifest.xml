@@ -265,7 +265,7 @@
         <activity
             android:name=".presentation.sign.SignIn"
             android:exported="true"
-            android:screenOrientation="portrait"></activity>
+            android:screenOrientation="portrait"/>
         <activity
             android:name=".presentation.Splash"
             android:exported="true"
