@@ -33,7 +33,6 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:fontFamily="@font/pretendardmedium"
-                android:text="aaaaaaaa"
                 android:textColor="#2B2B2B"
                 android:textSize="15dp"
                 app:layout_constraintBottom_toTopOf="@+id/tv_initial_msg2"
