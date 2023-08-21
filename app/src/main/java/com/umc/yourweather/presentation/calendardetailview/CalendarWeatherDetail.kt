@@ -147,6 +147,7 @@ class CalendarWeatherDetail : AppCompatActivity() {
                     // 메모 삭제 성공 처리
                     Log.d("메모 삭제 API", "메모가 성공적으로 삭제되었습니다.")
                     Toast.makeText(this@CalendarWeatherDetail, "메모가 삭제되었습니다.", Toast.LENGTH_SHORT).show()
+                    finish()
                 } else {
                     val errorBody = response.errorBody()?.string()
                     Log.e("메모 삭제 API Failure", "Response Code: ${response.code()}, Error Body: $errorBody")
