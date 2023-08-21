@@ -4,10 +4,9 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context=".presentation.calendardetailview.CalendarDetailViewStatusbar">
-
+    tools:context=".presentation.calendardetailview.CalendarDetailviewStatusbar3">
     <androidx.appcompat.widget.Toolbar
-        android:id="@+id/tb_calendar_detail_back"
+        android:id="@+id/tb_calendar_detail_back3"
         android:layout_width="match_parent"
         android:layout_height="?attr/actionBarSize"
         android:layout_alignParentBottom="true"
@@ -18,22 +17,37 @@
         app:layout_constraintTop_toTopOf="parent">
 
         <RelativeLayout
-            android:id="@+id/rl_calendar_detail_back"
-            android:layout_width="match_parent"
+            android:id="@+id/rl_calendar_detail_back3_1"
+            android:layout_width="20dp"
             android:layout_height="wrap_content">
             <ImageButton
-                android:id="@+id/btn_calendar_detail_back"
+                android:id="@+id/btn_calendar_detail_back3"
                 android:layout_width="wrap_content"
+                android:layout_alignParentStart="true"
                 android:layout_height="wrap_content"
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintTop_toTopOf="parent"
                 android:background="#00ff0000"
                 app:srcCompat="@drawable/btn_calendardetailview_back" />
+
         </RelativeLayout>
 
-
+        <RelativeLayout
+            android:id="@+id/rl_calendar_detail_save"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content">
+            <Button
+                android:id="@+id/btn_calendar_detail_save"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:background="#00ff0000"
+                android:fontFamily="@font/pretendardregular"
+                android:padding="0dp"
+                android:layout_alignParentEnd="true"
+                android:text="저장"
+                android:textColor="@color/gray"
+                android:textFontWeight="600"
+                android:textSize="20dp"/>
+        </RelativeLayout>
     </androidx.appcompat.widget.Toolbar>
-
-
-
 </androidx.constraintlayout.widget.ConstraintLayout>

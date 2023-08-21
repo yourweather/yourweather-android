@@ -1,0 +1,52 @@
+<?xml version="1.0" encoding="utf-8"?>
+
+
+<androidx.appcompat.widget.Toolbar
+xmlns:android="http://schemas.android.com/apk/res/android"
+xmlns:app="http://schemas.android.com/apk/res-auto"
+xmlns:tools="http://schemas.android.com/tools"
+tools:context=".presentation.sign.SignStatusbar"
+android:id="@+id/tb_sign_back"
+    android:layout_width="match_parent"
+    android:layout_height="?attr/actionBarSize"
+    android:layout_alignParentBottom="true"
+    android:layout_marginBottom="672dp"
+    android:background="@color/white"
+    app:layout_constraintEnd_toEndOf="parent"
+    app:layout_constraintStart_toStartOf="parent"
+    app:layout_constraintTop_toTopOf="parent">
+
+<RelativeLayout
+    android:id="@+id/rl_sign1"
+    android:layout_width="26dp"
+    android:layout_height="wrap_content">
+
+    <ImageButton
+        android:id="@+id/btn_signup_back"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:background="#00ff0000"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:srcCompat="@drawable/btn_calendardetailview_back" />
+</RelativeLayout>
+
+<RelativeLayout
+    android:id="@+id/rl_sign2"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content">
+
+
+    <TextView
+        android:id="@+id/tv_sign_signup"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="120dp"
+        android:fontFamily="@font/pretendardsemibold"
+        android:text="회원가입"
+        android:textColor="@color/sorange"
+        android:textFontWeight="700"
+        android:textSize="20dp" />
+</RelativeLayout>
+
+</androidx.appcompat.widget.Toolbar>
