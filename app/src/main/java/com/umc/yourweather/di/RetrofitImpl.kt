@@ -86,6 +86,8 @@ object RetrofitImpl {
 //                createRequestBuilder(request(), accessHeader, "aa")
 //            var infoResponse = proceed(infoRequest)
 
+            Log.d("저장된 토큰 확인", "저장 토큰 확인 액세스 ${App.token_prefs.accessToken}")
+            Log.d("저장된 토큰 확인", "저장 토큰 확인 리프래시 ${App.token_prefs.refreshToken}")
             Log.d("토큰 인터셉터 확인... 첫번째", "${infoResponse.body}")
 
             // 여기서 오류가 나지 않는다면 그냥 response가 리턴

@@ -46,11 +46,13 @@ class SignIn : AppCompatActivity() {
         binding = ActivitySignInBinding.inflate(layoutInflater)
         setContentView(binding.root)
 
-        if (App.token_prefs.accessToken != null) {
-            val mIntent = Intent(this@SignIn, BottomNavi::class.java)
-            startActivity(mIntent)
-            finish()
-        }
+//        if (App.token_prefs.accessToken != null) {
+//            val mIntent = Intent(this@SignIn, BottomNavi::class.java)
+//            startActivity(mIntent)
+//            Log.d("토큰 확인 액세스", App.token_prefs.accessToken.toString())
+//            Log.d("토큰 확인 리프래시", App.token_prefs.refreshToken.toString())
+//            finish()
+//        }
 
         // 비밀번호 찾기로 이동
         binding.tvSigninBtnfindpw.setOnClickListener {
