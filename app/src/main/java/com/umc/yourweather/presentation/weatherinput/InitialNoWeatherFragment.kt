@@ -2,16 +2,27 @@
 package com.umc.yourweather.presentation.weatherinput
 
 import android.os.Bundle
+import android.util.Log
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import androidx.fragment.app.Fragment
 import com.umc.yourweather.R
+import com.umc.yourweather.data.remote.response.BaseResponse
+import com.umc.yourweather.data.remote.response.UserResponse
+import com.umc.yourweather.data.service.UserService
 import com.umc.yourweather.databinding.FragmentInitialNoWeatherBinding
+import com.umc.yourweather.di.RetrofitImpl
 import com.umc.yourweather.di.UserSharedPreferences
+import retrofit2.Call
+import retrofit2.Callback
+import retrofit2.Response
 
 class InitialNoWeatherFragment : Fragment() {
     private lateinit var binding: FragmentInitialNoWeatherBinding
+    private val userService: UserService by lazy {
+        RetrofitImpl.authenticatedRetrofit.create(UserService::class.java)
+    }
 
     override fun onCreateView(
         inflater: LayoutInflater,
@@ -40,7 +51,28 @@ class InitialNoWeatherFragment : Fragment() {
         }
 
 
-        val userNickname = UserSharedPreferences.getUserNickname(requireContext())
-        binding.tvInitialUsername.text = userNickname
-    }
+        //마이페이지 api호출로 닉네임 값 변경
+        userService.getMyPage().enqueue(object : Callback<BaseResponse<UserResponse>> {
+            override fun onResponse(
+                call: Call<BaseResponse<UserResponse>>,
+                response: Response<BaseResponse<UserResponse>>
+            ) {
+                if (response.isSuccessful) {
+                    val userResponse = response.body()?.result
+                    val userNickname = userResponse?.nickname ?: "기본 닉네임"
+                    binding.tvInitialUsername.text = userNickname
+
+                    // 닉네임 SH 저장
+                    UserSharedPreferences.setUserNickname(requireContext(), userNickname)
+                } else {
+                    val errorBody = response.errorBody()?.string()
+                    Log.e("MyPagePrivacyPolicy", "응답 실패")
+                }
+            }
+
+            override fun onFailure(call: Call<BaseResponse<UserResponse>>, t: Throwable) {
+                Log.e("MyPagePrivacyPolicy", "API호출 실패")
+            }
+    })
+}
 }
