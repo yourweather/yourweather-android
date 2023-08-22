@@ -170,9 +170,9 @@ class CalendarPlusWeather : AppCompatActivity(), CalendarDetailViewTimepicker.Ti
         val alertDialog = AlertDialogTwoBtn(this)
 
         alertDialog.setTitle("감정날씨 입력을 취소하시겠어요?")
+        alertDialog.setSubTitle("기록한 내용이 전부 사라집니다.")
 
         alertDialog.setNegativeButton("아니요") { dialogInterface, _ ->
-            dialogInterface.dismiss()
 
             dialogInterface.dismiss()
         }
@@ -300,7 +300,7 @@ class CalendarPlusWeather : AppCompatActivity(), CalendarDetailViewTimepicker.Ti
                             Toast.LENGTH_SHORT,
                         ).show()
 
-                        activityFinish()
+                        finish()
                     } else {
                         Log.d("메모 작성 실패", "메모 작성, 전달 실패: ${response.code()}")
                         Toast.makeText(
