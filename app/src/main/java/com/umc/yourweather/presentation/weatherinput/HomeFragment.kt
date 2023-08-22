@@ -67,7 +67,8 @@ class HomeFragment : Fragment(), HomeFragmentInteractionListener {
 
         // 광고 뷰 이동버튼 클릭
         binding.btnHomeAdMove.setOnClickListener {
-            val url = "https://yourweather.shop:8080/api/v1/ad/get-advertisement"
+            val baseUrl = System.getenv("BASE_URL")
+            val url = "$baseUrl/api/v1/ad/get-advertisement"
 
             val intent = Intent(Intent.ACTION_VIEW, Uri.parse(url))
             startActivity(intent)
