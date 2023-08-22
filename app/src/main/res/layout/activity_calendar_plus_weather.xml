@@ -114,8 +114,7 @@
                     android:layout_marginStart="51dp"
                     android:fontFamily="@font/pretendardsemibold"
                     android:text="오후 12:00"
-                    android:textColor="#424242"
-                    android:textFontWeight="500"
+                    android:textColor="#535353"
                     android:textSize="20dp"
                     app:layout_constraintEnd_toEndOf="parent"
                     app:layout_constraintTop_toBottomOf="@+id/tv_calendar_detailview_modify2_8" />
