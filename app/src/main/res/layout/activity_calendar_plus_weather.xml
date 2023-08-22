@@ -114,7 +114,7 @@
                     android:layout_height="wrap_content"
                     android:layout_marginTop="19dp"
                     android:layout_marginStart="51dp"
-                    android:fontFamily="@font/pretendardsemibold"
+                    android:fontFamily="@font/pretendardmedium"
                     android:text="오후 12:00"
                     android:textColor="#535353"
                     android:textSize="20dp"
@@ -124,8 +124,7 @@
                 <ImageView
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:layout_marginStart="38dp"
-
+                    android:layout_marginStart="47dp"
                     android:src = "@drawable/line_timpicker"
                     app:layout_constraintStart_toStartOf="parent"
                     app:layout_constraintTop_toBottomOf="@+id/tv_calendar_detailview_modify2_8"
