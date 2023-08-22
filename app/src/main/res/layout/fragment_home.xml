@@ -131,30 +131,17 @@
                     android:layout_height="match_parent">
 
                     <TextView
-                        android:id="@+id/tv_home_username"
+                        android:id="@+id/tv_home_nickname"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
-                        android:layout_marginEnd="5dp"
                         android:fontFamily="@font/bmhanna"
                         android:gravity="center"
-                        android:textColor="@color/brown"
-                        android:textSize="24dp"
-                        app:layout_constraintBottom_toBottomOf="parent"
-                        app:layout_constraintEnd_toStartOf="@+id/tv_home_guide"
-                        app:layout_constraintTop_toTopOf="parent" />
-
-                    <TextView
-                        android:id="@+id/tv_home_guide"
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:layout_marginEnd="90dp"
-                        android:fontFamily="@font/bmhanna"
-                        android:gravity="center"
-                        android:text="님의 감정날씨"
+                        android:text="닉네임 님의 감정날씨"
                         android:textColor="@color/brown"
                         android:textSize="24dp"
                         app:layout_constraintBottom_toBottomOf="parent"
                         app:layout_constraintEnd_toEndOf="parent"
+                        app:layout_constraintStart_toStartOf="parent"
                         app:layout_constraintTop_toTopOf="parent" />
                 </androidx.constraintlayout.widget.ConstraintLayout>
 
