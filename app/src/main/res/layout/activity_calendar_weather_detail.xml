@@ -14,7 +14,7 @@
         android:layout_marginStart="35dp"
         android:layout_marginTop="78dp"
         android:fontFamily="@font/pretendardbold"
-        android:text="7월 4일 오후 10:00"
+        android:text="7월 4일의 기록"
         android:textColor="#2B2B2B"
         android:textSize="20dp"
         app:layout_constraintStart_toStartOf="parent"
@@ -49,7 +49,7 @@
     </FrameLayout>
 
     <TextView
-        android:id="@+id/btn_calendardetailview_save"
+        android:id="@+id/btn_calendardetailview_modify"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginTop="16dp"
@@ -74,7 +74,6 @@
         app:layout_constraintTop_toBottomOf="@+id/tv_detailview_modify2_date" />
 
     <ScrollView
-        android:id="@+id/scroll"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         app:layout_constraintTop_toBottomOf="@+id/divider"
@@ -152,20 +151,7 @@
                         android:background="@drawable/ic_thunder" />
                 </LinearLayout>
 
-                <TextView
-                    android:id="@+id/tv_calendar_detailview_modify2_3"
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:fontFamily="@font/pretendardregular"
-                    android:gravity="center"
-                    android:text="클릭하여 선택해주세요"
-                    android:textColor="#ACACAC"
-                    android:textSize="10dp"
-                    app:layout_constraintBottom_toBottomOf="parent"
-                    app:layout_constraintEnd_toEndOf="parent"
-                    app:layout_constraintStart_toStartOf="parent"
-                    app:layout_constraintTop_toBottomOf="@+id/divider" />
-            </LinearLayout>
+                </LinearLayout>
 
             <LinearLayout
                 android:layout_width="match_parent"
@@ -206,8 +192,9 @@
                     app:layout_constraintStart_toStartOf="parent"
                     app:layout_constraintTop_toBottomOf="@+id/divider" />
 
+
                 <LinearLayout
-                    android:layout_width="wrap_content"
+                    android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:orientation="horizontal">
 
@@ -217,6 +204,7 @@
                         android:layout_height="wrap_content"
                         android:layout_marginStart="53dp"
                         android:layout_marginTop="10dp"
+                        android:layout_weight="1"
                         android:fontFamily="@font/pretendardsemibold"
                         android:text="0°"
                         android:textSize="13dp"
@@ -229,6 +217,7 @@
                         android:id="@+id/iv_calendar_detailview_modify2_6"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
+                        android:layout_weight="1"
                         android:layout_marginStart="265dp"
                         android:layout_marginTop="10dp"
                         android:layout_marginEnd="0dp"
@@ -241,8 +230,6 @@
                         app:layout_constraintStart_toStartOf="parent"
                         app:layout_constraintTop_toBottomOf="@+id/divider" />
                 </LinearLayout>
-
-
             </LinearLayout>
 
             <TextView
@@ -287,7 +274,7 @@
                     android:layout_height="175dp"
                     android:padding="16dp">
 
-                    <EditText
+                    <TextView
                         android:id="@+id/editText"
                         android:layout_width="match_parent"
                         android:layout_height="match_parent"
@@ -302,19 +289,17 @@
             </androidx.cardview.widget.CardView>
         </LinearLayout>
     </ScrollView>
-
-        <ImageButton
-            android:id="@+id/btn_calendar_weather_detail_delete"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_marginTop="100dp"
-            android:layout_marginBottom="19dp"
-            android:background="#00ff0000"
-            app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintBottom_toBottomOf="parent"
-            app:srcCompat="@drawable/btn_calendarview_delete"
-            android:text="삭제"
-            />
-
+    <ImageButton
+        android:id="@+id/btn_calendar_weather_detail_delete"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="100dp"
+        android:layout_marginBottom="19dp"
+        android:background="#00ff0000"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:srcCompat="@drawable/btn_calendarview_delete"
+        android:text="삭제"
+        />
 </androidx.constraintlayout.widget.ConstraintLayout>
