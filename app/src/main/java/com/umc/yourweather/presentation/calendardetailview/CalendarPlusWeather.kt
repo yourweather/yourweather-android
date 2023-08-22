@@ -40,12 +40,10 @@ class CalendarPlusWeather : AppCompatActivity(), CalendarDetailViewTimepicker.Ti
     private var isTimePickerUsed = false // 타임피커를 사용한 적이 있는가
     private var formattedCurrentTime: String = "" // 현재 시간을 API로 보낼 포맷을 담을 변수
 
-
     override fun onTimeSelected(localDateTime: String) {
         this.localDateTime = localDateTime
         Log.d("TimePickerListener", "받은 localDateTime: $localDateTime")
     }
-
 
     override fun onResume() {
         super.onResume()
@@ -112,7 +110,6 @@ class CalendarPlusWeather : AppCompatActivity(), CalendarDetailViewTimepicker.Ti
             transaction.addToBackStack(null) // 프래그먼트를 백 스택에 추가
             transaction.replace(R.id.constraint, timePicker)
             transaction.commit()
-
         }
 
         // 메모 저장 API 전송
@@ -166,6 +163,7 @@ class CalendarPlusWeather : AppCompatActivity(), CalendarDetailViewTimepicker.Ti
         formattedCurrentTime = String.format("T%02d:%02d", hour % 12, minute)
 
         return String.format("%s %02d:%02d", amPm, hour % 12, minute)
+    }
 
     // 뒤로가기 시 뜨는 다이얼로그
     private fun showMemoCancleDialog() {
@@ -187,7 +185,6 @@ class CalendarPlusWeather : AppCompatActivity(), CalendarDetailViewTimepicker.Ti
 
         alertDialog.window?.setBackgroundDrawable(ColorDrawable(Color.TRANSPARENT))
         alertDialog.show()
-
     }
 
     // 사용자가 입력한 시간 값
@@ -224,7 +221,8 @@ class CalendarPlusWeather : AppCompatActivity(), CalendarDetailViewTimepicker.Ti
 
     // 아이콘 클릭 시 애니메이션
     private fun animateAndHandleButtonClick(button: Button) {
-        val buttonAnimation: Animation = AnimationUtils.loadAnimation(this, R.anim.btn_weather_scale)
+        val buttonAnimation: Animation =
+            AnimationUtils.loadAnimation(this, R.anim.btn_weather_scale)
 
         binding.btnHomeSun.clearAnimation()
         binding.btnHomeCloud.clearAnimation()
@@ -240,7 +238,11 @@ class CalendarPlusWeather : AppCompatActivity(), CalendarDetailViewTimepicker.Ti
         seekBar.progress = 0
 
         seekBar.setOnSeekBarChangeListener(object : SeekBar.OnSeekBarChangeListener {
-            override fun onProgressChanged(seekBar: SeekBar?, progress: Int, fromUser: Boolean) {
+            override fun onProgressChanged(
+                seekBar: SeekBar?,
+                progress: Int,
+                fromUser: Boolean,
+            ) {
                 isSeekBarAdjusted = fromUser
                 updateSaveButtonState()
             }
@@ -276,7 +278,12 @@ class CalendarPlusWeather : AppCompatActivity(), CalendarDetailViewTimepicker.Ti
     }
 
     // 메모 작성 API
-    private fun writeMemoAPI(status: Status, content: String?, localDateTime: Any, temperature: Int?) {
+    private fun writeMemoAPI(
+        status: Status,
+        content: String?,
+        localDateTime: Any,
+        temperature: Int?,
+    ) {
         val memoService = RetrofitImpl.authenticatedRetrofit.create(MemoService::class.java)
         memoService.memoWrite(MemoRequest(status, content, localDateTime, temperature))
             .enqueue(object : Callback<BaseResponse<MemoResponse>> {
@@ -287,12 +294,20 @@ class CalendarPlusWeather : AppCompatActivity(), CalendarDetailViewTimepicker.Ti
                     if (response.isSuccessful) {
                         val memoResponse = response.body()?.result
                         Log.d("메모 작성", "메모 작성, 전달 성공 ${response.body()?.result}")
-                        Toast.makeText(this@CalendarPlusWeather, "기록이 저장되었습니다.", Toast.LENGTH_SHORT).show()
+                        Toast.makeText(
+                            this@CalendarPlusWeather,
+                            "기록이 저장되었습니다.",
+                            Toast.LENGTH_SHORT,
+                        ).show()
 
                         activityFinish()
                     } else {
                         Log.d("메모 작성 실패", "메모 작성, 전달 실패: ${response.code()}")
-                        Toast.makeText(this@CalendarPlusWeather, "기록이 저장이 되지 않았습니다. 다시 입력해주세요.", Toast.LENGTH_SHORT).show()
+                        Toast.makeText(
+                            this@CalendarPlusWeather,
+                            "기록이 저장이 되지 않았습니다. 다시 입력해주세요.",
+                            Toast.LENGTH_SHORT,
+                        ).show()
                     }
                 }
 
