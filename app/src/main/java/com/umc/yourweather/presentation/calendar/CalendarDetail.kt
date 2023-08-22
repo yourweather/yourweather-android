@@ -78,6 +78,7 @@ class CalendarDetail : AppCompatActivity() {
                                 val dateTime = LocalDateTime.parse(it.creationDatetime)
                                 val formatter = DateTimeFormatter.ofPattern("a h:mm")
                                 val formattedTime = dateTime.format(formatter)
+                                Log.d("캘린더 디테일뷰 확인", formattedTime.toString())
                                 it.creationDatetime = formattedTime.replace("AM", "오전").replace("PM", "오후")
                                 return@map
                             }
