@@ -137,7 +137,7 @@ class HomeFragment : Fragment(), HomeFragmentInteractionListener {
     }
 
     private fun handleHomeResponse(homeResponse: HomeResponse) {
-        binding.tvHomeUsername.text = homeResponse.nickname
+        binding.tvHomeNickname.text = "${homeResponse.nickname} 님의 감정 상태"
         updateUIWithHomeResponse(homeResponse)
         Log.d("HomeFragment", "홈 닉네임 변경 성공: $homeResponse")
     }
