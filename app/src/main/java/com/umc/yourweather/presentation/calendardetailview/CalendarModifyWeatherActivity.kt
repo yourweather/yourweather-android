@@ -2,6 +2,7 @@ package com.umc.yourweather.presentation.calendardetailview
 
 import android.os.Bundle
 import android.util.Log
+import android.view.View
 import android.view.animation.Animation
 import android.view.animation.AnimationUtils
 import android.widget.Button
@@ -69,6 +70,8 @@ class CalendarModifyWeatherActivity : AppCompatActivity() {
         animateAndHandleInitial(selectedStatus!!)
         binding.editText.setText(initialContent)
         setupSeekBarListener(initialTemperature)
+        binding.seekbarCalendarDetailviewTemp2.progress = initialTemperature
+        binding.tvSeekbarValue.text = "$initialTemperature°"
         setupWeatherButtons()
         if (modifyDateTime != null) {
             formatDateTime(modifyDateTime)
@@ -102,6 +105,8 @@ class CalendarModifyWeatherActivity : AppCompatActivity() {
                 }
             }
         }
+
+
     }
 
     // 특정 메모 시간 포맷
@@ -196,6 +201,11 @@ class CalendarModifyWeatherActivity : AppCompatActivity() {
 
             override fun onStopTrackingTouch(seekBar: SeekBar?) {
                 updateSaveButtonState()
+                val seekbarValueTextView = binding.tvSeekbarValue
+
+                val progress = seekBar?.progress ?: 0
+                seekbarValueTextView.visibility = View.VISIBLE
+                seekbarValueTextView.text = "$progress°"
             }
         })
     }
