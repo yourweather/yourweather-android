@@ -29,28 +29,16 @@
 
 
             <TextView
-                android:id="@+id/tv_initial_username"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:fontFamily="@font/pretendardmedium"
-                android:textColor="#2B2B2B"
-                android:textSize="15dp"
-                app:layout_constraintBottom_toTopOf="@+id/tv_initial_msg2"
-                app:layout_constraintEnd_toStartOf="@+id/tv_initial_msg1"
-                app:layout_constraintTop_toTopOf="@+id/iv_initial_bg"
-                app:layout_constraintVertical_bias="1.0" />
-
-            <TextView
                 android:id="@+id/tv_initial_msg1"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:layout_marginEnd="40dp"
                 android:fontFamily="@font/pretendardmedium"
-                android:text="님의 감정 날씨를"
+                android:text="맑은 비구름 님의 감정 날씨를"
                 android:textColor="#2B2B2B"
                 android:textSize="15dp"
                 app:layout_constraintBottom_toTopOf="@+id/tv_initial_msg2"
                 app:layout_constraintEnd_toEndOf="@+id/iv_initial_bg"
+                app:layout_constraintStart_toStartOf="@+id/iv_initial_bg"
                 app:layout_constraintTop_toTopOf="@+id/iv_initial_bg"
                 app:layout_constraintVertical_bias="1.0" />
 
