@@ -233,6 +233,7 @@ class CalendarWeatherDetail : AppCompatActivity() {
 
         // 설정한 온도값에 맞춰 SeekBar의 상태를 변경
         seekBar.progress = temperature
+        binding.tvSeekbarValue.text = "$temperature°"
 
         // 터치 이벤트 비활성화
         seekBar.setOnTouchListener { _, _ -> true }
