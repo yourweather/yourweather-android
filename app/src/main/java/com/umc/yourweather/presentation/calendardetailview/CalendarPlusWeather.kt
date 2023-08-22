@@ -29,6 +29,7 @@ import kotlinx.coroutines.launch
 import retrofit2.Call
 import retrofit2.Callback
 import retrofit2.Response
+import java.util.Calendar
 
 class CalendarPlusWeather : AppCompatActivity(), CalendarDetailViewTimepicker.TimePickerListener {
     private lateinit var binding: ActivityCalendarPlusWeatherBinding
@@ -36,9 +37,21 @@ class CalendarPlusWeather : AppCompatActivity(), CalendarDetailViewTimepicker.Ti
     private var isSeekBarAdjusted = false // 변수 선언
     private var selectedStatus: Status? = null // 기본값으로 null 설정
     private var localDateTime: String = ""
+    private var isTimePickerUsed = false // 타임피커를 사용한 적이 있는가
+    private var formattedCurrentTime: String = "" // 현재 시간을 API로 보낼 포맷을 담을 변수
+
+
     override fun onTimeSelected(localDateTime: String) {
         this.localDateTime = localDateTime
         Log.d("TimePickerListener", "받은 localDateTime: $localDateTime")
+    }
+
+
+    override fun onResume() {
+        super.onResume()
+        // Update the time text with the current time
+        val currentTime = getCurrentTime()
+        updateTimeText(currentTime)
     }
 
     override fun onCreate(savedInstanceState: Bundle?) {
@@ -91,12 +104,15 @@ class CalendarPlusWeather : AppCompatActivity(), CalendarDetailViewTimepicker.Ti
 
         // 타임피커 시간 관련 코드
         binding.tvDetailviewModify2Time.setOnClickListener {
+            isTimePickerUsed = true // Set the flag to true
+
             val fragmentManager = supportFragmentManager
             val timePicker = CalendarDetailViewTimepicker()
             val transaction = fragmentManager.beginTransaction()
             transaction.addToBackStack(null) // 프래그먼트를 백 스택에 추가
-            transaction.replace(R.id.fragment_container, timePicker)
+            transaction.replace(R.id.constraint, timePicker)
             transaction.commit()
+
         }
 
         // 메모 저장 API 전송
@@ -107,6 +123,10 @@ class CalendarPlusWeather : AppCompatActivity(), CalendarDetailViewTimepicker.Ti
         binding.btnCalendardetailviewSave.setOnClickListener {
             val content: String? = editText.text?.toString()
             val temperature: Int? = binding.seekbarCalendarDetailviewTemp2.progress
+
+            if (!isTimePickerUsed) {
+                localDateTime = formattedCurrentTime // 타임피커로 따로 값 설정 안 한 경우
+            }
 
             if (localDateTime.isBlank()) {
                 // 시간이 입력되지 않은 경우
@@ -135,6 +155,18 @@ class CalendarPlusWeather : AppCompatActivity(), CalendarDetailViewTimepicker.Ti
         }
     }
 
+    // 현재 시간 업데이트 함수
+    private fun getCurrentTime(): String {
+        val calendar = Calendar.getInstance()
+        val hour = calendar.get(Calendar.HOUR_OF_DAY)
+        val minute = calendar.get(Calendar.MINUTE)
+        val amPm = if (calendar.get(Calendar.AM_PM) == Calendar.AM) "오전" else "오후"
+
+        // 현재 시간을 변환된 포맷으로 저장
+        formattedCurrentTime = String.format("T%02d:%02d", hour % 12, minute)
+
+        return String.format("%s %02d:%02d", amPm, hour % 12, minute)
+
     // 뒤로가기 시 뜨는 다이얼로그
     private fun showMemoCancleDialog() {
         val alertDialog = AlertDialogTwoBtn(this)
@@ -155,6 +187,7 @@ class CalendarPlusWeather : AppCompatActivity(), CalendarDetailViewTimepicker.Ti
 
         alertDialog.window?.setBackgroundDrawable(ColorDrawable(Color.TRANSPARENT))
         alertDialog.show()
+
     }
 
     // 사용자가 입력한 시간 값
