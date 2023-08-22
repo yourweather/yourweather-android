@@ -2,6 +2,7 @@ package com.umc.yourweather.presentation.calendardetailview
 
 import android.os.Bundle
 import android.util.Log
+import android.view.View
 import android.view.animation.Animation
 import android.view.animation.AnimationUtils
 import android.widget.Button
@@ -172,9 +173,10 @@ class CalendarPlusWeather : AppCompatActivity(), CalendarDetailViewTimepicker.Ti
         button.startAnimation(buttonAnimation)
     }
 
-    // SeekBar 리스너
+    // seekBar 리스너
     private fun setupSeekBarListener() {
         val seekBar = binding.seekbarCalendarDetailviewTemp2
+        seekBar.progress = 0
 
         seekBar.setOnSeekBarChangeListener(object : SeekBar.OnSeekBarChangeListener {
             override fun onProgressChanged(seekBar: SeekBar?, progress: Int, fromUser: Boolean) {
@@ -188,6 +190,11 @@ class CalendarPlusWeather : AppCompatActivity(), CalendarDetailViewTimepicker.Ti
 
             override fun onStopTrackingTouch(seekBar: SeekBar?) {
                 updateSaveButtonState()
+                val seekbarValueTextView = binding.tvSeekbarValue
+
+                val progress = seekBar?.progress ?: 0
+                seekbarValueTextView.visibility = View.VISIBLE
+                seekbarValueTextView.text = "$progress°"
             }
         })
     }
