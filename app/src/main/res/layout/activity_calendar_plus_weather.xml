@@ -1,5 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 <androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:id="@+id/constraint"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
@@ -106,20 +107,28 @@
                     app:layout_constraintTop_toBottomOf="@+id/divider" />
 
 
+
                 <TextView
                     android:id="@+id/tv_detailview_modify2_time"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_marginTop="19dp"
                     android:layout_marginStart="51dp"
-                    android:fontFamily="@font/pretendardsemibold"
+                    android:fontFamily="@font/pretendardmedium"
                     android:text="오후 12:00"
-                    android:textColor="#424242"
-                    android:textFontWeight="500"
+                    android:textColor="#535353"
                     android:textSize="20dp"
-                    app:layout_constraintEnd_toEndOf="parent"
-                    app:layout_constraintTop_toBottomOf="@+id/tv_calendar_detailview_modify2_8" />
-
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toBottomOf="@+id/tv_calendar_detailview_modify2_8"
+                    />
+                <ImageView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginStart="47dp"
+                    android:src = "@drawable/line_timpicker"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toBottomOf="@+id/tv_calendar_detailview_modify2_8"
+                    />
             </LinearLayout>
             <LinearLayout
                 android:layout_width="match_parent"
