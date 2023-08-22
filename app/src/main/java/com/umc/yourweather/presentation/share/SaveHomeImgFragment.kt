@@ -1,10 +1,7 @@
 package com.umc.yourweather.presentation.share
 
 import android.content.ContentValues
-import android.content.Intent
 import android.graphics.Bitmap
-import android.graphics.Color
-import android.graphics.drawable.ColorDrawable
 import android.net.Uri
 import android.os.Bundle
 import android.provider.MediaStore
@@ -17,7 +14,6 @@ import androidx.fragment.app.Fragment
 import androidx.lifecycle.ViewModelProvider
 import androidx.lifecycle.lifecycleScope
 import com.umc.yourweather.R
-import com.umc.yourweather.util.AlertDialogTwoBtn
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.launch
 import kotlinx.coroutines.withContext
@@ -30,8 +26,9 @@ class SaveHomeImgFragment : Fragment() {
     private lateinit var sharedViewModel: SharedViewModel
 
     override fun onCreateView(
-        inflater: LayoutInflater, container: ViewGroup?,
-        savedInstanceState: Bundle?
+        inflater: LayoutInflater,
+        container: ViewGroup?,
+        savedInstanceState: Bundle?,
     ): View? {
         return inflater.inflate(R.layout.fragment_save_home_img, container, false)
     }
@@ -50,66 +47,6 @@ class SaveHomeImgFragment : Fragment() {
             // 이전 화면으로 돌아가기
             parentFragmentManager.popBackStack()
         }
-        view.findViewById<View>(R.id.ll_save_home_instagram)?.setOnClickListener {
-            parentFragmentManager.popBackStack()
-
-            // 홈 화면 캡쳐 후 갤러리 저장 및 인스타그램 스토리 공유 기능 호출
-            lifecycleScope.launch {
-                val rootView = requireActivity().window.decorView.findViewById<View>(android.R.id.content)
-                val screenShot = takeScreenshot(rootView)
-                screenShot?.let {
-                    val imageUri = saveScreenshotToMediaStore(it)
-
-                    if (imageUri != null) {
-                        //홈 화면 이미지 저장 및 공유 로직 수행
-                        shareToInstagram(imageUri)
-                    } else{
-                    Log.e("SaveHomeImgFragment", "ImageUri가 비어있음")
-                }
-                }
-
-                // 이전 화면으로 돌아가기
-                parentFragmentManager.popBackStack()
-            }
-        }
-    }
-
-    private suspend fun shareToInstagram(imageUri: Uri) {
-        Log.d("Instagram", "shareToInstagram 실행됨")
-        val instagramIntent = Intent("com.instagram.share.ADD_TO_STORY")
-        instagramIntent.type = "image/*"
-        instagramIntent.putExtra(Intent.EXTRA_STREAM, imageUri)
-        instagramIntent.flags = Intent.FLAG_GRANT_READ_URI_PERMISSION
-        Log.d("Instagram", "Instagram Intent 정보: $instagramIntent")
-
-        try {
-            requireContext().startActivity(instagramIntent)
-        } catch (e: Exception) {
-            Log.e("Instagram", "shareToInstagram 예외 발생: ${e.message}")
-            goToInstallInstagramDialog() //인스타그램이 설치되지 않은 경우
-        }
-    }
-    private fun goToInstallInstagramDialog() {
-        val alertDialog = AlertDialogTwoBtn(requireContext())
-
-        alertDialog.setTitle("Instagram 설치를 위해 Google Play로 이동합니다.")
-
-        alertDialog.setNegativeButton("취소") { dialogInterface, _ ->
-            dialogInterface.dismiss()
-        }
-
-        alertDialog.setPositiveButton("확인") { dialogInterface, _ ->
-            dialogInterface.dismiss()
-
-            // 인스타그램 설치 페이지로 이동
-            val intent = Intent(Intent.ACTION_VIEW, Uri.parse("market://details?id=com.instagram.android"))
-            startActivity(intent)
-
-            parentFragmentManager.popBackStack()
-        }
-
-        alertDialog.window?.setBackgroundDrawable(ColorDrawable(Color.TRANSPARENT))
-        alertDialog.show()
     }
 
     private fun saveScreenshot() {
@@ -117,22 +54,18 @@ class SaveHomeImgFragment : Fragment() {
 
         // 해당 뷰들을 숨김 처리
         view?.findViewById<View>(R.id.ll_save_home1)?.visibility = View.GONE
-        view?.findViewById<View>(R.id.ll_save_home_instagram)?.visibility = View.GONE
-        view?.findViewById<View>(R.id.ic_instagram)?.visibility = View.GONE
-        view?.findViewById<View>(R.id.tv_save_home_instagram)?.visibility = View.GONE
         view?.findViewById<View>(R.id.ll_save_home_download)?.visibility = View.GONE
         view?.findViewById<View>(R.id.ic_download)?.visibility = View.GONE
         view?.findViewById<View>(R.id.tv_save_home_download)?.visibility = View.GONE
 
         sharedViewModel.hideViews() // HomeFragment에서 해당 함수를 실행
-        Log.d("SaveHomeImgFragment","캡쳐 전 뷰 숨기기 성공")
+        Log.d("SaveHomeImgFragment", "캡쳐 전 뷰 숨기기 성공")
 
         lifecycleScope.launch {
             val screenShot = takeScreenshot(rootView)
             screenShot?.let {
                 val imageUri = saveScreenshotToMediaStore(it)
                 imageUri?.let {
-                    shareToInstagram(imageUri)
                 }
             }
         }
@@ -164,7 +97,6 @@ class SaveHomeImgFragment : Fragment() {
             put(MediaStore.Images.Media.MIME_TYPE, "image/png")
             put(MediaStore.Images.Media.RELATIVE_PATH, "Pictures")
         }
-
         val resolver = requireContext().contentResolver
         val imageUri = resolver.insert(MediaStore.Images.Media.EXTERNAL_CONTENT_URI, values)
         imageUri?.let { uri ->
@@ -183,7 +115,7 @@ class SaveHomeImgFragment : Fragment() {
     private fun showSaveSuccessMessage() {
         Log.d("SaveHomeImgFragment", "showSaveSuccessMessage() 호출됨") // 추가된 로그
         sharedViewModel.showViews() // HomeFragment에서 해당 함수를 실행
-        Log.d("SaveHomeImgFragment","캡쳐 후 뷰 나타내기 성공")
+        Log.d("SaveHomeImgFragment", "캡쳐 후 뷰 나타내기 성공")
         Toast.makeText(requireContext(), "갤러리에 저장 성공", Toast.LENGTH_SHORT).show()
     }
 }
