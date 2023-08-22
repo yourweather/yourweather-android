@@ -1,5 +1,7 @@
 package com.umc.yourweather.presentation.calendardetailview
 
+import android.graphics.Color
+import android.graphics.drawable.ColorDrawable
 import android.os.Bundle
 import android.util.Log
 import android.view.animation.Animation
@@ -19,6 +21,7 @@ import com.umc.yourweather.data.service.MemoService
 import com.umc.yourweather.databinding.ActivityCalendarPlusWeatherBinding
 import com.umc.yourweather.di.RetrofitImpl
 import com.umc.yourweather.di.UserSharedPreferences
+import com.umc.yourweather.util.AlertDialogTwoBtn
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.GlobalScope
 import kotlinx.coroutines.launch
@@ -48,6 +51,9 @@ class CalendarPlusWeather : AppCompatActivity(), CalendarDetailViewTimepicker.Ti
         setupSeekBarListener()
 
         binding.flCalendarDetailviewBack.setOnClickListener {
+            activityFinish()
+        }
+        binding.btnCalendarDetailviewBack.setOnClickListener {
             activityFinish()
         }
         val userNickname = UserSharedPreferences.getUserNickname(this@CalendarPlusWeather)
@@ -126,6 +132,28 @@ class CalendarPlusWeather : AppCompatActivity(), CalendarDetailViewTimepicker.Ti
                 }
             }
         }
+    }
+
+    // 뒤로가기 시 뜨는 다이얼로그
+    private fun showMemoCancleDialog() {
+        val alertDialog = AlertDialogTwoBtn(this)
+
+        alertDialog.setTitle("감정날씨 입력을 취소하시겠어요?")
+
+        alertDialog.setNegativeButton("아니요") { dialogInterface, _ ->
+            dialogInterface.dismiss()
+
+            dialogInterface.dismiss()
+        }
+
+        alertDialog.setPositiveButton("네") { dialogInterface, _ ->
+            dialogInterface.dismiss()
+
+            finish()
+        }
+
+        alertDialog.window?.setBackgroundDrawable(ColorDrawable(Color.TRANSPARENT))
+        alertDialog.show()
     }
 
     // 사용자가 입력한 시간 값
@@ -235,11 +263,11 @@ class CalendarPlusWeather : AppCompatActivity(), CalendarDetailViewTimepicker.Ti
     }
 
     private fun activityFinish() {
-        finish()
+        showMemoCancleDialog()
     }
 
     // 뒤로가기 누른 경우
     override fun onBackPressed() {
-        finish()
+        showMemoCancleDialog()
     }
 }
