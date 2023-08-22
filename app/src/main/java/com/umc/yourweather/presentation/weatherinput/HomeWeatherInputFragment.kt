@@ -53,6 +53,7 @@ class HomeWeatherInputFragment : Fragment() {
         val alertDialog = AlertDialogTwoBtn(requireContext())
 
         alertDialog.setTitle("감정날씨 입력을 취소하시겠어요?")
+        alertDialog.setSubTitle("기록한 내용이 전부 사라집니다.")
 
         alertDialog.setNegativeButton("아니요") { dialogInterface, _ ->
             dialogInterface.dismiss()

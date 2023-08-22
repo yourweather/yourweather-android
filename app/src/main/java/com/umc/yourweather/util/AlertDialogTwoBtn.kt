@@ -13,12 +13,14 @@ class AlertDialogTwoBtn(context: Context) : AlertDialog(context) {
 
     private lateinit var customView: View
     private lateinit var alertText: TextView
+    private lateinit var alertSubText: TextView
     private lateinit var btnPositive: Button
     private lateinit var btnNegative: Button
 
     init {
         customView = LayoutInflater.from(context).inflate(R.layout.alertdialog_twobtn, null)
         alertText = customView.findViewById<TextView>(R.id.tv_alertdailog_twobtn)
+        alertSubText = customView.findViewById<TextView>(R.id.tv_alertdailog_sub_title)
 
         btnNegative = customView.findViewById<Button>(R.id.btn_alertdialog_twobtn_negative)
         btnPositive = customView.findViewById<Button>(R.id.btn_alertdialog_twobtn_positive)
@@ -29,6 +31,11 @@ class AlertDialogTwoBtn(context: Context) : AlertDialog(context) {
     fun setTitle(newTitle: String) {
         if (::customView.isInitialized) {
             alertText.text = newTitle
+        }
+    }
+    fun setSubTitle(newSubTitle: String) {
+        if (::customView.isInitialized) {
+            alertSubText.text = newSubTitle
         }
     }
     fun setPositiveButton(text: String, listener: DialogInterface.OnClickListener) {

@@ -1,6 +1,5 @@
 package com.umc.yourweather.presentation.weatherinput
 
-
 import android.content.Intent
 import android.net.Uri
 import android.os.Bundle
@@ -47,7 +46,6 @@ class HomeFragment : Fragment(), HomeFragmentInteractionListener {
 
         sharedViewModel = ViewModelProvider(requireActivity()).get(SharedViewModel::class.java)
 
-
         sharedViewModel.hideViewsEvent.observe(viewLifecycleOwner) {
             hideViews()
         }
@@ -67,12 +65,13 @@ class HomeFragment : Fragment(), HomeFragmentInteractionListener {
 
         // 광고 뷰 이동버튼 클릭
         binding.btnHomeAdMove.setOnClickListener {
-            val url = "https://yourweather.shop:8080/api/v1/ad/get-advertisement"
+            val baseUrl = System.getenv("BASE_URL")
+            val url = "$baseUrl/api/v1/ad/get-advertisement"
 
             val intent = Intent(Intent.ACTION_VIEW, Uri.parse(url))
             startActivity(intent)
         }
-        
+
         binding.btnHomeAdExit.setOnClickListener {
             hideAdViews()
         }
@@ -85,8 +84,7 @@ class HomeFragment : Fragment(), HomeFragmentInteractionListener {
             openHomeWeatherInputFragment()
         }
         fetchHomeDataAndHandleResponse()
-    } 
-    
+    }
 
     // 광고 뷰 숨기기
     private fun hideAdViews() {
@@ -139,7 +137,7 @@ class HomeFragment : Fragment(), HomeFragmentInteractionListener {
     }
 
     private fun handleHomeResponse(homeResponse: HomeResponse) {
-        binding.tvHomeUsername.text = homeResponse.nickname
+        binding.tvHomeNickname.text = "${homeResponse.nickname} 님의 감정 상태"
         updateUIWithHomeResponse(homeResponse)
         Log.d("HomeFragment", "홈 닉네임 변경 성공: $homeResponse")
     }
@@ -166,7 +164,7 @@ class HomeFragment : Fragment(), HomeFragmentInteractionListener {
             Log.d("HomeFragment", "홈 토스트 출력 성공: $homeResponse")
         }
     }
-    
+
     // 백그라운드 이미지변경
     private fun updateBackgroundImage(imageName: String) {
         val backgroundImageResource = when (imageName) {
@@ -188,7 +186,7 @@ class HomeFragment : Fragment(), HomeFragmentInteractionListener {
         }
         binding.bgHomeWeather.setImageResource(backgroundImageResource)
     }
-    
+
     // 모션영상 변경
     private fun updateMotionWeather(status: Status) {
         val motionResource = when (status) {
@@ -227,6 +225,7 @@ class HomeFragment : Fragment(), HomeFragmentInteractionListener {
         binding.btnHomeWeatherinput.visibility = View.GONE
         binding.bnvMain.visibility = View.GONE
     }
+
     // 캡쳐 후 뷰 다시 보이기
     fun showViews() {
         binding.tvHomeAd.visibility = View.VISIBLE
@@ -237,6 +236,4 @@ class HomeFragment : Fragment(), HomeFragmentInteractionListener {
         binding.btnHomeWeatherinput.visibility = View.VISIBLE
         binding.bnvMain.visibility = View.VISIBLE
     }
-
-
 }

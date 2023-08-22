@@ -1,7 +1,10 @@
 package com.umc.yourweather.presentation.calendardetailview
 
+import android.graphics.Color
+import android.graphics.drawable.ColorDrawable
 import android.os.Bundle
 import android.util.Log
+import android.view.View
 import android.view.animation.Animation
 import android.view.animation.AnimationUtils
 import android.widget.Button
@@ -19,6 +22,7 @@ import com.umc.yourweather.data.service.MemoService
 import com.umc.yourweather.databinding.ActivityCalendarPlusWeatherBinding
 import com.umc.yourweather.di.RetrofitImpl
 import com.umc.yourweather.di.UserSharedPreferences
+import com.umc.yourweather.util.AlertDialogTwoBtn
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.GlobalScope
 import kotlinx.coroutines.launch
@@ -61,6 +65,9 @@ class CalendarPlusWeather : AppCompatActivity(), CalendarDetailViewTimepicker.Ti
         setupSeekBarListener()
 
         binding.flCalendarDetailviewBack.setOnClickListener {
+            activityFinish()
+        }
+        binding.btnCalendarDetailviewBack.setOnClickListener {
             activityFinish()
         }
         val userNickname = UserSharedPreferences.getUserNickname(this@CalendarPlusWeather)
@@ -159,6 +166,28 @@ class CalendarPlusWeather : AppCompatActivity(), CalendarDetailViewTimepicker.Ti
         formattedCurrentTime = String.format("T%02d:%02d", hour % 12, minute)
 
         return String.format("%s %02d:%02d", amPm, hour % 12, minute)
+
+    // 뒤로가기 시 뜨는 다이얼로그
+    private fun showMemoCancleDialog() {
+        val alertDialog = AlertDialogTwoBtn(this)
+
+        alertDialog.setTitle("감정날씨 입력을 취소하시겠어요?")
+
+        alertDialog.setNegativeButton("아니요") { dialogInterface, _ ->
+            dialogInterface.dismiss()
+
+            dialogInterface.dismiss()
+        }
+
+        alertDialog.setPositiveButton("네") { dialogInterface, _ ->
+            dialogInterface.dismiss()
+
+            finish()
+        }
+
+        alertDialog.window?.setBackgroundDrawable(ColorDrawable(Color.TRANSPARENT))
+        alertDialog.show()
+
     }
 
     // 사용자가 입력한 시간 값
@@ -205,9 +234,10 @@ class CalendarPlusWeather : AppCompatActivity(), CalendarDetailViewTimepicker.Ti
         button.startAnimation(buttonAnimation)
     }
 
-    // SeekBar 리스너
+    // seekBar 리스너
     private fun setupSeekBarListener() {
         val seekBar = binding.seekbarCalendarDetailviewTemp2
+        seekBar.progress = 0
 
         seekBar.setOnSeekBarChangeListener(object : SeekBar.OnSeekBarChangeListener {
             override fun onProgressChanged(seekBar: SeekBar?, progress: Int, fromUser: Boolean) {
@@ -221,6 +251,11 @@ class CalendarPlusWeather : AppCompatActivity(), CalendarDetailViewTimepicker.Ti
 
             override fun onStopTrackingTouch(seekBar: SeekBar?) {
                 updateSaveButtonState()
+                val seekbarValueTextView = binding.tvSeekbarValue
+
+                val progress = seekBar?.progress ?: 0
+                seekbarValueTextView.visibility = View.VISIBLE
+                seekbarValueTextView.text = "$progress°"
             }
         })
     }
@@ -268,11 +303,11 @@ class CalendarPlusWeather : AppCompatActivity(), CalendarDetailViewTimepicker.Ti
     }
 
     private fun activityFinish() {
-        finish()
+        showMemoCancleDialog()
     }
 
     // 뒤로가기 누른 경우
     override fun onBackPressed() {
-        finish()
+        showMemoCancleDialog()
     }
 }
