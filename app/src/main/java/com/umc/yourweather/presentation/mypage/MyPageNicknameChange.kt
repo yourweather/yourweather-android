@@ -2,6 +2,8 @@ package com.umc.yourweather.presentation.mypage
 
 import android.content.Context
 import android.os.Bundle
+import android.text.Editable
+import android.text.TextWatcher
 import android.util.Log
 import androidx.appcompat.app.AppCompatActivity
 import com.umc.yourweather.data.remote.request.ChangeNicknameRequest
@@ -40,6 +42,20 @@ class MyPageNicknameChange : AppCompatActivity() {
             changeNickname()
             finish()
         }
+        // 8글자 이상 입력을 제한하는 부분 추가
+        binding.etMypageNicknameNickname.addTextChangedListener(object : TextWatcher {
+            override fun beforeTextChanged(s: CharSequence?, start: Int, count: Int, after: Int) {
+            }
+
+            override fun onTextChanged(s: CharSequence?, start: Int, before: Int, count: Int) {
+            }
+
+            override fun afterTextChanged(s: Editable?) {
+                if (s?.length ?: 0 > 8) {
+                    s?.delete(8, s.length)
+                }
+            }
+        })
     }
 
     private fun changeNickname() {
@@ -70,7 +86,7 @@ class MyPageNicknameChange : AppCompatActivity() {
 
     private fun handleNicknameChangeResponse(
         response: Response<BaseResponse<UserResponse>>,
-        newNickname: String
+        newNickname: String,
     ) {
         if (response.isSuccessful) {
             val baseResponse = response.body()
