@@ -5,48 +5,63 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     tools:context=".presentation.sign.ResetPw">
-    <FrameLayout
-        android:id="@+id/fl_mypage_nickname_backbtn"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginStart="10dp"
-        android:padding="7dp"
-        android:paddingRight="7dp"
-        android:layout_marginTop="10dp"
 
+    <androidx.constraintlayout.widget.ConstraintLayout
+        android:id="@+id/ll_pw_reset_email_0"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent">
 
-        <ImageButton
-            android:id="@+id/btnResetPwLeftArrow"
-            style="?android:attr/borderlessButtonStyle"
-            android:layout_width="10dp"
-            android:layout_height="18dp"
+        <FrameLayout
+            android:id="@+id/fl_pw_reset_backbtn"
+            android:layout_width="wrap_content"
+            android:layout_height="match_parent"
+            android:layout_marginStart="10dp"
+            android:padding="7dp"
+            android:paddingRight="7dp"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent">
 
+            <ImageButton
+                android:id="@+id/btn_pw_reset_back"
+                style="?android:attr/borderlessButtonStyle"
+                android:layout_width="10dp"
+                android:layout_height="18dp"
+                android:layout_gravity="center"
+                android:background="@drawable/ic_black_leftarrow_8_16" />
+        </FrameLayout>
+
+        <TextView
+            android:id="@+id/tv_pw_reset_title"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
             android:layout_gravity="center"
-            android:background="@drawable/ic_black_leftarrow_8_16" />
-    </FrameLayout>
+            android:layout_marginTop="16dp"
+            android:layout_marginBottom="16dp"
+            android:fontFamily="@font/pretendardbold"
+            android:gravity="center"
+            android:text="비밀번호 재설정"
+            android:textColor="@color/sorange"
+            android:textSize="20dp"
+            android:textStyle="bold"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent"
+            app:layout_constraintVertical_bias="1.0" />
 
-    <TextView
-        android:id="@+id/tv_reset_pw_email_title"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:text="@string/tv_reset_pw_email_title"
-        android:textColor="@color/sorange"
-        android:textSize="20dp"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintTop_toTopOf="parent"
-        android:layout_marginBottom="16dp"
-        android:layout_marginTop="16dp"
-        android:fontFamily="@font/pretendardbold"/>
+
+    </androidx.constraintlayout.widget.ConstraintLayout>
 
     <TextView
         android:id="@+id/tv_reset_pw_guide1"
         android:layout_width="0dp"
         android:layout_height="wrap_content"
         android:layout_marginStart="16dp"
-        android:layout_marginTop="46dp"
+        android:layout_marginTop="30dp"
         android:layout_marginEnd="16dp"
         android:bufferType="spannable"
         android:fontFamily="@font/pretendardbold"
@@ -57,7 +72,7 @@
         android:textStyle="bold"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/tv_reset_pw_email_title" />
+        app:layout_constraintTop_toBottomOf="@+id/ll_pw_reset_email_0" />
 
     <FrameLayout
         android:id="@+id/frameLayout_reset_pw"
