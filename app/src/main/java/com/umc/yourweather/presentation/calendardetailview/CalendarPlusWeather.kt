@@ -95,19 +95,34 @@ class CalendarPlusWeather : AppCompatActivity(), CalendarDetailViewTimepicker.Ti
         // 메모 저장 API 전송
         // memoDate - CalendarDetail 화면에서 넘어온 경우 해당 날짜
         // localDateTime - 미입력 화면에서 넘어온 경우
+        // ...
+
         binding.btnCalendardetailviewSave.setOnClickListener {
             val content: String? = editText.text?.toString()
             val temperature: Int? = binding.seekbarCalendarDetailviewTemp2.progress
+
+            if (localDateTime.isBlank()) {
+                // 시간이 입력되지 않은 경우
+                Toast.makeText(this@CalendarPlusWeather, "시간을 입력해주세요.", Toast.LENGTH_SHORT).show()
+                return@setOnClickListener // 메소드 종료
+            }
+
             val finalLocalDateTime = if (unWrittenDate != null) {
                 // 미입력에서 넘어온 경우 unWrittenDate와 localDateTime 합치기
                 "$unWrittenDate$localDateTime"
-            } else {
+            } else if (memoDate != null) {
                 // 캘린더에서 넘어온 경우 memoDate와 localDateTime 합치기
                 "$memoDate$localDateTime"
+            } else {
+                // 이외의 경우
+                ""
             }
-            selectedStatus?.let { status ->
-                GlobalScope.launch(Dispatchers.IO) {
-                    writeMemoAPI(status, content, finalLocalDateTime, temperature)
+
+            if (finalLocalDateTime.isNotBlank()) {
+                selectedStatus?.let { status ->
+                    GlobalScope.launch(Dispatchers.IO) {
+                        writeMemoAPI(status, content, finalLocalDateTime, temperature)
+                    }
                 }
             }
         }
@@ -193,7 +208,7 @@ class CalendarPlusWeather : AppCompatActivity(), CalendarDetailViewTimepicker.Ti
     }
 
     // 메모 작성 API
-    private fun writeMemoAPI(status: Status, content: String?, localDateTime: String?, temperature: Int?) {
+    private fun writeMemoAPI(status: Status, content: String?, localDateTime: Any, temperature: Int?) {
         val memoService = RetrofitImpl.authenticatedRetrofit.create(MemoService::class.java)
         memoService.memoWrite(MemoRequest(status, content, localDateTime, temperature))
             .enqueue(object : Callback<BaseResponse<MemoResponse>> {
@@ -204,12 +219,12 @@ class CalendarPlusWeather : AppCompatActivity(), CalendarDetailViewTimepicker.Ti
                     if (response.isSuccessful) {
                         val memoResponse = response.body()?.result
                         Log.d("메모 작성", "메모 작성, 전달 성공 ${response.body()?.result}")
-                        Toast.makeText(this@CalendarPlusWeather, "메모가 저장되었습니다.", Toast.LENGTH_SHORT).show()
+                        Toast.makeText(this@CalendarPlusWeather, "기록이 저장되었습니다.", Toast.LENGTH_SHORT).show()
 
                         activityFinish()
                     } else {
                         Log.d("메모 작성 실패", "메모 작성, 전달 실패: ${response.code()}")
-                        Toast.makeText(this@CalendarPlusWeather, "메모가 저장이 되지 않았습니다. 다시 입력해주세요.", Toast.LENGTH_SHORT).show()
+                        Toast.makeText(this@CalendarPlusWeather, "기록이 저장이 되지 않았습니다. 다시 입력해주세요.", Toast.LENGTH_SHORT).show()
                     }
                 }
 
