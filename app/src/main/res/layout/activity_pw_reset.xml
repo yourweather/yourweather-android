@@ -7,7 +7,7 @@
     tools:context=".presentation.sign.ResetPw">
 
     <androidx.constraintlayout.widget.ConstraintLayout
-        android:id="@+id/ll_pw_reset_email_0"
+        android:id="@+id/ll_reset_pw_email_0"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         app:layout_constraintEnd_toEndOf="parent"
@@ -15,7 +15,7 @@
         app:layout_constraintTop_toTopOf="parent">
 
         <FrameLayout
-            android:id="@+id/fl_pw_reset_backbtn"
+            android:id="@+id/fl_reset_pw_backbtn"
             android:layout_width="wrap_content"
             android:layout_height="match_parent"
             android:layout_marginStart="10dp"
@@ -26,7 +26,7 @@
             app:layout_constraintTop_toTopOf="parent">
 
             <ImageButton
-                android:id="@+id/btn_pw_reset_back"
+                android:id="@+id/btn_reset_pw_left_arrow"
                 style="?android:attr/borderlessButtonStyle"
                 android:layout_width="10dp"
                 android:layout_height="18dp"
@@ -72,7 +72,7 @@
         android:textStyle="bold"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/ll_pw_reset_email_0" />
+        app:layout_constraintTop_toBottomOf="@+id/ll_reset_pw_email_0" />
 
     <FrameLayout
         android:id="@+id/frameLayout_reset_pw"

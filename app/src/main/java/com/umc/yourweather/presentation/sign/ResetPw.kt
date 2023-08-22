@@ -44,7 +44,8 @@ class ResetPw : AppCompatActivity() {
         binding.btnResetPwLeftArrow.setOnClickListener {
             finish()
         }
-        binding.flMypageNicknameBackbtn.setOnClickListener {
+
+        binding.flResetPwBackbtn.setOnClickListener {
             finish()
         }
 
