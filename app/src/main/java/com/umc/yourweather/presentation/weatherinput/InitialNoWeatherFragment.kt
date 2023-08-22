@@ -50,29 +50,28 @@ class InitialNoWeatherFragment : Fragment() {
             transaction.commit()
         }
 
-
-        //마이페이지 api호출로 닉네임 값 변경
+        // 마이페이지 api호출로 닉네임 값 변경
         userService.getMyPage().enqueue(object : Callback<BaseResponse<UserResponse>> {
             override fun onResponse(
                 call: Call<BaseResponse<UserResponse>>,
-                response: Response<BaseResponse<UserResponse>>
+                response: Response<BaseResponse<UserResponse>>,
             ) {
                 if (response.isSuccessful) {
                     val userResponse = response.body()?.result
-                    val userNickname = userResponse?.nickname ?: "기본 닉네임"
-                    binding.tvInitialUsername.text = userNickname
+                    val userNickname = userResponse?.nickname ?: "유저 닉네임"
+                    binding.tvInitialMsg1.text = "$userNickname 님의 감정 날씨를"
 
                     // 닉네임 SH 저장
                     UserSharedPreferences.setUserNickname(requireContext(), userNickname)
                 } else {
                     val errorBody = response.errorBody()?.string()
-                    Log.e("MyPagePrivacyPolicy", "응답 실패")
+                    Log.e("Initial", "응답 실패")
                 }
             }
 
             override fun onFailure(call: Call<BaseResponse<UserResponse>>, t: Throwable) {
-                Log.e("MyPagePrivacyPolicy", "API호출 실패")
+                Log.e("Initial", "API호출 실패")
             }
-    })
-}
+        })
+    }
 }
