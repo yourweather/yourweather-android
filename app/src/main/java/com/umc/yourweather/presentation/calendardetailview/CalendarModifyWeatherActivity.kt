@@ -1,5 +1,7 @@
 package com.umc.yourweather.presentation.calendardetailview
 
+import android.graphics.Color
+import android.graphics.drawable.ColorDrawable
 import android.os.Bundle
 import android.util.Log
 import android.view.View
@@ -9,6 +11,7 @@ import android.widget.Button
 import android.widget.SeekBar
 import androidx.appcompat.app.AppCompatActivity
 import androidx.appcompat.widget.AppCompatEditText
+import androidx.core.content.ContentProviderCompat.requireContext
 import androidx.core.content.ContextCompat
 import com.umc.yourweather.R
 import com.umc.yourweather.data.enums.Status
@@ -19,6 +22,7 @@ import com.umc.yourweather.data.service.MemoService
 import com.umc.yourweather.databinding.ActivityCalendarModifyWeatherBinding
 import com.umc.yourweather.di.RetrofitImpl
 import com.umc.yourweather.di.UserSharedPreferences
+import com.umc.yourweather.util.AlertDialogTwoBtn
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.GlobalScope
 import kotlinx.coroutines.launch
@@ -52,7 +56,10 @@ class CalendarModifyWeatherActivity : AppCompatActivity() {
 
         // 뒤로 가기 버튼
         binding.flCalendarDetailviewBack.setOnClickListener {
-            finish()
+            showMemoCancleDialog()
+        }
+        binding.btnCalendarDetailviewBack.setOnClickListener {
+            showMemoCancleDialog()
         }
 
         val modifyStatus = intent.getSerializableExtra("modifyStatus") as Status
@@ -210,6 +217,28 @@ class CalendarModifyWeatherActivity : AppCompatActivity() {
         })
     }
 
+    // 뒤로가기 시 뜨는 다이얼로그
+    private fun showMemoCancleDialog() {
+        val alertDialog = AlertDialogTwoBtn(this)
+
+        alertDialog.setTitle("감정날씨 입력을 취소하시겠어요?")
+
+        alertDialog.setNegativeButton("아니요") { dialogInterface, _ ->
+            dialogInterface.dismiss()
+
+            dialogInterface.dismiss()
+        }
+
+        alertDialog.setPositiveButton("네") { dialogInterface, _ ->
+            dialogInterface.dismiss()
+
+            finish()
+        }
+
+        alertDialog.window?.setBackgroundDrawable(ColorDrawable(Color.TRANSPARENT))
+        alertDialog.show()
+    }
+
     // 메모 수정 API
     private fun modifyMemoAPI(memoId: Int, status: Status, content: String?, temperature: Int) {
         // Create a MemoUpdateRequest instance and populate it with the provided parameters
@@ -247,6 +276,6 @@ class CalendarModifyWeatherActivity : AppCompatActivity() {
 
     // 뒤로 가기 누른 경우
     override fun onBackPressed() {
-        finish()
+        showMemoCancleDialog()
     }
 }
