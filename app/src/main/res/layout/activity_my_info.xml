@@ -18,9 +18,8 @@
 
         <FrameLayout
             android:id="@+id/fl_myinfo_backbtn"
-            android:layout_width="wrap_content"
-            android:layout_height="match_parent"
-            android:layout_marginStart="10dp"
+            android:layout_width="56dp"
+            android:layout_height="58dp"
             android:padding="7dp"
             android:paddingRight="7dp"
             app:layout_constraintBottom_toBottomOf="parent"
