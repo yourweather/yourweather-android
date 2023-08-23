@@ -257,8 +257,6 @@
         android:id="@+id/linearLayout"
         android:layout_width="0dp"
         android:layout_height="wrap_content"
-        android:layout_marginStart="105dp"
-        android:layout_marginEnd="105dp"
         android:layout_marginBottom="49dp"
         android:gravity="center"
         android:orientation="horizontal"
