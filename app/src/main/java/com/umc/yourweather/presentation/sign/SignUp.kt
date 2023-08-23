@@ -51,6 +51,10 @@ class SignUp : AppCompatActivity() {
             finish()
         }
 
+        binding.flSignupBackbtn.setOnClickListener {
+            finish()
+        }
+
         // "로그인하러 가기" 버튼 클릭 시 이벤트 처리
         binding.tvSignupBtnsignin.setOnClickListener {
             val mIntent = Intent(this, SignIn::class.java)
