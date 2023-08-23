@@ -28,7 +28,10 @@ class MyPageAlarm : AppCompatActivity() {
         binding = ActivityMyPageAlarmBinding.inflate(layoutInflater)
         setContentView(binding.root)
 
-        binding.btnMyAlarm.setOnClickListener {
+        binding.btnAlarmBack.setOnClickListener {
+            finish()
+        }
+        binding.flMypageAlarmBackbtn.setOnClickListener {
             finish()
         }
 
