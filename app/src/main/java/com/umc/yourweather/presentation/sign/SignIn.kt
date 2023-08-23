@@ -173,8 +173,22 @@ class SignIn : AppCompatActivity() {
                     if (code == 200) {
                         // val mIntent = Intent(this@SignIn, BottomNavi::class.java)
                         Log.d("SignInDebug", "소셜 로그인 성공~ : " + response.headers().toString())
+
+                        // 자동로그인
+                        UserSharedPreferences.setUserEmail(this@SignIn, userEmail)
+                        UserSharedPreferences.setUserPw(this@SignIn, userPw)
+                        //
+
+                        // 토큰저장
                         App.token_prefs.accessToken = response.body()!!.result?.accessToken
                         App.token_prefs.refreshToken = response.body()!!.result?.refreshToken
+
+                        Log.d("로그인 sh 확인 로그 이메일", UserSharedPreferences.getUserEmail(this@SignIn))
+                        Log.d("로그인 sh 확인 로그 비번", UserSharedPreferences.getUserPw(this@SignIn))
+                        Log.d("로그인 sh 확인 로그 서버에서 온 액세스 토큰", App.token_prefs.accessToken.toString())
+                        Log.d("로그인 sh 확인 로그 서버에서 온 리프래시 토큰", App.token_prefs.refreshToken.toString())
+                        Log.d("로그인 sh 확인 로그 액세스 토큰", App.token_prefs.accessToken.toString())
+                        Log.d("로그인 sh 확인 로그 리프래시 토큰", App.token_prefs.refreshToken.toString())
 
                         moveToHome()
                         // startActivity(mIntent)
