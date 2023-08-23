@@ -21,6 +21,7 @@ import retrofit2.Response
 
 class MyPageFragment : Fragment() {
     lateinit var binding: FragmentMyPageBinding
+
     override fun onCreateView(
         inflater: LayoutInflater,
         container: ViewGroup?,
@@ -28,6 +29,7 @@ class MyPageFragment : Fragment() {
     ): View? {
         binding = FragmentMyPageBinding.inflate(inflater, container, false)
         return binding.root
+
     }
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
@@ -63,6 +65,11 @@ class MyPageFragment : Fragment() {
             val mIntent = Intent(activity, MyPageAlarm::class.java)
             startActivity(mIntent)
         }
+        userInfoAPI()
+    }
+    override fun onResume() {
+        super.onResume()
+        // 데이터 갱신 호출
         userInfoAPI()
     }
 

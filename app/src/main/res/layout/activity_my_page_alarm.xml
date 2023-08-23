@@ -6,16 +6,22 @@
     android:layout_height="match_parent"
     tools:context=".presentation.mypage.MyPageAlarm">
 
-    <ImageButton
-        android:id="@+id/btn_my_alarm"
-        style="?android:attr/borderlessButtonStyle"
-        android:layout_width="10dp"
-        android:layout_height="18dp"
-        android:layout_marginStart="17dp"
-        android:layout_marginTop="17dp"
-        android:background="@drawable/ic_black_leftarrow_8_16"
+    <FrameLayout
+        android:id="@+id/fl_mypage_alarm_backbtn"
+        android:layout_width="46dp"
+        android:layout_height="49dp"
+        android:padding="7dp"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent"/>
+        app:layout_constraintTop_toTopOf="parent">
+
+        <ImageButton
+            android:id="@+id/btn_alarm_back"
+            style="?android:attr/borderlessButtonStyle"
+            android:layout_width="10dp"
+            android:layout_height="18dp"
+            android:layout_gravity="center"
+            android:background="@drawable/ic_black_leftarrow_8_16" />
+    </FrameLayout>
 
     <TextView
         android:id="@+id/tv_my_alarm_title"

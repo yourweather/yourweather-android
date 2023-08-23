@@ -5,6 +5,7 @@ import android.os.Bundle
 import android.text.Editable
 import android.text.TextWatcher
 import android.util.Log
+import android.widget.Toast
 import androidx.appcompat.app.AppCompatActivity
 import com.umc.yourweather.data.remote.request.ChangeNicknameRequest
 import com.umc.yourweather.data.remote.response.BaseResponse
@@ -98,6 +99,11 @@ class MyPageNicknameChange : AppCompatActivity() {
                 val prefs = getSharedPreferences("account", Context.MODE_PRIVATE)
                 prefs.edit().putString(UserSharedPreferences.USER_NICKNAME, newNickname).apply()
 
+                Toast.makeText(
+                    this@MyPageNicknameChange,
+                    "닉네임이 변경되었습니다.",
+                    Toast.LENGTH_SHORT,
+                ).show()
                 Log.d("닉네임 변경", "닉네임 변경 성공: $newNickname")
                 // 닉네임 변경 성공 처리 또는 다음 화면으로 이동 처리
             } else {
