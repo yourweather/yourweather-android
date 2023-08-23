@@ -7,6 +7,7 @@ import android.view.View
 import android.view.ViewGroup
 import androidx.activity.OnBackPressedCallback
 import androidx.fragment.app.Fragment
+import androidx.fragment.app.FragmentManager
 import androidx.recyclerview.widget.LinearLayoutManager
 import com.umc.yourweather.R
 import com.umc.yourweather.data.entity.ItemWritten
@@ -182,6 +183,7 @@ class WrittenDetailListFragmentSunWeekly : Fragment() {
 
     private fun navigateToAnalysisFragment() {
         val analysisFragment = AnalysisFragment()
+        requireActivity().supportFragmentManager.popBackStack(null, FragmentManager.POP_BACK_STACK_INCLUSIVE)
         requireActivity().supportFragmentManager.beginTransaction()
             .replace(R.id.fl_content, analysisFragment)
             .addToBackStack(null)
