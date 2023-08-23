@@ -15,6 +15,8 @@ import com.umc.yourweather.di.UserSharedPreferences
 class MyPageAlarm : AppCompatActivity() {
     private lateinit var binding: ActivityMyPageAlarmBinding
     private val notificationId = 1
+    private val notificationId2 = 2
+
     private val PREFS_NAME = "MyPageAlarmPrefs"
     private val PREF_SWITCH_MONTHLY = "switchMonthly"
     private val PREF_SWITCH_WEEKLY = "switchWeekly"
@@ -129,7 +131,7 @@ class MyPageAlarm : AppCompatActivity() {
             .setPriority(NotificationCompat.PRIORITY_MAX)
 
         val notificationManager = getSystemService(Context.NOTIFICATION_SERVICE) as NotificationManager
-        notificationManager.notify(notificationId, builder.build())
+        notificationManager.notify(notificationId2, builder.build())
     }
 
     private fun cancelAlarm() {
