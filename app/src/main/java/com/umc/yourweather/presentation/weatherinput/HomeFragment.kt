@@ -20,6 +20,7 @@ import com.umc.yourweather.databinding.FragmentHomeBinding
 import com.umc.yourweather.di.RetrofitImpl
 import com.umc.yourweather.presentation.share.CarmeraPermissionFragment
 import com.umc.yourweather.presentation.share.SharedViewModel
+import com.umc.yourweather.util.AdTextUtils
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.launch
 import kotlinx.coroutines.withContext
@@ -81,7 +82,12 @@ class HomeFragment : Fragment(), HomeFragmentInteractionListener {
         binding.btnHomeWeatherinput.setOnClickListener {
             openHomeWeatherInputFragment()
         }
+        updateAdView()
         fetchHomeDataAndHandleResponse()
+    }
+    private fun updateAdView() {
+        val randomAd = AdTextUtils.getRandomAd()
+        binding.tvHomeAd.text = randomAd
     }
 
     // 광고 뷰 숨기기
