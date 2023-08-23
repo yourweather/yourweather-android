@@ -71,26 +71,11 @@ class HomeWeatherInputFragment : Fragment() {
         alertDialog.show()
     }
 
-
     @RequiresApi(Build.VERSION_CODES.O)
     private fun setupUI() {
         val userNickname = UserSharedPreferences.getUserNickname(requireContext())
-        binding.tvHomeWeatherUsername2.text = userNickname
-        binding.tvHomeWeatherUsername3.text = userNickname
-
-//        binding.btnWeatherinputGuide1.setOnClickListener {
-//            val imageView = binding.imgWeatherGuide
-//
-//            imageView.visibility = View.VISIBLE
-//
-//            // 이미지를 보여주는 시간
-//            val delayDurationMillis = 2000L
-//
-//            // 일정 시간 후에 이미지뷰를 숨기는 작업
-//            imageView.postDelayed({
-//                imageView.visibility = View.GONE
-//            }, delayDurationMillis)
-//        }
+        binding.tvHomeWeatherGuide2.text = userNickname + " 님의 현재 감정 상태는 어떠신가요?"
+        binding.tvHomeWeatherGuide4.text = userNickname + " 님의 현재 감정의 온도는 어떠신가요?"
 
         val buttonAnimation: Animation =
             AnimationUtils.loadAnimation(requireContext(), R.anim.btn_weather_scale)
