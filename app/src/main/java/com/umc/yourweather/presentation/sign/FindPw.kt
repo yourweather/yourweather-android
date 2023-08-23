@@ -36,6 +36,9 @@ class FindPw : AppCompatActivity() {
         binding.btnFindpwBack.setOnClickListener {
             finish()
         }
+        binding.flFindPwBackbtn.setOnClickListener {
+            finish()
+        }
     }
 
     private fun verifyEmail(email: String) {

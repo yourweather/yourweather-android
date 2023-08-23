@@ -1,6 +1,5 @@
 package com.umc.yourweather.presentation.mypage
 
-import android.content.Context
 import android.content.Intent
 import android.os.Bundle
 import android.util.Log
@@ -31,6 +30,10 @@ class MyPageMyInfo : AppCompatActivity() {
         setContentView(binding.root)
 
         binding.flMyinfoBackbtn.setOnClickListener {
+            finish()
+        }
+
+        binding.btnMyinfoBack.setOnClickListener {
             finish()
         }
 
@@ -121,7 +124,6 @@ class MyPageMyInfo : AppCompatActivity() {
                                 // 필요한 경우 다른 플랫폼도 추가 가능
                                 else -> R.drawable.img_yourweatherlogo
                             }
-
                         }
                     } else {
                         Log.e("Error (null)", "Response body 비었음")
