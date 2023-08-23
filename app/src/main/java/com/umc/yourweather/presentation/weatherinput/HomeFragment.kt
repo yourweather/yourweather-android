@@ -1,7 +1,5 @@
 package com.umc.yourweather.presentation.weatherinput
 
-import android.content.Intent
-import android.net.Uri
 import android.os.Bundle
 import android.util.Log
 import android.view.LayoutInflater
@@ -22,6 +20,7 @@ import com.umc.yourweather.databinding.FragmentHomeBinding
 import com.umc.yourweather.di.RetrofitImpl
 import com.umc.yourweather.presentation.share.CarmeraPermissionFragment
 import com.umc.yourweather.presentation.share.SharedViewModel
+import com.umc.yourweather.util.AdTextUtils
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.launch
 import kotlinx.coroutines.withContext
@@ -63,14 +62,14 @@ class HomeFragment : Fragment(), HomeFragmentInteractionListener {
             }
         }
 
-        // 광고 뷰 이동버튼 클릭
-        binding.btnHomeAdMove.setOnClickListener {
-            val baseUrl = System.getenv("BASE_URL")
-            val url = "$baseUrl/api/v1/ad/get-advertisement"
-
-            val intent = Intent(Intent.ACTION_VIEW, Uri.parse(url))
-            startActivity(intent)
-        }
+//        // 광고 뷰 이동버튼 클릭
+//        binding.btnHomeAdMove.setOnClickListener {
+//            val baseUrl = System.getenv("BASE_URL")
+//            val url = "$baseUrl/api/v1/ad/get-advertisement"
+//
+//            val intent = Intent(Intent.ACTION_VIEW, Uri.parse(url))
+//            startActivity(intent)
+//        }
 
         binding.btnHomeAdExit.setOnClickListener {
             hideAdViews()
@@ -83,13 +82,18 @@ class HomeFragment : Fragment(), HomeFragmentInteractionListener {
         binding.btnHomeWeatherinput.setOnClickListener {
             openHomeWeatherInputFragment()
         }
+        updateAdView()
         fetchHomeDataAndHandleResponse()
+    }
+    private fun updateAdView() {
+        val randomAd = AdTextUtils.getRandomAd()
+        binding.tvHomeAd.text = randomAd
     }
 
     // 광고 뷰 숨기기
     private fun hideAdViews() {
         binding.tvHomeAd.visibility = View.GONE
-        binding.btnHomeAdMove.visibility = View.GONE
+//        binding.btnHomeAdMove.visibility = View.GONE
         binding.flHomeAdExit.visibility = View.GONE
         binding.btnHomeAdExit.visibility = View.GONE
     }
@@ -218,7 +222,7 @@ class HomeFragment : Fragment(), HomeFragmentInteractionListener {
     // 캡쳐하기 전 뷰 숨기기
     fun hideViews() {
         binding.tvHomeAd.visibility = View.GONE
-        binding.btnHomeAdMove.visibility = View.GONE
+//        binding.btnHomeAdMove.visibility = View.GONE
         binding.flHomeAdExit.visibility = View.GONE
         binding.btnHomeAdExit.visibility = View.GONE
         binding.btnHomeShare.visibility = View.GONE
@@ -229,7 +233,7 @@ class HomeFragment : Fragment(), HomeFragmentInteractionListener {
     // 캡쳐 후 뷰 다시 보이기
     fun showViews() {
         binding.tvHomeAd.visibility = View.VISIBLE
-        binding.btnHomeAdMove.visibility = View.VISIBLE
+//        binding.btnHomeAdMove.visibility = View.VISIBLE
         binding.flHomeAdExit.visibility = View.VISIBLE
         binding.btnHomeAdExit.visibility = View.VISIBLE
         binding.btnHomeShare.visibility = View.VISIBLE

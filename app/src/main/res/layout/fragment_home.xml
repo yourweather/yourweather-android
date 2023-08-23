@@ -47,25 +47,25 @@
                 app:layout_constraintTop_toTopOf="@+id/bg_home_weather" />
 
 
-            <androidx.appcompat.widget.AppCompatButton
-                android:id="@+id/btn_home_ad_move"
-                android:layout_width="30dp"
-                android:layout_height="18dp"
-                android:layout_marginStart="270dp"
-                android:layout_marginTop="10dp"
-                android:layout_marginEnd="28dp"
-                android:layout_marginBottom="10dp"
-                android:background="@drawable/bg_home_movead"
-                android:fontFamily="@font/pretendardmedium"
-                android:text="이동"
-                android:textColor="@color/white"
-                android:textSize="8dp"
-                app:layout_constraintBottom_toBottomOf="@+id/tv_home_ad"
-                app:layout_constraintEnd_toEndOf="@+id/tv_home_ad"
-                app:layout_constraintHorizontal_bias="1.0"
-                app:layout_constraintStart_toStartOf="@+id/tv_home_ad"
-                app:layout_constraintTop_toTopOf="@+id/tv_home_ad"
-                app:layout_constraintVertical_bias="1.0" />
+<!--            <androidx.appcompat.widget.AppCompatButton-->
+<!--                android:id="@+id/btn_home_ad_move"-->
+<!--                android:layout_width="30dp"-->
+<!--                android:layout_height="18dp"-->
+<!--                android:layout_marginStart="270dp"-->
+<!--                android:layout_marginTop="10dp"-->
+<!--                android:layout_marginEnd="28dp"-->
+<!--                android:layout_marginBottom="10dp"-->
+<!--                android:background="@drawable/bg_home_movead"-->
+<!--                android:fontFamily="@font/pretendardmedium"-->
+<!--                android:text="이동"-->
+<!--                android:textColor="@color/white"-->
+<!--                android:textSize="8dp"-->
+<!--                app:layout_constraintBottom_toBottomOf="@+id/tv_home_ad"-->
+<!--                app:layout_constraintEnd_toEndOf="@+id/tv_home_ad"-->
+<!--                app:layout_constraintHorizontal_bias="1.0"-->
+<!--                app:layout_constraintStart_toStartOf="@+id/tv_home_ad"-->
+<!--                app:layout_constraintTop_toTopOf="@+id/tv_home_ad"-->
+<!--                app:layout_constraintVertical_bias="1.0" />-->
 
 
             <FrameLayout
