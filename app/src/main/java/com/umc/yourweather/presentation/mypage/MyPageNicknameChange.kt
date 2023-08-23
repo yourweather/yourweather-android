@@ -12,6 +12,7 @@ import com.umc.yourweather.data.remote.response.BaseResponse
 import com.umc.yourweather.data.remote.response.UserResponse
 import com.umc.yourweather.data.service.UserService
 import com.umc.yourweather.databinding.ActivityMyPageNicknameChangeBinding
+import com.umc.yourweather.di.App
 import com.umc.yourweather.di.RetrofitImpl
 import com.umc.yourweather.di.UserSharedPreferences
 import com.umc.yourweather.util.NicknameUtils
@@ -33,6 +34,7 @@ class MyPageNicknameChange : AppCompatActivity() {
         binding.btnMypageNicknameRefresh.setOnClickListener {
             binding.etMypageNicknameNickname.setText("")
             binding.etMypageNicknameNickname.hint = NicknameUtils.getRandomHintText()
+
         }
 
         binding.flMypageNicknameBackbtn.setOnClickListener {
@@ -63,8 +65,11 @@ class MyPageNicknameChange : AppCompatActivity() {
         val newNickname = binding.etMypageNicknameNickname.text.toString()
         if (newNickname.isNotEmpty()) {
             performNicknameChange(newNickname)
-        } else {
+        } else if(newNickname.isBlank()) {
             // 닉네임이 비어있는 경우 처리
+            val hintNickname = binding.etMypageNicknameNickname.hint.toString()
+            performNicknameChange(hintNickname)
+            Log.d("노 닉네임", "$hintNickname")
         }
     }
 
