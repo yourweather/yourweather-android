@@ -64,6 +64,10 @@ class FindPwEmail : AppCompatActivity() {
             finish()
         }
 
+        binding.flFinpwEmailBackbtn.setOnClickListener {
+            finish()
+        }
+
         binding.etFindPwEmailAuth.addTextChangedListener(createTextWatcher(::checkAuth))
     }
 

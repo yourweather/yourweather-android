@@ -33,6 +33,11 @@ class SignUp2 : AppCompatActivity() {
             startActivity(mIntent)
             finish()
         }
+
+        binding.flSignup2Backbtn.setOnClickListener {
+            finish()
+        }
+
         binding.etSignup2Pw.addTextChangedListener(createTextWatcher(::checkPwFormat))
         binding.etSignup2Repw.addTextChangedListener(createTextWatcher(::checkRePw))
     }
