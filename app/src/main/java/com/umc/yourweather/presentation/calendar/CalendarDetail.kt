@@ -185,7 +185,7 @@ class CalendarDetail : AppCompatActivity() {
                 val mIntent = Intent(this@CalendarDetail, CalendarWeatherDetail::class.java)
                 mIntent.putExtra("memoId", memoId)
                 startActivity(mIntent)
-                // finish()
+                finish()
             }
         })
 
@@ -198,7 +198,7 @@ class CalendarDetail : AppCompatActivity() {
                 val mIntent = Intent(this@CalendarDetail, CalendarPlusWeather::class.java)
                 mIntent.putExtra("date", thisDate)
                 startActivity(mIntent)
-                // finish()
+                finish()
             }
         }
     }
@@ -229,7 +229,7 @@ class CalendarDetail : AppCompatActivity() {
             val mIntent = Intent(this@CalendarDetail, CalendarPlusWeather::class.java)
             mIntent.putExtra("date", thisDate)
             startActivity(mIntent)
-            // finish()
+            finish()
         }
 
         // 숨겨야 될 거...
