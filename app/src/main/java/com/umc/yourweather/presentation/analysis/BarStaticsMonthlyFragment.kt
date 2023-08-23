@@ -262,7 +262,7 @@ class BarStaticsMonthlyFragment : Fragment() {
                         Log.d("이번 달 bar API Success", "이번 달 Sunny: ${statisticResponse.sunny}, Cloudy: ${statisticResponse.cloudy}, Rainy: ${statisticResponse.rainy}, Lightning: ${statisticResponse.lightning}")
 
                         // 데이터 리스트 생성
-                        val dataList = listOf(
+                        val dataList: List<BarData>? = listOf(
                             BarData("맑음", statisticResponse.sunny.toInt()),
                             BarData("구름 약간", statisticResponse.cloudy.toInt()),
                             BarData("비", statisticResponse.rainy.toInt()),
@@ -270,7 +270,7 @@ class BarStaticsMonthlyFragment : Fragment() {
                         )
 
                         // 데이터 표시 함수 호출
-                        bindWeatherData(dataList, binding.llAnalysisBarThisMonth)
+                        dataList?.let { bindWeatherData(it, binding.llAnalysisBarThisMonth) }
                     } else {
                         Log.e("이번 달 bar API Error", "Response body 비었음")
                     }
@@ -302,7 +302,7 @@ class BarStaticsMonthlyFragment : Fragment() {
                         Log.d("지난 달 bar API Success", "지난 달 Sunny: ${statisticResponse.sunny}, Cloudy: ${statisticResponse.cloudy}, Rainy: ${statisticResponse.rainy}, Lightning: ${statisticResponse.lightning}")
 
                         // 데이터 리스트 생성
-                        val dataList = listOf(
+                        val dataList: List<BarData>? = listOf(
                             BarData("맑음", statisticResponse.sunny.toInt()),
                             BarData("구름 약간", statisticResponse.cloudy.toInt()),
                             BarData("비", statisticResponse.rainy.toInt()),
@@ -310,7 +310,7 @@ class BarStaticsMonthlyFragment : Fragment() {
                         )
 
                         // 데이터 표시 함수 호출
-                        bindWeatherData(dataList, binding.llAnalysisBarLastMonth)
+                        dataList?.let { bindWeatherData(it, binding.llAnalysisBarLastMonth) }
                     } else {
                         Log.e("지난 달 bar API Error", "Response body 비었음")
                     }
@@ -337,19 +337,27 @@ class BarStaticsMonthlyFragment : Fragment() {
                 response: Response<BaseResponse<StatisticResponse>>,
             ) {
                 if (response.isSuccessful) {
-                    val statisticResponse = response.body()?.result // 'data'가 실제 응답 데이터를 담고 있는 필드일 경우
+                    val statisticResponse = response.body()?.result
                     if (statisticResponse != null) {
                         Log.d("월간 데이터 비교 API Success", "Sunny: ${statisticResponse.sunny}, Cloudy: ${statisticResponse.cloudy}, Rainy: ${statisticResponse.rainy}, Lightning: ${statisticResponse.lightning}")
 
-                        val increases = mutableMapOf<String, Int>()
+                        val increases:MutableMap<String, Int>? = mutableMapOf<String, Int>()
                         val decreases = mutableMapOf<String, Int>()
 
-                        if (statisticResponse.sunny >= 0) increases["맑음"] = statisticResponse.sunny.toInt() else decreases["맑음"] = 0
-                        if (statisticResponse.cloudy >= 0) increases["구름 약간"] = statisticResponse.cloudy.toInt() else decreases["구름 약간"] = 0
-                        if (statisticResponse.rainy >= 0) increases["비"] = statisticResponse.rainy.toInt() else decreases["비"] = 15
-                        if (statisticResponse.lightning >= 0) increases["번개"] = statisticResponse.lightning.toInt() else decreases["번개"] = 20
+                        if (statisticResponse.sunny >= 0) increases?.set("맑음",
+                            statisticResponse.sunny.toInt()
+                        ) else decreases["맑음"] = 0
+                        if (statisticResponse.cloudy >= 0) increases?.set("구름 약간",
+                            statisticResponse.cloudy.toInt()
+                        ) else decreases["구름 약간"] = 0
+                        if (statisticResponse.rainy >= 0) increases?.set("비",
+                            statisticResponse.rainy.toInt()
+                        ) else decreases["비"] = 15
+                        if (statisticResponse.lightning >= 0) increases?.set("번개",
+                            statisticResponse.lightning.toInt()
+                        ) else decreases["번개"] = 20
 
-                        applyWeatherTextFormatting(increases, decreases)
+                        increases?.let { applyWeatherTextFormatting(it, decreases) }
                     } else {
                         Log.e("월간 데이터 비교 bar API Error", "Response body 비었음")
                     }
