@@ -52,7 +52,11 @@ class CalendarDetailMemoListAdapter(private val memoList: List<MemoDailyResponse
         // 원 위치부터 구하기..
         var totalGraphHeight = dpToPx(context, 90)
         var temper = memoList[position].temperature
-        var circleHeight = totalGraphHeight / 100 * temper
+        // var circleHeight = totalGraphHeight / 100 * temper
+        var radius = dpToPx(context, 4)
+        // 원 잘림 현상 막아보기
+        var circleHeight = (totalGraphHeight - 3 * radius) / 100 * temper + radius
+
         // 원 높이는 전체 / 100 * 온도 수치(온도 범위가 0~100이므로.....)
         // 그래프 아이콘의 아래 margin
         var layoutParams = holder.binding.ivCalendarDetailGraph.layoutParams as ConstraintLayout.LayoutParams
