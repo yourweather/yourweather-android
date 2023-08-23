@@ -163,7 +163,6 @@ class CalendarPlusWeather : AppCompatActivity(), CalendarDetailViewTimepicker.Ti
         formattedCurrentTime = String.format("T%02d:%02d", hour % 12, minute)
 
         return String.format("%s %02d:%02d", amPm, hour % 12, minute)
-
     }
 
     // 뒤로가기 시 뜨는 다이얼로그
