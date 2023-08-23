@@ -42,9 +42,9 @@ class WrittenDetailListFragmentCloudWeekly : Fragment() {
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
 
-        binding.rlBtn1.setOnClickListener {
-            navigateToAnalysisFragment()
-        }
+//        binding.rlBtn1.setOnClickListener {
+//            navigateToAnalysisFragment()
+//        }
 
         // 뒤로가기 버튼을 누를 때 AnalysisFragment로 이동하도록 설정
         val callback = object : OnBackPressedCallback(true) {
