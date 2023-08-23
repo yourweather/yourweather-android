@@ -77,30 +77,30 @@
 
         </FrameLayout>
 
-        <TextView
-            android:id="@+id/tv_home_weather_username2"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_marginTop="47dp"
-            android:layout_marginEnd="5dp"
-            android:fontFamily="@font/pretendardmedium"
-            android:text="aaaaaaaa"
-            android:textColor="#2B2B2B"
-            android:textSize="16dp"
-            app:layout_constraintEnd_toStartOf="@+id/tv_home_weather_guide2"
-            app:layout_constraintTop_toTopOf="@+id/iv_home_weather" />
+<!--        <TextView-->
+<!--            android:id="@+id/tv_home_weather_username2"-->
+<!--            android:layout_width="wrap_content"-->
+<!--            android:layout_height="wrap_content"-->
+<!--            android:layout_marginTop="47dp"-->
+<!--            android:layout_marginEnd="5dp"-->
+<!--            android:fontFamily="@font/pretendardmedium"-->
+<!--            android:text="aaaaaaaa"-->
+<!--            android:textColor="#2B2B2B"-->
+<!--            android:textSize="16dp"-->
+<!--            app:layout_constraintEnd_toStartOf="@+id/tv_home_weather_guide2"-->
+<!--            app:layout_constraintTop_toTopOf="@+id/iv_home_weather" />-->
 
         <TextView
             android:id="@+id/tv_home_weather_guide2"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_marginTop="47dp"
-            android:layout_marginEnd="60dp"
             android:fontFamily="@font/pretendardmedium"
             android:text="님의 현재 감정 상태는 어떠신가요?"
             android:textColor="#2B2B2B"
             android:textSize="16dp"
             app:layout_constraintEnd_toEndOf="@+id/iv_home_weather"
+            app:layout_constraintStart_toStartOf="@+id/iv_home_weather"
             app:layout_constraintTop_toTopOf="@+id/iv_home_weather" />
 
 <!--        <ImageButton-->
@@ -174,30 +174,30 @@
             app:layout_constraintHorizontal_bias="0.492"
             app:layout_constraintStart_toStartOf="@+id/iv_home_weather" />
 
-        <TextView
-            android:id="@+id/tv_home_weather_username3"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_marginTop="91dp"
-            android:layout_marginEnd="5dp"
-            android:fontFamily="@font/pretendardmedium"
-            android:text="aaaaaaaa"
-            android:textColor="#2B2B2B"
-            android:textSize="16dp"
-            app:layout_constraintEnd_toStartOf="@+id/tv_home_weather_guide4"
-            app:layout_constraintTop_toBottomOf="@+id/tv_home_weather_username2" />
+<!--        <TextView-->
+<!--            android:id="@+id/tv_home_weather_username3"-->
+<!--            android:layout_width="wrap_content"-->
+<!--            android:layout_height="wrap_content"-->
+<!--            android:layout_marginTop="91dp"-->
+<!--            android:layout_marginEnd="5dp"-->
+<!--            android:fontFamily="@font/pretendardmedium"-->
+<!--            android:text="aaaaaaaa"-->
+<!--            android:textColor="#2B2B2B"-->
+<!--            android:textSize="16dp"-->
+<!--            app:layout_constraintEnd_toStartOf="@+id/tv_home_weather_guide4"-->
+<!--            app:layout_constraintTop_toBottomOf="@+id/tv_home_weather_guide2" />-->
 
         <TextView
             android:id="@+id/tv_home_weather_guide4"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_marginTop="91dp"
-            android:layout_marginEnd="52dp"
             android:fontFamily="@font/pretendardmedium"
             android:text="님의 현재 감정의 온도는 어떠신가요?"
             android:textColor="#2B2B2B"
             android:textSize="16dp"
             app:layout_constraintEnd_toEndOf="@+id/iv_home_weather"
+            app:layout_constraintStart_toStartOf="@+id/iv_home_weather"
             app:layout_constraintTop_toBottomOf="@+id/tv_home_weather_guide2" />
 
 <!--        <ImageButton-->
