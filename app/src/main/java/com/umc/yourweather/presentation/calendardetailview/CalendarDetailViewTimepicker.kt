@@ -71,7 +71,7 @@ class CalendarDetailViewTimepicker : Fragment() {
         calendar.set(Calendar.HOUR_OF_DAY, selectedHour)
         calendar.set(Calendar.MINUTE, selectedMinute)
 
-        val sdf = SimpleDateFormat("a hh : mm", Locale.KOREA)
+        val sdf = SimpleDateFormat("a hh:mm", Locale.KOREA)
         return sdf.format(calendar.time)
     }
 }
