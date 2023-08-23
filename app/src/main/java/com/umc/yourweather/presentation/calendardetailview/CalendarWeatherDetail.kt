@@ -2,11 +2,13 @@ package com.umc.yourweather.presentation.calendardetailview
 
 import android.content.Intent
 import android.os.Bundle
+import android.text.TextUtils.replace
 import android.util.Log
 import android.view.animation.Animation
 import android.view.animation.AnimationUtils
 import android.widget.Toast
 import androidx.appcompat.app.AppCompatActivity
+import androidx.fragment.app.commit
 import com.umc.yourweather.R
 import com.umc.yourweather.data.enums.Status
 import com.umc.yourweather.data.remote.request.MemoUpdateRequest
@@ -17,6 +19,7 @@ import com.umc.yourweather.data.service.MemoService
 import com.umc.yourweather.databinding.ActivityCalendarWeatherDetailBinding
 import com.umc.yourweather.di.RetrofitImpl
 import com.umc.yourweather.di.UserSharedPreferences
+import com.umc.yourweather.presentation.calendar.CalendarTotalViewFragment
 import retrofit2.Call
 import retrofit2.Callback
 import retrofit2.Response
@@ -112,6 +115,7 @@ class CalendarWeatherDetail : AppCompatActivity() {
 
         binding.flCalendarDetailviewBack.setOnClickListener {
             finish()
+            // 프래그먼트로 이동
         }
 
         // 메모 삭제 버튼 -> API 호출

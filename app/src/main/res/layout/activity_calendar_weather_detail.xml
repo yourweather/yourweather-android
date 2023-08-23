@@ -7,6 +7,13 @@
     tools:context=".presentation.calendardetailview.CalendarModifyWeatherActivity"
     tools:ignore="MissingDefaultResource">
 
+    <FrameLayout
+        android:id="@+id/fragmentContainer"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent">
+
+    </FrameLayout>
+
     <TextView
         android:id="@+id/tv_detailview_modify2_date"
         android:layout_width="wrap_content"

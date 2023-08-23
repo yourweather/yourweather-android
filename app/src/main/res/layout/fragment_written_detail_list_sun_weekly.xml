@@ -6,26 +6,26 @@
     android:layout_height="match_parent"
     tools:context=".presentation.analysis.WrittenDetailListFragmentSunWeekly">
 
-    <RelativeLayout
-        android:id="@+id/rl_btn1"
-        android:layout_width="44dp"
-        android:layout_height="52dp"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent">
+<!--    <RelativeLayout-->
+<!--        android:id="@+id/rl_btn1"-->
+<!--        android:layout_width="44dp"-->
+<!--        android:layout_height="52dp"-->
+<!--        app:layout_constraintStart_toStartOf="parent"-->
+<!--        app:layout_constraintTop_toTopOf="parent">-->
 
-        <ImageButton
-            android:id="@+id/btn_detail_left_arrow"
-            style="?android:attr/borderlessButtonStyle"
-            android:layout_width="10dp"
-            android:layout_height="18dp"
-            android:layout_marginStart="17dp"
-            android:layout_marginTop="19dp"
-            android:background="@drawable/ic_black_leftarrow_8_16"
-            android:paddingTop="10dp"
-            app:layout_constraintHeight_percent="0.05"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toTopOf="parent" />
-    </RelativeLayout>
+<!--        <ImageButton-->
+<!--            android:id="@+id/btn_detail_left_arrow"-->
+<!--            style="?android:attr/borderlessButtonStyle"-->
+<!--            android:layout_width="10dp"-->
+<!--            android:layout_height="18dp"-->
+<!--            android:layout_marginStart="17dp"-->
+<!--            android:layout_marginTop="19dp"-->
+<!--            android:background="@drawable/ic_black_leftarrow_8_16"-->
+<!--            android:paddingTop="10dp"-->
+<!--            app:layout_constraintHeight_percent="0.05"-->
+<!--            app:layout_constraintStart_toStartOf="parent"-->
+<!--            app:layout_constraintTop_toTopOf="parent" />-->
+<!--    </RelativeLayout>-->
 
     <LinearLayout
         android:id="@+id/ll_written_detail_list3"
