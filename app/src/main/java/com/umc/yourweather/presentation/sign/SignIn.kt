@@ -46,6 +46,18 @@ class SignIn : AppCompatActivity() {
         binding = ActivitySignInBinding.inflate(layoutInflater)
         setContentView(binding.root)
 
+        if (UserSharedPreferences.getUserEmail(this).isNullOrBlank() ||
+            UserSharedPreferences.getUserPw(this).isNullOrBlank()
+        ) {
+            Log.d("sh 확인", "로그인 필요")
+        } else { // SharedPreferences 안에 값이 저장되어 있을 때 -> MainActivity로 이동
+            Log.d("sh 확인 이메일", UserSharedPreferences.getUserEmail(this).toString())
+            Log.d("sh 확인 비밀번호", UserSharedPreferences.getUserPw(this).toString())
+            val intent = Intent(this, BottomNavi::class.java)
+            startActivity(intent)
+            finish()
+        }
+
 //        if (App.token_prefs.accessToken != null) {
 //            val mIntent = Intent(this@SignIn, BottomNavi::class.java)
 //            startActivity(mIntent)
@@ -104,8 +116,23 @@ class SignIn : AppCompatActivity() {
                         // val mIntent = Intent(this@SignIn, BottomNavi::class.java)
                         Log.d("SignInDebug", "로그인 성공~ : " + response.headers().toString())
                         UserSharedPreferences.setUserPwToStar(this@SignIn, userPw)
+
+                        // 자동로그인
+                        UserSharedPreferences.setUserEmail(this@SignIn, userEmail)
+                        UserSharedPreferences.setUserPw(this@SignIn, userPw)
+                        //
+
+                        // 토큰저장
                         App.token_prefs.accessToken = response.body()!!.result?.accessToken
                         App.token_prefs.refreshToken = response.body()!!.result?.refreshToken
+
+                        Log.d("로그인 sh 확인 로그 이메일", UserSharedPreferences.getUserEmail(this@SignIn))
+                        Log.d("로그인 sh 확인 로그 비번", UserSharedPreferences.getUserPw(this@SignIn))
+                        Log.d("로그인 sh 확인 로그 서버에서 온 액세스 토큰", App.token_prefs.accessToken.toString())
+                        Log.d("로그인 sh 확인 로그 서버에서 온 리프래시 토큰", App.token_prefs.refreshToken.toString())
+                        Log.d("로그인 sh 확인 로그 액세스 토큰", App.token_prefs.accessToken.toString())
+                        Log.d("로그인 sh 확인 로그 리프래시 토큰", App.token_prefs.refreshToken.toString())
+
                         // startActivity(mIntent)
                         moveToHome()
                     } else {
