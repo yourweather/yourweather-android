@@ -82,7 +82,7 @@ class CalendarPlusWeather : AppCompatActivity(), CalendarDetailViewTimepicker.Ti
             if (dateParts.size == 3) {
                 val month = dateParts[1].toInt()
                 val day = dateParts[2].toInt()
-                binding.tvDetailviewModify2Date.text = "${month}월 ${day}의 기록"
+                binding.tvDetailviewModify2Date.text = "${month}월 ${day}일의 기록"
                 Log.d("CalendarDetail 에서 넘어온 경우 날짜 파싱", "${month}월 ${day}의 기록")
             }
         }
