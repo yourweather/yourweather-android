@@ -31,12 +31,12 @@
 
             <TextView
                 android:id="@+id/tv_home_ad"
-                android:layout_width="370dp"
-                android:layout_height="wrap_content"
+                android:layout_width="match_parent"
+                android:layout_height="35dp"
                 android:layout_marginStart="16dp"
                 android:layout_marginTop="58dp"
                 android:layout_marginEnd="16dp"
-                android:background="@drawable/bg_home_ad"
+                android:background="@color/white"
                 android:fontFamily="@font/pretendardsemibold"
                 android:gravity="center"
                 android:text="광고 텍스트가 들어갈 자리입니다."
@@ -75,7 +75,6 @@
                 android:layout_marginStart="3dp"
                 app:layout_constraintBottom_toBottomOf="@+id/tv_home_ad"
                 app:layout_constraintEnd_toEndOf="@+id/tv_home_ad"
-                app:layout_constraintStart_toEndOf="@+id/btn_home_ad_move"
                 app:layout_constraintTop_toTopOf="@+id/tv_home_ad">
 
                 <androidx.constraintlayout.widget.ConstraintLayout
@@ -211,7 +210,6 @@
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintHorizontal_bias="1.0"
                 app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toTopOf="parent"
                 app:layout_constraintVertical_bias="1.0" />
 
             <com.google.android.material.bottomnavigation.BottomNavigationView
