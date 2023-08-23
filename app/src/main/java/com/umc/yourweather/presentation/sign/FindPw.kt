@@ -32,6 +32,7 @@ class FindPw : AppCompatActivity() {
         binding.btnFindpwNext.setOnClickListener {
             verifyEmail(binding.etFindpwEmail.text.toString())
         }
+
         binding.btnFindpwBack.setOnClickListener {
             finish()
         }

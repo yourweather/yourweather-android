@@ -55,6 +55,14 @@ class CalendarDetail : AppCompatActivity() {
         } else {
             CalendarDetailViewApi(weatherId, thisDate)
         }
+
+        binding.flCalendarDetailBackbtn.setOnClickListener {
+            finish()
+        }
+
+        binding.btnCalendarDetailBack.setOnClickListener {
+            finish()
+        }
     }
 
     private fun CalendarDetailViewApi(weatherId: Int, thisDate: String?) {
@@ -177,7 +185,7 @@ class CalendarDetail : AppCompatActivity() {
                 val mIntent = Intent(this@CalendarDetail, CalendarWeatherDetail::class.java)
                 mIntent.putExtra("memoId", memoId)
                 startActivity(mIntent)
-                finish()
+                // finish()
             }
         })
 
@@ -190,7 +198,7 @@ class CalendarDetail : AppCompatActivity() {
                 val mIntent = Intent(this@CalendarDetail, CalendarPlusWeather::class.java)
                 mIntent.putExtra("date", thisDate)
                 startActivity(mIntent)
-                finish()
+                // finish()
             }
         }
     }
@@ -221,7 +229,7 @@ class CalendarDetail : AppCompatActivity() {
             val mIntent = Intent(this@CalendarDetail, CalendarPlusWeather::class.java)
             mIntent.putExtra("date", thisDate)
             startActivity(mIntent)
-            finish()
+            // finish()
         }
 
         // 숨겨야 될 거...

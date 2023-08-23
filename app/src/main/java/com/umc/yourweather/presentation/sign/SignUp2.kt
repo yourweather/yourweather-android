@@ -27,6 +27,7 @@ class SignUp2 : AppCompatActivity() {
         binding.btnSignup2Next.setOnClickListener {
             getPw()
         }
+
         binding.btnSignup2Back.setOnClickListener {
             val mIntent = Intent(this, SignUp::class.java)
             startActivity(mIntent)
