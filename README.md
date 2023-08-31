@@ -37,7 +37,7 @@
 2) 작업 완료 후 add, commit, push
 3) pull request 생성
 4) 본인을 제외한 각 팀원 코드 리뷰
-5) Merge : 카야←진←리유←코이←카야
+5) Merge : 카야←진←리유←카야
    [예시 : 카야 코드 merge = 진]
 
 ## 🌀 Package 규칙
