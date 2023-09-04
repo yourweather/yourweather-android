@@ -237,31 +237,35 @@
                 <LinearLayout
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:orientation="horizontal">
+                    android:orientation="horizontal"
+                    android:layout_marginStart="45dp"
+                    android:layout_marginEnd="25dp"
+                    >
 
                     <TextView
                         android:id="@+id/iv_calendar_detailview_modify2_5"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
-                        android:layout_marginStart="53dp"
                         android:layout_marginTop="10dp"
-                        android:layout_weight="1"
                         android:fontFamily="@font/pretendardsemibold"
                         android:text="0°"
                         android:textSize="13dp"
                         app:layout_constraintBottom_toBottomOf="parent"
                         app:layout_constraintEnd_toEndOf="parent"
                         app:layout_constraintStart_toStartOf="parent"
-                        app:layout_constraintTop_toBottomOf="@+id/divider" />
+                        app:layout_constraintTop_toBottomOf="@+id/divider"
+                        />
+
+                    <View
+                        android:layout_width="0dp"
+                        android:layout_height="0dp"
+                        android:layout_weight="1" />
 
                     <TextView
                         android:id="@+id/iv_calendar_detailview_modify2_6"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
-                        android:layout_weight="1"
-                        android:layout_marginStart="265dp"
                         android:layout_marginTop="10dp"
-                        android:layout_marginEnd="0dp"
                         android:layout_marginBottom="0dp"
                         android:fontFamily="@font/pretendardsemibold"
                         android:text="100°"
@@ -269,7 +273,8 @@
                         app:layout_constraintBottom_toBottomOf="parent"
                         app:layout_constraintEnd_toEndOf="parent"
                         app:layout_constraintStart_toStartOf="parent"
-                        app:layout_constraintTop_toBottomOf="@+id/divider" />
+                        app:layout_constraintTop_toBottomOf="@+id/divider"
+                        android:gravity="right"/>
                 </LinearLayout>
             </LinearLayout>
 
