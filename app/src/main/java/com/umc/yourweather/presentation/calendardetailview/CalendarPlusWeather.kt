@@ -31,7 +31,7 @@ import retrofit2.Callback
 import retrofit2.Response
 import java.util.Calendar
 
-class CalendarPlusWeather : AppCompatActivity(), CalendarDetailViewTimepicker.TimePickerListener {
+class CalendarPlusWeather : AppCompatActivity(), CalendarDetailViewTimepickerFragment.TimePickerListener {
     private lateinit var binding: ActivityCalendarPlusWeatherBinding
     private lateinit var editText: AppCompatEditText
     private var isSeekBarAdjusted = false // 변수 선언
@@ -105,7 +105,7 @@ class CalendarPlusWeather : AppCompatActivity(), CalendarDetailViewTimepicker.Ti
             isTimePickerUsed = true // Set the flag to true
 
             val fragmentManager = supportFragmentManager
-            val timePicker = CalendarDetailViewTimepicker()
+            val timePicker = CalendarDetailViewTimepickerFragment()
             val transaction = fragmentManager.beginTransaction()
             transaction.addToBackStack(null) // 프래그먼트를 백 스택에 추가
             transaction.replace(R.id.constraint, timePicker)

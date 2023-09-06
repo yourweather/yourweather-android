@@ -65,7 +65,7 @@
             android:exported="false"
             android:screenOrientation="portrait" />
         <activity
-            android:name=".presentation.calendardetailview.CalendarDetailViewTimepicker"
+            android:name=".presentation.calendardetailview.CalendarDetailViewTimepickerFragment"
             android:exported="false"
             android:screenOrientation="portrait" />
         <activity
