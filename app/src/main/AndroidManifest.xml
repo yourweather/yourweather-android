@@ -89,7 +89,7 @@
             android:screenOrientation="portrait" />
 
         <activity
-            android:name=".presentation.mypage.MyPageMyInfo"
+            android:name=".presentation.mypage.MyPageMyInfoActivity"
             android:exported="false"
             android:screenOrientation="portrait" />
         <activity

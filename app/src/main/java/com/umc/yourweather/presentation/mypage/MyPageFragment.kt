@@ -34,7 +34,7 @@ class MyPageFragment : Fragment() {
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
         binding.flMyPageL1.setOnClickListener {
-            val mIntent = Intent(activity, MyPageMyInfo::class.java)
+            val mIntent = Intent(activity, MyPageMyInfoActivity::class.java)
             val sharedPreferences = requireActivity().getSharedPreferences("MyPrefs", Context.MODE_PRIVATE)
             val nickname = sharedPreferences.getString("nickname", "")
             val email = sharedPreferences.getString("email", "")

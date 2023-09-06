@@ -16,7 +16,7 @@ import retrofit2.Call
 import retrofit2.Callback
 import retrofit2.Response
 
-class MyPageMyInfo : AppCompatActivity() {
+class MyPageMyInfoActivity : AppCompatActivity() {
     lateinit var binding: ActivityMyInfoBinding
 
     override fun onResume() {
