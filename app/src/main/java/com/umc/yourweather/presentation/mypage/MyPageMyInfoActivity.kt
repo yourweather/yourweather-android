@@ -49,7 +49,7 @@ class MyPageMyInfoActivity : AppCompatActivity() {
         binding.tvMyinfoNickname.text = nickname
 
         binding.btnMyinfoNicknameChange.setOnClickListener {
-            val mIntent = Intent(this, MyPageNicknameChange::class.java)
+            val mIntent = Intent(this, MyPageNicknameChangeActivity::class.java)
             mIntent.putExtra("nickname", nickname)
 
             startActivity(mIntent)

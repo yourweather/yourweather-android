@@ -93,7 +93,7 @@
             android:exported="false"
             android:screenOrientation="portrait" />
         <activity
-            android:name=".presentation.mypage.MyPageNicknameChange"
+            android:name=".presentation.mypage.MyPageNicknameChangeActivity"
             android:exported="false"
             android:screenOrientation="portrait" />
         <activity

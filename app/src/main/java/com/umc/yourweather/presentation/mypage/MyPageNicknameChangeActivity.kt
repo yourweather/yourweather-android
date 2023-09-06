@@ -12,7 +12,6 @@ import com.umc.yourweather.data.remote.response.BaseResponse
 import com.umc.yourweather.data.remote.response.UserResponse
 import com.umc.yourweather.data.service.UserService
 import com.umc.yourweather.databinding.ActivityMyPageNicknameChangeBinding
-import com.umc.yourweather.di.App
 import com.umc.yourweather.di.RetrofitImpl
 import com.umc.yourweather.di.UserSharedPreferences
 import com.umc.yourweather.util.NicknameUtils
@@ -20,7 +19,7 @@ import retrofit2.Call
 import retrofit2.Callback
 import retrofit2.Response
 
-class MyPageNicknameChange : AppCompatActivity() {
+class MyPageNicknameChangeActivity : AppCompatActivity() {
 
     lateinit var binding: ActivityMyPageNicknameChangeBinding
 
@@ -105,7 +104,7 @@ class MyPageNicknameChange : AppCompatActivity() {
                 prefs.edit().putString(UserSharedPreferences.USER_NICKNAME, newNickname).apply()
 
                 Toast.makeText(
-                    this@MyPageNicknameChange,
+                    this@MyPageNicknameChangeActivity,
                     "닉네임이 변경되었습니다.",
                     Toast.LENGTH_SHORT,
                 ).show()
