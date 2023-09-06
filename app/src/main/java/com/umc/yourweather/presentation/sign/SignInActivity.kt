@@ -73,7 +73,7 @@ class SignInActivity : AppCompatActivity() {
 
         // 회원가입으로 이동
         binding.tvSigninBtnsignup.setOnClickListener {
-            val mIntent = Intent(this, SignUp::class.java)
+            val mIntent = Intent(this, SignUpActivity::class.java)
             startActivity(mIntent)
         }
 

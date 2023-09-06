@@ -151,11 +151,11 @@
             android:exported="false"
             android:screenOrientation="portrait" />
         <activity
-            android:name=".presentation.sign.SignUp2"
+            android:name=".presentation.sign.SignUp2Activity"
             android:exported="false"
             android:screenOrientation="portrait" />
         <activity
-            android:name=".presentation.sign.SignUp"
+            android:name=".presentation.sign.SignUpActivity"
             android:exported="false"
             android:screenOrientation="portrait" />
         <activity
