@@ -9,7 +9,7 @@ import androidx.fragment.app.FragmentManager
 import androidx.fragment.app.FragmentTransaction
 import com.umc.yourweather.R
 
-class MyPageWithdraw : AppCompatActivity() {
+class MyPageWithdrawActivity : AppCompatActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_my_page_withdraw)
@@ -29,7 +29,7 @@ class MyPageWithdraw : AppCompatActivity() {
         val btnContinue: Button = findViewById(R.id.btn_withdrawContinue)
 
         btnContinue.setOnClickListener {
-            val intent = Intent(this@MyPageWithdraw, MyPageWithdraw2::class.java)
+            val intent = Intent(this@MyPageWithdrawActivity, MyPageWithdraw2Activity::class.java)
             startActivity(intent)
         }
     }

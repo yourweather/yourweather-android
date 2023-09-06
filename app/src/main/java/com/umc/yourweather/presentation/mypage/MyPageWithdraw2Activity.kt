@@ -22,7 +22,7 @@ import retrofit2.Call
 import retrofit2.Callback
 import retrofit2.Response
 
-class MyPageWithdraw2 : AppCompatActivity() {
+class MyPageWithdraw2Activity : AppCompatActivity() {
 
     private lateinit var binding: ActivityMyPageWithdraw2Binding
     override fun onCreate(savedInstanceState: Bundle?) {
@@ -32,7 +32,7 @@ class MyPageWithdraw2 : AppCompatActivity() {
 
         binding.tvWithdraw2Guide2.text =
             "소중한 의견을 들려주세요." +
-            "\n${UserSharedPreferences.getUserNickname(this@MyPageWithdraw2)} 님이 유어웨더로 다시 돌아올 수 있도록 더 발전해볼게요."
+            "\n${UserSharedPreferences.getUserNickname(this@MyPageWithdraw2Activity)} 님이 유어웨더로 다시 돌아올 수 있도록 더 발전해볼게요."
         binding.btnWithdraw2Withdraw.setOnClickListener {
             AlertDialogTwoBtn(this).run {
                 setTitle("정말 유어웨더 회원을 탈퇴하시겠습니까?")
@@ -90,10 +90,10 @@ class MyPageWithdraw2 : AppCompatActivity() {
                         // 토큰 없앰
                         App.token_prefs.clearTokens()
                         // SH의 모든 정보 없앰..
-                        UserSharedPreferences.clearUser(this@MyPageWithdraw2)
+                        UserSharedPreferences.clearUser(this@MyPageWithdraw2Activity)
 
                         Log.d("WithDrawDebug", "회원탈퇴 성공")
-                        val intent = Intent(this@MyPageWithdraw2, MyPageWithdarw3::class.java)
+                        val intent = Intent(this@MyPageWithdraw2Activity, MyPageWithdarw3Activity::class.java)
                         startActivity(intent)
                         finish()
                     }
@@ -104,7 +104,7 @@ class MyPageWithdraw2 : AppCompatActivity() {
 
             override fun onFailure(call: Call<BaseResponse<UserResponse>>, t: Throwable) {
                 Log.d("WithDrawDebug", "onFailure")
-                val mIntent = Intent(this@MyPageWithdraw2, SignInActivity::class.java)
+                val mIntent = Intent(this@MyPageWithdraw2Activity, SignInActivity::class.java)
                 startActivity(mIntent)
                 finish()
             }

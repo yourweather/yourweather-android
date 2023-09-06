@@ -93,7 +93,7 @@ class MyPageMyInfoActivity : AppCompatActivity() {
 
         // 회원탈퇴
         binding.tvMyinfoBtnWithdraw.setOnClickListener {
-            val mIntent = Intent(this, MyPageWithdraw2::class.java)
+            val mIntent = Intent(this, MyPageWithdraw2Activity::class.java)
             startActivity(mIntent)
         }
     }

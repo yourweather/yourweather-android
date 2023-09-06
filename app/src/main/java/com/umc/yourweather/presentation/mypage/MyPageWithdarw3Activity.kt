@@ -7,7 +7,7 @@ import android.os.Bundle
 import com.umc.yourweather.databinding.ActivityMyPageWithdraw3Binding
 import com.umc.yourweather.presentation.sign.SignInActivity
 
-class MyPageWithdarw3 : AppCompatActivity() {
+class MyPageWithdarw3Activity : AppCompatActivity() {
     lateinit var binding : ActivityMyPageWithdraw3Binding
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -15,7 +15,7 @@ class MyPageWithdarw3 : AppCompatActivity() {
         setContentView(binding.root)
 
         binding.btnWithdraw3Ok.setOnClickListener{
-            val mIntent = Intent(this@MyPageWithdarw3, SignInActivity::class.java)
+            val mIntent = Intent(this@MyPageWithdarw3Activity, SignInActivity::class.java)
             mIntent.setFlags(FLAG_ACTIVITY_CLEAR_TOP)
             startActivity(mIntent)
             finish()

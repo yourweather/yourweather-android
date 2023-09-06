@@ -113,15 +113,15 @@
             android:exported="false"
             android:screenOrientation="portrait" />
         <activity
-            android:name=".presentation.mypage.MyPageWithdarw3"
+            android:name=".presentation.mypage.MyPageWithdarw3Activity"
             android:exported="false"
             android:screenOrientation="portrait" />
         <activity
-            android:name=".presentation.mypage.MyPageWithdraw2"
+            android:name=".presentation.mypage.MyPageWithdraw2Activity"
             android:exported="false"
             android:screenOrientation="portrait" />
         <activity
-            android:name=".presentation.mypage.MyPageWithdraw"
+            android:name=".presentation.mypage.MyPageWithdrawActivity"
             android:exported="true"
             android:screenOrientation="portrait" />
         <activity
