@@ -57,7 +57,7 @@
             android:screenOrientation="portrait" />
 
         <activity
-            android:name=".presentation.calendardetailview.CalendarDetailViewAlarm"
+            android:name=".presentation.calendardetailview.CalendarDetailViewAlarmActivity"
             android:exported="true"
             android:screenOrientation="portrait" />
         <activity

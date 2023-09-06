@@ -8,7 +8,7 @@ import com.umc.yourweather.R
 import java.text.SimpleDateFormat
 import java.util.*
 
-class CalendarDetailViewAlarm : AppCompatActivity() {
+class CalendarDetailViewAlarmActivity : AppCompatActivity() {
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
