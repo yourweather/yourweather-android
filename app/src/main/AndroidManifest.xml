@@ -73,7 +73,7 @@
             android:exported="false"
             android:screenOrientation="portrait" />
         <activity
-            android:name=".presentation.calendardetailview.CalendarPlusWeather"
+            android:name=".presentation.calendardetailview.CalendarPlusWeatherActivity"
             android:exported="true"
             android:screenOrientation="portrait"
             android:windowSoftInputMode="adjustPan" />

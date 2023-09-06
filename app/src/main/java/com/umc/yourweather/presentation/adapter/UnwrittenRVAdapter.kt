@@ -8,7 +8,7 @@ import android.view.ViewGroup
 import androidx.recyclerview.widget.RecyclerView
 import com.umc.yourweather.data.entity.ItemUnwritten
 import com.umc.yourweather.databinding.ItemUnwrittenDetailBinding
-import com.umc.yourweather.presentation.calendardetailview.CalendarPlusWeather
+import com.umc.yourweather.presentation.calendardetailview.CalendarPlusWeatherActivity
 
 class UnwrittenRVAdapter(private val dataList: List<ItemUnwritten>, private val localDates: List<String>, private val context: Context) :
     RecyclerView.Adapter<UnwrittenRVAdapter.MyViewHolder>() {
@@ -41,7 +41,7 @@ class UnwrittenRVAdapter(private val dataList: List<ItemUnwritten>, private val 
             val localDate = localDates[position] // 해당 아이템의 localDate 가져오기
 
             binding.linearLayout3.setOnClickListener {
-                val dIntent = Intent(context, CalendarPlusWeather::class.java)
+                val dIntent = Intent(context, CalendarPlusWeatherActivity::class.java)
                 dIntent.putExtra("unWrittenDate", localDate)
                 context.startActivity(dIntent)
                 Log.d("localDate","$localDate")

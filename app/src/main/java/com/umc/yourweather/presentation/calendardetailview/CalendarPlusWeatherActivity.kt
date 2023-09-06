@@ -31,7 +31,7 @@ import retrofit2.Callback
 import retrofit2.Response
 import java.util.Calendar
 
-class CalendarPlusWeather : AppCompatActivity(), CalendarDetailViewTimepickerFragment.TimePickerListener {
+class CalendarPlusWeatherActivity : AppCompatActivity(), CalendarDetailViewTimepickerFragment.TimePickerListener {
     private lateinit var binding: ActivityCalendarPlusWeatherBinding
     private lateinit var editText: AppCompatEditText
     private var isSeekBarAdjusted = false // 변수 선언
@@ -68,7 +68,7 @@ class CalendarPlusWeather : AppCompatActivity(), CalendarDetailViewTimepickerFra
         binding.btnCalendarDetailviewBack.setOnClickListener {
             activityFinish()
         }
-        val userNickname = UserSharedPreferences.getUserNickname(this@CalendarPlusWeather)
+        val userNickname = UserSharedPreferences.getUserNickname(this@CalendarPlusWeatherActivity)
 
         binding.tvDetailviewModify2Title1.text = "$userNickname 님의 감정 상태"
         binding.tvDetailviewModify2Title2.text = "$userNickname 님의 감정 온도"
@@ -127,7 +127,7 @@ class CalendarPlusWeather : AppCompatActivity(), CalendarDetailViewTimepickerFra
 
             if (localDateTime.isBlank()) {
                 // 시간이 입력되지 않은 경우
-                Toast.makeText(this@CalendarPlusWeather, "시간을 입력해주세요.", Toast.LENGTH_SHORT).show()
+                Toast.makeText(this@CalendarPlusWeatherActivity, "시간을 입력해주세요.", Toast.LENGTH_SHORT).show()
                 return@setOnClickListener // 메소드 종료
             }
 
@@ -295,7 +295,7 @@ class CalendarPlusWeather : AppCompatActivity(), CalendarDetailViewTimepickerFra
                         val memoResponse = response.body()?.result
                         Log.d("메모 작성", "메모 작성, 전달 성공 ${response.body()?.result}")
                         Toast.makeText(
-                            this@CalendarPlusWeather,
+                            this@CalendarPlusWeatherActivity,
                             "기록이 저장되었습니다.",
                             Toast.LENGTH_SHORT,
                         ).show()
@@ -304,7 +304,7 @@ class CalendarPlusWeather : AppCompatActivity(), CalendarDetailViewTimepickerFra
                     } else {
                         Log.d("메모 작성 실패", "메모 작성, 전달 실패: ${response.code()}")
                         Toast.makeText(
-                            this@CalendarPlusWeather,
+                            this@CalendarPlusWeatherActivity,
                             "기록이 저장이 되지 않았습니다. 다시 입력해주세요.",
                             Toast.LENGTH_SHORT,
                         ).show()

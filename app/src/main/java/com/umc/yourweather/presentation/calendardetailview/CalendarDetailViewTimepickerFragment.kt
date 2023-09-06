@@ -47,7 +47,7 @@ class CalendarDetailViewTimepickerFragment : Fragment() {
 
             val timeText = formattedTime
 
-            (activity as? CalendarPlusWeather)?.updateTimeText(timeText)
+            (activity as? CalendarPlusWeatherActivity)?.updateTimeText(timeText)
             (activity as? TimePickerListener)?.onTimeSelected(localDateTime)
 
             parentFragmentManager.popBackStack()

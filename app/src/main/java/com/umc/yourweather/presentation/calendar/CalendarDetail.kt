@@ -16,7 +16,7 @@ import com.umc.yourweather.di.RetrofitImpl
 import com.umc.yourweather.di.UserSharedPreferences
 import com.umc.yourweather.presentation.adapter.CalendarDetailMemoContentAdapter
 import com.umc.yourweather.presentation.adapter.CalendarDetailMemoListAdapter
-import com.umc.yourweather.presentation.calendardetailview.CalendarPlusWeather
+import com.umc.yourweather.presentation.calendardetailview.CalendarPlusWeatherActivity
 import com.umc.yourweather.presentation.calendardetailview.CalendarWeatherDetail
 import com.umc.yourweather.presentation.sign.SignInActivity
 import retrofit2.Call
@@ -195,7 +195,7 @@ class CalendarDetail : AppCompatActivity() {
         } else {
             // 있으면 플러스 클릭했을때 상세보기 날씨 추가 입력창으로
             binding.btnCalendarDetailPlus.setOnClickListener {
-                val mIntent = Intent(this@CalendarDetail, CalendarPlusWeather::class.java)
+                val mIntent = Intent(this@CalendarDetail, CalendarPlusWeatherActivity::class.java)
                 mIntent.putExtra("date", thisDate)
                 startActivity(mIntent)
                 finish()
@@ -226,7 +226,7 @@ class CalendarDetail : AppCompatActivity() {
         binding.tvCalendarDetailNoTotalData.setText("${month}월 ${date}일 날씨와 기록이 없어요.")
 
         binding.llCalendarDetailNoTotalData.setOnClickListener {
-            val mIntent = Intent(this@CalendarDetail, CalendarPlusWeather::class.java)
+            val mIntent = Intent(this@CalendarDetail, CalendarPlusWeatherActivity::class.java)
             mIntent.putExtra("date", thisDate)
             startActivity(mIntent)
             finish()
