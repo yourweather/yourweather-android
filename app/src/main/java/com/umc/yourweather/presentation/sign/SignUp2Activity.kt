@@ -13,7 +13,7 @@ import com.umc.yourweather.databinding.ActivitySignUp2Binding
 import com.umc.yourweather.util.SignUtils
 import com.umc.yourweather.util.SignUtils.Companion.isValidPassword
 
-class SignUp2 : AppCompatActivity() {
+class SignUp2Activity : AppCompatActivity() {
     lateinit var binding: ActivitySignUp2Binding
     private var passwordFlag = false
     override fun onCreate(savedInstanceState: Bundle?) {
@@ -22,14 +22,14 @@ class SignUp2 : AppCompatActivity() {
         setContentView(binding.root)
 
         // 아래 동의 문구 글자 색깔 지정해주는 코드
-        SignUtils.setAlertText(this@SignUp2, binding.root, R.id.tv_signup2_alertText2)
+        SignUtils.setAlertText(this@SignUp2Activity, binding.root, R.id.tv_signup2_alertText2)
 
         binding.btnSignup2Next.setOnClickListener {
             getPw()
         }
 
         binding.btnSignup2Back.setOnClickListener {
-            val mIntent = Intent(this, SignUp::class.java)
+            val mIntent = Intent(this, SignUpActivity::class.java)
             startActivity(mIntent)
             finish()
         }
@@ -49,7 +49,7 @@ class SignUp2 : AppCompatActivity() {
 
         // 비밀번호 받고 넘기기
         var pw = binding.etSignup2Pw.text.toString()
-        val mIntent = Intent(this@SignUp2, Nickname::class.java)
+        val mIntent = Intent(this@SignUp2Activity, NicknameActivity::class.java)
         mIntent.putExtra("password", pw)
         mIntent.putExtra("email", email)
         mIntent.putExtra("platform", "YOURWEATHER")

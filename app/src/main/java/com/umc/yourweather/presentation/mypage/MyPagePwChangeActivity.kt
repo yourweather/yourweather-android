@@ -20,7 +20,7 @@ import retrofit2.Call
 import retrofit2.Callback
 import retrofit2.Response
 
-class MyPagePwChange : AppCompatActivity() {
+class MyPagePwChangeActivity : AppCompatActivity() {
     lateinit var binding: ActivityMyPagePwChangeBinding
     var flag = 0
     override fun onCreate(savedInstanceState: Bundle?) {
@@ -136,7 +136,7 @@ class MyPagePwChange : AppCompatActivity() {
                             Log.d("비밀번호 변경", "비밀번호 변경 성공")
                             handlePwChangeResponse(response)
                             Toast.makeText(
-                                this@MyPagePwChange,
+                                this@MyPagePwChangeActivity,
                                 "비밀번호가 변경되었습니다.",
                                 Toast.LENGTH_SHORT,
                             ).show()
@@ -144,7 +144,7 @@ class MyPagePwChange : AppCompatActivity() {
                         } else {
                             Log.d("비밀번호 변경 실패", "API 호출 실패: ${response.code()}")
                             Toast.makeText(
-                                this@MyPagePwChange,
+                                this@MyPagePwChangeActivity,
                                 "비밀번호가 변경되지 않았습니다. 다시 시도해주세요.",
                                 Toast.LENGTH_SHORT,
                             ).show()

@@ -1,11 +1,11 @@
 package com.umc.yourweather.presentation.calendardetailview
 
-import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
+import androidx.appcompat.app.AppCompatActivity
 import androidx.appcompat.widget.Toolbar
 import com.umc.yourweather.R
 
-class CalendarDetailViewStatusbar : AppCompatActivity() {
+class CalendarDetailViewStatusbarActivity : AppCompatActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_calendar_detail_view_statusbar)

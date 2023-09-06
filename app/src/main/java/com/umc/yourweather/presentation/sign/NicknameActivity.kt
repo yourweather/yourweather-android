@@ -17,13 +17,13 @@ import com.umc.yourweather.databinding.ActivityNicknameBinding
 import com.umc.yourweather.di.App
 import com.umc.yourweather.di.RetrofitImpl
 import com.umc.yourweather.di.UserSharedPreferences
-import com.umc.yourweather.presentation.BottomNavi
+import com.umc.yourweather.presentation.BottomNaviActivity
 import com.umc.yourweather.util.NicknameUtils.Companion.getRandomHintText
 import retrofit2.Call
 import retrofit2.Callback
 import retrofit2.Response
 
-class Nickname : AppCompatActivity() {
+class NicknameActivity : AppCompatActivity() {
 
     lateinit var binding: ActivityNicknameBinding
 
@@ -103,8 +103,8 @@ class Nickname : AppCompatActivity() {
                         Log.d("SignupDebug", "회원 가입 성공")
 
                         // 자동로그인
-                        UserSharedPreferences.setUserEmail(this@Nickname, email)
-                        UserSharedPreferences.setUserPw(this@Nickname, pw)
+                        UserSharedPreferences.setUserEmail(this@NicknameActivity, email)
+                        UserSharedPreferences.setUserPw(this@NicknameActivity, pw)
                         //
 
                         // 토큰저장
@@ -112,19 +112,19 @@ class Nickname : AppCompatActivity() {
                         App.token_prefs.refreshToken = response.body()!!.result?.refreshToken
                         // 토큰저장
 
-                        UserSharedPreferences.setUserPwToStar(this@Nickname, pw)
-                        UserSharedPreferences.setUserPlatform(this@Nickname, platform)
-                        UserSharedPreferences.setUserNickname(this@Nickname, fixedNickname)
+                        UserSharedPreferences.setUserPwToStar(this@NicknameActivity, pw)
+                        UserSharedPreferences.setUserPlatform(this@NicknameActivity, platform)
+                        UserSharedPreferences.setUserNickname(this@NicknameActivity, fixedNickname)
 
-                        Log.d("회원가입 sh 확인 로그 이메일", UserSharedPreferences.getUserEmail(this@Nickname))
-                        Log.d("회원가입 sh 확인 로그 비번", UserSharedPreferences.getUserPw(this@Nickname))
+                        Log.d("회원가입 sh 확인 로그 이메일", UserSharedPreferences.getUserEmail(this@NicknameActivity))
+                        Log.d("회원가입 sh 확인 로그 비번", UserSharedPreferences.getUserPw(this@NicknameActivity))
                         Log.d("회원가입 sh 확인 로그 서버에서 온 액세스 토큰", App.token_prefs.accessToken.toString())
                         Log.d("회원가입 sh 확인 로그 서버에서 온 리프래시 토큰", App.token_prefs.refreshToken.toString())
                         Log.d("회원가입 sh 확인 로그 저장한 액세스 토큰", App.token_prefs.accessToken.toString())
                         Log.d("회원가입 sh 확인 로그 저장한 리프래시 토큰", App.token_prefs.refreshToken.toString())
 
                         // 회원 가입 성공 후 홈화면으로 이동
-                        val mIntent = Intent(this@Nickname, BottomNavi::class.java)
+                        val mIntent = Intent(this@NicknameActivity, BottomNaviActivity::class.java)
                         mIntent.flags = Intent.FLAG_ACTIVITY_NEW_TASK or Intent.FLAG_ACTIVITY_CLEAR_TASK
                         showInitialToast()
                         startActivity(mIntent)

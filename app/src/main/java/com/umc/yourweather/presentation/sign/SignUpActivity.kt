@@ -25,7 +25,7 @@ import retrofit2.Call
 import retrofit2.Callback
 import retrofit2.Response
 
-class SignUp : AppCompatActivity() {
+class SignUpActivity : AppCompatActivity() {
     lateinit var binding: ActivitySignUpBinding
     private var countDownTimer: CountDownTimer? = null
 
@@ -42,11 +42,11 @@ class SignUp : AppCompatActivity() {
         setContentView(binding.root)
 
         // 아래 동의 문구 글자 색깔 지정해주는 코드
-        setAlertText(this@SignUp, binding.root, R.id.tv_signup_alertText)
+        setAlertText(this@SignUpActivity, binding.root, R.id.tv_signup_alertText)
 
         // "뒤로 가기" 버튼 클릭 시 이벤트 처리
         binding.btnSingupBack.setOnClickListener {
-            val mIntent = Intent(this, SignIn::class.java)
+            val mIntent = Intent(this, SignInActivity::class.java)
             startActivity(mIntent)
             finish()
         }
@@ -57,7 +57,7 @@ class SignUp : AppCompatActivity() {
 
         // "로그인하러 가기" 버튼 클릭 시 이벤트 처리
         binding.tvSignupBtnsignin.setOnClickListener {
-            val mIntent = Intent(this, SignIn::class.java)
+            val mIntent = Intent(this, SignInActivity::class.java)
             startActivity(mIntent)
             finish()
         }
@@ -113,7 +113,7 @@ class SignUp : AppCompatActivity() {
     // 다음 단계로 이동하는 함수
     private fun userEmail() {
         val email = binding.etSignupEmail.text.toString()
-        val mIntent = Intent(this@SignUp, SignUp2::class.java)
+        val mIntent = Intent(this@SignUpActivity, SignUp2Activity::class.java)
         mIntent.putExtra("email", email)
         startActivity(mIntent)
         Log.d("EmailDebug", "Email value: $email")
@@ -146,13 +146,13 @@ class SignUp : AppCompatActivity() {
     // 1 : 인증 성공 여부
     // 커스텀 다이얼로그 표시
     fun showCustomAlertDialog(text: String, flag: Int, isSuccess: Boolean) {
-        val layoutInflater = LayoutInflater.from(this@SignUp)
+        val layoutInflater = LayoutInflater.from(this@SignUpActivity)
         val customLayout = layoutInflater.inflate(R.layout.alertdialog_signview, null)
 
         val titleTextView = customLayout.findViewById<TextView>(R.id.tv_signview_alert)
         val alertButton = customLayout.findViewById<Button>(R.id.btn_signview_alert)
 
-        val alertDialogBuilder = AlertDialog.Builder(this@SignUp)
+        val alertDialogBuilder = AlertDialog.Builder(this@SignUpActivity)
         alertDialogBuilder.setView(customLayout)
         alertDialogBuilder.setCancelable(true)
 

@@ -11,7 +11,7 @@ import retrofit2.Call
 import retrofit2.Callback
 import retrofit2.Response
 
-class MyPagePrivacyPolicy : AppCompatActivity() {
+class MyPagePrivacyPolicyActivity : AppCompatActivity() {
     lateinit var binding: ActivityMyPagePrivacyPolicyBinding
 
     override fun onCreate(savedInstanceState: Bundle?) {

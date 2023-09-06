@@ -24,7 +24,7 @@
         android:theme="@style/Theme.Yourweather"
         tools:targetApi="31">
         <activity
-            android:name=".presentation.calendardetailview.CalendarDetailViewStatusbar"
+            android:name=".presentation.calendardetailview.CalendarDetailViewStatusbarActivity"
             android:exported="false" />
         <activity
             android:name="com.kakao.sdk.auth.AuthCodeHandlerActivity"
@@ -47,7 +47,7 @@
             android:exported="false"
             android:screenOrientation="portrait" />
         <activity
-            android:name=".presentation.calendar.CalendarDetail"
+            android:name=".presentation.calendar.CalendarDetailActivity"
             android:exported="false"
             android:screenOrientation="portrait" />
 
@@ -57,15 +57,15 @@
             android:screenOrientation="portrait" />
 
         <activity
-            android:name=".presentation.calendardetailview.CalendarDetailViewAlarm"
+            android:name=".presentation.calendardetailview.CalendarDetailViewAlarmActivity"
             android:exported="true"
             android:screenOrientation="portrait" />
         <activity
-            android:name=".presentation.calendardetailview.CalendarDetailViewEmpty"
+            android:name=".presentation.calendardetailview.CalendarDetailViewEmptyActivity"
             android:exported="false"
             android:screenOrientation="portrait" />
         <activity
-            android:name=".presentation.calendardetailview.CalendarDetailViewTimepicker"
+            android:name=".presentation.calendardetailview.CalendarDetailViewTimepickerFragment"
             android:exported="false"
             android:screenOrientation="portrait" />
         <activity
@@ -73,27 +73,27 @@
             android:exported="false"
             android:screenOrientation="portrait" />
         <activity
-            android:name=".presentation.calendardetailview.CalendarPlusWeather"
+            android:name=".presentation.calendardetailview.CalendarPlusWeatherActivity"
             android:exported="true"
             android:screenOrientation="portrait"
             android:windowSoftInputMode="adjustPan" />
         <activity
-            android:name=".presentation.calendardetailview.CalendarWeatherDetail"
+            android:name=".presentation.calendardetailview.CalendarWeatherDetailActivity"
             android:exported="true"
             android:screenOrientation="portrait"
             android:windowSoftInputMode="adjustPan" />
 
         <activity
-            android:name=".presentation.mypage.MyPageAlarm"
+            android:name=".presentation.mypage.MyPageAlarmActivity"
             android:exported="true"
             android:screenOrientation="portrait" />
 
         <activity
-            android:name=".presentation.mypage.MyPageMyInfo"
+            android:name=".presentation.mypage.MyPageMyInfoActivity"
             android:exported="false"
             android:screenOrientation="portrait" />
         <activity
-            android:name=".presentation.mypage.MyPageNicknameChange"
+            android:name=".presentation.mypage.MyPageNicknameChangeActivity"
             android:exported="false"
             android:screenOrientation="portrait" />
         <activity
@@ -105,27 +105,27 @@
             android:exported="false"
             android:screenOrientation="portrait" />
         <activity
-            android:name=".presentation.mypage.MyPageUsePolicy"
+            android:name=".presentation.mypage.MyPageUsePolicyActivity"
             android:exported="false"
             android:screenOrientation="portrait" />
         <activity
-            android:name=".presentation.mypage.MyPagePrivacyPolicy"
+            android:name=".presentation.mypage.MyPagePrivacyPolicyActivity"
             android:exported="false"
             android:screenOrientation="portrait" />
         <activity
-            android:name=".presentation.mypage.MyPageWithdarw3"
+            android:name=".presentation.mypage.MyPageWithdarw3Activity"
             android:exported="false"
             android:screenOrientation="portrait" />
         <activity
-            android:name=".presentation.mypage.MyPageWithdraw2"
+            android:name=".presentation.mypage.MyPageWithdraw2Activity"
             android:exported="false"
             android:screenOrientation="portrait" />
         <activity
-            android:name=".presentation.mypage.MyPageWithdraw"
+            android:name=".presentation.mypage.MyPageWithdrawActivity"
             android:exported="true"
             android:screenOrientation="portrait" />
         <activity
-            android:name=".presentation.mypage.MyPagePwChange"
+            android:name=".presentation.mypage.MyPagePwChangeActivity"
             android:exported="false"
             android:screenOrientation="portrait" />
 
@@ -135,39 +135,39 @@
             android:screenOrientation="portrait" />
 
         <activity
-            android:name=".presentation.sign.FindPwEmail"
+            android:name=".presentation.sign.FindPwEmailActivity"
             android:exported="false"
             android:screenOrientation="portrait" />
         <activity
-            android:name=".presentation.sign.FindPw"
+            android:name=".presentation.sign.FindPwActivity"
             android:exported="false"
             android:screenOrientation="portrait" />
         <activity
-            android:name=".presentation.sign.ResetPw"
+            android:name=".presentation.sign.ResetPwActivity"
             android:exported="false"
             android:screenOrientation="portrait" />
         <activity
-            android:name=".presentation.sign.Nickname"
+            android:name=".presentation.sign.NicknameActivity"
             android:exported="false"
             android:screenOrientation="portrait" />
         <activity
-            android:name=".presentation.sign.SignUp2"
+            android:name=".presentation.sign.SignUp2Activity"
             android:exported="false"
             android:screenOrientation="portrait" />
         <activity
-            android:name=".presentation.sign.SignUp"
+            android:name=".presentation.sign.SignUpActivity"
             android:exported="false"
             android:screenOrientation="portrait" />
         <activity
-            android:name=".presentation.BottomNavi"
+            android:name=".presentation.BottomNaviActivity"
             android:exported="false"
             android:screenOrientation="portrait" />
         <activity
-            android:name=".presentation.sign.SignIn"
+            android:name=".presentation.sign.SignInActivity"
             android:exported="true"
             android:screenOrientation="portrait"/>
         <activity
-            android:name=".presentation.Splash"
+            android:name=".presentation.SplashActivity"
             android:exported="true"
             android:screenOrientation="portrait"
             android:theme="@style/Theme.AppCompat.NoActionBar">

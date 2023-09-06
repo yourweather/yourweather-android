@@ -12,12 +12,11 @@ import java.text.SimpleDateFormat
 import java.util.Calendar
 import java.util.Locale
 
-class CalendarDetailViewTimepicker : Fragment() {
+class CalendarDetailViewTimepickerFragment : Fragment() {
 
     private lateinit var binding: FragmentCalendarDetailviewTimepickerBinding
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
-
     }
 
     override fun onCreateView(
@@ -48,7 +47,7 @@ class CalendarDetailViewTimepicker : Fragment() {
 
             val timeText = formattedTime
 
-            (activity as? CalendarPlusWeather)?.updateTimeText(timeText)
+            (activity as? CalendarPlusWeatherActivity)?.updateTimeText(timeText)
             (activity as? TimePickerListener)?.onTimeSelected(localDateTime)
 
             parentFragmentManager.popBackStack()

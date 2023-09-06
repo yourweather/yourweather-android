@@ -8,7 +8,7 @@ import android.view.ViewGroup
 import androidx.recyclerview.widget.RecyclerView
 import com.umc.yourweather.data.entity.ItemWritten
 import com.umc.yourweather.databinding.ItemWrittenDetailSunBinding
-import com.umc.yourweather.presentation.calendardetailview.CalendarWeatherDetail
+import com.umc.yourweather.presentation.calendardetailview.CalendarWeatherDetailActivity
 class WrittenRVAdapter(private val dataList: List<ItemWritten>, private val context: Context, private val memoIds: List<Int>) :
     RecyclerView.Adapter<WrittenRVAdapter.MyViewHolder>() {
 
@@ -38,7 +38,7 @@ class WrittenRVAdapter(private val dataList: List<ItemWritten>, private val cont
             binding.tvStaticIconDetailSunny.text = "${data.formattedDateTime}"
 
             binding.linearLayout3.setOnClickListener {
-                val intent = Intent(context, CalendarWeatherDetail::class.java)
+                val intent = Intent(context, CalendarWeatherDetailActivity::class.java)
                 intent.putExtra("dateTime", data.dateTime) // 전달할 데이터 추가
                 intent.putExtra("memoIdW", memoId) // 수정된 코드: 메모 아이디 대신 memoId 전달
                 context.startActivity(intent)

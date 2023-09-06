@@ -14,7 +14,6 @@ import com.kakao.sdk.common.model.ClientErrorCause
 import com.kakao.sdk.user.UserApiClient
 import com.navercorp.nid.NaverIdLoginSDK
 import com.navercorp.nid.oauth.NidOAuthLogin
-import com.navercorp.nid.oauth.NidOAuthPreferencesManager.code
 import com.navercorp.nid.oauth.OAuthLoginCallback
 import com.navercorp.nid.profile.NidProfileCallback
 import com.navercorp.nid.profile.data.NidProfileResponse
@@ -27,7 +26,7 @@ import com.umc.yourweather.databinding.ActivitySignInBinding
 import com.umc.yourweather.di.App
 import com.umc.yourweather.di.RetrofitImpl
 import com.umc.yourweather.di.UserSharedPreferences
-import com.umc.yourweather.presentation.BottomNavi
+import com.umc.yourweather.presentation.BottomNaviActivity
 import com.umc.yourweather.util.SignUtils.Companion.ALERT_TEXT_SIGN_IN
 import com.umc.yourweather.util.SignUtils.Companion.KAKAOTAG
 import com.umc.yourweather.util.SignUtils.Companion.NAVERTAG
@@ -36,7 +35,7 @@ import retrofit2.Call
 import retrofit2.Callback
 import retrofit2.Response
 
-class SignIn : AppCompatActivity() {
+class SignInActivity : AppCompatActivity() {
     lateinit var binding: ActivitySignInBinding
     lateinit var resultLauncherGoogle: ActivityResultLauncher<Intent>
     var userEmail: String? = null
@@ -53,7 +52,7 @@ class SignIn : AppCompatActivity() {
         } else { // SharedPreferences 안에 값이 저장되어 있을 때 -> MainActivity로 이동
             Log.d("sh 확인 이메일", UserSharedPreferences.getUserEmail(this).toString())
             Log.d("sh 확인 비밀번호", UserSharedPreferences.getUserPw(this).toString())
-            val intent = Intent(this, BottomNavi::class.java)
+            val intent = Intent(this, BottomNaviActivity::class.java)
             startActivity(intent)
             finish()
         }
@@ -68,19 +67,19 @@ class SignIn : AppCompatActivity() {
 
         // 비밀번호 찾기로 이동
         binding.tvSigninBtnfindpw.setOnClickListener {
-            val mIntent = Intent(this, FindPw::class.java)
+            val mIntent = Intent(this, FindPwActivity::class.java)
             startActivity(mIntent)
         }
 
         // 회원가입으로 이동
         binding.tvSigninBtnsignup.setOnClickListener {
-            val mIntent = Intent(this, SignUp::class.java)
+            val mIntent = Intent(this, SignUpActivity::class.java)
             startActivity(mIntent)
         }
 
         // 로그인 버튼 클릭
         binding.btnSigninSignin.setOnClickListener {
-            val mIntent = Intent(this, BottomNavi::class.java)
+            val mIntent = Intent(this, BottomNaviActivity::class.java)
             userEmail = binding.etSigninEmail.text.toString()
             userPw = binding.etSigninPw.text.toString()
             SignInApi(userEmail!!, userPw!!)
@@ -115,19 +114,19 @@ class SignIn : AppCompatActivity() {
                     if (code == 200) {
                         // val mIntent = Intent(this@SignIn, BottomNavi::class.java)
                         Log.d("SignInDebug", "로그인 성공~ : " + response.headers().toString())
-                        UserSharedPreferences.setUserPwToStar(this@SignIn, userPw)
+                        UserSharedPreferences.setUserPwToStar(this@SignInActivity, userPw)
 
                         // 자동로그인
-                        UserSharedPreferences.setUserEmail(this@SignIn, userEmail)
-                        UserSharedPreferences.setUserPw(this@SignIn, userPw)
+                        UserSharedPreferences.setUserEmail(this@SignInActivity, userEmail)
+                        UserSharedPreferences.setUserPw(this@SignInActivity, userPw)
                         //
 
                         // 토큰저장
                         App.token_prefs.accessToken = response.body()!!.result?.accessToken
                         App.token_prefs.refreshToken = response.body()!!.result?.refreshToken
 
-                        Log.d("로그인 sh 확인 로그 이메일", UserSharedPreferences.getUserEmail(this@SignIn))
-                        Log.d("로그인 sh 확인 로그 비번", UserSharedPreferences.getUserPw(this@SignIn))
+                        Log.d("로그인 sh 확인 로그 이메일", UserSharedPreferences.getUserEmail(this@SignInActivity))
+                        Log.d("로그인 sh 확인 로그 비번", UserSharedPreferences.getUserPw(this@SignInActivity))
                         Log.d("로그인 sh 확인 로그 서버에서 온 액세스 토큰", App.token_prefs.accessToken.toString())
                         Log.d("로그인 sh 확인 로그 서버에서 온 리프래시 토큰", App.token_prefs.refreshToken.toString())
                         Log.d("로그인 sh 확인 로그 액세스 토큰", App.token_prefs.accessToken.toString())
@@ -140,14 +139,14 @@ class SignIn : AppCompatActivity() {
                             "SignInDebug",
                             "아이디 비번 틀림",
                         )
-                        customSingInPopupWindow(this@SignIn, ALERT_TEXT_SIGN_IN, binding.root, binding.btnSigninSignin)
+                        customSingInPopupWindow(this@SignInActivity, ALERT_TEXT_SIGN_IN, binding.root, binding.btnSigninSignin)
                     }
                 } else {
                     Log.d(
                         "SignInDebug",
                         "onResponse 오류: ${response?.toString()}",
                     )
-                    customSingInPopupWindow(this@SignIn, ALERT_TEXT_SIGN_IN, binding.root, binding.btnSigninSignin)
+                    customSingInPopupWindow(this@SignInActivity, ALERT_TEXT_SIGN_IN, binding.root, binding.btnSigninSignin)
                 }
             }
             override fun onFailure(call: Call<BaseResponse<TokenResponse>>, t: Throwable) {
@@ -175,16 +174,16 @@ class SignIn : AppCompatActivity() {
                         Log.d("SignInDebug", "소셜 로그인 성공~ : " + response.headers().toString())
 
                         // 자동로그인
-                        UserSharedPreferences.setUserEmail(this@SignIn, userEmail)
-                        UserSharedPreferences.setUserPw(this@SignIn, userPw)
+                        UserSharedPreferences.setUserEmail(this@SignInActivity, userEmail)
+                        UserSharedPreferences.setUserPw(this@SignInActivity, userPw)
                         //
 
                         // 토큰저장
                         App.token_prefs.accessToken = response.body()!!.result?.accessToken
                         App.token_prefs.refreshToken = response.body()!!.result?.refreshToken
 
-                        Log.d("로그인 sh 확인 로그 이메일", UserSharedPreferences.getUserEmail(this@SignIn))
-                        Log.d("로그인 sh 확인 로그 비번", UserSharedPreferences.getUserPw(this@SignIn))
+                        Log.d("로그인 sh 확인 로그 이메일", UserSharedPreferences.getUserEmail(this@SignInActivity))
+                        Log.d("로그인 sh 확인 로그 비번", UserSharedPreferences.getUserPw(this@SignInActivity))
                         Log.d("로그인 sh 확인 로그 서버에서 온 액세스 토큰", App.token_prefs.accessToken.toString())
                         Log.d("로그인 sh 확인 로그 서버에서 온 리프래시 토큰", App.token_prefs.refreshToken.toString())
                         Log.d("로그인 sh 확인 로그 액세스 토큰", App.token_prefs.accessToken.toString())
@@ -198,7 +197,7 @@ class SignIn : AppCompatActivity() {
                             "아이디 비번 틀림",
                         )
                         customSingInPopupWindow(
-                            this@SignIn,
+                            this@SignInActivity,
                             ALERT_TEXT_SIGN_IN,
                             binding.root,
                             binding.btnSigninSignin,
@@ -209,7 +208,7 @@ class SignIn : AppCompatActivity() {
                         "SignInDebug",
                         "소셜로그인, 정보 존재하지 않음. 회원가입 필요한경우임 ${response?.toString()}",
                     )
-                    val mIntent = Intent(this@SignIn, Nickname::class.java)
+                    val mIntent = Intent(this@SignInActivity, NicknameActivity::class.java)
                     mIntent.putExtra("email", userEmail)
                     mIntent.putExtra("password", userPw)
                     mIntent.putExtra("platform", platform)
@@ -241,14 +240,14 @@ class SignIn : AppCompatActivity() {
                         return@loginWithKakaoTalk
                     }
                     // 카카오톡에 연결된 카카오계정이 없는 경우, 카카오계정으로 로그인 시도
-                    UserApiClient.instance.loginWithKakaoAccount(this@SignIn, callback = callback)
+                    UserApiClient.instance.loginWithKakaoAccount(this@SignInActivity, callback = callback)
                 } else if (token != null) {
                     Log.i(KAKAOTAG, "카카오톡으로 로그인 성공 ${token.accessToken}")
                     kakaoInfo()
                 }
             }
         } else {
-            UserApiClient.instance.loginWithKakaoAccount(this@SignIn, callback = callback)
+            UserApiClient.instance.loginWithKakaoAccount(this@SignInActivity, callback = callback)
         }
     }
 
@@ -290,18 +289,18 @@ class SignIn : AppCompatActivity() {
             override fun onFailure(httpStatus: Int, message: String) {
                 val errorCode = NaverIdLoginSDK.getLastErrorCode().code
                 val errorDescription = NaverIdLoginSDK.getLastErrorDescription()
-                Toast.makeText(this@SignIn, "errorCode:$errorCode, errorDesc:$errorDescription", Toast.LENGTH_SHORT).show()
+                Toast.makeText(this@SignInActivity, "errorCode:$errorCode, errorDesc:$errorDescription", Toast.LENGTH_SHORT).show()
             }
             override fun onError(errorCode: Int, message: String) {
                 onFailure(errorCode, message)
             }
         }
 
-        NaverIdLoginSDK.authenticate(this@SignIn, oauthLoginCallback)
+        NaverIdLoginSDK.authenticate(this@SignInActivity, oauthLoginCallback)
     }
 
     private fun moveToHome() {
-        val mIntent = Intent(this@SignIn, BottomNavi::class.java)
+        val mIntent = Intent(this@SignInActivity, BottomNaviActivity::class.java)
         startActivity(mIntent)
         finish()
     }

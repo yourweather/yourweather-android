@@ -16,7 +16,7 @@ import retrofit2.Call
 import retrofit2.Callback
 import retrofit2.Response
 
-class MyPageMyInfo : AppCompatActivity() {
+class MyPageMyInfoActivity : AppCompatActivity() {
     lateinit var binding: ActivityMyInfoBinding
 
     override fun onResume() {
@@ -38,7 +38,7 @@ class MyPageMyInfo : AppCompatActivity() {
         }
 
         binding.btnMyinfoPwChange.setOnClickListener {
-            val mIntent = Intent(this, MyPagePwChange::class.java)
+            val mIntent = Intent(this, MyPagePwChangeActivity::class.java)
             startActivity(mIntent)
         }
 
@@ -49,7 +49,7 @@ class MyPageMyInfo : AppCompatActivity() {
         binding.tvMyinfoNickname.text = nickname
 
         binding.btnMyinfoNicknameChange.setOnClickListener {
-            val mIntent = Intent(this, MyPageNicknameChange::class.java)
+            val mIntent = Intent(this, MyPageNicknameChangeActivity::class.java)
             mIntent.putExtra("nickname", nickname)
 
             startActivity(mIntent)
@@ -93,7 +93,7 @@ class MyPageMyInfo : AppCompatActivity() {
 
         // 회원탈퇴
         binding.tvMyinfoBtnWithdraw.setOnClickListener {
-            val mIntent = Intent(this, MyPageWithdraw2::class.java)
+            val mIntent = Intent(this, MyPageWithdraw2Activity::class.java)
             startActivity(mIntent)
         }
     }

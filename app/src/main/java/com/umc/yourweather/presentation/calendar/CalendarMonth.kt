@@ -12,7 +12,6 @@ import com.umc.yourweather.data.remote.response.MonthWeatherResponse
 import com.umc.yourweather.util.CalendarUtils.Companion.DAYS_PER_WEEK
 import com.umc.yourweather.util.CalendarUtils.Companion.WEEKS_PER_MONTH
 import com.umc.yourweather.util.CalendarUtils.Companion.dpToPx
-import kotlinx.coroutines.NonCancellable.children
 import java.time.LocalDate
 import java.time.format.DateTimeFormatter
 
@@ -31,7 +30,7 @@ class CalendarMonth @JvmOverloads constructor(
             Log.d("캘린더 클릭", "Clicked date: $date, 여기는 CalendarMonth")
             Log.d("calendar weatherId total view", "weather Id : $weatherId")
 
-            val mIntent = Intent(context, CalendarDetail::class.java)
+            val mIntent = Intent(context, CalendarDetailActivity::class.java)
             mIntent.putExtra("weatherId", weatherId)
             mIntent.putExtra("date", date.toString())
             context.startActivity(mIntent)

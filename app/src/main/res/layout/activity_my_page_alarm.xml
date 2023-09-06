@@ -4,7 +4,7 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context=".presentation.mypage.MyPageAlarm">
+    tools:context=".presentation.mypage.MyPageAlarmActivity">
 
     <FrameLayout
         android:id="@+id/fl_mypage_alarm_backbtn"

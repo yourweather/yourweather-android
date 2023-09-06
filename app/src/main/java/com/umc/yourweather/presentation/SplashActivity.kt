@@ -7,9 +7,9 @@ import android.os.Looper
 import androidx.activity.OnBackPressedCallback
 import androidx.appcompat.app.AppCompatActivity
 import com.umc.yourweather.R
-import com.umc.yourweather.presentation.sign.SignIn
+import com.umc.yourweather.presentation.sign.SignInActivity
 
-class Splash : AppCompatActivity() {
+class SplashActivity : AppCompatActivity() {
 
     private lateinit var onBackPressedCallback: OnBackPressedCallback
 
@@ -25,7 +25,7 @@ class Splash : AppCompatActivity() {
         onBackPressedDispatcher.addCallback(this, onBackPressedCallback)
 
         Handler(Looper.getMainLooper()).postDelayed({
-            val intent = Intent(this, SignIn::class.java)
+            val intent = Intent(this, SignInActivity::class.java)
             intent.addFlags(Intent.FLAG_ACTIVITY_NO_ANIMATION)
             startActivity(intent)
             finish()

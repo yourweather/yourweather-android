@@ -16,7 +16,7 @@ import com.umc.yourweather.data.remote.response.MonthWeatherResponse
 import com.umc.yourweather.data.service.WeatherService
 import com.umc.yourweather.databinding.FragmentCalendarBinding
 import com.umc.yourweather.di.RetrofitImpl
-import com.umc.yourweather.presentation.sign.SignIn
+import com.umc.yourweather.presentation.sign.SignInActivity
 import retrofit2.Call
 import retrofit2.Callback
 import retrofit2.Response
@@ -104,7 +104,7 @@ class CalendarFragment : Fragment() {
 //                    weatherData = emptyList()
 //                    binding.ctCalendarCustom.initCalendar(year!!, month!!, dateList, weatherData)
                     Log.d("Calendar", "onFailure 에러: " + t.message.toString())
-                    val mIntent = Intent(requireActivity(), SignIn::class.java)
+                    val mIntent = Intent(requireActivity(), SignInActivity::class.java)
                     requireActivity().startActivity(mIntent)
                     // 현재 액티비티 종료
                     requireActivity().finish()

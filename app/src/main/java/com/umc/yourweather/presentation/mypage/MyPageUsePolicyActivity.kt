@@ -11,7 +11,7 @@ import retrofit2.Call
 import retrofit2.Callback
 import retrofit2.Response
 
-class MyPageUsePolicy : AppCompatActivity() {
+class MyPageUsePolicyActivity : AppCompatActivity() {
     lateinit var binding: ActivityMyPageUsePolicyBinding
 
     override fun onCreate(savedInstanceState: Bundle?) {

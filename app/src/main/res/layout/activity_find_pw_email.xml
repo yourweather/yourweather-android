@@ -4,7 +4,7 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context=".presentation.sign.FindPwEmail">
+    tools:context=".presentation.sign.FindPwEmailActivity">
 
     <androidx.constraintlayout.widget.ConstraintLayout
         android:id="@+id/ll_finpw_email_0"
