@@ -38,7 +38,7 @@ class MyPageMyInfoActivity : AppCompatActivity() {
         }
 
         binding.btnMyinfoPwChange.setOnClickListener {
-            val mIntent = Intent(this, MyPagePwChange::class.java)
+            val mIntent = Intent(this, MyPagePwChangeActivity::class.java)
             startActivity(mIntent)
         }
 
