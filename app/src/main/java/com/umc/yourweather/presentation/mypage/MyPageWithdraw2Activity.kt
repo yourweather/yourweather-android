@@ -17,7 +17,7 @@ import com.umc.yourweather.di.App
 import com.umc.yourweather.di.RetrofitImpl
 import com.umc.yourweather.di.UserSharedPreferences
 import com.umc.yourweather.presentation.sign.SignInActivity
-import com.umc.yourweather.util.AlertDialogTwoBtn
+import com.umc.yourweather.util.AlertDialogTwoBtnNoneSubtItle
 import retrofit2.Call
 import retrofit2.Callback
 import retrofit2.Response
@@ -34,9 +34,8 @@ class MyPageWithdraw2Activity : AppCompatActivity() {
             "소중한 의견을 들려주세요." +
             "\n${UserSharedPreferences.getUserNickname(this@MyPageWithdraw2Activity)} 님이 유어웨더로 다시 돌아올 수 있도록 더 발전해볼게요."
         binding.btnWithdraw2Withdraw.setOnClickListener {
-            AlertDialogTwoBtn(this).run {
+            AlertDialogTwoBtnNoneSubtItle(this).run {
                 setTitle("정말 유어웨더 회원을 탈퇴하시겠습니까?")
-
                 setNegativeButton(
                     "취소",
                     object : DialogInterface.OnClickListener {
