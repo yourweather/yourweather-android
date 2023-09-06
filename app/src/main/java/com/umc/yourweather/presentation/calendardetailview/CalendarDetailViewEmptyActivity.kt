@@ -6,7 +6,7 @@ import android.os.Bundle
 import android.widget.Button
 import com.umc.yourweather.R
 
-class CalendarDetailViewEmpty : AppCompatActivity() {
+class CalendarDetailViewEmptyActivity : AppCompatActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_calendar_detail_view_empty)
@@ -14,7 +14,7 @@ class CalendarDetailViewEmpty : AppCompatActivity() {
         val btnModify: Button = findViewById(R.id.button2)
 
         btnModify.setOnClickListener {
-            val intent = Intent(this@CalendarDetailViewEmpty, CalendarWeatherDetail::class.java)
+            val intent = Intent(this@CalendarDetailViewEmptyActivity, CalendarWeatherDetail::class.java)
             startActivity(intent)
         }
     }

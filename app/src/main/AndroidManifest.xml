@@ -61,7 +61,7 @@
             android:exported="true"
             android:screenOrientation="portrait" />
         <activity
-            android:name=".presentation.calendardetailview.CalendarDetailViewEmpty"
+            android:name=".presentation.calendardetailview.CalendarDetailViewEmptyActivity"
             android:exported="false"
             android:screenOrientation="portrait" />
         <activity
