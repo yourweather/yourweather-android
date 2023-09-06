@@ -14,7 +14,6 @@ import com.kakao.sdk.common.model.ClientErrorCause
 import com.kakao.sdk.user.UserApiClient
 import com.navercorp.nid.NaverIdLoginSDK
 import com.navercorp.nid.oauth.NidOAuthLogin
-import com.navercorp.nid.oauth.NidOAuthPreferencesManager.code
 import com.navercorp.nid.oauth.OAuthLoginCallback
 import com.navercorp.nid.profile.NidProfileCallback
 import com.navercorp.nid.profile.data.NidProfileResponse
@@ -27,7 +26,7 @@ import com.umc.yourweather.databinding.ActivitySignInBinding
 import com.umc.yourweather.di.App
 import com.umc.yourweather.di.RetrofitImpl
 import com.umc.yourweather.di.UserSharedPreferences
-import com.umc.yourweather.presentation.BottomNavi
+import com.umc.yourweather.presentation.BottomNaviActivity
 import com.umc.yourweather.util.SignUtils.Companion.ALERT_TEXT_SIGN_IN
 import com.umc.yourweather.util.SignUtils.Companion.KAKAOTAG
 import com.umc.yourweather.util.SignUtils.Companion.NAVERTAG
@@ -53,7 +52,7 @@ class SignIn : AppCompatActivity() {
         } else { // SharedPreferences 안에 값이 저장되어 있을 때 -> MainActivity로 이동
             Log.d("sh 확인 이메일", UserSharedPreferences.getUserEmail(this).toString())
             Log.d("sh 확인 비밀번호", UserSharedPreferences.getUserPw(this).toString())
-            val intent = Intent(this, BottomNavi::class.java)
+            val intent = Intent(this, BottomNaviActivity::class.java)
             startActivity(intent)
             finish()
         }
@@ -80,7 +79,7 @@ class SignIn : AppCompatActivity() {
 
         // 로그인 버튼 클릭
         binding.btnSigninSignin.setOnClickListener {
-            val mIntent = Intent(this, BottomNavi::class.java)
+            val mIntent = Intent(this, BottomNaviActivity::class.java)
             userEmail = binding.etSigninEmail.text.toString()
             userPw = binding.etSigninPw.text.toString()
             SignInApi(userEmail!!, userPw!!)
@@ -301,7 +300,7 @@ class SignIn : AppCompatActivity() {
     }
 
     private fun moveToHome() {
-        val mIntent = Intent(this@SignIn, BottomNavi::class.java)
+        val mIntent = Intent(this@SignIn, BottomNaviActivity::class.java)
         startActivity(mIntent)
         finish()
     }

@@ -17,7 +17,7 @@ import com.umc.yourweather.databinding.ActivityNicknameBinding
 import com.umc.yourweather.di.App
 import com.umc.yourweather.di.RetrofitImpl
 import com.umc.yourweather.di.UserSharedPreferences
-import com.umc.yourweather.presentation.BottomNavi
+import com.umc.yourweather.presentation.BottomNaviActivity
 import com.umc.yourweather.util.NicknameUtils.Companion.getRandomHintText
 import retrofit2.Call
 import retrofit2.Callback
@@ -124,7 +124,7 @@ class Nickname : AppCompatActivity() {
                         Log.d("회원가입 sh 확인 로그 저장한 리프래시 토큰", App.token_prefs.refreshToken.toString())
 
                         // 회원 가입 성공 후 홈화면으로 이동
-                        val mIntent = Intent(this@Nickname, BottomNavi::class.java)
+                        val mIntent = Intent(this@Nickname, BottomNaviActivity::class.java)
                         mIntent.flags = Intent.FLAG_ACTIVITY_NEW_TASK or Intent.FLAG_ACTIVITY_CLEAR_TASK
                         showInitialToast()
                         startActivity(mIntent)

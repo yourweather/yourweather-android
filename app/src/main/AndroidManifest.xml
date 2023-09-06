@@ -159,7 +159,7 @@
             android:exported="false"
             android:screenOrientation="portrait" />
         <activity
-            android:name=".presentation.BottomNavi"
+            android:name=".presentation.BottomNaviActivity"
             android:exported="false"
             android:screenOrientation="portrait" />
         <activity
@@ -167,7 +167,7 @@
             android:exported="true"
             android:screenOrientation="portrait"/>
         <activity
-            android:name=".presentation.Splash"
+            android:name=".presentation.SplashActivity"
             android:exported="true"
             android:screenOrientation="portrait"
             android:theme="@style/Theme.AppCompat.NoActionBar">

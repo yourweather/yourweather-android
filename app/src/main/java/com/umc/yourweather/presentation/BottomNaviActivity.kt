@@ -30,7 +30,7 @@ import retrofit2.Response
 import java.time.LocalDate
 import java.time.format.DateTimeFormatter
 
-class BottomNavi : AppCompatActivity() {
+class BottomNaviActivity : AppCompatActivity() {
     private val fl: FrameLayout by lazy {
         findViewById(R.id.fl_content)
     }
