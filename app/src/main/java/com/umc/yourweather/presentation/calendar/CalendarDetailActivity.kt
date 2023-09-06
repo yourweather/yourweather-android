@@ -26,7 +26,7 @@ import java.time.LocalDate
 import java.time.LocalDateTime
 import java.time.format.DateTimeFormatter
 
-class CalendarDetail : AppCompatActivity() {
+class CalendarDetailActivity : AppCompatActivity() {
     private lateinit var binding: ActivityCalendarDetailBinding
 
     var month: Int = 0
@@ -126,7 +126,7 @@ class CalendarDetail : AppCompatActivity() {
                     "calendarDetail",
                     "onFailure 오류: ${t.message?.toString()}",
                 )
-                val mIntent = Intent(this@CalendarDetail, SignInActivity::class.java)
+                val mIntent = Intent(this@CalendarDetailActivity, SignInActivity::class.java)
                 startActivity(mIntent)
                 finish()
             }
@@ -171,7 +171,7 @@ class CalendarDetail : AppCompatActivity() {
     }
 
     fun memoListView(memoList: List<MemoDailyResponse.MemoItemResponse>, thisDate: String?) {
-        val memoListAdapter = CalendarDetailMemoListAdapter(memoList, this@CalendarDetail)
+        val memoListAdapter = CalendarDetailMemoListAdapter(memoList, this@CalendarDetailActivity)
         val layoutManager = LinearLayoutManager(this)
         layoutManager.orientation = LinearLayoutManager.HORIZONTAL
 
@@ -182,7 +182,7 @@ class CalendarDetail : AppCompatActivity() {
         // 클릭하면 수정페이지로 넘어감
         memoListAdapter.setOnItemClickListener(object : CalendarDetailMemoListAdapter.OnItemClickListener {
             override fun onItemClick(view: View, position: Int, memoId: Int) {
-                val mIntent = Intent(this@CalendarDetail, CalendarWeatherDetailActivity::class.java)
+                val mIntent = Intent(this@CalendarDetailActivity, CalendarWeatherDetailActivity::class.java)
                 mIntent.putExtra("memoId", memoId)
                 startActivity(mIntent)
                 finish()
@@ -195,7 +195,7 @@ class CalendarDetail : AppCompatActivity() {
         } else {
             // 있으면 플러스 클릭했을때 상세보기 날씨 추가 입력창으로
             binding.btnCalendarDetailPlus.setOnClickListener {
-                val mIntent = Intent(this@CalendarDetail, CalendarPlusWeatherActivity::class.java)
+                val mIntent = Intent(this@CalendarDetailActivity, CalendarPlusWeatherActivity::class.java)
                 mIntent.putExtra("date", thisDate)
                 startActivity(mIntent)
                 finish()
@@ -226,7 +226,7 @@ class CalendarDetail : AppCompatActivity() {
         binding.tvCalendarDetailNoTotalData.setText("${month}월 ${date}일 날씨와 기록이 없어요.")
 
         binding.llCalendarDetailNoTotalData.setOnClickListener {
-            val mIntent = Intent(this@CalendarDetail, CalendarPlusWeatherActivity::class.java)
+            val mIntent = Intent(this@CalendarDetailActivity, CalendarPlusWeatherActivity::class.java)
             mIntent.putExtra("date", thisDate)
             startActivity(mIntent)
             finish()

@@ -47,7 +47,7 @@
             android:exported="false"
             android:screenOrientation="portrait" />
         <activity
-            android:name=".presentation.calendar.CalendarDetail"
+            android:name=".presentation.calendar.CalendarDetailActivity"
             android:exported="false"
             android:screenOrientation="portrait" />
 
