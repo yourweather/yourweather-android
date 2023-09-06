@@ -47,7 +47,7 @@ class MyPageFragment : Fragment() {
             startActivity(mIntent)
         }
         binding.tvMyPageAlarm.setOnClickListener {
-            val mIntent = Intent(activity, MyPageAlarm::class.java)
+            val mIntent = Intent(activity, MyPageAlarmActivity::class.java)
             startActivity(mIntent)
         }
         // 이용약관 페이지 이동
@@ -62,7 +62,7 @@ class MyPageFragment : Fragment() {
         }
         // 알림 설정 페이지 이동
         binding.tvMyPageAlarm.setOnClickListener {
-            val mIntent = Intent(activity, MyPageAlarm::class.java)
+            val mIntent = Intent(activity, MyPageAlarmActivity::class.java)
             startActivity(mIntent)
         }
         userInfoAPI()

@@ -84,7 +84,7 @@
             android:windowSoftInputMode="adjustPan" />
 
         <activity
-            android:name=".presentation.mypage.MyPageAlarm"
+            android:name=".presentation.mypage.MyPageAlarmActivity"
             android:exported="true"
             android:screenOrientation="portrait" />
 

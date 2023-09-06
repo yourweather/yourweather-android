@@ -12,7 +12,7 @@ import com.umc.yourweather.R
 import com.umc.yourweather.databinding.ActivityMyPageAlarmBinding
 import com.umc.yourweather.di.UserSharedPreferences
 
-class MyPageAlarm : AppCompatActivity() {
+class MyPageAlarmActivity : AppCompatActivity() {
     private lateinit var binding: ActivityMyPageAlarmBinding
     private val notificationId = 1
     private val notificationId2 = 2
