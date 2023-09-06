@@ -2,13 +2,11 @@ package com.umc.yourweather.presentation.calendardetailview
 
 import android.content.Intent
 import android.os.Bundle
-import android.text.TextUtils.replace
 import android.util.Log
 import android.view.animation.Animation
 import android.view.animation.AnimationUtils
 import android.widget.Toast
 import androidx.appcompat.app.AppCompatActivity
-import androidx.fragment.app.commit
 import com.umc.yourweather.R
 import com.umc.yourweather.data.enums.Status
 import com.umc.yourweather.data.remote.request.MemoUpdateRequest
@@ -19,14 +17,13 @@ import com.umc.yourweather.data.service.MemoService
 import com.umc.yourweather.databinding.ActivityCalendarWeatherDetailBinding
 import com.umc.yourweather.di.RetrofitImpl
 import com.umc.yourweather.di.UserSharedPreferences
-import com.umc.yourweather.presentation.calendar.CalendarTotalViewFragment
 import retrofit2.Call
 import retrofit2.Callback
 import retrofit2.Response
 import java.text.SimpleDateFormat
 import java.util.Locale
 
-class CalendarWeatherDetail : AppCompatActivity() {
+class CalendarWeatherDetailActivity : AppCompatActivity() {
     private lateinit var binding: ActivityCalendarWeatherDetailBinding
 
     private lateinit var modifyStatus: Status
@@ -151,7 +148,7 @@ class CalendarWeatherDetail : AppCompatActivity() {
                     // 메모 삭제 성공 처리
                     Log.d("메모 삭제 API", "메모가 성공적으로 삭제되었습니다.")
 
-                    Toast.makeText(this@CalendarWeatherDetail, "기록이 삭제되었습니다.", Toast.LENGTH_SHORT).show()
+                    Toast.makeText(this@CalendarWeatherDetailActivity, "기록이 삭제되었습니다.", Toast.LENGTH_SHORT).show()
 
                     finish()
 
@@ -276,11 +273,11 @@ class CalendarWeatherDetail : AppCompatActivity() {
                     // Memo update was successful
                     val baseResponse = response.body()
                     Log.d("메모 수정", "메모 수정, 수정 전달 성공 ${response.body()?.result}")
-                    Toast.makeText(this@CalendarWeatherDetail, "메모가 수정되었습니다.", Toast.LENGTH_SHORT).show()
+                    Toast.makeText(this@CalendarWeatherDetailActivity, "메모가 수정되었습니다.", Toast.LENGTH_SHORT).show()
                 } else {
                     Log.d("메모 수정", "메모 수정 전달 실패 ${response.body()?.result}")
                     val errorResponse = response.errorBody()?.string()
-                    Toast.makeText(this@CalendarWeatherDetail, "메모가 수정이 되지 않았습니다. 다시 실행해주세요.", Toast.LENGTH_SHORT).show()
+                    Toast.makeText(this@CalendarWeatherDetailActivity, "메모가 수정이 되지 않았습니다. 다시 실행해주세요.", Toast.LENGTH_SHORT).show()
                 }
             }
 

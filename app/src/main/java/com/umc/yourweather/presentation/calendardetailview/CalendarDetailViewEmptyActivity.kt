@@ -14,7 +14,7 @@ class CalendarDetailViewEmptyActivity : AppCompatActivity() {
         val btnModify: Button = findViewById(R.id.button2)
 
         btnModify.setOnClickListener {
-            val intent = Intent(this@CalendarDetailViewEmptyActivity, CalendarWeatherDetail::class.java)
+            val intent = Intent(this@CalendarDetailViewEmptyActivity, CalendarWeatherDetailActivity::class.java)
             startActivity(intent)
         }
     }

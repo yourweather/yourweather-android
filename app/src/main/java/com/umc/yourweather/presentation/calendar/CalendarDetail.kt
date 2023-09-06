@@ -17,7 +17,7 @@ import com.umc.yourweather.di.UserSharedPreferences
 import com.umc.yourweather.presentation.adapter.CalendarDetailMemoContentAdapter
 import com.umc.yourweather.presentation.adapter.CalendarDetailMemoListAdapter
 import com.umc.yourweather.presentation.calendardetailview.CalendarPlusWeatherActivity
-import com.umc.yourweather.presentation.calendardetailview.CalendarWeatherDetail
+import com.umc.yourweather.presentation.calendardetailview.CalendarWeatherDetailActivity
 import com.umc.yourweather.presentation.sign.SignInActivity
 import retrofit2.Call
 import retrofit2.Callback
@@ -182,7 +182,7 @@ class CalendarDetail : AppCompatActivity() {
         // 클릭하면 수정페이지로 넘어감
         memoListAdapter.setOnItemClickListener(object : CalendarDetailMemoListAdapter.OnItemClickListener {
             override fun onItemClick(view: View, position: Int, memoId: Int) {
-                val mIntent = Intent(this@CalendarDetail, CalendarWeatherDetail::class.java)
+                val mIntent = Intent(this@CalendarDetail, CalendarWeatherDetailActivity::class.java)
                 mIntent.putExtra("memoId", memoId)
                 startActivity(mIntent)
                 finish()
