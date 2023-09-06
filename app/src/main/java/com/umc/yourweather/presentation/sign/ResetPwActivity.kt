@@ -28,7 +28,7 @@ import retrofit2.Call
 import retrofit2.Callback
 import retrofit2.Response
 
-class ResetPw : AppCompatActivity() {
+class ResetPwActivity : AppCompatActivity() {
     lateinit var binding: ActivityPwResetBinding
 
     override fun onCreate(savedInstanceState: Bundle?) {
@@ -143,13 +143,13 @@ class ResetPw : AppCompatActivity() {
         )
     }
     fun showCustomAlertDialog(text: String, flag: Int, isSuccess: Boolean) {
-        val layoutInflater = LayoutInflater.from(this@ResetPw)
+        val layoutInflater = LayoutInflater.from(this@ResetPwActivity)
         val customLayout = layoutInflater.inflate(R.layout.alertdialog_signview, null)
 
         val titleTextView = customLayout.findViewById<TextView>(R.id.tv_signview_alert)
         val alertButton = customLayout.findViewById<Button>(R.id.btn_signview_alert)
 
-        val alertDialogBuilder = AlertDialog.Builder(this@ResetPw)
+        val alertDialogBuilder = AlertDialog.Builder(this@ResetPwActivity)
         alertDialogBuilder.setView(customLayout)
         alertDialogBuilder.setCancelable(true)
 
@@ -165,7 +165,7 @@ class ResetPw : AppCompatActivity() {
 
         alertButton.setOnClickListener {
             alertDialog.dismiss()
-            val mIntent = Intent(this@ResetPw, SignIn::class.java)
+            val mIntent = Intent(this@ResetPwActivity, SignIn::class.java)
             startActivity(mIntent)
             finish()
         }

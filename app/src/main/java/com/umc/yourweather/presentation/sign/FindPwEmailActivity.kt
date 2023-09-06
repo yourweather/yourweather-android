@@ -45,7 +45,7 @@ class FindPwEmailActivity : AppCompatActivity() {
 
         startTimer()
         binding.btnFindPwEmailNext.setOnClickListener {
-            val mIntent = Intent(this, ResetPw::class.java)
+            val mIntent = Intent(this, ResetPwActivity::class.java)
             startActivity(mIntent)
             finish()
         }
