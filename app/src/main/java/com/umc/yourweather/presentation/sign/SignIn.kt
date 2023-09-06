@@ -67,7 +67,7 @@ class SignIn : AppCompatActivity() {
 
         // 비밀번호 찾기로 이동
         binding.tvSigninBtnfindpw.setOnClickListener {
-            val mIntent = Intent(this, FindPw::class.java)
+            val mIntent = Intent(this, FindPwActivity::class.java)
             startActivity(mIntent)
         }
 

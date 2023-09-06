@@ -135,11 +135,11 @@
             android:screenOrientation="portrait" />
 
         <activity
-            android:name=".presentation.sign.FindPwEmail"
+            android:name=".presentation.sign.FindPwEmailActivity"
             android:exported="false"
             android:screenOrientation="portrait" />
         <activity
-            android:name=".presentation.sign.FindPw"
+            android:name=".presentation.sign.FindPwActivity"
             android:exported="false"
             android:screenOrientation="portrait" />
         <activity

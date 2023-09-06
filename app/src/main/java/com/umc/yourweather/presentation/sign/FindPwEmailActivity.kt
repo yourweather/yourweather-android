@@ -13,7 +13,6 @@ import android.widget.Button
 import android.widget.TextView
 import androidx.appcompat.app.AlertDialog
 import androidx.appcompat.app.AppCompatActivity
-import com.navercorp.nid.oauth.NidOAuthPreferencesManager.code
 import com.umc.yourweather.R
 import com.umc.yourweather.data.remote.response.BaseResponse
 import com.umc.yourweather.data.service.EmailService
@@ -26,7 +25,7 @@ import retrofit2.Call
 import retrofit2.Callback
 import retrofit2.Response
 
-class FindPwEmail : AppCompatActivity() {
+class FindPwEmailActivity : AppCompatActivity() {
     lateinit var binding: ActivityFindPwEmailBinding
     private val retrofitWithoutToken = RetrofitImpl.nonRetrofit
     private val emailService = retrofitWithoutToken.create(EmailService::class.java)
@@ -92,7 +91,7 @@ class FindPwEmail : AppCompatActivity() {
                         // 인증 실패한 경우
                         Log.d("CertifyEmailDebug", "이메일 인증 실패")
                         SignUtils.customSingInPopupWindow(
-                            this@FindPwEmail,
+                            this@FindPwEmailActivity,
                             ALERT_TEXT_FIND_PW_EMAIL,
                             binding.root,
                             binding.btnFindPwEmailNext,
@@ -104,7 +103,7 @@ class FindPwEmail : AppCompatActivity() {
             override fun onFailure(call: Call<BaseResponse<Boolean>>, t: Throwable) {
                 // 네트워크 에러 처리
                 Log.d("CertifyEmailDebug", "네트워크 오류: " + t.message.toString())
-                val mIntent = Intent(this@FindPwEmail, SignIn::class.java)
+                val mIntent = Intent(this@FindPwEmailActivity, SignIn::class.java)
                 startActivity(mIntent)
                 finish()
             }
@@ -135,7 +134,7 @@ class FindPwEmail : AppCompatActivity() {
             override fun onFailure(call: Call<BaseResponse<Unit>>, t: Throwable) {
                 // 네트워크 에러 처리
                 Log.d("ResendEmailDebug", "네트워크 오류: " + t.message.toString())
-                val mIntent = Intent(this@FindPwEmail, SignIn::class.java)
+                val mIntent = Intent(this@FindPwEmailActivity, SignIn::class.java)
                 startActivity(mIntent)
                 finish()
             }
@@ -166,13 +165,13 @@ class FindPwEmail : AppCompatActivity() {
     // 0 : 인증코드 전송 관련
     // 1 : 인증 성공 여부
     fun showCustomAlertDialog(text: String, flag: Int, isSuccess: Boolean) {
-        val layoutInflater = LayoutInflater.from(this@FindPwEmail)
+        val layoutInflater = LayoutInflater.from(this@FindPwEmailActivity)
         val customLayout = layoutInflater.inflate(R.layout.alertdialog_signview, null)
 
         val titleTextView = customLayout.findViewById<TextView>(R.id.tv_signview_alert)
         val alertButton = customLayout.findViewById<Button>(R.id.btn_signview_alert)
 
-        val alertDialogBuilder = AlertDialog.Builder(this@FindPwEmail)
+        val alertDialogBuilder = AlertDialog.Builder(this@FindPwEmailActivity)
         alertDialogBuilder.setView(customLayout)
         alertDialogBuilder.setCancelable(true)
 
