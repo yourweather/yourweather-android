@@ -9,8 +9,8 @@
 
     <TextView
         android:id="@+id/tv_initial_toast"
-        android:layout_width="370dp"
-        android:layout_height="40dp"
+        android:layout_width="wrap_content"
+        android:layout_height="0dp"
         android:layout_weight="1"
         android:background="@drawable/bg_home_toast"
         android:text="감정 날씨가 저장 되었습니다"
