@@ -9,7 +9,7 @@ import androidx.fragment.app.Fragment
 import com.umc.yourweather.databinding.FragmentAlertdialogMypageLogoutBinding
 import com.umc.yourweather.di.UserSharedPreferences
 import com.umc.yourweather.di.TokenSharedPreferences
-import com.umc.yourweather.presentation.sign.SignIn
+import com.umc.yourweather.presentation.sign.SignInActivity
 
 class MyPageLogoutFragment : Fragment() {
     private var _binding: FragmentAlertdialogMypageLogoutBinding? = null
@@ -38,7 +38,7 @@ class MyPageLogoutFragment : Fragment() {
             tokenPrefs.clearTokens()
 
             // 로그인 창으로 이동
-            val intent = Intent(requireContext(), SignIn::class.java)
+            val intent = Intent(requireContext(), SignInActivity::class.java)
             startActivity(intent)
             requireActivity().finish() // requireActivity()로 액티비티에 접근
         }

@@ -46,7 +46,7 @@ class SignUp : AppCompatActivity() {
 
         // "뒤로 가기" 버튼 클릭 시 이벤트 처리
         binding.btnSingupBack.setOnClickListener {
-            val mIntent = Intent(this, SignIn::class.java)
+            val mIntent = Intent(this, SignInActivity::class.java)
             startActivity(mIntent)
             finish()
         }
@@ -57,7 +57,7 @@ class SignUp : AppCompatActivity() {
 
         // "로그인하러 가기" 버튼 클릭 시 이벤트 처리
         binding.tvSignupBtnsignin.setOnClickListener {
-            val mIntent = Intent(this, SignIn::class.java)
+            val mIntent = Intent(this, SignInActivity::class.java)
             startActivity(mIntent)
             finish()
         }

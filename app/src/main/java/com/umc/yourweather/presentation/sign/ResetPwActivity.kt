@@ -165,7 +165,7 @@ class ResetPwActivity : AppCompatActivity() {
 
         alertButton.setOnClickListener {
             alertDialog.dismiss()
-            val mIntent = Intent(this@ResetPwActivity, SignIn::class.java)
+            val mIntent = Intent(this@ResetPwActivity, SignInActivity::class.java)
             startActivity(mIntent)
             finish()
         }

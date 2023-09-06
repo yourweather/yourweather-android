@@ -163,7 +163,7 @@
             android:exported="false"
             android:screenOrientation="portrait" />
         <activity
-            android:name=".presentation.sign.SignIn"
+            android:name=".presentation.sign.SignInActivity"
             android:exported="true"
             android:screenOrientation="portrait"/>
         <activity

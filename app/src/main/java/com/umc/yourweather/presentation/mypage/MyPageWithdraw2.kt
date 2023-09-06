@@ -16,7 +16,7 @@ import com.umc.yourweather.databinding.ActivityMyPageWithdraw2Binding
 import com.umc.yourweather.di.App
 import com.umc.yourweather.di.RetrofitImpl
 import com.umc.yourweather.di.UserSharedPreferences
-import com.umc.yourweather.presentation.sign.SignIn
+import com.umc.yourweather.presentation.sign.SignInActivity
 import com.umc.yourweather.util.AlertDialogTwoBtn
 import retrofit2.Call
 import retrofit2.Callback
@@ -104,7 +104,7 @@ class MyPageWithdraw2 : AppCompatActivity() {
 
             override fun onFailure(call: Call<BaseResponse<UserResponse>>, t: Throwable) {
                 Log.d("WithDrawDebug", "onFailure")
-                val mIntent = Intent(this@MyPageWithdraw2, SignIn::class.java)
+                val mIntent = Intent(this@MyPageWithdraw2, SignInActivity::class.java)
                 startActivity(mIntent)
                 finish()
             }
