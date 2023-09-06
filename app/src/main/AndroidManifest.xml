@@ -24,7 +24,7 @@
         android:theme="@style/Theme.Yourweather"
         tools:targetApi="31">
         <activity
-            android:name=".presentation.calendardetailview.CalendarDetailViewStatusbar"
+            android:name=".presentation.calendardetailview.CalendarDetailViewStatusbarActivity"
             android:exported="false" />
         <activity
             android:name="com.kakao.sdk.auth.AuthCodeHandlerActivity"
