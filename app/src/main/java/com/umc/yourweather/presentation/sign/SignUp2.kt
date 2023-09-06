@@ -49,7 +49,7 @@ class SignUp2 : AppCompatActivity() {
 
         // 비밀번호 받고 넘기기
         var pw = binding.etSignup2Pw.text.toString()
-        val mIntent = Intent(this@SignUp2, Nickname::class.java)
+        val mIntent = Intent(this@SignUp2, NicknameActivity::class.java)
         mIntent.putExtra("password", pw)
         mIntent.putExtra("email", email)
         mIntent.putExtra("platform", "YOURWEATHER")

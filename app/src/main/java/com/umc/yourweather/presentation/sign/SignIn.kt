@@ -208,7 +208,7 @@ class SignIn : AppCompatActivity() {
                         "SignInDebug",
                         "소셜로그인, 정보 존재하지 않음. 회원가입 필요한경우임 ${response?.toString()}",
                     )
-                    val mIntent = Intent(this@SignIn, Nickname::class.java)
+                    val mIntent = Intent(this@SignIn, NicknameActivity::class.java)
                     mIntent.putExtra("email", userEmail)
                     mIntent.putExtra("password", userPw)
                     mIntent.putExtra("platform", platform)
