@@ -105,11 +105,11 @@
             android:exported="false"
             android:screenOrientation="portrait" />
         <activity
-            android:name=".presentation.mypage.MyPageUsePolicy"
+            android:name=".presentation.mypage.MyPageUsePolicyActivity"
             android:exported="false"
             android:screenOrientation="portrait" />
         <activity
-            android:name=".presentation.mypage.MyPagePrivacyPolicy"
+            android:name=".presentation.mypage.MyPagePrivacyPolicyActivity"
             android:exported="false"
             android:screenOrientation="portrait" />
         <activity

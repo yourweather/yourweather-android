@@ -52,12 +52,12 @@ class MyPageFragment : Fragment() {
         }
         // 이용약관 페이지 이동
         binding.tvUsePolicy.setOnClickListener {
-            val mIntent = Intent(activity, MyPageUsePolicy::class.java)
+            val mIntent = Intent(activity, MyPageUsePolicyActivity::class.java)
             startActivity(mIntent)
         }
         // 개인정보 처리방침 페이지 이동
         binding.tvPrivacyPolicy.setOnClickListener {
-            val mIntent = Intent(activity, MyPagePrivacyPolicy::class.java)
+            val mIntent = Intent(activity, MyPagePrivacyPolicyActivity::class.java)
             startActivity(mIntent)
         }
         // 알림 설정 페이지 이동

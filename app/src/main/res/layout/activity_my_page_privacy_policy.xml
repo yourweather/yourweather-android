@@ -3,7 +3,7 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     xmlns:tools="http://schemas.android.com/tools"
-    tools:context=".presentation.mypage.MyPagePrivacyPolicy">
+    tools:context=".presentation.mypage.MyPagePrivacyPolicyActivity">
 
     <LinearLayout
         android:id="@+id/ll_privacy_policy_title"
