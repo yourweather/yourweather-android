@@ -92,73 +92,88 @@
             android:layout_height="match_parent"
             android:orientation="vertical">
 
+            <TextView
+                android:id="@+id/tv_detailview_modify2_title1"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="16dp"
+                android:layout_marginTop="33dp"
+                android:fontFamily="@font/pretendardsemibold"
+                android:text="이다은 님의 감정 상태"
+                android:textColor="#2B2B2B"
+                android:textSize="14dp"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintHorizontal_bias="0.135"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@+id/divider" />
+
             <LinearLayout
+                android:id="@+id/ll_icon"
+                android:layout_width="wrap_content"
+                android:layout_height="95dp"
+                android:layout_marginStart="15dp"
+                android:layout_marginTop="8dp"
+                android:layout_marginEnd="15dp"
+                android:layout_marginBottom="8dp"
+                android:orientation="horizontal"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@+id/divider">
+
+
+                >
+
+                <ImageView
+                    android:id="@+id/btn_home_sun"
+                    android:layout_width="wrap_content"
+                    android:layout_height="match_parent"
+                    android:layout_marginTop="8dp"
+                    android:layout_marginBottom="8dp"
+                    android:layout_weight="1"
+                    android:background="@drawable/ic_sun" />
+
+                <ImageView
+                    android:id="@+id/btn_home_cloud"
+                    android:layout_width="wrap_content"
+                    android:layout_height="match_parent"
+                    android:layout_marginTop="8dp"
+                    android:layout_marginBottom="8dp"
+                    android:layout_weight="1"
+                    android:background="@drawable/ic_cloud" />
+
+                <ImageView
+                    android:id="@+id/btn_home_rain"
+                    android:layout_width="wrap_content"
+                    android:layout_height="match_parent"
+                    android:layout_marginTop="8dp"
+                    android:layout_marginBottom="8dp"
+                    android:layout_weight="1"
+                    android:background="@drawable/ic_rain" />
+
+                <ImageView
+                    android:id="@+id/btn_home_thunder"
+                    android:layout_width="wrap_content"
+                    android:layout_height="match_parent"
+                    android:layout_marginTop="8dp"
+                    android:layout_marginBottom="8dp"
+                    android:layout_weight="1"
+                    android:background="@drawable/ic_thunder" />
+            </LinearLayout>
+
+            <TextView
+                android:id="@+id/tv_calendar_detailview_modify2_3"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:orientation="vertical">
+                android:fontFamily="@font/pretendardregular"
+                android:gravity="center"
+                android:text="클릭하여 선택해주세요"
+                android:textColor="#ACACAC"
+                android:textSize="10dp"
+                app:layout_constraintBottom_toBottomOf="parent"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@+id/divider" />
 
-                <TextView
-                    android:id="@+id/tv_detailview_modify2_title1"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:layout_marginStart="16dp"
-                    android:layout_marginTop="23dp"
-                    android:fontFamily="@font/pretendardsemibold"
-                    android:text="이다은 님의 감정 상태"
-                    android:textColor="#2B2B2B"
-                    android:textSize="14dp"
-                    app:layout_constraintEnd_toEndOf="parent"
-                    app:layout_constraintHorizontal_bias="0.135"
-                    app:layout_constraintStart_toStartOf="parent"
-                    app:layout_constraintTop_toBottomOf="@+id/divider" />
-
-                <LinearLayout
-                    android:layout_width="match_parent"
-                    android:layout_height="95dp"
-                    android:orientation="horizontal">
-
-                    <androidx.appcompat.widget.AppCompatButton
-                        android:id="@+id/btn_home_sun"
-                        android:layout_width="83dp"
-                        android:layout_height="85dp"
-                        android:layout_marginStart="33dp"
-                        android:layout_marginTop="8dp"
-                        android:layout_marginEnd="5dp"
-                        android:layout_marginBottom="603dp"
-                        android:background="@drawable/ic_sun"
-                        />
-
-                    <androidx.appcompat.widget.AppCompatButton
-                        android:id="@+id/btn_home_cloud"
-                        android:layout_width="83dp"
-                        android:layout_height="85dp"
-                        android:layout_marginTop="8dp"
-                        android:layout_marginBottom="603dp"
-                        android:background="@drawable/ic_cloud"
-                        />
-
-                    <androidx.appcompat.widget.AppCompatButton
-                        android:id="@+id/btn_home_rain"
-                        android:layout_width="83dp"
-                        android:layout_height="85dp"
-                        android:layout_marginStart="5dp"
-                        android:layout_marginTop="8dp"
-                        android:layout_marginBottom="603dp"
-                        android:background="@drawable/ic_rain"
-                        />
-
-                    <androidx.appcompat.widget.AppCompatButton
-                        android:id="@+id/btn_home_thunder"
-                        android:layout_width="83dp"
-                        android:layout_height="85dp"
-                        android:layout_marginStart="5dp"
-                        android:layout_marginTop="8dp"
-                        android:layout_marginEnd="42dp"
-                        android:layout_marginBottom="603dp"
-                        android:background="@drawable/ic_thunder" />
-                </LinearLayout>
-
-                </LinearLayout>
 
             <LinearLayout
                 android:layout_width="match_parent"
@@ -231,31 +246,35 @@
                 <LinearLayout
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:orientation="horizontal">
+                    android:orientation="horizontal"
+                    android:layout_marginStart="45dp"
+                    android:layout_marginEnd="25dp"
+                    >
 
                     <TextView
                         android:id="@+id/iv_calendar_detailview_modify2_5"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
-                        android:layout_marginStart="53dp"
                         android:layout_marginTop="10dp"
-                        android:layout_weight="1"
                         android:fontFamily="@font/pretendardsemibold"
                         android:text="0°"
                         android:textSize="13dp"
                         app:layout_constraintBottom_toBottomOf="parent"
                         app:layout_constraintEnd_toEndOf="parent"
                         app:layout_constraintStart_toStartOf="parent"
-                        app:layout_constraintTop_toBottomOf="@+id/divider" />
+                        app:layout_constraintTop_toBottomOf="@+id/divider"
+                        />
+
+                    <View
+                        android:layout_width="0dp"
+                        android:layout_height="0dp"
+                        android:layout_weight="1" />
 
                     <TextView
                         android:id="@+id/iv_calendar_detailview_modify2_6"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
-                        android:layout_weight="1"
-                        android:layout_marginStart="265dp"
                         android:layout_marginTop="10dp"
-                        android:layout_marginEnd="0dp"
                         android:layout_marginBottom="0dp"
                         android:fontFamily="@font/pretendardsemibold"
                         android:text="100°"
@@ -263,7 +282,8 @@
                         app:layout_constraintBottom_toBottomOf="parent"
                         app:layout_constraintEnd_toEndOf="parent"
                         app:layout_constraintStart_toStartOf="parent"
-                        app:layout_constraintTop_toBottomOf="@+id/divider" />
+                        app:layout_constraintTop_toBottomOf="@+id/divider"
+                        android:gravity="right"/>
                 </LinearLayout>
             </LinearLayout>
 
