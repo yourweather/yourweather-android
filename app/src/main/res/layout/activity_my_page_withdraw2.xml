@@ -151,35 +151,45 @@
 
     </RadioGroup>
 
-    <androidx.appcompat.widget.AppCompatButton
-        android:id="@+id/btn_withdraw2_withdraw"
+    <LinearLayout
         android:layout_width="0dp"
-        android:layout_height="42dp"
-        android:layout_marginStart="18dp"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="16dp"
+        android:layout_marginEnd="16dp"
         android:layout_marginBottom="25dp"
-        android:background="@drawable/btn_selector_withdraw"
-        android:enabled="false"
-        android:fontFamily="@font/pretendardmedium"
-        android:text="탈퇴하기"
-        android:textColor="#FFFFFF"
-        android:textSize="14dp"
+        android:orientation="horizontal"
         app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintDimensionRatio="4:1"
-        app:layout_constraintStart_toStartOf="parent" />
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent">
 
-    <androidx.appcompat.widget.AppCompatButton
-        android:id="@+id/btn_withdraw2_cancel"
-        android:layout_width="0dp"
-        android:layout_height="42dp"
-        android:layout_marginEnd="18dp"
-        android:layout_marginBottom="25dp"
-        android:background="@drawable/btn_withdraw2"
-        android:fontFamily="@font/pretendardmedium"
-        android:text="취소"
-        android:textColor="#FFFFFF"
-        android:textSize="14dp"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintDimensionRatio="4:1"
-        app:layout_constraintEnd_toEndOf="parent" />
+        <androidx.appcompat.widget.AppCompatButton
+            android:id="@+id/btn_withdraw2_withdraw"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_weight="10"
+            android:background="@drawable/btn_selector_withdraw"
+            android:enabled="false"
+            android:fontFamily="@font/pretendardmedium"
+            android:text="탈퇴하기"
+            android:textColor="#FFFFFF"
+            android:textSize="14dp" />
+
+        <LinearLayout
+            android:layout_width="0dp"
+            android:layout_height="match_parent"
+            android:layout_weight="1"
+            android:orientation="horizontal"></LinearLayout>
+
+        <androidx.appcompat.widget.AppCompatButton
+            android:id="@+id/btn_withdraw2_cancel"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_weight="10"
+            android:background="@drawable/btn_withdraw2"
+            android:fontFamily="@font/pretendardmedium"
+            android:text="취소"
+            android:textColor="#FFFFFF"
+            android:textSize="14dp" />
+    </LinearLayout>
 
 </androidx.constraintlayout.widget.ConstraintLayout>
