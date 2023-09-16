@@ -18,17 +18,13 @@ android {
     namespace 'com.umc.yourweather'
     compileSdk 33
 
-    lintOptions{
-        checkReleaseBuilds false
-        abortOnError false
-    }
 
-   defaultConfig {
+    defaultConfig {
         applicationId "com.umc.yourweather"
         minSdk 24
         targetSdk 33
-        versionCode 1
-        versionName "1.0"
+        versionCode 2
+        versionName "1.1.0"
         testInstrumentationRunner "androidx.test.runner.AndroidJUnitRunner"
         buildConfigField "String", "KAKAO_API_KEY", properties['KAKAO_API_KEY']
         buildConfigField "String", "BASE_URL", properties['BASE_URL']
@@ -60,6 +56,10 @@ android {
     }
     dataBinding{
         enabled = true
+    }
+    lint {
+        abortOnError false
+        checkReleaseBuilds false
     }
 }
 
