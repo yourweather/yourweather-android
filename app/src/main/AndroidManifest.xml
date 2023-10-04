@@ -96,14 +96,7 @@
             android:name=".presentation.mypage.MyPageNicknameChangeActivity"
             android:exported="false"
             android:screenOrientation="portrait" />
-        <activity
-            android:name=".presentation.mypage.MyPagePlus"
-            android:exported="false"
-            android:screenOrientation="portrait" />
-        <activity
-            android:name=".presentation.mypage.MyPagePlusAlarm"
-            android:exported="false"
-            android:screenOrientation="portrait" />
+
         <activity
             android:name=".presentation.mypage.MyPageUsePolicyActivity"
             android:exported="false"
