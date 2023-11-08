@@ -171,7 +171,7 @@ class AnalysisFragment : Fragment() {
                                     } else {
                                         binding.imgBellEvent.visibility = View.VISIBLE
                                         binding.btnBell.setOnClickListener {
-                                            val intent = Intent(requireContext(), AllWrittenActivity::class.java)
+                                            val intent = Intent(requireContext(), UnwrittenDetailListActivity::class.java)
                                             startActivity(intent)
                                         }
                                     }
