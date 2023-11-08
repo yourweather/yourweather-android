@@ -166,12 +166,14 @@ class AnalysisFragment : Fragment() {
 //                                                .addToBackStack(null)
 //                                                .commit()
                                             val intent = Intent(requireContext(), AllWrittenActivity::class.java)
+                                                .addFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP)
                                             startActivity(intent)
                                         }
                                     } else {
                                         binding.imgBellEvent.visibility = View.VISIBLE
                                         binding.btnBell.setOnClickListener {
                                             val intent = Intent(requireContext(), UnwrittenDetailListActivity::class.java)
+                                                .addFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP)
                                             startActivity(intent)
                                         }
                                     }
