@@ -4,7 +4,7 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context=".presentation.analysis.AllWrittenFragment">
+    tools:context=".presentation.analysis.AllWrittenActivity">
 
     <RelativeLayout
         android:id="@+id/rl_btn"
@@ -71,6 +71,5 @@
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/tv_allwritten_clear"
         app:layout_constraintVertical_bias="0.036" />
-
 
 </androidx.constraintlayout.widget.ConstraintLayout>

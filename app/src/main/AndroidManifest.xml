@@ -8,6 +8,7 @@
     <uses-feature
         android:name="android.hardware.camera"
         android:required="false" />
+
     <uses-permission android:name="android.permission.POST_NOTIFICATIONS" />
     <uses-permission android:name="android.permission.INTERNET" />
     <uses-permission android:name="android.permission.CAMERA" />
@@ -27,6 +28,9 @@
         android:theme="@style/Theme.Yourweather"
         tools:targetApi="31">
         <activity
+            android:name=".presentation.analysis.AllWrittenActivity"
+            android:exported="false" />
+        <activity
             android:name=".presentation.calendardetailview.CalendarDetailViewStatusbarActivity"
             android:exported="false" />
         <activity
@@ -43,8 +47,6 @@
                     android:scheme="${KAKAO_API_KEY}" />
             </intent-filter>
         </activity>
-
-        
         <activity
             android:name=".presentation.calendar.CalendarDate"
             android:exported="false"
@@ -53,12 +55,10 @@
             android:name=".presentation.calendar.CalendarDetailActivity"
             android:exported="false"
             android:screenOrientation="portrait" />
-
         <activity
             android:name=".presentation.calendar.CalendarMonth"
             android:exported="false"
             android:screenOrientation="portrait" />
-
         <activity
             android:name=".presentation.calendardetailview.CalendarDetailViewAlarmActivity"
             android:exported="true"
@@ -81,12 +81,10 @@
             android:exported="true"
             android:screenOrientation="portrait"
             android:windowSoftInputMode="adjustPan" />
-
         <activity
             android:name=".presentation.mypage.MyPageAlarmActivity"
             android:exported="true"
             android:screenOrientation="portrait" />
-
         <activity
             android:name=".presentation.mypage.MyPageMyInfoActivity"
             android:exported="false"
@@ -95,7 +93,6 @@
             android:name=".presentation.mypage.MyPageNicknameChangeActivity"
             android:exported="false"
             android:screenOrientation="portrait" />
-
         <activity
             android:name=".presentation.mypage.MyPageUsePolicyActivity"
             android:exported="false"
@@ -120,12 +117,10 @@
             android:name=".presentation.mypage.MyPagePwChangeActivity"
             android:exported="false"
             android:screenOrientation="portrait" />
-
         <activity
             android:name=".presentation.share.SharedViewModel"
             android:exported="true"
             android:screenOrientation="portrait" />
-
         <activity
             android:name=".presentation.sign.FindPwEmailActivity"
             android:exported="false"
@@ -157,7 +152,7 @@
         <activity
             android:name=".presentation.sign.SignInActivity"
             android:exported="true"
-            android:screenOrientation="portrait"/>
+            android:screenOrientation="portrait" />
         <activity
             android:name=".presentation.SplashActivity"
             android:exported="true"

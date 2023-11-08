@@ -12,15 +12,12 @@ import androidx.recyclerview.widget.LinearLayoutManager
 import com.umc.yourweather.R
 import com.umc.yourweather.data.entity.ItemWritten
 import com.umc.yourweather.data.enums.Status
-import com.umc.yourweather.data.remote.request.MemoRequest
 import com.umc.yourweather.data.remote.response.BaseResponse
 import com.umc.yourweather.data.remote.response.SpecificMemoResponse
 import com.umc.yourweather.data.remote.response.StatisticResponse
 import com.umc.yourweather.data.service.ReportService
 import com.umc.yourweather.databinding.FragmentWrittenDetailListSunBinding
 import com.umc.yourweather.di.RetrofitImpl
-import com.umc.yourweather.di.RetrofitImpl.authenticatedRetrofit
-import com.umc.yourweather.presentation.adapter.UnwrittenRVAdapter
 import com.umc.yourweather.presentation.adapter.WrittenRVAdapter
 import retrofit2.Call
 import retrofit2.Callback

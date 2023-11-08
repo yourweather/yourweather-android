@@ -1,6 +1,7 @@
 package com.umc.yourweather.presentation.analysis
 
 import android.annotation.SuppressLint
+import android.content.Intent
 import android.graphics.drawable.Drawable
 import android.os.Bundle
 import android.util.Log
@@ -157,22 +158,21 @@ class AnalysisFragment : Fragment() {
                                     Log.d("코루틴 시작 요청함수 ", "요청시작")
                                     Log.d("코루틴 시작 요청함수", "결과옴")
 
-                                    if (localDates.isNullOrEmpty()) {
+                                    if (localDates.isEmpty()) {
                                         binding.btnBell.setOnClickListener {
-                                            val mFragment = AllWrittenFragment()
-                                            requireActivity().supportFragmentManager.beginTransaction()
-                                                .replace(R.id.fl_content, mFragment)
-                                                .addToBackStack(null)
-                                                .commit()
+//                                            val mFragment = AllWrittenFragment()
+//                                            requireActivity().supportFragmentManager.beginTransaction()
+//                                                .replace(R.id.fl_content, mFragment)
+//                                                .addToBackStack(null)
+//                                                .commit()
+                                            val intent = Intent(requireContext(), AllWrittenActivity::class.java)
+                                            startActivity(intent)
                                         }
                                     } else {
                                         binding.imgBellEvent.visibility = View.VISIBLE
                                         binding.btnBell.setOnClickListener {
-                                            val mFragment = UnwrittenDetailListFragment()
-                                            requireActivity().supportFragmentManager.beginTransaction()
-                                                .replace(R.id.fl_content, mFragment)
-                                                .addToBackStack(null)
-                                                .commit()
+                                            val intent = Intent(requireContext(), AllWrittenActivity::class.java)
+                                            startActivity(intent)
                                         }
                                     }
                                     return continuation.resume(true, null)
