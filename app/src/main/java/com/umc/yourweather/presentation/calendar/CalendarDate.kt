@@ -21,37 +21,41 @@ import com.umc.yourweather.util.ResourceUtils.Companion.setWeatherIc
 import java.time.LocalDate
 
 @RequiresApi(Build.VERSION_CODES.O)
-class CalendarDate : View {
-    var dataList: MonthWeatherResponse? = null
-    var thisMonth: Int? = null
-    var thisDate: LocalDate? = null
-    var weatherId: Int? = null
+class CalendarDate @JvmOverloads constructor(
+    context: Context,
+    attrs: AttributeSet? = null,
+    defStyleAttr: Int = 0,
+    val thisMonth: Int,
+    val thisDate: LocalDate,
+    val dataList: MonthWeatherResponse?,
+    val weatherId: Int?,
+) : View(context, attrs, defStyleAttr) {
 
-    constructor(context: Context) : super(context)
-    constructor(
-        context: Context,
-        attrs: AttributeSet,
-    ) : super(context, attrs)
+    lateinit var datePaint: Paint
+    lateinit var temPaint: Paint
 
-    constructor(
-        context: Context,
-        attrs: AttributeSet,
-        defStyleAttr: Int,
-    ) : super(context, attrs, defStyleAttr)
+    var customDrawable: Drawable? = null
 
-    constructor(
-        context: Context,
-        attrs: AttributeSet? = null,
-        defStyleAttr: Int = 0,
-        thisMonth: Int,
-        thisDate: LocalDate,
-        dataList: MonthWeatherResponse?,
-        weatherId: Int?,
-    ) : super(context, attrs, defStyleAttr) {
-        this.dataList = dataList
-        this.thisMonth = thisMonth
-        this.thisDate = thisDate
-        this.weatherId = weatherId
+//    //**삭제예정!!!!!
+//    private val borderPaint = Paint().apply {
+//        color = Color.BLACK // 테두리 색상
+//        style = Paint.Style.STROKE // 선 스타일
+//        strokeWidth = 5f // 선 두께
+//    }
+
+    interface OnDateClickListener {
+        fun onDateClick(date: LocalDate, weatherId: Int?)
+    }
+
+    private var onDateClickListener: OnDateClickListener? = null
+
+    fun setOnDateClickListener(listener: OnDateClickListener) {
+        this.onDateClickListener = listener
+    }
+
+    init {
+        // setCustomPadding() 삭제예정
+        // 가장 높은 온도
 
         Log.d("date 클래스 ", "$thisMonth, ${thisDate.monthValue}")
         Log.d("date 클래스 ", "$dataList")
@@ -98,77 +102,6 @@ class CalendarDate : View {
         }
     }
 
-    lateinit var datePaint: Paint
-    lateinit var temPaint: Paint
-
-    var customDrawable: Drawable? = null
-
-//    //**삭제예정!!!!!
-//    private val borderPaint = Paint().apply {
-//        color = Color.BLACK // 테두리 색상
-//        style = Paint.Style.STROKE // 선 스타일
-//        strokeWidth = 5f // 선 두께
-//    }
-
-    interface OnDateClickListener {
-        fun onDateClick(date: LocalDate, weatherId: Int?)
-    }
-
-    private var onDateClickListener: OnDateClickListener? = null
-
-    fun setOnDateClickListener(listener: OnDateClickListener) {
-        this.onDateClickListener = listener
-    }
-
-    init {
-        // setCustomPadding() 삭제예정
-        // 가장 높은 온도
-
-//        Log.d("date 클래스 ", "$thisMonth, ${thisDate.monthValue}")
-//        Log.d("date 클래스 ", "$dataList")
-//        if (thisMonth == thisDate.monthValue) {
-//            context.withStyledAttributes(
-//                attrs,
-//                R.styleable.Calendar,
-//                defStyleAttr,
-//            ) {
-//                val dateFont = ResourcesCompat.getFont(context, R.font.pretendardregular)
-//                val tempFont = ResourcesCompat.getFont(context, R.font.pretendardsemibold)
-//
-//                datePaint = TextPaint().apply {
-//                    textSize = dpToPx(context, 12).toFloat()
-//                    isAntiAlias = true
-//                    textAlign = Paint.Align.CENTER
-//                    typeface = dateFont
-//                }
-//
-//                if (isLaterDay()) {
-//                    Log.d("isLaterDay", "나중인지?")
-//                    datePaint.color = Color.parseColor("#D1CAC6")
-//                } else {
-//                    Log.d("isLaterDay", "나중아님?")
-//                    datePaint.color = Color.parseColor("#2B2B2B")
-//                    // Log.d("isLaterDay if문 바깥", "${dataList}")
-//                    if (dataList != null) {
-//                        // Log.d("isLaterDay dataList널 아님", "${dataList}")
-//                        temPaint = TextPaint().apply {
-//                            textSize = dpToPx(context, 12).toFloat()
-//                            color = Color.parseColor("#2B2B2B")
-//                            isAntiAlias = true
-//                            textAlign = Paint.Align.CENTER
-//                            typeface = tempFont
-//                        }
-//                        customDrawable = setWeatherIc(context, dataList.lastStatus)
-//                    }
-//                    setOnClickListener {
-//                        // 클릭 이벤트가 발생했을 때 콜백으로 해당 날짜 전달
-//                        onDateClickListener?.onDateClick(thisDate, weatherId)
-//                    }
-//                }
-//            }
-//        }
-    }
-
 //    fun setDrawable(context: Context, weather: Status): Drawable? {
 //        when (weather) {
 //            Status.SUNNY -> {
@@ -194,12 +127,12 @@ class CalendarDate : View {
         if (dataList != null) {
             Log.d("캘린더 날짜별로 들어가는 thisMonth thisDate", "${thisMonth}월 ${thisDate}일")
             Log.d("캘린더 날짜별로 들어가는 서버에서 전달받은값", "$dataList")
-            Log.d("캘린더 날짜별로 들어가는 날짜", "${thisDate?.dayOfMonth}")
+            Log.d("캘린더 날짜별로 들어가는 날짜", "${thisDate.dayOfMonth}")
             Log.d("캘린더 날짜별로 들어가는 온도", "${dataList?.lastTemperature}도")
         }
 
-        if (thisMonth == thisDate?.monthValue) {
-            val dateText = thisDate?.dayOfMonth.toString()
+        if (thisMonth == thisDate.monthValue) {
+            val dateText = thisDate.dayOfMonth.toString()
             val temp = "${dataList?.lastTemperature}°"
 
             if (LocalDate.now() == thisDate) {
