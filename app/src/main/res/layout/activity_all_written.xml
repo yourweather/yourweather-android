@@ -2,25 +2,23 @@
 <androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
-    android:id="@+id/fragment_layout"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context=".presentation.analysis.UnwrittenDetailListFragment">
-
+    tools:context=".presentation.analysis.AllWrittenActivity">
 
     <RelativeLayout
-        android:id="@+id/rl_btn1"
+        android:id="@+id/rl_btn"
         android:layout_width="44dp"
         android:layout_height="52dp"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent">
 
         <ImageButton
-            android:id="@+id/btn_Unwritten_left_arrow"
+            android:id="@+id/btn_allwritten_left_arrow"
             style="?android:attr/borderlessButtonStyle"
             android:layout_width="10dp"
             android:layout_height="18dp"
-            android:layout_marginStart="16dp"
+            android:layout_marginStart="17dp"
             android:layout_marginTop="19dp"
             android:background="@drawable/ic_black_leftarrow_8_16"
             android:paddingTop="10dp"
@@ -29,45 +27,49 @@
             app:layout_constraintTop_toTopOf="parent" />
     </RelativeLayout>
 
+
     <TextView
-        android:id="@+id/tv_Unwritten_title"
+        android:id="@+id/tv_allwritten_title"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginTop="16dp"
-        android:fontFamily="@font/bmhanna"
+        android:layout_gravity="center"
         android:text="@string/tv_Unwritten_title"
         android:textColor="@color/sorange"
         android:textSize="20dp"
         android:textStyle="bold"
+        android:gravity="center"
         app:layout_constraintEnd_toEndOf="parent"
+        android:layout_marginTop="16dp"
+        android:fontFamily="@font/bmhanna"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent" />
+        app:layout_constraintTop_toTopOf="parent"/>
 
-    <androidx.recyclerview.widget.RecyclerView
-        android:id="@+id/recyclerViewUnwrittenDetail"
-        android:layout_width="match_parent"
-        android:layout_height="0dp"
-        android:layout_marginTop="64dp"
+    <TextView
+        android:id="@+id/tv_allwritten_clear"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:fontFamily="@font/pretendardmedium"
+        android:gravity="center"
+        android:text="@string/tv_allwritten_clear"
+        android:textSize="16dp"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.497"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/tv_Unwritten_title"
-        tools:listitem="@layout/item_unwritten_detail" />
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintVertical_bias="0.374" />
 
-
-    <com.google.android.material.bottomnavigation.BottomNavigationView
-        android:id="@+id/bnv_main"
-        android:layout_width="match_parent"
-        android:layout_height="56dp"
-        android:background="@drawable/shape_gray_line_rect"
-        app:itemHorizontalTranslationEnabled="false"
-        app:itemIconSize="24dp"
-        app:itemIconTint="@drawable/menu_selector_color"
-        app:itemTextColor="@drawable/menu_selector_color"
-        app:labelVisibilityMode="unlabeled"
+    <ImageView
+        android:id="@+id/iv_check"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:contentDescription="@string/ic_check"
+        android:src="@drawable/ic_check"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.498"
         app:layout_constraintStart_toStartOf="parent"
-        app:menu="@menu/menu_bnv" />
+        app:layout_constraintTop_toBottomOf="@+id/tv_allwritten_clear"
+        app:layout_constraintVertical_bias="0.036" />
 
 </androidx.constraintlayout.widget.ConstraintLayout>

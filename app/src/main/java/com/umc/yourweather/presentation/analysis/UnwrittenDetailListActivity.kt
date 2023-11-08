@@ -2,18 +2,14 @@ package com.umc.yourweather.presentation.analysis
 
 import android.os.Bundle
 import android.util.Log
-import android.view.LayoutInflater
-import android.view.View
-import android.view.ViewGroup
-import androidx.activity.OnBackPressedCallback
-import androidx.fragment.app.Fragment
+import androidx.appcompat.app.AppCompatActivity
 import androidx.recyclerview.widget.LinearLayoutManager
 import com.umc.yourweather.R
 import com.umc.yourweather.data.entity.ItemUnwritten
 import com.umc.yourweather.data.remote.response.BaseResponse
 import com.umc.yourweather.data.remote.response.MissedInputResponse
 import com.umc.yourweather.data.service.ReportService
-import com.umc.yourweather.databinding.FragmentUnwrittenDetailListBinding
+import com.umc.yourweather.databinding.ActivityUnwrittenDetailListBinding
 import com.umc.yourweather.di.RetrofitImpl
 import com.umc.yourweather.presentation.adapter.UnwrittenRVAdapter
 import retrofit2.Call
@@ -21,37 +17,22 @@ import retrofit2.Callback
 import retrofit2.Response
 import java.util.Calendar
 
-class UnwrittenDetailListFragment : Fragment() {
-    private var _binding: FragmentUnwrittenDetailListBinding? = null
-    private val binding get() = _binding!!
+class UnwrittenDetailListActivity : AppCompatActivity() {
 
-    override fun onCreateView(
-        inflater: LayoutInflater,
-        container: ViewGroup?,
-        savedInstanceState: Bundle?,
-    ): View? {
-        _binding = FragmentUnwrittenDetailListBinding.inflate(inflater, container, false)
-        return binding.root
-    }
+    lateinit var binding: ActivityUnwrittenDetailListBinding
+    override fun onCreate(savedInstanceState: Bundle?) {
+        binding = ActivityUnwrittenDetailListBinding.inflate(layoutInflater)
+        super.onCreate(savedInstanceState)
+        setContentView(binding.root)
 
-    override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
-        super.onViewCreated(view, savedInstanceState)
-
-        // 뒤로가기
         binding.rlBtn1.setOnClickListener {
-            navigateToAnalysisFragment()
+            finish()
         }
-
-        // 뒤로가기 버튼을 누를 때 AnalysisFragment로 이동하도록 설정
-        val callback = object : OnBackPressedCallback(true) {
-            override fun handleOnBackPressed() {
-                navigateToAnalysisFragment()
-            }
-        }
-        requireActivity().onBackPressedDispatcher.addCallback(viewLifecycleOwner, callback)
 
         unWrittenApi()
     }
+
+
 
     private fun getDayOfWeek(year: Int, month: Int, day: Int): String {
         val calendar = Calendar.getInstance()
@@ -88,14 +69,6 @@ class UnwrittenDetailListFragment : Fragment() {
         return dataList
     }
 
-    private fun navigateToAnalysisFragment() {
-        val analysisFragment = AnalysisFragment()
-        requireActivity().supportFragmentManager.beginTransaction()
-            .replace(R.id.fl_content, analysisFragment)
-            .addToBackStack(null)
-            .commit()
-    }
-
     private fun unWrittenApi() {
         val service = RetrofitImpl.authenticatedRetrofit.create(ReportService::class.java)
         val call = service.noInput()
@@ -118,8 +91,8 @@ class UnwrittenDetailListFragment : Fragment() {
 
                                 val dataList = fetchDataFromAPI(localDates)
 
-                                binding.recyclerViewUnwrittenDetail.layoutManager = LinearLayoutManager(requireContext())
-                                val adapter = UnwrittenRVAdapter(dataList, localDates, requireContext())
+                                binding.recyclerViewUnwrittenDetail.layoutManager = LinearLayoutManager(this@UnwrittenDetailListActivity)
+                                val adapter = UnwrittenRVAdapter(dataList, localDates, this@UnwrittenDetailListActivity)
                                 binding.recyclerViewUnwrittenDetail.adapter = adapter
                             } else {
                                 Log.e("Error (null)", "Response body 비었음")
@@ -140,10 +113,5 @@ class UnwrittenDetailListFragment : Fragment() {
                 Log.e("API Failure", "Error: ${t.message}", t)
             }
         })
-    }
-
-    override fun onDestroyView() {
-        super.onDestroyView()
-        _binding = null
     }
 }

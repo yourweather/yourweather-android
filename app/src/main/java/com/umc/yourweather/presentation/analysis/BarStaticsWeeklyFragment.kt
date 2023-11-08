@@ -2,7 +2,6 @@ package com.umc.yourweather.presentation.analysis
 
 import android.graphics.Color
 import android.os.Bundle
-import android.os.Handler
 import android.text.Spannable
 import android.text.SpannableStringBuilder
 import android.text.style.ForegroundColorSpan

@@ -18,7 +18,6 @@ import com.umc.yourweather.data.remote.response.StatisticResponse
 import com.umc.yourweather.data.service.ReportService
 import com.umc.yourweather.databinding.FragmentWrittenDetailListRainBinding
 import com.umc.yourweather.di.RetrofitImpl
-import com.umc.yourweather.presentation.adapter.UnwrittenRVAdapter
 import com.umc.yourweather.presentation.adapter.WrittenRVAdapter
 import retrofit2.Call
 import retrofit2.Callback
