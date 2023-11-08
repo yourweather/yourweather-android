@@ -65,7 +65,7 @@ class AnalysisFragment : Fragment() {
         }
         binding.btnAnalysisMonthly.setOnClickListener {
             if (isMonthlySelected) {
-                return@setOnClickListener // Already selected, do nothing
+                return@setOnClickListener
             }
             isMonthlySelected = true
             isWeeklySelected = false
@@ -87,7 +87,7 @@ class AnalysisFragment : Fragment() {
 
         binding.btnAnalysisWeekly.setOnClickListener {
             if (isWeeklySelected) {
-                return@setOnClickListener // Already selected, do nothing
+                return@setOnClickListener
             }
 
             isWeeklySelected = true
@@ -106,16 +106,6 @@ class AnalysisFragment : Fragment() {
                 binding.btnAnalysisMonthly.setTextColor(resources.getColor(android.R.color.black))
             }
         }
-
-        /**
-         * binding.btnBell.setOnClickListener {
-         val mFragment = AllWrittenFragment()
-         requireActivity().supportFragmentManager.beginTransaction()
-         .replace(R.id.fl_content, mFragment)
-         .addToBackStack(null)
-         .commit()
-         }
-         * */
     }
 
     private fun viewMonthly() {
@@ -160,19 +150,20 @@ class AnalysisFragment : Fragment() {
 
                                     if (localDates.isEmpty()) {
                                         binding.btnBell.setOnClickListener {
-//                                            val mFragment = AllWrittenFragment()
-//                                            requireActivity().supportFragmentManager.beginTransaction()
-//                                                .replace(R.id.fl_content, mFragment)
-//                                                .addToBackStack(null)
-//                                                .commit()
-                                            val intent = Intent(requireContext(), AllWrittenActivity::class.java)
+                                            val intent = Intent(
+                                                requireContext(),
+                                                AllWrittenActivity::class.java,
+                                            )
                                                 .addFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP)
                                             startActivity(intent)
                                         }
                                     } else {
                                         binding.imgBellEvent.visibility = View.VISIBLE
                                         binding.btnBell.setOnClickListener {
-                                            val intent = Intent(requireContext(), UnwrittenDetailListActivity::class.java)
+                                            val intent = Intent(
+                                                requireContext(),
+                                                UnwrittenDetailListActivity::class.java,
+                                            )
                                                 .addFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP)
                                             startActivity(intent)
                                         }
@@ -189,12 +180,18 @@ class AnalysisFragment : Fragment() {
                         }
                     } else {
                         val errorBody = response.errorBody()?.string()
-                        Log.e("API Error", "Response Code: ${response.code()}, Error Body: $errorBody")
+                        Log.e(
+                            "API Error",
+                            "Response Code: ${response.code()}, Error Body: $errorBody",
+                        )
                     }
                     continuation.resume(false, null)
                 }
 
-                override fun onFailure(call: Call<BaseResponse<MissedInputResponse>>, t: Throwable) {
+                override fun onFailure(
+                    call: Call<BaseResponse<MissedInputResponse>>,
+                    t: Throwable,
+                ) {
                     continuation.resume(false, null)
                     Log.e("API Failure", "Error: ${t.message}", t)
                 }
