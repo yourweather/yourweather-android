@@ -2,13 +2,5 @@
 <menu xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:android="http://schemas.android.com/apk/res/android">
 
-    <item
-        android:id="@+id/memu_appbar_backbtn"
-        android:icon="@drawable/ic_black_leftarrow_8_16"
-        android:title="memu_appbar_backbtn"
-        app:showAsAction="always" />
-    <item
-        android:id="@+id/memu_appbar_title"
-        android:title="memu_appbar_title"
-        app:showAsAction="always" />
+
 </menu>

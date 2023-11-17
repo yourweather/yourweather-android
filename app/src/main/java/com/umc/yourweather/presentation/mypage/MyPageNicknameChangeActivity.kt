@@ -36,7 +36,8 @@ class MyPageNicknameChangeActivity : AppCompatActivity() {
 
         }
 
-        binding.flMypageNicknameBackbtn.setOnClickListener {
+        // topAppBar 뒤로가기 누른 경우
+        binding.topAppBar.setNavigationOnClickListener {
             finish()
         }
 
