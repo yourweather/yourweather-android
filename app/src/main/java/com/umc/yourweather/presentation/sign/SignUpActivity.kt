@@ -209,6 +209,7 @@ class SignUpActivity : AppCompatActivity() {
                     val code = response.body()?.code
                     if (code == 200) {
                         // 성공한 경우
+                        binding.etSignupEmail.isEnabled = false
                         Log.d("SendEmailDebug", "이메일 전송 성공")
                         showCustomAlertDialog("인증코드가 전송되었습니다.", 0, true)
                     } else {

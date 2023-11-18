@@ -18,7 +18,9 @@ class AlreadySignUpActivity : AppCompatActivity() {
         var email = intent.getStringExtra("EMAIL")
 
         if (email != null) {
-            email = email.substring(0, 4) + "*".repeat(email.length - 4)
+            if (email.length > 4) {
+                email = email.substring(0, 4) + "*".repeat(email.length - 4)
+            }
             alreadySignUpActivityBinding.tvAlreadySignUpEmail.text = email
         }
 
