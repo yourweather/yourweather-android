@@ -49,10 +49,11 @@ class CalendarTotalViewFragment : Fragment() {
         setDateInfo()
 
         // 전으로 이동
-        binding.flCalendarBtnback.setOnClickListener {
+        binding.btnCalendarBefore.setOnClickListener {
             moveDate(-1, true)
         }
-        binding.flCalendarBtnnext.setOnClickListener {
+
+        binding.btnCalendarNext.setOnClickListener {
             moveDate(1, true)
         }
         // 연월띄우기

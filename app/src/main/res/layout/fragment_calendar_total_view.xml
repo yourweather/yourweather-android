@@ -57,7 +57,7 @@
             android:layout_height="wrap_content"
             android:layout_marginRight="4dp"
             android:fontFamily="@font/pretendardsemibold"
-            android:text="nnnn년 "
+            tools:text="nnnn년 "
             android:textColor="#C22B2B2B"
             android:textSize="14dp" />
 
@@ -68,65 +68,52 @@
             android:background="@drawable/btn_calendar_year" />
     </LinearLayout>
 
-    <LinearLayout
-        android:id="@+id/ll_calendar_month"
-        android:layout_width="match_parent"
-        android:layout_height="0dp"
-        android:layout_marginTop="6dp"
-        android:gravity="center"
-        android:orientation="horizontal"
-        app:layout_constraintTop_toBottomOf="@+id/ll_calendar_year">
+    <androidx.appcompat.widget.AppCompatButton
+        android:id="@+id/btn_calendar_before"
+        android:layout_width="18dp"
+        android:layout_height="18dp"
+        android:layout_gravity="center"
+        android:layout_marginStart="135dp"
+        android:layout_marginTop="7dp"
+        android:background="@drawable/ic_calendar_arrow_left"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/ll_calendar_year" />
 
-        <FrameLayout
-            android:id="@+id/fl_calendar_btnback"
-            android:layout_width="20dp"
-            android:layout_height="match_parent"
-            android:layout_marginLeft="120dp">
+    <androidx.appcompat.widget.AppCompatButton
+        android:id="@+id/btn_calendar_next"
+        android:layout_width="18dp"
+        android:layout_height="18dp"
+        android:layout_gravity="center"
+        android:layout_marginTop="7dp"
+        android:layout_marginEnd="135dp"
+        android:background="@drawable/ic_calendar_arrow_right"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/ll_calendar_year" />
 
-            <androidx.appcompat.widget.AppCompatButton
-                android:id="@+id/btn_calendar_before"
-                android:layout_width="7dp"
-                android:layout_height="14dp"
-                android:layout_gravity="center"
-                android:background="@drawable/btn_calendar_left" />
-        </FrameLayout>
-
-        <TextView
-            android:id="@+id/tv_calendar_month"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_marginLeft="38dp"
-            android:layout_marginRight="38dp"
-            android:fontFamily="@font/pretendardsemibold"
-            android:gravity="center"
-            android:text="nn 월"
-            android:textSize="16dp" />
-
-        <FrameLayout
-            android:id="@+id/fl_calendar_btnnext"
-            android:layout_width="20dp"
-            android:layout_height="match_parent"
-            android:layout_marginRight="120dp">
-
-            <androidx.appcompat.widget.AppCompatButton
-                android:id="@+id/btn_calendar_next"
-                android:layout_width="7dp"
-                android:layout_height="14dp"
-                android:layout_gravity="center"
-                android:background="@drawable/btn_calendar_right" />
-        </FrameLayout>
-
-    </LinearLayout>
+    <TextView
+        android:id="@+id/tv_calendar_month"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="16dp"
+        android:layout_marginTop="3dp"
+        android:layout_marginEnd="16dp"
+        android:fontFamily="@font/pretendardsemibold"
+        android:padding="0dp"
+        tools:text="nn 월"
+        android:textSize="16dp"
+        app:layout_constraintEnd_toStartOf="@+id/btn_calendar_next"
+        app:layout_constraintStart_toEndOf="@+id/btn_calendar_before"
+        app:layout_constraintTop_toBottomOf="@+id/ll_calendar_year" />
 
     <LinearLayout
         android:id="@+id/ll_calendar_day"
         android:layout_width="match_parent"
         android:layout_height="35dp"
-        android:layout_marginTop="16dp"
+        android:layout_marginTop="20dp"
         android:orientation="horizontal"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/ll_calendar_month">
+        app:layout_constraintTop_toBottomOf="@+id/tv_calendar_month">
 
         <TextView
             android:id="@+id/textView6"
