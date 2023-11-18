@@ -56,33 +56,33 @@
             app:layout_constraintTop_toTopOf="parent" />
 
         <TextView
-            android:id="@+id/textView14"
+            android:id="@+id/tv_already_sign_up_platform"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_marginStart="6dp"
             android:fontFamily="@font/pretendardmedium"
-            android:text="TextView"
+            tools:text="text"
             android:textColor="@color/brown"
             android:textSize="14dp"
             app:layout_constraintBottom_toBottomOf="parent"
-            app:layout_constraintStart_toEndOf="@+id/imageView4"
+            app:layout_constraintStart_toEndOf="@+id/iv_already_sign_up_logo"
             app:layout_constraintTop_toTopOf="parent" />
 
         <TextView
-            android:id="@+id/textView15"
+            android:id="@+id/tv_already_sign_up_email"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_marginStart="8dp"
             android:fontFamily="@font/pretendardmedium"
-            android:text="TextView"
+            tools:text="text"
             android:textColor="#B5B5B5"
             android:textSize="7dp"
             app:layout_constraintBottom_toBottomOf="parent"
-            app:layout_constraintStart_toEndOf="@+id/textView14"
+            app:layout_constraintStart_toEndOf="@+id/tv_already_sign_up_platform"
             app:layout_constraintTop_toTopOf="parent" />
 
         <androidx.appcompat.widget.AppCompatButton
-            android:id="@+id/btn_textView15"
+            android:id="@+id/btn_already_sign_up_email_signIn"
             android:layout_width="62dp"
             android:layout_height="0dp"
             android:layout_marginTop="16dp"
