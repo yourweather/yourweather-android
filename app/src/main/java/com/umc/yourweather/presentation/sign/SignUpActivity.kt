@@ -14,9 +14,12 @@ import android.widget.Button
 import android.widget.TextView
 import androidx.appcompat.app.AlertDialog
 import androidx.appcompat.app.AppCompatActivity
+import androidx.core.content.ContextCompat.startActivity
 import com.umc.yourweather.R
 import com.umc.yourweather.data.remote.response.BaseResponse
+import com.umc.yourweather.data.remote.response.VerifyEmailResponse
 import com.umc.yourweather.data.service.EmailService
+import com.umc.yourweather.data.service.UserService
 import com.umc.yourweather.databinding.ActivitySignUpBinding
 import com.umc.yourweather.di.RetrofitImpl
 import com.umc.yourweather.util.SignUtils.Companion.createTextWatcher
@@ -233,12 +236,9 @@ class SignUpActivity : AppCompatActivity() {
                     val code = response.body()?.code
                     if (code == 200) {
                         // 인증 성공한 경우
+
                         Log.d("CertifyEmailDebug", "이메일 인증 성공")
-                        showCustomAlertDialog("인증 성공했습니다.", 1, true)
-                        // 이메일 인증이 완료되었으므로 버튼 활성화 및 상태 변경
-                        isEmailCertified = true
-                        binding.btnSignupNext.isEnabled = true
-                        countDownTimer?.cancel()
+                        (verifyEmail(email))
                     } else {
                         // 인증 실패한 경우
                         Log.d("CertifyEmailDebug", "이메일 인증 실패")
@@ -278,6 +278,50 @@ class SignUpActivity : AppCompatActivity() {
             override fun onFailure(call: Call<BaseResponse<Unit>>, t: Throwable) {
                 // 네트워크 에러 처리
                 Log.d("ResendEmailDebug", "네트워크 오류: " + t.message.toString())
+            }
+        })
+    }
+
+    // 이미 존재하는 이메일인지 여부 검사
+    private fun verifyEmail(email: String) {
+        var verifyEmailService = retrofitWithoutToken.create(UserService::class.java)
+        verifyEmailService.verifyEmail(email).enqueue(object : Callback<BaseResponse<VerifyEmailResponse>> {
+            override fun onResponse(
+                call: Call<BaseResponse<VerifyEmailResponse>>,
+                response: Response<BaseResponse<VerifyEmailResponse>>,
+            ) {
+                val responseBody = response.body()
+                val code = responseBody?.code
+                if (response.isSuccessful) {
+                    if (code == 200) {
+                        Log.d("VerifyEmailDebug", "없는 이메일, 회원가입 가능.")
+                        // 성공한 경우
+                        showCustomAlertDialog("인증 성공했습니다.", 1, true)
+                        // 이메일 인증이 완료되었으므로 버튼 활성화 및 상태 변경
+                        isEmailCertified = true
+                        binding.btnSignupNext.isEnabled = true
+                        countDownTimer?.cancel()
+                    } else {
+                        // 이미 가입한 회원인 경우.
+                        Log.d("VerifyEmailDebug", "이미 가입한 회원")
+
+                        val platform = responseBody?.result?.platform.toString()
+                        val mIntent = Intent(this@SignUpActivity, AlreadySignUpActivity::class.java)
+                        mIntent.putExtra("PLATFORM", platform)
+                        mIntent.putExtra("EMAIL", email)
+                        startActivity(mIntent)
+                        finish()
+                    }
+                }
+            }
+
+            override fun onFailure(call: Call<BaseResponse<VerifyEmailResponse>>, t: Throwable) {
+                // 네트워크 에러 처리
+                // 로그인 화면으로 돌아감
+                Log.d("VerifyEmailDebug", "네트워크 오류: " + t.message.toString())
+                val mIntent = Intent(this@SignUpActivity, SignInActivity::class.java)
+                startActivity(mIntent)
+                finish()
             }
         })
     }
