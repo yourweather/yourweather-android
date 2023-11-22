@@ -41,4 +41,7 @@
     <string name="tv_tab_pw_reset">비밀번호 재설정</string>
     <string name="tv_tab_find_pw_email">이메일 본인 인증</string>
     <string name="tv_tab_unwritten_list">미입력 내역</string>
+    <string name="tv_tab_my_info">내 정보</string>
+    <string name="tv_tab_pw_change">비밀번호 변경</string>
+    <string name="tv_tab_set_alarm">알림 설정</string>
 </resources>

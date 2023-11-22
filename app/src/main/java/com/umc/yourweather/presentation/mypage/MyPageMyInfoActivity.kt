@@ -29,13 +29,11 @@ class MyPageMyInfoActivity : AppCompatActivity() {
         binding = ActivityMyInfoBinding.inflate(layoutInflater)
         setContentView(binding.root)
 
-        binding.flMyinfoBackbtn.setOnClickListener {
+        // topAppBar 뒤로가기 누른 경우
+        binding.tabTabMyInfo.setNavigationOnClickListener {
             finish()
         }
 
-        binding.btnMyinfoBack.setOnClickListener {
-            finish()
-        }
 
         binding.btnMyinfoPwChange.setOnClickListener {
             val mIntent = Intent(this, MyPagePwChangeActivity::class.java)

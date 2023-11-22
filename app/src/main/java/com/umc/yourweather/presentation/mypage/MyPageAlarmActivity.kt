@@ -30,12 +30,11 @@ class MyPageAlarmActivity : AppCompatActivity() {
         binding = ActivityMyPageAlarmBinding.inflate(layoutInflater)
         setContentView(binding.root)
 
-        binding.btnAlarmBack.setOnClickListener {
+        // topAppBar 뒤로가기 누른 경우
+        binding.tabTabSetAlarm.setNavigationOnClickListener {
             finish()
         }
-        binding.flMypageAlarmBackbtn.setOnClickListener {
-            finish()
-        }
+
 
 
         val prefs = getSharedPreferences(PREFS_NAME, Context.MODE_PRIVATE)
