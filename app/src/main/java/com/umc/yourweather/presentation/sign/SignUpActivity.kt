@@ -45,7 +45,6 @@ class SignUpActivity : AppCompatActivity() {
         binding = ActivitySignUpBinding.inflate(layoutInflater)
         setContentView(binding.root)
 
-
         // 아래 동의 문구 글자 색깔 지정해주는 코드
         setAlertText(this@SignUpActivity, binding.root, R.id.tv_signup_alertText)
 
@@ -117,7 +116,7 @@ class SignUpActivity : AppCompatActivity() {
     }
 
     // 다음 단계로 이동하는 함수
-    private fun userEmail(finalEmail : String) {
+    private fun userEmail(finalEmail: String) {
         // val email = binding.etSignupEmail.text.toString()
         val mIntent = Intent(this@SignUpActivity, SignUp2Activity::class.java)
         mIntent.putExtra("email", finalEmail)
@@ -242,7 +241,12 @@ class SignUpActivity : AppCompatActivity() {
                         // 인증 성공한 경우
                         finalEmail = email
                         Log.d("CertifyEmailDebug", "이메일 인증 성공")
-                        (verifyEmail(finalEmail))
+                        // (verifyEmail(finalEmail))
+                        showCustomAlertDialog("인증 성공했습니다.", 1, true)
+                        // 이메일 인증이 완료되었으므로 다음 버튼 활성화 및 상태 변경
+                        isEmailCertified = true
+                        binding.btnSignupNext.isEnabled = true
+                        countDownTimer?.cancel()
                     } else {
                         // 인증 실패한 경우
                         Log.d("CertifyEmailDebug", "이메일 인증 실패")
@@ -300,11 +304,11 @@ class SignUpActivity : AppCompatActivity() {
                     if (code == 200) {
                         Log.d("VerifyEmailDebug", "없는 이메일, 회원가입 가능.")
                         // 성공한 경우
-                        showCustomAlertDialog("인증 성공했습니다.", 1, true)
-                        // 이메일 인증이 완료되었으므로 다음 버튼 활성화 및 상태 변경
-                        isEmailCertified = true
-                        binding.btnSignupNext.isEnabled = true
-                        countDownTimer?.cancel()
+//                        showCustomAlertDialog("인증 성공했습니다.", 1, true)
+//                        // 이메일 인증이 완료되었으므로 다음 버튼 활성화 및 상태 변경
+//                        isEmailCertified = true
+//                        binding.btnSignupNext.isEnabled = true
+//                        countDownTimer?.cancel()
                     } else {
                         // 이미 가입한 회원인 경우.
                         Log.d("VerifyEmailDebug", "이미 가입한 회원")
