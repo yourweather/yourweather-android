@@ -14,9 +14,12 @@ import android.widget.Button
 import android.widget.TextView
 import androidx.appcompat.app.AlertDialog
 import androidx.appcompat.app.AppCompatActivity
+import androidx.core.content.ContextCompat.startActivity
 import com.umc.yourweather.R
 import com.umc.yourweather.data.remote.response.BaseResponse
+import com.umc.yourweather.data.remote.response.VerifyEmailResponse
 import com.umc.yourweather.data.service.EmailService
+import com.umc.yourweather.data.service.UserService
 import com.umc.yourweather.databinding.ActivitySignUpBinding
 import com.umc.yourweather.di.RetrofitImpl
 import com.umc.yourweather.util.SignUtils.Companion.createTextWatcher
@@ -35,11 +38,13 @@ class SignUpActivity : AppCompatActivity() {
 
     // 이메일 인증 여부를 나타내는 변수
     private var isEmailCertified = false
+    private var finalEmail = ""
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         binding = ActivitySignUpBinding.inflate(layoutInflater)
         setContentView(binding.root)
+
 
         // 아래 동의 문구 글자 색깔 지정해주는 코드
         setAlertText(this@SignUpActivity, binding.root, R.id.tv_signup_alertText)
@@ -63,8 +68,9 @@ class SignUpActivity : AppCompatActivity() {
         }
 
         // "다음" 버튼 클릭 시 이벤트 처리
+        // 다음 버튼은 이메일 인증완료된 후에만 활성화됨
         binding.btnSignupNext.setOnClickListener {
-            userEmail()
+            userEmail(finalEmail)
         }
 
         // 이메일 입력란 텍스트 변화 감지
@@ -111,12 +117,12 @@ class SignUpActivity : AppCompatActivity() {
     }
 
     // 다음 단계로 이동하는 함수
-    private fun userEmail() {
-        val email = binding.etSignupEmail.text.toString()
+    private fun userEmail(finalEmail : String) {
+        // val email = binding.etSignupEmail.text.toString()
         val mIntent = Intent(this@SignUpActivity, SignUp2Activity::class.java)
-        mIntent.putExtra("email", email)
+        mIntent.putExtra("email", finalEmail)
         startActivity(mIntent)
-        Log.d("EmailDebug", "Email value: $email")
+        Log.d("EmailDebug", "Email value: $finalEmail")
     }
 
     // 인증 코드 길이 확인
@@ -127,7 +133,7 @@ class SignUpActivity : AppCompatActivity() {
 
     // 타이머 시작
     private fun startTimer() {
-        val startTimeMillis = 5 * 60 * 1000 // 3 minutes in milliseconds
+        val startTimeMillis = 5 * 60 * 1000
         countDownTimer = object : CountDownTimer(startTimeMillis.toLong(), 1000) {
             override fun onTick(millisUntilFinished: Long) {
                 val minutes = millisUntilFinished / (60 * 1000)
@@ -137,7 +143,7 @@ class SignUpActivity : AppCompatActivity() {
             }
 
             override fun onFinish() {
-                binding.tvSignupTime.text = "00:00" // Timer finished
+                binding.tvSignupTime.text = "00:00"
             }
         }.start()
     }
@@ -206,6 +212,7 @@ class SignUpActivity : AppCompatActivity() {
                     val code = response.body()?.code
                     if (code == 200) {
                         // 성공한 경우
+                        // binding.etSignupEmail.isEnabled = false
                         Log.d("SendEmailDebug", "이메일 전송 성공")
                         showCustomAlertDialog("인증코드가 전송되었습니다.", 0, true)
                     } else {
@@ -233,12 +240,9 @@ class SignUpActivity : AppCompatActivity() {
                     val code = response.body()?.code
                     if (code == 200) {
                         // 인증 성공한 경우
+                        finalEmail = email
                         Log.d("CertifyEmailDebug", "이메일 인증 성공")
-                        showCustomAlertDialog("인증 성공했습니다.", 1, true)
-                        // 이메일 인증이 완료되었으므로 버튼 활성화 및 상태 변경
-                        isEmailCertified = true
-                        binding.btnSignupNext.isEnabled = true
-                        countDownTimer?.cancel()
+                        (verifyEmail(finalEmail))
                     } else {
                         // 인증 실패한 경우
                         Log.d("CertifyEmailDebug", "이메일 인증 실패")
@@ -278,6 +282,50 @@ class SignUpActivity : AppCompatActivity() {
             override fun onFailure(call: Call<BaseResponse<Unit>>, t: Throwable) {
                 // 네트워크 에러 처리
                 Log.d("ResendEmailDebug", "네트워크 오류: " + t.message.toString())
+            }
+        })
+    }
+
+    // 이미 존재하는 이메일인지 여부 검사
+    private fun verifyEmail(finalEmail: String) {
+        var verifyEmailService = retrofitWithoutToken.create(UserService::class.java)
+        verifyEmailService.verifyEmail(finalEmail).enqueue(object : Callback<BaseResponse<VerifyEmailResponse>> {
+            override fun onResponse(
+                call: Call<BaseResponse<VerifyEmailResponse>>,
+                response: Response<BaseResponse<VerifyEmailResponse>>,
+            ) {
+                val responseBody = response.body()
+                val code = responseBody?.code
+                if (response.isSuccessful) {
+                    if (code == 200) {
+                        Log.d("VerifyEmailDebug", "없는 이메일, 회원가입 가능.")
+                        // 성공한 경우
+                        showCustomAlertDialog("인증 성공했습니다.", 1, true)
+                        // 이메일 인증이 완료되었으므로 다음 버튼 활성화 및 상태 변경
+                        isEmailCertified = true
+                        binding.btnSignupNext.isEnabled = true
+                        countDownTimer?.cancel()
+                    } else {
+                        // 이미 가입한 회원인 경우.
+                        Log.d("VerifyEmailDebug", "이미 가입한 회원")
+
+                        val platform = responseBody?.result?.platform.toString()
+                        val mIntent = Intent(this@SignUpActivity, AlreadySignUpActivity::class.java)
+                        mIntent.putExtra("PLATFORM", platform)
+                        mIntent.putExtra("EMAIL", finalEmail)
+                        startActivity(mIntent)
+                        finish()
+                    }
+                }
+            }
+
+            override fun onFailure(call: Call<BaseResponse<VerifyEmailResponse>>, t: Throwable) {
+                // 네트워크 에러 처리
+                // 로그인 화면으로 돌아감
+                Log.d("VerifyEmailDebug", "네트워크 오류: " + t.message.toString())
+                val mIntent = Intent(this@SignUpActivity, SignInActivity::class.java)
+                startActivity(mIntent)
+                finish()
             }
         })
     }
