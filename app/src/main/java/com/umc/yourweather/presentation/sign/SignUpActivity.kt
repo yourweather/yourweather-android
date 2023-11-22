@@ -130,7 +130,7 @@ class SignUpActivity : AppCompatActivity() {
 
     // 타이머 시작
     private fun startTimer() {
-        val startTimeMillis = 5 * 60 * 1000 // 3 minutes in milliseconds
+        val startTimeMillis = 5 * 60 * 1000
         countDownTimer = object : CountDownTimer(startTimeMillis.toLong(), 1000) {
             override fun onTick(millisUntilFinished: Long) {
                 val minutes = millisUntilFinished / (60 * 1000)
@@ -140,7 +140,7 @@ class SignUpActivity : AppCompatActivity() {
             }
 
             override fun onFinish() {
-                binding.tvSignupTime.text = "00:00" // Timer finished
+                binding.tvSignupTime.text = "00:00"
             }
         }.start()
     }
