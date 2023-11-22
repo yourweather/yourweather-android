@@ -7,7 +7,7 @@
     tools:context=".presentation.mypage.MyPageNicknameChangeActivity">
 
     <com.google.android.material.appbar.AppBarLayout
-        android:id="@+id/bnv_topAppBar"
+        android:id="@+id/bnv_tab_nickname_change"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         app:layout_constraintEnd_toEndOf="parent"
@@ -15,7 +15,7 @@
         app:layout_constraintTop_toTopOf="parent">
 
         <com.google.android.material.appbar.MaterialToolbar
-            android:id="@+id/topAppBar"
+            android:id="@+id/tab_nickname_change"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:background="@color/white"
@@ -26,11 +26,12 @@
             app:navigationIcon="@drawable/ic_tap_arrow_left_blck_55_56">
 
             <TextView
+                android:id="@+id/tv_nickname_change_tab_title"
                 android:layout_width="wrap_content"
                 android:layout_height="match_parent"
                 android:layout_gravity="center"
                 android:fontFamily="@font/pretendardbold"
-                android:text="닉네임 변경"
+                android:text="@string/tv_nickname_change_tab_title"
                 android:textAlignment="center"
                 android:textColor="@color/sorange"
                 android:textSize="18dp" />
@@ -54,7 +55,7 @@
         android:textSize="15dp"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/bnv_topAppBar" />
+        app:layout_constraintTop_toBottomOf="@+id/bnv_tab_nickname_change" />
 
     <FrameLayout
         android:id="@+id/fl_mypage_nickname"
