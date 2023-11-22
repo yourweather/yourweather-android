@@ -39,7 +39,7 @@
                 android:background="@color/white"
                 android:fontFamily="@font/pretendardsemibold"
                 android:gravity="center"
-                android:text="광고 텍스트가 들어갈 자리입니다."
+                tools:text="광고 텍스트가 들어갈 자리입니다."
                 android:textSize="12dp"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintHorizontal_bias="0.493"
@@ -135,7 +135,7 @@
                         android:layout_height="wrap_content"
                         android:fontFamily="@font/bmhanna"
                         android:gravity="center"
-                        android:text="닉네임 님의 감정날씨"
+                        tools:text="닉네임 님의 감정날씨"
                         android:textColor="@color/brown"
                         android:textSize="24dp"
                         app:layout_constraintBottom_toBottomOf="parent"
@@ -225,7 +225,8 @@
                 app:layout_constraintBottom_toBottomOf="parent"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintStart_toStartOf="parent"
-                app:menu="@menu/menu_bnv" />
+                app:menu="@menu/menu_bnv"
+                app:itemActiveIndicatorStyle="@null"/>
 
 
         </androidx.constraintlayout.widget.ConstraintLayout>

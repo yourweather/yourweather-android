@@ -33,7 +33,7 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:fontFamily="@font/pretendardmedium"
-                android:text="맑은 비구름 님의 감정 날씨를"
+                tools:text="맑은 비구름 님의 감정 날씨를"
                 android:textColor="#2B2B2B"
                 android:textSize="15dp"
                 app:layout_constraintBottom_toTopOf="@+id/tv_initial_msg2"
@@ -84,7 +84,8 @@
                 app:layout_constraintBottom_toBottomOf="parent"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintStart_toStartOf="parent"
-                app:menu="@menu/menu_bnv" />
+                app:menu="@menu/menu_bnv"
+                app:itemActiveIndicatorStyle="@null"/>
 
         </androidx.constraintlayout.widget.ConstraintLayout>
 
