@@ -39,4 +39,6 @@
     <string name="tv_nickname_change_tab_title">닉네임 변경</string>
     <string name="tv_tab_sign_up1">회원가입</string>
     <string name="tv_tab_pw_reset">비밀번호 재설정</string>
+    <string name="tv_tab_find_pw_email">이메일 본인 인증</string>
+    <string name="tv_tab_unwritten_list">미입력 내역</string>
 </resources>
