@@ -28,13 +28,8 @@ class SignUp2Activity : AppCompatActivity() {
             getPw()
         }
 
-        binding.btnSignup2Back.setOnClickListener {
-            val mIntent = Intent(this, SignUpActivity::class.java)
-            startActivity(mIntent)
-            finish()
-        }
-
-        binding.flSignup2Backbtn.setOnClickListener {
+        // topAppBar 뒤로가기 누른 경우
+        binding.tabTabSignUp2.setNavigationOnClickListener {
             finish()
         }
 

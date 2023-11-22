@@ -33,11 +33,10 @@ class MyPageNicknameChangeActivity : AppCompatActivity() {
         binding.btnMypageNicknameRefresh.setOnClickListener {
             binding.etMypageNicknameNickname.setText("")
             binding.etMypageNicknameNickname.hint = NicknameUtils.getRandomHintText()
-
         }
 
         // topAppBar 뒤로가기 누른 경우
-        binding.topAppBar.setNavigationOnClickListener {
+        binding.tabNicknameChange.setNavigationOnClickListener {
             finish()
         }
 
@@ -65,7 +64,7 @@ class MyPageNicknameChangeActivity : AppCompatActivity() {
         val newNickname = binding.etMypageNicknameNickname.text.toString()
         if (newNickname.isNotEmpty()) {
             performNicknameChange(newNickname)
-        } else if(newNickname.isBlank()) {
+        } else if (newNickname.isBlank()) {
             // 닉네임이 비어있는 경우 처리
             val hintNickname = binding.etMypageNicknameNickname.hint.toString()
             performNicknameChange(hintNickname)

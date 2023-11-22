@@ -37,4 +37,5 @@
     <string name="tv_withdraw_withdraw">회원 탈퇴</string>
     <string name="tv_ok">확인</string>
     <string name="tv_nickname_change_tab_title">닉네임 변경</string>
+    <string name="tv_tab_sign_up1">회원가입</string>
 </resources>
