@@ -11,7 +11,7 @@ import androidx.fragment.app.Fragment
 import com.google.android.material.bottomnavigation.BottomNavigationView
 import com.umc.yourweather.R
 import com.umc.yourweather.data.remote.response.BaseResponse
-import com.umc.yourweather.data.remote.response.MonthResponse
+import com.umc.yourweather.data.remote.response.HomeResponse
 import com.umc.yourweather.data.remote.response.MonthWeatherResponse
 import com.umc.yourweather.data.service.WeatherService
 import com.umc.yourweather.di.RetrofitImpl
@@ -79,7 +79,7 @@ class BottomNaviActivity : AppCompatActivity() {
                             Log.d("코루틴 시작 메인함수 ", "결과옴")
                             Log.d("코루틴 시작 메인함수", "프래그먼트 시작")
                             if (result) {
-                                replaceFragment(HomeFragment()) // isExistMissedInput가 true일 때 띄울 프래그먼트를 넣으세요.
+                                replaceFragment(HomeFragment())
                             } else {
                                 Log.d("코루틴 시작 메인함수 ", "결과옴")
                                 Log.d("코루틴 시작 메인함수", "프래그먼트")
@@ -123,46 +123,41 @@ class BottomNaviActivity : AppCompatActivity() {
         val formatter = DateTimeFormatter.ofPattern("yyyy-MM-dd")
         val formattedTodayDate = todayDate.format(formatter)
 
+//        @GET("/api/v1/weather/home")
+//        fun getHomeData(): Call<BaseResponse<HomeResponse>>
+// data class HomeResponse(
+//    val nickname: String,
+//    val status: Status,
+//    val temperature: Int,
+//    val imageName: String,
+// )
+        // 홈화면 조회 api 사용
+        // 조회 결과 없을 경우 "code":400", result null, message = "오늘 날짜의 날씨에 대한 메모가 없습니다."
+        // 이경우 false 반환해주어야함.
+
         return suspendCancellableCoroutine { continuation ->
-            val call = service.getMonthData(year = year, month = month)
-            call.enqueue(object : Callback<BaseResponse<MonthResponse>> {
+            val call = service.getHomeData()
+            call.enqueue(object : Callback<BaseResponse<HomeResponse>> {
                 override fun onResponse(
-                    call: Call<BaseResponse<MonthResponse>>,
-                    response: Response<BaseResponse<MonthResponse>>,
+                    call: Call<BaseResponse<HomeResponse>>,
+                    response: Response<BaseResponse<HomeResponse>>,
                 ) {
-                    val weatherResponse = response.body()
-                    val code = weatherResponse?.code
+                    val responseBody = response.body()
+                    val code = responseBody?.code
                     if (response.isSuccessful) {
                         if (code == 200) {
-                            val weatherData = weatherResponse?.result?.weatherList ?: emptyList()
-                            Log.d(
-                                "로그인, 미입력조회..",
-                                "thisDate : ${weatherData.any { it.date == formattedTodayDate }}",
-                            )
-                            Log.d("코루틴 시작 요청함수 ", "요청시작")
-                            Log.d("코루틴 시작 요청함수", "결과옴")
-                            val isTodayRecordExist = weatherData.any { it.date == formattedTodayDate }
-
-                            Log.d(
-                                "코루틴 시작 요청함수",
-                                "$isTodayRecordExist $formattedTodayDate $weatherData}",
-
-                            )
-                            continuation.resume(isTodayRecordExist, null)
-                        } else {
-                            Log.d(
-                                "Calendar",
-                                "onResponse 에러: " + weatherResponse?.message.toString(),
-                            )
+                            continuation.resume(true, null)
+                        } else if (code == 400) {
+                            Log.d("홈화면 미입력 조회 레트로핏", "오늘 입력한 값 없음" + responseBody?.message.toString())
                             continuation.resume(false, null)
                         }
                     } else {
-                        Log.d("Calendar", "onFailure 에러: " + weatherResponse?.message.toString())
+                        Log.d("홈화면 미입력 조회 레트로핏", "onFailure 에러: " + responseBody?.message.toString())
                         continuation.resume(false, null)
                     }
                 }
 
-                override fun onFailure(call: Call<BaseResponse<MonthResponse>>, t: Throwable) {
+                override fun onFailure(call: Call<BaseResponse<HomeResponse>>, t: Throwable) {
                     Log.d("Calendar", "onFailure 에러: " + t.message.toString())
                     continuation.resume(false, null)
                 }
