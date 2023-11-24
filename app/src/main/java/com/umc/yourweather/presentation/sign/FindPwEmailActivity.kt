@@ -59,11 +59,8 @@ class FindPwEmailActivity : AppCompatActivity() {
             resendEmail(email)
         }
 
-        binding.btnFindPwEmailLeftArrow.setOnClickListener {
-            finish()
-        }
-
-        binding.flFinpwEmailBackbtn.setOnClickListener {
+        // topAppBar 뒤로가기 누른 경우
+        binding.tabFindPwEmail.setNavigationOnClickListener {
             finish()
         }
 

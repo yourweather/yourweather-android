@@ -6,37 +6,39 @@
     android:layout_height="match_parent"
     tools:context=".presentation.mypage.MyPageAlarmActivity">
 
-    <FrameLayout
-        android:id="@+id/fl_mypage_alarm_backbtn"
-        android:layout_width="46dp"
-        android:layout_height="49dp"
-        android:padding="7dp"
+    <com.google.android.material.appbar.AppBarLayout
+        android:id="@+id/bnv_tab_set_alarm"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent">
 
-        <ImageButton
-            android:id="@+id/btn_alarm_back"
-            style="?android:attr/borderlessButtonStyle"
-            android:layout_width="10dp"
-            android:layout_height="18dp"
-            android:layout_gravity="center"
-            android:background="@drawable/ic_black_leftarrow_8_16" />
-    </FrameLayout>
+        <com.google.android.material.appbar.MaterialToolbar
+            android:id="@+id/tab_tab_set_alarm"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:background="@color/white"
+            android:clickable="true"
+            android:minHeight="?attr/actionBarSize"
+            android:textAlignment="center"
+            app:menu="@menu/memu_appbar_back"
+            app:navigationIcon="@drawable/ic_tap_arrow_left_blck_55_56">
 
-    <TextView
-        android:id="@+id/tv_my_alarm_title"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:fontFamily="@font/pretendardbold"
-        android:gravity="center"
-        android:text="@string/tv_my_alarm_title"
-        android:textAlignment="center"
-        android:textColor="#F07818"
-        android:textSize="20sp"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent"
-        android:layout_marginTop="12dp" />
+            <TextView
+                android:id="@+id/tv_tab_set_alarm"
+                android:layout_width="wrap_content"
+                android:layout_height="match_parent"
+                android:layout_gravity="center"
+                android:fontFamily="@font/pretendardbold"
+                android:text="@string/tv_tab_set_alarm"
+                android:textAlignment="center"
+                android:textColor="@color/sorange"
+                android:textSize="18dp" />
+
+        </com.google.android.material.appbar.MaterialToolbar>
+
+    </com.google.android.material.appbar.AppBarLayout>
 
     <TextView
         android:id="@+id/tv_my_alarm_weekly"
@@ -47,7 +49,7 @@
         android:fontFamily="@font/pretendardsemibold"
         android:layout_marginStart="35dp"
         android:layout_marginTop="60dp"
-        app:layout_constraintTop_toBottomOf="@id/tv_my_alarm_title"
+        app:layout_constraintTop_toBottomOf="@id/bnv_tab_set_alarm"
         app:layout_constraintStart_toStartOf="parent"
         />
 
@@ -57,7 +59,7 @@
         android:layout_height="wrap_content"
         android:fontFamily="@font/pretendardsemibold"
         tools:ignore="UseSwitchCompatOrMaterialXml"
-        app:layout_constraintTop_toBottomOf="@id/tv_my_alarm_title"
+        app:layout_constraintTop_toBottomOf="@id/bnv_tab_set_alarm"
         app:layout_constraintEnd_toEndOf="parent"
         android:layout_marginEnd="33dp"
         android:layout_marginTop="63dp"
@@ -72,7 +74,7 @@
         android:background="#ECECEC"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@id/tv_my_alarm_title"
+        app:layout_constraintTop_toBottomOf="@id/bnv_tab_set_alarm"
         android:layout_marginTop="110dp"
         android:layout_marginStart="33dp"
         android:layout_marginEnd="24dp"/>

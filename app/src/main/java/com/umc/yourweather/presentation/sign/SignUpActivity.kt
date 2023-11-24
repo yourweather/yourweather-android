@@ -48,14 +48,8 @@ class SignUpActivity : AppCompatActivity() {
         // 아래 동의 문구 글자 색깔 지정해주는 코드
         setAlertText(this@SignUpActivity, binding.root, R.id.tv_signup_alertText)
 
-        // "뒤로 가기" 버튼 클릭 시 이벤트 처리
-        binding.btnSingupBack.setOnClickListener {
-            val mIntent = Intent(this, SignInActivity::class.java)
-            startActivity(mIntent)
-            finish()
-        }
-
-        binding.flSignupBackbtn.setOnClickListener {
+        // topAppBar 뒤로가기 누른 경우
+        binding.tabTabSignUp1.setNavigationOnClickListener {
             finish()
         }
 

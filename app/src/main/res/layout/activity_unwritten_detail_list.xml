@@ -8,50 +8,51 @@
     tools:context=".presentation.analysis.UnwrittenDetailListActivity">
 
 
-    <RelativeLayout
-        android:id="@+id/rl_btn1"
-        android:layout_width="44dp"
-        android:layout_height="52dp"
+
+
+    <com.google.android.material.appbar.AppBarLayout
+        android:id="@+id/bnv_tab_unwritten_list"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent">
 
-        <ImageButton
-            android:id="@+id/btn_Unwritten_left_arrow"
-            style="?android:attr/borderlessButtonStyle"
-            android:layout_width="10dp"
-            android:layout_height="18dp"
-            android:layout_marginStart="16dp"
-            android:layout_marginTop="19dp"
-            android:background="@drawable/ic_black_leftarrow_8_16"
-            android:paddingTop="10dp"
-            app:layout_constraintHeight_percent="0.05"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toTopOf="parent" />
-    </RelativeLayout>
+        <com.google.android.material.appbar.MaterialToolbar
+            android:id="@+id/tab_tab_unwritten_list"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:background="@color/white"
+            android:clickable="true"
+            android:minHeight="?attr/actionBarSize"
+            android:textAlignment="center"
+            app:menu="@menu/memu_appbar_back"
+            app:navigationIcon="@drawable/ic_tap_arrow_left_blck_55_56">
 
-    <TextView
-        android:id="@+id/tv_Unwritten_title"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginTop="16dp"
-        android:fontFamily="@font/bmhanna"
-        android:text="@string/tv_Unwritten_title"
-        android:textColor="@color/sorange"
-        android:textSize="20dp"
-        android:textStyle="bold"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent" />
+            <TextView
+                android:id="@+id/tv_tab_unwritten_list"
+                android:layout_width="wrap_content"
+                android:layout_height="match_parent"
+                android:layout_gravity="center"
+                android:fontFamily="@font/pretendardbold"
+                android:text="@string/tv_tab_unwritten_list"
+                android:textAlignment="center"
+                android:textColor="@color/sorange"
+                android:textSize="18dp" />
+
+        </com.google.android.material.appbar.MaterialToolbar>
+
+    </com.google.android.material.appbar.AppBarLayout>
 
     <androidx.recyclerview.widget.RecyclerView
         android:id="@+id/recyclerViewUnwrittenDetail"
         android:layout_width="match_parent"
         android:layout_height="0dp"
-        android:layout_marginTop="64dp"
+        android:layout_marginTop="30dp"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/tv_Unwritten_title"
+        app:layout_constraintTop_toBottomOf="@+id/bnv_tab_unwritten_list"
         tools:listitem="@layout/item_unwritten_detail" />
 
 

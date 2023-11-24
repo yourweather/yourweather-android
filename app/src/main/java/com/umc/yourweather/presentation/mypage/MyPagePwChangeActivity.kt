@@ -28,7 +28,8 @@ class MyPagePwChangeActivity : AppCompatActivity() {
         binding = ActivityMyPagePwChangeBinding.inflate(layoutInflater)
         setContentView(binding.root)
 
-        binding.flMypagePwBackbtn.setOnClickListener {
+        // topAppBar 뒤로가기 누른 경우
+        binding.tabTabPwChange.setNavigationOnClickListener {
             finish()
         }
 

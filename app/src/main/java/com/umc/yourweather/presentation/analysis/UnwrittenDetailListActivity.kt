@@ -25,7 +25,8 @@ class UnwrittenDetailListActivity : AppCompatActivity() {
         super.onCreate(savedInstanceState)
         setContentView(binding.root)
 
-        binding.rlBtn1.setOnClickListener {
+        // topAppBar 뒤로가기 누른 경우
+        binding.tabTabUnwrittenList.setNavigationOnClickListener {
             finish()
         }
 

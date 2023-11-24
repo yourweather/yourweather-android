@@ -41,11 +41,8 @@ class ResetPwActivity : AppCompatActivity() {
             resetPwApi(binding.etResetPwRepw.text.toString())
         }
 
-        binding.btnResetPwLeftArrow.setOnClickListener {
-            finish()
-        }
-
-        binding.flResetPwBackbtn.setOnClickListener {
+        // topAppBar 뒤로가기 누른 경우
+        binding.tabTabPwReset.setNavigationOnClickListener {
             finish()
         }
 

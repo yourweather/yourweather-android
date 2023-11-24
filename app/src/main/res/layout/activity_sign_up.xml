@@ -6,55 +6,39 @@
     android:layout_height="match_parent"
     tools:context=".presentation.sign.SignUpActivity">
 
-    <androidx.constraintlayout.widget.ConstraintLayout
-        android:id="@+id/ll_singup0"
+    <com.google.android.material.appbar.AppBarLayout
+        android:id="@+id/bnv_tab_sign_up1"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent">
 
-        <FrameLayout
-            android:id="@+id/fl_signup_backbtn"
-            android:layout_width="wrap_content"
-            android:layout_height="match_parent"
-            android:layout_marginStart="10dp"
-            android:padding="7dp"
-            android:paddingRight="7dp"
-            app:layout_constraintBottom_toBottomOf="parent"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toTopOf="parent">
-
-            <ImageButton
-                android:id="@+id/btn_singup_back"
-                style="?android:attr/borderlessButtonStyle"
-                android:layout_width="10dp"
-                android:layout_height="18dp"
-                android:layout_gravity="center"
-                android:background="@drawable/ic_black_leftarrow_8_16" />
-        </FrameLayout>
-
-        <TextView
-            android:id="@+id/tv_signup_title"
-            android:layout_width="wrap_content"
+        <com.google.android.material.appbar.MaterialToolbar
+            android:id="@+id/tab_tab_sign_up1"
+            android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:layout_gravity="center"
-            android:layout_marginTop="16dp"
-            android:layout_marginBottom="16dp"
-            android:fontFamily="@font/pretendardbold"
-            android:gravity="center"
-            android:text="@string/tv_signup_title"
-            android:textColor="@color/sorange"
-            android:textSize="20dp"
-            android:textStyle="bold"
-            app:layout_constraintBottom_toBottomOf="parent"
-            app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toTopOf="parent"
-            app:layout_constraintVertical_bias="1.0" />
+            android:background="@color/white"
+            android:clickable="true"
+            android:minHeight="?attr/actionBarSize"
+            android:textAlignment="center"
+            app:menu="@menu/memu_appbar_back"
+            app:navigationIcon="@drawable/ic_tap_arrow_left_blck_55_56">
 
+            <TextView
+                android:id="@+id/tv_tab_sign_up1"
+                android:layout_width="wrap_content"
+                android:layout_height="match_parent"
+                android:layout_gravity="center"
+                android:fontFamily="@font/pretendardbold"
+                android:text="@string/tv_tab_sign_up1"
+                android:textAlignment="center"
+                android:textColor="@color/sorange"
+                android:textSize="18dp" />
 
-    </androidx.constraintlayout.widget.ConstraintLayout>
+        </com.google.android.material.appbar.MaterialToolbar>
+
+    </com.google.android.material.appbar.AppBarLayout>
 
 
     <TextView
@@ -73,7 +57,7 @@
         android:textStyle="bold"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/ll_singup0" />
+        app:layout_constraintTop_toBottomOf="@+id/bnv_tab_sign_up1" />
 
     <com.google.android.material.textfield.TextInputLayout
         android:id="@+id/textinput_signup_1"
