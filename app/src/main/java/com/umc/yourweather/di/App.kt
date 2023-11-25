@@ -8,7 +8,7 @@ import com.umc.yourweather.BuildConfig
 
 class App : Application() {
     companion object {
-        var appContext: Context? = null
+        lateinit var appContext: Context
         lateinit var token_prefs: TokenSharedPreferences
         lateinit var globalNickname: String
     }
