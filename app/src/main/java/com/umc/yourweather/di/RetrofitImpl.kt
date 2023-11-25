@@ -1,17 +1,12 @@
 package com.umc.yourweather.di
 
 import android.content.Context
-import android.content.Intent
-import android.os.Handler
-import android.os.Looper
 import android.util.Log
-import android.widget.Toast
 import com.google.gson.Gson
 import com.google.gson.reflect.TypeToken
 import com.umc.yourweather.BuildConfig
 import com.umc.yourweather.data.remote.response.BaseResponse
 import com.umc.yourweather.data.remote.response.TokenResponse
-import com.umc.yourweather.presentation.sign.SignInActivity
 import okhttp3.Interceptor
 import okhttp3.OkHttpClient
 import okhttp3.Request
@@ -93,7 +88,7 @@ object RetrofitImpl {
             Log.d("토큰 인터셉터 확인", "첫번재 요청 리턴 코드 ${infoResponse.code}")
 
             // 여기서 오류가 나지 않는다면 그냥 response가 리턴
-            if (infoResponse.code == 401 or 403) {
+            if (infoResponse.code == 400) {
                 infoResponse.close()
 
                 Log.d("토큰 인터셉터 확인", "두번째... 리프래시 붙여서 토큰 갱신하기 시도")
@@ -103,13 +98,20 @@ object RetrofitImpl {
                 infoResponse = proceed(infoRequest)
                 Log.d("토큰 인터셉터 확인", "두번재 요청 리턴 코드 ${infoResponse.code}")
 
-//                var refreshResponseObject = parseTokenResponse(infoResponse)
-                if (infoResponse.code != 401 and 403) {
-                    Log.d("토큰 인터셉터 확인", "리프래시 받아오기 시도성공!")
+                var refreshResponseObject = parseTokenResponse(infoResponse)
+                Log.d("토큰 인터셉터 확인", "두번재 요청 리턴 코드 파싱된것으로 확인하기${ refreshResponseObject?.code}")
 
-                    val newAccessToken = infoResponse.header(accessHeader, null) ?: null
-                    val newRefreshToken = infoResponse.header(refreshHeader, null) ?: null
+                if (refreshResponseObject?.code != 400) {
+                    Log.d("토큰 인터셉터 확인", "토큰 갱신 시도성공!")
+
+                    val newAccessToken = refreshResponseObject?.result?.accessToken
+                    val newRefreshToken = refreshResponseObject?.result?.refreshToken
 //                    infoResponse.close()
+
+                    Log.d("토큰 인터셉터 확인", "갱신 요청. 응답 확인. 파싱된값 $refreshResponseObject?")
+                    Log.d("토큰 인터셉터 확인", "갱신 요청. 응답 확인. ${infoResponse.body}")
+                    Log.d("토큰 인터셉터 확인", "갱신 요청. 토큰 확인. 액세스 $newAccessToken")
+                    Log.d("토큰 인터셉터 확인", "갱신 요청. 토큰 확인. 리프래시 $newRefreshToken")
 
                     // 받은 토큰이 null이 아니라면 토큰 저장하고 다시 헤더에 붙여서 재요청함.
                     if (newAccessToken != null && newRefreshToken != null) {
@@ -124,24 +126,25 @@ object RetrofitImpl {
                         val newResponse = proceed(newRequest)
                         Log.d("토큰 인터셉터 확인", "세번째 요청 리턴 코드 ${newResponse.code}")
 
-                        if (newResponse.code == 401 or 403) {
-                            Log.d("토큰 인터셉터 확인", "재요청 실패. 토큰 오류입니다.")
-                            UserSharedPreferences.clearUser(context) // 로그아웃
-                            App.token_prefs.clearTokens() // 토큰 제거
-                            Handler(Looper.getMainLooper()).post {
-                                Toast.makeText(
-                                    context,
-                                    "비정상적인 요청 발생. 다시 로그인해주세요! ",
-                                    Toast.LENGTH_SHORT,
-                                ).show()
-                                val intent =
-                                    Intent(context, SignInActivity::class.java) // 로그인 화면으로 이동
-                                intent.addFlags(Intent.FLAG_ACTIVITY_NEW_TASK or Intent.FLAG_ACTIVITY_CLEAR_TASK)
-                                context.startActivity(intent)
-                            }
-                        } else {
-                            return newResponse
-                        }
+                        return newResponse
+//                        if (newResponse.code == 400) {
+//                            Log.d("토큰 인터셉터 확인", "재요청 실패. 토큰 오류입니다.")
+//                            UserSharedPreferences.clearUser(context) // 로그아웃
+//                            App.token_prefs.clearTokens() // 토큰 제거
+//                            Handler(Looper.getMainLooper()).post {
+//                                Toast.makeText(
+//                                    context,
+//                                    "다시 로그인해주세요! ",
+//                                    Toast.LENGTH_SHORT,
+//                                ).show()
+//                                val intent =
+//                                    Intent(context, SignInActivity::class.java) // 로그인 화면으로 이동
+//                                intent.addFlags(Intent.FLAG_ACTIVITY_NEW_TASK or Intent.FLAG_ACTIVITY_CLEAR_TASK)
+//                                context.startActivity(intent)
+//                            }
+//                        } else {
+//                            return newResponse
+//                        }
                     }
                     Log.d("토큰 인터셉터 확인", "토큰 요청으로 받은 토큰이 null입니다.")
                 }
