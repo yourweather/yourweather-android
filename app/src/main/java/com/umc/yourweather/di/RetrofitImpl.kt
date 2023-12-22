@@ -1,5 +1,6 @@
 package com.umc.yourweather.di
 
+import android.content.Context
 import android.util.Log
 import com.google.gson.Gson
 import com.google.gson.reflect.TypeToken
@@ -35,7 +36,7 @@ object RetrofitImpl {
             .setLevel(HttpLoggingInterceptor.Level.BODY)
         OkHttpClient.Builder()
             .addInterceptor(httpLoggingInterceptor)
-            .addInterceptor(AuthenticatedInterceptor())
+            .addInterceptor(AuthenticatedInterceptor(App.appContext))
             .build()
     }
 
@@ -71,7 +72,7 @@ object RetrofitImpl {
     }
 
     // 토큰이 필요한 요청에 사용할 인터셉터
-    class AuthenticatedInterceptor : Interceptor {
+    class AuthenticatedInterceptor(val context: Context) : Interceptor {
         @Throws(IOException::class)
         override fun intercept(chain: Interceptor.Chain): Response = with(chain) {
             val accessHeader = "Authorization"
@@ -79,47 +80,76 @@ object RetrofitImpl {
 
             var infoRequest =
                 createRequestBuilder(request(), accessHeader, App.token_prefs.accessToken)
-            var infoResponse = proceed(infoRequest)
 
-//            // 리프래시 test용
-//            var infoRequest =
-//                createRequestBuilder(request(), accessHeader, "aa")
-//            var infoResponse = proceed(infoRequest)
+            var infoResponse = proceed(infoRequest)
 
             Log.d("저장된 토큰 확인", "저장 토큰 확인 액세스 ${App.token_prefs.accessToken}")
             Log.d("저장된 토큰 확인", "저장 토큰 확인 리프래시 ${App.token_prefs.refreshToken}")
-            Log.d("토큰 인터셉터 확인... 첫번째", "${infoResponse.body}")
+            Log.d("토큰 인터셉터 확인", "첫번재 요청 리턴 코드 ${infoResponse.code}")
 
             // 여기서 오류가 나지 않는다면 그냥 response가 리턴
             if (infoResponse.code == 400) {
                 infoResponse.close()
 
+                Log.d("토큰 인터셉터 확인", "두번째... 리프래시 붙여서 토큰 갱신하기 시도")
                 // 유효하지 않으면 기존 리프래시 붙여서 다시 시도
-                infoRequest = createRequestBuilder(request(), refreshHeader, App.token_prefs.refreshToken)
+                infoRequest =
+                    createRequestBuilder(request(), refreshHeader, App.token_prefs.refreshToken)
                 infoResponse = proceed(infoRequest)
+                Log.d("토큰 인터셉터 확인", "두번재 요청 리턴 코드 ${infoResponse.code}")
 
-                // 리프래시 붙여서 보낸 요청 값... 잘 왔으면 온 요청 다시 tokenPre에 저장하기....
-                // 저장하고 다시 요청
                 var refreshResponseObject = parseTokenResponse(infoResponse)
-                Log.d("토큰 인터셉터 확인... 두번째... 리프래시 받아오기 시도", "$refreshResponseObject")
+                Log.d("토큰 인터셉터 확인", "두번재 요청 리턴 코드 파싱된것으로 확인하기${ refreshResponseObject?.code}")
+
                 if (refreshResponseObject?.code != 400) {
-                    infoResponse.close()
+                    Log.d("토큰 인터셉터 확인", "토큰 갱신 시도성공!")
 
-                    Log.d("토큰 인터셉터 확인... 두번째... 리프래시 받아오기 시도성공!", "$refreshResponseObject")
-                    // 여기서 오류난다면(리프래시도 썩었으면 ) 리프래시 얻어온게 실패한 response가 돌아간다
-                    // 성공하면 다시 토큰 받아온것이므로 그거 다시 저장해주기...
-                    App.token_prefs.accessToken = refreshResponseObject?.result?.accessToken
-                    App.token_prefs.refreshToken = refreshResponseObject?.result?.refreshToken
+                    val newAccessToken = refreshResponseObject?.result?.accessToken
+                    val newRefreshToken = refreshResponseObject?.result?.refreshToken
+//                    infoResponse.close()
 
-                    // 다시 받아온 토큰으로 요청하기~
-                    infoRequest = createRequestBuilder(request(), accessHeader, App.token_prefs.accessToken)
-                    return proceed(infoRequest)
-                    // Log.d("토큰 인터셉터 확인... 갱신된 토큰으로 재요청", "$infoRequest")
+                    Log.d("토큰 인터셉터 확인", "갱신 요청. 응답 확인. 파싱된값 $refreshResponseObject?")
+                    Log.d("토큰 인터셉터 확인", "갱신 요청. 응답 확인. ${infoResponse.body}")
+                    Log.d("토큰 인터셉터 확인", "갱신 요청. 토큰 확인. 액세스 $newAccessToken")
+                    Log.d("토큰 인터셉터 확인", "갱신 요청. 토큰 확인. 리프래시 $newRefreshToken")
+
+                    // 받은 토큰이 null이 아니라면 토큰 저장하고 다시 헤더에 붙여서 재요청함.
+                    if (newAccessToken != null && newRefreshToken != null) {
+                        Log.d("토큰 인터셉터 확인", "새 토큰으로 다시 요청")
+                        App.token_prefs.accessToken = newAccessToken
+                        App.token_prefs.refreshToken = newRefreshToken
+                        val newRequest = createRequestBuilder(
+                            request(),
+                            accessHeader,
+                            App.token_prefs.accessToken,
+                        )
+                        val newResponse = proceed(newRequest)
+                        Log.d("토큰 인터셉터 확인", "세번째 요청 리턴 코드 ${newResponse.code}")
+
+                        return newResponse
+//                        if (newResponse.code == 400) {
+//                            Log.d("토큰 인터셉터 확인", "재요청 실패. 토큰 오류입니다.")
+//                            UserSharedPreferences.clearUser(context) // 로그아웃
+//                            App.token_prefs.clearTokens() // 토큰 제거
+//                            Handler(Looper.getMainLooper()).post {
+//                                Toast.makeText(
+//                                    context,
+//                                    "다시 로그인해주세요! ",
+//                                    Toast.LENGTH_SHORT,
+//                                ).show()
+//                                val intent =
+//                                    Intent(context, SignInActivity::class.java) // 로그인 화면으로 이동
+//                                intent.addFlags(Intent.FLAG_ACTIVITY_NEW_TASK or Intent.FLAG_ACTIVITY_CLEAR_TASK)
+//                                context.startActivity(intent)
+//                            }
+//                        } else {
+//                            return newResponse
+//                        }
+                    }
+                    Log.d("토큰 인터셉터 확인", "토큰 요청으로 받은 토큰이 null입니다.")
                 }
             }
             infoResponse
-            // 리프래시 오면 다시 시도
-            // Log.d("토큰 인터셉터 확인... 최종 response", "${infoResponse.body}")
         }
     }
 
